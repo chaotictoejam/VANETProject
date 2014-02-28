@@ -1,0 +1,1 @@
+-g -Wall   -I/usr/include -fno-stack-protector  -DHAVE_PCAP -DXMLPARSER=libxml -DWITH_PARSIM -DWITH_NETBUILDER -DINET_IMPORT -I. -ISimulations -ISimulations/AODV -ISimulations/AODV/results -ISimulations/Traci -ISimulations/Traci/results -Ietc -Ietc/plugins -Isrc -If:/VANETProject/omnetpp-4.4/include
