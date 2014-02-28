@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -O out -L../inet/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KMIXIMFORK_PROJ=../MiXiMFork -KINET_PROJ=../inet
+#  opp_makemake -f --deep -O out -LF:/VANETProject/WorkingProjects/inet/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KMIXIMFORK_PROJ=../MiXiMFork -KINET_PROJ=F:/VANETProject/WorkingProjects/inet
 #
 
 # Name of target to be created (-o option)
@@ -29,8 +29,8 @@ INCLUDE_PATH = \
 EXTRA_OBJS =
 
 # Additional libraries (-L, -l options)
-LIBS = -L../inet/out/$(CONFIGNAME)/src  -linet
-LIBS += -Wl,-rpath,`abspath ../inet/out/$(CONFIGNAME)/src`
+LIBS = -LF:/VANETProject/WorkingProjects/inet/out/$(CONFIGNAME)/src  -linet
+LIBS += -Wl,-rpath,`abspath F:/VANETProject/WorkingProjects/inet/out/$(CONFIGNAME)/src`
 
 # Output directory
 PROJECT_OUTPUT_DIR = out
@@ -45,7 +45,7 @@ MSGFILES =
 
 # Other makefile variables (-K)
 MIXIMFORK_PROJ=../MiXiMFork
-INET_PROJ=../inet
+INET_PROJ=F:/VANETProject/WorkingProjects/inet
 
 #------------------------------------------------------------------------------
 

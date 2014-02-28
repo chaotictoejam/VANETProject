@@ -1,1 +1,14 @@
-VANET Solutions for OMNET++
+VANET Solutions in OMNET++ using VEINS and SUMO
+
+This Project will contain:
+	-MANET Protocols:
+		-AODV
+		-OSLR
+		-GPSR
+	-VANET Protocols:
+		-AODV-VANET
+		-VDTP
+		-RBVT-R
+		-RBVT-P
+		-MyProtocol (BitTorrentBased)
+	-VANET Project working with Google Earth/Maps
