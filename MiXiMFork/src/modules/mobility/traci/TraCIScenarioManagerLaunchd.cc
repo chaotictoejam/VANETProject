@@ -28,7 +28,7 @@
 
 #define MYDEBUG EV
 
-Define_Module(TraCIScenarioManagerLaunchd);
+Define_Module(MiXiMForkTraCIScenarioManagerLaunchd);
 
 TraCIScenarioManagerLaunchd::~TraCIScenarioManagerLaunchd()
 {

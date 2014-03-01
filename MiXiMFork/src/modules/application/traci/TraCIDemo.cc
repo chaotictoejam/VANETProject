@@ -24,7 +24,7 @@
 #include "SimpleAddress.h"
 #include "ApplPkt_m.h"
 
-Define_Module(TraCIDemo);
+Define_Module(MiXiMForkTraCIDemo);
 
 const simsignalwrap_t TraCIDemo::mobilityStateChangedSignal = simsignalwrap_t(MIXIM_SIGNAL_MOBILITY_CHANGE_NAME);
 

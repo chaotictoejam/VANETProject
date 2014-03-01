@@ -21,7 +21,7 @@
 #include <map>
 #include <set>
 
-#include "obstacle/ObstacleControl.h"
+#include "../obstacle/ObstacleControl.h"
 
 
 Define_Module(ObstacleControl);

@@ -1,8 +1,8 @@
-#include "ConnectionManager.h"
+#include "../connectionManager/ConnectionManager.h"
 
 #include <cmath>
 
-#include "BaseWorldUtility.h"
+#include "../modules/BaseWorldUtility.h"
 
 #ifndef ccEV
 #define ccEV (ev.isDisabled()||!coreDebug) ? ev : ev << getName() << ": "

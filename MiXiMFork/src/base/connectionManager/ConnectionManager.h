@@ -2,7 +2,7 @@
 #define CONNECTIONMANAGER_H_
 
 #include "MiXiMDefs.h"
-#include "BaseConnectionManager.h"
+#include "../connectionManager/BaseConnectionManager.h"
 
 /**
  * @brief BaseConnectionManager implementation which only defines a

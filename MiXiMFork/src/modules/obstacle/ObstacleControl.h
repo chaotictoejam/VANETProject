@@ -24,9 +24,9 @@
 #include <list>
 
 #include <omnetpp.h>
-#include "Coord.h"
-#include "obstacle/Obstacle.h"
-#include "world/annotations/AnnotationManager.h"
+#include "../../base/utils/Coord.h"
+#include "../obstacle/Obstacle.h"
+#include "../world/annotations/AnnotationManager.h"
 
 /**
  * ObstacleControl models obstacles that block radio transmissions.

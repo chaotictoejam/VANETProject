@@ -20,7 +20,7 @@
 
 #include "application/traci/TraCIDemo11p.h"
 
-Define_Module(TraCIDemo11p);
+Define_Module(MiXiMForkTraCIDemo11p);
 
 void TraCIDemo11p::initialize(int stage) {
 	BaseWaveApplLayer::initialize(stage);

@@ -18,7 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package vanetsim.Simulations.Traci;
+package vanetsim.test.Traci;
 
 import miximfork.src.base.connectionManager.ConnectionManager;
 import miximfork.src.base.modules.BaseWorldUtility;

@@ -18,7 +18,7 @@
 //
 
 #include <set>
-#include "obstacle/Obstacle.h"
+#include "../obstacle/Obstacle.h"
 
 Obstacle::Obstacle(std::string id, double attenuationPerWall, double attenuationPerMeter) :
 	visualRepresentation(0),

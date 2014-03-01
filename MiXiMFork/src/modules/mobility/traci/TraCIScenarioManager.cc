@@ -41,7 +41,7 @@
 #include "mobility/traci/TraCIMobility.h"
 #include "obstacle/ObstacleControl.h"
 
-Define_Module(TraCIScenarioManager);
+Define_Module(MiXiMForkTraCIScenarioManager);
 
 TraCIScenarioManager::~TraCIScenarioManager() {
 	cancelAndDelete(connectAndStartTrigger);

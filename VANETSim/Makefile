@@ -16,14 +16,18 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
 # C++ include paths (with -I)
 INCLUDE_PATH = \
     -I. \
-    -ISimulations \
-    -ISimulations/AODV \
-    -ISimulations/AODV/results \
-    -ISimulations/Traci \
-    -ISimulations/Traci/results \
     -Ietc \
     -Ietc/plugins \
-    -Isrc
+    -Isimulations \
+    -Isrc \
+    -Isrc/protocols \
+    -Isrc/protocols/manet \
+    -Isrc/protocols/vanet \
+    -Itest \
+    -Itest/AODV \
+    -Itest/AODV/results \
+    -Itest/Traci \
+    -Itest/Traci/results
 
 # Additional object and library files to link with
 EXTRA_OBJS =
@@ -119,21 +123,25 @@ clean:
 	$(Q)-rm -rf $O
 	$(Q)-rm -f VANETSim VANETSim.exe libVANETSim.so libVANETSim.a libVANETSim.dll libVANETSim.dylib
 	$(Q)-rm -f ./*_m.cc ./*_m.h
-	$(Q)-rm -f Simulations/*_m.cc Simulations/*_m.h
-	$(Q)-rm -f Simulations/AODV/*_m.cc Simulations/AODV/*_m.h
-	$(Q)-rm -f Simulations/AODV/results/*_m.cc Simulations/AODV/results/*_m.h
-	$(Q)-rm -f Simulations/Traci/*_m.cc Simulations/Traci/*_m.h
-	$(Q)-rm -f Simulations/Traci/results/*_m.cc Simulations/Traci/results/*_m.h
 	$(Q)-rm -f etc/*_m.cc etc/*_m.h
 	$(Q)-rm -f etc/plugins/*_m.cc etc/plugins/*_m.h
+	$(Q)-rm -f simulations/*_m.cc simulations/*_m.h
 	$(Q)-rm -f src/*_m.cc src/*_m.h
+	$(Q)-rm -f src/protocols/*_m.cc src/protocols/*_m.h
+	$(Q)-rm -f src/protocols/manet/*_m.cc src/protocols/manet/*_m.h
+	$(Q)-rm -f src/protocols/vanet/*_m.cc src/protocols/vanet/*_m.h
+	$(Q)-rm -f test/*_m.cc test/*_m.h
+	$(Q)-rm -f test/AODV/*_m.cc test/AODV/*_m.h
+	$(Q)-rm -f test/AODV/results/*_m.cc test/AODV/results/*_m.h
+	$(Q)-rm -f test/Traci/*_m.cc test/Traci/*_m.h
+	$(Q)-rm -f test/Traci/results/*_m.cc test/Traci/results/*_m.h
 
 cleanall: clean
 	$(Q)-rm -rf $(PROJECT_OUTPUT_DIR)
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc Simulations/*.cc Simulations/AODV/*.cc Simulations/AODV/results/*.cc Simulations/Traci/*.cc Simulations/Traci/results/*.cc etc/*.cc etc/plugins/*.cc src/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc src/*.cc src/protocols/*.cc src/protocols/manet/*.cc src/protocols/vanet/*.cc test/*.cc test/AODV/*.cc test/AODV/results/*.cc test/Traci/*.cc test/Traci/results/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 
