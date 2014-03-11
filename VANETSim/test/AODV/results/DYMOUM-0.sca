@@ -1,14 +1,14 @@
 version 2
-run DYMOUM-0-20140310-21:06:21-8816
+run DYMOUM-0-20140310-23:35:21-6616
 attr configname DYMOUM
-attr datetime 20140310-21:06:21
+attr datetime 20140310-23:35:21
 attr experiment DYMOUM
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvars2 $repetition=0
 attr measurement ""
 attr network aodv
-attr processid 8816
+attr processid 6616
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -71,35 +71,35 @@ scalar aodv.fixhost[0].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.fixhost[0].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.fixhost[0].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.fixhost[0].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.fixhost[0].wlan[0].mac 	rcvdPkFromLL:count 	1
+scalar aodv.fixhost[0].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.fixhost[0].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	222
+scalar aodv.fixhost[0].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar aodv.fixhost[0].wlan[0].mac 	sentDownPk:count 	1
+scalar aodv.fixhost[0].wlan[0].mac 	sentDownPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar aodv.fixhost[0].wlan[0].mac 	sentDownPk:sum(packetBytes) 	93
+scalar aodv.fixhost[0].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.fixhost[0].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.fixhost[0].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.fixhost[0].wlan[0].mac 	passedUpPk:sum(packetBytes) 	222
+scalar aodv.fixhost[0].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar aodv.fixhost[0].wlan[0].mac 	rcvdPkFromHL:count 	1
+scalar aodv.fixhost[0].wlan[0].mac 	rcvdPkFromHL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar aodv.fixhost[0].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	93
+scalar aodv.fixhost[0].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
@@ -112,7 +112,7 @@ attr title  "packet loss rate, max"
 scalar aodv.fixhost[0].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.fixhost[0].wlan[0].radio 	radioState:count 	5
+scalar aodv.fixhost[0].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.fixhost[0].wlan[0].radio 	channelNo:histogram
@@ -246,11 +246,11 @@ scalar aodv.fixhost[0].udp 	rcvdPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
-scalar aodv.fixhost[0].manetrouting 	"simulated time" 	10.005100065225
-scalar aodv.fixhost[0].manetrouting 	"Dymo totalSend " 	102
-scalar aodv.fixhost[0].manetrouting 	"Dymo Rreq send" 	50
-scalar aodv.fixhost[0].manetrouting 	"Dymo Rreq rec" 	50
-scalar aodv.fixhost[0].manetrouting 	"Dymo Rrep send" 	1
+scalar aodv.fixhost[0].manetrouting 	"simulated time" 	10.003818477883
+scalar aodv.fixhost[0].manetrouting 	"Dymo totalSend " 	22
+scalar aodv.fixhost[0].manetrouting 	"Dymo Rreq send" 	11
+scalar aodv.fixhost[0].manetrouting 	"Dymo Rreq rec" 	10
+scalar aodv.fixhost[0].manetrouting 	"Dymo Rrep send" 	0
 scalar aodv.fixhost[0].manetrouting 	"Dymo Rrep rec" 	0
 scalar aodv.fixhost[0].manetrouting 	"Dymo Rerr send" 	0
 scalar aodv.fixhost[0].manetrouting 	"Dymo Rerr rec" 	0
@@ -310,11 +310,11 @@ scalar aodv.host[0].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[0].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[0].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[0].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[0].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[0].wlan[0].mac 	rcvdPkFromLL:count 	2
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[0].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	378
+scalar aodv.host[0].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	252
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -326,11 +326,11 @@ scalar aodv.host[0].wlan[0].mac 	sentDownPk:sum(packetBytes) 	93
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[0].wlan[0].mac 	passedUpPk:count 	3
+scalar aodv.host[0].wlan[0].mac 	passedUpPk:count 	2
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[0].wlan[0].mac 	passedUpPk:sum(packetBytes) 	378
+scalar aodv.host[0].wlan[0].mac 	passedUpPk:sum(packetBytes) 	252
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -351,7 +351,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[0].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[0].wlan[0].radio 	radioState:count 	10
+scalar aodv.host[0].wlan[0].radio 	radioState:count 	7
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[0].wlan[0].radio 	channelNo:histogram
@@ -559,7 +559,7 @@ scalar aodv.host[1].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[1].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[1].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[1].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[1].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[1].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[1].wlan[0].mac 	"sent and received bits" 	0
@@ -568,11 +568,11 @@ scalar aodv.host[1].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[1].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[1].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[1].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[1].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[1].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[1].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	315
+scalar aodv.host[1].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -584,11 +584,11 @@ scalar aodv.host[1].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[1].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[1].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[1].wlan[0].mac 	passedUpPk:sum(packetBytes) 	222
+scalar aodv.host[1].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -609,7 +609,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[1].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[1].wlan[0].radio 	radioState:count 	9
+scalar aodv.host[1].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[1].wlan[0].radio 	channelNo:histogram
@@ -722,11 +722,11 @@ scalar aodv.host[2].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[2].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[2].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[2].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[2].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[2].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[2].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	444
+scalar aodv.host[2].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -738,11 +738,11 @@ scalar aodv.host[2].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[2].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[2].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[2].wlan[0].mac 	passedUpPk:sum(packetBytes) 	444
+scalar aodv.host[2].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -763,7 +763,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[2].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[2].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[2].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[2].wlan[0].radio 	channelNo:histogram
@@ -867,7 +867,7 @@ scalar aodv.host[3].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[3].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[3].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[3].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[3].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[3].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[3].wlan[0].mac 	"sent and received bits" 	0
@@ -876,11 +876,11 @@ scalar aodv.host[3].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[3].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[3].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[3].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[3].wlan[0].mac 	rcvdPkFromLL:count 	4
+scalar aodv.host[3].wlan[0].mac 	rcvdPkFromLL:count 	2
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[3].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	643
+scalar aodv.host[3].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	252
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -892,11 +892,11 @@ scalar aodv.host[3].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[3].wlan[0].mac 	passedUpPk:count 	3
+scalar aodv.host[3].wlan[0].mac 	passedUpPk:count 	2
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[3].wlan[0].mac 	passedUpPk:sum(packetBytes) 	421
+scalar aodv.host[3].wlan[0].mac 	passedUpPk:sum(packetBytes) 	252
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -917,7 +917,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[3].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[3].wlan[0].radio 	radioState:count 	10
+scalar aodv.host[3].wlan[0].radio 	radioState:count 	5
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[3].wlan[0].radio 	channelNo:histogram
@@ -1030,11 +1030,11 @@ scalar aodv.host[4].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[4].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[4].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[4].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[4].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[4].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[4].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	613
+scalar aodv.host[4].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -1046,11 +1046,11 @@ scalar aodv.host[4].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[4].wlan[0].mac 	passedUpPk:count 	3
+scalar aodv.host[4].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[4].wlan[0].mac 	passedUpPk:sum(packetBytes) 	613
+scalar aodv.host[4].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -1071,7 +1071,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[4].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[4].wlan[0].radio 	radioState:count 	9
+scalar aodv.host[4].wlan[0].radio 	radioState:count 	2
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[4].wlan[0].radio 	channelNo:histogram
@@ -1175,20 +1175,20 @@ scalar aodv.host[5].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[5].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[5].wlan[0].mac 	"number of collisions" 	2
+scalar aodv.host[5].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[5].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[5].wlan[0].mac 	"number of retry for AC 0" 	0
-scalar aodv.host[5].wlan[0].mac 	"sent and received bits" 	1352
+scalar aodv.host[5].wlan[0].mac 	"sent and received bits" 	0
 scalar aodv.host[5].wlan[0].mac 	"sent packet within AC 0" 	0
 scalar aodv.host[5].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[5].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[5].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[5].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[5].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[5].wlan[0].mac 	rcvdPkFromLL:count 	1
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[5].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	570
+scalar aodv.host[5].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	126
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -1225,7 +1225,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[5].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[5].wlan[0].radio 	radioState:count 	10
+scalar aodv.host[5].wlan[0].radio 	radioState:count 	4
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[5].wlan[0].radio 	channelNo:histogram
@@ -1338,11 +1338,11 @@ scalar aodv.host[6].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[6].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[6].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[6].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[6].wlan[0].mac 	rcvdPkFromLL:count 	1
+scalar aodv.host[6].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[6].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	222
+scalar aodv.host[6].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -1354,11 +1354,11 @@ scalar aodv.host[6].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[6].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[6].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[6].wlan[0].mac 	passedUpPk:sum(packetBytes) 	222
+scalar aodv.host[6].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -1379,7 +1379,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[6].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[6].wlan[0].radio 	radioState:count 	8
+scalar aodv.host[6].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[6].wlan[0].radio 	channelNo:histogram
@@ -1492,11 +1492,11 @@ scalar aodv.host[7].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[7].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[7].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[7].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[7].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[7].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[7].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	444
+scalar aodv.host[7].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -1508,11 +1508,11 @@ scalar aodv.host[7].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[7].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[7].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[7].wlan[0].mac 	passedUpPk:sum(packetBytes) 	444
+scalar aodv.host[7].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -1533,7 +1533,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[7].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[7].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[7].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[7].wlan[0].radio 	channelNo:histogram
@@ -1637,7 +1637,7 @@ scalar aodv.host[8].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[8].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[8].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[8].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[8].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[8].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[8].wlan[0].mac 	"sent and received bits" 	0
@@ -1646,11 +1646,11 @@ scalar aodv.host[8].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[8].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[8].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[8].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[8].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[8].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[8].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	613
+scalar aodv.host[8].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -1662,11 +1662,11 @@ scalar aodv.host[8].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[8].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[8].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[8].wlan[0].mac 	passedUpPk:sum(packetBytes) 	391
+scalar aodv.host[8].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -1687,7 +1687,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[8].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[8].wlan[0].radio 	radioState:count 	8
+scalar aodv.host[8].wlan[0].radio 	radioState:count 	2
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[8].wlan[0].radio 	channelNo:histogram
@@ -1800,11 +1800,11 @@ scalar aodv.host[9].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[9].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[9].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[9].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[9].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[9].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[9].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	444
+scalar aodv.host[9].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -1816,11 +1816,11 @@ scalar aodv.host[9].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[9].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[9].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[9].wlan[0].mac 	passedUpPk:sum(packetBytes) 	444
+scalar aodv.host[9].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -1841,7 +1841,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[9].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[9].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[9].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[9].wlan[0].radio 	channelNo:histogram
@@ -1954,11 +1954,11 @@ scalar aodv.host[10].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[10].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[10].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[10].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[10].wlan[0].mac 	rcvdPkFromLL:count 	5
+scalar aodv.host[10].wlan[0].mac 	rcvdPkFromLL:count 	3
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[10].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	693
+scalar aodv.host[10].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	345
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -1970,11 +1970,11 @@ scalar aodv.host[10].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[10].wlan[0].mac 	passedUpPk:count 	5
+scalar aodv.host[10].wlan[0].mac 	passedUpPk:count 	3
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[10].wlan[0].mac 	passedUpPk:sum(packetBytes) 	693
+scalar aodv.host[10].wlan[0].mac 	passedUpPk:sum(packetBytes) 	345
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -1995,7 +1995,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[10].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[10].wlan[0].radio 	radioState:count 	12
+scalar aodv.host[10].wlan[0].radio 	radioState:count 	7
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[10].wlan[0].radio 	channelNo:histogram
@@ -2108,11 +2108,11 @@ scalar aodv.host[11].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[11].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[11].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[11].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[11].wlan[0].mac 	rcvdPkFromLL:count 	5
+scalar aodv.host[11].wlan[0].mac 	rcvdPkFromLL:count 	3
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[11].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	640
+scalar aodv.host[11].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	345
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -2124,11 +2124,11 @@ scalar aodv.host[11].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[11].wlan[0].mac 	passedUpPk:count 	5
+scalar aodv.host[11].wlan[0].mac 	passedUpPk:count 	3
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[11].wlan[0].mac 	passedUpPk:sum(packetBytes) 	640
+scalar aodv.host[11].wlan[0].mac 	passedUpPk:sum(packetBytes) 	345
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -2149,7 +2149,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[11].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[11].wlan[0].radio 	radioState:count 	14
+scalar aodv.host[11].wlan[0].radio 	radioState:count 	7
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[11].wlan[0].radio 	channelNo:histogram
@@ -2253,7 +2253,7 @@ scalar aodv.host[12].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[12].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[12].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[12].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[12].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[12].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[12].wlan[0].mac 	"sent and received bits" 	0
@@ -2262,11 +2262,11 @@ scalar aodv.host[12].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[12].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[12].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[12].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[12].wlan[0].mac 	rcvdPkFromLL:count 	4
+scalar aodv.host[12].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[12].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	706
+scalar aodv.host[12].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -2278,11 +2278,11 @@ scalar aodv.host[12].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[12].wlan[0].mac 	passedUpPk:count 	3
+scalar aodv.host[12].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[12].wlan[0].mac 	passedUpPk:sum(packetBytes) 	613
+scalar aodv.host[12].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -2303,7 +2303,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[12].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[12].wlan[0].radio 	radioState:count 	9
+scalar aodv.host[12].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[12].wlan[0].radio 	channelNo:histogram
@@ -2407,7 +2407,7 @@ scalar aodv.host[13].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[13].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[13].wlan[0].mac 	"number of collisions" 	2
+scalar aodv.host[13].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[13].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[13].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[13].wlan[0].mac 	"sent and received bits" 	0
@@ -2416,11 +2416,11 @@ scalar aodv.host[13].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[13].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[13].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[13].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[13].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[13].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[13].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	613
+scalar aodv.host[13].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -2432,11 +2432,11 @@ scalar aodv.host[13].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[13].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[13].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[13].wlan[0].mac 	passedUpPk:sum(packetBytes) 	169
+scalar aodv.host[13].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -2457,7 +2457,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[13].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[13].wlan[0].radio 	radioState:count 	8
+scalar aodv.host[13].wlan[0].radio 	radioState:count 	2
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[13].wlan[0].radio 	channelNo:histogram
@@ -2570,11 +2570,11 @@ scalar aodv.host[14].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[14].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[14].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[14].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[14].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[14].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[14].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	391
+scalar aodv.host[14].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -2586,11 +2586,11 @@ scalar aodv.host[14].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[14].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[14].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[14].wlan[0].mac 	passedUpPk:sum(packetBytes) 	391
+scalar aodv.host[14].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -2611,7 +2611,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[14].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[14].wlan[0].radio 	radioState:count 	8
+scalar aodv.host[14].wlan[0].radio 	radioState:count 	2
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[14].wlan[0].radio 	channelNo:histogram
@@ -2718,7 +2718,7 @@ scalar aodv.host[15].wlan[0].mac 	"number of received packets" 	0
 scalar aodv.host[15].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[15].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[15].wlan[0].mac 	"number of retry for AC 0" 	0
-scalar aodv.host[15].wlan[0].mac 	"sent and received bits" 	1008
+scalar aodv.host[15].wlan[0].mac 	"sent and received bits" 	0
 scalar aodv.host[15].wlan[0].mac 	"sent packet within AC 0" 	0
 scalar aodv.host[15].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[15].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
@@ -2732,11 +2732,11 @@ scalar aodv.host[15].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	345
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar aodv.host[15].wlan[0].mac 	sentDownPk:count 	1
+scalar aodv.host[15].wlan[0].mac 	sentDownPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar aodv.host[15].wlan[0].mac 	sentDownPk:sum(packetBytes) 	126
+scalar aodv.host[15].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
@@ -2748,11 +2748,11 @@ scalar aodv.host[15].wlan[0].mac 	passedUpPk:sum(packetBytes) 	345
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar aodv.host[15].wlan[0].mac 	rcvdPkFromHL:count 	1
+scalar aodv.host[15].wlan[0].mac 	rcvdPkFromHL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar aodv.host[15].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	126
+scalar aodv.host[15].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
@@ -2765,7 +2765,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[15].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[15].wlan[0].radio 	radioState:count 	12
+scalar aodv.host[15].wlan[0].radio 	radioState:count 	7
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[15].wlan[0].radio 	channelNo:histogram
@@ -2872,41 +2872,41 @@ scalar aodv.host[16].wlan[0].mac 	"number of received packets" 	0
 scalar aodv.host[16].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[16].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[16].wlan[0].mac 	"number of retry for AC 0" 	0
-scalar aodv.host[16].wlan[0].mac 	"sent and received bits" 	1776
+scalar aodv.host[16].wlan[0].mac 	"sent and received bits" 	0
 scalar aodv.host[16].wlan[0].mac 	"sent packet within AC 0" 	0
 scalar aodv.host[16].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[16].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[16].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[16].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[16].wlan[0].mac 	rcvdPkFromLL:count 	1
+scalar aodv.host[16].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[16].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	169
+scalar aodv.host[16].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar aodv.host[16].wlan[0].mac 	sentDownPk:count 	1
+scalar aodv.host[16].wlan[0].mac 	sentDownPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar aodv.host[16].wlan[0].mac 	sentDownPk:sum(packetBytes) 	222
+scalar aodv.host[16].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[16].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[16].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[16].wlan[0].mac 	passedUpPk:sum(packetBytes) 	169
+scalar aodv.host[16].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar aodv.host[16].wlan[0].mac 	rcvdPkFromHL:count 	1
+scalar aodv.host[16].wlan[0].mac 	rcvdPkFromHL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar aodv.host[16].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	222
+scalar aodv.host[16].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
@@ -2919,7 +2919,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[16].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[16].wlan[0].radio 	radioState:count 	8
+scalar aodv.host[16].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[16].wlan[0].radio 	channelNo:histogram
@@ -3032,11 +3032,11 @@ scalar aodv.host[17].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[17].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[17].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[17].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[17].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[17].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[17].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	444
+scalar aodv.host[17].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -3048,11 +3048,11 @@ scalar aodv.host[17].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[17].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[17].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[17].wlan[0].mac 	passedUpPk:sum(packetBytes) 	444
+scalar aodv.host[17].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -3073,7 +3073,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[17].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[17].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[17].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[17].wlan[0].radio 	channelNo:histogram
@@ -3186,11 +3186,11 @@ scalar aodv.host[18].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[18].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[18].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[18].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[18].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[18].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[18].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	315
+scalar aodv.host[18].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -3202,11 +3202,11 @@ scalar aodv.host[18].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[18].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[18].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[18].wlan[0].mac 	passedUpPk:sum(packetBytes) 	222
+scalar aodv.host[18].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -3227,7 +3227,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[18].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[18].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[18].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[18].wlan[0].radio 	channelNo:histogram
@@ -3340,11 +3340,11 @@ scalar aodv.host[19].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[19].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[19].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[19].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[19].wlan[0].mac 	rcvdPkFromLL:count 	1
+scalar aodv.host[19].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[19].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	222
+scalar aodv.host[19].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -3356,11 +3356,11 @@ scalar aodv.host[19].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[19].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[19].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[19].wlan[0].mac 	passedUpPk:sum(packetBytes) 	222
+scalar aodv.host[19].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -3381,7 +3381,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[19].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[19].wlan[0].radio 	radioState:count 	8
+scalar aodv.host[19].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[19].wlan[0].radio 	channelNo:histogram
@@ -3494,11 +3494,11 @@ scalar aodv.host[20].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[20].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[20].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[20].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[20].wlan[0].mac 	rcvdPkFromLL:count 	1
+scalar aodv.host[20].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[20].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	222
+scalar aodv.host[20].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -3510,11 +3510,11 @@ scalar aodv.host[20].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[20].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[20].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[20].wlan[0].mac 	passedUpPk:sum(packetBytes) 	222
+scalar aodv.host[20].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -3535,7 +3535,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[20].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[20].wlan[0].radio 	radioState:count 	6
+scalar aodv.host[20].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[20].wlan[0].radio 	channelNo:histogram
@@ -3642,41 +3642,41 @@ scalar aodv.host[21].wlan[0].mac 	"number of received packets" 	0
 scalar aodv.host[21].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[21].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[21].wlan[0].mac 	"number of retry for AC 0" 	0
-scalar aodv.host[21].wlan[0].mac 	"sent and received bits" 	1776
+scalar aodv.host[21].wlan[0].mac 	"sent and received bits" 	0
 scalar aodv.host[21].wlan[0].mac 	"sent packet within AC 0" 	0
 scalar aodv.host[21].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[21].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[21].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[21].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[21].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[21].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[21].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	391
+scalar aodv.host[21].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar aodv.host[21].wlan[0].mac 	sentDownPk:count 	1
+scalar aodv.host[21].wlan[0].mac 	sentDownPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar aodv.host[21].wlan[0].mac 	sentDownPk:sum(packetBytes) 	222
+scalar aodv.host[21].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[21].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[21].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[21].wlan[0].mac 	passedUpPk:sum(packetBytes) 	391
+scalar aodv.host[21].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar aodv.host[21].wlan[0].mac 	rcvdPkFromHL:count 	1
+scalar aodv.host[21].wlan[0].mac 	rcvdPkFromHL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar aodv.host[21].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	222
+scalar aodv.host[21].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
@@ -3689,7 +3689,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[21].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[21].wlan[0].radio 	radioState:count 	7
+scalar aodv.host[21].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[21].wlan[0].radio 	channelNo:histogram
@@ -3793,44 +3793,44 @@ scalar aodv.host[22].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[22].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[22].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[22].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[22].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[22].wlan[0].mac 	"number of retry for AC 0" 	0
-scalar aodv.host[22].wlan[0].mac 	"sent and received bits" 	1776
+scalar aodv.host[22].wlan[0].mac 	"sent and received bits" 	0
 scalar aodv.host[22].wlan[0].mac 	"sent packet within AC 0" 	0
 scalar aodv.host[22].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[22].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[22].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[22].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[22].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[22].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[22].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	262
+scalar aodv.host[22].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar aodv.host[22].wlan[0].mac 	sentDownPk:count 	1
+scalar aodv.host[22].wlan[0].mac 	sentDownPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar aodv.host[22].wlan[0].mac 	sentDownPk:sum(packetBytes) 	222
+scalar aodv.host[22].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[22].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[22].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[22].wlan[0].mac 	passedUpPk:sum(packetBytes) 	169
+scalar aodv.host[22].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar aodv.host[22].wlan[0].mac 	rcvdPkFromHL:count 	1
+scalar aodv.host[22].wlan[0].mac 	rcvdPkFromHL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar aodv.host[22].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	222
+scalar aodv.host[22].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
@@ -3843,7 +3843,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[22].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[22].wlan[0].radio 	radioState:count 	11
+scalar aodv.host[22].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[22].wlan[0].radio 	channelNo:histogram
@@ -3947,7 +3947,7 @@ scalar aodv.host[23].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[23].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[23].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[23].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[23].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[23].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[23].wlan[0].mac 	"sent and received bits" 	0
@@ -3956,11 +3956,11 @@ scalar aodv.host[23].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[23].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[23].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[23].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[23].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[23].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[23].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	444
+scalar aodv.host[23].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -3972,19 +3972,19 @@ scalar aodv.host[23].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[23].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[23].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[23].wlan[0].mac 	passedUpPk:sum(packetBytes) 	222
+scalar aodv.host[23].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar aodv.host[23].wlan[0].mac 	rcvdPkFromHL:count 	1
+scalar aodv.host[23].wlan[0].mac 	rcvdPkFromHL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar aodv.host[23].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	285
+scalar aodv.host[23].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
@@ -3997,7 +3997,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[23].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[23].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[23].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[23].wlan[0].radio 	channelNo:histogram
@@ -4110,35 +4110,35 @@ scalar aodv.host[24].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[24].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[24].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[24].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[24].wlan[0].mac 	rcvdPkFromLL:count 	4
+scalar aodv.host[24].wlan[0].mac 	rcvdPkFromLL:count 	3
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[24].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	471
+scalar aodv.host[24].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	345
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar aodv.host[24].wlan[0].mac 	sentDownPk:count 	1
+scalar aodv.host[24].wlan[0].mac 	sentDownPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar aodv.host[24].wlan[0].mac 	sentDownPk:sum(packetBytes) 	126
+scalar aodv.host[24].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[24].wlan[0].mac 	passedUpPk:count 	4
+scalar aodv.host[24].wlan[0].mac 	passedUpPk:count 	3
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[24].wlan[0].mac 	passedUpPk:sum(packetBytes) 	471
+scalar aodv.host[24].wlan[0].mac 	passedUpPk:sum(packetBytes) 	345
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar aodv.host[24].wlan[0].mac 	rcvdPkFromHL:count 	1
+scalar aodv.host[24].wlan[0].mac 	rcvdPkFromHL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar aodv.host[24].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	126
+scalar aodv.host[24].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
@@ -4151,7 +4151,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[24].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[24].wlan[0].radio 	radioState:count 	12
+scalar aodv.host[24].wlan[0].radio 	radioState:count 	7
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[24].wlan[0].radio 	channelNo:histogram
@@ -4255,7 +4255,7 @@ scalar aodv.host[25].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[25].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[25].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[25].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[25].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[25].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[25].wlan[0].mac 	"sent and received bits" 	0
@@ -4264,11 +4264,11 @@ scalar aodv.host[25].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[25].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[25].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[25].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[25].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[25].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[25].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	613
+scalar aodv.host[25].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -4280,11 +4280,11 @@ scalar aodv.host[25].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[25].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[25].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[25].wlan[0].mac 	passedUpPk:sum(packetBytes) 	391
+scalar aodv.host[25].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -4305,7 +4305,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[25].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[25].wlan[0].radio 	radioState:count 	9
+scalar aodv.host[25].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[25].wlan[0].radio 	channelNo:histogram
@@ -4418,11 +4418,11 @@ scalar aodv.host[26].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[26].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[26].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[26].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[26].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[26].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[26].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	315
+scalar aodv.host[26].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -4434,11 +4434,11 @@ scalar aodv.host[26].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[26].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[26].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[26].wlan[0].mac 	passedUpPk:sum(packetBytes) 	222
+scalar aodv.host[26].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -4459,7 +4459,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[26].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[26].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[26].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[26].wlan[0].radio 	channelNo:histogram
@@ -4572,11 +4572,11 @@ scalar aodv.host[27].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[27].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[27].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[27].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[27].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[27].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[27].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	613
+scalar aodv.host[27].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -4588,19 +4588,19 @@ scalar aodv.host[27].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[27].wlan[0].mac 	passedUpPk:count 	3
+scalar aodv.host[27].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[27].wlan[0].mac 	passedUpPk:sum(packetBytes) 	613
+scalar aodv.host[27].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar aodv.host[27].wlan[0].mac 	rcvdPkFromHL:count 	1
+scalar aodv.host[27].wlan[0].mac 	rcvdPkFromHL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar aodv.host[27].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	222
+scalar aodv.host[27].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
@@ -4613,7 +4613,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[27].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[27].wlan[0].radio 	radioState:count 	7
+scalar aodv.host[27].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[27].wlan[0].radio 	channelNo:histogram
@@ -4717,7 +4717,7 @@ scalar aodv.host[28].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[28].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[28].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[28].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[28].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[28].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[28].wlan[0].mac 	"sent and received bits" 	0
@@ -4726,11 +4726,11 @@ scalar aodv.host[28].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[28].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[28].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[28].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[28].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[28].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[28].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	484
+scalar aodv.host[28].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -4742,11 +4742,11 @@ scalar aodv.host[28].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[28].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[28].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[28].wlan[0].mac 	passedUpPk:sum(packetBytes) 	391
+scalar aodv.host[28].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -4767,7 +4767,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[28].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[28].wlan[0].radio 	radioState:count 	9
+scalar aodv.host[28].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[28].wlan[0].radio 	channelNo:histogram
@@ -4871,7 +4871,7 @@ scalar aodv.host[29].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[29].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[29].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[29].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[29].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[29].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[29].wlan[0].mac 	"sent and received bits" 	0
@@ -4880,11 +4880,11 @@ scalar aodv.host[29].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[29].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[29].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[29].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[29].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[29].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[29].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	537
+scalar aodv.host[29].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -4896,11 +4896,11 @@ scalar aodv.host[29].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[29].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[29].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[29].wlan[0].mac 	passedUpPk:sum(packetBytes) 	444
+scalar aodv.host[29].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -4921,7 +4921,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[29].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[29].wlan[0].radio 	radioState:count 	7
+scalar aodv.host[29].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[29].wlan[0].radio 	channelNo:histogram
@@ -5025,7 +5025,7 @@ scalar aodv.host[30].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[30].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[30].wlan[0].mac 	"number of collisions" 	2
+scalar aodv.host[30].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[30].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[30].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[30].wlan[0].mac 	"sent and received bits" 	0
@@ -5034,11 +5034,11 @@ scalar aodv.host[30].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[30].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[30].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[30].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[30].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[30].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[30].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	613
+scalar aodv.host[30].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -5050,11 +5050,11 @@ scalar aodv.host[30].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[30].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[30].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[30].wlan[0].mac 	passedUpPk:sum(packetBytes) 	169
+scalar aodv.host[30].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -5075,7 +5075,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[30].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[30].wlan[0].radio 	radioState:count 	10
+scalar aodv.host[30].wlan[0].radio 	radioState:count 	4
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[30].wlan[0].radio 	channelNo:histogram
@@ -5188,35 +5188,35 @@ scalar aodv.host[31].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[31].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[31].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[31].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[31].wlan[0].mac 	rcvdPkFromLL:count 	1
+scalar aodv.host[31].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[31].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	222
+scalar aodv.host[31].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar aodv.host[31].wlan[0].mac 	sentDownPk:count 	1
+scalar aodv.host[31].wlan[0].mac 	sentDownPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar aodv.host[31].wlan[0].mac 	sentDownPk:sum(packetBytes) 	285
+scalar aodv.host[31].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[31].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[31].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[31].wlan[0].mac 	passedUpPk:sum(packetBytes) 	222
+scalar aodv.host[31].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar aodv.host[31].wlan[0].mac 	rcvdPkFromHL:count 	1
+scalar aodv.host[31].wlan[0].mac 	rcvdPkFromHL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar aodv.host[31].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	285
+scalar aodv.host[31].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
@@ -5229,7 +5229,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[31].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[31].wlan[0].radio 	radioState:count 	6
+scalar aodv.host[31].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[31].wlan[0].radio 	channelNo:histogram
@@ -5342,11 +5342,11 @@ scalar aodv.host[32].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[32].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[32].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[32].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[32].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[32].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[32].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	444
+scalar aodv.host[32].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -5358,11 +5358,11 @@ scalar aodv.host[32].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[32].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[32].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[32].wlan[0].mac 	passedUpPk:sum(packetBytes) 	444
+scalar aodv.host[32].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -5383,7 +5383,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[32].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[32].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[32].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[32].wlan[0].radio 	channelNo:histogram
@@ -5487,7 +5487,7 @@ scalar aodv.host[33].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[33].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[33].wlan[0].mac 	"number of collisions" 	2
+scalar aodv.host[33].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[33].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[33].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[33].wlan[0].mac 	"sent and received bits" 	0
@@ -5496,11 +5496,11 @@ scalar aodv.host[33].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[33].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[33].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[33].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[33].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[33].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[33].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	613
+scalar aodv.host[33].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -5512,11 +5512,11 @@ scalar aodv.host[33].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[33].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[33].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[33].wlan[0].mac 	passedUpPk:sum(packetBytes) 	169
+scalar aodv.host[33].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -5537,7 +5537,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[33].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[33].wlan[0].radio 	radioState:count 	9
+scalar aodv.host[33].wlan[0].radio 	radioState:count 	2
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[33].wlan[0].radio 	channelNo:histogram
@@ -5641,7 +5641,7 @@ scalar aodv.host[34].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[34].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[34].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[34].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[34].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[34].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[34].wlan[0].mac 	"sent and received bits" 	0
@@ -5650,11 +5650,11 @@ scalar aodv.host[34].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[34].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[34].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[34].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[34].wlan[0].mac 	rcvdPkFromLL:count 	5
+scalar aodv.host[34].wlan[0].mac 	rcvdPkFromLL:count 	2
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[34].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	769
+scalar aodv.host[34].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	252
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -5666,11 +5666,11 @@ scalar aodv.host[34].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[34].wlan[0].mac 	passedUpPk:count 	4
+scalar aodv.host[34].wlan[0].mac 	passedUpPk:count 	2
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[34].wlan[0].mac 	passedUpPk:sum(packetBytes) 	643
+scalar aodv.host[34].wlan[0].mac 	passedUpPk:sum(packetBytes) 	252
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -5691,7 +5691,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[34].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[34].wlan[0].radio 	radioState:count 	12
+scalar aodv.host[34].wlan[0].radio 	radioState:count 	5
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[34].wlan[0].radio 	channelNo:histogram
@@ -5804,11 +5804,11 @@ scalar aodv.host[35].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[35].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[35].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[35].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[35].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[35].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[35].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	444
+scalar aodv.host[35].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -5820,11 +5820,11 @@ scalar aodv.host[35].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[35].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[35].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[35].wlan[0].mac 	passedUpPk:sum(packetBytes) 	444
+scalar aodv.host[35].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -5845,7 +5845,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[35].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[35].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[35].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[35].wlan[0].radio 	channelNo:histogram
@@ -5958,11 +5958,11 @@ scalar aodv.host[36].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[36].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[36].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[36].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[36].wlan[0].mac 	rcvdPkFromLL:count 	4
+scalar aodv.host[36].wlan[0].mac 	rcvdPkFromLL:count 	2
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[36].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	514
+scalar aodv.host[36].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	219
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -5974,11 +5974,11 @@ scalar aodv.host[36].wlan[0].mac 	sentDownPk:sum(packetBytes) 	126
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[36].wlan[0].mac 	passedUpPk:count 	4
+scalar aodv.host[36].wlan[0].mac 	passedUpPk:count 	2
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[36].wlan[0].mac 	passedUpPk:sum(packetBytes) 	514
+scalar aodv.host[36].wlan[0].mac 	passedUpPk:sum(packetBytes) 	219
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -5999,7 +5999,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[36].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[36].wlan[0].radio 	radioState:count 	14
+scalar aodv.host[36].wlan[0].radio 	radioState:count 	7
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[36].wlan[0].radio 	channelNo:histogram
@@ -6112,11 +6112,11 @@ scalar aodv.host[37].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[37].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[37].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[37].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[37].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[37].wlan[0].mac 	rcvdPkFromLL:count 	2
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[37].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	345
+scalar aodv.host[37].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	219
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -6128,11 +6128,11 @@ scalar aodv.host[37].wlan[0].mac 	sentDownPk:sum(packetBytes) 	126
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[37].wlan[0].mac 	passedUpPk:count 	3
+scalar aodv.host[37].wlan[0].mac 	passedUpPk:count 	2
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[37].wlan[0].mac 	passedUpPk:sum(packetBytes) 	345
+scalar aodv.host[37].wlan[0].mac 	passedUpPk:sum(packetBytes) 	219
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -6153,7 +6153,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[37].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[37].wlan[0].radio 	radioState:count 	12
+scalar aodv.host[37].wlan[0].radio 	radioState:count 	7
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[37].wlan[0].radio 	channelNo:histogram
@@ -6266,11 +6266,11 @@ scalar aodv.host[38].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[38].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[38].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[38].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[38].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[38].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[38].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	613
+scalar aodv.host[38].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -6282,11 +6282,11 @@ scalar aodv.host[38].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[38].wlan[0].mac 	passedUpPk:count 	3
+scalar aodv.host[38].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[38].wlan[0].mac 	passedUpPk:sum(packetBytes) 	613
+scalar aodv.host[38].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -6307,7 +6307,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[38].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[38].wlan[0].radio 	radioState:count 	10
+scalar aodv.host[38].wlan[0].radio 	radioState:count 	2
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[38].wlan[0].radio 	channelNo:histogram
@@ -6411,7 +6411,7 @@ scalar aodv.host[39].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[39].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[39].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[39].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[39].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[39].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[39].wlan[0].mac 	"sent and received bits" 	0
@@ -6420,11 +6420,11 @@ scalar aodv.host[39].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[39].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[39].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[39].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[39].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[39].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[39].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	315
+scalar aodv.host[39].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -6436,11 +6436,11 @@ scalar aodv.host[39].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[39].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[39].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[39].wlan[0].mac 	passedUpPk:sum(packetBytes) 	222
+scalar aodv.host[39].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -6461,7 +6461,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[39].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[39].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[39].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[39].wlan[0].radio 	channelNo:histogram
@@ -6574,11 +6574,11 @@ scalar aodv.host[40].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[40].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[40].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[40].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[40].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[40].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[40].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	613
+scalar aodv.host[40].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -6590,11 +6590,11 @@ scalar aodv.host[40].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[40].wlan[0].mac 	passedUpPk:count 	3
+scalar aodv.host[40].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[40].wlan[0].mac 	passedUpPk:sum(packetBytes) 	613
+scalar aodv.host[40].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -6615,7 +6615,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[40].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[40].wlan[0].radio 	radioState:count 	11
+scalar aodv.host[40].wlan[0].radio 	radioState:count 	2
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[40].wlan[0].radio 	channelNo:histogram
@@ -6728,11 +6728,11 @@ scalar aodv.host[41].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[41].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[41].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[41].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[41].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[41].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[41].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	391
+scalar aodv.host[41].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -6744,11 +6744,11 @@ scalar aodv.host[41].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[41].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[41].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[41].wlan[0].mac 	passedUpPk:sum(packetBytes) 	391
+scalar aodv.host[41].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -6769,7 +6769,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[41].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[41].wlan[0].radio 	radioState:count 	8
+scalar aodv.host[41].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[41].wlan[0].radio 	channelNo:histogram
@@ -6882,11 +6882,11 @@ scalar aodv.host[42].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[42].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[42].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[42].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[42].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[42].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[42].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	444
+scalar aodv.host[42].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -6898,11 +6898,11 @@ scalar aodv.host[42].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[42].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[42].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[42].wlan[0].mac 	passedUpPk:sum(packetBytes) 	444
+scalar aodv.host[42].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -6923,7 +6923,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[42].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[42].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[42].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[42].wlan[0].radio 	channelNo:histogram
@@ -7027,7 +7027,7 @@ scalar aodv.host[43].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[43].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[43].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[43].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[43].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[43].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[43].wlan[0].mac 	"sent and received bits" 	0
@@ -7036,11 +7036,11 @@ scalar aodv.host[43].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[43].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[43].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[43].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[43].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[43].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[43].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	315
+scalar aodv.host[43].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -7052,11 +7052,11 @@ scalar aodv.host[43].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[43].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[43].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[43].wlan[0].mac 	passedUpPk:sum(packetBytes) 	222
+scalar aodv.host[43].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -7077,7 +7077,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[43].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[43].wlan[0].radio 	radioState:count 	7
+scalar aodv.host[43].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[43].wlan[0].radio 	channelNo:histogram
@@ -7190,11 +7190,11 @@ scalar aodv.host[44].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[44].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[44].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[44].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[44].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[44].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[44].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	391
+scalar aodv.host[44].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -7206,19 +7206,19 @@ scalar aodv.host[44].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[44].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[44].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[44].wlan[0].mac 	passedUpPk:sum(packetBytes) 	391
+scalar aodv.host[44].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar aodv.host[44].wlan[0].mac 	rcvdPkFromHL:count 	1
+scalar aodv.host[44].wlan[0].mac 	rcvdPkFromHL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar aodv.host[44].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	222
+scalar aodv.host[44].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
@@ -7231,7 +7231,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[44].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[44].wlan[0].radio 	radioState:count 	8
+scalar aodv.host[44].wlan[0].radio 	radioState:count 	2
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[44].wlan[0].radio 	channelNo:histogram
@@ -7335,7 +7335,7 @@ scalar aodv.host[45].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[45].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[45].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[45].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[45].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[45].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[45].wlan[0].mac 	"sent and received bits" 	0
@@ -7344,11 +7344,11 @@ scalar aodv.host[45].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[45].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[45].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[45].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[45].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[45].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[45].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	444
+scalar aodv.host[45].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -7360,11 +7360,11 @@ scalar aodv.host[45].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[45].wlan[0].mac 	passedUpPk:count 	1
+scalar aodv.host[45].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[45].wlan[0].mac 	passedUpPk:sum(packetBytes) 	222
+scalar aodv.host[45].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -7385,7 +7385,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[45].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[45].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[45].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[45].wlan[0].radio 	channelNo:histogram
@@ -7492,41 +7492,41 @@ scalar aodv.host[46].wlan[0].mac 	"number of received packets" 	0
 scalar aodv.host[46].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[46].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[46].wlan[0].mac 	"number of retry for AC 0" 	0
-scalar aodv.host[46].wlan[0].mac 	"sent and received bits" 	1776
+scalar aodv.host[46].wlan[0].mac 	"sent and received bits" 	0
 scalar aodv.host[46].wlan[0].mac 	"sent packet within AC 0" 	0
 scalar aodv.host[46].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[46].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[46].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[46].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[46].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[46].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[46].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	391
+scalar aodv.host[46].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar aodv.host[46].wlan[0].mac 	sentDownPk:count 	1
+scalar aodv.host[46].wlan[0].mac 	sentDownPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar aodv.host[46].wlan[0].mac 	sentDownPk:sum(packetBytes) 	222
+scalar aodv.host[46].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[46].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[46].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[46].wlan[0].mac 	passedUpPk:sum(packetBytes) 	391
+scalar aodv.host[46].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar aodv.host[46].wlan[0].mac 	rcvdPkFromHL:count 	1
+scalar aodv.host[46].wlan[0].mac 	rcvdPkFromHL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar aodv.host[46].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	222
+scalar aodv.host[46].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
@@ -7539,7 +7539,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[46].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[46].wlan[0].radio 	radioState:count 	7
+scalar aodv.host[46].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[46].wlan[0].radio 	channelNo:histogram
@@ -7652,11 +7652,11 @@ scalar aodv.host[47].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[47].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[47].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[47].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[47].wlan[0].mac 	rcvdPkFromLL:count 	2
+scalar aodv.host[47].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[47].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	444
+scalar aodv.host[47].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -7668,11 +7668,11 @@ scalar aodv.host[47].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[47].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[47].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[47].wlan[0].mac 	passedUpPk:sum(packetBytes) 	444
+scalar aodv.host[47].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -7693,7 +7693,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[47].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[47].wlan[0].radio 	radioState:count 	5
+scalar aodv.host[47].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[47].wlan[0].radio 	channelNo:histogram
@@ -7797,7 +7797,7 @@ scalar aodv.host[48].wlan[0].mgmt 	dataQueueLen:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "data queue length, timeavg"
 scalar aodv.host[48].wlan[0].mac 	"number of received packets" 	0
-scalar aodv.host[48].wlan[0].mac 	"number of collisions" 	1
+scalar aodv.host[48].wlan[0].mac 	"number of collisions" 	0
 scalar aodv.host[48].wlan[0].mac 	"number of internal collisions" 	0
 scalar aodv.host[48].wlan[0].mac 	"number of retry for AC 0" 	0
 scalar aodv.host[48].wlan[0].mac 	"sent and received bits" 	0
@@ -7806,11 +7806,11 @@ scalar aodv.host[48].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[48].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[48].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[48].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[48].wlan[0].mac 	rcvdPkFromLL:count 	3
+scalar aodv.host[48].wlan[0].mac 	rcvdPkFromLL:count 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[48].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	613
+scalar aodv.host[48].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -7822,11 +7822,11 @@ scalar aodv.host[48].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[48].wlan[0].mac 	passedUpPk:count 	2
+scalar aodv.host[48].wlan[0].mac 	passedUpPk:count 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[48].wlan[0].mac 	passedUpPk:sum(packetBytes) 	391
+scalar aodv.host[48].wlan[0].mac 	passedUpPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -7847,7 +7847,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[48].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[48].wlan[0].radio 	radioState:count 	8
+scalar aodv.host[48].wlan[0].radio 	radioState:count 	1
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[48].wlan[0].radio 	channelNo:histogram
@@ -7960,11 +7960,11 @@ scalar aodv.host[49].wlan[0].mac 	"sent in TXOP " 	0
 scalar aodv.host[49].wlan[0].mac 	"sentWithoutRetry AC 0" 	0
 scalar aodv.host[49].wlan[0].mac 	"numGivenUp AC 0" 	0
 scalar aodv.host[49].wlan[0].mac 	"numDropped AC 0" 	0
-scalar aodv.host[49].wlan[0].mac 	rcvdPkFromLL:count 	4
+scalar aodv.host[49].wlan[0].mac 	rcvdPkFromLL:count 	3
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar aodv.host[49].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	471
+scalar aodv.host[49].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	345
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -7976,11 +7976,11 @@ scalar aodv.host[49].wlan[0].mac 	sentDownPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar aodv.host[49].wlan[0].mac 	passedUpPk:count 	4
+scalar aodv.host[49].wlan[0].mac 	passedUpPk:count 	3
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar aodv.host[49].wlan[0].mac 	passedUpPk:sum(packetBytes) 	471
+scalar aodv.host[49].wlan[0].mac 	passedUpPk:sum(packetBytes) 	345
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
@@ -8001,7 +8001,7 @@ attr title  "packet loss rate, max"
 scalar aodv.host[49].wlan[0].radio 	lossRate:timeavg 	-1.#IND
 attr interpolationmode  backward-sample-hold
 attr title  "packet loss rate, timeavg"
-scalar aodv.host[49].wlan[0].radio 	radioState:count 	14
+scalar aodv.host[49].wlan[0].radio 	radioState:count 	7
 attr interpolationmode  sample-hold
 attr title  "radio state (enum), count"
 statistic aodv.host[49].wlan[0].radio 	channelNo:histogram

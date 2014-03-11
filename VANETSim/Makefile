@@ -19,6 +19,9 @@ INCLUDE_PATH = \
     -Ietc \
     -Ietc/plugins \
     -Isimulations \
+    -Isimulations/manet \
+    -Isimulations/manet/aodv \
+    -Isimulations/vanet \
     -Isrc \
     -Isrc/protocols \
     -Isrc/protocols/manet \
@@ -126,6 +129,9 @@ clean:
 	$(Q)-rm -f etc/*_m.cc etc/*_m.h
 	$(Q)-rm -f etc/plugins/*_m.cc etc/plugins/*_m.h
 	$(Q)-rm -f simulations/*_m.cc simulations/*_m.h
+	$(Q)-rm -f simulations/manet/*_m.cc simulations/manet/*_m.h
+	$(Q)-rm -f simulations/manet/aodv/*_m.cc simulations/manet/aodv/*_m.h
+	$(Q)-rm -f simulations/vanet/*_m.cc simulations/vanet/*_m.h
 	$(Q)-rm -f src/*_m.cc src/*_m.h
 	$(Q)-rm -f src/protocols/*_m.cc src/protocols/*_m.h
 	$(Q)-rm -f src/protocols/manet/*_m.cc src/protocols/manet/*_m.h
@@ -141,7 +147,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc src/*.cc src/protocols/*.cc src/protocols/manet/*.cc src/protocols/vanet/*.cc test/*.cc test/AODV/*.cc test/AODV/results/*.cc test/Traci/*.cc test/Traci/results/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/vanet/*.cc src/*.cc src/protocols/*.cc src/protocols/manet/*.cc src/protocols/vanet/*.cc test/*.cc test/AODV/*.cc test/AODV/results/*.cc test/Traci/*.cc test/Traci/results/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 
