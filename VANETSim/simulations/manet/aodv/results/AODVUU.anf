@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scave:Analysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:scave="http://www.omnetpp.org/omnetpp/scave">
+  <inputs>
+    <inputs name="/VANETSim/simulations/manet/aodv/results/AODVUU-*.vec"/>
+    <inputs name="/VANETSim/simulations/manet/aodv/results/AODVUU-*.sca"/>
+  </inputs>
+  <datasets>
+    <datasets name="TotalDelay">
+      <items xsi:type="scave:Add" filterPattern="TotalLostPackets" type="VECTOR"/>
+      <items xsi:type="scave:Add" filterPattern="busyTime"/>
+      <items xsi:type="scave:LineChart" name="Test" lineNameFormat=""/>
+      <items xsi:type="scave:Discard" filterPattern=""/>
+    </datasets>
+  </datasets>
+  <chartSheets>
+    <chartSheets name="default" charts="//@datasets/@datasets.0/@items.2"/>
+  </chartSheets>
+</scave:Analysis>
