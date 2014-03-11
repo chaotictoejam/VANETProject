@@ -20,11 +20,11 @@
 
 package vanetsim.test.Traci;
 
-import miximfork.src.base.connectionManager.ConnectionManager;
-import miximfork.src.base.modules.BaseWorldUtility;
-import miximfork.src.modules.mobility.traci.TraCIScenarioManagerLaunchd;
-import miximfork.src.modules.obstacle.ObstacleControl;
-import miximfork.src.modules.world.annotations.AnnotationManager;
+import org.mixim.base.connectionManager.ConnectionManager;
+import org.mixim.base.modules.BaseWorldUtility;
+import org.mixim.modules.mobility.traci.TraCIScenarioManagerLaunchd;
+import org.mixim.modules.obstacle.ObstacleControl;
+import org.mixim.modules.world.annotations.AnnotationManager;
 
 module Highway
 {

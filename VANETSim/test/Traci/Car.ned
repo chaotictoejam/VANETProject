@@ -20,8 +20,8 @@
 
 package vanetsim.test.Traci;
 
-import miximfork.src.base.modules.*;
-import miximfork.src.modules.nic.Nic80211p;
+import org.mixim.base.modules.*;
+import org.mixim.modules.nic.Nic80211p;
 
 module Car
 {

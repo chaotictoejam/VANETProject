@@ -1,14 +1,14 @@
 version 2
-run DYMOUM-0-20140227-21:28:55-3676
+run DYMOUM-0-20140310-21:06:21-8816
 attr configname DYMOUM
-attr datetime 20140227-21:28:55
+attr datetime 20140310-21:06:21
 attr experiment DYMOUM
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvars2 $repetition=0
 attr measurement ""
 attr network aodv
-attr processid 3676
+attr processid 8816
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -1079,251 +1079,1402 @@ vector 656  aodv.host[36].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 911  aodv.host[3].wlan[0].mac  "throughput AC0"  ETV
+vector 1097  aodv.host[34].wlan[0].mac  "throughput AC0"  ETV
+vector 923  aodv.host[5].wlan[0].mac  "throughput AC0"  ETV
+vector 1073  aodv.host[30].wlan[0].mac  "throughput AC0"  ETV
+vector 913  aodv.host[3].wlan[0].radio  snirVector  ETV
+vector 97  aodv.host[3].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 94  aodv.host[3].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 895  aodv.host[0].wlan[0].radio  snirVector  ETV
+vector 46  aodv.host[0].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 43  aodv.host[0].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1099  aodv.host[34].wlan[0].radio  snirVector  ETV
+vector 624  aodv.host[34].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 621  aodv.host[34].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 925  aodv.host[5].wlan[0].radio  snirVector  ETV
+vector 131  aodv.host[5].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 128  aodv.host[5].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 674  aodv.host[37].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 673  aodv.host[37].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 130  aodv.host[5].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 129  aodv.host[5].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 971  aodv.host[13].wlan[0].mac  "throughput AC0"  ETV
+vector 1091  aodv.host[33].wlan[0].mac  "throughput AC0"  ETV
+vector 1133  aodv.host[40].wlan[0].mac  "throughput AC0"  ETV
+vector 1157  aodv.host[44].wlan[0].mac  "throughput AC0"  ETV
+vector 1121  aodv.host[38].wlan[0].mac  "throughput AC0"  ETV
+vector 941  aodv.host[8].wlan[0].mac  "throughput AC0"  ETV
+vector 917  aodv.host[4].wlan[0].mac  "throughput AC0"  ETV
+vector 977  aodv.host[14].wlan[0].mac  "throughput AC0"  ETV
+vector 1043  aodv.host[25].wlan[0].mac  "throughput AC0"  ETV
+vector 1139  aodv.host[41].wlan[0].mac  "throughput AC0"  ETV
+vector 989  aodv.host[16].wlan[0].mac  "throughput AC0"  ETV
+vector 1181  aodv.host[48].wlan[0].mac  "throughput AC0"  ETV
+vector 1055  aodv.host[27].wlan[0].mac  "throughput AC0"  ETV
+vector 1019  aodv.host[21].wlan[0].mac  "throughput AC0"  ETV
+vector 965  aodv.host[12].wlan[0].mac  "throughput AC0"  ETV
+vector 1061  aodv.host[28].wlan[0].mac  "throughput AC0"  ETV
+vector 1169  aodv.host[46].wlan[0].mac  "throughput AC0"  ETV
+vector 1025  aodv.host[22].wlan[0].mac  "throughput AC0"  ETV
+vector 1075  aodv.host[30].wlan[0].radio  snirVector  ETV
+vector 556  aodv.host[30].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 553  aodv.host[30].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 973  aodv.host[13].wlan[0].radio  snirVector  ETV
+vector 267  aodv.host[13].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 264  aodv.host[13].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1093  aodv.host[33].wlan[0].radio  snirVector  ETV
+vector 607  aodv.host[33].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 604  aodv.host[33].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1135  aodv.host[40].wlan[0].radio  snirVector  ETV
+vector 726  aodv.host[40].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 723  aodv.host[40].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1159  aodv.host[44].wlan[0].radio  snirVector  ETV
+vector 794  aodv.host[44].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 791  aodv.host[44].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1123  aodv.host[38].wlan[0].radio  snirVector  ETV
+vector 692  aodv.host[38].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 689  aodv.host[38].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 943  aodv.host[8].wlan[0].radio  snirVector  ETV
+vector 182  aodv.host[8].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 179  aodv.host[8].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 919  aodv.host[4].wlan[0].radio  snirVector  ETV
+vector 114  aodv.host[4].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 111  aodv.host[4].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 979  aodv.host[14].wlan[0].radio  snirVector  ETV
+vector 284  aodv.host[14].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 281  aodv.host[14].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1045  aodv.host[25].wlan[0].radio  snirVector  ETV
+vector 471  aodv.host[25].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 468  aodv.host[25].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1141  aodv.host[41].wlan[0].radio  snirVector  ETV
+vector 743  aodv.host[41].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 740  aodv.host[41].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 991  aodv.host[16].wlan[0].radio  snirVector  ETV
+vector 318  aodv.host[16].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 315  aodv.host[16].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1183  aodv.host[48].wlan[0].radio  snirVector  ETV
+vector 862  aodv.host[48].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 859  aodv.host[48].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1057  aodv.host[27].wlan[0].radio  snirVector  ETV
+vector 505  aodv.host[27].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 502  aodv.host[27].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1021  aodv.host[21].wlan[0].radio  snirVector  ETV
+vector 403  aodv.host[21].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 400  aodv.host[21].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 967  aodv.host[12].wlan[0].radio  snirVector  ETV
+vector 250  aodv.host[12].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 247  aodv.host[12].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1063  aodv.host[28].wlan[0].radio  snirVector  ETV
+vector 522  aodv.host[28].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 519  aodv.host[28].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1171  aodv.host[46].wlan[0].radio  snirVector  ETV
+vector 828  aodv.host[46].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 825  aodv.host[46].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1027  aodv.host[22].wlan[0].radio  snirVector  ETV
+vector 420  aodv.host[22].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 417  aodv.host[22].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 402  aodv.host[21].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 401  aodv.host[21].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 947  aodv.host[9].wlan[0].mac  "throughput AC0"  ETV
+vector 935  aodv.host[7].wlan[0].mac  "throughput AC0"  ETV
+vector 1085  aodv.host[32].wlan[0].mac  "throughput AC0"  ETV
+vector 1163  aodv.host[45].wlan[0].mac  "throughput AC0"  ETV
+vector 1175  aodv.host[47].wlan[0].mac  "throughput AC0"  ETV
+vector 995  aodv.host[17].wlan[0].mac  "throughput AC0"  ETV
+vector 1031  aodv.host[23].wlan[0].mac  "throughput AC0"  ETV
+vector 1145  aodv.host[42].wlan[0].mac  "throughput AC0"  ETV
+vector 905  aodv.host[2].wlan[0].mac  "throughput AC0"  ETV
+vector 1103  aodv.host[35].wlan[0].mac  "throughput AC0"  ETV
+vector 317  aodv.host[16].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 316  aodv.host[16].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 929  aodv.host[6].wlan[0].mac  "throughput AC0"  ETV
+vector 1007  aodv.host[19].wlan[0].mac  "throughput AC0"  ETV
+vector 1079  aodv.host[31].wlan[0].mac  "throughput AC0"  ETV
+vector 1013  aodv.host[20].wlan[0].mac  "throughput AC0"  ETV
+vector 1067  aodv.host[29].wlan[0].mac  "throughput AC0"  ETV
+vector 899  aodv.host[1].wlan[0].mac  "throughput AC0"  ETV
+vector 1151  aodv.host[43].wlan[0].mac  "throughput AC0"  ETV
+vector 300  aodv.host[15].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 949  aodv.host[9].wlan[0].radio  snirVector  ETV
+vector 199  aodv.host[9].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 196  aodv.host[9].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 937  aodv.host[7].wlan[0].radio  snirVector  ETV
+vector 165  aodv.host[7].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 162  aodv.host[7].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1087  aodv.host[32].wlan[0].radio  snirVector  ETV
+vector 590  aodv.host[32].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 587  aodv.host[32].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1165  aodv.host[45].wlan[0].radio  snirVector  ETV
+vector 811  aodv.host[45].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 808  aodv.host[45].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1177  aodv.host[47].wlan[0].radio  snirVector  ETV
+vector 845  aodv.host[47].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 842  aodv.host[47].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 997  aodv.host[17].wlan[0].radio  snirVector  ETV
+vector 335  aodv.host[17].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 332  aodv.host[17].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1033  aodv.host[23].wlan[0].radio  snirVector  ETV
+vector 437  aodv.host[23].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 434  aodv.host[23].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1147  aodv.host[42].wlan[0].radio  snirVector  ETV
+vector 760  aodv.host[42].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 757  aodv.host[42].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 907  aodv.host[2].wlan[0].radio  snirVector  ETV
+vector 80  aodv.host[2].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 77  aodv.host[2].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1105  aodv.host[35].wlan[0].radio  snirVector  ETV
+vector 641  aodv.host[35].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 638  aodv.host[35].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 299  aodv.host[15].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 793  aodv.host[44].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 931  aodv.host[6].wlan[0].radio  snirVector  ETV
+vector 148  aodv.host[6].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 145  aodv.host[6].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1009  aodv.host[19].wlan[0].radio  snirVector  ETV
+vector 369  aodv.host[19].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 366  aodv.host[19].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1081  aodv.host[31].wlan[0].radio  snirVector  ETV
+vector 573  aodv.host[31].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 570  aodv.host[31].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1015  aodv.host[20].wlan[0].radio  snirVector  ETV
+vector 386  aodv.host[20].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 383  aodv.host[20].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1069  aodv.host[29].wlan[0].radio  snirVector  ETV
+vector 539  aodv.host[29].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 536  aodv.host[29].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 419  aodv.host[22].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 418  aodv.host[22].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 1127  aodv.host[39].wlan[0].mac  "throughput AC0"  ETV
+vector 1001  aodv.host[18].wlan[0].mac  "throughput AC0"  ETV
+vector 1049  aodv.host[26].wlan[0].mac  "throughput AC0"  ETV
+vector 887  aodv.fixhost[0].wlan[0].mac  "throughput AC0"  ETV
+vector 827  aodv.host[46].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 826  aodv.host[46].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 436  aodv.host[23].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 504  aodv.host[27].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 453  aodv.host[24].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 452  aodv.host[24].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 901  aodv.host[1].wlan[0].radio  snirVector  ETV
+vector 63  aodv.host[1].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 60  aodv.host[1].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1153  aodv.host[43].wlan[0].radio  snirVector  ETV
+vector 777  aodv.host[43].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 774  aodv.host[43].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1129  aodv.host[39].wlan[0].radio  snirVector  ETV
+vector 709  aodv.host[39].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 706  aodv.host[39].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1003  aodv.host[18].wlan[0].radio  snirVector  ETV
+vector 352  aodv.host[18].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 349  aodv.host[18].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 1051  aodv.host[26].wlan[0].radio  snirVector  ETV
+vector 488  aodv.host[26].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 485  aodv.host[26].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 889  aodv.fixhost[0].wlan[0].radio  snirVector  ETV
+vector 19  aodv.fixhost[0].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 16  aodv.fixhost[0].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 18  aodv.fixhost[0].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 17  aodv.fixhost[0].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 572  aodv.host[31].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 571  aodv.host[31].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
 14	0	0	0
+16	1538	10.005007363892	222
+17	1757	10.005055363892	93
+18	1621	10.005027363892	93
+19	1538	10.005007363892	222
 20	0	0	54000000
 21	0	0	0
 22	0	0	0
+22	1238	10.004681363892	1
+22	1537	10.005007363892	0
+22	1758	10.005055363892	2
+22	1868	10.005097363892	0
 24	3	10	512
 29	5	10	520
 41	0	0	0
+43	253	10.003343595929	126
+43	431	10.003804532983	126
+43	1365	10.004777525226	126
 44	16	10.001808474687	93
 45	15	10.001780474687	93
+46	253	10.003343595929	126
+46	431	10.003804532983	126
+46	1365	10.004777525226	126
 47	0	0	54000000
 48	0	0	0
 49	0	0	0
 49	17	10.001808474687	2
 49	69	10.001962474687	0
+49	179	10.003145595929	1
+49	252	10.003343595929	0
+49	351	10.003606532983	1
+49	430	10.003804532983	0
+49	1049	10.004579525226	1
+49	1364	10.004777525226	0
+49	1459	10.004930422841	1
 58	0	0	0
+60	1506	10.005006661848	222
+63	1506	10.005006661848	222
+63	1882	10.005098068072	93
 64	0	0	54000000
 65	0	0	0
 66	0	0	0
+66	836	10.004302084502	1
+66	970	10.004514813995	0
+66	1086	10.004581673435	1
+66	1152	10.004628084502	0
+66	1230	10.004680661848	1
+66	1505	10.005006661848	0
+66	1763	10.005056068072	1
+66	1881	10.005098068072	0
 75	0	0	0
+77	933	10.004513482013	222
+77	1662	10.005039081142	222
+80	933	10.004513482013	222
+80	1662	10.005039081142	222
 81	0	0	54000000
 82	0	0	0
 83	0	0	0
+83	774	10.004187482013	1
+83	932	10.004513482013	0
+83	1251	10.004682132227	1
+83	1661	10.005039081142	0
 92	0	0	0
+94	245	10.003343094496	126
+94	423	10.00380447009	126
+94	634	10.004076780855	169
+97	245	10.003343094496	126
+97	423	10.00380447009	126
+97	634	10.004076780855	169
+97	1149	10.004627776482	222
 98	0	0	54000000
 99	0	0	0
 100	0	0	0
+100	177	10.003145094496	1
+100	244	10.003343094496	0
+100	349	10.00360647009	1
+100	422	10.00380447009	0
+100	526	10.003818780856	1
+100	633	10.004076780855	0
+100	833	10.004301776482	1
+100	1359	10.004777209718	0
+100	1457	10.004929695512	1
 109	0	0	0
+111	590	10.004076469566	169
+111	913	10.004513234483	222
+111	1658	10.005039053024	222
+114	590	10.004076469566	169
+114	913	10.004513234483	222
+114	1658	10.005039053024	222
 115	0	0	54000000
 116	0	0	0
 117	0	0	0
+117	515	10.003818469567	1
+117	589	10.004076469566	0
+117	769	10.004187234483	1
+117	912	10.004513234483	0
+117	1246	10.004681956924	1
+117	1657	10.005039053024	0
+117	1851	10.005092154807	1
+117	1899	10.005099518037	0
 126	0	0	0
+128	261	10.003343928295	126
+129	506	10.003817453439	169
+130	399	10.003789453439	169
+131	261	10.003343928295	126
+131	947	10.004513777177	222
+131	1554	10.005007925626	222
 132	0	0	54000000
 133	0	0	0
 134	0	0	0
+134	181	10.003145928295	1
+134	260	10.003343928295	0
+134	507	10.003817453439	2
+134	560	10.004075453438	0
+134	778	10.004187777177	1
+134	1138	10.004627554393	0
+134	1245	10.004681925626	1
+134	1684	10.005039884208	0
+134	1777	10.005057707102	1
 143	0	0	0
+145	1121	10.004627117276	222
+148	1121	10.004627117276	222
 149	0	0	54000000
 150	0	0	0
 151	0	0	0
+151	823	10.004301117276	1
+151	1120	10.004627117276	0
+151	1333	10.004715727207	1
+151	1392	10.00477890641	0
+151	1477	10.004931365846	1
+151	1564	10.005008500764	0
+151	1820	10.005089520988	1
 160	0	0	0
+162	893	10.004512968434	222
+162	1666	10.005039101663	222
+165	893	10.004512968434	222
+165	1666	10.005039101663	222
 166	0	0	54000000
 167	0	0	0
 168	0	0	0
+168	764	10.004186968434	1
+168	892	10.004512968434	0
+168	1297	10.004713101663	1
+168	1665	10.005039101663	0
 177	0	0	0
+179	586	10.004076468967	169
+179	1113	10.004626777826	222
+182	586	10.004076468967	169
+182	1113	10.004626777826	222
+182	1544	10.005007597352	222
 183	0	0	54000000
 184	0	0	0
 185	0	0	0
+185	514	10.003818468968	1
+185	585	10.004076468967	0
+185	821	10.004300777826	1
+185	1112	10.004626777826	0
+185	1240	10.004681597352	1
+185	1543	10.005007597352	0
+185	1769	10.005057318159	1
 194	0	0	0
+196	885	10.004512845496	222
+196	1630	10.005038655123	222
+199	885	10.004512845496	222
+199	1630	10.005038655123	222
 200	0	0	54000000
 201	0	0	0
 202	0	0	0
+202	762	10.004186845496	1
+202	884	10.004512845496	0
+202	1288	10.004712655123	1
+202	1629	10.005038655123	0
 211	0	0	0
 213	79	10.001963456603	93
+213	249	10.003343358325	126
+213	427	10.003804521369	126
+213	949	10.004513944369	222
+213	1361	10.004777366384	126
 216	79	10.001963456603	93
+216	249	10.003343358325	126
+216	427	10.003804521369	126
+216	949	10.004513944369	222
+216	1361	10.004777366384	126
 217	0	0	54000000
 218	0	0	0
 219	0	0	0
 219	20	10.001809456603	1
 219	78	10.001963456603	0
+219	178	10.003145358325	1
+219	248	10.003343358325	0
+219	350	10.003606521369	1
+219	426	10.003804521369	0
+219	779	10.004187944369	1
+219	948	10.004513944369	0
+219	1048	10.004579366384	1
+219	1360	10.004777366384	0
+219	1460	10.004930448023	1
 228	0	0	0
 230	95	10.001963908274	93
+230	237	10.00334284363	126
+230	419	10.003804249482	126
+230	626	10.00407672773	169
+230	1356	10.004776970632	126
 233	95	10.001963908274	93
+233	237	10.00334284363	126
+233	419	10.003804249482	126
+233	626	10.00407672773	169
+233	1356	10.004776970632	126
 234	0	0	54000000
 235	0	0	0
 236	0	0	0
 236	24	10.001809908274	1
 236	94	10.001963908274	0
+236	175	10.00314484363	1
+236	236	10.00334284363	0
+236	348	10.003606249482	1
+236	418	10.003804249482	0
+236	524	10.003818727731	1
+236	625	10.00407672773	0
+236	835	10.004301938824	1
+236	961	10.004514551632	0
+236	1046	10.004578970632	1
+236	1355	10.004776970632	0
+236	1455	10.004929618963	1
 245	0	0	0
+247	630	10.004076742895	169
+247	1135	10.004627416947	222
+247	1518	10.0050069822	222
+250	630	10.004076742895	169
+250	1135	10.004627416947	222
+250	1518	10.0050069822	222
+250	1893	10.005098663172	93
 251	0	0	54000000
 252	0	0	0
 253	0	0	0
+253	525	10.003818742896	1
+253	629	10.004076742895	0
+253	828	10.004301416947	1
+253	1134	10.004627416947	0
+253	1233	10.0046809822	1
+253	1517	10.0050069822	0
+253	1767	10.005056663172	1
+253	1892	10.005098663172	0
 262	0	0	0
+264	566	10.004075659131	169
+267	566	10.004075659131	169
+267	953	10.004513946145	222
+267	1548	10.005007767043	222
 268	0	0	54000000
 269	0	0	0
 270	0	0	0
+270	509	10.003817659132	1
+270	565	10.004075659131	0
+270	780	10.004187946145	1
+270	1129	10.004627386924	0
+270	1242	10.004681767043	1
+270	1686	10.005040022553	0
+270	1774	10.005057557841	1
 279	0	0	0
+281	594	10.004076477882	169
+281	1109	10.004626774728	222
+284	594	10.004076477882	169
+284	1109	10.004626774728	222
 285	0	0	54000000
 286	0	0	0
 287	0	0	0
+287	516	10.003818477883	1
+287	593	10.004076477882	0
+287	820	10.004300774728	1
+287	1108	10.004626774728	0
+287	1252	10.004682219812	1
+287	1703	10.005040908638	0
+287	1781	10.005057966786	1
 296	0	0	0
 298	83	10.001963469852	93
+298	225	10.003342604728	126
+298	403	10.003803826093	126
+299	1040	10.004578530061	126
+300	873	10.00445054512	126
 301	83	10.001963469852	93
+301	225	10.003342604728	126
+301	403	10.003803826093	126
 302	0	0	54000000
 303	0	0	0
 304	0	0	0
 304	21	10.001809469852	1
 304	82	10.001963469852	0
+304	172	10.003144604728	1
+304	224	10.003342604728	0
+304	344	10.003605826093	1
+304	402	10.003803826093	0
+304	842	10.004302366755	1
+304	960	10.004514530061	0
+304	1041	10.004578530061	2
+304	1338	10.004776530061	0
+304	1454	10.004929611804	1
 313	0	0	0
+315	610	10.004076610153	169
+316	816	10.004300397678	222
+317	815	10.004272397678	222
+318	610	10.004076610153	169
 319	0	0	54000000
 320	0	0	0
 321	0	0	0
+321	520	10.003818610154	1
+321	609	10.004076610153	0
+321	817	10.004300397678	2
+321	1099	10.004626397678	0
+321	1248	10.004681974995	1
+321	1557	10.005007974995	0
+321	1776	10.005057676248	1
 330	0	0	0
+332	921	10.004513259683	222
+332	1646	10.005038837054	222
+335	921	10.004513259683	222
+335	1646	10.005038837054	222
 336	0	0	54000000
 337	0	0	0
 338	0	0	0
+338	771	10.004187259683	1
+338	920	10.004513259683	0
+338	1292	10.004712837054	1
+338	1645	10.005038837054	0
 347	0	0	0
+349	1530	10.005007190718	222
+352	1530	10.005007190718	222
+352	1870	10.005097543823	93
 353	0	0	54000000
 354	0	0	0
 355	0	0	0
+355	1236	10.004681190718	1
+355	1529	10.005007190718	0
+355	1759	10.005055543823	1
+355	1869	10.005097543823	0
 364	0	0	0
+366	1125	10.004627305343	222
+369	1125	10.004627305343	222
 370	0	0	54000000
 371	0	0	0
 372	0	0	0
+372	824	10.004301305343	1
+372	1124	10.004627305343	0
+372	1334	10.004715861727	1
+372	1387	10.004778783442	0
+372	1469	10.004931195174	1
+372	1570	10.005008797369	0
+372	1818	10.005089220907	1
 381	0	0	0
+383	1140	10.004627556414	222
+386	1140	10.004627556414	222
 387	0	0	54000000
 388	0	0	0
 389	0	0	0
+389	830	10.004301556414	1
+389	1139	10.004627556414	0
+389	1472	10.004931293686	1
+389	1574	10.005009036431	0
+389	1819	10.00508925138	1
 398	0	0	0
+400	622	10.004076691781	169
+400	1638	10.005038811055	222
+401	758	10.004186538834	222
+402	757	10.004158538834	222
+403	622	10.004076691781	169
+403	1638	10.005038811055	222
 404	0	0	54000000
 405	0	0	0
 406	0	0	0
+406	523	10.003818691782	1
+406	621	10.004076691781	0
+406	759	10.004186538834	2
+406	875	10.004512538834	0
+406	1257	10.004682620517	1
+406	1637	10.005038811055	0
 415	0	0	0
+417	650	10.004076912657	169
+418	1228	10.004680466407	222
+419	1223	10.004652466407	222
+420	650	10.004076912657	169
+420	1885	10.005098261377	93
 421	0	0	54000000
 422	0	0	0
 423	0	0	0
+423	530	10.003818912658	1
+423	649	10.004076912657	0
+423	834	10.004301906266	1
+423	963	10.004514692944	0
+423	1085	10.004581481561	1
+423	1150	10.004627906266	0
+423	1229	10.004680466407	2
+423	1504	10.005006466407	0
+423	1764	10.005056261377	1
+423	1884	10.005098261377	0
 432	0	0	0
+434	925	10.004513268146	222
+436	1437	10.004803078634	285
+437	925	10.004513268146	222
+437	1681	10.00503944548	222
 438	0	0	54000000
 439	0	0	0
 440	0	0	0
+440	772	10.004187268146	1
+440	924	10.004513268146	0
+440	1302	10.00471344548	1
+440	1680	10.00503944548	0
 449	0	0	0
 451	91	10.00196369941	93
+451	241	10.003342911245	126
+451	415	10.003804112866	126
+451	1352	10.004776943747	126
+452	1451	10.004929198118	126
+453	1450	10.004901198118	126
 454	91	10.00196369941	93
+454	241	10.003342911245	126
+454	415	10.003804112866	126
+454	1352	10.004776943747	126
 455	0	0	54000000
 456	0	0	0
 457	0	0	0
 457	23	10.00180969941	1
 457	90	10.00196369941	0
+457	176	10.003144911245	1
+457	240	10.003342911245	0
+457	347	10.003606112866	1
+457	414	10.003804112866	0
+457	839	10.004302273804	1
+457	971	10.004514882414	0
+457	1045	10.004578943747	1
+457	1351	10.004776943747	0
+457	1452	10.004929198118	2
 466	0	0	0
+468	602	10.004076552674	169
+468	941	10.004513664564	222
+471	602	10.004076552674	169
+471	941	10.004513664564	222
+471	1542	10.005007566984	222
 472	0	0	54000000
 473	0	0	0
 474	0	0	0
+474	518	10.003818552675	1
+474	601	10.004076552674	0
+474	776	10.004187664564	1
+474	940	10.004513664564	0
+474	1239	10.004681566984	1
+474	1679	10.005039442977	0
+474	1768	10.005057088216	1
+474	1895	10.005099088216	0
 483	0	0	0
+485	1534	10.005007206658	222
+488	1534	10.005007206658	222
+488	1873	10.005097612617	93
 489	0	0	54000000
 490	0	0	0
 491	0	0	0
+491	1237	10.004681206658	1
+491	1533	10.005007206658	0
+491	1760	10.005055612617	1
+491	1872	10.005097612617	0
 500	0	0	0
+502	618	10.004076618366	169
+502	877	10.004512756171	222
+502	1634	10.005038730341	222
+504	1444	10.00485993395	222
+505	618	10.004076618366	169
+505	877	10.004512756171	222
+505	1634	10.005038730341	222
 506	0	0	54000000
 507	0	0	0
 508	0	0	0
+508	522	10.003818618367	1
+508	617	10.004076618366	0
+508	760	10.004186756171	1
+508	876	10.004512756171	0
+508	1254	10.004682425243	1
+508	1633	10.005038730341	0
 517	0	0	0
+519	638	10.004076826455	169
+519	1526	10.005007128198	222
+522	638	10.004076826455	169
+522	1526	10.005007128198	222
+522	1890	10.005098551217	93
 523	0	0	54000000
 524	0	0	0
 525	0	0	0
+525	527	10.003818826456	1
+525	637	10.004076826455	0
+525	840	10.00430228519	1
+525	956	10.004514201124	0
+525	1235	10.004681128198	1
+525	1685	10.005039966644	0
+525	1766	10.005056551217	1
+525	1889	10.005098551217	0
 534	0	0	0
+536	1144	10.004627669992	222
+536	1510	10.005006849125	222
+539	1144	10.004627669992	222
+539	1510	10.005006849125	222
+539	1887	10.005098403952	93
 540	0	0	54000000
 541	0	0	0
 542	0	0	0
+542	831	10.004301669992	1
+542	1143	10.004627669992	0
+542	1231	10.004680849125	1
+542	1509	10.005006849125	0
+542	1765	10.005056403952	1
+542	1886	10.005098403952	0
 551	0	0	0
+553	562	10.004075651975	169
+556	562	10.004075651975	169
+556	955	10.004513969449	222
+556	1550	10.005007833285	222
 557	0	0	54000000
 558	0	0	0
 559	0	0	0
+559	182	10.00314598296	1
+559	264	10.00334398296	0
+559	508	10.003817651976	1
+559	561	10.004075651975	0
+559	781	10.004187969449	1
+559	1128	10.004627359905	0
+559	1243	10.004681833285	1
+559	1687	10.005040060978	0
+559	1775	10.005057625761	1
 568	0	0	0
+570	1131	10.004627415991	222
+571	1816	10.005089108808	285
+572	1813	10.005061108808	285
+573	1131	10.004627415991	222
 574	0	0	54000000
 575	0	0	0
 576	0	0	0
+576	827	10.004301415991	1
+576	1130	10.004627415991	0
+576	1471	10.004931254607	1
+576	1573	10.00500889549	0
+576	1817	10.005089108808	2
 585	0	0	0
+587	897	10.00451297807	222
+587	1626	10.005038577283	222
+590	897	10.00451297807	222
+590	1626	10.005038577283	222
 591	0	0	54000000
 592	0	0	0
 593	0	0	0
+593	765	10.00418697807	1
+593	896	10.00451297807	0
+593	1287	10.004712577283	1
+593	1625	10.005038577283	0
 602	0	0	0
+604	570	10.004075871205	169
+607	570	10.004075871205	169
+607	945	10.004513707283	222
+607	1546	10.005007609016	222
 608	0	0	54000000
 609	0	0	0
 610	0	0	0
+610	510	10.003817871206	1
+610	569	10.004075871205	0
+610	777	10.004187707283	1
+610	1147	10.004627721442	0
+610	1241	10.004681609016	1
+610	1683	10.005039708638	0
+610	1770	10.005057357276	1
+610	1897	10.005099357276	0
 619	0	0	0
+621	257	10.00334380227	126
+621	435	10.003805095906	126
+621	598	10.004076530675	169
+621	905	10.004513206597	222
+624	257	10.00334380227	126
+624	435	10.003805095906	126
+624	598	10.004076530675	169
+624	905	10.004513206597	222
+624	1369	10.00477786966	126
 625	0	0	54000000
 626	0	0	0
 627	0	0	0
+627	180	10.00314580227	1
+627	256	10.00334380227	0
+627	352	10.003607095906	1
+627	434	10.003805095906	0
+627	517	10.003818530676	1
+627	597	10.004076530675	0
+627	767	10.004187206597	1
+627	904	10.004513206597	0
+627	1050	10.00457986966	1
+627	1682	10.005039478543	0
+627	1846	10.005092082102	1
 636	0	0	0
+638	937	10.004513556956	222
+638	1674	10.005039211675	222
+641	937	10.004513556956	222
+641	1674	10.005039211675	222
 642	0	0	54000000
 643	0	0	0
 644	0	0	0
+644	775	10.004187556956	1
+644	936	10.004513556956	0
+644	1299	10.004713211675	1
+644	1673	10.005039211675	0
 653	0	0	0
 655	87	10.001963572349	93
+655	411	10.003803931874	126
+655	642	10.004076883466	169
+655	1340	10.004776636522	126
 656	170	10.003144498267	126
 657	169	10.003116498267	126
 658	87	10.001963572349	93
+658	411	10.003803931874	126
+658	642	10.004076883466	169
+658	1340	10.004776636522	126
 659	0	0	54000000
 660	0	0	0
 661	0	0	0
 661	22	10.001809572349	1
 661	86	10.001963572349	0
 661	171	10.003144498267	2
+661	223	10.003342498267	0
+661	346	10.003605931874	1
+661	410	10.003803931874	0
+661	528	10.003818883467	1
+661	641	10.004076883466	0
+661	838	10.004302262419	1
+661	959	10.004514484358	0
+661	1042	10.004578636522	1
+661	1339	10.004776636522	0
+661	1453	10.004929611096	1
 670	0	0	0
 672	71	10.001963334023	93
+672	233	10.003342756494	126
+672	1344	10.004776682507	126
+673	342	10.003605673647	126
+674	341	10.003577673647	126
 675	71	10.001963334023	93
+675	233	10.003342756494	126
+675	1344	10.004776682507	126
 676	0	0	54000000
 677	0	0	0
 678	0	0	0
 678	18	10.001809334023	1
 678	70	10.001963334023	0
+678	174	10.003144756494	1
+678	232	10.003342756494	0
+678	343	10.003605673647	2
+678	401	10.003803673647	0
+678	848	10.004302510991	1
+678	962	10.004514621781	0
+678	1043	10.004578682507	1
+678	1343	10.004776682507	0
+678	1456	10.004929637337	1
 687	0	0	0
+689	582	10.004076397766	169
+689	881	10.004512834106	222
+689	1654	10.005039022521	222
+692	582	10.004076397766	169
+692	881	10.004512834106	222
+692	1654	10.005039022521	222
 693	0	0	54000000
 694	0	0	0
 695	0	0	0
+695	513	10.003818397767	1
+695	581	10.004076397766	0
+695	761	10.004186834106	1
+695	880	10.004512834106	0
+695	1058	10.00458032625	1
+695	1163	10.004628497732	0
+695	1253	10.004682424201	1
+695	1653	10.005039022521	0
+695	1850	10.005092130086	1
 704	0	0	0
+706	1522	10.005007019144	222
+709	1522	10.005007019144	222
+709	1879	10.005098000097	93
 710	0	0	54000000
 711	0	0	0
 712	0	0	0
+712	1234	10.004681019144	1
+712	1521	10.005007019144	0
+712	1762	10.005056000097	1
+712	1878	10.005098000097	0
 721	0	0	0
+723	574	10.004076137354	169
+723	901	10.00451313821	222
+723	1670	10.005039200462	222
+726	574	10.004076137354	169
+726	901	10.00451313821	222
+726	1670	10.005039200462	222
 727	0	0	54000000
 728	0	0	0
 729	0	0	0
+729	511	10.003818137355	1
+729	573	10.004076137354	0
+729	766	10.00418713821	1
+729	900	10.00451313821	0
+729	1059	10.004580364145	1
+729	1153	10.004628214265	0
+729	1250	10.004682093815	1
+729	1669	10.005039200462	0
+729	1842	10.005091881444	1
+729	1906	10.005099766431	0
 738	0	0	0
+740	606	10.004076610013	169
+740	1101	10.004626495957	222
+743	606	10.004076610013	169
+743	1101	10.004626495957	222
 744	0	0	54000000
 745	0	0	0
 746	0	0	0
+746	519	10.003818610014	1
+746	605	10.004076610013	0
+746	818	10.004300495957	1
+746	1100	10.004626495957	0
+746	1249	10.004682062673	1
+746	1708	10.005041023252	0
+746	1780	10.005057771133	1
 755	0	0	0
+757	929	10.004513299046	222
+757	1642	10.005038832565	222
+760	929	10.004513299046	222
+760	1642	10.005038832565	222
 761	0	0	54000000
 762	0	0	0
 763	0	0	0
+763	773	10.004187299046	1
+763	928	10.004513299046	0
+763	1291	10.004712832565	1
+763	1641	10.005038832565	0
 772	0	0	0
+774	1514	10.005006963247	222
+777	1514	10.005006963247	222
+777	1876	10.00509799222	93
 778	0	0	54000000
 779	0	0	0
 780	0	0	0
+780	843	10.004302398197	1
+780	967	10.004514760149	0
+780	1232	10.004680963247	1
+780	1513	10.005006963247	0
+780	1761	10.00505599222	1
+780	1875	10.00509799222	0
 789	0	0	0
+791	578	10.004076147277	169
+791	1117	10.004626885373	222
+793	1097	10.004600283645	222
+794	578	10.004076147277	169
+794	1117	10.004626885373	222
 795	0	0	54000000
 796	0	0	0
 797	0	0	0
+797	512	10.003818147278	1
+797	577	10.004076147277	0
+797	822	10.004300885373	1
+797	1116	10.004626885373	0
+797	1247	10.004681959792	1
+797	1692	10.005040572981	0
+797	1778	10.005057736798	1
 806	0	0	0
+808	909	10.004513227578	222
+811	909	10.004513227578	222
+811	1678	10.005039410991	222
 812	0	0	54000000
 813	0	0	0
 814	0	0	0
+814	768	10.004187227578	1
+814	908	10.004513227578	0
+814	1300	10.004713410991	1
+814	1677	10.005039410991	0
 823	0	0	0
+825	646	10.00407689923	169
+825	889	10.004512911473	222
+826	1285	10.004712438416	222
+827	1284	10.004684438416	222
+828	646	10.00407689923	169
+828	889	10.004512911473	222
 829	0	0	54000000
 830	0	0	0
 831	0	0	0
+831	529	10.003818899231	1
+831	645	10.00407689923	0
+831	763	10.004186911473	1
+831	888	10.004512911473	0
+831	1286	10.004712438416	2
+831	1624	10.005038438416	0
 840	0	0	0
+842	917	10.004513256623	222
+842	1650	10.005039000708	222
+845	917	10.004513256623	222
+845	1650	10.005039000708	222
 846	0	0	54000000
 847	0	0	0
 848	0	0	0
+848	770	10.004187256623	1
+848	916	10.004513256623	0
+848	1293	10.004713000708	1
+848	1649	10.005039000708	0
 857	0	0	0
+859	614	10.004076615523	169
+859	1105	10.004626538398	222
+862	614	10.004076615523	169
+862	1105	10.004626538398	222
+862	1552	10.005007847496	222
 863	0	0	54000000
 864	0	0	0
 865	0	0	0
+865	521	10.003818615524	1
+865	613	10.004076615523	0
+865	819	10.004300538398	1
+865	1104	10.004626538398	0
+865	1244	10.004681847496	1
+865	1551	10.005007847496	0
+865	1773	10.00505753859	1
 874	0	0	0
 876	75	10.00196339995	93
+876	229	10.003342733345	126
+876	407	10.003803915027	126
+876	1348	10.004776721758	126
 879	75	10.00196339995	93
+879	229	10.003342733345	126
+879	407	10.003803915027	126
+879	1348	10.004776721758	126
 880	0	0	54000000
 881	0	0	0
 882	0	0	0
 882	19	10.00180939995	1
 882	74	10.00196339995	0
+882	173	10.003144733345	1
+882	228	10.003342733345	0
+882	345	10.003605915027	1
+882	406	10.003803915027	0
+882	531	10.00381894268	1
+882	653	10.004076942679	0
+882	844	10.004302444154	1
+882	957	10.004514380463	0
+882	1044	10.004578721758	1
+882	1347	10.004776721758	0
+882	1458	10.004929803391	1
 884	0	0	0
 884	0	0	0
+884	1238	10.004681363892	0
+884	1238	10.004681363892	0
+884	1537	10.005007363892	0
+884	1537	10.005007363892	0
+884	1538	10.005007363892	0
+884	1538	10.005007363892	0
+884	1621	10.005027363892	0
+884	1621	10.005027363892	2
+884	1757	10.005055363892	2
+884	1757	10.005055363892	4
+884	1758	10.005055363892	4
+884	1758	10.005055363892	4
+884	1868	10.005097363892	4
+884	1868	10.005097363892	4
 885	0	0	0
 885	0	0	0
+885	1238	10.004681363892	0
+885	1238	10.004681363892	1
+885	1537	10.005007363892	1
+885	1537	10.005007363892	0
+885	1758	10.005055363892	0
+885	1758	10.005055363892	2
+885	1868	10.005097363892	2
+885	1868	10.005097363892	0
+887	1238	10.004681363892	0
+889	1537	10.005007363892	7.7350648545581
 890	0	0	0
 890	0	0	0
 890	15	10.001780474687	0
@@ -1340,49 +2491,398 @@ attr title  "packets sent to lower layer, vector(packetBytes)"
 890	162	10.001990474687	3
 890	163	10.002188474687	3
 890	163	10.002188474687	0
+890	179	10.003145595929	0
+890	179	10.003145595929	0
+890	252	10.003343595929	0
+890	252	10.003343595929	0
+890	253	10.003343595929	0
+890	253	10.003343595929	0
+890	351	10.003606532983	0
+890	351	10.003606532983	0
+890	430	10.003804532983	0
+890	430	10.003804532983	0
+890	431	10.003804532983	0
+890	431	10.003804532983	0
+890	1049	10.004579525226	0
+890	1049	10.004579525226	0
+890	1364	10.004777525226	0
+890	1364	10.004777525226	0
+890	1365	10.004777525226	0
+890	1365	10.004777525226	0
+890	1459	10.004930422841	0
+890	1459	10.004930422841	0
 891	0	0	0
 891	0	0	0
 891	17	10.001808474687	0
 891	17	10.001808474687	2
 891	69	10.001962474687	2
 891	69	10.001962474687	0
+891	179	10.003145595929	0
+891	179	10.003145595929	1
+891	252	10.003343595929	1
+891	252	10.003343595929	0
+891	351	10.003606532983	0
+891	351	10.003606532983	1
+891	430	10.003804532983	1
+891	430	10.003804532983	0
+891	1049	10.004579525226	0
+891	1049	10.004579525226	1
+891	1364	10.004777525226	1
+891	1364	10.004777525226	0
+891	1459	10.004930422841	0
+891	1459	10.004930422841	1
 893	15	10.001780474687	0
+895	252	10.003343595929	22.612504793113
 896	0	0	0
 896	0	0	0
+896	836	10.004302084502	0
+896	836	10.004302084502	0
+896	970	10.004514813995	0
+896	970	10.004514813995	0
+896	1086	10.004581673435	0
+896	1086	10.004581673435	0
+896	1152	10.004628084502	0
+896	1152	10.004628084502	0
+896	1230	10.004680661848	0
+896	1230	10.004680661848	0
+896	1505	10.005006661848	0
+896	1505	10.005006661848	0
+896	1506	10.005006661848	0
+896	1506	10.005006661848	0
+896	1763	10.005056068072	0
+896	1763	10.005056068072	0
+896	1881	10.005098068072	0
+896	1881	10.005098068072	0
+896	1882	10.005098068072	0
+896	1882	10.005098068072	0
+896	1883	10.005098068072	0
+896	1883	10.005098068072	0
 897	0	0	0
 897	0	0	0
+897	836	10.004302084502	0
+897	836	10.004302084502	1
+897	970	10.004514813995	1
+897	970	10.004514813995	0
+897	1086	10.004581673435	0
+897	1086	10.004581673435	1
+897	1152	10.004628084502	1
+897	1152	10.004628084502	0
+897	1230	10.004680661848	0
+897	1230	10.004680661848	1
+897	1505	10.005006661848	1
+897	1505	10.005006661848	0
+897	1763	10.005056068072	0
+897	1763	10.005056068072	1
+897	1881	10.005098068072	1
+897	1881	10.005098068072	0
+899	836	10.004302084502	0
+901	1505	10.005006661848	19.208123674467
 902	0	0	0
 902	0	0	0
+902	774	10.004187482013	0
+902	774	10.004187482013	0
+902	932	10.004513482013	0
+902	932	10.004513482013	0
+902	933	10.004513482013	0
+902	933	10.004513482013	0
+902	1251	10.004682132227	0
+902	1251	10.004682132227	0
+902	1661	10.005039081142	0
+902	1661	10.005039081142	0
+902	1662	10.005039081142	0
+902	1662	10.005039081142	0
 903	0	0	0
 903	0	0	0
+903	774	10.004187482013	0
+903	774	10.004187482013	1
+903	932	10.004513482013	1
+903	932	10.004513482013	0
+903	1251	10.004682132227	0
+903	1251	10.004682132227	1
+903	1661	10.005039081142	1
+903	1661	10.005039081142	0
+905	774	10.004187482013	0
+907	932	10.004513482013	8.3588043102467
 908	0	0	0
 908	0	0	0
+908	177	10.003145094496	0
+908	177	10.003145094496	0
+908	244	10.003343094496	0
+908	244	10.003343094496	0
+908	245	10.003343094496	0
+908	245	10.003343094496	0
+908	349	10.00360647009	0
+908	349	10.00360647009	0
+908	422	10.00380447009	0
+908	422	10.00380447009	0
+908	423	10.00380447009	0
+908	423	10.00380447009	0
+908	526	10.003818780856	0
+908	526	10.003818780856	0
+908	633	10.004076780855	0
+908	633	10.004076780855	0
+908	634	10.004076780855	0
+908	634	10.004076780855	0
+908	833	10.004301776482	0
+908	833	10.004301776482	0
+908	1149	10.004627776482	0
+908	1149	10.004627776482	0
+908	1359	10.004777209718	0
+908	1359	10.004777209718	0
+908	1457	10.004929695512	0
+908	1457	10.004929695512	0
 909	0	0	0
 909	0	0	0
+909	177	10.003145094496	0
+909	177	10.003145094496	1
+909	244	10.003343094496	1
+909	244	10.003343094496	0
+909	349	10.00360647009	0
+909	349	10.00360647009	1
+909	422	10.00380447009	1
+909	422	10.00380447009	0
+909	526	10.003818780856	0
+909	526	10.003818780856	1
+909	633	10.004076780855	1
+909	633	10.004076780855	0
+909	833	10.004301776482	0
+909	833	10.004301776482	1
+909	1359	10.004777209718	1
+909	1359	10.004777209718	0
+909	1457	10.004929695512	0
+909	1457	10.004929695512	1
+911	177	10.003145094496	0
+913	244	10.003343094496	27.91360604691
 914	0	0	0
 914	0	0	0
+914	515	10.003818469567	0
+914	515	10.003818469567	0
+914	589	10.004076469566	0
+914	589	10.004076469566	0
+914	590	10.004076469566	0
+914	590	10.004076469566	0
+914	769	10.004187234483	0
+914	769	10.004187234483	0
+914	912	10.004513234483	0
+914	912	10.004513234483	0
+914	913	10.004513234483	0
+914	913	10.004513234483	0
+914	1246	10.004681956924	0
+914	1246	10.004681956924	0
+914	1657	10.005039053024	0
+914	1657	10.005039053024	0
+914	1658	10.005039053024	0
+914	1658	10.005039053024	0
+914	1851	10.005092154807	0
+914	1851	10.005092154807	0
+914	1899	10.005099518037	0
+914	1899	10.005099518037	0
 915	0	0	0
 915	0	0	0
+915	515	10.003818469567	0
+915	515	10.003818469567	1
+915	589	10.004076469566	1
+915	589	10.004076469566	0
+915	769	10.004187234483	0
+915	769	10.004187234483	1
+915	912	10.004513234483	1
+915	912	10.004513234483	0
+915	1246	10.004681956924	0
+915	1246	10.004681956924	1
+915	1657	10.005039053024	1
+915	1657	10.005039053024	0
+915	1851	10.005092154807	0
+915	1851	10.005092154807	1
+915	1899	10.005099518037	1
+915	1899	10.005099518037	0
+917	515	10.003818469567	0
+919	589	10.004076469566	23.282905031645
 920	0	0	0
 920	0	0	0
+920	181	10.003145928295	0
+920	181	10.003145928295	0
+920	260	10.003343928295	0
+920	260	10.003343928295	0
+920	261	10.003343928295	0
+920	261	10.003343928295	0
+920	399	10.003789453439	0
+920	399	10.003789453439	2
+920	506	10.003817453439	2
+920	506	10.003817453439	5
+920	507	10.003817453439	5
+920	507	10.003817453439	5
+920	559	10.004075453438	5
+920	559	10.004075453438	1
+920	560	10.004075453438	1
+920	560	10.004075453438	2
+920	750	10.004103453438	2
+920	750	10.004103453438	3
+920	751	10.004121453438	3
+920	751	10.004121453438	0
+920	778	10.004187777177	0
+920	778	10.004187777177	0
+920	947	10.004513777177	0
+920	947	10.004513777177	0
+920	1138	10.004627554393	0
+920	1138	10.004627554393	0
+920	1245	10.004681925626	0
+920	1245	10.004681925626	0
+920	1554	10.005007925626	0
+920	1554	10.005007925626	0
+920	1684	10.005039884208	0
+920	1684	10.005039884208	0
+920	1777	10.005057707102	0
+920	1777	10.005057707102	0
 921	0	0	0
 921	0	0	0
+921	181	10.003145928295	0
+921	181	10.003145928295	1
+921	260	10.003343928295	1
+921	260	10.003343928295	0
+921	507	10.003817453439	0
+921	507	10.003817453439	2
+921	560	10.004075453438	2
+921	560	10.004075453438	0
+921	778	10.004187777177	0
+921	778	10.004187777177	1
+921	1138	10.004627554393	1
+921	1138	10.004627554393	0
+921	1245	10.004681925626	0
+921	1245	10.004681925626	1
+921	1684	10.005039884208	1
+921	1684	10.005039884208	0
+921	1777	10.005057707102	0
+921	1777	10.005057707102	1
+923	181	10.003145928295	0
+925	260	10.003343928295	20.314985050557
 926	0	0	0
 926	0	0	0
+926	823	10.004301117276	0
+926	823	10.004301117276	0
+926	1120	10.004627117276	0
+926	1120	10.004627117276	0
+926	1121	10.004627117276	0
+926	1121	10.004627117276	0
+926	1333	10.004715727207	0
+926	1333	10.004715727207	0
+926	1392	10.00477890641	0
+926	1392	10.00477890641	0
+926	1477	10.004931365846	0
+926	1477	10.004931365846	0
+926	1564	10.005008500764	0
+926	1564	10.005008500764	0
+926	1820	10.005089520988	0
+926	1820	10.005089520988	0
 927	0	0	0
 927	0	0	0
+927	823	10.004301117276	0
+927	823	10.004301117276	1
+927	1120	10.004627117276	1
+927	1120	10.004627117276	0
+927	1333	10.004715727207	0
+927	1333	10.004715727207	1
+927	1392	10.00477890641	1
+927	1392	10.00477890641	0
+927	1477	10.004931365846	0
+927	1477	10.004931365846	1
+927	1564	10.005008500764	1
+927	1564	10.005008500764	0
+927	1820	10.005089520988	0
+927	1820	10.005089520988	1
+929	823	10.004301117276	0
+931	1120	10.004627117276	10.266270715
 932	0	0	0
 932	0	0	0
+932	764	10.004186968434	0
+932	764	10.004186968434	0
+932	892	10.004512968434	0
+932	892	10.004512968434	0
+932	893	10.004512968434	0
+932	893	10.004512968434	0
+932	1297	10.004713101663	0
+932	1297	10.004713101663	0
+932	1665	10.005039101663	0
+932	1665	10.005039101663	0
+932	1666	10.005039101663	0
+932	1666	10.005039101663	0
 933	0	0	0
 933	0	0	0
+933	764	10.004186968434	0
+933	764	10.004186968434	1
+933	892	10.004512968434	1
+933	892	10.004512968434	0
+933	1297	10.004713101663	0
+933	1297	10.004713101663	1
+933	1665	10.005039101663	1
+933	1665	10.005039101663	0
+935	764	10.004186968434	0
+937	892	10.004512968434	15.854112234202
 938	0	0	0
 938	0	0	0
+938	514	10.003818468968	0
+938	514	10.003818468968	0
+938	585	10.004076468967	0
+938	585	10.004076468967	0
+938	586	10.004076468967	0
+938	586	10.004076468967	0
+938	821	10.004300777826	0
+938	821	10.004300777826	0
+938	1112	10.004626777826	0
+938	1112	10.004626777826	0
+938	1113	10.004626777826	0
+938	1113	10.004626777826	0
+938	1240	10.004681597352	0
+938	1240	10.004681597352	0
+938	1543	10.005007597352	0
+938	1543	10.005007597352	0
+938	1544	10.005007597352	0
+938	1544	10.005007597352	0
+938	1769	10.005057318159	0
+938	1769	10.005057318159	0
 939	0	0	0
 939	0	0	0
+939	514	10.003818468968	0
+939	514	10.003818468968	1
+939	585	10.004076468967	1
+939	585	10.004076468967	0
+939	821	10.004300777826	0
+939	821	10.004300777826	1
+939	1112	10.004626777826	1
+939	1112	10.004626777826	0
+939	1240	10.004681597352	0
+939	1240	10.004681597352	1
+939	1543	10.005007597352	1
+939	1543	10.005007597352	0
+939	1769	10.005057318159	0
+939	1769	10.005057318159	1
+941	514	10.003818468968	0
+943	585	10.004076468967	23.288024304107
 944	0	0	0
 944	0	0	0
+944	762	10.004186845496	0
+944	762	10.004186845496	0
+944	884	10.004512845496	0
+944	884	10.004512845496	0
+944	885	10.004512845496	0
+944	885	10.004512845496	0
+944	1288	10.004712655123	0
+944	1288	10.004712655123	0
+944	1629	10.005038655123	0
+944	1629	10.005038655123	0
+944	1630	10.005038655123	0
+944	1630	10.005038655123	0
 945	0	0	0
 945	0	0	0
+945	762	10.004186845496	0
+945	762	10.004186845496	1
+945	884	10.004512845496	1
+945	884	10.004512845496	0
+945	1288	10.004712655123	0
+945	1288	10.004712655123	1
+945	1629	10.005038655123	1
+945	1629	10.005038655123	0
+947	762	10.004186845496	0
+949	884	10.004512845496	18.636306090223
 950	0	0	0
 950	0	0	0
 950	20	10.001809456603	0
@@ -1391,12 +2891,56 @@ attr title  "packets sent to lower layer, vector(packetBytes)"
 950	78	10.001963456603	0
 950	79	10.001963456603	0
 950	79	10.001963456603	0
+950	178	10.003145358325	0
+950	178	10.003145358325	0
+950	248	10.003343358325	0
+950	248	10.003343358325	0
+950	249	10.003343358325	0
+950	249	10.003343358325	0
+950	350	10.003606521369	0
+950	350	10.003606521369	0
+950	426	10.003804521369	0
+950	426	10.003804521369	0
+950	427	10.003804521369	0
+950	427	10.003804521369	0
+950	779	10.004187944369	0
+950	779	10.004187944369	0
+950	948	10.004513944369	0
+950	948	10.004513944369	0
+950	949	10.004513944369	0
+950	949	10.004513944369	0
+950	1048	10.004579366384	0
+950	1048	10.004579366384	0
+950	1360	10.004777366384	0
+950	1360	10.004777366384	0
+950	1361	10.004777366384	0
+950	1361	10.004777366384	0
+950	1460	10.004930448023	0
+950	1460	10.004930448023	0
 951	0	0	0
 951	0	0	0
 951	20	10.001809456603	0
 951	20	10.001809456603	1
 951	78	10.001963456603	1
 951	78	10.001963456603	0
+951	178	10.003145358325	0
+951	178	10.003145358325	1
+951	248	10.003343358325	1
+951	248	10.003343358325	0
+951	350	10.003606521369	0
+951	350	10.003606521369	1
+951	426	10.003804521369	1
+951	426	10.003804521369	0
+951	779	10.004187944369	0
+951	779	10.004187944369	1
+951	948	10.004513944369	1
+951	948	10.004513944369	0
+951	1048	10.004579366384	0
+951	1048	10.004579366384	1
+951	1360	10.004777366384	1
+951	1360	10.004777366384	0
+951	1460	10.004930448023	0
+951	1460	10.004930448023	1
 953	20	10.001809456603	0
 955	78	10.001963456603	23.580385908062
 956	0	0	0
@@ -1407,26 +2951,192 @@ attr title  "packets sent to lower layer, vector(packetBytes)"
 956	94	10.001963908274	0
 956	95	10.001963908274	0
 956	95	10.001963908274	0
+956	175	10.00314484363	0
+956	175	10.00314484363	0
+956	236	10.00334284363	0
+956	236	10.00334284363	0
+956	237	10.00334284363	0
+956	237	10.00334284363	0
+956	348	10.003606249482	0
+956	348	10.003606249482	0
+956	418	10.003804249482	0
+956	418	10.003804249482	0
+956	419	10.003804249482	0
+956	419	10.003804249482	0
+956	524	10.003818727731	0
+956	524	10.003818727731	0
+956	625	10.00407672773	0
+956	625	10.00407672773	0
+956	626	10.00407672773	0
+956	626	10.00407672773	0
+956	835	10.004301938824	0
+956	835	10.004301938824	0
+956	961	10.004514551632	0
+956	961	10.004514551632	0
+956	1046	10.004578970632	0
+956	1046	10.004578970632	0
+956	1355	10.004776970632	0
+956	1355	10.004776970632	0
+956	1356	10.004776970632	0
+956	1356	10.004776970632	0
+956	1455	10.004929618963	0
+956	1455	10.004929618963	0
 957	0	0	0
 957	0	0	0
 957	24	10.001809908274	0
 957	24	10.001809908274	1
 957	94	10.001963908274	1
 957	94	10.001963908274	0
+957	175	10.00314484363	0
+957	175	10.00314484363	1
+957	236	10.00334284363	1
+957	236	10.00334284363	0
+957	348	10.003606249482	0
+957	348	10.003606249482	1
+957	418	10.003804249482	1
+957	418	10.003804249482	0
+957	524	10.003818727731	0
+957	524	10.003818727731	1
+957	625	10.00407672773	1
+957	625	10.00407672773	0
+957	835	10.004301938824	0
+957	835	10.004301938824	1
+957	961	10.004514551632	1
+957	961	10.004514551632	0
+957	1046	10.004578970632	0
+957	1046	10.004578970632	1
+957	1355	10.004776970632	1
+957	1355	10.004776970632	0
+957	1455	10.004929618963	0
+957	1455	10.004929618963	1
 959	24	10.001809908274	0
 961	94	10.001963908274	20.293394876527
 962	0	0	0
 962	0	0	0
+962	525	10.003818742896	0
+962	525	10.003818742896	0
+962	629	10.004076742895	0
+962	629	10.004076742895	0
+962	630	10.004076742895	0
+962	630	10.004076742895	0
+962	828	10.004301416947	0
+962	828	10.004301416947	0
+962	1134	10.004627416947	0
+962	1134	10.004627416947	0
+962	1135	10.004627416947	0
+962	1135	10.004627416947	0
+962	1233	10.0046809822	0
+962	1233	10.0046809822	0
+962	1517	10.0050069822	0
+962	1517	10.0050069822	0
+962	1518	10.0050069822	0
+962	1518	10.0050069822	0
+962	1767	10.005056663172	0
+962	1767	10.005056663172	0
+962	1892	10.005098663172	0
+962	1892	10.005098663172	0
+962	1893	10.005098663172	0
+962	1893	10.005098663172	0
+962	1894	10.005098663172	0
+962	1894	10.005098663172	0
 963	0	0	0
 963	0	0	0
+963	525	10.003818742896	0
+963	525	10.003818742896	1
+963	629	10.004076742895	1
+963	629	10.004076742895	0
+963	828	10.004301416947	0
+963	828	10.004301416947	1
+963	1134	10.004627416947	1
+963	1134	10.004627416947	0
+963	1233	10.0046809822	0
+963	1233	10.0046809822	1
+963	1517	10.0050069822	1
+963	1517	10.0050069822	0
+963	1767	10.005056663172	0
+963	1767	10.005056663172	1
+963	1892	10.005098663172	1
+963	1892	10.005098663172	0
+965	525	10.003818742896	0
+967	629	10.004076742895	21.213736068016
 968	0	0	0
 968	0	0	0
+968	509	10.003817659132	0
+968	509	10.003817659132	0
+968	565	10.004075659131	0
+968	565	10.004075659131	0
+968	566	10.004075659131	0
+968	566	10.004075659131	0
+968	780	10.004187946145	0
+968	780	10.004187946145	0
+968	953	10.004513946145	0
+968	953	10.004513946145	0
+968	1129	10.004627386924	0
+968	1129	10.004627386924	0
+968	1242	10.004681767043	0
+968	1242	10.004681767043	0
+968	1548	10.005007767043	0
+968	1548	10.005007767043	0
+968	1686	10.005040022553	0
+968	1686	10.005040022553	0
+968	1774	10.005057557841	0
+968	1774	10.005057557841	0
 969	0	0	0
 969	0	0	0
+969	509	10.003817659132	0
+969	509	10.003817659132	1
+969	565	10.004075659131	1
+969	565	10.004075659131	0
+969	780	10.004187946145	0
+969	780	10.004187946145	1
+969	1129	10.004627386924	1
+969	1129	10.004627386924	0
+969	1242	10.004681767043	0
+969	1242	10.004681767043	1
+969	1686	10.005040022553	1
+969	1686	10.005040022553	0
+969	1774	10.005057557841	0
+969	1774	10.005057557841	1
+971	509	10.003817659132	0
+973	565	10.004075659131	37.157460394935
 974	0	0	0
 974	0	0	0
+974	516	10.003818477883	0
+974	516	10.003818477883	0
+974	593	10.004076477882	0
+974	593	10.004076477882	0
+974	594	10.004076477882	0
+974	594	10.004076477882	0
+974	820	10.004300774728	0
+974	820	10.004300774728	0
+974	1108	10.004626774728	0
+974	1108	10.004626774728	0
+974	1109	10.004626774728	0
+974	1109	10.004626774728	0
+974	1252	10.004682219812	0
+974	1252	10.004682219812	0
+974	1703	10.005040908638	0
+974	1703	10.005040908638	0
+974	1781	10.005057966786	0
+974	1781	10.005057966786	0
 975	0	0	0
 975	0	0	0
+975	516	10.003818477883	0
+975	516	10.003818477883	1
+975	593	10.004076477882	1
+975	593	10.004076477882	0
+975	820	10.004300774728	0
+975	820	10.004300774728	1
+975	1108	10.004626774728	1
+975	1108	10.004626774728	0
+975	1252	10.004682219812	0
+975	1252	10.004682219812	1
+975	1703	10.005040908638	1
+975	1703	10.005040908638	0
+975	1781	10.005057966786	0
+975	1781	10.005057966786	1
+977	516	10.003818477883	0
+979	593	10.004076477882	23.212106392998
 980	0	0	0
 980	0	0	0
 980	21	10.001809469852	0
@@ -1435,46 +3145,360 @@ attr title  "packets sent to lower layer, vector(packetBytes)"
 980	82	10.001963469852	0
 980	83	10.001963469852	0
 980	83	10.001963469852	0
+980	172	10.003144604728	0
+980	172	10.003144604728	0
+980	224	10.003342604728	0
+980	224	10.003342604728	0
+980	225	10.003342604728	0
+980	225	10.003342604728	0
+980	344	10.003605826093	0
+980	344	10.003605826093	0
+980	402	10.003803826093	0
+980	402	10.003803826093	0
+980	403	10.003803826093	0
+980	403	10.003803826093	0
+980	842	10.004302366755	0
+980	842	10.004302366755	0
+980	873	10.00445054512	0
+980	873	10.00445054512	1
+980	960	10.004514530061	1
+980	960	10.004514530061	2
+980	1039	10.004542530061	2
+980	1039	10.004542530061	3
+980	1040	10.004578530061	3
+980	1040	10.004578530061	5
+980	1041	10.004578530061	5
+980	1041	10.004578530061	5
+980	1337	10.004776530061	5
+980	1337	10.004776530061	1
+980	1338	10.004776530061	1
+980	1338	10.004776530061	2
+980	1438	10.004804530061	2
+980	1438	10.004804530061	3
+980	1454	10.004929611804	3
+980	1454	10.004929611804	1
 981	0	0	0
 981	0	0	0
 981	21	10.001809469852	0
 981	21	10.001809469852	1
 981	82	10.001963469852	1
 981	82	10.001963469852	0
+981	172	10.003144604728	0
+981	172	10.003144604728	1
+981	224	10.003342604728	1
+981	224	10.003342604728	0
+981	344	10.003605826093	0
+981	344	10.003605826093	1
+981	402	10.003803826093	1
+981	402	10.003803826093	0
+981	842	10.004302366755	0
+981	842	10.004302366755	1
+981	960	10.004514530061	1
+981	960	10.004514530061	0
+981	1041	10.004578530061	0
+981	1041	10.004578530061	2
+981	1338	10.004776530061	2
+981	1338	10.004776530061	0
+981	1454	10.004929611804	0
+981	1454	10.004929611804	1
 983	21	10.001809469852	0
 985	82	10.001963469852	23.463971670611
 986	0	0	0
 986	0	0	0
+986	520	10.003818610154	0
+986	520	10.003818610154	0
+986	609	10.004076610153	0
+986	609	10.004076610153	0
+986	610	10.004076610153	0
+986	610	10.004076610153	0
+986	815	10.004272397678	0
+986	815	10.004272397678	2
+986	816	10.004300397678	2
+986	816	10.004300397678	5
+986	817	10.004300397678	5
+986	817	10.004300397678	5
+986	1098	10.004626397678	5
+986	1098	10.004626397678	1
+986	1099	10.004626397678	1
+986	1099	10.004626397678	2
+986	1224	10.004654397678	2
+986	1224	10.004654397678	3
+986	1226	10.004663397678	3
+986	1226	10.004663397678	0
+986	1248	10.004681974995	0
+986	1248	10.004681974995	0
+986	1557	10.005007974995	0
+986	1557	10.005007974995	0
+986	1776	10.005057676248	0
+986	1776	10.005057676248	0
 987	0	0	0
 987	0	0	0
+987	520	10.003818610154	0
+987	520	10.003818610154	1
+987	609	10.004076610153	1
+987	609	10.004076610153	0
+987	817	10.004300397678	0
+987	817	10.004300397678	2
+987	1099	10.004626397678	2
+987	1099	10.004626397678	0
+987	1248	10.004681974995	0
+987	1248	10.004681974995	1
+987	1557	10.005007974995	1
+987	1557	10.005007974995	0
+987	1776	10.005057676248	0
+987	1776	10.005057676248	1
+989	520	10.003818610154	0
+991	609	10.004076610153	22.157350365206
 992	0	0	0
 992	0	0	0
+992	771	10.004187259683	0
+992	771	10.004187259683	0
+992	920	10.004513259683	0
+992	920	10.004513259683	0
+992	921	10.004513259683	0
+992	921	10.004513259683	0
+992	1292	10.004712837054	0
+992	1292	10.004712837054	0
+992	1645	10.005038837054	0
+992	1645	10.005038837054	0
+992	1646	10.005038837054	0
+992	1646	10.005038837054	0
 993	0	0	0
 993	0	0	0
+993	771	10.004187259683	0
+993	771	10.004187259683	1
+993	920	10.004513259683	1
+993	920	10.004513259683	0
+993	1292	10.004712837054	0
+993	1292	10.004712837054	1
+993	1645	10.005038837054	1
+993	1645	10.005038837054	0
+995	771	10.004187259683	0
+997	920	10.004513259683	12.084664473081
 998	0	0	0
 998	0	0	0
+998	1236	10.004681190718	0
+998	1236	10.004681190718	0
+998	1529	10.005007190718	0
+998	1529	10.005007190718	0
+998	1530	10.005007190718	0
+998	1530	10.005007190718	0
+998	1759	10.005055543823	0
+998	1759	10.005055543823	0
+998	1869	10.005097543823	0
+998	1869	10.005097543823	0
+998	1870	10.005097543823	0
+998	1870	10.005097543823	0
+998	1871	10.005097543823	0
+998	1871	10.005097543823	0
 999	0	0	0
 999	0	0	0
+999	1236	10.004681190718	0
+999	1236	10.004681190718	1
+999	1529	10.005007190718	1
+999	1529	10.005007190718	0
+999	1759	10.005055543823	0
+999	1759	10.005055543823	1
+999	1869	10.005097543823	1
+999	1869	10.005097543823	0
+1001	1236	10.004681190718	0
+1003	1529	10.005007190718	9.1160478272112
 1004	0	0	0
 1004	0	0	0
+1004	824	10.004301305343	0
+1004	824	10.004301305343	0
+1004	1124	10.004627305343	0
+1004	1124	10.004627305343	0
+1004	1125	10.004627305343	0
+1004	1125	10.004627305343	0
+1004	1334	10.004715861727	0
+1004	1334	10.004715861727	0
+1004	1387	10.004778783442	0
+1004	1387	10.004778783442	0
+1004	1469	10.004931195174	0
+1004	1469	10.004931195174	0
+1004	1570	10.005008797369	0
+1004	1570	10.005008797369	0
+1004	1818	10.005089220907	0
+1004	1818	10.005089220907	0
 1005	0	0	0
 1005	0	0	0
+1005	824	10.004301305343	0
+1005	824	10.004301305343	1
+1005	1124	10.004627305343	1
+1005	1124	10.004627305343	0
+1005	1334	10.004715861727	0
+1005	1334	10.004715861727	1
+1005	1387	10.004778783442	1
+1005	1387	10.004778783442	0
+1005	1469	10.004931195174	0
+1005	1469	10.004931195174	1
+1005	1570	10.005008797369	1
+1005	1570	10.005008797369	0
+1005	1818	10.005089220907	0
+1005	1818	10.005089220907	1
+1007	824	10.004301305343	0
+1009	1124	10.004627305343	7.7990247835315
 1010	0	0	0
 1010	0	0	0
+1010	830	10.004301556414	0
+1010	830	10.004301556414	0
+1010	1139	10.004627556414	0
+1010	1139	10.004627556414	0
+1010	1140	10.004627556414	0
+1010	1140	10.004627556414	0
+1010	1472	10.004931293686	0
+1010	1472	10.004931293686	0
+1010	1574	10.005009036431	0
+1010	1574	10.005009036431	0
+1010	1819	10.00508925138	0
+1010	1819	10.00508925138	0
 1011	0	0	0
 1011	0	0	0
+1011	830	10.004301556414	0
+1011	830	10.004301556414	1
+1011	1139	10.004627556414	1
+1011	1139	10.004627556414	0
+1011	1472	10.004931293686	0
+1011	1472	10.004931293686	1
+1011	1574	10.005009036431	1
+1011	1574	10.005009036431	0
+1011	1819	10.00508925138	0
+1011	1819	10.00508925138	1
+1013	830	10.004301556414	0
+1015	1139	10.004627556414	6.1549172887877
 1016	0	0	0
 1016	0	0	0
+1016	523	10.003818691782	0
+1016	523	10.003818691782	0
+1016	621	10.004076691781	0
+1016	621	10.004076691781	0
+1016	622	10.004076691781	0
+1016	622	10.004076691781	0
+1016	757	10.004158538834	0
+1016	757	10.004158538834	2
+1016	758	10.004186538834	2
+1016	758	10.004186538834	5
+1016	759	10.004186538834	5
+1016	759	10.004186538834	5
+1016	874	10.004512538834	5
+1016	874	10.004512538834	1
+1016	875	10.004512538834	1
+1016	875	10.004512538834	2
+1016	1038	10.004540538834	2
+1016	1038	10.004540538834	3
+1016	1217	10.004639538834	3
+1016	1217	10.004639538834	0
+1016	1257	10.004682620517	0
+1016	1257	10.004682620517	0
+1016	1637	10.005038811055	0
+1016	1637	10.005038811055	0
+1016	1638	10.005038811055	0
+1016	1638	10.005038811055	0
 1017	0	0	0
 1017	0	0	0
+1017	523	10.003818691782	0
+1017	523	10.003818691782	1
+1017	621	10.004076691781	1
+1017	621	10.004076691781	0
+1017	759	10.004186538834	0
+1017	759	10.004186538834	2
+1017	875	10.004512538834	2
+1017	875	10.004512538834	0
+1017	1257	10.004682620517	0
+1017	1257	10.004682620517	1
+1017	1637	10.005038811055	1
+1017	1637	10.005038811055	0
+1019	523	10.003818691782	0
+1021	621	10.004076691781	21.565054599932
 1022	0	0	0
 1022	0	0	0
+1022	530	10.003818912658	0
+1022	530	10.003818912658	0
+1022	649	10.004076912657	0
+1022	649	10.004076912657	0
+1022	650	10.004076912657	0
+1022	650	10.004076912657	0
+1022	834	10.004301906266	0
+1022	834	10.004301906266	0
+1022	963	10.004514692944	0
+1022	963	10.004514692944	0
+1022	1085	10.004581481561	0
+1022	1085	10.004581481561	0
+1022	1150	10.004627906266	0
+1022	1150	10.004627906266	0
+1022	1223	10.004652466407	0
+1022	1223	10.004652466407	2
+1022	1228	10.004680466407	2
+1022	1228	10.004680466407	5
+1022	1229	10.004680466407	5
+1022	1229	10.004680466407	5
+1022	1503	10.005006466407	5
+1022	1503	10.005006466407	1
+1022	1504	10.005006466407	1
+1022	1504	10.005006466407	2
+1022	1622	10.005034466407	2
+1022	1622	10.005034466407	3
+1022	1716	10.005043466407	3
+1022	1716	10.005043466407	0
+1022	1764	10.005056261377	0
+1022	1764	10.005056261377	0
+1022	1884	10.005098261377	0
+1022	1884	10.005098261377	0
+1022	1885	10.005098261377	0
+1022	1885	10.005098261377	0
 1023	0	0	0
 1023	0	0	0
+1023	530	10.003818912658	0
+1023	530	10.003818912658	1
+1023	649	10.004076912657	1
+1023	649	10.004076912657	0
+1023	834	10.004301906266	0
+1023	834	10.004301906266	1
+1023	963	10.004514692944	1
+1023	963	10.004514692944	0
+1023	1085	10.004581481561	0
+1023	1085	10.004581481561	1
+1023	1150	10.004627906266	1
+1023	1150	10.004627906266	0
+1023	1229	10.004680466407	0
+1023	1229	10.004680466407	2
+1023	1504	10.005006466407	2
+1023	1504	10.005006466407	0
+1023	1764	10.005056261377	0
+1023	1764	10.005056261377	1
+1023	1884	10.005098261377	1
+1023	1884	10.005098261377	0
+1025	530	10.003818912658	0
+1027	649	10.004076912657	20.139464325064
 1028	0	0	0
 1028	0	0	0
+1028	772	10.004187268146	0
+1028	772	10.004187268146	0
+1028	924	10.004513268146	0
+1028	924	10.004513268146	0
+1028	925	10.004513268146	0
+1028	925	10.004513268146	0
+1028	1302	10.00471344548	0
+1028	1302	10.00471344548	0
+1028	1437	10.004803078634	0
+1028	1437	10.004803078634	1
+1028	1680	10.00503944548	1
+1028	1680	10.00503944548	2
+1028	1681	10.00503944548	2
+1028	1681	10.00503944548	2
 1029	0	0	0
 1029	0	0	0
+1029	772	10.004187268146	0
+1029	772	10.004187268146	1
+1029	924	10.004513268146	1
+1029	924	10.004513268146	0
+1029	1302	10.00471344548	0
+1029	1302	10.00471344548	1
+1029	1680	10.00503944548	1
+1029	1680	10.00503944548	0
+1031	772	10.004187268146	0
+1033	924	10.004513268146	11.513059198375
 1034	0	0	0
 1034	0	0	0
 1034	23	10.00180969941	0
@@ -1483,58 +3507,492 @@ attr title  "packets sent to lower layer, vector(packetBytes)"
 1034	90	10.00196369941	0
 1034	91	10.00196369941	0
 1034	91	10.00196369941	0
+1034	176	10.003144911245	0
+1034	176	10.003144911245	0
+1034	240	10.003342911245	0
+1034	240	10.003342911245	0
+1034	241	10.003342911245	0
+1034	241	10.003342911245	0
+1034	347	10.003606112866	0
+1034	347	10.003606112866	0
+1034	414	10.003804112866	0
+1034	414	10.003804112866	0
+1034	415	10.003804112866	0
+1034	415	10.003804112866	0
+1034	839	10.004302273804	0
+1034	839	10.004302273804	0
+1034	971	10.004514882414	0
+1034	971	10.004514882414	0
+1034	1045	10.004578943747	0
+1034	1045	10.004578943747	0
+1034	1351	10.004776943747	0
+1034	1351	10.004776943747	0
+1034	1352	10.004776943747	0
+1034	1352	10.004776943747	0
+1034	1450	10.004901198118	0
+1034	1450	10.004901198118	2
+1034	1451	10.004929198118	2
+1034	1451	10.004929198118	5
+1034	1452	10.004929198118	5
+1034	1452	10.004929198118	5
 1035	0	0	0
 1035	0	0	0
 1035	23	10.00180969941	0
 1035	23	10.00180969941	1
 1035	90	10.00196369941	1
 1035	90	10.00196369941	0
+1035	176	10.003144911245	0
+1035	176	10.003144911245	1
+1035	240	10.003342911245	1
+1035	240	10.003342911245	0
+1035	347	10.003606112866	0
+1035	347	10.003606112866	1
+1035	414	10.003804112866	1
+1035	414	10.003804112866	0
+1035	839	10.004302273804	0
+1035	839	10.004302273804	1
+1035	971	10.004514882414	1
+1035	971	10.004514882414	0
+1035	1045	10.004578943747	0
+1035	1045	10.004578943747	1
+1035	1351	10.004776943747	1
+1035	1351	10.004776943747	0
+1035	1452	10.004929198118	0
+1035	1452	10.004929198118	2
 1037	23	10.00180969941	0
 1039	90	10.00196369941	21.661119360918
 1040	0	0	0
 1040	0	0	0
+1040	518	10.003818552675	0
+1040	518	10.003818552675	0
+1040	601	10.004076552674	0
+1040	601	10.004076552674	0
+1040	602	10.004076552674	0
+1040	602	10.004076552674	0
+1040	776	10.004187664564	0
+1040	776	10.004187664564	0
+1040	940	10.004513664564	0
+1040	940	10.004513664564	0
+1040	941	10.004513664564	0
+1040	941	10.004513664564	0
+1040	1239	10.004681566984	0
+1040	1239	10.004681566984	0
+1040	1542	10.005007566984	0
+1040	1542	10.005007566984	0
+1040	1679	10.005039442977	0
+1040	1679	10.005039442977	0
+1040	1768	10.005057088216	0
+1040	1768	10.005057088216	0
+1040	1895	10.005099088216	0
+1040	1895	10.005099088216	0
 1041	0	0	0
 1041	0	0	0
+1041	518	10.003818552675	0
+1041	518	10.003818552675	1
+1041	601	10.004076552674	1
+1041	601	10.004076552674	0
+1041	776	10.004187664564	0
+1041	776	10.004187664564	1
+1041	940	10.004513664564	1
+1041	940	10.004513664564	0
+1041	1239	10.004681566984	0
+1041	1239	10.004681566984	1
+1041	1679	10.005039442977	1
+1041	1679	10.005039442977	0
+1041	1768	10.005057088216	0
+1041	1768	10.005057088216	1
+1041	1895	10.005099088216	1
+1041	1895	10.005099088216	0
+1043	518	10.003818552675	0
+1045	601	10.004076552674	22.600054140168
 1046	0	0	0
 1046	0	0	0
+1046	1237	10.004681206658	0
+1046	1237	10.004681206658	0
+1046	1533	10.005007206658	0
+1046	1533	10.005007206658	0
+1046	1534	10.005007206658	0
+1046	1534	10.005007206658	0
+1046	1760	10.005055612617	0
+1046	1760	10.005055612617	0
+1046	1872	10.005097612617	0
+1046	1872	10.005097612617	0
+1046	1873	10.005097612617	0
+1046	1873	10.005097612617	0
+1046	1874	10.005097612617	0
+1046	1874	10.005097612617	0
 1047	0	0	0
 1047	0	0	0
+1047	1237	10.004681206658	0
+1047	1237	10.004681206658	1
+1047	1533	10.005007206658	1
+1047	1533	10.005007206658	0
+1047	1760	10.005055612617	0
+1047	1760	10.005055612617	1
+1047	1872	10.005097612617	1
+1047	1872	10.005097612617	0
+1049	1237	10.004681206658	0
+1051	1533	10.005007206658	8.7179644526715
 1052	0	0	0
 1052	0	0	0
+1052	522	10.003818618367	0
+1052	522	10.003818618367	0
+1052	617	10.004076618366	0
+1052	617	10.004076618366	0
+1052	618	10.004076618366	0
+1052	618	10.004076618366	0
+1052	760	10.004186756171	0
+1052	760	10.004186756171	0
+1052	876	10.004512756171	0
+1052	876	10.004512756171	0
+1052	877	10.004512756171	0
+1052	877	10.004512756171	0
+1052	1254	10.004682425243	0
+1052	1254	10.004682425243	0
+1052	1444	10.00485993395	0
+1052	1444	10.00485993395	1
+1052	1633	10.005038730341	1
+1052	1633	10.005038730341	2
+1052	1634	10.005038730341	2
+1052	1634	10.005038730341	2
+1052	1815	10.005066730341	2
+1052	1815	10.005066730341	3
 1053	0	0	0
 1053	0	0	0
+1053	522	10.003818618367	0
+1053	522	10.003818618367	1
+1053	617	10.004076618366	1
+1053	617	10.004076618366	0
+1053	760	10.004186756171	0
+1053	760	10.004186756171	1
+1053	876	10.004512756171	1
+1053	876	10.004512756171	0
+1053	1254	10.004682425243	0
+1053	1254	10.004682425243	1
+1053	1633	10.005038730341	1
+1053	1633	10.005038730341	0
+1055	522	10.003818618367	0
+1057	617	10.004076618366	22.095890860424
 1058	0	0	0
 1058	0	0	0
+1058	527	10.003818826456	0
+1058	527	10.003818826456	0
+1058	637	10.004076826455	0
+1058	637	10.004076826455	0
+1058	638	10.004076826455	0
+1058	638	10.004076826455	0
+1058	840	10.00430228519	0
+1058	840	10.00430228519	0
+1058	956	10.004514201124	0
+1058	956	10.004514201124	0
+1058	1235	10.004681128198	0
+1058	1235	10.004681128198	0
+1058	1526	10.005007128198	0
+1058	1526	10.005007128198	0
+1058	1685	10.005039966644	0
+1058	1685	10.005039966644	0
+1058	1766	10.005056551217	0
+1058	1766	10.005056551217	0
+1058	1889	10.005098551217	0
+1058	1889	10.005098551217	0
+1058	1890	10.005098551217	0
+1058	1890	10.005098551217	0
+1058	1891	10.005098551217	0
+1058	1891	10.005098551217	0
 1059	0	0	0
 1059	0	0	0
+1059	527	10.003818826456	0
+1059	527	10.003818826456	1
+1059	637	10.004076826455	1
+1059	637	10.004076826455	0
+1059	840	10.00430228519	0
+1059	840	10.00430228519	1
+1059	956	10.004514201124	1
+1059	956	10.004514201124	0
+1059	1235	10.004681128198	0
+1059	1235	10.004681128198	1
+1059	1685	10.005039966644	1
+1059	1685	10.005039966644	0
+1059	1766	10.005056551217	0
+1059	1766	10.005056551217	1
+1059	1889	10.005098551217	1
+1059	1889	10.005098551217	0
+1061	527	10.003818826456	0
+1063	637	10.004076826455	20.66835690822
 1064	0	0	0
 1064	0	0	0
+1064	831	10.004301669992	0
+1064	831	10.004301669992	0
+1064	1143	10.004627669992	0
+1064	1143	10.004627669992	0
+1064	1144	10.004627669992	0
+1064	1144	10.004627669992	0
+1064	1231	10.004680849125	0
+1064	1231	10.004680849125	0
+1064	1509	10.005006849125	0
+1064	1509	10.005006849125	0
+1064	1510	10.005006849125	0
+1064	1510	10.005006849125	0
+1064	1765	10.005056403952	0
+1064	1765	10.005056403952	0
+1064	1886	10.005098403952	0
+1064	1886	10.005098403952	0
+1064	1887	10.005098403952	0
+1064	1887	10.005098403952	0
+1064	1888	10.005098403952	0
+1064	1888	10.005098403952	0
 1065	0	0	0
 1065	0	0	0
+1065	831	10.004301669992	0
+1065	831	10.004301669992	1
+1065	1143	10.004627669992	1
+1065	1143	10.004627669992	0
+1065	1231	10.004680849125	0
+1065	1231	10.004680849125	1
+1065	1509	10.005006849125	1
+1065	1509	10.005006849125	0
+1065	1765	10.005056403952	0
+1065	1765	10.005056403952	1
+1065	1886	10.005098403952	1
+1065	1886	10.005098403952	0
+1067	831	10.004301669992	0
+1069	1143	10.004627669992	5.3857641735354
 1070	0	0	0
 1070	0	0	0
+1070	182	10.00314598296	0
+1070	182	10.00314598296	0
+1070	264	10.00334398296	0
+1070	264	10.00334398296	0
+1070	508	10.003817651976	0
+1070	508	10.003817651976	0
+1070	561	10.004075651975	0
+1070	561	10.004075651975	0
+1070	562	10.004075651975	0
+1070	562	10.004075651975	0
+1070	781	10.004187969449	0
+1070	781	10.004187969449	0
+1070	955	10.004513969449	0
+1070	955	10.004513969449	0
+1070	1128	10.004627359905	0
+1070	1128	10.004627359905	0
+1070	1243	10.004681833285	0
+1070	1243	10.004681833285	0
+1070	1550	10.005007833285	0
+1070	1550	10.005007833285	0
+1070	1687	10.005040060978	0
+1070	1687	10.005040060978	0
+1070	1775	10.005057625761	0
+1070	1775	10.005057625761	0
 1071	0	0	0
 1071	0	0	0
+1071	182	10.00314598296	0
+1071	182	10.00314598296	1
+1071	264	10.00334398296	1
+1071	264	10.00334398296	0
+1071	508	10.003817651976	0
+1071	508	10.003817651976	1
+1071	561	10.004075651975	1
+1071	561	10.004075651975	0
+1071	781	10.004187969449	0
+1071	781	10.004187969449	1
+1071	1128	10.004627359905	1
+1071	1128	10.004627359905	0
+1071	1243	10.004681833285	0
+1071	1243	10.004681833285	1
+1071	1687	10.005040060978	1
+1071	1687	10.005040060978	0
+1071	1775	10.005057625761	0
+1071	1775	10.005057625761	1
+1073	182	10.00314598296	0
+1075	561	10.004075651975	37.465044642667
 1076	0	0	0
 1076	0	0	0
+1076	827	10.004301415991	0
+1076	827	10.004301415991	0
+1076	1130	10.004627415991	0
+1076	1130	10.004627415991	0
+1076	1131	10.004627415991	0
+1076	1131	10.004627415991	0
+1076	1471	10.004931254607	0
+1076	1471	10.004931254607	0
+1076	1573	10.00500889549	0
+1076	1573	10.00500889549	0
+1076	1813	10.005061108808	0
+1076	1813	10.005061108808	2
+1076	1816	10.005089108808	2
+1076	1816	10.005089108808	5
+1076	1817	10.005089108808	5
+1076	1817	10.005089108808	5
 1077	0	0	0
 1077	0	0	0
+1077	827	10.004301415991	0
+1077	827	10.004301415991	1
+1077	1130	10.004627415991	1
+1077	1130	10.004627415991	0
+1077	1471	10.004931254607	0
+1077	1471	10.004931254607	1
+1077	1573	10.00500889549	1
+1077	1573	10.00500889549	0
+1077	1817	10.005089108808	0
+1077	1817	10.005089108808	2
+1079	827	10.004301415991	0
+1081	1130	10.004627415991	7.069762753091
 1082	0	0	0
 1082	0	0	0
+1082	765	10.00418697807	0
+1082	765	10.00418697807	0
+1082	896	10.00451297807	0
+1082	896	10.00451297807	0
+1082	897	10.00451297807	0
+1082	897	10.00451297807	0
+1082	1287	10.004712577283	0
+1082	1287	10.004712577283	0
+1082	1625	10.005038577283	0
+1082	1625	10.005038577283	0
+1082	1626	10.005038577283	0
+1082	1626	10.005038577283	0
 1083	0	0	0
 1083	0	0	0
+1083	765	10.00418697807	0
+1083	765	10.00418697807	1
+1083	896	10.00451297807	1
+1083	896	10.00451297807	0
+1083	1287	10.004712577283	0
+1083	1287	10.004712577283	1
+1083	1625	10.005038577283	1
+1083	1625	10.005038577283	0
+1085	765	10.00418697807	0
+1087	896	10.00451297807	15.649371792114
 1088	0	0	0
 1088	0	0	0
+1088	510	10.003817871206	0
+1088	510	10.003817871206	0
+1088	569	10.004075871205	0
+1088	569	10.004075871205	0
+1088	570	10.004075871205	0
+1088	570	10.004075871205	0
+1088	777	10.004187707283	0
+1088	777	10.004187707283	0
+1088	945	10.004513707283	0
+1088	945	10.004513707283	0
+1088	1147	10.004627721442	0
+1088	1147	10.004627721442	0
+1088	1241	10.004681609016	0
+1088	1241	10.004681609016	0
+1088	1546	10.005007609016	0
+1088	1546	10.005007609016	0
+1088	1683	10.005039708638	0
+1088	1683	10.005039708638	0
+1088	1770	10.005057357276	0
+1088	1770	10.005057357276	0
+1088	1897	10.005099357276	0
+1088	1897	10.005099357276	0
 1089	0	0	0
 1089	0	0	0
+1089	510	10.003817871206	0
+1089	510	10.003817871206	1
+1089	569	10.004075871205	1
+1089	569	10.004075871205	0
+1089	777	10.004187707283	0
+1089	777	10.004187707283	1
+1089	1147	10.004627721442	1
+1089	1147	10.004627721442	0
+1089	1241	10.004681609016	0
+1089	1241	10.004681609016	1
+1089	1683	10.005039708638	1
+1089	1683	10.005039708638	0
+1089	1770	10.005057357276	0
+1089	1770	10.005057357276	1
+1089	1897	10.005099357276	1
+1089	1897	10.005099357276	0
+1091	510	10.003817871206	0
+1093	569	10.004075871205	31.003191714908
 1094	0	0	0
 1094	0	0	0
+1094	180	10.00314580227	0
+1094	180	10.00314580227	0
+1094	256	10.00334380227	0
+1094	256	10.00334380227	0
+1094	257	10.00334380227	0
+1094	257	10.00334380227	0
+1094	352	10.003607095906	0
+1094	352	10.003607095906	0
+1094	434	10.003805095906	0
+1094	434	10.003805095906	0
+1094	435	10.003805095906	0
+1094	435	10.003805095906	0
+1094	517	10.003818530676	0
+1094	517	10.003818530676	0
+1094	597	10.004076530675	0
+1094	597	10.004076530675	0
+1094	598	10.004076530675	0
+1094	598	10.004076530675	0
+1094	767	10.004187206597	0
+1094	767	10.004187206597	0
+1094	904	10.004513206597	0
+1094	904	10.004513206597	0
+1094	905	10.004513206597	0
+1094	905	10.004513206597	0
+1094	1050	10.00457986966	0
+1094	1050	10.00457986966	0
+1094	1369	10.00477786966	0
+1094	1369	10.00477786966	0
+1094	1682	10.005039478543	0
+1094	1682	10.005039478543	0
+1094	1846	10.005092082102	0
+1094	1846	10.005092082102	0
 1095	0	0	0
 1095	0	0	0
+1095	180	10.00314580227	0
+1095	180	10.00314580227	1
+1095	256	10.00334380227	1
+1095	256	10.00334380227	0
+1095	352	10.003607095906	0
+1095	352	10.003607095906	1
+1095	434	10.003805095906	1
+1095	434	10.003805095906	0
+1095	517	10.003818530676	0
+1095	517	10.003818530676	1
+1095	597	10.004076530675	1
+1095	597	10.004076530675	0
+1095	767	10.004187206597	0
+1095	767	10.004187206597	1
+1095	904	10.004513206597	1
+1095	904	10.004513206597	0
+1095	1050	10.00457986966	0
+1095	1050	10.00457986966	1
+1095	1682	10.005039478543	1
+1095	1682	10.005039478543	0
+1095	1846	10.005092082102	0
+1095	1846	10.005092082102	1
+1097	180	10.00314580227	0
+1099	256	10.00334380227	21.116300503126
 1100	0	0	0
 1100	0	0	0
+1100	775	10.004187556956	0
+1100	775	10.004187556956	0
+1100	936	10.004513556956	0
+1100	936	10.004513556956	0
+1100	937	10.004513556956	0
+1100	937	10.004513556956	0
+1100	1299	10.004713211675	0
+1100	1299	10.004713211675	0
+1100	1673	10.005039211675	0
+1100	1673	10.005039211675	0
+1100	1674	10.005039211675	0
+1100	1674	10.005039211675	0
 1101	0	0	0
 1101	0	0	0
+1101	775	10.004187556956	0
+1101	775	10.004187556956	1
+1101	936	10.004513556956	1
+1101	936	10.004513556956	0
+1101	1299	10.004713211675	0
+1101	1299	10.004713211675	1
+1101	1673	10.005039211675	1
+1101	1673	10.005039211675	0
+1103	775	10.004187556956	0
+1105	936	10.004513556956	10.111775490043
 1106	0	0	0
 1106	0	0	0
 1106	22	10.001809572349	0
@@ -1549,6 +4007,38 @@ attr title  "packets sent to lower layer, vector(packetBytes)"
 1106	170	10.003144498267	5
 1106	171	10.003144498267	5
 1106	171	10.003144498267	5
+1106	222	10.003342498267	5
+1106	222	10.003342498267	1
+1106	223	10.003342498267	1
+1106	223	10.003342498267	2
+1106	334	10.003370498267	2
+1106	334	10.003370498267	3
+1106	335	10.003469498267	3
+1106	335	10.003469498267	0
+1106	346	10.003605931874	0
+1106	346	10.003605931874	0
+1106	410	10.003803931874	0
+1106	410	10.003803931874	0
+1106	411	10.003803931874	0
+1106	411	10.003803931874	0
+1106	528	10.003818883467	0
+1106	528	10.003818883467	0
+1106	641	10.004076883466	0
+1106	641	10.004076883466	0
+1106	642	10.004076883466	0
+1106	642	10.004076883466	0
+1106	838	10.004302262419	0
+1106	838	10.004302262419	0
+1106	959	10.004514484358	0
+1106	959	10.004514484358	0
+1106	1042	10.004578636522	0
+1106	1042	10.004578636522	0
+1106	1339	10.004776636522	0
+1106	1339	10.004776636522	0
+1106	1340	10.004776636522	0
+1106	1340	10.004776636522	0
+1106	1453	10.004929611096	0
+1106	1453	10.004929611096	0
 1107	0	0	0
 1107	0	0	0
 1107	22	10.001809572349	0
@@ -1557,6 +4047,26 @@ attr title  "packets sent to lower layer, vector(packetBytes)"
 1107	86	10.001963572349	0
 1107	171	10.003144498267	0
 1107	171	10.003144498267	2
+1107	223	10.003342498267	2
+1107	223	10.003342498267	0
+1107	346	10.003605931874	0
+1107	346	10.003605931874	1
+1107	410	10.003803931874	1
+1107	410	10.003803931874	0
+1107	528	10.003818883467	0
+1107	528	10.003818883467	1
+1107	641	10.004076883466	1
+1107	641	10.004076883466	0
+1107	838	10.004302262419	0
+1107	838	10.004302262419	1
+1107	959	10.004514484358	1
+1107	959	10.004514484358	0
+1107	1042	10.004578636522	0
+1107	1042	10.004578636522	1
+1107	1339	10.004776636522	1
+1107	1339	10.004776636522	0
+1107	1453	10.004929611096	0
+1107	1453	10.004929611096	1
 1109	22	10.001809572349	0
 1111	86	10.001963572349	22.612504793113
 1112	0	0	0
@@ -1567,58 +4077,468 @@ attr title  "packets sent to lower layer, vector(packetBytes)"
 1112	70	10.001963334023	0
 1112	71	10.001963334023	0
 1112	71	10.001963334023	0
+1112	174	10.003144756494	0
+1112	174	10.003144756494	0
+1112	232	10.003342756494	0
+1112	232	10.003342756494	0
+1112	233	10.003342756494	0
+1112	233	10.003342756494	0
+1112	341	10.003577673647	0
+1112	341	10.003577673647	2
+1112	342	10.003605673647	2
+1112	342	10.003605673647	5
+1112	343	10.003605673647	5
+1112	343	10.003605673647	5
+1112	400	10.003803673647	5
+1112	400	10.003803673647	1
+1112	401	10.003803673647	1
+1112	401	10.003803673647	2
+1112	558	10.003831673647	2
+1112	558	10.003831673647	3
+1112	680	10.004083673647	3
+1112	680	10.004083673647	0
+1112	848	10.004302510991	0
+1112	848	10.004302510991	0
+1112	962	10.004514621781	0
+1112	962	10.004514621781	0
+1112	1043	10.004578682507	0
+1112	1043	10.004578682507	0
+1112	1343	10.004776682507	0
+1112	1343	10.004776682507	0
+1112	1344	10.004776682507	0
+1112	1344	10.004776682507	0
+1112	1456	10.004929637337	0
+1112	1456	10.004929637337	0
 1113	0	0	0
 1113	0	0	0
 1113	18	10.001809334023	0
 1113	18	10.001809334023	1
 1113	70	10.001963334023	1
 1113	70	10.001963334023	0
+1113	174	10.003144756494	0
+1113	174	10.003144756494	1
+1113	232	10.003342756494	1
+1113	232	10.003342756494	0
+1113	343	10.003605673647	0
+1113	343	10.003605673647	2
+1113	401	10.003803673647	2
+1113	401	10.003803673647	0
+1113	848	10.004302510991	0
+1113	848	10.004302510991	1
+1113	962	10.004514621781	1
+1113	962	10.004514621781	0
+1113	1043	10.004578682507	0
+1113	1043	10.004578682507	1
+1113	1343	10.004776682507	1
+1113	1343	10.004776682507	0
+1113	1456	10.004929637337	0
+1113	1456	10.004929637337	1
 1115	18	10.001809334023	0
 1117	70	10.001963334023	24.738608293746
 1118	0	0	0
 1118	0	0	0
+1118	513	10.003818397767	0
+1118	513	10.003818397767	0
+1118	581	10.004076397766	0
+1118	581	10.004076397766	0
+1118	582	10.004076397766	0
+1118	582	10.004076397766	0
+1118	761	10.004186834106	0
+1118	761	10.004186834106	0
+1118	880	10.004512834106	0
+1118	880	10.004512834106	0
+1118	881	10.004512834106	0
+1118	881	10.004512834106	0
+1118	1058	10.00458032625	0
+1118	1058	10.00458032625	0
+1118	1163	10.004628497732	0
+1118	1163	10.004628497732	0
+1118	1253	10.004682424201	0
+1118	1253	10.004682424201	0
+1118	1653	10.005039022521	0
+1118	1653	10.005039022521	0
+1118	1654	10.005039022521	0
+1118	1654	10.005039022521	0
+1118	1850	10.005092130086	0
+1118	1850	10.005092130086	0
 1119	0	0	0
 1119	0	0	0
+1119	513	10.003818397767	0
+1119	513	10.003818397767	1
+1119	581	10.004076397766	1
+1119	581	10.004076397766	0
+1119	761	10.004186834106	0
+1119	761	10.004186834106	1
+1119	880	10.004512834106	1
+1119	880	10.004512834106	0
+1119	1058	10.00458032625	0
+1119	1058	10.00458032625	1
+1119	1163	10.004628497732	1
+1119	1163	10.004628497732	0
+1119	1253	10.004682424201	0
+1119	1253	10.004682424201	1
+1119	1653	10.005039022521	1
+1119	1653	10.005039022521	0
+1119	1850	10.005092130086	0
+1119	1850	10.005092130086	1
+1121	513	10.003818397767	0
+1123	581	10.004076397766	23.919415304762
 1124	0	0	0
 1124	0	0	0
+1124	1234	10.004681019144	0
+1124	1234	10.004681019144	0
+1124	1521	10.005007019144	0
+1124	1521	10.005007019144	0
+1124	1522	10.005007019144	0
+1124	1522	10.005007019144	0
+1124	1762	10.005056000097	0
+1124	1762	10.005056000097	0
+1124	1878	10.005098000097	0
+1124	1878	10.005098000097	0
+1124	1879	10.005098000097	0
+1124	1879	10.005098000097	0
+1124	1880	10.005098000097	0
+1124	1880	10.005098000097	0
 1125	0	0	0
 1125	0	0	0
+1125	1234	10.004681019144	0
+1125	1234	10.004681019144	1
+1125	1521	10.005007019144	1
+1125	1521	10.005007019144	0
+1125	1762	10.005056000097	0
+1125	1762	10.005056000097	1
+1125	1878	10.005098000097	1
+1125	1878	10.005098000097	0
+1127	1234	10.004681019144	0
+1129	1521	10.005007019144	9.9872773665162
 1130	0	0	0
 1130	0	0	0
+1130	511	10.003818137355	0
+1130	511	10.003818137355	0
+1130	573	10.004076137354	0
+1130	573	10.004076137354	0
+1130	574	10.004076137354	0
+1130	574	10.004076137354	0
+1130	766	10.00418713821	0
+1130	766	10.00418713821	0
+1130	900	10.00451313821	0
+1130	900	10.00451313821	0
+1130	901	10.00451313821	0
+1130	901	10.00451313821	0
+1130	1059	10.004580364145	0
+1130	1059	10.004580364145	0
+1130	1153	10.004628214265	0
+1130	1153	10.004628214265	0
+1130	1250	10.004682093815	0
+1130	1250	10.004682093815	0
+1130	1669	10.005039200462	0
+1130	1669	10.005039200462	0
+1130	1670	10.005039200462	0
+1130	1670	10.005039200462	0
+1130	1842	10.005091881444	0
+1130	1842	10.005091881444	0
+1130	1906	10.005099766431	0
+1130	1906	10.005099766431	0
 1131	0	0	0
 1131	0	0	0
+1131	511	10.003818137355	0
+1131	511	10.003818137355	1
+1131	573	10.004076137354	1
+1131	573	10.004076137354	0
+1131	766	10.00418713821	0
+1131	766	10.00418713821	1
+1131	900	10.00451313821	1
+1131	900	10.00451313821	0
+1131	1059	10.004580364145	0
+1131	1059	10.004580364145	1
+1131	1153	10.004628214265	1
+1131	1153	10.004628214265	0
+1131	1250	10.004682093815	0
+1131	1250	10.004682093815	1
+1131	1669	10.005039200462	1
+1131	1669	10.005039200462	0
+1131	1842	10.005091881444	0
+1131	1842	10.005091881444	1
+1131	1906	10.005099766431	1
+1131	1906	10.005099766431	0
+1133	511	10.003818137355	0
+1135	573	10.004076137354	26.721814520595
 1136	0	0	0
 1136	0	0	0
+1136	519	10.003818610014	0
+1136	519	10.003818610014	0
+1136	605	10.004076610013	0
+1136	605	10.004076610013	0
+1136	606	10.004076610013	0
+1136	606	10.004076610013	0
+1136	818	10.004300495957	0
+1136	818	10.004300495957	0
+1136	1100	10.004626495957	0
+1136	1100	10.004626495957	0
+1136	1101	10.004626495957	0
+1136	1101	10.004626495957	0
+1136	1249	10.004682062673	0
+1136	1249	10.004682062673	0
+1136	1708	10.005041023252	0
+1136	1708	10.005041023252	0
+1136	1780	10.005057771133	0
+1136	1780	10.005057771133	0
 1137	0	0	0
 1137	0	0	0
+1137	519	10.003818610014	0
+1137	519	10.003818610014	1
+1137	605	10.004076610013	1
+1137	605	10.004076610013	0
+1137	818	10.004300495957	0
+1137	818	10.004300495957	1
+1137	1100	10.004626495957	1
+1137	1100	10.004626495957	0
+1137	1249	10.004682062673	0
+1137	1249	10.004682062673	1
+1137	1708	10.005041023252	1
+1137	1708	10.005041023252	0
+1137	1780	10.005057771133	0
+1137	1780	10.005057771133	1
+1139	519	10.003818610014	0
+1141	605	10.004076610013	22.158396037084
 1142	0	0	0
 1142	0	0	0
+1142	773	10.004187299046	0
+1142	773	10.004187299046	0
+1142	928	10.004513299046	0
+1142	928	10.004513299046	0
+1142	929	10.004513299046	0
+1142	929	10.004513299046	0
+1142	1291	10.004712832565	0
+1142	1291	10.004712832565	0
+1142	1641	10.005038832565	0
+1142	1641	10.005038832565	0
+1142	1642	10.005038832565	0
+1142	1642	10.005038832565	0
 1143	0	0	0
 1143	0	0	0
+1143	773	10.004187299046	0
+1143	773	10.004187299046	1
+1143	928	10.004513299046	1
+1143	928	10.004513299046	0
+1143	1291	10.004712832565	0
+1143	1291	10.004712832565	1
+1143	1641	10.005038832565	1
+1143	1641	10.005038832565	0
+1145	773	10.004187299046	0
+1147	928	10.004513299046	11.383162264715
 1148	0	0	0
 1148	0	0	0
+1148	843	10.004302398197	0
+1148	843	10.004302398197	0
+1148	967	10.004514760149	0
+1148	967	10.004514760149	0
+1148	1232	10.004680963247	0
+1148	1232	10.004680963247	0
+1148	1513	10.005006963247	0
+1148	1513	10.005006963247	0
+1148	1514	10.005006963247	0
+1148	1514	10.005006963247	0
+1148	1761	10.00505599222	0
+1148	1761	10.00505599222	0
+1148	1875	10.00509799222	0
+1148	1875	10.00509799222	0
+1148	1876	10.00509799222	0
+1148	1876	10.00509799222	0
+1148	1877	10.00509799222	0
+1148	1877	10.00509799222	0
 1149	0	0	0
 1149	0	0	0
+1149	843	10.004302398197	0
+1149	843	10.004302398197	1
+1149	967	10.004514760149	1
+1149	967	10.004514760149	0
+1149	1232	10.004680963247	0
+1149	1232	10.004680963247	1
+1149	1513	10.005006963247	1
+1149	1513	10.005006963247	0
+1149	1761	10.00505599222	0
+1149	1761	10.00505599222	1
+1149	1875	10.00509799222	1
+1149	1875	10.00509799222	0
+1151	843	10.004302398197	0
+1153	1513	10.005006963247	10.935844428437
 1154	0	0	0
 1154	0	0	0
+1154	512	10.003818147278	0
+1154	512	10.003818147278	0
+1154	577	10.004076147277	0
+1154	577	10.004076147277	0
+1154	578	10.004076147277	0
+1154	578	10.004076147277	0
+1154	822	10.004300885373	0
+1154	822	10.004300885373	0
+1154	1097	10.004600283645	0
+1154	1097	10.004600283645	1
+1154	1116	10.004626885373	1
+1154	1116	10.004626885373	2
+1154	1117	10.004626885373	2
+1154	1117	10.004626885373	2
+1154	1225	10.004654885373	2
+1154	1225	10.004654885373	3
+1154	1247	10.004681959792	3
+1154	1247	10.004681959792	1
+1154	1692	10.005040572981	1
+1154	1692	10.005040572981	2
+1154	1778	10.005057736798	2
+1154	1778	10.005057736798	1
 1155	0	0	0
 1155	0	0	0
+1155	512	10.003818147278	0
+1155	512	10.003818147278	1
+1155	577	10.004076147277	1
+1155	577	10.004076147277	0
+1155	822	10.004300885373	0
+1155	822	10.004300885373	1
+1155	1116	10.004626885373	1
+1155	1116	10.004626885373	0
+1155	1247	10.004681959792	0
+1155	1247	10.004681959792	1
+1155	1692	10.005040572981	1
+1155	1692	10.005040572981	0
+1155	1778	10.005057736798	0
+1155	1778	10.005057736798	1
+1157	512	10.003818147278	0
+1159	577	10.004076147277	26.596696106392
 1160	0	0	0
 1160	0	0	0
+1160	768	10.004187227578	0
+1160	768	10.004187227578	0
+1160	908	10.004513227578	0
+1160	908	10.004513227578	0
+1160	909	10.004513227578	0
+1160	909	10.004513227578	0
+1160	1300	10.004713410991	0
+1160	1300	10.004713410991	0
+1160	1677	10.005039410991	0
+1160	1677	10.005039410991	0
+1160	1678	10.005039410991	0
+1160	1678	10.005039410991	0
 1161	0	0	0
 1161	0	0	0
+1161	768	10.004187227578	0
+1161	768	10.004187227578	1
+1161	908	10.004513227578	1
+1161	908	10.004513227578	0
+1161	1300	10.004713410991	0
+1161	1300	10.004713410991	1
+1161	1677	10.005039410991	1
+1161	1677	10.005039410991	0
+1163	768	10.004187227578	0
+1165	908	10.004513227578	11.897661361199
 1166	0	0	0
 1166	0	0	0
+1166	529	10.003818899231	0
+1166	529	10.003818899231	0
+1166	645	10.00407689923	0
+1166	645	10.00407689923	0
+1166	646	10.00407689923	0
+1166	646	10.00407689923	0
+1166	763	10.004186911473	0
+1166	763	10.004186911473	0
+1166	888	10.004512911473	0
+1166	888	10.004512911473	0
+1166	889	10.004512911473	0
+1166	889	10.004512911473	0
+1166	1284	10.004684438416	0
+1166	1284	10.004684438416	2
+1166	1285	10.004712438416	2
+1166	1285	10.004712438416	5
+1166	1286	10.004712438416	5
+1166	1286	10.004712438416	5
+1166	1623	10.005038438416	5
+1166	1623	10.005038438416	1
+1166	1624	10.005038438416	1
+1166	1624	10.005038438416	2
+1166	1814	10.005066438416	2
+1166	1814	10.005066438416	3
 1167	0	0	0
 1167	0	0	0
+1167	529	10.003818899231	0
+1167	529	10.003818899231	1
+1167	645	10.00407689923	1
+1167	645	10.00407689923	0
+1167	763	10.004186911473	0
+1167	763	10.004186911473	1
+1167	888	10.004512911473	1
+1167	888	10.004512911473	0
+1167	1286	10.004712438416	0
+1167	1286	10.004712438416	2
+1167	1624	10.005038438416	2
+1167	1624	10.005038438416	0
+1169	529	10.003818899231	0
+1171	645	10.00407689923	20.219757709572
 1172	0	0	0
 1172	0	0	0
+1172	770	10.004187256623	0
+1172	770	10.004187256623	0
+1172	916	10.004513256623	0
+1172	916	10.004513256623	0
+1172	917	10.004513256623	0
+1172	917	10.004513256623	0
+1172	1293	10.004713000708	0
+1172	1293	10.004713000708	0
+1172	1649	10.005039000708	0
+1172	1649	10.005039000708	0
+1172	1650	10.005039000708	0
+1172	1650	10.005039000708	0
 1173	0	0	0
 1173	0	0	0
+1173	770	10.004187256623	0
+1173	770	10.004187256623	1
+1173	916	10.004513256623	1
+1173	916	10.004513256623	0
+1173	1293	10.004713000708	0
+1173	1293	10.004713000708	1
+1173	1649	10.005039000708	1
+1173	1649	10.005039000708	0
+1175	770	10.004187256623	0
+1177	916	10.004513256623	12.50159959399
 1178	0	0	0
 1178	0	0	0
+1178	521	10.003818615524	0
+1178	521	10.003818615524	0
+1178	613	10.004076615523	0
+1178	613	10.004076615523	0
+1178	614	10.004076615523	0
+1178	614	10.004076615523	0
+1178	819	10.004300538398	0
+1178	819	10.004300538398	0
+1178	1104	10.004626538398	0
+1178	1104	10.004626538398	0
+1178	1105	10.004626538398	0
+1178	1105	10.004626538398	0
+1178	1244	10.004681847496	0
+1178	1244	10.004681847496	0
+1178	1551	10.005007847496	0
+1178	1551	10.005007847496	0
+1178	1552	10.005007847496	0
+1178	1552	10.005007847496	0
+1178	1773	10.00505753859	0
+1178	1773	10.00505753859	0
 1179	0	0	0
 1179	0	0	0
+1179	521	10.003818615524	0
+1179	521	10.003818615524	1
+1179	613	10.004076615523	1
+1179	613	10.004076615523	0
+1179	819	10.004300538398	0
+1179	819	10.004300538398	1
+1179	1104	10.004626538398	1
+1179	1104	10.004626538398	0
+1179	1244	10.004681847496	0
+1179	1244	10.004681847496	1
+1179	1551	10.005007847496	1
+1179	1551	10.005007847496	0
+1179	1773	10.00505753859	0
+1179	1773	10.00505753859	1
+1181	521	10.003818615524	0
+1183	613	10.004076615523	22.117117982426
 1184	0	0	0
 1184	0	0	0
 1184	19	10.00180939995	0
@@ -1627,11 +4547,61 @@ attr title  "packets sent to lower layer, vector(packetBytes)"
 1184	74	10.00196339995	0
 1184	75	10.00196339995	0
 1184	75	10.00196339995	0
+1184	173	10.003144733345	0
+1184	173	10.003144733345	0
+1184	228	10.003342733345	0
+1184	228	10.003342733345	0
+1184	229	10.003342733345	0
+1184	229	10.003342733345	0
+1184	345	10.003605915027	0
+1184	345	10.003605915027	0
+1184	406	10.003803915027	0
+1184	406	10.003803915027	0
+1184	407	10.003803915027	0
+1184	407	10.003803915027	0
+1184	531	10.00381894268	0
+1184	531	10.00381894268	0
+1184	653	10.004076942679	0
+1184	653	10.004076942679	0
+1184	844	10.004302444154	0
+1184	844	10.004302444154	0
+1184	957	10.004514380463	0
+1184	957	10.004514380463	0
+1184	1044	10.004578721758	0
+1184	1044	10.004578721758	0
+1184	1347	10.004776721758	0
+1184	1347	10.004776721758	0
+1184	1348	10.004776721758	0
+1184	1348	10.004776721758	0
+1184	1458	10.004929803391	0
+1184	1458	10.004929803391	0
 1185	0	0	0
 1185	0	0	0
 1185	19	10.00180939995	0
 1185	19	10.00180939995	1
 1185	74	10.00196339995	1
 1185	74	10.00196339995	0
+1185	173	10.003144733345	0
+1185	173	10.003144733345	1
+1185	228	10.003342733345	1
+1185	228	10.003342733345	0
+1185	345	10.003605915027	0
+1185	345	10.003605915027	1
+1185	406	10.003803915027	1
+1185	406	10.003803915027	0
+1185	531	10.00381894268	0
+1185	531	10.00381894268	1
+1185	653	10.004076942679	1
+1185	653	10.004076942679	0
+1185	844	10.004302444154	0
+1185	844	10.004302444154	1
+1185	957	10.004514380463	1
+1185	957	10.004514380463	0
+1185	1044	10.004578721758	0
+1185	1044	10.004578721758	1
+1185	1347	10.004776721758	1
+1185	1347	10.004776721758	0
+1185	1458	10.004929803391	0
+1185	1458	10.004929803391	1
 1187	19	10.00180939995	0
 1189	74	10.00196339995	24.09657004976

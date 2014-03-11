@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -O out -LF:/VANETProject/WorkingProjects/inet/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KMIXIMFORK_PROJ=../MiXiMFork -KINET_PROJ=F:/VANETProject/WorkingProjects/inet
+#  opp_makemake -f --deep -O out -LF:/VANETProject/WorkingProjects/inet/out/$$\(CONFIGNAME\)/src -LF:/VANETProject/WorkingProjects/mixim/out/$$\(CONFIGNAME\)/tests/testUtils -LF:/VANETProject/WorkingProjects/mixim/out/$$\(CONFIGNAME\)/src/base -LF:/VANETProject/WorkingProjects/mixim/out/$$\(CONFIGNAME\)/src/modules -linet -lmiximtestUtils -lmiximbase -lmiximmodules -DINET_IMPORT -KINET_PROJ=F:/VANETProject/WorkingProjects/inet -KMIXIM_PROJ=F:/VANETProject/WorkingProjects/mixim
 #
 
 # Name of target to be created (-o option)
@@ -33,8 +33,8 @@ INCLUDE_PATH = \
 EXTRA_OBJS =
 
 # Additional libraries (-L, -l options)
-LIBS = -LF:/VANETProject/WorkingProjects/inet/out/$(CONFIGNAME)/src  -linet
-LIBS += -Wl,-rpath,`abspath F:/VANETProject/WorkingProjects/inet/out/$(CONFIGNAME)/src`
+LIBS = -L$(INET_PROJ)/out/$(CONFIGNAME)/src -L$(MIXIM_PROJ)/out/$(CONFIGNAME)/tests/testUtils -L$(MIXIM_PROJ)/out/$(CONFIGNAME)/src/base -L$(MIXIM_PROJ)/out/$(CONFIGNAME)/src/modules  -linet -lmiximtestUtils -lmiximbase -lmiximmodules
+LIBS += -Wl,-rpath,`abspath $(INET_PROJ)/out/$(CONFIGNAME)/src` -Wl,-rpath,`abspath $(MIXIM_PROJ)/out/$(CONFIGNAME)/tests/testUtils` -Wl,-rpath,`abspath $(MIXIM_PROJ)/out/$(CONFIGNAME)/src/base` -Wl,-rpath,`abspath $(MIXIM_PROJ)/out/$(CONFIGNAME)/src/modules`
 
 # Output directory
 PROJECT_OUTPUT_DIR = out
@@ -48,8 +48,8 @@ OBJS =
 MSGFILES =
 
 # Other makefile variables (-K)
-MIXIMFORK_PROJ=../MiXiMFork
 INET_PROJ=F:/VANETProject/WorkingProjects/inet
+MIXIM_PROJ=F:/VANETProject/WorkingProjects/mixim
 
 #------------------------------------------------------------------------------
 
