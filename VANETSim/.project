@@ -3,6 +3,8 @@
 	<name>VANETSim</name>
 	<comment></comment>
 	<projects>
+		<project>inet</project>
+		<project>mixim</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
