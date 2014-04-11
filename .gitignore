@@ -6,7 +6,6 @@ results/
 #################
 
 *.pydevproject
-.project
 .metadata
 bin/
 tmp/
