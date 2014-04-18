@@ -16,8 +16,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-package vanetsim.simulations.manet.aodv;
+package vanetsim.simulations.manet.olsr;
 
-network ManetSim extends Highway
+network OLSRSim extends Highway
 {
 }

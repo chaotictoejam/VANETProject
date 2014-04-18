@@ -18,7 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package vanetsim.simulations.manet.aodv;
+package vanetsim.simulations.manet.gpsr;
 
 import org.mixim.base.modules.*;
 import org.mixim.modules.nic.Nic80211p;
