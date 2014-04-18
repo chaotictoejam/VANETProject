@@ -20,7 +20,7 @@ package vanetsim.test.AODV;
 
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.nodes.inet.AdhocHost;
-import inet.world.radio.ChannelControl;
+import inet.physicallayer.radio.simplified.SimplifiedRadioChannel;
 
 //
 // Example network for testing aodv routing. Contains
@@ -41,7 +41,7 @@ network Net80211_aodv
             parameters:
                 @display("i=device/pocketpc_s;r=,,#707070");
         }
-        channelControl: ChannelControl {
+        radioChannel: SimplifiedRadioChannel {
             parameters:
                 @display("p=60,50;i=misc/sun");
         }
