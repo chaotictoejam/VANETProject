@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -O out -LC:/VANETProject/GIT/inet/out/$$\(CONFIGNAME\)/src -LC:/VANETProject/ProjectWorkspace/mixim/out/$$\(CONFIGNAME\)/tests/testUtils -LC:/VANETProject/ProjectWorkspace/mixim/out/$$\(CONFIGNAME\)/src/base -LC:/VANETProject/ProjectWorkspace/mixim/out/$$\(CONFIGNAME\)/src/modules -linet -lmiximtestUtils -lmiximbase -lmiximmodules -DINET_IMPORT -KINET_PROJ=C:/VANETProject/GIT/inet -KMIXIM_PROJ=C:/VANETProject/ProjectWorkspace/mixim
+#  opp_makemake -f --deep -O out -LC:/VANETProject/GIT/inet/out/$$\(CONFIGNAME\)/src -LC:/VANETProject/GIT/veins/out/$$\(CONFIGNAME\)/tests/testUtils -LC:/VANETProject/GIT/veins/out/$$\(CONFIGNAME\)/src/base -LC:/VANETProject/GIT/veins/out/$$\(CONFIGNAME\)/src/modules -linet -lmiximtestUtils -lmiximbase -lmiximmodules -DINET_IMPORT -KINET_PROJ=C:/VANETProject/GIT/inet -KMIXIM_PROJ=C:/VANETProject/GIT/veins
 #
 
 # Name of target to be created (-o option)
@@ -34,7 +34,6 @@ INCLUDE_PATH = \
     -Isrc/vanet/rbvtr \
     -Isrc/vanet/vdtp \
     -Itest \
-    -Itest/AODV \
     -Itest/Traci
 
 # Additional object and library files to link with
@@ -57,7 +56,7 @@ MSGFILES =
 
 # Other makefile variables (-K)
 INET_PROJ=C:/VANETProject/GIT/inet
-MIXIM_PROJ=C:/VANETProject/ProjectWorkspace/mixim
+MIXIM_PROJ=C:/VANETProject/GIT/veins
 
 #------------------------------------------------------------------------------
 
@@ -149,7 +148,6 @@ clean:
 	$(Q)-rm -f src/vanet/rbvtr/*_m.cc src/vanet/rbvtr/*_m.h
 	$(Q)-rm -f src/vanet/vdtp/*_m.cc src/vanet/vdtp/*_m.h
 	$(Q)-rm -f test/*_m.cc test/*_m.h
-	$(Q)-rm -f test/AODV/*_m.cc test/AODV/*_m.h
 	$(Q)-rm -f test/Traci/*_m.cc test/Traci/*_m.h
 
 cleanall: clean
@@ -157,7 +155,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/manet/aodv/results/*.cc simulations/manet/gpsr/*.cc simulations/manet/olsr/*.cc simulations/vanet/*.cc src/*.cc src/manet/*.cc src/vanet/*.cc src/vanet/aodvvanet/*.cc src/vanet/bittorrent/*.cc src/vanet/rbvtp/*.cc src/vanet/rbvtr/*.cc src/vanet/vdtp/*.cc test/*.cc test/AODV/*.cc test/Traci/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/manet/aodv/results/*.cc simulations/manet/gpsr/*.cc simulations/manet/olsr/*.cc simulations/vanet/*.cc src/*.cc src/manet/*.cc src/vanet/*.cc src/vanet/aodvvanet/*.cc src/vanet/bittorrent/*.cc src/vanet/rbvtp/*.cc src/vanet/rbvtr/*.cc src/vanet/vdtp/*.cc test/*.cc test/Traci/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 

@@ -1,41 +1,43 @@
-//
-// Copyright (C) 2008 Christoph Sommer <christoph.sommer@informatik.uni-erlangen.de>
-//
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-//
-
 package vanetsim.simulations.manet.aodv;
 
+import inet.base.LifecycleController;
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
+import inet.networklayer.ipv4.RoutingTableRecorder;
 import inet.nodes.inet.AdhocHost;
-import inet.physicallayer.radio.simplified.SimplifiedRadioChannel;
+import inet.world.radio.ChannelControl;
+import inet.world.scenario.ScenarioManager;
 
-network AODVSim extends Highway
+
+network AODVSim
 {
     parameters:
         int numHosts;
-        int numFixHosts;
     submodules:
-        radioChannel: SimplifiedRadioChannel {
+        channelControl: ChannelControl {
             parameters:
-                @display("p=60,50;i=misc/sun");
+                @display("p=50,50");
         }
         configurator: IPv4NetworkConfigurator {
             parameters:
-                config=xml("<config><interface hosts='*' address='145.236.x.x' netmask='255.255.0.0'/></config>");
-                @display("p=140,50;i=block/cogwheel_s");
+                config = xml("<config><interface hosts='*' address='145.236.x.x' netmask='255.255.0.0'/></config>");
+                @display("p=50,100");
+        }
+        routingTableRecorder: RoutingTableRecorder {
+            parameters:
+                @display("p=50,150");
+        }
+        lifecycleController: LifecycleController {
+            parameters:
+                @display("p=50,200");
+        }
+        scenarioManager: ScenarioManager {
+            parameters:
+                script = default(xml("<scenario/>"));
+                @display("p=50,250");
+        }
+        host[numHosts]: AdhocHost {
+            parameters:
+                @display("i=device/pocketpc_s;r=,,#707070");
         }
     connections allowunconnected:
 }
