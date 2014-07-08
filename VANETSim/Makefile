@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -O out -LC:/VANETProject/GIT/inet/out/$$\(CONFIGNAME\)/src -LC:/VANETProject/GIT/veins/out/$$\(CONFIGNAME\)/tests/testUtils -LC:/VANETProject/GIT/veins/out/$$\(CONFIGNAME\)/src/base -LC:/VANETProject/GIT/veins/out/$$\(CONFIGNAME\)/src/modules -linet -lmiximtestUtils -lmiximbase -lmiximmodules -DINET_IMPORT -KINET_PROJ=C:/VANETProject/GIT/inet -KMIXIM_PROJ=C:/VANETProject/GIT/veins
+#  opp_makemake -f --deep -O out -LF:/VANETProject/WorkingProjects/inet/out/$$\(CONFIGNAME\)/src -LF:/VANETProject/WorkingProjects/mixim/out/$$\(CONFIGNAME\)/tests/testUtils -LF:/VANETProject/WorkingProjects/mixim/out/$$\(CONFIGNAME\)/src/base -LF:/VANETProject/WorkingProjects/mixim/out/$$\(CONFIGNAME\)/src/modules -linet -lmiximtestUtils -lmiximbase -lmiximmodules -DINET_IMPORT -KINET_PROJ=F:/VANETProject/WorkingProjects/inet -KMIXIM_PROJ=F:/VANETProject/WorkingProjects/mixim
 #
 
 # Name of target to be created (-o option)
@@ -22,11 +22,31 @@ INCLUDE_PATH = \
     -Isimulations/manet \
     -Isimulations/manet/aodv \
     -Isimulations/manet/aodv/results \
+    -Isimulations/manet/dsr \
+    -Isimulations/manet/dsr/results \
     -Isimulations/manet/gpsr \
+    -Isimulations/manet/gpsr/results \
     -Isimulations/manet/olsr \
     -Isimulations/vanet \
+    -Isimulations/vanet/aodvvanet \
+    -Isimulations/vanet/car \
+    -Isimulations/vanet/geopps \
+    -Isimulations/vanet/gsr \
+    -Isimulations/vanet/rbvtp \
+    -Isimulations/vanet/rbvtr \
+    -Isimulations/vanet/tora \
+    -Isimulations/vanet/vdd \
+    -Isimulations/vanet/vdtp \
     -Isrc \
     -Isrc/manet \
+    -Isrc/protocols \
+    -Isrc/protocols/manet \
+    -Isrc/protocols/manet/gpsr \
+    -Isrc/protocols/vanet \
+    -Isrc/protocols/vanet/aodvvanet \
+    -Isrc/protocols/vanet/rbvtp \
+    -Isrc/protocols/vanet/rbvtr \
+    -Isrc/protocols/vanet/vdtp \
     -Isrc/vanet \
     -Isrc/vanet/aodvvanet \
     -Isrc/vanet/bittorrent \
@@ -34,7 +54,10 @@ INCLUDE_PATH = \
     -Isrc/vanet/rbvtr \
     -Isrc/vanet/vdtp \
     -Itest \
-    -Itest/Traci
+    -Itest/AODV \
+    -Itest/AODV/results \
+    -Itest/Traci \
+    -Itest/Traci/results
 
 # Additional object and library files to link with
 EXTRA_OBJS =
@@ -55,8 +78,8 @@ OBJS =
 MSGFILES =
 
 # Other makefile variables (-K)
-INET_PROJ=C:/VANETProject/GIT/inet
-MIXIM_PROJ=C:/VANETProject/GIT/veins
+INET_PROJ=F:/VANETProject/WorkingProjects/inet
+MIXIM_PROJ=F:/VANETProject/WorkingProjects/mixim
 
 #------------------------------------------------------------------------------
 
@@ -136,11 +159,31 @@ clean:
 	$(Q)-rm -f simulations/manet/*_m.cc simulations/manet/*_m.h
 	$(Q)-rm -f simulations/manet/aodv/*_m.cc simulations/manet/aodv/*_m.h
 	$(Q)-rm -f simulations/manet/aodv/results/*_m.cc simulations/manet/aodv/results/*_m.h
+	$(Q)-rm -f simulations/manet/dsr/*_m.cc simulations/manet/dsr/*_m.h
+	$(Q)-rm -f simulations/manet/dsr/results/*_m.cc simulations/manet/dsr/results/*_m.h
 	$(Q)-rm -f simulations/manet/gpsr/*_m.cc simulations/manet/gpsr/*_m.h
+	$(Q)-rm -f simulations/manet/gpsr/results/*_m.cc simulations/manet/gpsr/results/*_m.h
 	$(Q)-rm -f simulations/manet/olsr/*_m.cc simulations/manet/olsr/*_m.h
 	$(Q)-rm -f simulations/vanet/*_m.cc simulations/vanet/*_m.h
+	$(Q)-rm -f simulations/vanet/aodvvanet/*_m.cc simulations/vanet/aodvvanet/*_m.h
+	$(Q)-rm -f simulations/vanet/car/*_m.cc simulations/vanet/car/*_m.h
+	$(Q)-rm -f simulations/vanet/geopps/*_m.cc simulations/vanet/geopps/*_m.h
+	$(Q)-rm -f simulations/vanet/gsr/*_m.cc simulations/vanet/gsr/*_m.h
+	$(Q)-rm -f simulations/vanet/rbvtp/*_m.cc simulations/vanet/rbvtp/*_m.h
+	$(Q)-rm -f simulations/vanet/rbvtr/*_m.cc simulations/vanet/rbvtr/*_m.h
+	$(Q)-rm -f simulations/vanet/tora/*_m.cc simulations/vanet/tora/*_m.h
+	$(Q)-rm -f simulations/vanet/vdd/*_m.cc simulations/vanet/vdd/*_m.h
+	$(Q)-rm -f simulations/vanet/vdtp/*_m.cc simulations/vanet/vdtp/*_m.h
 	$(Q)-rm -f src/*_m.cc src/*_m.h
 	$(Q)-rm -f src/manet/*_m.cc src/manet/*_m.h
+	$(Q)-rm -f src/protocols/*_m.cc src/protocols/*_m.h
+	$(Q)-rm -f src/protocols/manet/*_m.cc src/protocols/manet/*_m.h
+	$(Q)-rm -f src/protocols/manet/gpsr/*_m.cc src/protocols/manet/gpsr/*_m.h
+	$(Q)-rm -f src/protocols/vanet/*_m.cc src/protocols/vanet/*_m.h
+	$(Q)-rm -f src/protocols/vanet/aodvvanet/*_m.cc src/protocols/vanet/aodvvanet/*_m.h
+	$(Q)-rm -f src/protocols/vanet/rbvtp/*_m.cc src/protocols/vanet/rbvtp/*_m.h
+	$(Q)-rm -f src/protocols/vanet/rbvtr/*_m.cc src/protocols/vanet/rbvtr/*_m.h
+	$(Q)-rm -f src/protocols/vanet/vdtp/*_m.cc src/protocols/vanet/vdtp/*_m.h
 	$(Q)-rm -f src/vanet/*_m.cc src/vanet/*_m.h
 	$(Q)-rm -f src/vanet/aodvvanet/*_m.cc src/vanet/aodvvanet/*_m.h
 	$(Q)-rm -f src/vanet/bittorrent/*_m.cc src/vanet/bittorrent/*_m.h
@@ -148,14 +191,17 @@ clean:
 	$(Q)-rm -f src/vanet/rbvtr/*_m.cc src/vanet/rbvtr/*_m.h
 	$(Q)-rm -f src/vanet/vdtp/*_m.cc src/vanet/vdtp/*_m.h
 	$(Q)-rm -f test/*_m.cc test/*_m.h
+	$(Q)-rm -f test/AODV/*_m.cc test/AODV/*_m.h
+	$(Q)-rm -f test/AODV/results/*_m.cc test/AODV/results/*_m.h
 	$(Q)-rm -f test/Traci/*_m.cc test/Traci/*_m.h
+	$(Q)-rm -f test/Traci/results/*_m.cc test/Traci/results/*_m.h
 
 cleanall: clean
 	$(Q)-rm -rf $(PROJECT_OUTPUT_DIR)
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/manet/aodv/results/*.cc simulations/manet/gpsr/*.cc simulations/manet/olsr/*.cc simulations/vanet/*.cc src/*.cc src/manet/*.cc src/vanet/*.cc src/vanet/aodvvanet/*.cc src/vanet/bittorrent/*.cc src/vanet/rbvtp/*.cc src/vanet/rbvtr/*.cc src/vanet/vdtp/*.cc test/*.cc test/Traci/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/manet/aodv/results/*.cc simulations/manet/dsr/*.cc simulations/manet/dsr/results/*.cc simulations/manet/gpsr/*.cc simulations/manet/gpsr/results/*.cc simulations/manet/olsr/*.cc simulations/vanet/*.cc simulations/vanet/aodvvanet/*.cc simulations/vanet/car/*.cc simulations/vanet/geopps/*.cc simulations/vanet/gsr/*.cc simulations/vanet/rbvtp/*.cc simulations/vanet/rbvtr/*.cc simulations/vanet/tora/*.cc simulations/vanet/vdd/*.cc simulations/vanet/vdtp/*.cc src/*.cc src/manet/*.cc src/protocols/*.cc src/protocols/manet/*.cc src/protocols/manet/gpsr/*.cc src/protocols/vanet/*.cc src/protocols/vanet/aodvvanet/*.cc src/protocols/vanet/rbvtp/*.cc src/protocols/vanet/rbvtr/*.cc src/protocols/vanet/vdtp/*.cc src/vanet/*.cc src/vanet/aodvvanet/*.cc src/vanet/bittorrent/*.cc src/vanet/rbvtp/*.cc src/vanet/rbvtr/*.cc src/vanet/vdtp/*.cc test/*.cc test/AODV/*.cc test/AODV/results/*.cc test/Traci/*.cc test/Traci/results/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 

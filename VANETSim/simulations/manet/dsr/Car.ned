@@ -18,7 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package vanetsim.simulations.manet.aodv;
+package vanetsim.simulations.manet.dsr;
 
 import org.mixim.base.modules.*;
 import org.mixim.modules.nic.Nic80211p;
@@ -48,7 +48,7 @@ module Car
         
         mobility: <mobilityType> like IMobility {
            	parameters:
- 				@display("p=130,172;i=block/cogwheel");
+ 			@display("p=130,172;i=block/cogwheel");
         }
     connections:
         nic.upperLayerOut --> appl.lowerLayerIn;
