@@ -27,6 +27,7 @@ INCLUDE_PATH = \
     -Isimulations/manet/gpsr \
     -Isimulations/manet/gpsr/results \
     -Isimulations/manet/olsr \
+    -Isimulations/manet/olsr/results \
     -Isimulations/vanet \
     -Isimulations/vanet/aodvvanet \
     -Isimulations/vanet/car \
@@ -164,6 +165,7 @@ clean:
 	$(Q)-rm -f simulations/manet/gpsr/*_m.cc simulations/manet/gpsr/*_m.h
 	$(Q)-rm -f simulations/manet/gpsr/results/*_m.cc simulations/manet/gpsr/results/*_m.h
 	$(Q)-rm -f simulations/manet/olsr/*_m.cc simulations/manet/olsr/*_m.h
+	$(Q)-rm -f simulations/manet/olsr/results/*_m.cc simulations/manet/olsr/results/*_m.h
 	$(Q)-rm -f simulations/vanet/*_m.cc simulations/vanet/*_m.h
 	$(Q)-rm -f simulations/vanet/aodvvanet/*_m.cc simulations/vanet/aodvvanet/*_m.h
 	$(Q)-rm -f simulations/vanet/car/*_m.cc simulations/vanet/car/*_m.h
@@ -201,7 +203,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/manet/aodv/results/*.cc simulations/manet/dsr/*.cc simulations/manet/dsr/results/*.cc simulations/manet/gpsr/*.cc simulations/manet/gpsr/results/*.cc simulations/manet/olsr/*.cc simulations/vanet/*.cc simulations/vanet/aodvvanet/*.cc simulations/vanet/car/*.cc simulations/vanet/geopps/*.cc simulations/vanet/gsr/*.cc simulations/vanet/rbvtp/*.cc simulations/vanet/rbvtr/*.cc simulations/vanet/tora/*.cc simulations/vanet/vdd/*.cc simulations/vanet/vdtp/*.cc src/*.cc src/manet/*.cc src/protocols/*.cc src/protocols/manet/*.cc src/protocols/manet/gpsr/*.cc src/protocols/vanet/*.cc src/protocols/vanet/aodvvanet/*.cc src/protocols/vanet/rbvtp/*.cc src/protocols/vanet/rbvtr/*.cc src/protocols/vanet/vdtp/*.cc src/vanet/*.cc src/vanet/aodvvanet/*.cc src/vanet/bittorrent/*.cc src/vanet/rbvtp/*.cc src/vanet/rbvtr/*.cc src/vanet/vdtp/*.cc test/*.cc test/AODV/*.cc test/AODV/results/*.cc test/Traci/*.cc test/Traci/results/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/manet/aodv/results/*.cc simulations/manet/dsr/*.cc simulations/manet/dsr/results/*.cc simulations/manet/gpsr/*.cc simulations/manet/gpsr/results/*.cc simulations/manet/olsr/*.cc simulations/manet/olsr/results/*.cc simulations/vanet/*.cc simulations/vanet/aodvvanet/*.cc simulations/vanet/car/*.cc simulations/vanet/geopps/*.cc simulations/vanet/gsr/*.cc simulations/vanet/rbvtp/*.cc simulations/vanet/rbvtr/*.cc simulations/vanet/tora/*.cc simulations/vanet/vdd/*.cc simulations/vanet/vdtp/*.cc src/*.cc src/manet/*.cc src/protocols/*.cc src/protocols/manet/*.cc src/protocols/manet/gpsr/*.cc src/protocols/vanet/*.cc src/protocols/vanet/aodvvanet/*.cc src/protocols/vanet/rbvtp/*.cc src/protocols/vanet/rbvtr/*.cc src/protocols/vanet/vdtp/*.cc src/vanet/*.cc src/vanet/aodvvanet/*.cc src/vanet/bittorrent/*.cc src/vanet/rbvtp/*.cc src/vanet/rbvtr/*.cc src/vanet/vdtp/*.cc test/*.cc test/AODV/*.cc test/AODV/results/*.cc test/Traci/*.cc test/Traci/results/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 
