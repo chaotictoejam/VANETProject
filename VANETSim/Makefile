@@ -41,12 +41,15 @@ INCLUDE_PATH = \
     -Isrc \
     -Isrc/manet \
     -Isrc/protocols \
-    -Isrc/protocols/manet \
-    -Isrc/protocols/manet/gpsr \
     -Isrc/protocols/vanet \
     -Isrc/protocols/vanet/aodvvanet \
+    -Isrc/protocols/vanet/car \
+    -Isrc/protocols/vanet/geopps \
+    -Isrc/protocols/vanet/gsr \
     -Isrc/protocols/vanet/rbvtp \
     -Isrc/protocols/vanet/rbvtr \
+    -Isrc/protocols/vanet/tora \
+    -Isrc/protocols/vanet/vdd \
     -Isrc/protocols/vanet/vdtp \
     -Isrc/vanet \
     -Isrc/vanet/aodvvanet \
@@ -179,12 +182,15 @@ clean:
 	$(Q)-rm -f src/*_m.cc src/*_m.h
 	$(Q)-rm -f src/manet/*_m.cc src/manet/*_m.h
 	$(Q)-rm -f src/protocols/*_m.cc src/protocols/*_m.h
-	$(Q)-rm -f src/protocols/manet/*_m.cc src/protocols/manet/*_m.h
-	$(Q)-rm -f src/protocols/manet/gpsr/*_m.cc src/protocols/manet/gpsr/*_m.h
 	$(Q)-rm -f src/protocols/vanet/*_m.cc src/protocols/vanet/*_m.h
 	$(Q)-rm -f src/protocols/vanet/aodvvanet/*_m.cc src/protocols/vanet/aodvvanet/*_m.h
+	$(Q)-rm -f src/protocols/vanet/car/*_m.cc src/protocols/vanet/car/*_m.h
+	$(Q)-rm -f src/protocols/vanet/geopps/*_m.cc src/protocols/vanet/geopps/*_m.h
+	$(Q)-rm -f src/protocols/vanet/gsr/*_m.cc src/protocols/vanet/gsr/*_m.h
 	$(Q)-rm -f src/protocols/vanet/rbvtp/*_m.cc src/protocols/vanet/rbvtp/*_m.h
 	$(Q)-rm -f src/protocols/vanet/rbvtr/*_m.cc src/protocols/vanet/rbvtr/*_m.h
+	$(Q)-rm -f src/protocols/vanet/tora/*_m.cc src/protocols/vanet/tora/*_m.h
+	$(Q)-rm -f src/protocols/vanet/vdd/*_m.cc src/protocols/vanet/vdd/*_m.h
 	$(Q)-rm -f src/protocols/vanet/vdtp/*_m.cc src/protocols/vanet/vdtp/*_m.h
 	$(Q)-rm -f src/vanet/*_m.cc src/vanet/*_m.h
 	$(Q)-rm -f src/vanet/aodvvanet/*_m.cc src/vanet/aodvvanet/*_m.h
@@ -203,7 +209,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/manet/aodv/results/*.cc simulations/manet/dsr/*.cc simulations/manet/dsr/results/*.cc simulations/manet/gpsr/*.cc simulations/manet/gpsr/results/*.cc simulations/manet/olsr/*.cc simulations/manet/olsr/results/*.cc simulations/vanet/*.cc simulations/vanet/aodvvanet/*.cc simulations/vanet/car/*.cc simulations/vanet/geopps/*.cc simulations/vanet/gsr/*.cc simulations/vanet/rbvtp/*.cc simulations/vanet/rbvtr/*.cc simulations/vanet/tora/*.cc simulations/vanet/vdd/*.cc simulations/vanet/vdtp/*.cc src/*.cc src/manet/*.cc src/protocols/*.cc src/protocols/manet/*.cc src/protocols/manet/gpsr/*.cc src/protocols/vanet/*.cc src/protocols/vanet/aodvvanet/*.cc src/protocols/vanet/rbvtp/*.cc src/protocols/vanet/rbvtr/*.cc src/protocols/vanet/vdtp/*.cc src/vanet/*.cc src/vanet/aodvvanet/*.cc src/vanet/bittorrent/*.cc src/vanet/rbvtp/*.cc src/vanet/rbvtr/*.cc src/vanet/vdtp/*.cc test/*.cc test/AODV/*.cc test/AODV/results/*.cc test/Traci/*.cc test/Traci/results/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/manet/aodv/results/*.cc simulations/manet/dsr/*.cc simulations/manet/dsr/results/*.cc simulations/manet/gpsr/*.cc simulations/manet/gpsr/results/*.cc simulations/manet/olsr/*.cc simulations/manet/olsr/results/*.cc simulations/vanet/*.cc simulations/vanet/aodvvanet/*.cc simulations/vanet/car/*.cc simulations/vanet/geopps/*.cc simulations/vanet/gsr/*.cc simulations/vanet/rbvtp/*.cc simulations/vanet/rbvtr/*.cc simulations/vanet/tora/*.cc simulations/vanet/vdd/*.cc simulations/vanet/vdtp/*.cc src/*.cc src/manet/*.cc src/protocols/*.cc src/protocols/vanet/*.cc src/protocols/vanet/aodvvanet/*.cc src/protocols/vanet/car/*.cc src/protocols/vanet/geopps/*.cc src/protocols/vanet/gsr/*.cc src/protocols/vanet/rbvtp/*.cc src/protocols/vanet/rbvtr/*.cc src/protocols/vanet/tora/*.cc src/protocols/vanet/vdd/*.cc src/protocols/vanet/vdtp/*.cc src/vanet/*.cc src/vanet/aodvvanet/*.cc src/vanet/bittorrent/*.cc src/vanet/rbvtp/*.cc src/vanet/rbvtr/*.cc src/vanet/vdtp/*.cc test/*.cc test/AODV/*.cc test/AODV/results/*.cc test/Traci/*.cc test/Traci/results/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 
