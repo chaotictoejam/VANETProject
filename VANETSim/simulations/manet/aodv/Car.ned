@@ -28,6 +28,10 @@ module Car
     parameters:
         string applType; //type of the application layer
         string mobilityType; //type of the mobility module
+        
+        @statistic[queueLength](record=max,timeavg,vector?);
+        @statistic[dropRate](source="count(drop)/count(pk)"; record=last,vector?);
+		@statistic[droppedBytes](source="packetBytes(pkdrop)"; record=sum,"vector(sum)?");
     gates:
         input radioIn; // gate for sendDirect
     submodules:

@@ -50,6 +50,7 @@ module Car
            	parameters:
  			@display("p=130,172;i=block/cogwheel");
         }
+        	
     connections:
         nic.upperLayerOut --> appl.lowerLayerIn;
         nic.upperLayerIn <-- appl.lowerLayerOut;

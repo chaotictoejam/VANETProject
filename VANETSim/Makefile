@@ -19,6 +19,7 @@ INCLUDE_PATH = \
     -Ietc \
     -Ietc/plugins \
     -Isimulations \
+    -Isimulations/_results \
     -Isimulations/manet \
     -Isimulations/manet/aodv \
     -Isimulations/manet/aodv/results \
@@ -48,8 +49,7 @@ INCLUDE_PATH = \
     -Isrc/vanet/gsr \
     -Isrc/vanet/rbvtp \
     -Isrc/vanet/rbvtr \
-    -Isrc/vanet/tora \
-    -Isrc/vanet/vdd \
+    -Isrc/vanet/vadd \
     -Isrc/vanet/vdtp \
     -Itest \
     -Itest/AODV \
@@ -154,6 +154,7 @@ clean:
 	$(Q)-rm -f etc/*_m.cc etc/*_m.h
 	$(Q)-rm -f etc/plugins/*_m.cc etc/plugins/*_m.h
 	$(Q)-rm -f simulations/*_m.cc simulations/*_m.h
+	$(Q)-rm -f simulations/_results/*_m.cc simulations/_results/*_m.h
 	$(Q)-rm -f simulations/manet/*_m.cc simulations/manet/*_m.h
 	$(Q)-rm -f simulations/manet/aodv/*_m.cc simulations/manet/aodv/*_m.h
 	$(Q)-rm -f simulations/manet/aodv/results/*_m.cc simulations/manet/aodv/results/*_m.h
@@ -183,8 +184,7 @@ clean:
 	$(Q)-rm -f src/vanet/gsr/*_m.cc src/vanet/gsr/*_m.h
 	$(Q)-rm -f src/vanet/rbvtp/*_m.cc src/vanet/rbvtp/*_m.h
 	$(Q)-rm -f src/vanet/rbvtr/*_m.cc src/vanet/rbvtr/*_m.h
-	$(Q)-rm -f src/vanet/tora/*_m.cc src/vanet/tora/*_m.h
-	$(Q)-rm -f src/vanet/vdd/*_m.cc src/vanet/vdd/*_m.h
+	$(Q)-rm -f src/vanet/vadd/*_m.cc src/vanet/vadd/*_m.h
 	$(Q)-rm -f src/vanet/vdtp/*_m.cc src/vanet/vdtp/*_m.h
 	$(Q)-rm -f test/*_m.cc test/*_m.h
 	$(Q)-rm -f test/AODV/*_m.cc test/AODV/*_m.h
@@ -197,7 +197,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/manet/aodv/results/*.cc simulations/manet/dsr/*.cc simulations/manet/dsr/results/*.cc simulations/manet/gpsr/*.cc simulations/manet/gpsr/results/*.cc simulations/manet/olsr/*.cc simulations/manet/olsr/results/*.cc simulations/vanet/*.cc simulations/vanet/aodvvanet/*.cc simulations/vanet/car/*.cc simulations/vanet/geopps/*.cc simulations/vanet/gsr/*.cc simulations/vanet/rbvtp/*.cc simulations/vanet/rbvtr/*.cc simulations/vanet/tora/*.cc simulations/vanet/vdd/*.cc simulations/vanet/vdtp/*.cc src/*.cc src/manet/*.cc src/vanet/*.cc src/vanet/aodvvanet/*.cc src/vanet/bittorrent/*.cc src/vanet/car/*.cc src/vanet/geopps/*.cc src/vanet/gsr/*.cc src/vanet/rbvtp/*.cc src/vanet/rbvtr/*.cc src/vanet/tora/*.cc src/vanet/vdd/*.cc src/vanet/vdtp/*.cc test/*.cc test/AODV/*.cc test/AODV/results/*.cc test/Traci/*.cc test/Traci/results/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/_results/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/manet/aodv/results/*.cc simulations/manet/dsr/*.cc simulations/manet/dsr/results/*.cc simulations/manet/gpsr/*.cc simulations/manet/gpsr/results/*.cc simulations/manet/olsr/*.cc simulations/manet/olsr/results/*.cc simulations/vanet/*.cc simulations/vanet/aodvvanet/*.cc simulations/vanet/car/*.cc simulations/vanet/geopps/*.cc simulations/vanet/gsr/*.cc simulations/vanet/rbvtp/*.cc simulations/vanet/rbvtr/*.cc simulations/vanet/tora/*.cc simulations/vanet/vdd/*.cc simulations/vanet/vdtp/*.cc src/*.cc src/manet/*.cc src/vanet/*.cc src/vanet/aodvvanet/*.cc src/vanet/bittorrent/*.cc src/vanet/car/*.cc src/vanet/geopps/*.cc src/vanet/gsr/*.cc src/vanet/rbvtp/*.cc src/vanet/rbvtr/*.cc src/vanet/vadd/*.cc src/vanet/vdtp/*.cc test/*.cc test/AODV/*.cc test/AODV/results/*.cc test/Traci/*.cc test/Traci/results/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 
