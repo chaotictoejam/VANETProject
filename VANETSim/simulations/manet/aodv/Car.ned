@@ -20,7 +20,7 @@
 
 package vanetsim.simulations.manet.aodv;
 
-import org.mixim.base.modules.*;
+import org.mixim.base.modules.IBaseApplLayer;
 import org.mixim.modules.nic.Nic80211p;
 
 import inet.nodes.inet.StandardHost;
@@ -30,18 +30,13 @@ module Car extends StandardHost
     parameters:
         string applType; //type of the application layer
 
-        networkLayer.proxyARP = default(false);
+        //networkLayer.proxyARP = default(false);
     gates:
 
     submodules:
         appl: <applType> like IBaseApplLayer {
             parameters:
                 @display("p=60,50");
-        }
-
-        arp: BaseArp {
-            parameters:
-                @display("p=130,108");
         }
 
         nic: Nic80211p {
