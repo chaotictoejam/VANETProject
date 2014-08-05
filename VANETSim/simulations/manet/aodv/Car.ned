@@ -23,17 +23,16 @@ package vanetsim.simulations.manet.aodv;
 import org.mixim.base.modules.*;
 import org.mixim.modules.nic.Nic80211p;
 
-module Car
+import inet.nodes.inet.StandardHost;
+
+module Car extends StandardHost
 {
     parameters:
         string applType; //type of the application layer
-        string mobilityType; //type of the mobility module
-        
-        @statistic[queueLength](record=max,timeavg,vector?);
-        @statistic[dropRate](source="count(drop)/count(pk)"; record=last,vector?);
-		@statistic[droppedBytes](source="packetBytes(pkdrop)"; record=sum,"vector(sum)?");
+
+        networkLayer.proxyARP = default(false);
     gates:
-        input radioIn; // gate for sendDirect
+
     submodules:
         appl: <applType> like IBaseApplLayer {
             parameters:
@@ -49,17 +48,22 @@ module Car
             parameters:
                 @display("p=60,166");
         }
-        
-        mobility: <mobilityType> like IMobility {
-           	parameters:
- 				@display("p=130,172;i=block/cogwheel");
-        }
     connections:
         nic.upperLayerOut --> appl.lowerLayerIn;
         nic.upperLayerIn <-- appl.lowerLayerOut;
         nic.upperControlOut --> appl.lowerControlIn;
         nic.upperControlIn <-- appl.lowerControlOut;
+        
+        for i=0..numUdpApps-1 {
+            udpApp[i].udpOut --> udp.appIn++;
+            udpApp[i].udpIn <-- udp.appOut++;
+        }
 
-        radioIn --> nic.radioIn;
+        udp.ipOut --> networkLayer.transportIn++ if hasUdp;
+        udp.ipIn <-- networkLayer.transportOut++ if hasUdp;
 
+        for i=0..numPingApps-1 {
+            networkLayer.pingOut++ --> pingApp[i].pingIn;
+            networkLayer.pingIn++ <-- pingApp[i].pingOut;
+        }
 }
