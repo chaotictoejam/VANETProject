@@ -48,17 +48,4 @@ module Car extends StandardHost
         nic.upperLayerIn <-- appl.lowerLayerOut;
         nic.upperControlOut --> appl.lowerControlIn;
         nic.upperControlIn <-- appl.lowerControlOut;
-        
-        for i=0..numUdpApps-1 {
-            udpApp[i].udpOut --> udp.appIn++;
-            udpApp[i].udpIn <-- udp.appOut++;
-        }
-
-        udp.ipOut --> networkLayer.transportIn++ if hasUdp;
-        udp.ipIn <-- networkLayer.transportOut++ if hasUdp;
-
-        for i=0..numPingApps-1 {
-            networkLayer.pingOut++ --> pingApp[i].pingIn;
-            networkLayer.pingIn++ <-- pingApp[i].pingOut;
-        }
 }
