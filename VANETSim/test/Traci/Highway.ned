@@ -20,13 +20,13 @@
 
 package vanetsim.test.Traci;
 
-import org.mixim.base.connectionManager.ConnectionManager;
-import org.mixim.base.modules.BaseWorldUtility;
-import org.mixim.modules.mobility.traci.TraCIScenarioManagerLaunchd;
-import org.mixim.modules.obstacle.ObstacleControl;
-import org.mixim.modules.world.annotations.AnnotationManager;
+import org.car2x.veins.base.connectionManager.ConnectionManager;
+import org.car2x.veins.base.modules.BaseWorldUtility;
+import org.car2x.veins.modules.mobility.traci.TraCIScenarioManagerLaunchd;
+import org.car2x.veins.modules.obstacle.ObstacleControl;
+import org.car2x.veins.modules.world.annotations.AnnotationManager;
 
-module Highway
+network Highway
 {
     parameters:
         double playgroundSizeX @unit(m); // x size of the area the nodes are in (in meters)
@@ -55,6 +55,6 @@ module Highway
             parameters:
                 @display("p=512,128");
         }
-
+        
     connections allowunconnected:
 }

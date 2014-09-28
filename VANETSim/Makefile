@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -O out -LF:/VANETProject/WorkingProjects/inet/out/$$\(CONFIGNAME\)/src -LF:/VANETProject/WorkingProjects/mixim/out/$$\(CONFIGNAME\)/tests/testUtils -LF:/VANETProject/WorkingProjects/mixim/out/$$\(CONFIGNAME\)/src/base -LF:/VANETProject/WorkingProjects/mixim/out/$$\(CONFIGNAME\)/src/modules -linet -lmiximtestUtils -lmiximbase -lmiximmodules -DINET_IMPORT -KINET_PROJ=F:/VANETProject/WorkingProjects/inet -KMIXIM_PROJ=F:/VANETProject/WorkingProjects/mixim
+#  opp_makemake -f --deep -O out -Xsrc/routing/aodv-uu -Xsrc/routing/gpsr -IF:/GitHub/inet/src/linklayer/ieee80211/radio -IF:/GitHub/inet/src/networklayer/routing/aodv -IF:/GitHub/inet/src/networklayer/common -IF:/GitHub/veins/src -IF:/GitHub/veins/src/base/modules -IF:/GitHub/inet/src -IF:/GitHub/inet/src/networklayer/icmpv6 -IF:/GitHub/inet/src/world/obstacles -IF:/GitHub/inet/src/networklayer/xmipv6 -IF:/GitHub/inet/src/networklayer/contract -IF:/GitHub/veins/src/base/messages -IF:/GitHub/veins/src/base/utils -IF:/GitHub/inet/src/networklayer/autorouting/ipv4 -IF:/GitHub/inet/src/util -IF:/GitHub/inet/src/transport/contract -IF:/GitHub/inet/src/linklayer/common -IF:/GitHub/inet/src/status -IF:/GitHub/inet/src/linklayer/radio/propagation -IF:/GitHub/inet/src/linklayer/ieee80211/radio/errormodel -IF:/GitHub/veins/src/base/connectionManager -IF:/GitHub/inet/src/linklayer/radio -IF:/GitHub/inet/src/util/headerserializers/tcp -IF:/GitHub/veins/src/modules -IF:/GitHub/veins/src/modules/obstacle -IF:/GitHub/inet/src/networklayer/ipv4 -IF:/GitHub/inet/src/mobility/contract -IF:/GitHub/inet/src/util/headerserializers/ipv4 -IF:/GitHub/inet/src/base -IF:/GitHub/inet/src/util/headerserializers -IF:/GitHub/inet/src/world/radio -IF:/GitHub/veins/src/base/phyLayer -IF:/GitHub/inet/src/linklayer/ieee80211/mac -IF:/GitHub/inet/src/transport/sctp -IF:/GitHub/inet/src/networklayer/ipv6 -IF:/GitHub/inet/src/util/headerserializers/udp -IF:/GitHub/inet/src/networklayer/ipv6tunneling -IF:/GitHub/inet/src/applications/pingapp -IF:/GitHub/inet/src/battery/models -IF:/GitHub/inet/src/util/headerserializers/ipv6 -IF:/GitHub/inet/src/util/headerserializers/sctp -IF:/GitHub/inet/src/linklayer/contract -IF:/GitHub/inet/src/networklayer/arp -IF:/GitHub/inet/src/transport/tcp_common -IF:/GitHub/veins/src/inet -IF:/GitHub/inet/src/transport/udp -LF:/GitHub/inet/out/$$\(CONFIGNAME\)/src -LF:/GitHub/veins/out/$$\(CONFIGNAME\)/src -linet -lveins -DINET_IMPORT -KINET_PROJ=F:/GitHub/inet -KVEINS_PROJ=F:/GitHub/veins
 #
 
 # Name of target to be created (-o option)
@@ -15,6 +15,51 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
 
 # C++ include paths (with -I)
 INCLUDE_PATH = \
+    -I$(INET_PROJ)/src/linklayer/ieee80211/radio \
+    -I$(INET_PROJ)/src/networklayer/routing/aodv \
+    -I$(INET_PROJ)/src/networklayer/common \
+    -I$(VEINS_PROJ)/src \
+    -I$(VEINS_PROJ)/src/base/modules \
+    -I$(INET_PROJ)/src \
+    -I$(INET_PROJ)/src/networklayer/icmpv6 \
+    -I$(INET_PROJ)/src/world/obstacles \
+    -I$(INET_PROJ)/src/networklayer/xmipv6 \
+    -I$(INET_PROJ)/src/networklayer/contract \
+    -I$(VEINS_PROJ)/src/base/messages \
+    -I$(VEINS_PROJ)/src/base/utils \
+    -I$(INET_PROJ)/src/networklayer/autorouting/ipv4 \
+    -I$(INET_PROJ)/src/util \
+    -I$(INET_PROJ)/src/transport/contract \
+    -I$(INET_PROJ)/src/linklayer/common \
+    -I$(INET_PROJ)/src/status \
+    -I$(INET_PROJ)/src/linklayer/radio/propagation \
+    -I$(INET_PROJ)/src/linklayer/ieee80211/radio/errormodel \
+    -I$(VEINS_PROJ)/src/base/connectionManager \
+    -I$(INET_PROJ)/src/linklayer/radio \
+    -I$(INET_PROJ)/src/util/headerserializers/tcp \
+    -I$(VEINS_PROJ)/src/modules \
+    -I$(VEINS_PROJ)/src/modules/obstacle \
+    -I$(INET_PROJ)/src/networklayer/ipv4 \
+    -I$(INET_PROJ)/src/mobility/contract \
+    -I$(INET_PROJ)/src/util/headerserializers/ipv4 \
+    -I$(INET_PROJ)/src/base \
+    -I$(INET_PROJ)/src/util/headerserializers \
+    -I$(INET_PROJ)/src/world/radio \
+    -I$(VEINS_PROJ)/src/base/phyLayer \
+    -I$(INET_PROJ)/src/linklayer/ieee80211/mac \
+    -I$(INET_PROJ)/src/transport/sctp \
+    -I$(INET_PROJ)/src/networklayer/ipv6 \
+    -I$(INET_PROJ)/src/util/headerserializers/udp \
+    -I$(INET_PROJ)/src/networklayer/ipv6tunneling \
+    -I$(INET_PROJ)/src/applications/pingapp \
+    -I$(INET_PROJ)/src/battery/models \
+    -I$(INET_PROJ)/src/util/headerserializers/ipv6 \
+    -I$(INET_PROJ)/src/util/headerserializers/sctp \
+    -I$(INET_PROJ)/src/linklayer/contract \
+    -I$(INET_PROJ)/src/networklayer/arp \
+    -I$(INET_PROJ)/src/transport/tcp_common \
+    -I$(VEINS_PROJ)/src/inet \
+    -I$(INET_PROJ)/src/transport/udp \
     -I. \
     -Ietc \
     -Ietc/plugins \
@@ -40,7 +85,8 @@ INCLUDE_PATH = \
     -Isimulations/vanet/vdd \
     -Isimulations/vanet/vdtp \
     -Isrc \
-    -Isrc/manet \
+    -Isrc/routing \
+    -Isrc/routing/aodv \
     -Isrc/vanet \
     -Isrc/vanet/aodvvanet \
     -Isrc/vanet/bittorrent \
@@ -61,8 +107,8 @@ INCLUDE_PATH = \
 EXTRA_OBJS =
 
 # Additional libraries (-L, -l options)
-LIBS = -L$(INET_PROJ)/out/$(CONFIGNAME)/src -L$(MIXIM_PROJ)/out/$(CONFIGNAME)/tests/testUtils -L$(MIXIM_PROJ)/out/$(CONFIGNAME)/src/base -L$(MIXIM_PROJ)/out/$(CONFIGNAME)/src/modules  -linet -lmiximtestUtils -lmiximbase -lmiximmodules
-LIBS += -Wl,-rpath,`abspath $(INET_PROJ)/out/$(CONFIGNAME)/src` -Wl,-rpath,`abspath $(MIXIM_PROJ)/out/$(CONFIGNAME)/tests/testUtils` -Wl,-rpath,`abspath $(MIXIM_PROJ)/out/$(CONFIGNAME)/src/base` -Wl,-rpath,`abspath $(MIXIM_PROJ)/out/$(CONFIGNAME)/src/modules`
+LIBS = -L$(INET_PROJ)/out/$(CONFIGNAME)/src -L$(VEINS_PROJ)/out/$(CONFIGNAME)/src  -linet -lveins
+LIBS += -Wl,-rpath,`abspath $(INET_PROJ)/out/$(CONFIGNAME)/src` -Wl,-rpath,`abspath $(VEINS_PROJ)/out/$(CONFIGNAME)/src`
 
 # Output directory
 PROJECT_OUTPUT_DIR = out
@@ -70,14 +116,15 @@ PROJECTRELATIVE_PATH =
 O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
-OBJS =
+OBJS = $O/src/routing/aodv/VS_AODVRouteData.o $O/src/routing/aodv/VS_AODVRouting.o $O/src/routing/aodv/VS_AODVControlPackets_m.o
 
 # Message files
-MSGFILES =
+MSGFILES = \
+    src/routing/aodv/VS_AODVControlPackets.msg
 
 # Other makefile variables (-K)
-INET_PROJ=F:/VANETProject/WorkingProjects/inet
-MIXIM_PROJ=F:/VANETProject/WorkingProjects/mixim
+INET_PROJ=F:/GitHub/inet
+VEINS_PROJ=F:/GitHub/veins
 
 #------------------------------------------------------------------------------
 
@@ -175,7 +222,8 @@ clean:
 	$(Q)-rm -f simulations/vanet/vdd/*_m.cc simulations/vanet/vdd/*_m.h
 	$(Q)-rm -f simulations/vanet/vdtp/*_m.cc simulations/vanet/vdtp/*_m.h
 	$(Q)-rm -f src/*_m.cc src/*_m.h
-	$(Q)-rm -f src/manet/*_m.cc src/manet/*_m.h
+	$(Q)-rm -f src/routing/*_m.cc src/routing/*_m.h
+	$(Q)-rm -f src/routing/aodv/*_m.cc src/routing/aodv/*_m.h
 	$(Q)-rm -f src/vanet/*_m.cc src/vanet/*_m.h
 	$(Q)-rm -f src/vanet/aodvvanet/*_m.cc src/vanet/aodvvanet/*_m.h
 	$(Q)-rm -f src/vanet/bittorrent/*_m.cc src/vanet/bittorrent/*_m.h
@@ -197,7 +245,57 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/_results/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/manet/aodv/results/*.cc simulations/manet/dsr/*.cc simulations/manet/dsr/results/*.cc simulations/manet/gpsr/*.cc simulations/manet/gpsr/results/*.cc simulations/manet/olsr/*.cc simulations/manet/olsr/results/*.cc simulations/vanet/*.cc simulations/vanet/aodvvanet/*.cc simulations/vanet/car/*.cc simulations/vanet/geopps/*.cc simulations/vanet/gsr/*.cc simulations/vanet/rbvtp/*.cc simulations/vanet/rbvtr/*.cc simulations/vanet/tora/*.cc simulations/vanet/vdd/*.cc simulations/vanet/vdtp/*.cc src/*.cc src/manet/*.cc src/vanet/*.cc src/vanet/aodvvanet/*.cc src/vanet/bittorrent/*.cc src/vanet/car/*.cc src/vanet/geopps/*.cc src/vanet/gsr/*.cc src/vanet/rbvtp/*.cc src/vanet/rbvtr/*.cc src/vanet/vadd/*.cc src/vanet/vdtp/*.cc test/*.cc test/AODV/*.cc test/AODV/results/*.cc test/Traci/*.cc test/Traci/results/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc etc/*.cc etc/plugins/*.cc simulations/*.cc simulations/_results/*.cc simulations/manet/*.cc simulations/manet/aodv/*.cc simulations/manet/aodv/results/*.cc simulations/manet/dsr/*.cc simulations/manet/dsr/results/*.cc simulations/manet/gpsr/*.cc simulations/manet/gpsr/results/*.cc simulations/manet/olsr/*.cc simulations/manet/olsr/results/*.cc simulations/vanet/*.cc simulations/vanet/aodvvanet/*.cc simulations/vanet/car/*.cc simulations/vanet/geopps/*.cc simulations/vanet/gsr/*.cc simulations/vanet/rbvtp/*.cc simulations/vanet/rbvtr/*.cc simulations/vanet/tora/*.cc simulations/vanet/vdd/*.cc simulations/vanet/vdtp/*.cc src/*.cc src/routing/*.cc src/routing/aodv/*.cc src/vanet/*.cc src/vanet/aodvvanet/*.cc src/vanet/bittorrent/*.cc src/vanet/car/*.cc src/vanet/geopps/*.cc src/vanet/gsr/*.cc src/vanet/rbvtp/*.cc src/vanet/rbvtr/*.cc src/vanet/vadd/*.cc src/vanet/vdtp/*.cc test/*.cc test/AODV/*.cc test/AODV/results/*.cc test/Traci/*.cc test/Traci/results/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
+$O/src/routing/aodv/VS_AODVControlPackets_m.o: src/routing/aodv/VS_AODVControlPackets_m.cc \
+	src/routing/aodv/VS_AODVControlPackets_m.h \
+	$(INET_PROJ)/src/base/Compat.h \
+	$(INET_PROJ)/src/base/INETDefs.h \
+	$(INET_PROJ)/src/networklayer/contract/IPv4Address.h
+$O/src/routing/aodv/VS_AODVRouteData.o: src/routing/aodv/VS_AODVRouteData.cc \
+	src/routing/aodv/VS_AODVRouteData.h \
+	$(INET_PROJ)/src/base/Compat.h \
+	$(INET_PROJ)/src/base/INETDefs.h \
+	$(INET_PROJ)/src/networklayer/contract/IPv4Address.h
+$O/src/routing/aodv/VS_AODVRouting.o: src/routing/aodv/VS_AODVRouting.cc \
+	src/routing/aodv/VS_AODVControlPackets_m.h \
+	src/routing/aodv/VS_AODVRouteData.h \
+	src/routing/aodv/VS_AODVRouting.h \
+	$(INET_PROJ)/src/base/Compat.h \
+	$(INET_PROJ)/src/base/ILifecycle.h \
+	$(INET_PROJ)/src/base/INETDefs.h \
+	$(INET_PROJ)/src/base/INotifiable.h \
+	$(INET_PROJ)/src/base/LifecycleOperation.h \
+	$(INET_PROJ)/src/base/ModuleAccess.h \
+	$(INET_PROJ)/src/base/NodeOperations.h \
+	$(INET_PROJ)/src/base/NotificationBoard.h \
+	$(INET_PROJ)/src/base/NotifierConsts.h \
+	$(INET_PROJ)/src/linklayer/contract/Ieee802Ctrl_m.h \
+	$(INET_PROJ)/src/linklayer/contract/MACAddress.h \
+	$(INET_PROJ)/src/linklayer/ieee80211/mac/Ieee80211Consts.h \
+	$(INET_PROJ)/src/linklayer/ieee80211/mac/Ieee80211Frame_m.h \
+	$(INET_PROJ)/src/networklayer/common/IInterfaceTable.h \
+	$(INET_PROJ)/src/networklayer/common/INetfilter.h \
+	$(INET_PROJ)/src/networklayer/common/InterfaceEntry.h \
+	$(INET_PROJ)/src/networklayer/common/InterfaceTableAccess.h \
+	$(INET_PROJ)/src/networklayer/common/InterfaceToken.h \
+	$(INET_PROJ)/src/networklayer/contract/IPProtocolId_m.h \
+	$(INET_PROJ)/src/networklayer/contract/IPSocket.h \
+	$(INET_PROJ)/src/networklayer/contract/IPv4Address.h \
+	$(INET_PROJ)/src/networklayer/contract/IPv4ControlInfo.h \
+	$(INET_PROJ)/src/networklayer/contract/IPv4ControlInfo_m.h \
+	$(INET_PROJ)/src/networklayer/contract/IPv6Address.h \
+	$(INET_PROJ)/src/networklayer/contract/IPvXAddress.h \
+	$(INET_PROJ)/src/networklayer/ipv4/IPv4Datagram.h \
+	$(INET_PROJ)/src/networklayer/ipv4/IPv4Datagram_m.h \
+	$(INET_PROJ)/src/networklayer/ipv4/IPv4Route.h \
+	$(INET_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
+	$(INET_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
+	$(INET_PROJ)/src/status/NodeStatus.h \
+	$(INET_PROJ)/src/transport/contract/UDPControlInfo.h \
+	$(INET_PROJ)/src/transport/contract/UDPControlInfo_m.h \
+	$(INET_PROJ)/src/transport/contract/UDPSocket.h \
+	$(INET_PROJ)/src/transport/udp/UDPPacket.h \
+	$(INET_PROJ)/src/transport/udp/UDPPacket_m.h
 

@@ -1,40 +1,21 @@
-//
-// Copyright (C) 2008 Christoph Sommer <christoph.sommer@informatik.uni-erlangen.de>
-//
-// Documentation for these modules is at http://veins.car2x.org/
-//
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-//
-
 package vanetsim.simulations.manet.aodv;
 
-import org.mixim.base.modules.IBaseApplLayer;
-import org.mixim.modules.nic.Nic80211p;
+import org.car2x.veins.base.modules.*;
+import org.car2x.veins.modules.nic.Nic80211p;
 
-import inet.nodes.inet.StandardHost;
+import inet.nodes.inet.NetworkLayer;
+import inet.transport.udp.UDP;
+import inet.networklayer.ipv4.IIGMP;
 
-module Car extends StandardHost
+module Car
 {
     parameters:
         string applType; //type of the application layer
-
-        //networkLayer.proxyARP = default(false);
+        string veinsmobilityType; //type of the mobility module
     gates:
-
+        input veinsradioIn; // gate for sendDirect
     submodules:
-        appl: <applType> like IBaseApplLayer {
+        appl: <applType> like org.car2x.veins.base.modules.IBaseApplLayer {
             parameters:
                 @display("p=60,50");
         }
@@ -43,9 +24,49 @@ module Car extends StandardHost
             parameters:
                 @display("p=60,166");
         }
+
+        veinsmobility: <veinsmobilityType> like org.car2x.veins.base.modules.IMobility {
+            parameters:
+                @display("p=130,172;i=block/cogwheel");
+        }
+        
+        udp: UDP {
+            parameters:
+                @display("p=384,146");
+        }
+        networkLayer: NetworkLayer {
+            parameters:
+                proxyARP = false;
+                @display("p=304,327;q=queue");
+            gates:
+                ifIn[1];
+                ifOut[1];
+        }
+        igmp: <igmpType> like IIGMP {
+            parameters:
+                @display("p=39,33");
+        }
     connections:
-        nic.upperLayerOut --> appl.lowerLayerIn;
-        nic.upperLayerIn <-- appl.lowerLayerOut;
+        //nic.upperLayerOut --> appl.lowerLayerIn;
+        //nic.upperLayerIn <-- appl.lowerLayerOut;
         nic.upperControlOut --> appl.lowerControlIn;
         nic.upperControlIn <-- appl.lowerControlOut;
+        
+        udp.appOut++ --> appl.lowerLayerIn;
+        udp.appIn++ <-- appl.lowerLayerOut;
+
+        udp.ipOut --> networkLayer.transportIn++;
+        udp.ipIn <-- networkLayer.transportOut++;
+
+        udp.ipv6Out --> networkLayer.transportIn++;
+        udp.ipv6In <-- networkLayer.transportOut++;
+        
+        nic.upperLayerOut --> networkLayer.ifIn[0];
+        nic.upperLayerIn <-- networkLayer.ifOut[0];
+        
+        igmp.routerOut --> networkLayer.igmpIn;
+        igmp.routerIn <-- networkLayer.igmpOut;
+        
+        veinsradioIn --> nic.radioIn;
+
 }
