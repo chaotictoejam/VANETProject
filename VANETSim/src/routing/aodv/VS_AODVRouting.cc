@@ -26,7 +26,7 @@
 #include "NodeOperations.h"
 #include "RoutingTableAccess.h"
 
-Define_Module(AODVRouting);
+Define_Module(VS_AODVRouting);
 
 void AODVRouting::initialize(int stage)
 {

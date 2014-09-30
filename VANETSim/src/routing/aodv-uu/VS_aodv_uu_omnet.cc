@@ -45,7 +45,7 @@
 const int UDP_HEADER_BYTES = 8;
 typedef std::vector<IPv4Address> IPAddressVector;
 
-Define_Module(AODVUU);
+Define_Module(VS_AODVUU);
 
 /* Constructor for the AODVUU routing agent */
 
