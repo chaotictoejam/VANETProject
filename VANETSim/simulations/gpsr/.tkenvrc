@@ -1,0 +1,4 @@
+# Partial Tkenv config file -- see $HOME/.tkenvrc as well
+inspector "GPSRSim" "GPSRSim" "2" "565x342+104+104:normal"
+inspector "ManetSim" "ManetSim" "2" "565x342+25+25:normal"
+
