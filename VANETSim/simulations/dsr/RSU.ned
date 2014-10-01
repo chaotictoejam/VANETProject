@@ -20,8 +20,8 @@
 
 package vanetsim.simulations.dsr;
 
-import vanetsim.src.veins.base.modules.*;
-import vanetsim.src.veins.modules.nic.Nic80211p;
+import org.car2x.veins.base.modules.*;
+import org.car2x.veins.modules.nic.Nic80211p;
 
 module RSU
 {
@@ -30,7 +30,7 @@ module RSU
     gates:
         input veinsradioIn; // gate for sendDirect
     submodules:
-        appl: <applType> like vanetsim.src.veins.base.modules.IBaseApplLayer {
+        appl: <applType> like org.car2x.veins.base.modules.IBaseApplLayer {
             parameters:
                 @display("p=60,50");
         }

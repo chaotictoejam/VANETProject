@@ -1,70 +1,58 @@
+//
+// Copyright (C) 2008 Christoph Sommer <christoph.sommer@informatik.uni-erlangen.de>
+//
+// Documentation for these modules is at http://veins.car2x.org/
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//
+
 package vanetsim.simulations.aodv;
 
-import inet.applications.traci.TraCIDemo;
-import inet.base.NotificationBoard;
-import inet.linklayer.ieee80211.Ieee80211Nic;
-import vanetsim.src.veins.modules.mobility.traci.TraCIMobility;
-import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
-import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv4.RoutingTable;
-import inet.nodes.inet.NetworkLayer;
-import inet.transport.udp.UDP;
+import org.car2x.veins.base.modules.*;
+import org.car2x.veins.modules.nic.Nic80211p;
 
 module Car
 {
     parameters:
-    	@node();
+        string applType; //type of the application layer
+        string nicType = default("Nic80211p"); // type of network interface card
+        string veinsmobilityType; //type of the mobility module
     gates:
-    	input radioIn @directIn;
+        input veinsradioIn; // gate for sendDirect
     submodules:
-        notificationBoard: NotificationBoard {
-        	parameters:
-                @display("p=140,462");
-                }
-        ac_wlan: HostAutoConfigurator {
-            @display("p=296,402");
-            }
-        interfaceTable: InterfaceTable {
+        appl: <applType> like org.car2x.veins.base.modules.IBaseApplLayer {
             parameters:
-            	@display("p=140,326");
-            }
-        app: TraCIDemo {
-            parameters:
-            	@display("p=384,46");
-            }
-        mobility: TraCIMobility {
-            parameters:
-            	@display("p=60,459");
-            }
-        routingTable: RoutingTable {
-            parameters:
-                IPForward = true;
-                routerId = "";
-                routingFile = "";
-                @display("p=60,326");
+                @display("p=60,50");
         }
-        udp: UDP {
+
+        nic: <nicType> like org.car2x.veins.modules.nic.INic80211p {
             parameters:
-                @display("p=384,146");
-                }
-        networkLayer: NetworkLayer {
-            parameters:
-                proxyARP = false;
-                @display("p=304,327;q=queue");
-            gates:
-                ifIn[1];
-                ifOut[1];
+                @display("p=60,166");
         }
-        wlan: Ieee80211Nic {
+
+        veinsmobility: <veinsmobilityType> like org.car2x.veins.base.modules.IMobility {
             parameters:
-                @display("p=304,461;q=queue");
+                @display("p=130,172;i=block/cogwheel");
         }
-    connections allowunconnected:
-        udp.appOut++ --> app.udp$i;
-        udp.appIn++ <-- app.udp$o;
-        udp.ipOut --> networkLayer.transportIn++;
-        udp.ipIn <-- networkLayer.transportOut++;
-        wlan.upperLayerOut --> networkLayer.ifIn[0];
-        wlan.upperLayerIn <-- networkLayer.ifOut[0];
-        radioIn --> wlan.radioIn;
+        
+    connections:
+        nic.upperLayerOut --> appl.lowerLayerIn;
+        nic.upperLayerIn <-- appl.lowerLayerOut;
+        nic.upperControlOut --> appl.lowerControlIn;
+        nic.upperControlIn <-- appl.lowerControlOut;
+
+        veinsradioIn --> nic.radioIn;
+
 }

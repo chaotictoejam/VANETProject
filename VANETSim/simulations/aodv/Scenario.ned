@@ -18,13 +18,13 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package vanetsim.src.veins.nodes;
+package vanetsim.simulations.aodv;
 
-import vanetsim.src.veins.base.connectionManager.ConnectionManager;
-import vanetsim.src.veins.base.modules.BaseWorldUtility;
-import vanetsim.src.veins.modules.mobility.traci.TraCIScenarioManagerLaunchd;
-import vanetsim.src.veins.modules.obstacle.ObstacleControl;
-import vanetsim.src.veins.modules.world.annotations.AnnotationManager;
+import org.car2x.veins.base.connectionManager.ConnectionManager;
+import org.car2x.veins.base.modules.BaseWorldUtility;
+import org.car2x.veins.modules.mobility.traci.TraCIScenarioManagerLaunchd;
+import org.car2x.veins.modules.obstacle.ObstacleControl;
+import org.car2x.veins.modules.world.annotations.AnnotationManager;
 
 network Scenario
 {

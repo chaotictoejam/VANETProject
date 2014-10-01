@@ -1,5 +1,6 @@
+
 package vanetsim.simulations.aodv;
 
-network AODVSim extends Highway
+network AODVSim extends Scenario
 {
 }
