@@ -1,39 +1,52 @@
 package vanetsim.simulations.aodv;
 
-import org.car2x.veins.base.modules.*;
-import org.car2x.veins.modules.nic.Nic80211p;
-
+import inet.applications.traci.TraCIDemo;
+import inet.base.NotificationBoard;
+import inet.linklayer.ieee80211.Ieee80211Nic;
+import vanetsim.src.veins.modules.mobility.traci.TraCIMobility;
+import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
+import inet.networklayer.common.InterfaceTable;
+import inet.networklayer.ipv4.RoutingTable;
 import inet.nodes.inet.NetworkLayer;
 import inet.transport.udp.UDP;
-import inet.networklayer.ipv4.IIGMP;
 
 module Car
 {
     parameters:
-        string applType; //type of the application layer
-        string veinsmobilityType; //type of the mobility module
+    	@node();
     gates:
-        input veinsradioIn; // gate for sendDirect
+    	input radioIn @directIn;
     submodules:
-        appl: <applType> like org.car2x.veins.base.modules.IBaseApplLayer {
+        notificationBoard: NotificationBoard {
+        	parameters:
+                @display("p=140,462");
+                }
+        ac_wlan: HostAutoConfigurator {
+            @display("p=296,402");
+            }
+        interfaceTable: InterfaceTable {
             parameters:
-                @display("p=60,50");
-        }
-
-        nic: Nic80211p {
+            	@display("p=140,326");
+            }
+        app: TraCIDemo {
             parameters:
-                @display("p=60,166");
-        }
-
-        veinsmobility: <veinsmobilityType> like org.car2x.veins.base.modules.IMobility {
+            	@display("p=384,46");
+            }
+        mobility: TraCIMobility {
             parameters:
-                @display("p=130,172;i=block/cogwheel");
+            	@display("p=60,459");
+            }
+        routingTable: RoutingTable {
+            parameters:
+                IPForward = true;
+                routerId = "";
+                routingFile = "";
+                @display("p=60,326");
         }
-        
         udp: UDP {
             parameters:
                 @display("p=384,146");
-        }
+                }
         networkLayer: NetworkLayer {
             parameters:
                 proxyARP = false;
@@ -42,31 +55,16 @@ module Car
                 ifIn[1];
                 ifOut[1];
         }
-        igmp: <igmpType> like IIGMP {
+        wlan: Ieee80211Nic {
             parameters:
-                @display("p=39,33");
+                @display("p=304,461;q=queue");
         }
-    connections:
-        //nic.upperLayerOut --> appl.lowerLayerIn;
-        //nic.upperLayerIn <-- appl.lowerLayerOut;
-        nic.upperControlOut --> appl.lowerControlIn;
-        nic.upperControlIn <-- appl.lowerControlOut;
-        
-        udp.appOut++ --> appl.lowerLayerIn;
-        udp.appIn++ <-- appl.lowerLayerOut;
-
+    connections allowunconnected:
+        udp.appOut++ --> app.udp$i;
+        udp.appIn++ <-- app.udp$o;
         udp.ipOut --> networkLayer.transportIn++;
         udp.ipIn <-- networkLayer.transportOut++;
-
-        udp.ipv6Out --> networkLayer.transportIn++;
-        udp.ipv6In <-- networkLayer.transportOut++;
-        
-        nic.upperLayerOut --> networkLayer.ifIn[0];
-        nic.upperLayerIn <-- networkLayer.ifOut[0];
-        
-        igmp.routerOut --> networkLayer.igmpIn;
-        igmp.routerIn <-- networkLayer.igmpOut;
-        
-        veinsradioIn --> nic.radioIn;
-
+        wlan.upperLayerOut --> networkLayer.ifIn[0];
+        wlan.upperLayerIn <-- networkLayer.ifOut[0];
+        radioIn --> wlan.radioIn;
 }

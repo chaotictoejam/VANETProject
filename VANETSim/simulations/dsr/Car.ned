@@ -1,7 +1,7 @@
 package vanetsim.simulations.dsr;
 
-import org.car2x.veins.base.modules.*;
-import org.car2x.veins.modules.nic.Nic80211p;
+import vanetsim.src.veins.base.modules.*;
+import vanetsim.src.veins.modules.nic.Nic80211p;
 
 module Car
 {
@@ -11,7 +11,7 @@ module Car
     gates:
         input veinsradioIn; // gate for sendDirect
     submodules:
-        appl: <applType> like org.car2x.veins.base.modules.IBaseApplLayer {
+        appl: <applType> like vanetsim.src.veins.base.modules.IBaseApplLayer {
             parameters:
                 @display("p=60,50");
         }
@@ -21,7 +21,7 @@ module Car
                 @display("p=60,166");
         }
 
-        veinsmobility: <veinsmobilityType> like org.car2x.veins.base.modules.IMobility {
+        veinsmobility: <veinsmobilityType> like vanetsim.src.veins.base.modules.IMobility {
             parameters:
                 @display("p=130,172;i=block/cogwheel");
         }

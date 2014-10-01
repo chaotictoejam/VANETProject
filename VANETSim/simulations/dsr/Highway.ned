@@ -20,11 +20,11 @@
 
 package vanetsim.simulations.dsr;
 
-import org.car2x.veins.base.connectionManager.ConnectionManager;
-import org.car2x.veins.base.modules.BaseWorldUtility;
-import org.car2x.veins.modules.mobility.traci.TraCIScenarioManagerLaunchd;
-import org.car2x.veins.modules.obstacle.ObstacleControl;
-import org.car2x.veins.modules.world.annotations.AnnotationManager;
+import vanetsim.src.veins.base.connectionManager.ConnectionManager;
+import vanetsim.src.veins.base.modules.BaseWorldUtility;
+import vanetsim.src.veins.modules.mobility.traci.TraCIScenarioManagerLaunchd;
+import vanetsim.src.veins.modules.obstacle.ObstacleControl;
+import vanetsim.src.veins.modules.world.annotations.AnnotationManager;
 
 network Highway
 {
