@@ -1,4 +1,3 @@
 # Partial Tkenv config file -- see $HOME/.tkenvrc as well
-inspector "AODVSim" "AODVSim" "2" "565x342+26+26:normal"
 inspector "ManetSim" "ManetSim" "2" "565x342+25+25:normal"
 
