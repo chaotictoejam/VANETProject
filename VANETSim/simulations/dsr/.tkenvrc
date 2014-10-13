@@ -1,2 +1,3 @@
 # Partial Tkenv config file -- see $HOME/.tkenvrc as well
+inspector "DSRSim" "DSRSim" "2" "565x342+156+156:normal"
 
