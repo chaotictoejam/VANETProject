@@ -55,7 +55,7 @@
 #define AODV_USE_STL_RT
 #endif
 
-#define AODV_GLOBAL_STATISTISTIC
+//#define AODV_GLOBAL_STATISTISTIC
 
 /* Global definitions and lib functions */
 #include "aodv-uu/params.h"

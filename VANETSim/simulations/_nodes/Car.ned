@@ -28,8 +28,18 @@ import inet.transport.ISCTP;
 import inet.transport.ITCP;
 import inet.transport.IUDP;
 
+import inet.networklayer.IManetRouting;
+
 
 module Car extends org.car2x.veins.nodes.Car
 {
-   
+	parameters:
+        int numUdpApps;
+        string udpAppType = default("");
+        @display("bgb=424,541"); 
+        string routingProtocol @enum("VS_AODVUU","VS_DSRUU","OLSR","OLSR_ETX","DSDV_2","Batman") = default("");  // used mobile routing protocol. see: inet.networklayer.manetrouting
+	submodules:
+        manetrouting: <routingProtocol> like IManetRouting if routingProtocol != "" {
+            @display("p=522,307");
+        }
 }
