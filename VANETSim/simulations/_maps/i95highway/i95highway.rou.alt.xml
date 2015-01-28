@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 10/12/14 20:37:03 by SUMO duarouter Version 0.21.0
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value="i95highway.net.xml"/>
+        <trip-files value="i95highway.trips.xml"/>
+    </input>
+
+    <output>
+        <output-file value="i95highway.rou.xml"/>
+    </output>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/routes_file.xsd">
+    <vehicle id="0" depart="0.00">
+        <routeDistribution last="0">
+            <route cost="443.30" probability="1.00000000" edges="-10769025#0 -10774277#1 -10774277#0 -10769914#4 -10769914#3 -10769914#2 -10769914#1 -10769914#0 158601758#0 158601758#1 128992729 86700213#0 86700213#1 86700213#2 86700213#3 86700211#0 86700211#1 86700211#2 86700211#3 86700211#4 86700211#5 86700211#6 10777275#0 10777275#1 -296360459#13 -296360459#12 -296360459#11 -296360459#10 -296360459#9 -296360459#8 -296360459#7 10775144#1 10775144#2 10775144#3 10775144#4 10775144#5 10775144#6 10775144#7 10775144#8 10775144#9 10775144#10 10775144#11 10775144#12 10775144#13 10775144#14 10775144#15 10775144#16 10775144#17 10775144#18 -10770840#5 -10770840#4 -10770840#3 -10770840#2 -10770840#1 218304778#0 218304778#1 218304770#0 -218304778#10 -296777326"/>
+        </routeDistribution>
+    </vehicle>
+    <vehicle id="1" depart="1.00">
+        <routeDistribution last="0">
+            <route cost="123.95" probability="1.00000000" edges="-10778154#1 10778154#1 10777482#1 -10778377#0 10775514#4 10775514#5 10775514#6 10770520 -10770521#0 -10775346#7 -10775346#6 -10775346#5 -10775346#4 -10775346#3 -218099093#5 -218099093#4"/>
+        </routeDistribution>
+    </vehicle>
+    <vehicle id="2" depart="2.00">
+        <routeDistribution last="0">
+            <route cost="470.23" probability="1.00000000" edges="218541242 -218541244#2 -218541244#1 -218541244#0 -218541233#3 -218541233#2 -218541233#1 -218541233#0 10775757#2 10775757#3 41703037#5 41703037#6 41703037#7 86700210#0 86700210#1 86700210#2 86700210#3 10768229#0 10768229#1 10768229#2 10768229#3 10768229#4 10768229#5 10768229#6 10768229#7 10768965#0 10769629#0 -10777919 10779231"/>
+        </routeDistribution>
+    </vehicle>
+    <vehicle id="3" depart="3.00">
+        <routeDistribution last="0">
+            <route cost="785.74" probability="1.00000000" edges="40415783#0 10766484 301725006#0 301725006#1 291271455 86700210#0 86700210#1 86700210#2 86700210#3 10768229#0 10768229#1 10768229#2 10768229#3 10768229#4 10768229#5 10768229#6 10768229#7 10768965#0 -10768965#0"/>
+        </routeDistribution>
+    </vehicle>
+</routes>
