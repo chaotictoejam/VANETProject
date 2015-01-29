@@ -71,7 +71,7 @@
 
 #include "aodv_msg_struct.h"
 /* Forward declaration needed to be able to reference the class */
-class AODVUU;
+class VS_AODVUU;
 
 
 
@@ -112,7 +112,7 @@ class AODVUU;
 
 
 /* The AODV-UU routing agent class */
-class AODVUU : public ManetRoutingBase
+class VS_AODVUU : public ManetRoutingBase
 {
 
   private:
