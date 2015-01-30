@@ -42,7 +42,11 @@ module Car extends org.car2x.veins.nodes.Car
         manetrouting: <routingProtocol> like IManetRouting if routingProtocol != "" {
             @display("p=522,307");
         }
-    //connections:
-       // networkLayer.transportOut++ --> manetrouting.from_ip if routingProtocol != "";
-       // networkLayer.transportIn++ <-- manetrouting.to_ip if routingProtocol != "";
+        networkLayer: NetworkLayer {
+            parameters:
+                @display("p=329,287;q=queue");
+        }
+    connections:
+       networkLayer.transportOut++ --> manetrouting.from_ip if routingProtocol != "";
+       networkLayer.transportIn++ <-- manetrouting.to_ip if routingProtocol != "";
 }
