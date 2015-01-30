@@ -22,13 +22,13 @@ package vanetsim.simulations._nodes;
 
 
 import inet.networklayer.ipv4.RoutingTable;
+import inet.networklayer.IManetRouting;
+
 import inet.nodes.inet.NetworkLayer;
 
 import inet.transport.ISCTP;
 import inet.transport.ITCP;
 import inet.transport.IUDP;
-
-import inet.networklayer.IManetRouting;
 
 
 module Car extends org.car2x.veins.nodes.Car
@@ -37,12 +37,12 @@ module Car extends org.car2x.veins.nodes.Car
         int numUdpApps;
         string udpAppType = default("");
         @display("bgb=424,541"); 
-        string routingProtocol @enum("VS_AODVUU","VS_DSRUU") = default("VS_AODVUU");  // used mobile routing protocol. see: inet.networklayer.manetrouting
+        string routingProtocol @enum("AODVUU","DSRUU") = default("AODVUU");  // used mobile routing protocol. see: inet.networklayer.manetrouting
 	submodules:
         manetrouting: <routingProtocol> like IManetRouting if routingProtocol != "" {
             @display("p=522,307");
         }
-    connections:
-        networkLayer.transportOut++ --> manetrouting.from_ip if routingProtocol != "";
-        networkLayer.transportIn++ <-- manetrouting.to_ip if routingProtocol != "";
+    //connections:
+       // networkLayer.transportOut++ --> manetrouting.from_ip if routingProtocol != "";
+       // networkLayer.transportIn++ <-- manetrouting.to_ip if routingProtocol != "";
 }
