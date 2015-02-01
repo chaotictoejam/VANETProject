@@ -29,24 +29,57 @@ import inet.nodes.inet.NetworkLayer;
 import inet.transport.ISCTP;
 import inet.transport.ITCP;
 import inet.transport.IUDP;
+import inet.nodes.inet.StandardHost;
+import inet.world.radio.ChannelControl;
 
 
-module Car extends org.car2x.veins.nodes.Car
+module Car extends StandardHost
 {
 	parameters:
-        int numUdpApps;
+        string applType; //type of the application layer
+        string nicType = default("Nic80211p"); // type of network interface card
+        string veinsmobilityType; //type of the mobility module
         string udpAppType = default("");
+        
+        networkLayer.configurator.networkConfiguratorModule = "";
+        
         @display("bgb=424,541"); 
-        string routingProtocol @enum("AODVUU","DSRUU") = default("AODVUU");  // used mobile routing protocol. see: inet.networklayer.manetrouting
-	submodules:
+        
+        string routingProtocol @enum("AODVUU","DSRUU") = default("AODVUU");  // used mobile routing protocol
+    gates:
+        input veinsradioIn; // gate for sendDirect
+    submodules:
+        appl: <applType> like org.car2x.veins.base.modules.IBaseApplLayer {
+            parameters:
+                @display("p=60,50");
+        }
+
+        nic: <nicType> like org.car2x.veins.modules.nic.INic80211p {
+            parameters:
+                @display("p=60,166");
+        }
+
+        veinsmobility: <veinsmobilityType> like org.car2x.veins.base.modules.IMobility {
+            parameters:
+                @display("p=130,172;i=block/cogwheel");
+        }
+        
+        channelControl: ChannelControl {
+            parameters:
+                @display("p=50,50");
+        }
+        
         manetrouting: <routingProtocol> like IManetRouting if routingProtocol != "" {
             @display("p=522,307");
-        }
-        networkLayer: NetworkLayer {
-            parameters:
-                @display("p=329,287;q=queue");
         }
     connections:
        networkLayer.transportOut++ --> manetrouting.from_ip if routingProtocol != "";
        networkLayer.transportIn++ <-- manetrouting.to_ip if routingProtocol != "";
+       
+       nic.upperLayerOut --> appl.lowerLayerIn;
+       nic.upperLayerIn <-- appl.lowerLayerOut;
+       nic.upperControlOut --> appl.lowerControlIn;
+       nic.upperControlIn <-- appl.lowerControlOut;
+
+       veinsradioIn --> nic.radioIn;
 }
