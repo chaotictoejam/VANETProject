@@ -1,9 +1,10 @@
 
 package vanetsim.simulations.aodv;
 
-import org.car2x.veins.nodes.RSU;
+import  vanetsim.simulations._nodes.RSU;
+import  vanetsim.simulations._nodes.Car;
 
-network AODVSim extends org.car2x.veins.nodes.Scenario
+network AODVSim extends vanetsim.simulations._nodes.Scenario
 {
     submodules:
         rsu[1]: RSU {

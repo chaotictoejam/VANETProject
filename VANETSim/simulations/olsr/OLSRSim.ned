@@ -18,6 +18,13 @@
 
 package vanetsim.simulations.olsr;
 
-network OLSRSim extends Highway
+import vanetsim.simulations._nodes.RSU;
+
+network OLSRSim extends vanetsim.simulations._nodes.Scenario
 {
+    submodules:
+        rsu[1]: RSU {
+            @display("p=150,140;b=10,10,oval");
+        }
 }
+

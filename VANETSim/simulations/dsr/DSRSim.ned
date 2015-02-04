@@ -1,8 +1,8 @@
 package vanetsim.simulations.dsr;
 
-import org.car2x.veins.nodes.RSU;
+import vanetsim.simulations._nodes.RSU;
 
-network DSRSim extends org.car2x.veins.nodes.Scenario
+network DSRSim extends vanetsim.simulations._nodes.Scenario
 {
     submodules:
         rsu[1]: RSU {

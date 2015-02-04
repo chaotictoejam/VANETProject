@@ -31,6 +31,7 @@ import inet.transport.ITCP;
 import inet.transport.IUDP;
 import inet.nodes.inet.StandardHost;
 import inet.world.radio.ChannelControl;
+import inet.nodes.inet.AdhocHost;
 
 
 module Car extends StandardHost
@@ -49,17 +50,17 @@ module Car extends StandardHost
     gates:
         input veinsradioIn; // gate for sendDirect
     submodules:
-        appl: <applType> like org.car2x.veins.base.modules.IBaseApplLayer {
+        appl: <applType> like vanetsim.src.veins.base.modules.IBaseApplLayer {
             parameters:
                 @display("p=60,50");
         }
 
-        nic: <nicType> like org.car2x.veins.modules.nic.INic80211p {
+        nic: <nicType> like vanetsim.src.veins.modules.nic.INic80211p {
             parameters:
                 @display("p=60,166");
         }
 
-        veinsmobility: <veinsmobilityType> like org.car2x.veins.base.modules.IMobility {
+        veinsmobility: <veinsmobilityType> like vanetsim.src.veins.base.modules.IMobility {
             parameters:
                 @display("p=130,172;i=block/cogwheel");
         }
@@ -72,6 +73,11 @@ module Car extends StandardHost
         manetrouting: <routingProtocol> like IManetRouting if routingProtocol != "" {
             @display("p=522,307");
         }
+        
+        //host[numHosts]: AdhocHost {
+        //    parameters:
+        //        @display("i=device/pocketpc_s;r=,,#707070");
+        //}
     connections:
        networkLayer.transportOut++ --> manetrouting.from_ip if routingProtocol != "";
        networkLayer.transportIn++ <-- manetrouting.to_ip if routingProtocol != "";
