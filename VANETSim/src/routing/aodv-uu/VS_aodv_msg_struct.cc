@@ -2,7 +2,7 @@
 
 #include  <string.h>
 
-#include "VS_aodv_msg_struct.h"
+#include "VS_AODV_msg_struct.h"
 #include "InterfaceTable.h"
 #include "UDPPacket.h"
 #include "IPv4ControlInfo.h"

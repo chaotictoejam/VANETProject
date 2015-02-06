@@ -22,7 +22,7 @@
 #include "IPv4Address.h"
 #include "INETDefs.h"
 
-class INET_API AODVRouteData : public cObject
+class INET_API VS_AODVRouteData : public cObject
 {
   protected:
     std::set<IPv4Address> precursorList;
@@ -35,7 +35,7 @@ class INET_API AODVRouteData : public cObject
 
   public:
 
-    AODVRouteData()
+    VS_AODVRouteData()
     {
         active = true;
         repariable = false;
@@ -45,7 +45,7 @@ class INET_API AODVRouteData : public cObject
         destSeqNum = 0;
     }
 
-    virtual ~AODVRouteData() {}
+    virtual ~VS_AODVRouteData() {}
 
     unsigned int getDestSeqNum() const { return destSeqNum; }
     void setDestSeqNum(unsigned int destSeqNum) { this->destSeqNum = destSeqNum; }
@@ -63,7 +63,7 @@ class INET_API AODVRouteData : public cObject
     const std::set<IPv4Address>& getPrecursorList() const { return precursorList; }
 };
 
-std::ostream& operator<<(std::ostream& out, const AODVRouteData *data);
+std::ostream& operator<<(std::ostream& out, const VS_AODVRouteData *data);
 
 #endif // ifndef AODVROUTEDATA_H_
 

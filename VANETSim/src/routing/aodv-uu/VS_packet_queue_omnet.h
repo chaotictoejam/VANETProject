@@ -28,8 +28,8 @@
 #define MAX_QUEUE_TIME 10000 /* Maximum time packets can be queued (ms) */
 #define GARBAGE_COLLECT_TIME 1000 /* Interval between running the
 * garbage collector (ms) */
-#include "vs-aodv-uu/defs_aodv.h"
-#include "vs-aodv-uu/list.h"
+#include "vs-aodv-uu/VS_defs_aodv.h"
+#include "vs-aodv-uu/VS_list.h"
 
 /* Verdicts for queued packets: */
 enum
@@ -41,7 +41,7 @@ enum
 #ifndef AODV_USE_STL
 struct q_pkt
 {
-    list_t l;
+    VS_list_t l;
     struct in_addr  dest_addr;
     struct timeval q_time;
     cPacket *p;
@@ -49,7 +49,7 @@ struct q_pkt
 
 struct packet_queue
 {
-    list_t head;
+    VS_list_t head;
     unsigned int len;
     struct timer garbage_collect_timer;
     unsigned int length() { return len; }

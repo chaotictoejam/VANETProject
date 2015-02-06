@@ -29,7 +29,7 @@
 #ifndef AODV_USE_STL
 void NS_CLASS packet_queue_init(void)
 {
-    INIT_LIST_HEAD(&PQ.head);
+    INIT_VS_list_HEAD(&PQ.head);
     PQ.len = 0;
 
 #ifdef GARBAGE_COLLECT
@@ -44,12 +44,12 @@ void NS_CLASS packet_queue_init(void)
 void NS_CLASS packet_queue_destroy(void)
 {
     int count = 0;
-    list_t *pos, *tmp;
+    VS_list_t *pos, *tmp;
 
-    list_foreach_safe(pos, tmp, &PQ.head)
+    VS_list_foreach_safe(pos, tmp, &PQ.head)
     {
         struct q_pkt *qp = (struct q_pkt *)pos;
-        list_detach(pos);
+        VS_list_detach(pos);
 
         delete  qp->p;
 
@@ -65,17 +65,17 @@ void NS_CLASS packet_queue_destroy(void)
 int NS_CLASS packet_queue_garbage_collect(void)
 {
     int count = 0;
-    list_t *pos, *tmp;
+    VS_list_t *pos, *tmp;
     struct timeval now;
 
     gettimeofday(&now, NULL);
 
-    list_foreach_safe(pos, tmp, &PQ.head)
+    VS_list_foreach_safe(pos, tmp, &PQ.head)
     {
         struct q_pkt *qp = (struct q_pkt *)pos;
         if (timeval_diff(&now, &qp->q_time) > MAX_QUEUE_TIME)
         {
-            list_detach(pos);
+            VS_list_detach(pos);
             //icmpAccess.get()->sendErrorMessage(qp->p, ICMP_DESTINATION_UNREACHABLE, 0);
             //   drop (qp->p);
             sendICMP(qp->p);
@@ -92,7 +92,7 @@ int NS_CLASS packet_queue_garbage_collect(void)
 
     return count;
 }
-/* Buffer a packet in a FIFO queue. Implemented as a linked list,
+/* Buffer a packet in a FIFO queue. Implemented as a linked VS_list,
    where we add elements at the end and remove at the beginning.... */
 
 void NS_CLASS packet_queue_add(cPacket * p, struct in_addr dest_addr)
@@ -103,10 +103,10 @@ void NS_CLASS packet_queue_add(cPacket * p, struct in_addr dest_addr)
     if (PQ.len >= MAX_QUEUE_LENGTH)
     {
         DEBUG(LOG_DEBUG, 0, "MAX Queue length! Removing first packet.");
-        if (!list_empty(&PQ.head))
+        if (!VS_list_empty(&PQ.head))
         {
             qp = (struct q_pkt *)PQ.head.next;
-            list_detach(PQ.head.next);
+            VS_list_detach(PQ.head.next);
             dgram = qp->p;
             // drop (dgram);
             sendICMP(dgram);
@@ -129,7 +129,7 @@ void NS_CLASS packet_queue_add(cPacket * p, struct in_addr dest_addr)
 
     gettimeofday(&qp->q_time, NULL);
 
-    list_add_tail(&PQ.head, &qp->l);
+    VS_list_add_tail(&PQ.head, &qp->l);
 
     PQ.len++;
 
@@ -141,7 +141,7 @@ int NS_CLASS packet_queue_set_verdict(struct in_addr dest_addr, int verdict)
 {
     int count = 0;
     rt_table_t *rt, *next_hop_rt, *inet_rt = NULL;
-    list_t *pos, *tmp;
+    VS_list_t *pos, *tmp;
     struct in_addr gw_addr;
 
     double delay = 0;
@@ -155,40 +155,40 @@ int NS_CLASS packet_queue_set_verdict(struct in_addr dest_addr, int verdict)
     else
         rt = rt_table_find(dest_addr);
 
-    std::vector<ManetAddress> list;
+    std::vector<ManetAddress> VS_list;
     if (isInMacLayer())
     {
-        std::vector<MACAddress> listMac;
-        getApList(MACAddress(dest_addr.s_addr.getLo()),listMac);
-        while (!listMac.empty())
+        std::vector<MACAddress> VS_listMac;
+        getApVS_list(MACAddress(dest_addr.s_addr.getLo()),VS_listMac);
+        while (!VS_listMac.empty())
         {
-            list.push_back(listMac.back().getInt());
-            listMac.pop_back();
+            VS_list.push_back(VS_listMac.back().getInt());
+            VS_listMac.pop_back();
         }
     }
     else
     {
-        std::vector<IPv4Address> listIp;
-        getApListIp(IPv4Address(dest_addr.s_addr.getLo()),listIp);
-        while (!listIp.empty())
+        std::vector<IPv4Address> VS_listIp;
+        getApVS_listIp(IPv4Address(dest_addr.s_addr.getLo()),VS_listIp);
+        while (!VS_listIp.empty())
         {
-            list.push_back(listIp.back().getInt());
-            listIp.pop_back();
+            VS_list.push_back(VS_listIp.back().getInt());
+            VS_listIp.pop_back();
         }
     }
 
-    while (!list.empty())
+    while (!VS_list.empty())
     {
         struct in_addr dest_addr;
-        dest_addr.s_addr = list.back();
-        list.pop_back();
-        list_foreach_safe(pos, tmp, &PQ.head)
+        dest_addr.s_addr = VS_list.back();
+        VS_list.pop_back();
+        VS_list_foreach_safe(pos, tmp, &PQ.head)
         {
 
             struct q_pkt *qp = (struct q_pkt *)pos;
             if (qp->dest_addr.s_addr == dest_addr.s_addr)
             {
-                list_detach(pos);
+                VS_list_detach(pos);
 
                 switch (verdict)
                 {
@@ -319,7 +319,7 @@ int NS_CLASS packet_queue_garbage_collect(void)
 
     return count;
 }
-/* Buffer a packet in a FIFO queue. Implemented as a linked list,
+/* Buffer a packet in a FIFO queue. Implemented as a linked VS_list,
    where we add elements at the end and remove at the beginning.... */
 
 void NS_CLASS packet_queue_add(cPacket * p, struct in_addr dest_addr)
@@ -371,33 +371,33 @@ int NS_CLASS packet_queue_set_verdict(struct in_addr dest_addr, int verdict)
     else
         rt = rt_table_find(dest_addr);
 
-    std::vector<ManetAddress> list;
+    std::vector<ManetAddress> VS_list;
     if (isInMacLayer())
     {
-        std::vector<MACAddress> listMac;
-        getApList(dest_addr.s_addr.getMAC(), listMac);
-        while (!listMac.empty())
+        std::vector<MACAddress> VS_listMac;
+        getApVS_list(dest_addr.s_addr.getMAC(), VS_listMac);
+        while (!VS_listMac.empty())
         {
-            list.push_back(ManetAddress(listMac.back()));
-            listMac.pop_back();
+            VS_list.push_back(ManetAddress(VS_listMac.back()));
+            VS_listMac.pop_back();
         }
     }
     else
     {
-        std::vector<IPv4Address> listIp;
-        getApListIp(dest_addr.s_addr.getIPv4(),listIp);
-        while (!listIp.empty())
+        std::vector<IPv4Address> VS_listIp;
+        getApVS_listIp(dest_addr.s_addr.getIPv4(),VS_listIp);
+        while (!VS_listIp.empty())
         {
-            list.push_back(ManetAddress(listIp.back()));
-            listIp.pop_back();
+            VS_list.push_back(ManetAddress(VS_listIp.back()));
+            VS_listIp.pop_back();
         }
     }
 
-    while (!list.empty())
+    while (!VS_list.empty())
     {
         struct in_addr dest_addr;
-        dest_addr.s_addr = list.back();
-        list.pop_back();
+        dest_addr.s_addr = VS_list.back();
+        VS_list.pop_back();
         for (unsigned int i=0; i < PQ.pkQueue.size();)
         {
             struct q_pkt *qp = PQ.pkQueue[i];

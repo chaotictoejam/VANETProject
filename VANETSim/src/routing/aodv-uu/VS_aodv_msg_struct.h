@@ -1,6 +1,6 @@
 
-#ifndef _VS_AODV_MSG_OMNET_H
-#define _VS_AODV_MSG_OMNET_H
+#ifndef _VS_AODV_msg_OMNET_H
+#define _VS_AODV_msg_OMNET_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -52,9 +52,9 @@ struct VS_AODV_msg : public cPacket
   private:
     void copy(const VS_AODV_msg& other);
 };
-typedef VS_AODV_msg hdr_aodvuu;    // Name convention for headers
+typedef VS_AODV_msg hdr_VS_AODVUU;    // Name convention for headers
 
-#define HDR_VS_AODVUU(p) ((hdr_aodvuu *) hdr_aodvuu::access(p))
+#define HDR_VS_AODVUU(p) ((hdr_VS_AODVUU *) hdr_VS_AODVUU::access(p))
 #define VS_AODV_EXT_HDR_SIZE 2
 #define VS_AODV_EXT_DATA(ext) ((char *)ext->pointer)
 #define VS_AODV_EXT_NEXT(ext) ((VS_AODV_ext *) (ext+1))

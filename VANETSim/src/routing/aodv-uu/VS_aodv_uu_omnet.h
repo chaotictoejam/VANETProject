@@ -58,18 +58,18 @@
 //#define AODV_GLOBAL_STATISTISTIC
 
 /* Global definitions and lib functions */
-#include "aodv-uu/params.h"
-#include "aodv-uu/defs_aodv.h"
+#include "vs-aodv-uu/VS_params.h"
+#include "vs-aodv-uu/VS_defs_aodv.h"
 
 /* System-dependent datatypes */
 /* Needed by some network-related datatypes */
 #include "ManetRoutingBase.h"
-#include "aodv-uu/list.h"
+#include "vs-aodv-uu/VS_list.h"
 
 #include "ICMPAccess.h"
 #include "Ieee80211Frame_m.h"
 
-#include "aodv_msg_struct.h"
+#include "VS_aodv_msg_struct.h"
 /* Forward declaration needed to be able to reference the class */
 class VS_AODVUU;
 
@@ -83,17 +83,17 @@ class VS_AODVUU;
 #undef NS_NO_GLOBALS
 #define NS_NO_DECLARATIONS
 
-#include "aodv-uu/timer_queue_aodv.h"
-#include "aodv-uu/aodv_hello.h"
-#include "aodv-uu/aodv_rerr.h"
-#include "aodv-uu/aodv_rrep.h"
-#include "aodv-uu/aodv_rreq.h"
-#include "aodv-uu/aodv_socket.h"
-#include "aodv-uu/aodv_timeout.h"
-#include "aodv-uu/debug_aodv.h"
-#include "aodv-uu/routing_table.h"
-#include "aodv-uu/seek_list.h"
-#include "aodv-uu/locality.h"
+#include "vs-aodv-uu/VS_timer_queue_VS_aodv.h"
+#include "vs-aodv-uu/VS_aodv_hello.h"
+#include "vs-aodv-uu/VS_aodv_rerr.h"
+#include "vs-aodv-uu/VS_aodv_rrep.h"
+#include "vs-aodv-uu/VS_aodv_rreq.h"
+#include "vs-aodv-uu/VS_aodv_socket.h"
+#include "vs-aodv-uu/VS_aodv_timeout.h"
+#include "vs-aodv-uu/VS_debug_VS_aodv.h"
+#include "vs-aodv-uu/VS_routing_table.h"
+#include "vs-aodv-uu/VS_seek_list.h"
+#include "vs-aodv-uu/VS_locality.h"
 
 #include "VS_packet_queue_omnet.h"
 
@@ -136,16 +136,16 @@ class VS_AODVUU : public ManetRoutingBase
     }
     // cMessage  messageEvent;
     typedef std::multimap<simtime_t, struct timer*> AodvTimerMap;
-    AodvTimerMap aodvTimerMap;
+    AodvTimerMap VS_aodvTimerMap;
     typedef std::map<ManetAddress, struct rt_table*> AodvRtTableMap;
-    AodvRtTableMap aodvRtTableMap;
+    AodvRtTableMap VS_aodvRtTableMap;
 
 
   public:
     static int  log_file_fd;
     static bool log_file_fd_init;
-    AODVUU() {isRoot = false; is_init = false; log_file_fd_init = false; sendMessageEvent = new cMessage();/*&messageEvent;*/}
-    ~AODVUU();
+    VS_AODVUU() {isRoot = false; is_init = false; log_file_fd_init = false; sendMessageEvent = new cMessage();/*&messageEvent;*/}
+    ~VS_AODVUU();
 
     void actualizeTablesWithCollaborative(const ManetAddress &);
 
@@ -168,7 +168,7 @@ class VS_AODVUU : public ManetRoutingBase
         delete p;
         // icmpAccess.get()->sendErrorMessage(p, ICMP_DESTINATION_UNREACHABLE, cause);
     }
-    int startAODVUUAgent();
+    int startVS_AODVUUAgent();
     void scheduleNextEvent();
     const char *if_indextoname(int, char *);
     IPv4Datagram *pkt_encapsulate(IPv4Datagram *, IPv4Address);
@@ -182,7 +182,7 @@ class VS_AODVUU : public ManetRoutingBase
 
     cMessage * sendMessageEvent;
 
-    void recvAODVUUPacket(cMessage * p);
+    void recvVS_AODVUUPacket(cMessage * p);
     void processPacket(IPv4Datagram *,unsigned int);
     void processMacPacket(cPacket * p, const ManetAddress &dest, const ManetAddress &src, int ifindex);
 
@@ -202,43 +202,43 @@ class VS_AODVUU : public ManetRoutingBase
 #undef NS_NO_DECLARATIONS
 
 #undef _AODV_NEIGHBOR_H
-#include "aodv-uu/aodv_neighbor.h"
+#include "vs-aodv-uu/VS_aodv_neighbor.h"
 
 #undef _AODV_HELLO_H
-#include "aodv-uu/aodv_hello.h"
+#include "vs-aodv-uu/VS_aodv_hello.h"
 
 #undef _AODV_RERR_H
-#include "aodv-uu/aodv_rerr.h"
+#include "vs-aodv-uu/VS_aodv_rerr.h"
 
 #undef _AODV_RREP_H
-#include "aodv-uu/aodv_rrep.h"
+#include "vs-aodv-uu/VS_aodv_rrep.h"
 
 #undef _AODV_RREQ_H
-#include "aodv-uu/aodv_rreq.h"
+#include "vs-aodv-uu/VS_aodv_rreq.h"
 
 #undef _AODV_SOCKET_H
-#include "aodv-uu/aodv_socket.h"
+#include "vs-aodv-uu/VS_aodv_socket.h"
 
 #undef _AODV_TIMEOUT_H
-#include "aodv-uu/aodv_timeout.h"
+#include "vs-aodv-uu/VS_aodv_timeout.h"
 
 #undef _DEBUG_H
-#include "aodv-uu/debug_aodv.h"
+#include "vs-aodv-uu/VS_debug_aodv.h"
 
 #undef _ROUTING_TABLE_H
-#include "aodv-uu/routing_table.h"
+#include "vs-aodv-uu/VS_routing_table.h"
 
-#undef _SEEK_LIST_H
-#include "aodv-uu/seek_list.h"
+#undef _SEEK_VS_list_H
+#include "vs-aodv-uu/VS_seek_list.h"
 
 #undef _TIMER_QUEUE_H
-#include "aodv-uu/timer_queue_aodv.h"
+#include "vs-aodv-uu/VS_timer_queue_aodv.h"
 
 #undef _LOCALITY_H
-#include "aodv-uu/locality.h"
+#include "vs-aodv-uu/VS_locality.h"
 
 #undef _PACKET_QUEUE_H
-#include "VS_packet_queue_omnet.h"
+#include "packet_queue_omnet.h"
 
 #undef NS_NO_GLOBALS
 
@@ -264,29 +264,29 @@ class VS_AODVUU : public ManetRoutingBase
     int ttl_start;
     int delete_period;
 
-    /* From aodv_hello.c */
+    /* From VS_aodv_hello.c */
     struct timer hello_timer;
 #ifndef AODV_USE_STL
-    /* From aodv_rreq.c */
-    list_t rreqRecords;
+    /* From VS_aodv_rreq.c */
+    VS_list_t rreqRecords;
 #define rreq_records this->rreqRecords
-    list_t rreqBlacklist;
-#define  rreq_blacklist this->rreqBlacklist
+    VS_list_t rreqBlackVS_list;
+#define  rreq_blackVS_list this->rreqBlackVS_list
 
-    /* From seek_list.c */
-    list_t seekHead;
+    /* From seek_VS_list.c */
+    VS_list_t seekHead;
 #define seekhead this->seekHead
 
-    /* From timer_queue_aodv.c */
-    list_t timeList;
-#define TQ this->timeList
+    /* From timer_queue_VS_aodv.c */
+    VS_list_t timeVS_list;
+#define TQ this->timeVS_list
 #else
     typedef std::vector <rreq_record *>RreqRecords;
-    typedef std::map <ManetAddress, struct blacklist *>RreqBlacklist;
-    typedef std::map <ManetAddress, seek_list_t*>SeekHead;
+    typedef std::map <ManetAddress, struct blackVS_list *>RreqBlackVS_list;
+    typedef std::map <ManetAddress, seek_VS_list_t*>SeekHead;
 
     RreqRecords rreq_records;
-    RreqBlacklist rreq_blacklist;
+    RreqBlackVS_list rreq_blackVS_list;
     SeekHead seekhead;
 #endif
     /* From debug.c */
@@ -338,7 +338,7 @@ class VS_AODVUU : public ManetRoutingBase
 };
 
 #if 0
-/* From defs.h (needs the AODVUU class declaration) */
+/* From defs.h (needs the VS_AODVUU class declaration) */
 inline int NS_CLASS ifindex2devindex(unsigned int ifindex)
 {
     int i;

@@ -15,8 +15,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef AODVROUTING_H_
-#define AODVROUTING_H_
+#ifndef VS_AODVROUTING_H_
+#define VS_AODVROUTING_H_
 
 #include "INETDefs.h"
 #include "IInterfaceTable.h"
@@ -38,7 +38,7 @@
  * in the IP-layer required by this protocol.
  */
 
-class INET_API AODVRouting : public cSimpleModule, public ILifecycle, public INetfilter::IHook, public INotifiable
+class INET_API VS_AODVRouting : public cSimpleModule, public ILifecycle, public INetfilter::IHook, public INotifiable
 {
   protected:
     /*
@@ -204,8 +204,8 @@ class INET_API AODVRouting : public cSimpleModule, public ILifecycle, public INe
     virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback);
 
   public:
-    AODVRouting();
-    virtual ~AODVRouting();
+    VS_AODVRouting();
+    virtual ~VS_AODVRouting();
 };
 
 #endif // ifndef AODVROUTING_H_

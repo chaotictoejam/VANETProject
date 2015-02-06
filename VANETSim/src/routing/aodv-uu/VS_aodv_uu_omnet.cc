@@ -40,29 +40,29 @@
 #include "IPvXAddress.h"
 #include "ControlManetRouting_m.h"
 #include "Ieee802Ctrl_m.h"
-#include "aodv_uu_omnet.h"
+#include "VS_aodv_uu_omnet.h"
 
 const int UDP_HEADER_BYTES = 8;
 typedef std::vector<IPv4Address> IPAddressVector;
 
 Define_Module(VS_AODVUU);
 
-/* Constructor for the AODVUU routing agent */
+/* Constructor for the VS_AODVUU routing agent */
 
-bool AODVUU::log_file_fd_init=false;
-int AODVUU::log_file_fd = -1;
+bool VS_AODVUU::log_file_fd_init=false;
+int VS_AODVUU::log_file_fd = -1;
 
-#ifdef AODV_GLOBAL_STATISTISTIC
-bool AODVUU::iswrite = false;
-int AODVUU::totalSend=0;
-int AODVUU::totalRreqSend=0;
-int AODVUU::totalRreqRec=0;
-int AODVUU::totalRrepSend=0;
-int AODVUU::totalRrepRec=0;
-int AODVUU::totalRrepAckSend=0;
-int AODVUU::totalRrepAckRec=0;
-int AODVUU::totalRerrSend=0;
-int AODVUU::totalRerrRec=0;
+#ifdef VS_AODV_GLOBAL_STATISTISTIC
+bool VS_AODVUU::iswrite = false;
+int VS_AODVUU::totalSend=0;
+int VS_AODVUU::totalRreqSend=0;
+int VS_AODVUU::totalRreqRec=0;
+int VS_AODVUU::totalRrepSend=0;
+int VS_AODVUU::totalRrepRec=0;
+int VS_AODVUU::totalRrepAckSend=0;
+int VS_AODVUU::totalRrepAckRec=0;
+int VS_AODVUU::totalRerrSend=0;
+int VS_AODVUU::totalRerrRec=0;
 #endif
 
 void NS_CLASS initialize(int stage)
@@ -76,7 +76,7 @@ void NS_CLASS initialize(int stage)
      */
     if (stage == 4)
     {
-#ifndef AODV_GLOBAL_STATISTISTIC
+#ifndef VS_AODV_GLOBAL_STATISTISTIC
         iswrite = false;
         totalSend=0;
         totalRreqSend=0;
@@ -158,7 +158,7 @@ void NS_CLASS initialize(int stage)
         if (debug && !log_file_fd_init)
         {
             log_file_fd = -1;
-            openlog("aodv-uu ",0,LOG_USER);
+            openlog("VS_aodv-uu ",0,LOG_USER);
             log_init();
             log_file_fd_init=true;
         }
@@ -200,22 +200,22 @@ void NS_CLASS initialize(int stage)
         {
             DEV_NR(getWlanInterfaceIndex(i)).enabled = 1;
             DEV_NR(getWlanInterfaceIndex(i)).sock = -1;
-            DEV_NR(getWlanInterfaceIndex(i)).broadcast.s_addr = ManetAddress(IPv4Address(AODV_BROADCAST));
+            DEV_NR(getWlanInterfaceIndex(i)).broadcast.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
         }
 
         NS_DEV_NR = getWlanInterfaceIndexByAddress();
         NS_IFINDEX = getWlanInterfaceIndexByAddress();
-#ifndef AODV_USE_STL
-        list_t *lista_ptr;
-        lista_ptr=&rreq_records;
-        INIT_LIST_HEAD(&rreq_records);
-        lista_ptr=&rreq_blacklist;
-        INIT_LIST_HEAD(&rreq_blacklist);
-        lista_ptr=&seekhead;
-        INIT_LIST_HEAD(&seekhead);
+#ifndef VS_AODV_USE_STL
+        VS_list_t *VS_lista_ptr;
+        VS_lista_ptr=&rreq_records;
+        INIT_VS_list_HEAD(&rreq_records);
+        VS_lista_ptr=&rreq_blackVS_list;
+        INIT_VS_list_HEAD(&rreq_blackVS_list);
+        VS_lista_ptr=&seekhead;
+        INIT_VS_list_HEAD(&seekhead);
 
-        lista_ptr=&TQ;
-        INIT_LIST_HEAD(&TQ);
+        VS_lista_ptr=&TQ;
+        INIT_VS_list_HEAD(&TQ);
 #endif
         /* Initialize data structures */
         worb_timer.data = NULL;
@@ -238,10 +238,10 @@ void NS_CLASS initialize(int stage)
 
         propagateProactive = par("propagateProactive");
         strcpy(nodeName,getParentModule()->getParentModule()->getFullName());
-        aodv_socket_init();
+        VS_aodv_socket_init();
         rt_table_init();
         packet_queue_init();
-        startAODVUUAgent();
+        startVS_AODVUUAgent();
 
         is_init=true;
         // Initialize the timer
@@ -251,46 +251,46 @@ void NS_CLASS initialize(int stage)
 }
 
 /* Destructor for the AODV-UU routing agent */
-NS_CLASS ~ AODVUU()
+NS_CLASS ~ VS_AODVUU()
 {
-#ifdef AODV_USE_STL_RT
-    while (!aodvRtTableMap.empty())
+#ifdef VS_AODV_USE_STL_RT
+    while (!VS_aodvRtTableMap.empty())
     {
-        free (aodvRtTableMap.begin()->second);
-        aodvRtTableMap.erase(aodvRtTableMap.begin());
+        free (VS_aodvRtTableMap.begin()->second);
+        VS_aodvRtTableMap.erase(VS_aodvRtTableMap.begin());
     }
 #else
-    list_t *tmp = NULL, *pos = NULL;
+    VS_list_t *tmp = NULL, *pos = NULL;
     for (int i = 0; i < RT_TABLESIZE; i++)
     {
-        list_foreach_safe(pos, tmp, &rt_tbl.tbl[i])
+        VS_list_foreach_safe(pos, tmp, &rt_tbl.tbl[i])
         {
             rt_table_t *rt = (rt_table_t *) pos;
-            list_detach(&rt->l);
-            precursor_list_destroy(rt);
+            VS_list_detach(&rt->l);
+            precursor_VS_list_destroy(rt);
             free(rt);
         }
     }
 #endif
-#ifndef AODV_USE_STL
-    while (!list_empty(&rreq_records))
+#ifndef VS_AODV_USE_STL
+    while (!VS_list_empty(&rreq_records))
     {
-        pos = list_first(&rreq_records);
-        list_detach(pos);
+        pos = VS_list_first(&rreq_records);
+        VS_list_detach(pos);
         if (pos) free(pos);
     }
 
-    while (!list_empty(&rreq_blacklist))
+    while (!VS_list_empty(&rreq_blackVS_list))
     {
-        pos = list_first(&rreq_blacklist);
-        list_detach(pos);
+        pos = VS_list_first(&rreq_blackVS_list);
+        VS_list_detach(pos);
         if (pos) free(pos);
     }
 
-    while (!list_empty(&seekhead))
+    while (!VS_list_empty(&seekhead))
     {
-        pos = list_first(&seekhead);
-        list_detach(pos);
+        pos = VS_list_first(&seekhead);
+        VS_list_detach(pos);
         if (pos) free(pos);
     }
 #else
@@ -300,10 +300,10 @@ NS_CLASS ~ AODVUU()
         rreq_records.pop_back();
     }
 
-    while (!rreq_blacklist.empty())
+    while (!rreq_blackVS_list.empty())
     {
-        free (rreq_blacklist.begin()->second);
-        rreq_blacklist.erase(rreq_blacklist.begin());
+        free (rreq_blackVS_list.begin()->second);
+        rreq_blackVS_list.erase(rreq_blackVS_list.begin());
     }
 
     while (!seekhead.empty())
@@ -336,7 +336,7 @@ void NS_CLASS packetFailed(IPv4Datagram *dgram)
     DEBUG(LOG_DEBUG, 0, "Got failure callback");
     /* We don't care about link failures for broadcast or non-data packets */
     if (dgram->getDestAddress().getInt() == IP_BROADCAST ||
-            dgram->getDestAddress().getInt() == AODV_BROADCAST)
+            dgram->getDestAddress().getInt() == VS_AODV_BROADCAST)
     {
         DEBUG(LOG_DEBUG, 0, "Ignoring callback");
         scheduleNextEvent();
@@ -346,7 +346,7 @@ void NS_CLASS packetFailed(IPv4Datagram *dgram)
 
     DEBUG(LOG_DEBUG, 0, "LINK FAILURE for next_hop=%s dest=%s ",ip_to_str(next_hop), ip_to_str(dest_addr));
 
-    if (seek_list_find(dest_addr))
+    if (seek_VS_list_find(dest_addr))
     {
         DEBUG(LOG_DEBUG, 0, "Ongoing route discovery, buffering packet...");
         packet_queue_add((IPv4Datagram *)dgram->dup(), dest_addr);
@@ -410,7 +410,7 @@ void NS_CLASS packetFailedMac(Ieee80211DataFrame *dgram)
 
     src_addr.s_addr = ManetAddress(dgram->getAddress3());
     dest_addr.s_addr = ManetAddress(dgram->getAddress4());
-    if (seek_list_find(dest_addr))
+    if (seek_VS_list_find(dest_addr))
     {
         DEBUG(LOG_DEBUG, 0, "Ongoing route discovery, buffering packet...");
         packet_queue_add(dgram->dup(), dest_addr);
@@ -478,7 +478,7 @@ void NS_CLASS packetFailedMac(Ieee80211DataFrame *dgram)
 /* Entry-level packet reception */
 void NS_CLASS handleMessage (cMessage *msg)
 {
-    AODV_msg *aodvMsg=NULL;
+    VS_AODV_msg *VS_aodvMsg=NULL;
     IPv4Datagram * ipDgram=NULL;
     UDPPacket * udpPacket=NULL;
 
@@ -539,9 +539,9 @@ void NS_CLASS handleMessage (cMessage *msg)
                         if (rev_rt && rev_rt->state == VALID)
                             rerr_dest = rev_rt->next_hop;
                         else
-                            rerr_dest.s_addr = ManetAddress(IPv4Address(AODV_BROADCAST));
+                            rerr_dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
 
-                        aodv_socket_send((AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr), 1, &DEV_IFINDEX(NS_IFINDEX));
+                        VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr), 1, &DEV_IFINDEX(NS_IFINDEX));
                     }
                 }
             }
@@ -581,7 +581,7 @@ void NS_CLASS handleMessage (cMessage *msg)
         scheduleNextEvent();
         return;
     }
-    else if (dynamic_cast<UDPPacket *>(msg) || dynamic_cast<AODV_msg  *>(msg))
+    else if (dynamic_cast<UDPPacket *>(msg) || dynamic_cast<VS_AODV_msg  *>(msg))
     {
         udpPacket = NULL;
         if (!isInMacLayer())
@@ -598,18 +598,18 @@ void NS_CLASS handleMessage (cMessage *msg)
         else
             msg_aux = msg;
 
-        if (dynamic_cast<AODV_msg  *>(msg_aux))
+        if (dynamic_cast<VS_AODV_msg  *>(msg_aux))
         {
-            aodvMsg = check_and_cast  <AODV_msg *>(msg_aux);
+            VS_aodvMsg = check_and_cast  <VS_AODV_msg *>(msg_aux);
             if (!isInMacLayer())
             {
                 IPv4ControlInfo *controlInfo = check_and_cast<IPv4ControlInfo*>(udpPacket->removeControlInfo());
                 src_addr.s_addr = ManetAddress(controlInfo->getSrcAddr());
-                aodvMsg->setControlInfo(controlInfo);
+                VS_aodvMsg->setControlInfo(controlInfo);
             }
             else
             {
-                Ieee802Ctrl *controlInfo = check_and_cast<Ieee802Ctrl*>(aodvMsg->getControlInfo());
+                Ieee802Ctrl *controlInfo = check_and_cast<Ieee802Ctrl*>(VS_aodvMsg->getControlInfo());
                 src_addr.s_addr = ManetAddress(controlInfo->getSrc());
             }
         }
@@ -635,12 +635,12 @@ void NS_CLASS handleMessage (cMessage *msg)
     /* Detect routing loops */
     if (isLocalAddress(src_addr.s_addr))
     {
-        delete aodvMsg;
-        aodvMsg=NULL;
+        delete VS_aodvMsg;
+        VS_aodvMsg=NULL;
         scheduleNextEvent();
         return;
     }
-    recvAODVUUPacket(aodvMsg);
+    recvVS_AODVUUPacket(VS_aodvMsg);
     scheduleNextEvent();
 }
 /*
@@ -672,7 +672,7 @@ void NS_CLASS handleMessage (cMessage *msg)
 
 
 /* Starts the AODV-UU routing agent */
-int NS_CLASS startAODVUUAgent()
+int NS_CLASS startVS_AODVUUAgent()
 {
 
     /* Set up the wait-on-reboot timer */
@@ -771,15 +771,15 @@ IPv4Datagram *NS_CLASS pkt_decapsulate(IPv4Datagram *p)
   earliest event (so that the timer queue will be investigated then).
   Should be called whenever something might have changed the timer queue.
 */
-#ifdef AODV_USE_STL
+#ifdef VS_AODV_USE_STL
 void NS_CLASS scheduleNextEvent()
 {
     simtime_t timer;
     simtime_t timeout = timer_age_queue();
 
-    if (!aodvTimerMap.empty())
+    if (!VS_aodvTimerMap.empty())
     {
-        timer = aodvTimerMap.begin()->first;
+        timer = VS_aodvTimerMap.begin()->first;
         if (sendMessageEvent->isScheduled())
         {
             if (timer < sendMessageEvent->getArrivalTime())
@@ -836,17 +836,17 @@ const char *NS_CLASS if_indextoname(int ifindex, char *ifname)
 
 
 
-void NS_CLASS recvAODVUUPacket(cMessage * msg)
+void NS_CLASS recvVS_AODVUUPacket(cMessage * msg)
 {
     struct in_addr src, dst;
     int ttl;
     int interfaceId;
 
-    AODV_msg *aodv_msg = check_and_cast<AODV_msg *> (msg);
-    int len = aodv_msg->getByteLength();
+    VS_AODV_msg *VS_aodv_msg = check_and_cast<VS_AODV_msg *> (msg);
+    int len = VS_aodv_msg->getByteLength();
     int ifIndex = NS_IFINDEX;
 
-    ttl =  aodv_msg->ttl-1;
+    ttl =  VS_aodv_msg->ttl-1;
     if (!isInMacLayer())
     {
         IPv4ControlInfo *ctrl = check_and_cast<IPv4ControlInfo *>(msg->getControlInfo());
@@ -879,8 +879,8 @@ void NS_CLASS recvAODVUUPacket(cMessage * msg)
             }
         }
     }
-    aodv_socket_process_packet(aodv_msg, len, src, dst, ttl, ifIndex);
-    delete   aodv_msg;
+    VS_aodv_socket_process_packet(VS_aodv_msg, len, src, dst, ttl, ifIndex);
+    delete   VS_aodv_msg;
 }
 
 
@@ -953,8 +953,8 @@ void NS_CLASS processMacPacket(cPacket * p, const ManetAddress &dest, const Mane
             if (rev_rt && rev_rt->state == VALID)
                 rerr_dest = rev_rt->next_hop;
             else
-                rerr_dest.s_addr = ManetAddress(IPv4Address(AODV_BROADCAST));
-            aodv_socket_send((AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+                rerr_dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
+            VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
                     1, &DEV_IFINDEX(ifindex));
             if (wait_on_reboot)
             {
@@ -1024,7 +1024,7 @@ void NS_CLASS processPacket(IPv4Datagram * p,unsigned int ifindex)
     bool isMcast = ie->ipv4Data()->isMemberOfMulticastGroup(dest_addr.s_addr.getIPv4());
 
     /* If the packet is not interesting we just let it go through... */
-    if (isMcast || dest_addr.s_addr == ManetAddress(IPv4Address(AODV_BROADCAST)))
+    if (isMcast || dest_addr.s_addr == ManetAddress(IPv4Address(VS_AODV_BROADCAST)))
     {
         send(p,"to_ip");
         return;
@@ -1100,9 +1100,9 @@ void NS_CLASS processPacket(IPv4Datagram * p,unsigned int ifindex)
         if (rev_rt && rev_rt->state == VALID)
             rerr_dest = rev_rt->next_hop;
         else
-            rerr_dest.s_addr = ManetAddress(IPv4Address(AODV_BROADCAST));
+            rerr_dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
 
-        aodv_socket_send((AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+        VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
                          1, &DEV_IFINDEX(ifindex));
         if (wait_on_reboot)
         {
@@ -1329,7 +1329,7 @@ void NS_CLASS setRefreshRoute(const ManetAddress &destination, const ManetAddres
 
 bool NS_CLASS isOurType(cPacket * msg)
 {
-    AODV_msg *re = dynamic_cast <AODV_msg *>(msg);
+    VS_AODV_msg *re = dynamic_cast <VS_AODV_msg *>(msg);
     if (re)
         return true;
     return false;
@@ -1345,7 +1345,7 @@ bool NS_CLASS getDestAddress(cPacket *msg,ManetAddress &dest)
 
 }
 
-#ifdef AODV_USE_STL_RT
+#ifdef VS_AODV_USE_STL_RT
 bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const int &ifaceIndex,const int &hops,const ManetAddress &mask)
 {
     Enter_Method_Silent();
@@ -1370,25 +1370,25 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
 
             /* Unicast the RERR to the source of the data transmission
              * if possible, otherwise we broadcast it. */
-            rerr_dest.s_addr = ManetAddress(IPv4Address(AODV_BROADCAST));
+            rerr_dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
 
-            aodv_socket_send((AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
                              1, &DEV_IFINDEX(NS_IFINDEX));
         }
         ManetAddress dest = fwd_rt->dest_addr.s_addr;
-        AodvRtTableMap::iterator it = aodvRtTableMap.find(dest);
-        if (it != aodvRtTableMap.end())
+        AodvRtTableMap::iterator it = VS_aodvRtTableMap.find(dest);
+        if (it != VS_aodvRtTableMap.end())
         {
             if (it->second != fwd_rt)
                 opp_error("AODV routing table error");
         }
-        aodvRtTableMap.erase(it);
+        VS_aodvRtTableMap.erase(it);
         if (fwd_rt->state == VALID || fwd_rt->state == IMMORTAL)
             rt_tbl.num_active--;
         timer_remove(&fwd_rt->rt_timer);
         timer_remove(&fwd_rt->hello_timer);
         timer_remove(&fwd_rt->ack_timer);
-        rt_tbl.num_entries = aodvRtTableMap.size();
+        rt_tbl.num_entries = VS_aodvRtTableMap.size();
         free (fwd_rt);
     }
     else
@@ -1433,25 +1433,25 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
 
             /* Unicast the RERR to the source of the data transmission
              * if possible, otherwise we broadcast it. */
-            rerr_dest.s_addr = ManetAddress(IPv4Address(AODV_BROADCAST));
+            rerr_dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
 
-            aodv_socket_send((AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
                              1, &DEV_IFINDEX(NS_IFINDEX));
         }
         ManetAddress dest = fwd_rt->dest_addr.s_addr;
-        AodvRtTableMap::iterator it = aodvRtTableMap.find(dest);
-        if (it != aodvRtTableMap.end())
+        AodvRtTableMap::iterator it = VS_aodvRtTableMap.find(dest);
+        if (it != VS_aodvRtTableMap.end())
         {
             if (it->second != fwd_rt)
                 opp_error("AODV routing table error");
         }
-        aodvRtTableMap.erase(it);
+        VS_aodvRtTableMap.erase(it);
         if (fwd_rt->state == VALID || fwd_rt->state == IMMORTAL)
             rt_tbl.num_active--;
         timer_remove(&fwd_rt->rt_timer);
         timer_remove(&fwd_rt->hello_timer);
         timer_remove(&fwd_rt->ack_timer);
-        rt_tbl.num_entries = aodvRtTableMap.size();
+        rt_tbl.num_entries = VS_aodvRtTableMap.size();
         free (fwd_rt);
     }
     else
@@ -1501,13 +1501,13 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
 
             /* Unicast the RERR to the source of the data transmission
              * if possible, otherwise we broadcast it. */
-            rerr_dest.s_addr = AODV_BROADCAST;
+            rerr_dest.s_addr = VS_AODV_BROADCAST;
 
-            aodv_socket_send((AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
                              1, &DEV_IFINDEX(NS_IFINDEX));
         }
-        list_detach(&fwd_rt->l);
-        precursor_list_destroy(fwd_rt);
+        VS_list_detach(&fwd_rt->l);
+        precursor_VS_list_destroy(fwd_rt);
         if (fwd_rt->state == VALID || fwd_rt->state == IMMORTAL)
             rt_tbl.num_active--;
         timer_remove(&fwd_rt->rt_timer);
@@ -1525,7 +1525,7 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
 
     if (!delEntry && ifaceIndex<getNumInterfaces())
     {
-        fwd_rt = modifyAODVTables(destAddr,nextAddr,hops,(uint32_t) SIMTIME_DBL(simTime()), 0xFFFF,IMMORTAL,0, ifaceIndex);
+        fwd_rt = modifyVS_AODVTables(destAddr,nextAddr,hops,(uint32_t) SIMTIME_DBL(simTime()), 0xFFFF,IMMORTAL,0, ifaceIndex);
         status = (fwd_rt!=NULL);
 
     }
@@ -1557,13 +1557,13 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
 
             /* Unicast the RERR to the source of the data transmission
              * if possible, otherwise we broadcast it. */
-            rerr_dest.s_addr = AODV_BROADCAST;
+            rerr_dest.s_addr = VS_AODV_BROADCAST;
 
-            aodv_socket_send((AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
                              1, &DEV_IFINDEX(NS_IFINDEX));
         }
-        list_detach(&fwd_rt->l);
-        precursor_list_destroy(fwd_rt);
+        VS_list_detach(&fwd_rt->l);
+        precursor_VS_list_destroy(fwd_rt);
         if (fwd_rt->state == VALID || fwd_rt->state == IMMORTAL)
             rt_tbl.num_active--;
         timer_remove(&fwd_rt->rt_timer);
@@ -1586,7 +1586,7 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
 
     if (!delEntry && index<getNumInterfaces())
     {
-        fwd_rt = modifyAODVTables(destAddr,nextAddr,hops,(uint32_t) SIMTIME_DBL(simTime()), 0xFFFF,IMMORTAL,0, index);
+        fwd_rt = modifyVS_AODVTables(destAddr,nextAddr,hops,(uint32_t) SIMTIME_DBL(simTime()), 0xFFFF,IMMORTAL,0, index);
         status = (fwd_rt!=NULL);
     }
 

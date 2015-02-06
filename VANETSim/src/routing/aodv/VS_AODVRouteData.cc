@@ -17,7 +17,7 @@
 
 #include "VS_AODVRouteData.h"
 
-std::ostream & operator<<(std::ostream& out, const AODVRouteData *data)
+std::ostream & operator<<(std::ostream& out, const VS_AODVRouteData *data)
 {
     out << " isActive = " << data->isActive()
         << ", hasValidDestNum = " << data->hasValidDestNum()
