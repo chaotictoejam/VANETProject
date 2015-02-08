@@ -24,26 +24,26 @@
 
 #ifdef NS_PORT
 #ifndef OMNETPP
-#include "ns/VS_aodv-uu.h"
+#include "ns/vs_aodv-uu.h"
 #else
-#include "../VS_aodv_uu_omnet.h"
+#include "../vs_aodv_uu_omnet.h"
 #endif
 #else
-#include "VS_aodv_neighbor.h"
-#include "VS_aodv_rerr.h"
-#include "VS_aodv_hello.h"
-#include "VS_aodv_socket.h"
-#include "VS_routing_table.h"
+#include "vs_aodv_neighbor.h"
+#include "vs_aodv_rerr.h"
+#include "vs_aodv_hello.h"
+#include "vs_aodv_socket.h"
+#include "vs_routing_table.h"
 #include "params.h"
-#include "VS_defs_aodv.h"
-#include "VS_debug_aodv.h"
+#include "vs_defs_aodv.h"
+#include "vs_debug_aodv.h"
 
 extern int llfeedback;
 #endif              /* NS_PORT */
 
 
-/* Add/Update neighbor from a non HELLO VS_aodv control message... */
-void NS_CLASS neighbor_add(VS_AODV_msg * VS_AODV_msg, struct in_addr source,
+/* Add/Update neighbor from a non HELLO vs_aodv control message... */
+void NS_CLASS neighbor_add(vs_AODV_msg * vs_AODV_msg, struct in_addr source,
                            unsigned int ifindex)
 {
     struct timeval now;
@@ -57,7 +57,7 @@ void NS_CLASS neighbor_add(VS_AODV_msg * VS_AODV_msg, struct in_addr source,
     rt = rt_table_find(source);
 
     cost = costMobile;
-    if (VS_AODV_msg->prevFix)
+    if (vs_AODV_msg->prevFix)
     {
         fixhop=1;
         cost =  costStatic;
@@ -92,7 +92,7 @@ void NS_CLASS neighbor_add(VS_AODV_msg * VS_AODV_msg, struct in_addr source,
     return;
 }
 
-#ifdef VS_aodv_USE_STL_RT
+#ifdef vs_aodv_USE_STL_RT
 
 
 void NS_CLASS neighbor_link_break(rt_table_t * rt)
@@ -132,15 +132,15 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
             rerr_unicast_dest = rt->precursors[0].neighbor;
     }
 
-    /* Purge precursor VS_list: */
+    /* Purge precursor vs_list: */
     if (!(rt->flags & RT_REPAIR))
-        precursor_VS_list_destroy(rt);
+        precursor_vs_list_destroy(rt);
 
     /* Check the routing table for entries which have the unreachable
        destination (dest) as next hop. These entries (destinations)
        cannot be reached either since dest is down. They should
        therefore also be included in the RERR. */
-    for (VS_aodvRtTableMap::iterator it = VS_aodvRtTableMap.begin(); it != VS_aodvRtTableMap.end(); it++)
+    for (vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.begin(); it != vs_aodvRtTableMap.end(); it++)
     {
         rt_table_t *rt_u = it->second;;
         if (rt_u->state == VALID &&
@@ -190,7 +190,7 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
                     DEBUG(LOG_DEBUG, 0, "Added %s as unreachable, seqno=%lu",ip_to_str(rt_u->dest_addr), rt_u->dest_seqno);
                 }
             }
-            precursor_VS_list_destroy(rt_u);
+            precursor_vs_list_destroy(rt_u);
         }
     }
 
@@ -201,7 +201,7 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
         rt_u = rt_table_find(rerr_unicast_dest);
 
         if (rt_u && rerr->dest_count == 1 && (!rerr_unicast_dest.s_addr.isUnspecified()))
-            VS_aodv_socket_send((VS_AODV_msg *) rerr,
+            vs_aodv_socket_send((vs_AODV_msg *) rerr,
                              rerr_unicast_dest,
                              RERR_CALC_SIZE(rerr), 1,
                              &DEV_IFINDEX(rt_u->ifindex));
@@ -219,12 +219,12 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
                 struct in_addr dest;
                 if (!DEV_NR(i).enabled)
                     continue;
-                dest.s_addr = ManetAddress(IPv4Address(VS_aodv_BROADCAST));
+                dest.s_addr = ManetAddress(IPv4Address(vs_aodv_BROADCAST));
                 if (cont>1)
-                    VS_aodv_socket_send((VS_AODV_msg *) rerr->dup(), dest,
+                    vs_aodv_socket_send((vs_AODV_msg *) rerr->dup(), dest,
                                      RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
                 else
-                    VS_aodv_socket_send((VS_AODV_msg *) rerr, dest,
+                    vs_aodv_socket_send((vs_AODV_msg *) rerr, dest,
                                      RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
                 cont--;
             }
@@ -272,9 +272,9 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
             rerr_unicast_dest = FIRST_PREC(rt->precursors)->neighbor;
     }
 
-    /* Purge precursor VS_list: */
+    /* Purge precursor vs_list: */
     if (!(rt->flags & RT_REPAIR))
-        precursor_VS_list_destroy(rt);
+        precursor_vs_list_destroy(rt);
 
     /* Check the routing table for entries which have the unreachable
        destination (dest) as next hop. These entries (destinations)
@@ -282,8 +282,8 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
        therefore also be included in the RERR. */
     for (i = 0; i < RT_TABLESIZE; i++)
     {
-        VS_list_t *pos;
-        VS_list_foreach(pos, &rt_tbl.tbl[i])
+        vs_list_t *pos;
+        vs_list_foreach(pos, &rt_tbl.tbl[i])
         {
             rt_table_t *rt_u = (rt_table_t *) pos;
 
@@ -333,8 +333,8 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
 
                         if (rerr_unicast_dest.s_addr)
                         {
-                            VS_list_t *pos2;
-                            VS_list_foreach(pos2, &rt_u->precursors)
+                            vs_list_t *pos2;
+                            vs_list_foreach(pos2, &rt_u->precursors)
                             {
                                 precursor_t *pr = (precursor_t *) pos2;
                                 if (pr->neighbor.s_addr !=
@@ -350,7 +350,7 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
                               ip_to_str(rt_u->dest_addr), rt_u->dest_seqno);
                     }
                 }
-                precursor_VS_list_destroy(rt_u);
+                precursor_vs_list_destroy(rt_u);
             }
         }
     }
@@ -362,7 +362,7 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
         rt_u = rt_table_find(rerr_unicast_dest);
 
         if (rt_u && rerr->dest_count == 1 && (rerr_unicast_dest.s_addr!=0))
-            VS_aodv_socket_send((VS_AODV_msg *) rerr,
+            vs_aodv_socket_send((vs_AODV_msg *) rerr,
                              rerr_unicast_dest,
                              RERR_CALC_SIZE(rerr), 1,
                              &DEV_IFINDEX(rt_u->ifindex));
@@ -382,17 +382,17 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
                 struct in_addr dest;
                 if (!DEV_NR(i).enabled)
                     continue;
-                dest.s_addr = VS_aodv_BROADCAST;
+                dest.s_addr = vs_aodv_BROADCAST;
 #ifdef OMNETPP
                 if (cont>1)
-                    VS_aodv_socket_send((VS_AODV_msg *) rerr->dup(), dest,
+                    vs_aodv_socket_send((vs_AODV_msg *) rerr->dup(), dest,
                                      RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
                 else
-                    VS_aodv_socket_send((VS_AODV_msg *) rerr, dest,
+                    vs_aodv_socket_send((vs_AODV_msg *) rerr, dest,
                                      RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
                 cont--;
 #else
-                VS_aodv_socket_send((VS_AODV_msg *) rerr, dest,
+                vs_aodv_socket_send((vs_AODV_msg *) rerr, dest,
                                  RERR_CALC_SIZE(rerr), 1, &DEV_NR(i));
 #endif
             }

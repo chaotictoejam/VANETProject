@@ -27,40 +27,40 @@
 
 #ifdef NS_PORT
 #ifndef OMNETPP
-#include "ns/VS_aodv-uu.h"
+#include "ns/vs_aodv-uu.h"
 #else
-#include "../VS_aodv_uu_omnet.h"
+#include "../vs_aodv_uu_omnet.h"
 #endif
-#include "VS_list.h"
+#include "vs_list.h"
 #else
-#include "seek_VS_list.h"
-#include "VS_timer_queue_aodv.h"
-#include "VS_aodv_timeout.h"
-#include "VS_defs_aodv.h"
+#include "seek_vs_list.h"
+#include "vs_timer_queue_aodv.h"
+#include "vs_aodv_timeout.h"
+#include "vs_defs_aodv.h"
 #include "params.h"
-#include "VS_debug_aodv.h"
-#include "VS_list.h"
+#include "vs_debug_aodv.h"
+#include "vs_list.h"
 #endif
 
 #ifndef NS_PORT
-/* The seek VS_list is a linked VS_list of destinations we are seeking
+/* The seek vs_list is a linked vs_list of destinations we are seeking
    (with RREQ's). */
 
-static VS_list(seekhead);
+static vs_list(seekhead);
 
-#ifdef SEEK_VS_list_DEBUG
-void seek_VS_list_print();
+#ifdef SEEK_vs_list_DEBUG
+void seek_vs_list_print();
 #endif
 #endif              /* NS_PORT */
-#ifndef VS_aodv_USE_STL
-seek_VS_list_t *NS_CLASS seek_VS_list_insert(struct in_addr dest_addr,
+#ifndef vs_aodv_USE_STL
+seek_vs_list_t *NS_CLASS seek_vs_list_insert(struct in_addr dest_addr,
                                        u_int32_t dest_seqno,
                                        int ttl, u_int8_t flags,
                                        struct ip_data *ipd)
 {
-    seek_VS_list_t *entry;
+    seek_vs_list_t *entry;
 
-    if ((entry = (seek_VS_list_t *) malloc(sizeof(seek_VS_list_t))) == NULL)
+    if ((entry = (seek_vs_list_t *) malloc(sizeof(seek_vs_list_t))) == NULL)
     {
         fprintf(stderr, "Failed malloc\n");
         exit(-1);
@@ -75,19 +75,19 @@ seek_VS_list_t *NS_CLASS seek_VS_list_insert(struct in_addr dest_addr,
 
     timer_init(&entry->seek_timer, &NS_CLASS route_discovery_timeout, entry);
 
-    VS_list_add(&seekhead, &entry->l);
-#ifdef SEEK_VS_list_DEBUG
-    seek_VS_list_print();
+    vs_list_add(&seekhead, &entry->l);
+#ifdef SEEK_vs_list_DEBUG
+    seek_vs_list_print();
 #endif
     return entry;
 }
 
-int NS_CLASS seek_VS_list_remove(seek_VS_list_t * entry)
+int NS_CLASS seek_vs_list_remove(seek_vs_list_t * entry)
 {
     if (!entry)
         return 0;
 
-    VS_list_detach(&entry->l);
+    vs_list_detach(&entry->l);
 
     /* Make sure any timers are removed */
     timer_remove(&entry->seek_timer);
@@ -99,13 +99,13 @@ int NS_CLASS seek_VS_list_remove(seek_VS_list_t * entry)
     return 1;
 }
 
-seek_VS_list_t *NS_CLASS seek_VS_list_find(struct in_addr dest_addr)
+seek_vs_list_t *NS_CLASS seek_vs_list_find(struct in_addr dest_addr)
 {
-    VS_list_t *pos;
+    vs_list_t *pos;
 
-    VS_list_foreach(pos, &seekhead)
+    vs_list_foreach(pos, &seekhead)
     {
-        seek_VS_list_t *entry = (seek_VS_list_t *) pos;
+        seek_vs_list_t *entry = (seek_vs_list_t *) pos;
 
         if (entry->dest_addr.s_addr == dest_addr.s_addr)
             return entry;
@@ -113,28 +113,28 @@ seek_VS_list_t *NS_CLASS seek_VS_list_find(struct in_addr dest_addr)
     return NULL;
 }
 
-#ifdef SEEK_VS_list_DEBUG
-void NS_CLASS seek_VS_list_print()
+#ifdef SEEK_vs_list_DEBUG
+void NS_CLASS seek_vs_list_print()
 {
-    VS_list_t *pos;
+    vs_list_t *pos;
 
-    VS_list_foreach(pos, &seekhead)
+    vs_list_foreach(pos, &seekhead)
     {
-        seek_VS_list_t *entry = (seek_VS_list_t *) pos;
+        seek_vs_list_t *entry = (seek_vs_list_t *) pos;
         printf("%s %u %d %d\n", ip_to_str(entry->dest_addr),
                entry->dest_seqno, entry->reqs, entry->ttl);
     }
 }
 #endif
 #else
-seek_VS_list_t *NS_CLASS seek_VS_list_insert(struct in_addr dest_addr,
+seek_vs_list_t *NS_CLASS seek_vs_list_insert(struct in_addr dest_addr,
                                        u_int32_t dest_seqno,
                                        int ttl, u_int8_t flags,
                                        struct ip_data *ipd)
 {
-    seek_VS_list_t *entry;
+    seek_vs_list_t *entry;
 
-    entry = new seek_VS_list_t;
+    entry = new seek_vs_list_t;
     if (entry == NULL)
     {
         fprintf(stderr, "Failed malloc\n");
@@ -151,13 +151,13 @@ seek_VS_list_t *NS_CLASS seek_VS_list_insert(struct in_addr dest_addr,
     timer_init(&entry->seek_timer, &NS_CLASS route_discovery_timeout, entry);
     seekhead.insert(std::make_pair(dest_addr.s_addr,entry));
 
-#ifdef SEEK_VS_list_DEBUG
-    seek_VS_list_print();
+#ifdef SEEK_vs_list_DEBUG
+    seek_vs_list_print();
 #endif
     return entry;
 }
 
-int NS_CLASS seek_VS_list_remove(seek_VS_list_t * entry)
+int NS_CLASS seek_vs_list_remove(seek_vs_list_t * entry)
 {
     if (!entry)
         return 0;
@@ -181,7 +181,7 @@ int NS_CLASS seek_VS_list_remove(seek_VS_list_t * entry)
     return 1;
 }
 
-seek_VS_list_t *NS_CLASS seek_VS_list_find(struct in_addr dest_addr)
+seek_vs_list_t *NS_CLASS seek_vs_list_find(struct in_addr dest_addr)
 {
     SeekHead::iterator it =seekhead.find(dest_addr.s_addr);
     if (it != seekhead.end())
@@ -189,12 +189,12 @@ seek_VS_list_t *NS_CLASS seek_VS_list_find(struct in_addr dest_addr)
     return NULL;
 }
 
-#ifdef SEEK_VS_list_DEBUG
-void NS_CLASS seek_VS_list_print()
+#ifdef SEEK_vs_list_DEBUG
+void NS_CLASS seek_vs_list_print()
 {
     for (SeekHead::iterator it =seekhead.begin();it != seekhead.end(); it++)
     {
-        seek_VS_list_t *entry = it->second;
+        seek_vs_list_t *entry = it->second;
         printf("%s %u %d %d\n", ip_to_str(entry->dest_addr),
                       entry->dest_seqno, entry->reqs, entry->ttl);    }
 }

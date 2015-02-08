@@ -36,8 +36,8 @@
 #include <linux/wireless.h>
 #include <iwlib.h>
 
-#include "VS_aodv_neighbor.h"
-#include "VS_routing_table.h"
+#include "vs_aodv_neighbor.h"
+#include "vs_routing_table.h"
 /* The netlink socket code is taken from the wireless tools by Jean Tourrilhes
  * <jt@hpl.hp.com>, who in turn took code from libnetlink.c RTnetlink service
  * routines, by Alexey Kuznetsov, <kuznet@ms2.inr.ac.ru>. All GPL code. */
@@ -126,7 +126,7 @@ static inline int llf_rtnl_open(struct rtnl_handle *rth, unsigned subscriptions)
  * We cache this info for performance reason.
  */
 typedef struct wireless_iface {
-    /* Linked VS_list */
+    /* Linked vs_list */
     struct wireless_iface *next;
 
     /* Interface identification */

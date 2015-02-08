@@ -24,8 +24,8 @@
 #define _ROUTING_TABLE_H
 
 #ifndef NS_NO_GLOBALS
-#include "VS_defs_aodv.h"
-#include "VS_list.h"
+#include "vs_defs_aodv.h"
+#include "vs_list.h"
 
 typedef struct rt_table rt_table_t;
 
@@ -36,7 +36,7 @@ typedef struct rt_table rt_table_t;
 
 typedef u_int32_t hash_value;   /* A hash value */
 
-#ifdef VS_aodv_USE_STL_RT
+#ifdef vs_aodv_USE_STL_RT
 typedef struct precursor
 {
     struct in_addr neighbor;
@@ -61,19 +61,19 @@ struct rt_table
     hash_value hash;
     u_int8_t hello_cnt;
     int nprec;          /* Number of precursors */
-    std::vector<precursor_t> precursors;      /* VS_list of neighbors using the route */
+    std::vector<precursor_t> precursors;      /* vs_list of neighbors using the route */
 };
 #else
 typedef struct precursor
 {
-    VS_list_t l;
+    vs_list_t l;
     struct in_addr neighbor;
 } precursor_t;
 
 /* Route table entries */
 struct rt_table
 {
-    VS_list_t l;
+    vs_list_t l;
     struct in_addr dest_addr;   /* IP address of the destination */
     u_int32_t dest_seqno;
     unsigned int ifindex;   /* Network interface index... */
@@ -91,7 +91,7 @@ struct rt_table
     u_int8_t hello_cnt;
     hash_value hash;
     int nprec;          /* Number of precursors */
-    VS_list_t precursors;      /* VS_list of neighbors using the route */
+    vs_list_t precursors;      /* vs_list of neighbors using the route */
 };
 #endif
 
@@ -116,9 +116,9 @@ struct routing_table
 {
     unsigned int num_entries;
     unsigned int num_active;
-    VS_list_t tbl[RT_TABLESIZE];
+    vs_list_t tbl[RT_TABLESIZE];
 };
-void precursor_VS_list_destroy(rt_table_t * rt);
+void precursor_vs_list_destroy(rt_table_t * rt);
 #endif              /* NS_NO_GLOBALS */
 
 
@@ -149,7 +149,7 @@ void precursor_add(rt_table_t * rt, struct in_addr addr);
 void precursor_remove(rt_table_t * rt, struct in_addr addr);
 
 #ifdef OMNETPP
-rt_table_t * modifyVS_aodvTables(struct in_addr,
+rt_table_t * modifyAODVTables(struct in_addr,
                               struct in_addr next,
                               u_int8_t hops, u_int32_t seqno,
                               u_int32_t life, u_int8_t state,

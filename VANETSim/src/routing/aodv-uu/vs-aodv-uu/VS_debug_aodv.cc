@@ -34,21 +34,21 @@
 #ifdef NS_PORT
 
 #ifndef OMNETPP
-#include "ns/VS_aodv-uu.h"
+#include "ns/vs_aodv-uu.h"
 #else
-#include "../VS_aodv_uu_omnet.h"
+#include "../vs_aodv_uu_omnet.h"
 #endif
 
 #else
 #include <net/if.h>
-#include "VS_aodv_rreq.h"
-#include "VS_aodv_rrep.h"
-#include "VS_aodv_rerr.h"
-#include "VS_defs_aodv.h"
-#include "VS_debug_aodv.h"
+#include "vs_aodv_rreq.h"
+#include "vs_aodv_rrep.h"
+#include "vs_aodv_rerr.h"
+#include "vs_defs_aodv.h"
+#include "vs_debug_aodv.h"
 #include "params.h"
-#include "VS_timer_queue_aodv.h"
-#include "VS_routing_table.h"
+#include "vs_timer_queue_aodv.h"
+#include "vs_routing_table.h"
 #endif
 
 #ifndef NS_PORT
@@ -67,23 +67,23 @@ void NS_CLASS log_init()
     /* NS_PORT: Log filename is prefix + IP address + suffix */
 #ifdef NS_PORT
 
-    char VS_aodv_LOG_PATH[strlen(VS_aodv_LOG_PATH_PREFIX) +
-                       strlen(VS_aodv_LOG_PATH_SUFFIX) + 16];
-    char VS_aodv_RT_LOG_PATH[strlen(VS_aodv_LOG_PATH_PREFIX) +
-                          strlen(VS_aodv_RT_LOG_PATH_SUFFIX) + 16];
+    char vs_aodv_LOG_PATH[strlen(vs_aodv_LOG_PATH_PREFIX) +
+                       strlen(vs_aodv_LOG_PATH_SUFFIX) + 16];
+    char vs_aodv_RT_LOG_PATH[strlen(vs_aodv_LOG_PATH_PREFIX) +
+                          strlen(vs_aodv_RT_LOG_PATH_SUFFIX) + 16];
 
 
-    sprintf(VS_aodv_LOG_PATH, "%s%d%s", VS_aodv_LOG_PATH_PREFIX, node_id,
-            VS_aodv_LOG_PATH_SUFFIX);
-    sprintf(VS_aodv_RT_LOG_PATH, "%s%d%s", VS_aodv_LOG_PATH_PREFIX, node_id,
-            VS_aodv_RT_LOG_PATH_SUFFIX);
+    sprintf(vs_aodv_LOG_PATH, "%s%d%s", vs_aodv_LOG_PATH_PREFIX, node_id,
+            vs_aodv_LOG_PATH_SUFFIX);
+    sprintf(vs_aodv_RT_LOG_PATH, "%s%d%s", vs_aodv_LOG_PATH_PREFIX, node_id,
+            vs_aodv_RT_LOG_PATH_SUFFIX);
 
 #endif              /* NS_PORT */
 
     if (log_to_file)
     {
         if ((log_file_fd =
-                    open(VS_aodv_LOG_PATH, O_RDWR | O_CREAT | O_TRUNC,
+                    open(vs_aodv_LOG_PATH, O_RDWR | O_CREAT | O_TRUNC,
                          S_IROTH | S_IWUSR | S_IRUSR | S_IRGRP)) < 0)
         {
             perror("open log file failed!");
@@ -93,7 +93,7 @@ void NS_CLASS log_init()
     if (rt_log_interval)
     {
         if ((log_rt_fd =
-                    open(VS_aodv_RT_LOG_PATH, O_RDWR | O_CREAT | O_TRUNC,
+                    open(vs_aodv_RT_LOG_PATH, O_RDWR | O_CREAT | O_TRUNC,
                          S_IROTH | S_IWUSR | S_IRUSR | S_IRGRP)) < 0)
         {
             perror("open rt log file failed!");
@@ -145,12 +145,12 @@ const char *packet_type(uint32 type)
 
     switch (type)
     {
-    case VS_aodv_RREQ:
-        return "VS_aodv_RREQ";
-    case VS_aodv_RREP:
-        return "VS_aodv_RREP";
-    case VS_aodv_RERR:
-        return "VS_aodv_RERR";
+    case vs_aodv_RREQ:
+        return "vs_aodv_RREQ";
+    case vs_aodv_RREP:
+        return "vs_aodv_RREP";
+    case vs_aodv_RERR:
+        return "vs_aodv_RERR";
     default:
         sprintf(temp, "Unknown packet type %d", type);
         return temp;
@@ -161,7 +161,7 @@ void NS_CLASS alog(int type, int errnum, const char *function, const char *forma
                    ...)
 {
 #ifndef _WIN32
-    va_VS_list ap;
+    va_vs_list ap;
     static char buffer[256] = "";
     static char log_buf[1024];
     char *msg;
@@ -219,7 +219,7 @@ void NS_CLASS alog(int type, int errnum, const char *function, const char *forma
         goto syslog;
     }
 
-    /* OK, we are clear to write the buffer to the VS_aodv log file... */
+    /* OK, we are clear to write the buffer to the vs_aodv log file... */
     if (log_to_file)
         write_to_log_file(log_buf, len);
 
@@ -284,7 +284,7 @@ char *NS_CLASS rrep_flags_to_str(RREP * rrep)
     return str;
 }
 
-void NS_CLASS log_pkt_fields(VS_AODV_msg * msg)
+void NS_CLASS log_pkt_fields(vs_AODV_msg * msg)
 {
 
     RREQ *rreq;
@@ -294,7 +294,7 @@ void NS_CLASS log_pkt_fields(VS_AODV_msg * msg)
 
     switch (msg->type)
     {
-    case VS_aodv_RREQ:
+    case vs_aodv_RREQ:
         rreq = (RREQ *) msg;
         dest.s_addr = rreq->dest_addr;
         orig.s_addr = rreq->orig_addr;
@@ -306,7 +306,7 @@ void NS_CLASS log_pkt_fields(VS_AODV_msg * msg)
         DEBUG(LOG_DEBUG, 0, "rreq->orig_addr:%s rreq->orig_seqno=%ld",
               ip_to_str(orig), ntohl(rreq->orig_seqno));
         break;
-    case VS_aodv_RREP:
+    case vs_aodv_RREP:
         rrep = (RREP *) msg;
         dest.s_addr = rrep->dest_addr;
         orig.s_addr = rrep->orig_addr;
@@ -317,7 +317,7 @@ void NS_CLASS log_pkt_fields(VS_AODV_msg * msg)
         DEBUG(LOG_DEBUG, 0, "rrep->orig_addr:%s rrep->lifetime=%d",
               ip_to_str(orig), ntohl(rrep->lifetime));
         break;
-    case VS_aodv_RERR:
+    case vs_aodv_RERR:
         rerr = (RERR *) msg;
         DEBUG(LOG_DEBUG, 0, "rerr->dest_count:%d rerr->flags=%s",
               rerr->dest_count, rerr->n ? "N" : "-");
@@ -371,7 +371,7 @@ char *NS_CLASS devs_ip_to_str()
     return str;
 }
 
-#ifndef VS_aodv_USE_STL_RT
+#ifndef vs_aodv_USE_STL_RT
 void NS_CLASS print_rt_table(void *arg)
 {
 #ifndef _WIN32
@@ -409,8 +409,8 @@ void NS_CLASS print_rt_table(void *arg)
 
     for (i = 0; i < RT_TABLESIZE; i++)
     {
-        VS_list_t *pos;
-        VS_list_foreach(pos, &rt_tbl.tbl[i])
+        vs_list_t *pos;
+        vs_list_foreach(pos, &rt_tbl.tbl[i])
         {
             rt_table_t *rt = (rt_table_t *) pos;
 
@@ -420,10 +420,10 @@ void NS_CLASS print_rt_table(void *arg)
                 sprintf(seqno_str, "%u", rt->dest_seqno);
 
             /* Print routing table entries one by one... */
-#ifdef VS_aodv_USE_STL
+#ifdef vs_aodv_USE_STL
             long dif = (1000.0*(SIMTIME_DBL(rt->rt_timer.timeout) - SIMTIME_DBL(simTime())));
 
-            if (VS_list_empty(&rt->precursors))
+            if (vs_list_empty(&rt->precursors))
                 len += sprintf(rt_buf + len,
                                "%-15s %-15s %-3d %-3s %-5s %-6lu %-5s %-5s\n",
                                ip_to_str(rt->dest_addr),
@@ -436,7 +436,7 @@ void NS_CLASS print_rt_table(void *arg)
 
             else
             {
-                VS_list_t *pos2;
+                vs_list_t *pos2;
                 len += sprintf(rt_buf + len,
                                "%-15s %-15s %-3d %-3s %-5s %-6lu %-5s %-5s %-15s\n",
                                ip_to_str(rt->dest_addr),
@@ -449,7 +449,7 @@ void NS_CLASS print_rt_table(void *arg)
                                ip_to_str(((precursor_t *) rt->precursors.next)->
                                          neighbor));
 #else
-                if (VS_list_empty(&rt->precursors))
+                if (vs_list_empty(&rt->precursors))
                     len += sprintf(rt_buf + len,
                                    "%-15s %-15s %-3d %-3s %-5s %-6lu %-5s %-5s\n",
                                    ip_to_str(rt->dest_addr),
@@ -462,7 +462,7 @@ void NS_CLASS print_rt_table(void *arg)
 
                 else
                 {
-                    VS_list_t *pos2;
+                    vs_list_t *pos2;
                     len += sprintf(rt_buf + len,
                                    "%-15s %-15s %-3d %-3s %-5s %-6lu %-5s %-5s %-15s\n",
                                    ip_to_str(rt->dest_addr),
@@ -476,7 +476,7 @@ void NS_CLASS print_rt_table(void *arg)
                                              neighbor));
 #endif
                 /* Print all precursors for the current routing entry */
-                VS_list_foreach(pos2, &rt->precursors)
+                vs_list_foreach(pos2, &rt->precursors)
                 {
                     precursor_t *pr = (precursor_t *) pos2;
 
@@ -487,7 +487,7 @@ void NS_CLASS print_rt_table(void *arg)
                     len += sprintf(rt_buf + len, "%64s %-15s\n", " ",
                                    ip_to_str(pr->neighbor));
 
-                    /* Since the precursor VS_list is grown dynamically
+                    /* Since the precursor vs_list is grown dynamically
                      * the write buffer should be flushed for every
                      * entry to avoid buffer overflows */
                     write(log_rt_fd, rt_buf, len);
@@ -542,7 +542,7 @@ void NS_CLASS print_rt_table(void *arg)
 
     write(log_rt_fd, rt_buf, len);
     len = 0;
-    for (VS_aodvRtTableMap::iterator it = VS_aodvRtTableMap.begin(); it != VS_aodvRtTableMap.end(); it++)
+    for (vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.begin(); it != vs_aodvRtTableMap.end(); it++)
     {
         rt_table_t *rt = it->second;
 
@@ -552,7 +552,7 @@ void NS_CLASS print_rt_table(void *arg)
         sprintf(seqno_str, "%u", rt->dest_seqno);
 
         /* Print routing table entries one by one... */
-#ifdef VS_aodv_USE_STL
+#ifdef vs_aodv_USE_STL
         long dif = (1000.0*(SIMTIME_DBL(rt->rt_timer.timeout) - SIMTIME_DBL(simTime())));
 
         if (rt->precursors.empty())
@@ -609,7 +609,7 @@ void NS_CLASS print_rt_table(void *arg)
                 precursor_t *pr = &rt->precursors[i];
                 len += sprintf(rt_buf + len, "%64s %-15s\n", " ",ip_to_str(pr->neighbor));
 
-                    /* Since the precursor VS_list is grown dynamically
+                    /* Since the precursor vs_list is grown dynamically
                      * the write buffer should be flushed for every
                      * entry to avoid buffer overflows */
                  write(log_rt_fd, rt_buf, len);

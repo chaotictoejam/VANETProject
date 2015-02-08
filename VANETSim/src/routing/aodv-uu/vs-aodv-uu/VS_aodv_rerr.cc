@@ -25,19 +25,19 @@
 
 #ifdef NS_PORT
 #ifndef OMNETPP
-#include "ns/VS_aodv-uu.h"
+#include "ns/vs_aodv-uu.h"
 #else
-#include "../VS_aodv_uu_omnet.h"
+#include "../vs_aodv_uu_omnet.h"
 #endif
 #else
 #include <netinet/in.h>
-#include "VS_aodv_rerr.h"
-#include "VS_routing_table.h"
-#include "VS_aodv_socket.h"
-#include "VS_aodv_timeout.h"
-#include "VS_defs_aodv.h"
-#include "VS_debug_aodv.h"
-#include "params.h"
+#include "vs_aodv_rerr.h"
+#include "vs_routing_table.h"
+#include "vs_aodv_socket.h"
+#include "vs_aodv_timeout.h"
+#include "vs_defs_aodv.h"
+#include "vs_debug_aodv.h"
+#include "vs_params.h"
 #endif
 
 RERR *NS_CLASS rerr_create(u_int8_t flags,struct in_addr dest_addr,
@@ -48,7 +48,7 @@ RERR *NS_CLASS rerr_create(u_int8_t flags,struct in_addr dest_addr,
     DEBUG(LOG_DEBUG, 0, "Assembling RERR about %s seqno=%d",
           ip_to_str(dest_addr), dest_seqno);
 #ifndef OMNETPP
-    rerr = (RERR *) VS_aodv_socket_new_msg();
+    rerr = (RERR *) vs_aodv_socket_new_msg();
     rerr->dest_addr = dest_addr.s_addr;
     rerr->dest_seqno = htonl(dest_seqno);
 #else
@@ -56,7 +56,7 @@ RERR *NS_CLASS rerr_create(u_int8_t flags,struct in_addr dest_addr,
     rerr->addUdest (dest_addr.s_addr,htonl(dest_seqno));
     totalRerrSend++;
 #endif
-    rerr->type = VS_aodv_RERR;
+    rerr->type = vs_aodv_RERR;
     rerr->n = (flags & RERR_NODELETE ? 1 : 0);
     rerr->res1 = 0;
     rerr->res2 = 0;
@@ -94,7 +94,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
 
     DEBUG(LOG_DEBUG, 0, "ip_src=%s", ip_to_str(ip_src));
 
-    log_pkt_fields((VS_AODV_msg *) rerr);
+    log_pkt_fields((vs_AODV_msg *) rerr);
 
     if (rerrlen < ((int) RERR_CALC_SIZE(rerr)))
     {
@@ -126,7 +126,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
         {
 
             /* Checking sequence numbers here is an out of draft
-             *       * addition to VS_aodv-UU. It is here because it makes a lot
+             *       * addition to vs_aodv-UU. It is here because it makes a lot
              *       * of sense... */
             if (0 && (int32_t) rt->dest_seqno > (int32_t) rerr_dest_seqno)
             {
@@ -164,7 +164,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
              *         with the Destination Sequence Number in the packet, and */
             rt->dest_seqno = rerr_dest_seqno;
 
-            /* (d) check precursor VS_list for emptiness. If not empty, include
+            /* (d) check precursor vs_list for emptiness. If not empty, include
              *         the destination as an unreachable destination in the
              *         RERR... */
             if (rt->nprec && !(rt->flags & RT_REPAIR))
@@ -181,7 +181,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
                                            rt->dest_seqno);
                     DEBUG(LOG_DEBUG, 0, "Added %s as unreachable, seqno=%lu",
                           ip_to_str(rt->dest_addr), rt->dest_seqno);
-#ifdef VS_aodv_USE_STL_RT
+#ifdef vs_aodv_USE_STL_RT
                     if (rt->nprec == 1)
                         rerr_unicast_dest = rt->precursors[0].neighbor;
 #else
@@ -199,7 +199,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
                     DEBUG(LOG_DEBUG, 0, "Added %s as unreachable, seqno=%lu",
                           ip_to_str(rt->dest_addr), rt->dest_seqno);
 
-#ifdef VS_aodv_USE_STL_RT
+#ifdef vs_aodv_USE_STL_RT
                     if (rerr_unicast_dest.s_addr.isUnspecified())
                     {
                         for (unsigned int i = 0; i< rt->precursors.size(); i++)
@@ -215,8 +215,8 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
 #else
                     if (rerr_unicast_dest.s_addr)
                     {
-                        VS_list_t *pos2;
-                        VS_list_foreach(pos2, &rt->precursors)
+                        vs_list_t *pos2;
+                        vs_list_foreach(pos2, &rt->precursors)
                         {
                             precursor_t *pr = (precursor_t *) pos2;
                             if (pr->neighbor.s_addr != rerr_unicast_dest.s_addr)
@@ -234,10 +234,10 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
                 DEBUG(LOG_DEBUG, 0,
                       "Not sending RERR, no precursors or route in RT_REPAIR");
             }
-            /* We should delete the precursor VS_list for all unreachable
+            /* We should delete the precursor vs_list for all unreachable
              *         destinations. */
             if (rt->state == INVALID)
-                precursor_VS_list_destroy(rt);
+                precursor_vs_list_destroy(rt);
         }
         else
         {
@@ -258,7 +258,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
         new_rerr->ttl=1;
 
         if (rt && new_rerr->dest_count == 1 && !rerr_unicast_dest.s_addr.isUnspecified())
-            VS_aodv_socket_send((VS_AODV_msg *) new_rerr,
+            vs_aodv_socket_send((vs_AODV_msg *) new_rerr,
                              rerr_unicast_dest,
                              RERR_CALC_SIZE(new_rerr), 1,
                              &DEV_IFINDEX(rt->ifindex));
@@ -281,15 +281,15 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
 
                 if (!DEV_NR(i).enabled)
                     continue;
-                dest.s_addr = ManetAddress(IPv4Address(VS_aodv_BROADCAST));
+                dest.s_addr = ManetAddress(IPv4Address(vs_aodv_BROADCAST));
 #ifdef OMNETPP
                 if (numInterfaces>1)
                 {
-                    VS_aodv_socket_send((VS_AODV_msg *) new_rerr->dup(), dest,RERR_CALC_SIZE(new_rerr), 1, &DEV_NR(i));
+                    vs_aodv_socket_send((vs_AODV_msg *) new_rerr->dup(), dest,RERR_CALC_SIZE(new_rerr), 1, &DEV_NR(i));
                 }
                 else
 #endif
-                    VS_aodv_socket_send((VS_AODV_msg *) new_rerr, dest,RERR_CALC_SIZE(new_rerr), 1, &DEV_NR(i));
+                    vs_aodv_socket_send((vs_AODV_msg *) new_rerr, dest,RERR_CALC_SIZE(new_rerr), 1, &DEV_NR(i));
                 numInterfaces--;
             }
 

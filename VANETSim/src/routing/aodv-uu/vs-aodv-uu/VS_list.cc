@@ -21,75 +21,75 @@
  *****************************************************************************/
 #include <stdlib.h>
 
-#include "VS_list.h"
+#include "vs_list.h"
 
-static inline int VS_listelm_detach(VS_list_t * prev, VS_list_t * next)
+static inline int vs_listelm_detach(vs_list_t * prev, vs_list_t * next)
 {
     next->prev = prev;
     prev->next = next;
 
-    return VS_list_SUCCESS;
+    return vs_list_SUCCESS;
 }
 
-static inline int VS_listelm_add(VS_list_t * le, VS_list_t * prev, VS_list_t * next)
+static inline int vs_listelm_add(vs_list_t * le, vs_list_t * prev, vs_list_t * next)
 {
     prev->next = le;
     le->prev = prev;
     le->next = next;
     next->prev = le;
 
-    return VS_list_SUCCESS;
+    return vs_list_SUCCESS;
 }
 
 
-int VS_list_add(VS_list_t * head, VS_list_t * le)
+int vs_list_add(vs_list_t * head, vs_list_t * le)
 {
 
     if (!head || !le)
-        return VS_list_NULL;
+        return vs_list_NULL;
 
-    VS_listelm_add(le, head, head->next);
+    vs_listelm_add(le, head, head->next);
 
-    return VS_list_SUCCESS;
+    return vs_list_SUCCESS;
 }
 
-int VS_list_add_tail(VS_list_t * head, VS_list_t * le)
+int vs_list_add_tail(vs_list_t * head, vs_list_t * le)
 {
 
     if (!head || !le)
-        return VS_list_NULL;
+        return vs_list_NULL;
 
-    VS_listelm_add(le, head->prev, head);
+    vs_listelm_add(le, head->prev, head);
 
-    return VS_list_SUCCESS;
+    return vs_list_SUCCESS;
 }
 
-int VS_list_detach(VS_list_t * le)
+int vs_list_detach(vs_list_t * le)
 {
     if (!le)
-        return VS_list_NULL;
+        return vs_list_NULL;
 
-    VS_listelm_detach(le->prev, le->next);
+    vs_listelm_detach(le->prev, le->next);
 
     le->next = le->prev = NULL;
 
-    return VS_list_SUCCESS;
+    return vs_list_SUCCESS;
 };
 
 
-int VS_list_empty (VS_list_t *head)
+int vs_list_empty (vs_list_t *head)
 {
     if (head == head->next)
         return 1;
     return 0;
 }
 
-VS_list_t* VS_list_first(VS_list_t* head)
+vs_list_t* vs_list_first(vs_list_t* head)
 {
     return head->next;
 }
 
-int  VS_list_unattached(VS_list_t *le)
+int  vs_list_unattached(vs_list_t *le)
 {
     if (le->next == NULL && le->prev == NULL)
         return 1;

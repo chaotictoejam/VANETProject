@@ -20,20 +20,20 @@
  *
  *
  *****************************************************************************/
-#ifndef _VS_aodv_NEIGHBOR_H
-#define _VS_aodv_NEIGHBOR_H
+#ifndef _vs_aodv_NEIGHBOR_H
+#define _vs_aodv_NEIGHBOR_H
 
 #ifndef NS_NO_GLOBALS
-#include "VS_defs_aodv.h"
-#include "VS_routing_table.h"
+#include "vs_defs_aodv.h"
+#include "vs_routing_table.h"
 #endif              /* NS_NO_GLOBALS */
 
 #ifndef NS_NO_DECLARATIONS
 
-void neighbor_add(VS_AODV_msg * VS_AODV_msg, struct in_addr source,
+void neighbor_add(vs_AODV_msg * vs_AODV_msg, struct in_addr source,
                   unsigned int ifindex);
 void neighbor_link_break(rt_table_t * rt);
 
 #endif              /* NS_NO_DECLARATIONS */
 
-#endif              /* VS_aodv_NEIGHBOR_H */
+#endif              /* vs_aodv_NEIGHBOR_H */

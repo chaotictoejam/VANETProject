@@ -48,11 +48,11 @@
 #include <fcntl.h>
 
 #ifndef NS_PORT
-#include "VS_timer_queue_aodv.h"
+#include "vs_timer_queue_aodv.h"
 #endif
 
 #ifdef NS_PORT
-#define NS_CLASS VS_AODVUU::
+#define NS_CLASS vs_AODVUU::
 #define NS_OUTSIDE_CLASS ::
 #define NS_STATIC
 #define NS_INLINE
@@ -69,17 +69,17 @@
 #define NS_INLINE inline
 #endif
 
-#define VS_aodv_UU_VERSION "0.9"
+#define vs_aodv_UU_VERSION "0.9"
 #define DRAFT_VERSION "rfc3561"
 
 #ifdef NS_PORT
 /* NS_PORT: Log filename split into prefix and suffix. */
-#define VS_aodv_LOG_PATH_PREFIX "VS_aodv-uu-"
-#define VS_aodv_RT_LOG_PATH_SUFFIX ".rtlog"
-#define VS_aodv_LOG_PATH_SUFFIX ".log"
+#define vs_aodv_LOG_PATH_PREFIX "vs_aodv-uu-"
+#define vs_aodv_RT_LOG_PATH_SUFFIX ".rtlog"
+#define vs_aodv_LOG_PATH_SUFFIX ".log"
 #else
-#define VS_aodv_LOG_PATH "/var/log/VS_aodvd.log"
-#define VS_aodv_RT_LOG_PATH "/var/log/VS_aodvd.rtlog"
+#define vs_aodv_LOG_PATH "/var/log/vs_aodvd.log"
+#define vs_aodv_RT_LOG_PATH "/var/log/vs_aodvd.rtlog"
 #endif              /* NS_PORT */
 
 #ifdef OMNETPP
@@ -102,7 +102,7 @@ using std::max;
 struct dev_info
 {
     int enabled;        /* 1 if struct is used, else 0 */
-    int sock;           /* VS_aodv socket associated with this device */
+    int sock;           /* vs_aodv socket associated with this device */
 #ifdef CONFIG_GATEWAY
     int psock;          /* Socket to send buffered data packets. */
 #endif
@@ -124,11 +124,11 @@ struct host_info
 };
 
 /*
-  NS_PORT: TEMPORARY SOLUTION: Moved the two variables into the VS_AODVUU class,
-  and placed the function definition after the VS_AODVUU class definition.
+  NS_PORT: TEMPORARY SOLUTION: Moved the two variables into the vs_AODVUU class,
+  and placed the function definition after the vs_AODVUU class definition.
 
   (This is to avoid running several passes through defs.h during the source
-  code extraction performed by the VS_AODVUU class.)
+  code extraction performed by the vs_AODVUU class.)
 
   TODO: Find some smarter way to accomplish this.
 */
@@ -189,29 +189,29 @@ static inline int name2index(char *name)
 #define DEV_NR(n) (this_host.devs[n])
 #endif
 /* Broadcast address according to draft (255.255.255.255) */
-#define VS_aodv_BROADCAST ((in_addr_t) 0xFFFFFFFF)
+#define vs_aodv_BROADCAST ((in_addr_t) 0xFFFFFFFF)
 
-#define VS_aodv_PORT 654
+#define vs_aodv_PORT 654
 
-/* VS_aodv Message types */
-#define VS_aodv_HELLO    0     /* Really never used as a separate type... */
-#define VS_aodv_RREQ     1
-#define VS_aodv_RREP     2
-#define VS_aodv_RERR     3
-#define VS_aodv_RREP_ACK 4
+/* vs_aodv Message types */
+#define vs_aodv_HELLO    0     /* Really never used as a separate type... */
+#define vs_aodv_RREQ     1
+#define vs_aodv_RREP     2
+#define vs_aodv_RERR     3
+#define vs_aodv_RREP_ACK 4
 
 #ifndef OMNETPP
-/* An generic VS_aodv extensions header */
+/* An generic vs_aodv extensions header */
 typedef struct
 {
     u_int8_t type;
     u_int8_t length;
     /* Type specific data follows here */
-} VS_aodv_ext;
+} vs_aodv_ext;
 
-/* A generic VS_aodv packet header struct... */
+/* A generic vs_aodv packet header struct... */
 #ifdef NS_PORT
-struct VS_AODV_msg
+struct vs_AODV_msg
 {
 #else
 typedef struct
@@ -219,7 +219,7 @@ typedef struct
 #endif
     u_int8_t type;
 
-    /* NS_PORT: Additions for the VS_AODVUU packet type in ns-2 */
+    /* NS_PORT: Additions for the vs_AODVUU packet type in ns-2 */
 #ifdef NS_PORT
     static int offset_;     // Required by PacketHeaderManager
 
@@ -227,29 +227,29 @@ typedef struct
     {
         return offset_;
     }
-    inline static VS_AODV_msg *access(const Packet * p)
+    inline static vs_AODV_msg *access(const Packet * p)
     {
-        return (VS_AODV_msg *) p->access(offset_);
+        return (vs_AODV_msg *) p->access(offset_);
     }
 
     int size();
 };
 
-typedef VS_AODV_msg hdr_VS_AODVUU;    // Name convention for headers
-#define HDR_VS_AODVUU(p) ((hdr_VS_AODVUU *) hdr_VS_AODVUU::access(p))
+typedef vs_AODV_msg hdr_vs_AODVUU;    // Name convention for headers
+#define HDR_vs_AODVUU(p) ((hdr_vs_AODVUU *) hdr_vs_AODVUU::access(p))
 #else
-} VS_AODV_msg;
+} vs_AODV_msg;
 #endif
 
 
-/* MACROS to access VS_aodv extensions... */
-#define VS_aodv_EXT_HDR_SIZE sizeof(VS_aodv_ext)
-#define VS_aodv_EXT_DATA(ext) ((char *)((char *)ext + VS_aodv_EXT_HDR_SIZE))
-#define VS_aodv_EXT_NEXT(ext) ((VS_aodv_ext *)((char *)ext + VS_aodv_EXT_HDR_SIZE + ext->length))
-#define VS_aodv_EXT_SIZE(ext) (VS_aodv_EXT_HDR_SIZE + ext->length)
+/* MACROS to access vs_aodv extensions... */
+#define vs_aodv_EXT_HDR_SIZE sizeof(vs_aodv_ext)
+#define vs_aodv_EXT_DATA(ext) ((char *)((char *)ext + vs_aodv_EXT_HDR_SIZE))
+#define vs_aodv_EXT_NEXT(ext) ((vs_aodv_ext *)((char *)ext + vs_aodv_EXT_HDR_SIZE + ext->length))
+#define vs_aodv_EXT_SIZE(ext) (vs_aodv_EXT_HDR_SIZE + ext->length)
 #endif
 
-/* VS_aodv Extension types */
+/* vs_aodv Extension types */
 #define RREQ_EXT 1
 #define RREP_EXT 1
 #define RREP_HELLO_INTERVAL_EXT 2

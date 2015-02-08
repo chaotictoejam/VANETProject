@@ -23,7 +23,7 @@
 /*
   This code was partially borrowed from Per Kristian Hove
   <Per.Hove@math.ntnu.no>, who originally posted it to the rdesktop
-  mailing VS_list at rdesktop.org.
+  mailing vs_list at rdesktop.org.
 
   It solves the problem of non-existent <endian.h> on some systems by
   generating it.

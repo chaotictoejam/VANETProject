@@ -20,8 +20,8 @@
  *
  *
  *****************************************************************************/
-#ifndef _VS_aodv_RERR_H
-#define _VS_aodv_RERR_H
+#ifndef _vs_aodv_RERR_H
+#define _vs_aodv_RERR_H
 
 #ifndef NS_NO_GLOBALS
 
@@ -35,8 +35,8 @@
 #endif
 #endif
 
-#include "VS_defs_aodv.h"
-#include "VS_routing_table.h"
+#include "vs_defs_aodv.h"
+#include "vs_routing_table.h"
 
 
 /* RERR Flags: */
@@ -86,5 +86,5 @@ void rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
                   struct in_addr ip_dst);
 #endif              /* NS_NO_DECLARATIONS */
 
-#endif              /* VS_aodv_RERR_H */
+#endif              /* vs_aodv_RERR_H */
 

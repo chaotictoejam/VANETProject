@@ -30,27 +30,27 @@
 
 #ifdef NS_PORT
 #ifndef OMNETPP
-#include "ns/VS_aodv-uu.h"
+#include "ns/vs_aodv-uu.h"
 #else
-#include "../VS_aodv_uu_omnet.h"
+#include "../vs_aodv_uu_omnet.h"
 #endif
 #else
-#include "VS_timer_queue_aodv.h"
-#include "VS_defs_aodv.h"
-#include "VS_debug_aodv.h"
-#include "VS_list.h"
+#include "vs_timer_queue_aodv.h"
+#include "vs_defs_aodv.h"
+#include "vs_debug_aodv.h"
+#include "vs_list.h"
 
-static VS_list(TQ);
+static vs_list(TQ);
 
 /* #define DEBUG_TIMER_QUEUE */
 
 #ifdef DEBUG_TIMER_QUEUE
-static void printTQ(VS_list_t * l);
+static void printTQ(vs_list_t * l);
 #endif
 #endif              /* NS_PORT */
 
 
-#ifdef VS_aodv_USE_STL
+#ifdef vs_aodv_USE_STL
 int NS_CLASS timer_init(struct timer *t, timeout_func_t f, void *data)
 {
     if (!t)
@@ -66,12 +66,12 @@ int NS_CLASS timer_init(struct timer *t, timeout_func_t f, void *data)
 void NS_CLASS timer_timeout(const simtime_t &now)
 {
 
-    while (!VS_aodvTimerMap.empty())
+    while (!vs_aodvTimerMap.empty())
     {
-        if (VS_aodvTimerMap.begin()->first > now)
+        if (vs_aodvTimerMap.begin()->first > now)
             return;
-        struct timer *t = VS_aodvTimerMap.begin()->second;
-        VS_aodvTimerMap.erase(VS_aodvTimerMap.begin());
+        struct timer *t = vs_aodvTimerMap.begin()->second;
+        vs_aodvTimerMap.erase(vs_aodvTimerMap.begin());
         t->used = 0;
         /* Execute handler function for expired timer... */
         if (t->handler)
@@ -101,7 +101,7 @@ NS_STATIC void NS_CLASS timer_add(struct timer *t)
         timer_remove(t);
 
     t->used = 1;
-    VS_aodvTimerMap.insert(std::make_pair(t->timeout,t));
+    vs_aodvTimerMap.insert(std::make_pair(t->timeout,t));
     return;
 }
 
@@ -111,11 +111,11 @@ int NS_CLASS timer_remove(struct timer *t)
         return -1;
 
     t->used = 0;
-    for (VS_aodvTimerMap::iterator it = VS_aodvTimerMap.begin();it != VS_aodvTimerMap.end();it++)
+    for (vs_aodvTimerMap::iterator it = vs_aodvTimerMap.begin();it != vs_aodvTimerMap.end();it++)
     {
         if (it->second == t)
         {
-            VS_aodvTimerMap.erase(it);
+            vs_aodvTimerMap.erase(it);
             return 1;
         }
     }
@@ -158,9 +158,9 @@ simtime_t NS_CLASS timer_age_queue()
     simtime_t remaining;
     now = simTime();
     timer_timeout(now);
-    if (VS_aodvTimerMap.empty())
+    if (vs_aodvTimerMap.empty())
         return remaining;
-    remaining =  VS_aodvTimerMap.begin()->first - now;
+    remaining =  vs_aodvTimerMap.begin()->first - now;
     return remaining;
 }
 #else
@@ -169,7 +169,7 @@ int NS_CLASS timer_init(struct timer *t, timeout_func_t f, void *data)
     if (!t)
         return -1;
 
-    INIT_VS_list_ELM(&t->l);
+    INIT_vs_list_ELM(&t->l);
     t->handler = f;
     t->data = data;
     t->timeout.tv_sec = 0;
@@ -182,31 +182,31 @@ int NS_CLASS timer_init(struct timer *t, timeout_func_t f, void *data)
 /* Called when a timer should timeout */
 void NS_CLASS timer_timeout(struct timeval *now)
 {
-    VS_list(expTQ);
-    VS_list_t *pos, *tmp;
-    VS_list_t *expTQ_ptr;
+    vs_list(expTQ);
+    vs_list_t *pos, *tmp;
+    vs_list_t *expTQ_ptr;
 
     expTQ_ptr=&expTQ;
 #ifdef DEBUG_TIMER_QUEUE
     printf("\n######## timer_timeout: called!!\n");
 #endif
     /* Remove expired timers from TQ and add them to expTQ */
-    VS_list_foreach_safe(pos, tmp, &TQ)
+    vs_list_foreach_safe(pos, tmp, &TQ)
     {
         struct timer *t = (struct timer *) pos;
 
         if (timeval_diff(&t->timeout, now) > 0)
             break;
 
-        VS_list_detach(&t->l);
-        VS_list_add_tail(expTQ_ptr, &t->l);
+        vs_list_detach(&t->l);
+        vs_list_add_tail(expTQ_ptr, &t->l);
     }
 
     /* Execute expired timers in expTQ safely by removing them at the head */
-    while (!VS_list_empty(expTQ_ptr))
+    while (!vs_list_empty(expTQ_ptr))
     {
-        struct timer *t = (struct timer *) VS_list_first(expTQ_ptr);
-        VS_list_detach(&t->l);
+        struct timer *t = (struct timer *) vs_list_first(expTQ_ptr);
+        vs_list_detach(&t->l);
         t->used = 0;
 #ifdef DEBUG_TIMER_QUEUE
         printf("removing timer %lu %d\n", pos);
@@ -225,8 +225,8 @@ void NS_CLASS timer_timeout(struct timeval *now)
 
 NS_STATIC void NS_CLASS timer_add(struct timer *t)
 {
-    VS_list_t *pos;
-    VS_list_t * VS_lista_ptr;
+    vs_list_t *pos;
+    vs_list_t * vs_lista_ptr;
     /* Sanity checks: */
 
     if (!t)
@@ -249,16 +249,16 @@ NS_STATIC void NS_CLASS timer_add(struct timer *t)
 #ifdef DEBUG_TIMER_QUEUE
     printf("New timer added!\n");
 #endif
-    VS_lista_ptr = &TQ;
+    vs_lista_ptr = &TQ;
     /* Base case when queue is empty: */
-    if (VS_list_empty(&TQ))
+    if (vs_list_empty(&TQ))
     {
-        VS_list_add(&TQ, &t->l);
+        vs_list_add(&TQ, &t->l);
     }
     else
     {
 
-        VS_list_foreach(pos, &TQ)
+        vs_list_foreach(pos, &TQ)
         {
             struct timer *curr = (struct timer *) pos;
             if (timeval_diff(&t->timeout, &curr->timeout) < 0)
@@ -266,7 +266,7 @@ NS_STATIC void NS_CLASS timer_add(struct timer *t)
                 break;
             }
         }
-        VS_list_add(pos->prev, &t->l);
+        vs_list_add(pos->prev, &t->l);
     }
 
 #ifdef DEBUG_TIMER_QUEUE
@@ -283,10 +283,10 @@ int NS_CLASS timer_remove(struct timer *t)
         return -1;
 
 
-    if (VS_list_unattached(&t->l))
+    if (vs_list_unattached(&t->l))
         res = 0;
     else
-        VS_list_detach(&t->l);
+        vs_list_detach(&t->l);
 
     t->used = 0;
 
@@ -353,14 +353,14 @@ struct timeval *NS_CLASS timer_age_queue()
 
     fflush(stdout);
 
-    if (VS_list_empty(&TQ))
+    if (vs_list_empty(&TQ))
         return NULL;
 
     timer_timeout(&now);
 
-    /* Check emptyness again since the VS_list might have been updated by a
+    /* Check emptyness again since the vs_list might have been updated by a
      * timeout */
-    if (VS_list_empty(&TQ))
+    if (vs_list_empty(&TQ))
         return NULL;
 
     t = (struct timer *) TQ.next;
@@ -378,18 +378,18 @@ struct timeval *NS_CLASS timer_age_queue()
 
 
 #ifdef DEBUG_TIMER_QUEUE
-void NS_CLASS printTQ(VS_list_t * l)
+void NS_CLASS printTQ(vs_list_t * l)
 {
     struct timeval now;
     int n = 0;
-    VS_list_t *pos;
+    vs_list_t *pos;
 
     gettimeofday(&now, NULL);
 
     fprintf(stderr, "================\n");
     fprintf(stderr, "%-12s %-4s %lu\n", "left", "n", (unsigned long) l);
 
-    VS_list_foreach(pos, l)
+    vs_list_foreach(pos, l)
     {
         struct timer *t = (struct timer *) pos;
         fprintf(stderr, "%-12ld %-4d %lu\n", timeval_diff(&t->timeout, &now), n,

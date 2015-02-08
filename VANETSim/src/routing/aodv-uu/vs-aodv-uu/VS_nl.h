@@ -22,7 +22,7 @@
 #ifndef _NL_H
 #define _NL_H
 
-/* #include "VS_routing_table.h" */
+/* #include "vs_routing_table.h" */
 
 void nl_init(void);
 void nl_cleanup(void);

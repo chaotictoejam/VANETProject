@@ -20,13 +20,13 @@
  *
  *
  *****************************************************************************/
-#ifndef _SEEK_VS_list_H
-#define _SEEK_VS_list_H
+#ifndef _SEEK_vs_list_H
+#define _SEEK_vs_list_H
 
 #ifndef NS_NO_GLOBALS
-#include "VS_defs_aodv.h"
-#include "VS_timer_queue_aodv.h"
-#include "VS_list.h"
+#include "vs_defs_aodv.h"
+#include "vs_timer_queue_aodv.h"
+#include "vs_list.h"
 
 #define IP_DATA_MAX_LEN 60 + 8  /* Max IP header + 64 bits of data */
 
@@ -36,10 +36,10 @@ struct ip_data
     int len;
 };
 
-/* This is a VS_list of nodes that route discovery are performed for */
-typedef struct seek_VS_list
+/* This is a vs_list of nodes that route discovery are performed for */
+typedef struct seek_vs_list
 {
-    VS_list_t l;
+    vs_list_t l;
     struct in_addr dest_addr;
     u_int32_t dest_seqno;
     struct ip_data *ipd;
@@ -47,21 +47,21 @@ typedef struct seek_VS_list
     int reqs;
     int ttl;
     struct timer seek_timer;
-} seek_VS_list_t;
+} seek_vs_list_t;
 #endif              /* NS_NO_GLOBALS */
 
 #ifndef NS_NO_DECLARATIONS
 
-seek_VS_list_t *seek_VS_list_insert(struct in_addr dest_addr, u_int32_t dest_seqno,
+seek_vs_list_t *seek_vs_list_insert(struct in_addr dest_addr, u_int32_t dest_seqno,
                               int ttl, u_int8_t flags, struct ip_data *ipd);
-int seek_VS_list_remove(seek_VS_list_t * entry);
-seek_VS_list_t *seek_VS_list_find(struct in_addr dest_addr);
+int seek_vs_list_remove(seek_vs_list_t * entry);
+seek_vs_list_t *seek_vs_list_find(struct in_addr dest_addr);
 
 #ifdef NS_PORT
-#ifdef SEEK_VS_list_DEBUG
-void seek_VS_list_print();
+#ifdef SEEK_vs_list_DEBUG
+void seek_vs_list_print();
 #endif
 #endif              /* NS_PORT */
 #endif              /* NS_NO_DECLARATIONS */
 
-#endif              /* SEEK_VS_list_H */
+#endif              /* SEEK_vs_list_H */

@@ -24,9 +24,9 @@
 
 #ifdef NS_PORT
 #ifndef OMNETPP
-#include "ns/VS_aodv-uu.h"
+#include "ns/vs_aodv-uu.h"
 #else
-#include "../VS_aodv_uu_omnet.h"
+#include "../vs_aodv_uu_omnet.h"
 #include "IPv4InterfaceData.h"
 #endif
 #else
@@ -34,8 +34,8 @@
 extern int h_errno;
 
 #include "locality.h"
-#include "VS_defs_aodv.h"
-#include "VS_debug_aodv.h"
+#include "vs_defs_aodv.h"
+#include "vs_debug_aodv.h"
 
 extern int gw_prefix;
 #endif

@@ -19,52 +19,52 @@
  * Authors: Erik Nordström, <erik.nordstrom@it.uu.se>
  *
  *****************************************************************************/
-#ifndef _VS_list_aodv_H
-#define _VS_list_aodv_H
+#ifndef _vs_list_aodv_H
+#define _vs_list_aodv_H
 #define NS_PORT
 #define OMNETPP
 
-/* Simple linked VS_list inspired from the Linux kernel VS_list implementation */
-typedef struct VS_list_t
+/* Simple linked vs_list inspired from the Linux kernel vs_list implementation */
+typedef struct vs_list_t
 {
-    struct VS_list_t *prev, *next;
-} VS_list_t;
+    struct vs_list_t *prev, *next;
+} vs_list_t;
 
-#define VS_list_NULL -1
-#define VS_list_SUCCESS 1
+#define vs_list_NULL -1
+#define vs_list_SUCCESS 1
 
-#define VS_list(name) VS_list_t name = { &(name), &(name) }
+#define vs_list(name) vs_list_t name = { &(name), &(name) }
 
-#define INIT_VS_list_HEAD(h) do { \
+#define INIT_vs_list_HEAD(h) do { \
     (h)->next = (h); (h)->prev = (h); \
 } while (0)
 
-#define INIT_VS_list_ELM(le) do { \
+#define INIT_vs_list_ELM(le) do { \
     (le)->next = NULL; (le)->prev = NULL; \
 } while (0)
 
-int VS_list_detach(VS_list_t * le);
-int VS_list_add_tail(VS_list_t * head, VS_list_t * le);
-int VS_list_add(VS_list_t * head, VS_list_t * le);
+int vs_list_detach(vs_list_t * le);
+int vs_list_add_tail(vs_list_t * head, vs_list_t * le);
+int vs_list_add(vs_list_t * head, vs_list_t * le);
 
 
-#define VS_list_foreach(curr, head) \
+#define vs_list_foreach(curr, head) \
         for (curr = (head)->next; curr != (head); curr = curr->next)
 
-#define VS_list_foreach_safe(pos, tmp, head) \
+#define vs_list_foreach_safe(pos, tmp, head) \
         for (pos = (head)->next, tmp = pos->next; pos != (head); \
                 pos = tmp, tmp = pos->next)
 #ifndef OMNETPP
-#define VS_list_empty(head) ((head) == (head)->next)
+#define vs_list_empty(head) ((head) == (head)->next)
 
-#define VS_list_first(head) ((head)->next)
+#define vs_list_first(head) ((head)->next)
 
-#define VS_list_unattached(le) ((le)->next == NULL && (le)->prev == NULL)
+#define vs_list_unattached(le) ((le)->next == NULL && (le)->prev == NULL)
 #else
 
-int VS_list_empty(VS_list_t*);
-VS_list_t* VS_list_first(VS_list_t*);
-int VS_list_unattached(VS_list_t*);
+int vs_list_empty(vs_list_t*);
+vs_list_t* vs_list_first(vs_list_t*);
+int vs_list_unattached(vs_list_t*);
 
 #endif
 #endif

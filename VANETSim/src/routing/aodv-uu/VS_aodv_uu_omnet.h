@@ -83,14 +83,14 @@ class VS_AODVUU;
 #undef NS_NO_GLOBALS
 #define NS_NO_DECLARATIONS
 
-#include "vs-aodv-uu/VS_timer_queue_VS_aodv.h"
+#include "vs-aodv-uu/VS_timer_queue_aodv.h"
 #include "vs-aodv-uu/VS_aodv_hello.h"
 #include "vs-aodv-uu/VS_aodv_rerr.h"
 #include "vs-aodv-uu/VS_aodv_rrep.h"
 #include "vs-aodv-uu/VS_aodv_rreq.h"
 #include "vs-aodv-uu/VS_aodv_socket.h"
 #include "vs-aodv-uu/VS_aodv_timeout.h"
-#include "vs-aodv-uu/VS_debug_VS_aodv.h"
+#include "vs-aodv-uu/VS_debug_aodv.h"
 #include "vs-aodv-uu/VS_routing_table.h"
 #include "vs-aodv-uu/VS_seek_list.h"
 #include "vs-aodv-uu/VS_locality.h"
@@ -238,7 +238,7 @@ class VS_AODVUU : public ManetRoutingBase
 #include "vs-aodv-uu/VS_locality.h"
 
 #undef _PACKET_QUEUE_H
-#include "packet_queue_omnet.h"
+#include "VS_packet_queue_omnet.h"
 
 #undef NS_NO_GLOBALS
 

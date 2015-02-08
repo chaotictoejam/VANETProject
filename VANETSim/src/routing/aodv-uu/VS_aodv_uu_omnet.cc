@@ -1525,7 +1525,7 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
 
     if (!delEntry && ifaceIndex<getNumInterfaces())
     {
-        fwd_rt = modifyVS_AODVTables(destAddr,nextAddr,hops,(uint32_t) SIMTIME_DBL(simTime()), 0xFFFF,IMMORTAL,0, ifaceIndex);
+        fwd_rt = modifyAODVTables(destAddr,nextAddr,hops,(uint32_t) SIMTIME_DBL(simTime()), 0xFFFF,IMMORTAL,0, ifaceIndex);
         status = (fwd_rt!=NULL);
 
     }
@@ -1586,7 +1586,7 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
 
     if (!delEntry && index<getNumInterfaces())
     {
-        fwd_rt = modifyVS_AODVTables(destAddr,nextAddr,hops,(uint32_t) SIMTIME_DBL(simTime()), 0xFFFF,IMMORTAL,0, index);
+        fwd_rt = modifyAODVTables(destAddr,nextAddr,hops,(uint32_t) SIMTIME_DBL(simTime()), 0xFFFF,IMMORTAL,0, index);
         status = (fwd_rt!=NULL);
     }
 

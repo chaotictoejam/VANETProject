@@ -20,11 +20,11 @@
  *
  *
  *****************************************************************************/
-#ifndef _VS_aodv_TIMEOUT_H
-#define _VS_aodv_TIMEOUT_H
+#ifndef _vs_aodv_TIMEOUT_H
+#define _vs_aodv_TIMEOUT_H
 
 #ifndef NS_NO_GLOBALS
-#include "VS_defs_aodv.h"
+#include "vs_defs_aodv.h"
 #endif              /* NS_NO_GLOBALS */
 
 #ifndef NS_NO_DECLARATIONS
@@ -38,4 +38,4 @@ void wait_on_reboot_timeout(void *arg);
 void packet_queue_timeout(void *arg);
 #endif              /* NS_NO_DECLARATIONS */
 
-#endif              /* VS_aodv_TIMEOUT_H */
+#endif              /* vs_aodv_TIMEOUT_H */

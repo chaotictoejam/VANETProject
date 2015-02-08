@@ -27,23 +27,23 @@
 
 #ifdef NS_PORT
 #ifndef OMNETPP
-#include "ns/VS_aodv-uu.h"
+#include "ns/vs_aodv-uu.h"
 #else
-#include "../VS_aodv_uu_omnet.h"
+#include "../vs_aodv_uu_omnet.h"
 #endif
 #else
-#include "VS_defs_aodv.h"
-#include "VS_aodv_timeout.h"
-#include "VS_aodv_socket.h"
-#include "VS_aodv_neighbor.h"
-#include "VS_aodv_rreq.h"
-#include "VS_aodv_hello.h"
-#include "VS_aodv_rerr.h"
-#include "VS_timer_queue_aodv.h"
-#include "VS_debug_aodv.h"
+#include "vs_defs_aodv.h"
+#include "vs_aodv_timeout.h"
+#include "vs_aodv_socket.h"
+#include "vs_aodv_neighbor.h"
+#include "vs_aodv_rreq.h"
+#include "vs_aodv_hello.h"
+#include "vs_aodv_rerr.h"
+#include "vs_timer_queue_aodv.h"
+#include "vs_debug_aodv.h"
 #include "params.h"
-#include "VS_routing_table.h"
-#include "seek_VS_list.h"
+#include "vs_routing_table.h"
+#include "seek_vs_list.h"
 #include "nl.h"
 
 extern int expanding_ring_search, local_repair;
@@ -56,9 +56,9 @@ void route_delete_timeout(void *arg);
 void NS_CLASS route_discovery_timeout(void *arg)
 {
     struct timeval now;
-    seek_VS_list_t *seek_entry;
+    seek_vs_list_t *seek_entry;
     rt_table_t *rt, *repair_rt;
-    seek_entry = (seek_VS_list_t *) arg;
+    seek_entry = (seek_vs_list_t *) arg;
 
 #define TTL_VALUE seek_entry->ttl
 
@@ -92,7 +92,7 @@ void NS_CLASS route_discovery_timeout(void *arg)
             timer_set_timeout(&seek_entry->seek_timer,
                               seek_entry->reqs * 2 * NET_TRAVERSAL_TIME);
         }
-        /* VS_aodv should use a binary exponential backoff RREP waiting
+        /* vs_aodv should use a binary exponential backoff RREP waiting
            time. */
         DEBUG(LOG_DEBUG, 0, "Seeking %s ttl=%d wait=%d",
               ip_to_str(seek_entry->dest_addr),
@@ -102,7 +102,7 @@ void NS_CLASS route_discovery_timeout(void *arg)
            before 2 * NET_TRAVERSAL_TIME... */
         rt = rt_table_find(seek_entry->dest_addr);
 
-#ifdef VS_aodv_USE_STL
+#ifdef vs_aodv_USE_STL
         if (rt && ((rt->rt_timer.timeout - simTime() ) < (2 * NET_TRAVERSAL_TIME)))
             rt_table_update_timeout(rt, 2 * NET_TRAVERSAL_TIME);
 #else
@@ -119,12 +119,12 @@ void NS_CLASS route_discovery_timeout(void *arg)
         DEBUG(LOG_DEBUG, 0, "NO ROUTE FOUND!");
 
 #ifdef NS_PORT
-        std::vector<ManetAddress> VS_list;
-        getVS_listRelatedAp(seek_entry->dest_addr.s_addr, VS_list);
-        for (unsigned int i = 0; i < VS_list.size();i ++)
+        std::vector<ManetAddress> vs_list;
+        getvs_listRelatedAp(seek_entry->dest_addr.s_addr, vs_list);
+        for (unsigned int i = 0; i < vs_list.size();i ++)
         {
             struct in_addr auxAaddr;
-            auxAaddr.s_addr = VS_list[i];
+            auxAaddr.s_addr = vs_list[i];
             packet_queue_set_verdict(auxAaddr, PQ_DROP);
         }
 #else
@@ -132,7 +132,7 @@ void NS_CLASS route_discovery_timeout(void *arg)
 #endif
         repair_rt = rt_table_find(seek_entry->dest_addr);
 
-        seek_VS_list_remove(seek_entry);
+        seek_vs_list_remove(seek_entry);
 
         /* If this route has been in repair, then we should timeout
            the route at this point. */
@@ -163,7 +163,7 @@ void NS_CLASS local_repair_timeout(void *arg)
         return;
     }
 
-    rerr_dest.s_addr = ManetAddress(IPv4Address(VS_aodv_BROADCAST));  /* Default destination */
+    rerr_dest.s_addr = ManetAddress(IPv4Address(vs_aodv_BROADCAST));  /* Default destination */
 
     /* Unset the REPAIR flag */
     rt->flags &= ~RT_REPAIR;
@@ -188,13 +188,13 @@ void NS_CLASS local_repair_timeout(void *arg)
 
         if (rt->nprec == 1)
         {
-#ifdef VS_aodv_USE_STL_RT
+#ifdef vs_aodv_USE_STL_RT
             rerr_dest = rt->precursors[0].neighbor;
 #else
             rerr_dest = FIRST_PREC(rt->precursors)->neighbor;
 #endif
 
-            VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,
+            vs_aodv_socket_send((vs_AODV_msg *) rerr, rerr_dest,
                              RERR_CALC_SIZE(rerr), 1,
                              &DEV_IFINDEX(rt->ifindex));
         }
@@ -206,14 +206,14 @@ void NS_CLASS local_repair_timeout(void *arg)
             {
                 if (!DEV_NR(i).enabled)
                     continue;
-                VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,
+                vs_aodv_socket_send((vs_AODV_msg *) rerr, rerr_dest,
                                  RERR_CALC_SIZE(rerr), 1, &DEV_NR(i));
             }
         }
         DEBUG(LOG_DEBUG, 0, "Sending RERR about %s to %s",
               ip_to_str(rt->dest_addr), ip_to_str(rerr_dest));
     }
-    precursor_VS_list_destroy(rt);
+    precursor_vs_list_destroy(rt);
 
     /* Purge any packets that may be queued */
     /* packet_queue_set_verdict(rt->dest_addr, PQ_DROP); */
@@ -253,7 +253,7 @@ void NS_CLASS route_expire_timeout(void *arg)
     else
     {
         rt_table_invalidate(rt);
-        precursor_VS_list_destroy(rt);
+        precursor_vs_list_destroy(rt);
     }
 
     return;
@@ -319,7 +319,7 @@ void NS_CLASS hello_timeout(void *arg)
 #ifdef NS_PORT
             /* Buffer pending packets from interface queue */
 #ifndef OMNETPP
-// VS_aodv in Omnet don't clear level 2 queue
+// vs_aodv in Omnet don't clear level 2 queue
             interfaceQueue((nsaddr_t) rt->dest_addr.s_addr, IFQ_BUFFER);
 #endif
 #endif
@@ -340,8 +340,8 @@ void NS_CLASS rrep_ack_timeout(void *arg)
         return;
 
     /* When a RREP transmission fails (i.e. lack of RREP-ACK), add to
-       blackVS_list set... */
-    rreq_blackVS_list_insert(rt->dest_addr);
+       blackvs_list set... */
+    rreq_blackvs_list_insert(rt->dest_addr);
 
     DEBUG(LOG_DEBUG, 0, "%s", ip_to_str(rt->dest_addr));
 }

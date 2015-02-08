@@ -35,15 +35,15 @@
 #include <linux/rtnetlink.h>
 
 #include "defs.h"
-#include "lnx/kVS_aodv-netlink.h"
+#include "lnx/kvs_aodv-netlink.h"
 #include "debug.h"
-#include "VS_aodv_rreq.h"
-#include "VS_aodv_timeout.h"
-#include "VS_routing_table.h"
-#include "VS_aodv_hello.h"
+#include "vs_aodv_rreq.h"
+#include "vs_aodv_timeout.h"
+#include "vs_routing_table.h"
+#include "vs_aodv_hello.h"
 #include "params.h"
-#include "VS_aodv_socket.h"
-#include "VS_aodv_rerr.h"
+#include "vs_aodv_socket.h"
+#include "vs_aodv_rerr.h"
 
 /* Implements a Netlink socket communication channel to the kernel. Route
  * information and refresh messages are passed. */
@@ -56,10 +56,10 @@ struct nlsock {
 
 struct sockaddr_nl peer = { AF_NETLINK, 0, 0, 0 };
 
-struct nlsock VS_aodvnl;
+struct nlsock vs_aodvnl;
 struct nlsock rtnl;
 
-static void nl_kVS_aodv_callback(int sock);
+static void nl_kvs_aodv_callback(int sock);
 static void nl_rt_callback(int sock);
 
 extern int llfeedback, active_route_timeout, qual_threshold, internet_gw_mode,
@@ -80,39 +80,39 @@ void nl_init(void)
 	peer.nl_pid = 0;
 	peer.nl_groups = 0;
 
-	memset(&VS_aodvnl, 0, sizeof(struct nlsock));
-	VS_aodvnl.seq = 0;
-	VS_aodvnl.local.nl_family = AF_NETLINK;
-	VS_aodvnl.local.nl_groups = VS_aodvGRP_NOTIFY;
-	VS_aodvnl.local.nl_pid = getpid();
+	memset(&vs_aodvnl, 0, sizeof(struct nlsock));
+	vs_aodvnl.seq = 0;
+	vs_aodvnl.local.nl_family = AF_NETLINK;
+	vs_aodvnl.local.nl_groups = vs_aodvGRP_NOTIFY;
+	vs_aodvnl.local.nl_pid = getpid();
 
-	/* This is the VS_aodv specific socket to communicate with the
-	   VS_aodv kernel module */
-	VS_aodvnl.sock = socket(PF_NETLINK, SOCK_RAW, NETLINK_VS_aodv);
+	/* This is the vs_aodv specific socket to communicate with the
+	   vs_aodv kernel module */
+	vs_aodvnl.sock = socket(PF_NETLINK, SOCK_RAW, NETLINK_vs_aodv);
 
-	if (VS_aodvnl.sock < 0) {
-		perror("Unable to create VS_aodv netlink socket");
+	if (vs_aodvnl.sock < 0) {
+		perror("Unable to create vs_aodv netlink socket");
 		exit(-1);
 	}
 
 
-	status = bind(VS_aodvnl.sock, (struct sockaddr *) &VS_aodvnl.local,
-		      sizeof(VS_aodvnl.local));
+	status = bind(vs_aodvnl.sock, (struct sockaddr *) &vs_aodvnl.local,
+		      sizeof(vs_aodvnl.local));
 
 	if (status == -1) {
-		perror("Bind for VS_aodv netlink socket failed");
+		perror("Bind for vs_aodv netlink socket failed");
 		exit(-1);
 	}
 
-	addrlen = sizeof(VS_aodvnl.local);
+	addrlen = sizeof(vs_aodvnl.local);
 
 	if (getsockname
-	    (VS_aodvnl.sock, (struct sockaddr *) &VS_aodvnl.local, &addrlen) < 0) {
+	    (vs_aodvnl.sock, (struct sockaddr *) &vs_aodvnl.local, &addrlen) < 0) {
 		perror("Getsockname failed ");
 		exit(-1);
 	}
 
-	if (attach_callback_func(VS_aodvnl.sock, nl_kVS_aodv_callback) < 0) {
+	if (attach_callback_func(vs_aodvnl.sock, nl_kvs_aodv_callback) < 0) {
 		alog(LOG_ERR, 0, __FUNCTION__, "Could not attach callback.");
 	}
 	/* This socket is the generic routing socket for adding and
@@ -154,12 +154,12 @@ void nl_init(void)
 
 void nl_cleanup(void)
 {
-	close(VS_aodvnl.sock);
+	close(vs_aodvnl.sock);
 	close(rtnl.sock);
 }
 
 
-static void nl_kVS_aodv_callback(int sock)
+static void nl_kvs_aodv_callback(int sock)
 {
 	int len;
 	socklen_t addrlen;
@@ -167,7 +167,7 @@ static void nl_kVS_aodv_callback(int sock)
 	struct nlmsgerr *nlmerr;
 	char buf[BUFLEN];
 	struct in_addr dest_addr, src_addr;
-	kVS_aodv_rt_msg_t *m;
+	kvs_aodv_rt_msg_t *m;
 	rt_table_t *rt, *fwd_rt, *rev_rt = NULL;
 
 	addrlen = sizeof(struct sockaddr_nl);
@@ -189,14 +189,14 @@ static void nl_kVS_aodv_callback(int sock)
 		} else {
 			DEBUG(LOG_DEBUG, 0, "NLMSG_ERROR, error=%d type=%s",
 			      nlmerr->error, 
-			      kVS_AODV_msg_type_to_str(nlmerr->msg.nlmsg_type));
+			      kvs_AODV_msg_type_to_str(nlmerr->msg.nlmsg_type));
 		}
 		break;
 
-	case KVS_aodvM_DEBUG:
-		DEBUG(LOG_DEBUG, 0, "kVS_aodv: %s", NLMSG_DATA(nlm));
+	case Kvs_aodvM_DEBUG:
+		DEBUG(LOG_DEBUG, 0, "kvs_aodv: %s", NLMSG_DATA(nlm));
 		break;
-       	case KVS_aodvM_TIMEOUT:
+       	case Kvs_aodvM_TIMEOUT:
 		m = NLMSG_DATA(nlm);
 		dest_addr.s_addr = m->dst;
 
@@ -212,7 +212,7 @@ static void nl_kVS_aodv_callback(int sock)
 			DEBUG(LOG_DEBUG, 0,
 			      "Got rt timeoute event but there is no route");
 		break;
-	case KVS_aodvM_ROUTE_REQ:
+	case Kvs_aodvM_ROUTE_REQ:
 		m = NLMSG_DATA(nlm);
 		dest_addr.s_addr = m->dst;
 
@@ -221,7 +221,7 @@ static void nl_kVS_aodv_callback(int sock)
 
 		rreq_route_discovery(dest_addr, 0, NULL);
 		break;
-	case KVS_aodvM_REPAIR:
+	case Kvs_aodvM_REPAIR:
 		m = NLMSG_DATA(nlm);
 		dest_addr.s_addr = m->dst;
 		src_addr.s_addr = m->src;
@@ -235,7 +235,7 @@ static void nl_kVS_aodv_callback(int sock)
 			rreq_local_repair(fwd_rt, src_addr, NULL);
 
 		break;
-	case KVS_aodvM_ROUTE_UPDATE:
+	case Kvs_aodvM_ROUTE_UPDATE:
 		m = NLMSG_DATA(nlm);
 
 		
@@ -243,7 +243,7 @@ static void nl_kVS_aodv_callback(int sock)
 		src_addr.s_addr = m->src;
 
 		//	DEBUG(LOG_DEBUG, 0, "ROute update s=%s d=%s", ip_to_str(src_addr), ip_to_str(dest_addr));
-		if (dest_addr.s_addr == VS_aodv_BROADCAST ||
+		if (dest_addr.s_addr == vs_aodv_BROADCAST ||
 		    dest_addr.s_addr ==
 		    DEV_IFINDEX(m->ifindex).broadcast.s_addr)
 			return;
@@ -254,12 +254,12 @@ static void nl_kVS_aodv_callback(int sock)
 		rt_table_update_route_timeouts(fwd_rt, rev_rt);
 
 		break;
-	case KVS_aodvM_SEND_RERR:
+	case Kvs_aodvM_SEND_RERR:
 		m = NLMSG_DATA(nlm);
 		dest_addr.s_addr = m->dst;
 		src_addr.s_addr = m->src;
 
-		if (dest_addr.s_addr == VS_aodv_BROADCAST ||
+		if (dest_addr.s_addr == vs_aodv_BROADCAST ||
 		    dest_addr.s_addr ==
 		    DEV_IFINDEX(m->ifindex).broadcast.s_addr)
 			return;
@@ -289,9 +289,9 @@ static void nl_kVS_aodv_callback(int sock)
 			if (rev_rt && rev_rt->state == VALID)
 				rerr_dest = rev_rt->next_hop;
 			else
-				rerr_dest.s_addr = VS_aodv_BROADCAST;
+				rerr_dest.s_addr = vs_aodv_BROADCAST;
 
-			VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,
+			vs_aodv_socket_send((vs_AODV_msg *) rerr, rerr_dest,
 					 RERR_CALC_SIZE(rerr), 1,
 					 &DEV_IFINDEX(m->ifindex));
 
@@ -492,7 +492,7 @@ int nl_send_add_route_msg(struct in_addr dest, struct in_addr next_hop,
 {
 	struct {
 		struct nlmsghdr n;
-		struct kVS_aodv_rt_msg m;
+		struct kvs_aodv_rt_msg m;
 	} areq;
 
 	DEBUG(LOG_DEBUG, 0, "ADD/UPDATE: %s:%s ifindex=%d",
@@ -500,8 +500,8 @@ int nl_send_add_route_msg(struct in_addr dest, struct in_addr next_hop,
 
 	memset(&areq, 0, sizeof(areq));
 
-	areq.n.nlmsg_len = NLMSG_LENGTH(sizeof(struct kVS_aodv_rt_msg));
-	areq.n.nlmsg_type = KVS_aodvM_ADDROUTE;
+	areq.n.nlmsg_len = NLMSG_LENGTH(sizeof(struct kvs_aodv_rt_msg));
+	areq.n.nlmsg_type = Kvs_aodvM_ADDROUTE;
 	areq.n.nlmsg_flags = NLM_F_REQUEST;
 
 	areq.m.dst = dest.s_addr;
@@ -510,13 +510,13 @@ int nl_send_add_route_msg(struct in_addr dest, struct in_addr next_hop,
 	areq.m.ifindex = ifindex;
 
 	if (rt_flags & RT_INET_DEST) {
-		areq.m.flags |= KVS_aodv_RT_GW_ENCAP;
+		areq.m.flags |= Kvs_aodv_RT_GW_ENCAP;
 	}
 
 	if (rt_flags & RT_REPAIR)
-		areq.m.flags |= KVS_aodv_RT_REPAIR;
+		areq.m.flags |= Kvs_aodv_RT_REPAIR;
 
-	if (nl_send(&VS_aodvnl, &areq.n) < 0) {
+	if (nl_send(&vs_aodvnl, &areq.n) < 0) {
 		DEBUG(LOG_DEBUG, 0, "Failed to send netlink message");
 		return -1;
 	}
@@ -531,13 +531,13 @@ int nl_send_no_route_found_msg(struct in_addr dest)
 {
 	struct {
 		struct nlmsghdr n;
-		kVS_aodv_rt_msg_t m;
+		kvs_aodv_rt_msg_t m;
 	} areq;
 
 	memset(&areq, 0, sizeof(areq));
 
-	areq.n.nlmsg_len = NLMSG_LENGTH(sizeof(struct kVS_aodv_rt_msg));
-	areq.n.nlmsg_type = KVS_aodvM_NOROUTE_FOUND;
+	areq.n.nlmsg_len = NLMSG_LENGTH(sizeof(struct kvs_aodv_rt_msg));
+	areq.n.nlmsg_type = Kvs_aodvM_NOROUTE_FOUND;
 	areq.n.nlmsg_flags = NLM_F_REQUEST;
 
 	areq.m.dst = dest.s_addr;
@@ -545,7 +545,7 @@ int nl_send_no_route_found_msg(struct in_addr dest)
 	DEBUG(LOG_DEBUG, 0, "Send NOROUTE_FOUND to kernel: %s",
 	      ip_to_str(dest));
 
-	return nl_send(&VS_aodvnl, &areq.n);
+	return nl_send(&vs_aodvnl, &areq.n);
 }
 
 int nl_send_del_route_msg(struct in_addr dest, struct in_addr next_hop, int metric)
@@ -553,15 +553,15 @@ int nl_send_del_route_msg(struct in_addr dest, struct in_addr next_hop, int metr
 	int index = -1;
 	struct {
 		struct nlmsghdr n;
-		struct kVS_aodv_rt_msg m;
+		struct kvs_aodv_rt_msg m;
 	} areq;
 
 	DEBUG(LOG_DEBUG, 0, "Send DEL_ROUTE to kernel: %s", ip_to_str(dest));
 
 	memset(&areq, 0, sizeof(areq));
 
-	areq.n.nlmsg_len = NLMSG_LENGTH(sizeof(struct kVS_aodv_rt_msg));
-	areq.n.nlmsg_type = KVS_aodvM_DELROUTE;
+	areq.n.nlmsg_len = NLMSG_LENGTH(sizeof(struct kvs_aodv_rt_msg));
+	areq.n.nlmsg_type = Kvs_aodvM_DELROUTE;
 	areq.n.nlmsg_flags = NLM_F_REQUEST;
 
 	areq.m.dst = dest.s_addr;
@@ -569,7 +569,7 @@ int nl_send_del_route_msg(struct in_addr dest, struct in_addr next_hop, int metr
 	areq.m.time = 0;
 	areq.m.flags = 0;
 
-	if (nl_send(&VS_aodvnl, &areq.n) < 0) {
+	if (nl_send(&vs_aodvnl, &areq.n) < 0) {
 		DEBUG(LOG_DEBUG, 0, "Failed to send netlink message");
 		return -1;
 	}
@@ -584,13 +584,13 @@ int nl_send_conf_msg(void)
 {
 	struct {
 		struct nlmsghdr n;
-		kVS_aodv_conf_msg_t cm;
+		kvs_aodv_conf_msg_t cm;
 	} areq;
 
 	memset(&areq, 0, sizeof(areq));
 
-	areq.n.nlmsg_len = NLMSG_LENGTH(sizeof(kVS_aodv_conf_msg_t));
-	areq.n.nlmsg_type = KVS_aodvM_CONFIG;
+	areq.n.nlmsg_len = NLMSG_LENGTH(sizeof(kvs_aodv_conf_msg_t));
+	areq.n.nlmsg_type = Kvs_aodvM_CONFIG;
 	areq.n.nlmsg_flags = NLM_F_REQUEST;
 
 	areq.cm.qual_th = qual_threshold;
@@ -598,7 +598,7 @@ int nl_send_conf_msg(void)
 	areq.cm.is_gateway = internet_gw_mode;
 
 #ifdef DEBUG_NETLINK
-	DEBUG(LOG_DEBUG, 0, "Sending VS_aodv conf msg");
+	DEBUG(LOG_DEBUG, 0, "Sending vs_aodv conf msg");
 #endif
-	return nl_send(&VS_aodvnl, &areq.n);
+	return nl_send(&vs_aodvnl, &areq.n);
 }

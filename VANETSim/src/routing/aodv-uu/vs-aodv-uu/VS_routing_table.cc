@@ -25,39 +25,39 @@
 #include <time.h>
 #ifdef NS_PORT
 #ifndef OMNETPP
-#include "ns/VS_aodv-uu.h"
+#include "ns/vs_aodv-uu.h"
 #else
-#include "../VS_aodv_uu_omnet.h"
+#include "../vs_aodv_uu_omnet.h"
 #endif
 #else
-#include "VS_routing_table.h"
-#include "VS_aodv_timeout.h"
-#include "VS_aodv_rerr.h"
-#include "VS_aodv_hello.h"
-#include "VS_aodv_socket.h"
-#include "VS_aodv_neighbor.h"
-#include "VS_timer_queue_aodv.h"
-#include "VS_defs_aodv.h"
-#include "VS_debug_aodv.h"
+#include "vs_routing_table.h"
+#include "vs_aodv_timeout.h"
+#include "vs_aodv_rerr.h"
+#include "vs_aodv_hello.h"
+#include "vs_aodv_socket.h"
+#include "vs_aodv_neighbor.h"
+#include "vs_timer_queue_aodv.h"
+#include "vs_defs_aodv.h"
+#include "vs_debug_aodv.h"
 #include "params.h"
-#include "seek_VS_list.h"
+#include "seek_vs_list.h"
 #include "nl.h"
 extern int llfeedback;
 #endif              /* NS_PORT */
 
-#ifndef VS_aodv_USE_STL_RT
+#ifndef vs_aodv_USE_STL_RT
 static unsigned int hashing(struct in_addr *addr, hash_value * hash);
 #endif
 
-#ifdef VS_aodv_USE_STL_RT
+#ifdef vs_aodv_USE_STL_RT
 
 
 void NS_CLASS rt_table_init()
 {
-    while (!VS_aodvRtTableMap.empty())
+    while (!vs_aodvRtTableMap.empty())
     {
-        rt_table_delete (VS_aodvRtTableMap.begin()->second);
-        VS_aodvRtTableMap.erase(VS_aodvRtTableMap.begin());
+        rt_table_delete (vs_aodvRtTableMap.begin()->second);
+        vs_aodvRtTableMap.erase(vs_aodvRtTableMap.begin());
     }
     rt_tbl.num_entries = 0;
     rt_tbl.num_active = 0;
@@ -65,9 +65,9 @@ void NS_CLASS rt_table_init()
 
 void NS_CLASS rt_table_destroy()
 {
-    while (!VS_aodvRtTableMap.empty())
+    while (!vs_aodvRtTableMap.empty())
     {
-        rt_table_delete (VS_aodvRtTableMap.begin()->second);
+        rt_table_delete (vs_aodvRtTableMap.begin()->second);
     }
 }
 
@@ -85,8 +85,8 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
 
     dest = dest_addr.s_addr;
     /* Check if we already have an entry for dest_addr */
-    VS_aodvRtTableMap::iterator it = VS_aodvRtTableMap.find(dest);
-    if (it != VS_aodvRtTableMap.end())
+    vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.find(dest);
+    if (it != vs_aodvRtTableMap.end())
     {
         DEBUG(LOG_INFO, 0, "%s already exist in routing table!",
               ip_to_str(dest_addr));
@@ -152,8 +152,8 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
     /* Insert first in bucket... */
     DEBUG(LOG_INFO, 0, "Inserting %s (bucket %d) next hop %s",
           ip_to_str(dest_addr), index, ip_to_str(next));
-    VS_aodvRtTableMap.insert(std::make_pair(dest,rt));
-    rt_tbl.num_entries = (int) VS_aodvRtTableMap.size();
+    vs_aodvRtTableMap.insert(std::make_pair(dest,rt));
+    rt_tbl.num_entries = (int) vs_aodvRtTableMap.size();
     if (state == INVALID)
     {
 
@@ -194,13 +194,13 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
 //#endif
     /* In case there are buffered packets for this destination, we
      * send them on the new route. */
-    std::vector<ManetAddress> VS_list;
-    getVS_listRelatedAp(dest_addr.s_addr, VS_list);
-    for (unsigned int i = 0; i < VS_list.size(); i++)
+    std::vector<ManetAddress> vs_list;
+    getvs_listRelatedAp(dest_addr.s_addr, vs_list);
+    for (unsigned int i = 0; i < vs_list.size(); i++)
     {
         struct in_addr auxAaddr;
-        auxAaddr.s_addr = VS_list[i];
-        if ((rt->state == VALID || rt->state == IMMORTAL)  && seek_VS_list_remove(seek_VS_list_find(auxAaddr)))
+        auxAaddr.s_addr = vs_list[i];
+        if ((rt->state == VALID || rt->state == IMMORTAL)  && seek_vs_list_remove(seek_vs_list_find(auxAaddr)))
         {
             if (rt->flags & RT_INET_DEST)
                 packet_queue_set_verdict(auxAaddr, PQ_ENC_SEND);
@@ -222,21 +222,21 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
 rt_table_t *NS_CLASS rt_table_find(struct in_addr dest_addr)
 {
 
-    if (VS_aodvRtTableMap.empty())
+    if (vs_aodvRtTableMap.empty())
         return NULL;
 
     /* Check if we already have an entry for dest_addr */
-    VS_aodvRtTableMap::iterator it = VS_aodvRtTableMap.find(dest_addr.s_addr);
+    vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.find(dest_addr.s_addr);
 
-    if (it != VS_aodvRtTableMap.end())
+    if (it != vs_aodvRtTableMap.end())
         return it->second;
     else
     {
         ManetAddress apAdd;
         if (getAp(dest_addr.s_addr, apAdd))
         {
-            it = VS_aodvRtTableMap.find(apAdd);
-            if (it != VS_aodvRtTableMap.end())
+            it = vs_aodvRtTableMap.find(apAdd);
+            if (it != vs_aodvRtTableMap.end())
                 return it->second;
         }
         return NULL;
@@ -247,7 +247,7 @@ rt_table_t *NS_CLASS rt_table_find(struct in_addr dest_addr)
 rt_table_t *NS_CLASS rt_table_find_gateway()
 {
     rt_table_t *gw = NULL;
-    for (VS_aodvRtTableMap::iterator it = VS_aodvRtTableMap.begin(); it != VS_aodvRtTableMap.end(); it++)
+    for (vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.begin(); it != vs_aodvRtTableMap.end(); it++)
     {
         rt_table_t *rt = it->second;
         if ((rt->flags & RT_GATEWAY) && rt->state == VALID)
@@ -268,7 +268,7 @@ int NS_CLASS rt_table_update_inet_rt(rt_table_t * gw, u_int32_t life)
     if (!gw)
         return -1;
 
-    for (VS_aodvRtTableMap::iterator it = VS_aodvRtTableMap.begin(); it != VS_aodvRtTableMap.end(); it++)
+    for (vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.begin(); it != vs_aodvRtTableMap.end(); it++)
     {
         rt_table_t *rt = it->second;
         if (rt->flags & RT_INET_DEST && rt->state == VALID)
@@ -346,7 +346,7 @@ int NS_CLASS rt_table_invalidate(rt_table_t * rt)
         int i;
 
         rt_table_t *gw = rt_table_find_gateway();
-        for (VS_aodvRtTableMap::iterator it = VS_aodvRtTableMap.begin(); it != VS_aodvRtTableMap.end(); it++)
+        for (vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.begin(); it != vs_aodvRtTableMap.end(); it++)
         {
             rt_table_t *rt2 = it->second;
             if (rt2->state == VALID && (rt2->flags & RT_INET_DEST) && (rt2->next_hop.s_addr == rt->dest_addr.s_addr))
@@ -358,7 +358,7 @@ int NS_CLASS rt_table_invalidate(rt_table_t * rt)
                             ip_to_str(rt->dest_addr),
                             ip_to_str(gw->dest_addr),
                             ip_to_str(rt2->dest_addr));
-#ifdef VS_aodv_USE_STL
+#ifdef vs_aodv_USE_STL
                     double val  = SIMTIME_DBL(rt->rt_timer.timeout - simTime())*1000.0;
                     u_int32_t lifetime = 0;
                     if (val >0)
@@ -373,7 +373,7 @@ int NS_CLASS rt_table_invalidate(rt_table_t * rt)
                 else
                 {
                     rt_table_invalidate(rt2);
-                    precursor_VS_list_destroy(rt2);
+                    precursor_vs_list_destroy(rt2);
                 }
             }
         }
@@ -413,13 +413,13 @@ void NS_CLASS rt_table_delete(rt_table_t * rt)
     }
 
     ManetAddress dest = rt->dest_addr.s_addr;
-    VS_aodvRtTableMap::iterator it = VS_aodvRtTableMap.find(dest);
-    if (it != VS_aodvRtTableMap.end())
+    vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.find(dest);
+    if (it != vs_aodvRtTableMap.end())
     {
         if (it->second != rt)
-            opp_error("VS_aodv routing table error");
+            opp_error("vs_aodv routing table error");
     }
-    VS_aodvRtTableMap.erase(it);
+    vs_aodvRtTableMap.erase(it);
 
     if (rt->state == VALID || rt->state == IMMORTAL)
     {
@@ -435,14 +435,14 @@ void NS_CLASS rt_table_delete(rt_table_t * rt)
     timer_remove(&rt->rt_timer);
     timer_remove(&rt->hello_timer);
     timer_remove(&rt->ack_timer);
-    rt_tbl.num_entries = (int) VS_aodvRtTableMap.size();
+    rt_tbl.num_entries = (int) vs_aodvRtTableMap.size();
     free(rt);
     return;
 }
 
 /****************************************************************/
 
-/* Add an neighbor to the active neighbor VS_list. */
+/* Add an neighbor to the active neighbor vs_list. */
 
 void NS_CLASS precursor_add(rt_table_t * rt, struct in_addr addr)
 {
@@ -463,7 +463,7 @@ void NS_CLASS precursor_add(rt_table_t * rt, struct in_addr addr)
 
 /****************************************************************/
 
-/* Remove a neighbor from the active neighbor VS_list. */
+/* Remove a neighbor from the active neighbor vs_list. */
 
 void NS_CLASS precursor_remove(rt_table_t * rt, struct in_addr addr)
 {
@@ -481,7 +481,7 @@ void NS_CLASS precursor_remove(rt_table_t * rt, struct in_addr addr)
     }
 }
 
-rt_table_t *NS_CLASS modifyVS_aodvTables(struct in_addr dest_addr,
+rt_table_t *NS_CLASS modifyAODVTables(struct in_addr dest_addr,
                                       struct in_addr next,
                                       u_int8_t hops, u_int32_t seqno,
                                       u_int32_t life, u_int8_t state,
@@ -494,7 +494,7 @@ rt_table_t *NS_CLASS modifyVS_aodvTables(struct in_addr dest_addr,
 
     ManetAddress dest = dest_addr.s_addr;
 
-    DEBUG(LOG_INFO, 0, "modifyVS_aodvTables");
+    DEBUG(LOG_INFO, 0, "modifyAODVTables");
     /* Check if we already have an entry for dest_addr */
 
     if ((rt = (rt_table_t *) malloc(sizeof(rt_table_t))) == NULL)
@@ -521,8 +521,8 @@ rt_table_t *NS_CLASS modifyVS_aodvTables(struct in_addr dest_addr,
 
     DEBUG(LOG_INFO, 0, "Inserting %s next hop %s",ip_to_str(dest_addr), ip_to_str(next));
 
-    VS_aodvRtTableMap.insert(std::make_pair(dest,rt));
-    rt_tbl.num_entries = (int) VS_aodvRtTableMap.size();
+    vs_aodvRtTableMap.insert(std::make_pair(dest,rt));
+    rt_tbl.num_entries = (int) vs_aodvRtTableMap.size();
     if (state == INVALID)
     {
 
@@ -556,14 +556,14 @@ rt_table_t *NS_CLASS modifyVS_aodvTables(struct in_addr dest_addr,
     /* In case there are buffered packets for this destination, we
      * send them on the new route. */
 
-    std::vector<ManetAddress> VS_list;
-    getVS_listRelatedAp(dest_addr.s_addr, VS_list);
+    std::vector<ManetAddress> vs_list;
+    getvs_listRelatedAp(dest_addr.s_addr, vs_list);
 
-    for (unsigned int i = 0; i < VS_list.size(); i++)
+    for (unsigned int i = 0; i < vs_list.size(); i++)
     {
         struct in_addr auxAaddr;
-        auxAaddr.s_addr = VS_list[i];
-        if ((rt->state == VALID || rt->state == IMMORTAL) && seek_VS_list_remove(seek_VS_list_find(auxAaddr)))
+        auxAaddr.s_addr = vs_list[i];
+        if ((rt->state == VALID || rt->state == IMMORTAL) && seek_vs_list_remove(seek_vs_list_find(auxAaddr)))
         {
             if (rt->flags & RT_INET_DEST)
                 packet_queue_set_verdict(auxAaddr, PQ_ENC_SEND);
@@ -580,7 +580,7 @@ rt_table_t *NS_CLASS modifyVS_aodvTables(struct in_addr dest_addr,
     return rt;
 }
 
-void precursor_VS_list_destroy(rt_table_t * rt)
+void precursor_vs_list_destroy(rt_table_t * rt)
 {
     /* Sanity check */
     if (!rt)
@@ -600,18 +600,18 @@ void NS_CLASS rt_table_init()
     /* We do a for loop here... NS does not like us to use memset() */
     for (i = 0; i < RT_TABLESIZE; i++)
     {
-        INIT_VS_list_HEAD(&rt_tbl.tbl[i]);
+        INIT_vs_list_HEAD(&rt_tbl.tbl[i]);
     }
 }
 
 void NS_CLASS rt_table_destroy()
 {
     int i;
-    VS_list_t *tmp = NULL, *pos = NULL;
+    vs_list_t *tmp = NULL, *pos = NULL;
 
     for (i = 0; i < RT_TABLESIZE; i++)
     {
-        VS_list_foreach_safe(pos, tmp, &rt_tbl.tbl[i])
+        vs_list_foreach_safe(pos, tmp, &rt_tbl.tbl[i])
         {
             rt_table_t *rt = (rt_table_t *) pos;
 
@@ -638,7 +638,7 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
 {
     hash_value hash;
     unsigned int index;
-    VS_list_t *pos;
+    vs_list_t *pos;
     rt_table_t *rt;
     struct in_addr nm;
     struct in_addr dest;
@@ -651,7 +651,7 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
     index = hashing(&dest, &hash);
 
     /* Check if we already have an entry for dest_addr */
-    VS_list_foreach(pos, &rt_tbl.tbl[index])
+    vs_list_foreach(pos, &rt_tbl.tbl[index])
     {
         rt = (rt_table_t *) pos;
         if (memcmp(&rt->dest_addr, &dest, sizeof(struct in_addr)) == 0)
@@ -692,7 +692,7 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
     rt->hello_cnt = 0;
 
     rt->nprec = 0;
-    INIT_VS_list_HEAD(&rt->precursors);
+    INIT_vs_list_HEAD(&rt->precursors);
 
     /* Insert first in bucket... */
 
@@ -701,7 +701,7 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
     DEBUG(LOG_INFO, 0, "Inserting %s (bucket %d) next hop %s",
           ip_to_str(dest_addr), index, ip_to_str(next));
 
-    VS_list_add(&rt_tbl.tbl[index], &rt->l);
+    vs_list_add(&rt_tbl.tbl[index], &rt->l);
 
     if (state == INVALID)
     {
@@ -750,13 +750,13 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
 //#endif
     /* In case there are buffered packets for this destination, we
      * send them on the new route. */
-    std::vector<ManetAddress> VS_list;
-    getVS_listRelatedAp(dest_addr.s_addr, VS_list);
-    for (unsigned int i = 0; i < VS_list.size(); i++)
+    std::vector<ManetAddress> vs_list;
+    getvs_listRelatedAp(dest_addr.s_addr, vs_list);
+    for (unsigned int i = 0; i < vs_list.size(); i++)
     {
         struct in_addr auxAaddr;
-        auxAaddr.s_addr = VS_list[i];
-        if ((rt->state == VALID || rt->state == IMMORTAL) && seek_VS_list_remove(seek_VS_list_find(auxAaddr)))
+        auxAaddr.s_addr = vs_list[i];
+        if ((rt->state == VALID || rt->state == IMMORTAL) && seek_vs_list_remove(seek_vs_list_find(auxAaddr)))
         {
 #ifdef NS_PORT
 
@@ -783,7 +783,7 @@ rt_table_t *NS_CLASS rt_table_find(struct in_addr dest_addr)
 {
     hash_value hash;
     unsigned int index;
-    VS_list_t *pos;
+    vs_list_t *pos;
     struct in_addr dest;
 
     dest = dest_addr;
@@ -794,7 +794,7 @@ rt_table_t *NS_CLASS rt_table_find(struct in_addr dest_addr)
     index = hashing(&dest, &hash);
 
     /* Handle collisions: */
-    VS_list_foreach(pos, &rt_tbl.tbl[index])
+    vs_list_foreach(pos, &rt_tbl.tbl[index])
     {
         rt_table_t *rt = (rt_table_t *) pos;
 
@@ -815,8 +815,8 @@ rt_table_t *NS_CLASS rt_table_find_gateway()
 
     for (i = 0; i < RT_TABLESIZE; i++)
     {
-        VS_list_t *pos;
-        VS_list_foreach(pos, &rt_tbl.tbl[i])
+        vs_list_t *pos;
+        vs_list_foreach(pos, &rt_tbl.tbl[i])
         {
             rt_table_t *rt = (rt_table_t *) pos;
 
@@ -841,8 +841,8 @@ int NS_CLASS rt_table_update_inet_rt(rt_table_t * gw, u_int32_t life)
 
     for (i = 0; i < RT_TABLESIZE; i++)
     {
-        VS_list_t *pos;
-        VS_list_foreach(pos, &rt_tbl.tbl[i])
+        vs_list_t *pos;
+        vs_list_foreach(pos, &rt_tbl.tbl[i])
         {
             rt_table_t *rt = (rt_table_t *) pos;
 
@@ -932,8 +932,8 @@ int NS_CLASS rt_table_invalidate(rt_table_t * rt)
 
         for (i = 0; i < RT_TABLESIZE; i++)
         {
-            VS_list_t *pos;
-            VS_list_foreach(pos, &rt_tbl.tbl[i])
+            vs_list_t *pos;
+            vs_list_foreach(pos, &rt_tbl.tbl[i])
             {
                 rt_table_t *rt2 = (rt_table_t *) pos;
 
@@ -954,7 +954,7 @@ int NS_CLASS rt_table_invalidate(rt_table_t * rt)
                     else
                     {
                         rt_table_invalidate(rt2);
-                        precursor_VS_list_destroy(rt2);
+                        precursor_vs_list_destroy(rt2);
                     }
                 }
             }
@@ -994,9 +994,9 @@ void NS_CLASS rt_table_delete(rt_table_t * rt)
         return;
     }
 
-    VS_list_detach(&rt->l);
+    vs_list_detach(&rt->l);
 
-    precursor_VS_list_destroy(rt);
+    precursor_vs_list_destroy(rt);
 
     if (rt->state == VALID || rt->state == IMMORTAL)
     {
@@ -1027,19 +1027,19 @@ void NS_CLASS rt_table_delete(rt_table_t * rt)
 
 /****************************************************************/
 
-/* Add an neighbor to the active neighbor VS_list. */
+/* Add an neighbor to the active neighbor vs_list. */
 
 void NS_CLASS precursor_add(rt_table_t * rt, struct in_addr addr)
 {
     precursor_t *pr;
-    VS_list_t *pos;
+    vs_list_t *pos;
 
     /* Sanity check */
     if (!rt)
         return;
 
-    /* Check if the node is already in the precursors VS_list. */
-    VS_list_foreach(pos, &rt->precursors)
+    /* Check if the node is already in the precursors vs_list. */
+    vs_list_foreach(pos, &rt->precursors)
     {
         pr = (precursor_t *) pos;
 
@@ -1058,9 +1058,9 @@ void NS_CLASS precursor_add(rt_table_t * rt, struct in_addr addr)
 
     pr->neighbor.s_addr = addr.s_addr;
 
-    /* Insert in precursors VS_list */
+    /* Insert in precursors vs_list */
 
-    VS_list_add(&rt->precursors, &pr->l);
+    vs_list_add(&rt->precursors, &pr->l);
     rt->nprec++;
 
     return;
@@ -1068,17 +1068,17 @@ void NS_CLASS precursor_add(rt_table_t * rt, struct in_addr addr)
 
 /****************************************************************/
 
-/* Remove a neighbor from the active neighbor VS_list. */
+/* Remove a neighbor from the active neighbor vs_list. */
 
 void NS_CLASS precursor_remove(rt_table_t * rt, struct in_addr addr)
 {
-    VS_list_t *pos;
+    vs_list_t *pos;
 
     /* Sanity check */
     if (!rt)
         return;
 
-    VS_list_foreach(pos, &rt->precursors)
+    vs_list_foreach(pos, &rt->precursors)
     {
         precursor_t *pr = (precursor_t *) pos;
         if (pr->neighbor.s_addr == addr.s_addr)
@@ -1086,7 +1086,7 @@ void NS_CLASS precursor_remove(rt_table_t * rt, struct in_addr addr)
             DEBUG(LOG_INFO, 0, "Removing precursor %s from rte %s",
                   ip_to_str(addr), ip_to_str(rt->dest_addr));
 
-            VS_list_detach(pos);
+            vs_list_detach(pos);
             rt->nprec--;
             free(pr);
             return;
@@ -1096,27 +1096,27 @@ void NS_CLASS precursor_remove(rt_table_t * rt, struct in_addr addr)
 
 /****************************************************************/
 
-/* Delete all entries from the active neighbor VS_list. */
+/* Delete all entries from the active neighbor vs_list. */
 
-void precursor_VS_list_destroy(rt_table_t * rt)
+void precursor_vs_list_destroy(rt_table_t * rt)
 {
-    VS_list_t *pos, *tmp;
+    vs_list_t *pos, *tmp;
 
     /* Sanity check */
     if (!rt)
         return;
 
-    VS_list_foreach_safe(pos, tmp, &rt->precursors)
+    vs_list_foreach_safe(pos, tmp, &rt->precursors)
     {
         precursor_t *pr = (precursor_t *) pos;
-        VS_list_detach(pos);
+        vs_list_detach(pos);
         rt->nprec--;
         free(pr);
     }
 }
 
 #ifdef OMNETPP
-rt_table_t *NS_CLASS modifyVS_aodvTables(struct in_addr dest_addr,
+rt_table_t *NS_CLASS modifyAODVTables(struct in_addr dest_addr,
                                       struct in_addr next,
                                       u_int8_t hops, u_int32_t seqno,
                                       u_int32_t life, u_int8_t state,
@@ -1124,7 +1124,7 @@ rt_table_t *NS_CLASS modifyVS_aodvTables(struct in_addr dest_addr,
 {
     hash_value hash;
     unsigned int index;
-    VS_list_t *pos;
+    vs_list_t *pos;
     rt_table_t *rt;
     struct in_addr nm;
     struct in_addr dest;
@@ -1135,9 +1135,9 @@ rt_table_t *NS_CLASS modifyVS_aodvTables(struct in_addr dest_addr,
     dest.s_addr=dest_addr.s_addr;
     index = hashing(&dest, &hash);
 
-    DEBUG(LOG_INFO, 0, "modifyVS_aodvTables");
+    DEBUG(LOG_INFO, 0, "modifyAODVTables");
     /* Check if we already have an entry for dest_addr */
-    VS_list_foreach(pos, &rt_tbl.tbl[index])
+    vs_list_foreach(pos, &rt_tbl.tbl[index])
     {
         rt = (rt_table_t *) pos;
         if (memcmp(&rt->dest_addr, &dest, sizeof(struct in_addr)) == 0)
@@ -1169,13 +1169,13 @@ rt_table_t *NS_CLASS modifyVS_aodvTables(struct in_addr dest_addr,
     rt->last_hello_time.tv_usec = 0;
     rt->hello_cnt = 0;
     rt->nprec = 0;
-    INIT_VS_list_HEAD(&rt->precursors);
+    INIT_vs_list_HEAD(&rt->precursors);
     /* Insert first in bucket... */
     rt_tbl.num_entries++;
     DEBUG(LOG_INFO, 0, "Inserting %s (bucket %d) next hop %s",
           ip_to_str(dest_addr), index, ip_to_str(next));
 
-    VS_list_add(&rt_tbl.tbl[index], &rt->l);
+    vs_list_add(&rt_tbl.tbl[index], &rt->l);
 
     if (state == INVALID)
     {
@@ -1209,13 +1209,13 @@ rt_table_t *NS_CLASS modifyVS_aodvTables(struct in_addr dest_addr,
 //#endif
     /* In case there are buffered packets for this destination, we
      * send them on the new route. */
-    std::vector<ManetAddress> VS_list;
-    getVS_listRelatedAp(dest_addr.s_addr, VS_list);
-    for (unsigned int i = 0; i < VS_list.size(); i++)
+    std::vector<ManetAddress> vs_list;
+    getvs_listRelatedAp(dest_addr.s_addr, vs_list);
+    for (unsigned int i = 0; i < vs_list.size(); i++)
     {
         struct in_addr auxAaddr;
-        auxAaddr.s_addr = VS_list[i];
-        if ((rt->state == VALID || rt->state == IMMORTAL) && seek_VS_list_remove(seek_VS_list_find(auxAaddr)))
+        auxAaddr.s_addr = vs_list[i];
+        if ((rt->state == VALID || rt->state == IMMORTAL) && seek_vs_list_remove(seek_vs_list_find(auxAaddr)))
         {
 #ifdef NS_PORT
 
@@ -1308,7 +1308,7 @@ rt_table_t *NS_CLASS rt_table_update(rt_table_t * rt, struct in_addr next,
 #ifndef OMNETPP
         neighbor_link_break(rt);
 #else
-        // Added in version VS_aodv-uu 0.9.3, it's commented for performance reasons
+        // Added in version vs_aodv-uu 0.9.3, it's commented for performance reasons
         //  neighbor_link_break(rt);
 #endif
 
@@ -1345,13 +1345,13 @@ rt_table_t *NS_CLASS rt_table_update(rt_table_t * rt, struct in_addr next,
 
     /* In case there are buffered packets for this destination, we send
      * them on the new route. */
-    std::vector<ManetAddress> VS_list;
-    getVS_listRelatedAp(rt->dest_addr.s_addr, VS_list);
-    for (unsigned int i = 0; i < VS_list.size(); i++)
+    std::vector<ManetAddress> vs_list;
+    getvs_listRelatedAp(rt->dest_addr.s_addr, vs_list);
+    for (unsigned int i = 0; i < vs_list.size(); i++)
     {
         struct in_addr auxAaddr;
-        auxAaddr.s_addr = VS_list[i];
-        if ((rt->state == VALID || rt->state == IMMORTAL)&& seek_VS_list_remove(seek_VS_list_find(auxAaddr)))
+        auxAaddr.s_addr = vs_list[i];
+        if ((rt->state == VALID || rt->state == IMMORTAL)&& seek_vs_list_remove(seek_vs_list_find(auxAaddr)))
         {
 #ifdef NS_PORT
 
@@ -1386,7 +1386,7 @@ NS_INLINE rt_table_t *NS_CLASS rt_table_update_timeout(rt_table_t * rt,
         DEBUG(LOG_DEBUG, 0, "Route %s update time out to %d milliseconds",
               ip_to_str(rt->dest_addr),lifetime);
 
-#ifdef VS_aodv_USE_STL
+#ifdef vs_aodv_USE_STL
         double interval = ((double)lifetime)/1000.0;
         simtime_t new_timeout = simTime() + interval;
         if (rt->rt_timer.timeout < new_timeout)
@@ -1413,7 +1413,7 @@ void NS_CLASS rt_table_update_route_timeouts(rt_table_t * fwd_rt,
 
     /* When forwarding a packet, we update the lifetime of the
        destination's routing table entry, as well as the entry for the
-       next hop neighbor (if not the same). VS_aodv draft 10, section
+       next hop neighbor (if not the same). vs_aodv draft 10, section
        6.2. */
 
     if (fwd_rt && fwd_rt->state == VALID)

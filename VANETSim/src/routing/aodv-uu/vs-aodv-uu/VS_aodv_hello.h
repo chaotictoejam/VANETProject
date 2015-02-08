@@ -20,13 +20,13 @@
  *
  *
  *****************************************************************************/
-#ifndef _VS_aodv_HELLO_H
-#define _VS_aodv_HELLO_H
+#ifndef _vs_aodv_HELLO_H
+#define _vs_aodv_HELLO_H
 
 #ifndef NS_NO_GLOBALS
-#include "VS_defs_aodv.h"
-#include "VS_aodv_rrep.h"
-#include "VS_routing_table.h"
+#include "vs_defs_aodv.h"
+#include "vs_aodv_rrep.h"
+#include "vs_routing_table.h"
 #endif              /* NS_NO_GLOBALS */
 
 #ifndef NS_NO_DECLARATIONS
@@ -38,7 +38,7 @@ void hello_start();
 void hello_stop();
 void hello_send(void *arg);
 void hello_process(RREP * hello, int rreplen, unsigned int ifindex);
-void hello_process_non_hello(VS_AODV_msg * VS_AODV_msg, const struct in_addr &source,
+void hello_process_non_hello(vs_AODV_msg * vs_AODV_msg, const struct in_addr &source,
                              unsigned int ifindex);
 NS_INLINE void hello_update_timeout(rt_table_t * rt, struct timeval *now,
                                     long time);
@@ -48,4 +48,4 @@ long hello_jitter();
 #endif
 #endif              /* NS_NO_DECLARATIONS */
 
-#endif              /* VS_aodv_HELLO_H */
+#endif              /* vs_aodv_HELLO_H */

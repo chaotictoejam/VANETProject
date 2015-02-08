@@ -35,11 +35,11 @@
 #include "debug.h"
 #include "timer_queue.h"
 #include "params.h"
-#include "VS_aodv_socket.h"
-#include "VS_aodv_timeout.h"
+#include "vs_aodv_socket.h"
+#include "vs_aodv_timeout.h"
 #include "k_route.h"
-#include "VS_routing_table.h"
-#include "VS_aodv_hello.h"
+#include "vs_routing_table.h"
+#include "vs_aodv_hello.h"
 #include "nl.h"
 
 #ifdef LLFEEDBACK
@@ -123,7 +123,7 @@ void usage(int status)
 	 "-q, --quality-threshold Set a minimum signal quality threshold for control packets.\n"
 	 "-V, --version           Show version.\n\n"
 	 "Erik Nordström, <erik.nordstrom@it.uu.se>\n\n",
-	 progname, VS_aodv_LOG_PATH, VS_aodv_RT_LOG_PATH);
+	 progname, vs_aodv_LOG_PATH, vs_aodv_RT_LOG_PATH);
 
     exit(status);
 }
@@ -307,12 +307,12 @@ void load_modules(char *ifname)
 
     memset(buf, '\0', 64);
 
-    if (stat("./kVS_aodv.ko", &st) == 0)
-	sprintf(buf, "/sbin/insmod kVS_aodv.ko ifname=%s &>/dev/null", ifname);
-    else if (stat("./kVS_aodv.o", &st) == 0)
-	sprintf(buf, "/sbin/insmod kVS_aodv.o ifname=%s &>/dev/null", ifname);
+    if (stat("./kvs_aodv.ko", &st) == 0)
+	sprintf(buf, "/sbin/insmod kvs_aodv.ko ifname=%s &>/dev/null", ifname);
+    else if (stat("./kvs_aodv.o", &st) == 0)
+	sprintf(buf, "/sbin/insmod kvs_aodv.o ifname=%s &>/dev/null", ifname);
     else
-	sprintf(buf, "/sbin/modprobe kVS_aodv ifname=%s &>/dev/null", ifname);
+	sprintf(buf, "/sbin/modprobe kvs_aodv ifname=%s &>/dev/null", ifname);
 
     system(buf);
 
@@ -322,11 +322,11 @@ void load_modules(char *ifname)
     m = fopen("/proc/modules", "r");
     while (fgets(buf, sizeof(buf), m)) {
 	l = strtok(buf, " \t");
-	if (!strcmp(l, "kVS_aodv"))
+	if (!strcmp(l, "kvs_aodv"))
 	    found++;
 	if (!strcmp(l, "ipchains")) {
 	    fprintf(stderr,
-		    "The ipchains kernel module is loaded and prevents VS_aodv-UU from functioning properly.\n");
+		    "The ipchains kernel module is loaded and prevents vs_aodv-UU from functioning properly.\n");
 	    exit(-1);
 	}
     }
@@ -342,7 +342,7 @@ void load_modules(char *ifname)
 
 void remove_modules(void)
 {
-    system("/sbin/rmmod kVS_aodv &>/dev/null");
+    system("/sbin/rmmod kvs_aodv &>/dev/null");
 }
 
 void host_init(char *ifname)
@@ -575,8 +575,8 @@ int main(int argc, char **argv)
 	    break;
 	case 'V':
 	    printf
-		("\nVS_aodv-UU v%s, %s © Uppsala University & Ericsson AB.\nAuthor: Erik Nordström, <erik.nordstrom@it.uu.se>\n\n",
-		 VS_aodv_UU_VERSION, DRAFT_VERSION);
+		("\nvs_aodv-UU v%s, %s © Uppsala University & Ericsson AB.\nAuthor: Erik Nordström, <erik.nordstrom@it.uu.se>\n\n",
+		 vs_aodv_UU_VERSION, DRAFT_VERSION);
 	    exit(0);
 	    break;
 	case '?':
@@ -613,7 +613,7 @@ int main(int argc, char **argv)
     /*   packet_input_init(); */
     nl_init();
     nl_send_conf_msg();
-    VS_aodv_socket_init();
+    vs_aodv_socket_init();
 #ifdef LLFEEDBACK
     if (llfeedback) {
 	llf_init();
@@ -685,7 +685,7 @@ static void cleanup(void)
     rt_table_destroy();
     /*  packet_input_cleanup(); */
 /*     packet_queue_destroy(); */
-    VS_aodv_socket_cleanup();
+    vs_aodv_socket_cleanup();
     nl_cleanup();
 #ifdef LLFEEDBACK
     if (llfeedback)

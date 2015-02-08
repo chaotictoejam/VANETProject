@@ -44,7 +44,7 @@ void log_cleanup();
 
 const char *packet_type(unsigned int type);
 void alog(int type, int errnum, const char *function, const char *format, ...);
-void log_pkt_fields(VS_AODV_msg * msg);
+void log_pkt_fields(vs_AODV_msg * msg);
 void print_rt_table(void *arg);
 void log_rt_table_init();
 char *ip_to_str(struct in_addr addr);

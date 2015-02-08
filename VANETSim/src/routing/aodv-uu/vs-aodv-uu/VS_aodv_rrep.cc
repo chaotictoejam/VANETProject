@@ -25,22 +25,22 @@
 
 #ifdef NS_PORT
 #ifndef OMNETPP
-#include "ns/VS_aodv-uu.h"
+#include "ns/vs_aodv-uu.h"
 #else
-#include "../VS_aodv_uu_omnet.h"
+#include "../vs_aodv_uu_omnet.h"
 #include "compatibility.h"
 #endif
 #else
 #include <netinet/in.h>
-#include "VS_aodv_rrep.h"
-#include "VS_aodv_neighbor.h"
-#include "VS_aodv_hello.h"
-#include "VS_routing_table.h"
-#include "VS_aodv_timeout.h"
-#include "VS_timer_queue_aodv.h"
-#include "VS_aodv_socket.h"
-#include "VS_defs_aodv.h"
-#include "VS_debug_aodv.h"
+#include "vs_aodv_rrep.h"
+#include "vs_aodv_neighbor.h"
+#include "vs_aodv_hello.h"
+#include "vs_routing_table.h"
+#include "vs_aodv_timeout.h"
+#include "vs_timer_queue_aodv.h"
+#include "vs_aodv_socket.h"
+#include "vs_defs_aodv.h"
+#include "vs_debug_aodv.h"
 #include "params.h"
 
 extern int unidir_hack, optimized_hellos, llfeedback;
@@ -57,12 +57,12 @@ RREP *NS_CLASS rrep_create(u_int8_t flags,
 {
     RREP *rrep;
 #ifndef OMNETPP
-    rrep = (RREP *) VS_aodv_socket_new_msg();
+    rrep = (RREP *) vs_aodv_socket_new_msg();
 #else
     rrep =  new RREP("RouteReply");
     rrep->cost=0;
 #endif
-    rrep->type = VS_aodv_RREP;
+    rrep->type = vs_aodv_RREP;
     rrep->res1 = 0;
     rrep->res2 = 0;
     rrep->prefix = prefix;
@@ -84,7 +84,7 @@ RREP *NS_CLASS rrep_create(u_int8_t flags,
     if (rrep->dest_addr != rrep->orig_addr)
     {
         DEBUG(LOG_DEBUG, 0, "Assembled RREP:");
-        log_pkt_fields((VS_AODV_msg *) rrep);
+        log_pkt_fields((vs_AODV_msg *) rrep);
     }
 #endif
 
@@ -95,11 +95,11 @@ RREP_ack *NS_CLASS rrep_ack_create()
 {
     RREP_ack *rrep_ack;
 #ifndef OMNETPP
-    rrep_ack = (RREP_ack *) VS_aodv_socket_new_msg();
+    rrep_ack = (RREP_ack *) vs_aodv_socket_new_msg();
 #else
     rrep_ack = new RREP_ack("RouteReplyAck");
 #endif
-    rrep_ack->type = VS_aodv_RREP_ACK;
+    rrep_ack->type = vs_aodv_RREP_ACK;
 
     DEBUG(LOG_DEBUG, 0, "Assembled RREP_ack");
     return rrep_ack;
@@ -126,20 +126,20 @@ void NS_CLASS rrep_ack_process(RREP_ack * rrep_ack, int rrep_acklen,
     timer_remove(&rt->ack_timer);
 }
 
-VS_aodv_ext *NS_CLASS rrep_add_ext(RREP * rrep, int type, unsigned int offset,
+vs_aodv_ext *NS_CLASS rrep_add_ext(RREP * rrep, int type, unsigned int offset,
                                 int len, char *data)
 {
-    VS_aodv_ext *ext = NULL;
+    vs_aodv_ext *ext = NULL;
 #ifndef OMNETPP
     if (offset < RREP_SIZE)
         return NULL;
 
-    ext = (VS_aodv_ext *) ((char *) rrep + offset);
+    ext = (vs_aodv_ext *) ((char *) rrep + offset);
 
     ext->type = type;
     ext->length = len;
 
-    memcpy(VS_aodv_EXT_DATA(ext), data, len);
+    memcpy(vs_aodv_EXT_DATA(ext), data, len);
 #else
     ext = rrep->addExtension(type,len,data);
 #endif
@@ -204,12 +204,12 @@ void NS_CLASS rrep_send(RREP * rrep, rt_table_t * rev_rt,
 #endif
     rrep->ttl=MAXTTL;
     if (delay > 0)
-        VS_aodv_socket_send((VS_AODV_msg *) rrep, rev_rt->next_hop, size, 1,
+        vs_aodv_socket_send((vs_AODV_msg *) rrep, rev_rt->next_hop, size, 1,
                              &DEV_IFINDEX(rev_rt->ifindex),delay);
     else
-        VS_aodv_socket_send((VS_AODV_msg *) rrep, rev_rt->next_hop, size, 1,
+        vs_aodv_socket_send((vs_AODV_msg *) rrep, rev_rt->next_hop, size, 1,
                                  &DEV_IFINDEX(rev_rt->ifindex));
-    /* Update precursor VS_lists */
+    /* Update precursor vs_lists */
     if (fwd_rt)
     {
         precursor_add(fwd_rt, rev_rt->next_hop);
@@ -264,10 +264,10 @@ void NS_CLASS rrep_forward(RREP * rrep, int size, rt_table_t * rev_rt,
         }
     }
 #ifndef OMNETPP
-    rrep = (RREP *) VS_aodv_socket_queue_msg((VS_AODV_msg *) rrep, size);
+    rrep = (RREP *) vs_aodv_socket_queue_msg((vs_AODV_msg *) rrep, size);
     rrep->hcnt = fwd_rt->hcnt;  /* Update the hopcount */
 
-    VS_aodv_socket_send((VS_AODV_msg *) rrep, rev_rt->next_hop, size, ttl,
+    vs_aodv_socket_send((vs_AODV_msg *) rrep, rev_rt->next_hop, size, ttl,
                      &DEV_IFINDEX(rev_rt->ifindex));
 
 #else
@@ -276,7 +276,7 @@ void NS_CLASS rrep_forward(RREP * rrep, int size, rt_table_t * rev_rt,
     rrep_new->hopfix = fwd_rt->hopfix;
     totalRrepSend++;
     rrep_new->ttl=ttl;
-    VS_aodv_socket_send((VS_AODV_msg *) rrep_new, rev_rt->next_hop, size, 1,
+    vs_aodv_socket_send((vs_AODV_msg *) rrep_new, rev_rt->next_hop, size, 1,
                      &DEV_IFINDEX(rev_rt->ifindex));
 #endif
     precursor_add(fwd_rt, rev_rt->next_hop);
@@ -291,7 +291,7 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
     u_int32_t rrep_lifetime, rrep_seqno, rrep_new_hcnt;
     u_int8_t pre_repair_hcnt = 0, pre_repair_flags = 0;
     rt_table_t *fwd_rt, *rev_rt;
-    VS_aodv_ext *ext;
+    vs_aodv_ext *ext;
     unsigned int extlen = 0;
     int rt_flags = 0;
     struct in_addr rrep_dest, rrep_orig;
@@ -361,13 +361,13 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
     DEBUG(LOG_DEBUG, 0, "from %s about %s->%s",
           ip_to_str(ip_src), ip_to_str(rrep_orig), ip_to_str(rrep_dest));
 #ifdef DEBUG_OUTPUT
-    log_pkt_fields((VS_AODV_msg *) rrep);
+    log_pkt_fields((vs_AODV_msg *) rrep);
 #endif
 
     /* Determine whether there are any extensions */
 
 #ifndef OMNETPP
-    ext = (VS_aodv_ext *) ((char *) rrep + RREP_SIZE);
+    ext = (vs_aodv_ext *) ((char *) rrep + RREP_SIZE);
     while ((rreplen - extlen) > RREP_SIZE)
     {
 #else
@@ -389,7 +389,7 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
 
                 /* Destination address in RREP is the gateway address, while the
                  * extension holds the real destination */
-                memcpy(&inet_dest_addr, VS_aodv_EXT_DATA(ext), ext->length);
+                memcpy(&inet_dest_addr, vs_aodv_EXT_DATA(ext), ext->length);
                 DEBUG(LOG_DEBUG, 0, "RREP_INET_DEST_EXT: <%s>",
                       ip_to_str(inet_dest_addr));
                 /* This was a RREP from a gateway */
@@ -403,8 +403,8 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
                  ext->type);
             break;
         }
-        extlen += VS_aodv_EXT_SIZE(ext);
-        ext = VS_aodv_EXT_NEXT(ext);
+        extlen += vs_aodv_EXT_SIZE(ext);
+        ext = vs_aodv_EXT_NEXT(ext);
     }
 
     /* ---------- CHECK IF WE SHOULD MAKE A FORWARD ROUTE ------------ */
@@ -468,7 +468,7 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
         rrep_ack = rrep_ack_create();
         totalRrepAckSend++;
         rrep_ack->ttl=MAXTTL;
-        VS_aodv_socket_send((VS_AODV_msg *) rrep_ack, fwd_rt->next_hop,
+        vs_aodv_socket_send((vs_AODV_msg *) rrep_ack, fwd_rt->next_hop,
                          NEXT_HOP_WAIT, 1, &DEV_IFINDEX(fwd_rt->ifindex));
         /* Remove RREP_ACK flag... */
         rrep->a = 0;
@@ -523,7 +523,7 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
                 u_int8_t rerr_flags = 0;
                 struct in_addr dest;
 
-                dest.s_addr = ManetAddress(IPv4Address(VS_aodv_BROADCAST));
+                dest.s_addr = ManetAddress(IPv4Address(vs_aodv_BROADCAST));
                 rerr_flags |= RERR_NODELETE;
 
 #ifdef OMNETPP
@@ -534,7 +534,7 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
                                        fwd_rt->dest_seqno);
                     rerr->ttl=1;
                     if (fwd_rt->nprec)
-                        VS_aodv_socket_send((VS_AODV_msg *) rerr, dest,
+                        vs_aodv_socket_send((vs_AODV_msg *) rerr, dest,
                                          RERR_CALC_SIZE(rerr), 1,
                                          &DEV_IFINDEX(fwd_rt->ifindex));
 #ifdef OMNETPP
@@ -570,15 +570,15 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
 
 int rrep_add_hello_ext(RREP * rrep, int offset, u_int32_t interval)
 {
-    VS_aodv_ext *ext;
+    vs_aodv_ext *ext;
 #ifndef OMNETPP
-    ext = (VS_aodv_ext *) ((char *) rrep + RREP_SIZE + offset);
+    ext = (vs_aodv_ext *) ((char *) rrep + RREP_SIZE + offset);
     ext->type = RREP_HELLO_INTERVAL_EXT;
     ext->length = sizeof(interval);
-    memcpy(VS_aodv_EXT_DATA(ext), &interval, sizeof(interval));
+    memcpy(vs_aodv_EXT_DATA(ext), &interval, sizeof(interval));
 #else
     ext = rrep->addExtension(RREP_HELLO_INTERVAL_EXT,sizeof(interval),(char*)&interval);
 #endif
-    return (offset + VS_aodv_EXT_SIZE(ext));
+    return (offset + vs_aodv_EXT_SIZE(ext));
 }
 

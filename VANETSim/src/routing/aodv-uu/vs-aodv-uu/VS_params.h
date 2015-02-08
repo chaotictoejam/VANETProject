@@ -23,7 +23,7 @@
 #ifndef _PARAMS_H
 #define _PARAMS_H
 
-#include "VS_defs_aodv.h"
+#include "vs_defs_aodv.h"
 
 #define K_PARAM   5
 
@@ -44,8 +44,8 @@
 
 /* Non runtime modifiable settings */
 #define ALLOWED_HELLO_LOSS      2
-/* If expanding ring search is used, BLACKVS_list_TIMEOUT should be?: */
-#define BLACKVS_list_TIMEOUT       RREQ_RETRIES * NET_TRAVERSAL_TIME + (TTL_THRESHOLD - TTL_START)/TTL_INCREMENT + 1 + RREQ_RETRIES
+/* If expanding ring search is used, BLACKvs_list_TIMEOUT should be?: */
+#define BLACKvs_list_TIMEOUT       RREQ_RETRIES * NET_TRAVERSAL_TIME + (TTL_THRESHOLD - TTL_START)/TTL_INCREMENT + 1 + RREQ_RETRIES
 #define HELLO_INTERVAL          1000
 #define LOCAL_ADD_TTL           2
 #define MAX_REPAIR_TTL          3 * NET_DIAMETER / 10
