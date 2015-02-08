@@ -15,7 +15,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#include "VS_AODVRouteData.h"
+#include "vs_aodvRouteData.h"
 
 std::ostream & operator<<(std::ostream& out, const VS_AODVRouteData *data)
 {

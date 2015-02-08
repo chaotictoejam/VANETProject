@@ -9,7 +9,7 @@
 //#include <sys/types.h>
 #include "compatibility.h"
 
-#include "VS_aodv_msg_struct_m.h"
+#include "vs_aodv_msg_struct_m.h"
 
 // this structures are a redifinition of def.h struct for omnet
 

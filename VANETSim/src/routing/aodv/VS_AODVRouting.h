@@ -28,9 +28,9 @@
 #include "NodeStatus.h"
 #include "NotificationBoard.h"
 #include "UDPSocket.h"
-#include "VS_AODVRouteData.h"
+#include "vs_aodvRouteData.h"
 #include "UDPPacket.h"
-#include "VS_AODVControlPackets_m.h"
+#include "vs_aodvControlPackets_m.h"
 #include <map>
 
 /*

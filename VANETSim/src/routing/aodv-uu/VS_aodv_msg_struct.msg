@@ -17,7 +17,7 @@
 
 
 cplusplus {{
-#include "VS_AODV_msg_struct.h"
+#include "vs_aodv_msg_struct.h"
 }}
 
 class noncobject ManetAddress;

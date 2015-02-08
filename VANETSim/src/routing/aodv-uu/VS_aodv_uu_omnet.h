@@ -58,18 +58,18 @@
 //#define AODV_GLOBAL_STATISTISTIC
 
 /* Global definitions and lib functions */
-#include "vs-aodv-uu/VS_params.h"
-#include "vs-aodv-uu/VS_defs_aodv.h"
+#include "vs-aodv-uu/vs_params.h"
+#include "vs-aodv-uu/vs_defs_aodv.h"
 
 /* System-dependent datatypes */
 /* Needed by some network-related datatypes */
 #include "ManetRoutingBase.h"
-#include "vs-aodv-uu/VS_list.h"
+#include "vs-aodv-uu/vs_list.h"
 
 #include "ICMPAccess.h"
 #include "Ieee80211Frame_m.h"
 
-#include "VS_aodv_msg_struct.h"
+#include "vs_aodv_msg_struct.h"
 /* Forward declaration needed to be able to reference the class */
 class VS_AODVUU;
 
@@ -83,19 +83,19 @@ class VS_AODVUU;
 #undef NS_NO_GLOBALS
 #define NS_NO_DECLARATIONS
 
-#include "vs-aodv-uu/VS_timer_queue_aodv.h"
-#include "vs-aodv-uu/VS_aodv_hello.h"
-#include "vs-aodv-uu/VS_aodv_rerr.h"
-#include "vs-aodv-uu/VS_aodv_rrep.h"
-#include "vs-aodv-uu/VS_aodv_rreq.h"
-#include "vs-aodv-uu/VS_aodv_socket.h"
-#include "vs-aodv-uu/VS_aodv_timeout.h"
-#include "vs-aodv-uu/VS_debug_aodv.h"
-#include "vs-aodv-uu/VS_routing_table.h"
-#include "vs-aodv-uu/VS_seek_list.h"
-#include "vs-aodv-uu/VS_locality.h"
+#include "vs-aodv-uu/vs_timer_queue_aodv.h"
+#include "vs-aodv-uu/vs_aodv_hello.h"
+#include "vs-aodv-uu/vs_aodv_rerr.h"
+#include "vs-aodv-uu/vs_aodv_rrep.h"
+#include "vs-aodv-uu/vs_aodv_rreq.h"
+#include "vs-aodv-uu/vs_aodv_socket.h"
+#include "vs-aodv-uu/vs_aodv_timeout.h"
+#include "vs-aodv-uu/vs_debug_aodv.h"
+#include "vs-aodv-uu/vs_routing_table.h"
+#include "vs-aodv-uu/vs_seek_list.h"
+#include "vs-aodv-uu/vs_locality.h"
 
-#include "VS_packet_queue_omnet.h"
+#include "vs_packet_queue_omnet.h"
 
 #undef NS_NO_DECLARATIONS
 
@@ -202,43 +202,43 @@ class VS_AODVUU : public ManetRoutingBase
 #undef NS_NO_DECLARATIONS
 
 #undef _AODV_NEIGHBOR_H
-#include "vs-aodv-uu/VS_aodv_neighbor.h"
+#include "vs-aodv-uu/vs_aodv_neighbor.h"
 
 #undef _AODV_HELLO_H
-#include "vs-aodv-uu/VS_aodv_hello.h"
+#include "vs-aodv-uu/vs_aodv_hello.h"
 
 #undef _AODV_RERR_H
-#include "vs-aodv-uu/VS_aodv_rerr.h"
+#include "vs-aodv-uu/vs_aodv_rerr.h"
 
 #undef _AODV_RREP_H
-#include "vs-aodv-uu/VS_aodv_rrep.h"
+#include "vs-aodv-uu/vs_aodv_rrep.h"
 
 #undef _AODV_RREQ_H
-#include "vs-aodv-uu/VS_aodv_rreq.h"
+#include "vs-aodv-uu/vs_aodv_rreq.h"
 
 #undef _AODV_SOCKET_H
-#include "vs-aodv-uu/VS_aodv_socket.h"
+#include "vs-aodv-uu/vs_aodv_socket.h"
 
 #undef _AODV_TIMEOUT_H
-#include "vs-aodv-uu/VS_aodv_timeout.h"
+#include "vs-aodv-uu/vs_aodv_timeout.h"
 
 #undef _DEBUG_H
-#include "vs-aodv-uu/VS_debug_aodv.h"
+#include "vs-aodv-uu/vs_debug_aodv.h"
 
 #undef _ROUTING_TABLE_H
-#include "vs-aodv-uu/VS_routing_table.h"
+#include "vs-aodv-uu/vs_routing_table.h"
 
 #undef _SEEK_VS_list_H
-#include "vs-aodv-uu/VS_seek_list.h"
+#include "vs-aodv-uu/vs_seek_list.h"
 
 #undef _TIMER_QUEUE_H
-#include "vs-aodv-uu/VS_timer_queue_aodv.h"
+#include "vs-aodv-uu/vs_timer_queue_aodv.h"
 
 #undef _LOCALITY_H
-#include "vs-aodv-uu/VS_locality.h"
+#include "vs-aodv-uu/vs_locality.h"
 
 #undef _PACKET_QUEUE_H
-#include "VS_packet_queue_omnet.h"
+#include "vs_packet_queue_omnet.h"
 
 #undef NS_NO_GLOBALS
 

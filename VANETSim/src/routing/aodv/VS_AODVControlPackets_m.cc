@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <sstream>
-#include "VS_AODVControlPackets_m.h"
+#include "vs_aodvControlPackets_m.h"
 
 USING_NAMESPACE
 

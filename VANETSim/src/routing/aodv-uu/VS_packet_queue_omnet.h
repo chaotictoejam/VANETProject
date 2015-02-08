@@ -28,8 +28,8 @@
 #define MAX_QUEUE_TIME 10000 /* Maximum time packets can be queued (ms) */
 #define GARBAGE_COLLECT_TIME 1000 /* Interval between running the
 * garbage collector (ms) */
-#include "vs-aodv-uu/VS_defs_aodv.h"
-#include "vs-aodv-uu/VS_list.h"
+#include "vs-aodv-uu/vs_defs_aodv.h"
+#include "vs-aodv-uu/vs_list.h"
 
 /* Verdicts for queued packets: */
 enum

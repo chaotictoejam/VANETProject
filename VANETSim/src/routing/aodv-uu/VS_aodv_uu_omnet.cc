@@ -40,7 +40,7 @@
 #include "IPvXAddress.h"
 #include "ControlManetRouting_m.h"
 #include "Ieee802Ctrl_m.h"
-#include "VS_aodv_uu_omnet.h"
+#include "vs_aodv_uu_omnet.h"
 
 const int UDP_HEADER_BYTES = 8;
 typedef std::vector<IPv4Address> IPAddressVector;

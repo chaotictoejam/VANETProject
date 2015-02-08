@@ -15,7 +15,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#include "VS_AODVRouting.h"
+#include "vs_aodvRouting.h"
 #include "IPv4Route.h"
 #include "Ieee80211Frame_m.h"
 #include "InterfaceTableAccess.h"
