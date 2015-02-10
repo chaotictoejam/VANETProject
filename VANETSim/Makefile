@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -O out -IF:/GitHub/inet/src/linklayer/ieee80211/radio -IF:/GitHub/inet/src/networklayer/routing/aodv -IF:/GitHub/inet/src/networklayer/common -IF:/GitHub/inet/src -IF:/GitHub/inet/src/networklayer/icmpv6 -IF:/GitHub/inet/src/world/obstacles -IF:/GitHub/inet/src/networklayer/xmipv6 -IF:/GitHub/inet/src/networklayer/contract -IF:/GitHub/inet/src/networklayer/autorouting/ipv4 -IF:/GitHub/inet/src/util -IF:/GitHub/inet/src/linklayer/common -IF:/GitHub/inet/src/transport/contract -IF:/GitHub/inet/src/status -IF:/GitHub/inet/src/linklayer/radio/propagation -IF:/GitHub/inet/src/linklayer/ieee80211/radio/errormodel -IF:/GitHub/inet/src/linklayer/radio -IF:/GitHub/inet/src/util/headerserializers/tcp -IF:/GitHub/inet/src/networklayer/ipv4 -IF:/GitHub/inet/src/mobility/contract -IF:/GitHub/inet/src/util/headerserializers/ipv4 -IF:/GitHub/inet/src/base -IF:/GitHub/inet/src/util/headerserializers -IF:/GitHub/inet/src/world/radio -IF:/GitHub/inet/src/linklayer/ieee80211/mac -IF:/GitHub/inet/src/networklayer/ipv6 -IF:/GitHub/inet/src/transport/sctp -IF:/GitHub/inet/src/util/headerserializers/udp -IF:/GitHub/inet/src/networklayer/ipv6tunneling -IF:/GitHub/inet/src/applications/pingapp -IF:/GitHub/inet/src/battery/models -IF:/GitHub/inet/src/util/headerserializers/ipv6 -IF:/GitHub/inet/src/util/headerserializers/sctp -IF:/GitHub/inet/src/linklayer/contract -IF:/GitHub/inet/src/transport/tcp_common -IF:/GitHub/inet/src/networklayer/arp -IF:/GitHub/inet/src/transport/udp -IF:/GitHub/inet/src/linklayer/ethernet -IF:/GitHub/inet/src/networklayer/manetrouting/aodv-uu -IF:/GitHub/inet/src/networklayer/manetrouting/base -IF:/GitHub/inet/src/linklayer/ieee80211/mgmt -IF:/GitHub/inet/src/networklayer/manetrouting/dsr -IF:/GitHub/inet/src/networklayer/manetrouting/aodv-uu/aodv-uu -LF:/GitHub/inet/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KINET_PROJ=F:/GitHub/inet
+#  opp_makemake -f --deep -O out -IF:/GitHub/inet/src/linklayer/ieee80211/radio -IF:/GitHub/inet/src/networklayer/routing/aodv -IF:/GitHub/inet/src/networklayer/common -IF:/GitHub/inet/src -IF:/GitHub/inet/src/networklayer/icmpv6 -IF:/GitHub/inet/src/world/obstacles -IF:/GitHub/inet/src/networklayer/xmipv6 -IF:/GitHub/inet/src/networklayer/contract -IF:/GitHub/inet/src/networklayer/autorouting/ipv4 -IF:/GitHub/inet/src/util -IF:/GitHub/inet/src/linklayer/common -IF:/GitHub/inet/src/transport/contract -IF:/GitHub/inet/src/status -IF:/GitHub/inet/src/linklayer/radio/propagation -IF:/GitHub/inet/src/linklayer/ieee80211/radio/errormodel -IF:/GitHub/inet/src/linklayer/radio -IF:/GitHub/inet/src/util/headerserializers/tcp -IF:/GitHub/inet/src/networklayer/ipv4 -IF:/GitHub/inet/src/mobility/contract -IF:/GitHub/inet/src/util/headerserializers/ipv4 -IF:/GitHub/inet/src/base -IF:/GitHub/inet/src/util/headerserializers -IF:/GitHub/inet/src/world/radio -IF:/GitHub/inet/src/linklayer/ieee80211/mac -IF:/GitHub/inet/src/networklayer/ipv6 -IF:/GitHub/inet/src/transport/sctp -IF:/GitHub/inet/src/util/headerserializers/udp -IF:/GitHub/inet/src/networklayer/ipv6tunneling -IF:/GitHub/inet/src/applications/pingapp -IF:/GitHub/inet/src/battery/models -IF:/GitHub/inet/src/util/headerserializers/ipv6 -IF:/GitHub/inet/src/util/headerserializers/sctp -IF:/GitHub/inet/src/linklayer/contract -IF:/GitHub/inet/src/transport/tcp_common -IF:/GitHub/inet/src/networklayer/arp -IF:/GitHub/inet/src/transport/udp -IF:/GitHub/inet/src/linklayer/ethernet -IF:/GitHub/inet/src/networklayer/manetrouting/aodv-uu -IF:/GitHub/inet/src/networklayer/manetrouting/base -IF:/GitHub/inet/src/linklayer/ieee80211/mgmt -IF:/GitHub/inet/src/networklayer/manetrouting/dsr -LF:/GitHub/inet/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KINET_PROJ=F:/GitHub/inet
 #
 
 # Name of target to be created (-o option)
@@ -56,7 +56,6 @@ INCLUDE_PATH = \
     -I$(INET_PROJ)/src/networklayer/manetrouting/base \
     -I$(INET_PROJ)/src/linklayer/ieee80211/mgmt \
     -I$(INET_PROJ)/src/networklayer/manetrouting/dsr \
-    -I$(INET_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu \
     -I. \
     -Ietc \
     -Ietc/plugins \
@@ -125,9 +124,9 @@ O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 OBJS = \
     $O/src/routing/aodv/VS_AODVRouteData.o \
     $O/src/routing/aodv/VS_AODVRouting.o \
-    $O/src/routing/aodv-uu/VS_aodv_msg_struct.o \
-    $O/src/routing/aodv-uu/VS_aodv_uu_omnet.o \
-    $O/src/routing/aodv-uu/VS_packet_queue_omnet.o \
+    $O/src/routing/aodv-uu/vs_aodv_msg_struct.o \
+    $O/src/routing/aodv-uu/vs_aodv_uu_omnet.o \
+    $O/src/routing/aodv-uu/vs_packet_queue_omnet.o \
     $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.o \
     $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.o \
     $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.o \
@@ -200,7 +199,7 @@ OBJS = \
     $O/src/veins/modules/world/annotations/AnnotationDummy.o \
     $O/src/veins/modules/world/annotations/AnnotationManager.o \
     $O/src/routing/aodv/VS_AODVControlPackets_m.o \
-    $O/src/routing/aodv-uu/VS_aodv_msg_struct_m.o \
+    $O/src/routing/aodv-uu/vs_aodv_msg_struct_m.o \
     $O/src/routing/gpsr/VS_GPSR_m.o \
     $O/src/veins/base/messages/AirFrame_m.o \
     $O/src/veins/base/messages/BorderMsg_m.o \
@@ -214,7 +213,7 @@ OBJS = \
 # Message files
 MSGFILES = \
     src/routing/aodv/VS_AODVControlPackets.msg \
-    src/routing/aodv-uu/VS_aodv_msg_struct.msg \
+    src/routing/aodv-uu/vs_aodv_msg_struct.msg \
     src/routing/gpsr/VS_GPSR.msg \
     src/veins/base/messages/AirFrame.msg \
     src/veins/base/messages/BorderMsg.msg \
@@ -364,30 +363,19 @@ $O/src/routing/aodv/VS_AODVControlPackets_m.o: src/routing/aodv/VS_AODVControlPa
 	$(INET_PROJ)/src/base/Compat.h \
 	$(INET_PROJ)/src/base/INETDefs.h \
 	$(INET_PROJ)/src/networklayer/contract/IPv4Address.h
-$O/src/routing/aodv/VS_AODVRouteData.o: src/routing/aodv/VS_AODVRouteData.cc \
-	src/routing/aodv/VS_AODVRouteData.h \
-	$(INET_PROJ)/src/base/Compat.h \
-	$(INET_PROJ)/src/base/INETDefs.h \
-	$(INET_PROJ)/src/networklayer/contract/IPv4Address.h
+$O/src/routing/aodv/VS_AODVRouteData.o: src/routing/aodv/VS_AODVRouteData.cc
 $O/src/routing/aodv/VS_AODVRouting.o: src/routing/aodv/VS_AODVRouting.cc \
-	src/routing/aodv/VS_AODVControlPackets_m.h \
-	src/routing/aodv/VS_AODVRouteData.h \
-	src/routing/aodv/VS_AODVRouting.h \
 	$(INET_PROJ)/src/base/Compat.h \
-	$(INET_PROJ)/src/base/ILifecycle.h \
 	$(INET_PROJ)/src/base/INETDefs.h \
-	$(INET_PROJ)/src/base/INotifiable.h \
 	$(INET_PROJ)/src/base/LifecycleOperation.h \
 	$(INET_PROJ)/src/base/ModuleAccess.h \
 	$(INET_PROJ)/src/base/NodeOperations.h \
-	$(INET_PROJ)/src/base/NotificationBoard.h \
 	$(INET_PROJ)/src/base/NotifierConsts.h \
 	$(INET_PROJ)/src/linklayer/contract/Ieee802Ctrl_m.h \
 	$(INET_PROJ)/src/linklayer/contract/MACAddress.h \
 	$(INET_PROJ)/src/linklayer/ieee80211/mac/Ieee80211Consts.h \
 	$(INET_PROJ)/src/linklayer/ieee80211/mac/Ieee80211Frame_m.h \
 	$(INET_PROJ)/src/networklayer/common/IInterfaceTable.h \
-	$(INET_PROJ)/src/networklayer/common/INetfilter.h \
 	$(INET_PROJ)/src/networklayer/common/InterfaceEntry.h \
 	$(INET_PROJ)/src/networklayer/common/InterfaceTableAccess.h \
 	$(INET_PROJ)/src/networklayer/common/InterfaceToken.h \
@@ -398,18 +386,14 @@ $O/src/routing/aodv/VS_AODVRouting.o: src/routing/aodv/VS_AODVRouting.cc \
 	$(INET_PROJ)/src/networklayer/contract/IPv4ControlInfo_m.h \
 	$(INET_PROJ)/src/networklayer/contract/IPv6Address.h \
 	$(INET_PROJ)/src/networklayer/contract/IPvXAddress.h \
-	$(INET_PROJ)/src/networklayer/ipv4/IPv4Datagram.h \
-	$(INET_PROJ)/src/networklayer/ipv4/IPv4Datagram_m.h \
 	$(INET_PROJ)/src/networklayer/ipv4/IPv4Route.h \
 	$(INET_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INET_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INET_PROJ)/src/status/NodeStatus.h \
 	$(INET_PROJ)/src/transport/contract/UDPControlInfo.h \
-	$(INET_PROJ)/src/transport/contract/UDPControlInfo_m.h \
-	$(INET_PROJ)/src/transport/contract/UDPSocket.h \
-	$(INET_PROJ)/src/transport/udp/UDPPacket.h \
-	$(INET_PROJ)/src/transport/udp/UDPPacket_m.h
-$O/src/routing/aodv-uu/VS_aodv_msg_struct.o: src/routing/aodv-uu/VS_aodv_msg_struct.cc \
+	$(INET_PROJ)/src/transport/contract/UDPControlInfo_m.h
+$O/src/routing/aodv-uu/vs_aodv_msg_struct.o: src/routing/aodv-uu/vs_aodv_msg_struct.cc \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
 	$(INET_PROJ)/src/base/Compat.h \
 	$(INET_PROJ)/src/base/ILifecycle.h \
 	$(INET_PROJ)/src/base/INETDefs.h \
@@ -441,15 +425,41 @@ $O/src/routing/aodv-uu/VS_aodv_msg_struct.o: src/routing/aodv-uu/VS_aodv_msg_str
 	$(INET_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INET_PROJ)/src/networklayer/ipv4/RoutingTable.h \
 	$(INET_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
+	$(INET_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
+	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INET_PROJ)/src/transport/udp/UDPPacket.h \
 	$(INET_PROJ)/src/transport/udp/UDPPacket_m.h
-$O/src/routing/aodv-uu/VS_aodv_msg_struct_m.o: src/routing/aodv-uu/VS_aodv_msg_struct_m.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h
-$O/src/routing/aodv-uu/VS_aodv_uu_omnet.o: src/routing/aodv-uu/VS_aodv_uu_omnet.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+$O/src/routing/aodv-uu/vs_aodv_msg_struct_m.o: src/routing/aodv-uu/vs_aodv_msg_struct_m.cc \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	$(INET_PROJ)/src/base/Compat.h \
+	$(INET_PROJ)/src/base/INETDefs.h \
+	$(INET_PROJ)/src/linklayer/contract/MACAddress.h \
+	$(INET_PROJ)/src/networklayer/contract/IPv4Address.h \
+	$(INET_PROJ)/src/networklayer/contract/IPv6Address.h \
+	$(INET_PROJ)/src/networklayer/contract/IPvXAddress.h \
+	$(INET_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
+	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h
+$O/src/routing/aodv-uu/vs_aodv_uu_omnet.o: src/routing/aodv-uu/vs_aodv_uu_omnet.cc \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -504,7 +514,7 @@ $O/src/routing/aodv-uu/VS_aodv_uu_omnet.o: src/routing/aodv-uu/VS_aodv_uu_omnet.
 	$(INET_PROJ)/src/transport/udp/UDPPacket.h \
 	$(INET_PROJ)/src/transport/udp/UDPPacket_m.h \
 	$(INET_PROJ)/src/util/FWMath.h
-$O/src/routing/aodv-uu/VS_packet_queue_omnet.o: src/routing/aodv-uu/VS_packet_queue_omnet.cc \
+$O/src/routing/aodv-uu/vs_packet_queue_omnet.o: src/routing/aodv-uu/vs_packet_queue_omnet.cc \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -571,10 +581,25 @@ $O/src/routing/aodv-uu/VS_packet_queue_omnet.o: src/routing/aodv-uu/VS_packet_qu
 	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INET_PROJ)/src/util/FWMath.h
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.o: src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -622,10 +647,25 @@ $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.o: src/routing/aodv-uu/vs-aodv-u
 	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INET_PROJ)/src/util/FWMath.h
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.o: src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -673,10 +713,25 @@ $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.o: src/routing/aodv-uu/vs-aod
 	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INET_PROJ)/src/util/FWMath.h
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.o: src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -724,10 +779,25 @@ $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.o: src/routing/aodv-uu/vs-aodv-uu
 	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INET_PROJ)/src/util/FWMath.h
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.o: src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -775,10 +845,25 @@ $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.o: src/routing/aodv-uu/vs-aodv-uu
 	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INET_PROJ)/src/util/FWMath.h
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.o: src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -826,10 +911,25 @@ $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.o: src/routing/aodv-uu/vs-aodv-uu
 	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INET_PROJ)/src/util/FWMath.h
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.o: src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -877,10 +977,25 @@ $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.o: src/routing/aodv-uu/vs-aodv-
 	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INET_PROJ)/src/util/FWMath.h
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.o: src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -928,10 +1043,25 @@ $O/src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.o: src/routing/aodv-uu/vs-aodv
 	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INET_PROJ)/src/util/FWMath.h
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.o: src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -981,10 +1111,25 @@ $O/src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.o: src/routing/aodv-uu/vs-aodv-u
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_list.o: src/routing/aodv-uu/vs-aodv-uu/vs_list.cc \
 	src/routing/aodv-uu/vs-aodv-uu/vs_list.h
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_locality.o: src/routing/aodv-uu/vs-aodv-uu/vs_locality.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -1033,10 +1178,25 @@ $O/src/routing/aodv-uu/vs-aodv-uu/vs_locality.o: src/routing/aodv-uu/vs-aodv-uu/
 	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INET_PROJ)/src/util/FWMath.h
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.o: src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -1084,11 +1244,25 @@ $O/src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.o: src/routing/aodv-uu/vs-aod
 	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INET_PROJ)/src/util/FWMath.h
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.o: src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
 	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \
@@ -1136,10 +1310,25 @@ $O/src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.o: src/routing/aodv-uu/vs-aodv-uu
 	$(INET_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INET_PROJ)/src/util/FWMath.h
 $O/src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.o: src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.cc \
-	src/routing/aodv-uu/VS_aodv_msg_struct.h \
-	src/routing/aodv-uu/VS_aodv_msg_struct_m.h \
-	src/routing/aodv-uu/VS_aodv_uu_omnet.h \
-	src/routing/aodv-uu/VS_packet_queue_omnet.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_hello.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_neighbor.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rerr.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rrep.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_rreq.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_socket.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_aodv_timeout.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_debug_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_defs_aodv.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_locality.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_params.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_routing_table.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_seek_list.h \
+	src/routing/aodv-uu/vs-aodv-uu/vs_timer_queue_aodv.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct.h \
+	src/routing/aodv-uu/vs_aodv_msg_struct_m.h \
+	src/routing/aodv-uu/vs_aodv_uu_omnet.h \
+	src/routing/aodv-uu/vs_packet_queue_omnet.h \
 	src/veins/base/utils/Coord.h \
 	src/veins/base/utils/FWMath.h \
 	src/veins/base/utils/MiXiMDefs.h \

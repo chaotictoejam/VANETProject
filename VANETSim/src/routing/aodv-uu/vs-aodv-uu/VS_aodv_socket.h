@@ -20,8 +20,8 @@
  *
  *
  *****************************************************************************/
-#ifndef _vs_aodv_SOCKET_H
-#define _vs_aodv_SOCKET_H
+#ifndef _VS_AODV_SOCKET_H
+#define _VS_AODV_SOCKET_H
 
 #ifndef NS_NO_GLOBALS
 
@@ -31,7 +31,7 @@
 
 #include "vs_defs_aodv.h"
 #include "vs_aodv_rerr.h"
-#include "params.h"
+#include "vs_params.h"
 
 #ifndef OMNETPP
 #define IPHDR_SIZE sizeof(struct iphdr)
@@ -40,8 +40,8 @@
 /* Set a maximun size for vs_aodv msgs. The RERR is the potentially
    largest message, depending on how many unreachable destinations
    that are included. Lets limit them to 100 */
-#define vs_AODV_msg_MAX_SIZE RERR_SIZE + 100 * RERR_UDEST_SIZE
-#define RECV_BUF_SIZE vs_AODV_msg_MAX_SIZE
+#define VS_AODV_msg_MAX_SIZE RERR_SIZE + 100 * RERR_UDEST_SIZE
+#define RECV_BUF_SIZE VS_AODV_msg_MAX_SIZE
 #define SEND_BUF_SIZE RECV_BUF_SIZE
 #endif              /* NS_NO_GLOBALS */
 
@@ -52,14 +52,14 @@ int num_rreq;
 int num_rerr;
 
 void vs_aodv_socket_init();
-void vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst, int len,
+void vs_aodv_socket_send(VS_AODV_msg * VS_AODV_msg, struct in_addr dst, int len,
                       u_int8_t ttl, struct dev_info *dev,double delay=-1);
 #ifndef OMNETPP
-vs_AODV_msg *vs_aodv_socket_new_msg();
-vs_AODV_msg *vs_aodv_socket_queue_msg(vs_AODV_msg * vs_AODV_msg, int size);
+VS_AODV_msg *vs_aodv_socket_new_msg();
+VS_AODV_msg *vs_aodv_socket_queue_msg(VS_AODV_msg * VS_AODV_msg, int size);
 #endif
 void vs_aodv_socket_cleanup(void);
-void vs_aodv_socket_process_packet(vs_AODV_msg * vs_AODV_msg, int len,
+void vs_aodv_socket_process_packet(VS_AODV_msg * VS_AODV_msg, int len,
                                 struct in_addr src,struct in_addr dst, int ttl,
                                 unsigned int ifindex);
 #define CMSG_NXTHDR_FIX(mhdr, cmsg) cmsg_nxthdr_fix((mhdr), (cmsg))
@@ -67,7 +67,7 @@ struct cmsghdr *cmsg_nxthdr_fix(struct msghdr *__msg, struct cmsghdr *__cmsg);
 
 #ifdef NS_PORT
 #ifndef OMNETPP
-void recvvs_AODVUUPacket(Packet * p);
+void recvVS_AODVUUPacket(Packet * p);
 #endif
 #endif              /* NS_PORT */
 

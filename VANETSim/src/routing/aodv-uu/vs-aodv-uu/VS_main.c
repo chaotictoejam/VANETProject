@@ -34,7 +34,7 @@
 #include "defs.h"
 #include "debug.h"
 #include "timer_queue.h"
-#include "params.h"
+#include "vs_params.h"
 #include "vs_aodv_socket.h"
 #include "vs_aodv_timeout.h"
 #include "k_route.h"
@@ -123,7 +123,7 @@ void usage(int status)
 	 "-q, --quality-threshold Set a minimum signal quality threshold for control packets.\n"
 	 "-V, --version           Show version.\n\n"
 	 "Erik Nordström, <erik.nordstrom@it.uu.se>\n\n",
-	 progname, vs_aodv_LOG_PATH, vs_aodv_RT_LOG_PATH);
+	 progname, VS_AODV_LOG_PATH, VS_AODV_RT_LOG_PATH);
 
     exit(status);
 }

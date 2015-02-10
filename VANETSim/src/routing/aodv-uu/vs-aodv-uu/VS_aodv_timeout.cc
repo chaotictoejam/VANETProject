@@ -41,9 +41,9 @@
 #include "vs_aodv_rerr.h"
 #include "vs_timer_queue_aodv.h"
 #include "vs_debug_aodv.h"
-#include "params.h"
+#include "vs_params.h"
 #include "vs_routing_table.h"
-#include "seek_vs_list.h"
+#include "vs_seek_list.h"
 #include "nl.h"
 
 extern int expanding_ring_search, local_repair;
@@ -56,9 +56,9 @@ void route_delete_timeout(void *arg);
 void NS_CLASS route_discovery_timeout(void *arg)
 {
     struct timeval now;
-    seek_vs_list_t *seek_entry;
+    vs_seek_list_t *seek_entry;
     rt_table_t *rt, *repair_rt;
-    seek_entry = (seek_vs_list_t *) arg;
+    seek_entry = (vs_seek_list_t *) arg;
 
 #define TTL_VALUE seek_entry->ttl
 
@@ -132,7 +132,7 @@ void NS_CLASS route_discovery_timeout(void *arg)
 #endif
         repair_rt = rt_table_find(seek_entry->dest_addr);
 
-        seek_vs_list_remove(seek_entry);
+        vs_seek_list_remove(seek_entry);
 
         /* If this route has been in repair, then we should timeout
            the route at this point. */
@@ -163,7 +163,7 @@ void NS_CLASS local_repair_timeout(void *arg)
         return;
     }
 
-    rerr_dest.s_addr = ManetAddress(IPv4Address(vs_aodv_BROADCAST));  /* Default destination */
+    rerr_dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));  /* Default destination */
 
     /* Unset the REPAIR flag */
     rt->flags &= ~RT_REPAIR;
@@ -194,7 +194,7 @@ void NS_CLASS local_repair_timeout(void *arg)
             rerr_dest = FIRST_PREC(rt->precursors)->neighbor;
 #endif
 
-            vs_aodv_socket_send((vs_AODV_msg *) rerr, rerr_dest,
+            vs_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,
                              RERR_CALC_SIZE(rerr), 1,
                              &DEV_IFINDEX(rt->ifindex));
         }
@@ -206,7 +206,7 @@ void NS_CLASS local_repair_timeout(void *arg)
             {
                 if (!DEV_NR(i).enabled)
                     continue;
-                vs_aodv_socket_send((vs_AODV_msg *) rerr, rerr_dest,
+                vs_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,
                                  RERR_CALC_SIZE(rerr), 1, &DEV_NR(i));
             }
         }
@@ -340,8 +340,8 @@ void NS_CLASS rrep_ack_timeout(void *arg)
         return;
 
     /* When a RREP transmission fails (i.e. lack of RREP-ACK), add to
-       blackvs_list set... */
-    rreq_blackvs_list_insert(rt->dest_addr);
+       blackvslist set... */
+    rreq_black_vs_list_insert(rt->dest_addr);
 
     DEBUG(LOG_DEBUG, 0, "%s", ip_to_str(rt->dest_addr));
 }

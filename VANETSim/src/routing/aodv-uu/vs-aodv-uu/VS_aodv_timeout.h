@@ -20,8 +20,8 @@
  *
  *
  *****************************************************************************/
-#ifndef _vs_aodv_TIMEOUT_H
-#define _vs_aodv_TIMEOUT_H
+#ifndef _VS_AODV_TIMEOUT_H
+#define _VS_AODV_TIMEOUT_H
 
 #ifndef NS_NO_GLOBALS
 #include "vs_defs_aodv.h"

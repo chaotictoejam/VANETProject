@@ -52,7 +52,7 @@
 #endif
 
 #ifdef NS_PORT
-#define NS_CLASS vs_AODVUU::
+#define NS_CLASS VS_AODVUU::
 #define NS_OUTSIDE_CLASS ::
 #define NS_STATIC
 #define NS_INLINE
@@ -74,12 +74,12 @@
 
 #ifdef NS_PORT
 /* NS_PORT: Log filename split into prefix and suffix. */
-#define vs_aodv_LOG_PATH_PREFIX "vs_aodv-uu-"
-#define vs_aodv_RT_LOG_PATH_SUFFIX ".rtlog"
-#define vs_aodv_LOG_PATH_SUFFIX ".log"
+#define VS_AODV_LOG_PATH_PREFIX "vs_aodv-uu-"
+#define VS_AODV_RT_LOG_PATH_SUFFIX ".rtlog"
+#define VS_AODV_LOG_PATH_SUFFIX ".log"
 #else
-#define vs_aodv_LOG_PATH "/var/log/vs_aodvd.log"
-#define vs_aodv_RT_LOG_PATH "/var/log/vs_aodvd.rtlog"
+#define VS_AODV_LOG_PATH "/var/log/vs_aodvd.log"
+#define VS_AODV_RT_LOG_PATH "/var/log/vs_aodvd.rtlog"
 #endif              /* NS_PORT */
 
 #ifdef OMNETPP
@@ -124,11 +124,11 @@ struct host_info
 };
 
 /*
-  NS_PORT: TEMPORARY SOLUTION: Moved the two variables into the vs_AODVUU class,
-  and placed the function definition after the vs_AODVUU class definition.
+  NS_PORT: TEMPORARY SOLUTION: Moved the two variables into the VS_AODVUU class,
+  and placed the function definition after the VS_AODVUU class definition.
 
   (This is to avoid running several passes through defs.h during the source
-  code extraction performed by the vs_AODVUU class.)
+  code extraction performed by the VS_AODVUU class.)
 
   TODO: Find some smarter way to accomplish this.
 */
@@ -189,16 +189,16 @@ static inline int name2index(char *name)
 #define DEV_NR(n) (this_host.devs[n])
 #endif
 /* Broadcast address according to draft (255.255.255.255) */
-#define vs_aodv_BROADCAST ((in_addr_t) 0xFFFFFFFF)
+#define VS_AODV_BROADCAST ((in_addr_t) 0xFFFFFFFF)
 
-#define vs_aodv_PORT 654
+#define VS_AODV_PORT 654
 
 /* vs_aodv Message types */
-#define vs_aodv_HELLO    0     /* Really never used as a separate type... */
-#define vs_aodv_RREQ     1
-#define vs_aodv_RREP     2
-#define vs_aodv_RERR     3
-#define vs_aodv_RREP_ACK 4
+#define VS_AODV_HELLO    0     /* Really never used as a separate type... */
+#define VS_AODV_RREQ     1
+#define VS_AODV_RREP     2
+#define VS_AODV_RERR     3
+#define VS_AODV_RREP_ACK 4
 
 #ifndef OMNETPP
 /* An generic vs_aodv extensions header */
@@ -207,11 +207,11 @@ typedef struct
     u_int8_t type;
     u_int8_t length;
     /* Type specific data follows here */
-} vs_aodv_ext;
+} VS_AODV_ext;
 
 /* A generic vs_aodv packet header struct... */
 #ifdef NS_PORT
-struct vs_AODV_msg
+struct VS_AODV_msg
 {
 #else
 typedef struct
@@ -219,7 +219,7 @@ typedef struct
 #endif
     u_int8_t type;
 
-    /* NS_PORT: Additions for the vs_AODVUU packet type in ns-2 */
+    /* NS_PORT: Additions for the VS_AODVUU packet type in ns-2 */
 #ifdef NS_PORT
     static int offset_;     // Required by PacketHeaderManager
 
@@ -227,26 +227,26 @@ typedef struct
     {
         return offset_;
     }
-    inline static vs_AODV_msg *access(const Packet * p)
+    inline static VS_AODV_msg *access(const Packet * p)
     {
-        return (vs_AODV_msg *) p->access(offset_);
+        return (VS_AODV_msg *) p->access(offset_);
     }
 
     int size();
 };
 
-typedef vs_AODV_msg hdr_vs_AODVUU;    // Name convention for headers
-#define HDR_vs_AODVUU(p) ((hdr_vs_AODVUU *) hdr_vs_AODVUU::access(p))
+typedef VS_AODV_msg hdr_VS_AODVUU;    // Name convention for headers
+#define HDR_VS_AODVUU(p) ((hdr_VS_AODVUU *) hdr_VS_AODVUU::access(p))
 #else
-} vs_AODV_msg;
+} VS_AODV_msg;
 #endif
 
 
 /* MACROS to access vs_aodv extensions... */
-#define vs_aodv_EXT_HDR_SIZE sizeof(vs_aodv_ext)
-#define vs_aodv_EXT_DATA(ext) ((char *)((char *)ext + vs_aodv_EXT_HDR_SIZE))
-#define vs_aodv_EXT_NEXT(ext) ((vs_aodv_ext *)((char *)ext + vs_aodv_EXT_HDR_SIZE + ext->length))
-#define vs_aodv_EXT_SIZE(ext) (vs_aodv_EXT_HDR_SIZE + ext->length)
+#define VS_AODV_EXT_HDR_SIZE sizeof(vs_aodv_ext)
+#define VS_AODV_EXT_DATA(ext) ((char *)((char *)ext + VS_AODV_EXT_HDR_SIZE))
+#define VS_AODV_EXT_NEXT(ext) ((vs_aodv_ext *)((char *)ext + VS_AODV_EXT_HDR_SIZE + ext->length))
+#define VS_AODV_EXT_SIZE(ext) (VS_AODV_EXT_HDR_SIZE + ext->length)
 #endif
 
 /* vs_aodv Extension types */

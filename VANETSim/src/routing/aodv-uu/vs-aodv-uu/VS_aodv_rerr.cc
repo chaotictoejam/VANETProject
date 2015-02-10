@@ -56,7 +56,7 @@ RERR *NS_CLASS rerr_create(u_int8_t flags,struct in_addr dest_addr,
     rerr->addUdest (dest_addr.s_addr,htonl(dest_seqno));
     totalRerrSend++;
 #endif
-    rerr->type = vs_aodv_RERR;
+    rerr->type = VS_AODV_RERR;
     rerr->n = (flags & RERR_NODELETE ? 1 : 0);
     rerr->res1 = 0;
     rerr->res2 = 0;
@@ -94,7 +94,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
 
     DEBUG(LOG_DEBUG, 0, "ip_src=%s", ip_to_str(ip_src));
 
-    log_pkt_fields((vs_AODV_msg *) rerr);
+    log_pkt_fields((VS_AODV_msg *) rerr);
 
     if (rerrlen < ((int) RERR_CALC_SIZE(rerr)))
     {
@@ -258,7 +258,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
         new_rerr->ttl=1;
 
         if (rt && new_rerr->dest_count == 1 && !rerr_unicast_dest.s_addr.isUnspecified())
-            vs_aodv_socket_send((vs_AODV_msg *) new_rerr,
+            vs_aodv_socket_send((VS_AODV_msg *) new_rerr,
                              rerr_unicast_dest,
                              RERR_CALC_SIZE(new_rerr), 1,
                              &DEV_IFINDEX(rt->ifindex));
@@ -281,15 +281,15 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
 
                 if (!DEV_NR(i).enabled)
                     continue;
-                dest.s_addr = ManetAddress(IPv4Address(vs_aodv_BROADCAST));
+                dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
 #ifdef OMNETPP
                 if (numInterfaces>1)
                 {
-                    vs_aodv_socket_send((vs_AODV_msg *) new_rerr->dup(), dest,RERR_CALC_SIZE(new_rerr), 1, &DEV_NR(i));
+                    vs_aodv_socket_send((VS_AODV_msg *) new_rerr->dup(), dest,RERR_CALC_SIZE(new_rerr), 1, &DEV_NR(i));
                 }
                 else
 #endif
-                    vs_aodv_socket_send((vs_AODV_msg *) new_rerr, dest,RERR_CALC_SIZE(new_rerr), 1, &DEV_NR(i));
+                    vs_aodv_socket_send((VS_AODV_msg *) new_rerr, dest,RERR_CALC_SIZE(new_rerr), 1, &DEV_NR(i));
                 numInterfaces--;
             }
 

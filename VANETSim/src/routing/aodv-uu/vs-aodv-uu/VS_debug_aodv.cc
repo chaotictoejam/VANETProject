@@ -46,7 +46,7 @@
 #include "vs_aodv_rerr.h"
 #include "vs_defs_aodv.h"
 #include "vs_debug_aodv.h"
-#include "params.h"
+#include "vs_params.h"
 #include "vs_timer_queue_aodv.h"
 #include "vs_routing_table.h"
 #endif
@@ -67,23 +67,23 @@ void NS_CLASS log_init()
     /* NS_PORT: Log filename is prefix + IP address + suffix */
 #ifdef NS_PORT
 
-    char vs_aodv_LOG_PATH[strlen(vs_aodv_LOG_PATH_PREFIX) +
-                       strlen(vs_aodv_LOG_PATH_SUFFIX) + 16];
-    char vs_aodv_RT_LOG_PATH[strlen(vs_aodv_LOG_PATH_PREFIX) +
-                          strlen(vs_aodv_RT_LOG_PATH_SUFFIX) + 16];
+    char VS_AODV_LOG_PATH[strlen(VS_AODV_LOG_PATH_PREFIX) +
+                       strlen(VS_AODV_LOG_PATH_SUFFIX) + 16];
+    char VS_AODV_RT_LOG_PATH[strlen(VS_AODV_LOG_PATH_PREFIX) +
+                          strlen(VS_AODV_RT_LOG_PATH_SUFFIX) + 16];
 
 
-    sprintf(vs_aodv_LOG_PATH, "%s%d%s", vs_aodv_LOG_PATH_PREFIX, node_id,
-            vs_aodv_LOG_PATH_SUFFIX);
-    sprintf(vs_aodv_RT_LOG_PATH, "%s%d%s", vs_aodv_LOG_PATH_PREFIX, node_id,
-            vs_aodv_RT_LOG_PATH_SUFFIX);
+    sprintf(VS_AODV_LOG_PATH, "%s%d%s", VS_AODV_LOG_PATH_PREFIX, node_id,
+            VS_AODV_LOG_PATH_SUFFIX);
+    sprintf(VS_AODV_RT_LOG_PATH, "%s%d%s", VS_AODV_LOG_PATH_PREFIX, node_id,
+            VS_AODV_RT_LOG_PATH_SUFFIX);
 
 #endif              /* NS_PORT */
 
     if (log_to_file)
     {
         if ((log_file_fd =
-                    open(vs_aodv_LOG_PATH, O_RDWR | O_CREAT | O_TRUNC,
+                    open(VS_AODV_LOG_PATH, O_RDWR | O_CREAT | O_TRUNC,
                          S_IROTH | S_IWUSR | S_IRUSR | S_IRGRP)) < 0)
         {
             perror("open log file failed!");
@@ -93,7 +93,7 @@ void NS_CLASS log_init()
     if (rt_log_interval)
     {
         if ((log_rt_fd =
-                    open(vs_aodv_RT_LOG_PATH, O_RDWR | O_CREAT | O_TRUNC,
+                    open(VS_AODV_RT_LOG_PATH, O_RDWR | O_CREAT | O_TRUNC,
                          S_IROTH | S_IWUSR | S_IRUSR | S_IRGRP)) < 0)
         {
             perror("open rt log file failed!");
@@ -145,12 +145,12 @@ const char *packet_type(uint32 type)
 
     switch (type)
     {
-    case vs_aodv_RREQ:
-        return "vs_aodv_RREQ";
-    case vs_aodv_RREP:
-        return "vs_aodv_RREP";
-    case vs_aodv_RERR:
-        return "vs_aodv_RERR";
+    case VS_AODV_RREQ:
+        return "VS_AODV_RREQ";
+    case VS_AODV_RREP:
+        return "VS_AODV_RREP";
+    case VS_AODV_RERR:
+        return "VS_AODV_RERR";
     default:
         sprintf(temp, "Unknown packet type %d", type);
         return temp;
@@ -284,7 +284,7 @@ char *NS_CLASS rrep_flags_to_str(RREP * rrep)
     return str;
 }
 
-void NS_CLASS log_pkt_fields(vs_AODV_msg * msg)
+void NS_CLASS log_pkt_fields(VS_AODV_msg * msg)
 {
 
     RREQ *rreq;
@@ -294,7 +294,7 @@ void NS_CLASS log_pkt_fields(vs_AODV_msg * msg)
 
     switch (msg->type)
     {
-    case vs_aodv_RREQ:
+    case VS_AODV_RREQ:
         rreq = (RREQ *) msg;
         dest.s_addr = rreq->dest_addr;
         orig.s_addr = rreq->orig_addr;
@@ -306,7 +306,7 @@ void NS_CLASS log_pkt_fields(vs_AODV_msg * msg)
         DEBUG(LOG_DEBUG, 0, "rreq->orig_addr:%s rreq->orig_seqno=%ld",
               ip_to_str(orig), ntohl(rreq->orig_seqno));
         break;
-    case vs_aodv_RREP:
+    case VS_AODV_RREP:
         rrep = (RREP *) msg;
         dest.s_addr = rrep->dest_addr;
         orig.s_addr = rrep->orig_addr;
@@ -317,7 +317,7 @@ void NS_CLASS log_pkt_fields(vs_AODV_msg * msg)
         DEBUG(LOG_DEBUG, 0, "rrep->orig_addr:%s rrep->lifetime=%d",
               ip_to_str(orig), ntohl(rrep->lifetime));
         break;
-    case vs_aodv_RERR:
+    case VS_AODV_RERR:
         rerr = (RERR *) msg;
         DEBUG(LOG_DEBUG, 0, "rerr->dest_count:%d rerr->flags=%s",
               rerr->dest_count, rerr->n ? "N" : "-");
@@ -542,7 +542,7 @@ void NS_CLASS print_rt_table(void *arg)
 
     write(log_rt_fd, rt_buf, len);
     len = 0;
-    for (vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.begin(); it != vs_aodvRtTableMap.end(); it++)
+    for (VS_AodvRtTableMap::iterator it = VS_AodvRtTableMap.begin(); it != VS_AodvRtTableMap.end(); it++)
     {
         rt_table_t *rt = it->second;
 

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by opp_msgc 4.4 from networklayer/manetrouting/aodv-uu/aodv_msg_struct.msg.
+// Generated file, do not edit! Created by opp_msgc 4.4 from src/routing/aodv-uu/vs_aodv_msg_struct.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:
@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <sstream>
-#include "aodv_msg_struct_m.h"
+#include "vs_aodv_msg_struct_m.h"
 
 USING_NAMESPACE
 
@@ -32,11 +32,11 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-class AODV_extDescriptor : public cClassDescriptor
+class VS_AODV_extDescriptor : public cClassDescriptor
 {
   public:
-    AODV_extDescriptor();
-    virtual ~AODV_extDescriptor();
+    VS_AODV_extDescriptor();
+    virtual ~VS_AODV_extDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -55,22 +55,22 @@ class AODV_extDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(AODV_extDescriptor);
+Register_ClassDescriptor(VS_AODV_extDescriptor);
 
-AODV_extDescriptor::AODV_extDescriptor() : cClassDescriptor("AODV_ext", "")
+VS_AODV_extDescriptor::VS_AODV_extDescriptor() : cClassDescriptor("VS_AODV_ext", "")
 {
 }
 
-AODV_extDescriptor::~AODV_extDescriptor()
+VS_AODV_extDescriptor::~VS_AODV_extDescriptor()
 {
 }
 
-bool AODV_extDescriptor::doesSupport(cObject *obj) const
+bool VS_AODV_extDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<AODV_ext *>(obj)!=NULL;
+    return dynamic_cast<VS_AODV_ext *>(obj)!=NULL;
 }
 
-const char *AODV_extDescriptor::getProperty(const char *propertyname) const
+const char *VS_AODV_extDescriptor::getProperty(const char *propertyname) const
 {
     if (!strcmp(propertyname,"descriptor")) return "readonly";
     if (!strcmp(propertyname,"existingClass")) return "true";
@@ -78,13 +78,13 @@ const char *AODV_extDescriptor::getProperty(const char *propertyname) const
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int AODV_extDescriptor::getFieldCount(void *object) const
+int VS_AODV_extDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? 2+basedesc->getFieldCount(object) : 2;
 }
 
-unsigned int AODV_extDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int VS_AODV_extDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -99,7 +99,7 @@ unsigned int AODV_extDescriptor::getFieldTypeFlags(void *object, int field) cons
     return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
 }
 
-const char *AODV_extDescriptor::getFieldName(void *object, int field) const
+const char *VS_AODV_extDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -114,7 +114,7 @@ const char *AODV_extDescriptor::getFieldName(void *object, int field) const
     return (field>=0 && field<2) ? fieldNames[field] : NULL;
 }
 
-int AODV_extDescriptor::findField(void *object, const char *fieldName) const
+int VS_AODV_extDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
@@ -123,7 +123,7 @@ int AODV_extDescriptor::findField(void *object, const char *fieldName) const
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *AODV_extDescriptor::getFieldTypeString(void *object, int field) const
+const char *VS_AODV_extDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -138,7 +138,7 @@ const char *AODV_extDescriptor::getFieldTypeString(void *object, int field) cons
     return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *AODV_extDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *VS_AODV_extDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -151,7 +151,7 @@ const char *AODV_extDescriptor::getFieldProperty(void *object, int field, const 
     }
 }
 
-int AODV_extDescriptor::getArraySize(void *object, int field) const
+int VS_AODV_extDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -159,13 +159,13 @@ int AODV_extDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    AODV_ext *pp = (AODV_ext *)object; (void)pp;
+    VS_AODV_ext *pp = (VS_AODV_ext *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string AODV_extDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string VS_AODV_extDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -173,7 +173,7 @@ std::string AODV_extDescriptor::getFieldAsString(void *object, int field, int i)
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    AODV_ext *pp = (AODV_ext *)object; (void)pp;
+    VS_AODV_ext *pp = (VS_AODV_ext *)object; (void)pp;
     switch (field) {
         case 0: return ulong2string(pp->type);
         case 1: return ulong2string(pp->length);
@@ -181,7 +181,7 @@ std::string AODV_extDescriptor::getFieldAsString(void *object, int field, int i)
     }
 }
 
-bool AODV_extDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool VS_AODV_extDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -189,13 +189,13 @@ bool AODV_extDescriptor::setFieldAsString(void *object, int field, int i, const 
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    AODV_ext *pp = (AODV_ext *)object; (void)pp;
+    VS_AODV_ext *pp = (VS_AODV_ext *)object; (void)pp;
     switch (field) {
         default: return false;
     }
 }
 
-const char *AODV_extDescriptor::getFieldStructName(void *object, int field) const
+const char *VS_AODV_extDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -210,7 +210,7 @@ const char *AODV_extDescriptor::getFieldStructName(void *object, int field) cons
     return (field>=0 && field<2) ? fieldStructNames[field] : NULL;
 }
 
-void *AODV_extDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *VS_AODV_extDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -218,17 +218,17 @@ void *AODV_extDescriptor::getFieldStructPointer(void *object, int field, int i) 
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    AODV_ext *pp = (AODV_ext *)object; (void)pp;
+    VS_AODV_ext *pp = (VS_AODV_ext *)object; (void)pp;
     switch (field) {
         default: return NULL;
     }
 }
 
-class AODV_msgDescriptor : public cClassDescriptor
+class VS_AODV_msgDescriptor : public cClassDescriptor
 {
   public:
-    AODV_msgDescriptor();
-    virtual ~AODV_msgDescriptor();
+    VS_AODV_msgDescriptor();
+    virtual ~VS_AODV_msgDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -247,22 +247,22 @@ class AODV_msgDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(AODV_msgDescriptor);
+Register_ClassDescriptor(VS_AODV_msgDescriptor);
 
-AODV_msgDescriptor::AODV_msgDescriptor() : cClassDescriptor("AODV_msg", "cPacket")
+VS_AODV_msgDescriptor::VS_AODV_msgDescriptor() : cClassDescriptor("VS_AODV_msg", "cPacket")
 {
 }
 
-AODV_msgDescriptor::~AODV_msgDescriptor()
+VS_AODV_msgDescriptor::~VS_AODV_msgDescriptor()
 {
 }
 
-bool AODV_msgDescriptor::doesSupport(cObject *obj) const
+bool VS_AODV_msgDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<AODV_msg *>(obj)!=NULL;
+    return dynamic_cast<VS_AODV_msg *>(obj)!=NULL;
 }
 
-const char *AODV_msgDescriptor::getProperty(const char *propertyname) const
+const char *VS_AODV_msgDescriptor::getProperty(const char *propertyname) const
 {
     if (!strcmp(propertyname,"descriptor")) return "readonly";
     if (!strcmp(propertyname,"existingClass")) return "true";
@@ -270,13 +270,13 @@ const char *AODV_msgDescriptor::getProperty(const char *propertyname) const
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int AODV_msgDescriptor::getFieldCount(void *object) const
+int VS_AODV_msgDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? 4+basedesc->getFieldCount(object) : 4;
 }
 
-unsigned int AODV_msgDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int VS_AODV_msgDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -293,7 +293,7 @@ unsigned int AODV_msgDescriptor::getFieldTypeFlags(void *object, int field) cons
     return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
 }
 
-const char *AODV_msgDescriptor::getFieldName(void *object, int field) const
+const char *VS_AODV_msgDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -310,7 +310,7 @@ const char *AODV_msgDescriptor::getFieldName(void *object, int field) const
     return (field>=0 && field<4) ? fieldNames[field] : NULL;
 }
 
-int AODV_msgDescriptor::findField(void *object, const char *fieldName) const
+int VS_AODV_msgDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
@@ -321,7 +321,7 @@ int AODV_msgDescriptor::findField(void *object, const char *fieldName) const
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *AODV_msgDescriptor::getFieldTypeString(void *object, int field) const
+const char *VS_AODV_msgDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -333,12 +333,12 @@ const char *AODV_msgDescriptor::getFieldTypeString(void *object, int field) cons
         "uint8_t",
         "uint8_t",
         "bool",
-        "AODV_ext",
+        "VS_AODV_ext",
     };
     return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *AODV_msgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *VS_AODV_msgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -355,7 +355,7 @@ const char *AODV_msgDescriptor::getFieldProperty(void *object, int field, const 
     }
 }
 
-int AODV_msgDescriptor::getArraySize(void *object, int field) const
+int VS_AODV_msgDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -363,14 +363,14 @@ int AODV_msgDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    AODV_msg *pp = (AODV_msg *)object; (void)pp;
+    VS_AODV_msg *pp = (VS_AODV_msg *)object; (void)pp;
     switch (field) {
         case 3: return pp->getNumExtension();
         default: return 0;
     }
 }
 
-std::string AODV_msgDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string VS_AODV_msgDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -378,7 +378,7 @@ std::string AODV_msgDescriptor::getFieldAsString(void *object, int field, int i)
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    AODV_msg *pp = (AODV_msg *)object; (void)pp;
+    VS_AODV_msg *pp = (VS_AODV_msg *)object; (void)pp;
     switch (field) {
         case 0: return ulong2string(pp->getType());
         case 1: return ulong2string(pp->getTtl());
@@ -388,7 +388,7 @@ std::string AODV_msgDescriptor::getFieldAsString(void *object, int field, int i)
     }
 }
 
-bool AODV_msgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool VS_AODV_msgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -396,13 +396,13 @@ bool AODV_msgDescriptor::setFieldAsString(void *object, int field, int i, const 
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    AODV_msg *pp = (AODV_msg *)object; (void)pp;
+    VS_AODV_msg *pp = (VS_AODV_msg *)object; (void)pp;
     switch (field) {
         default: return false;
     }
 }
 
-const char *AODV_msgDescriptor::getFieldStructName(void *object, int field) const
+const char *VS_AODV_msgDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -414,12 +414,12 @@ const char *AODV_msgDescriptor::getFieldStructName(void *object, int field) cons
         NULL,
         NULL,
         NULL,
-        "AODV_ext",
+        "VS_AODV_ext",
     };
     return (field>=0 && field<4) ? fieldStructNames[field] : NULL;
 }
 
-void *AODV_msgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *VS_AODV_msgDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -427,7 +427,7 @@ void *AODV_msgDescriptor::getFieldStructPointer(void *object, int field, int i) 
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    AODV_msg *pp = (AODV_msg *)object; (void)pp;
+    VS_AODV_msg *pp = (VS_AODV_msg *)object; (void)pp;
     switch (field) {
         case 3: return (void *)(&pp->getExtensionRef(i)); break;
         default: return NULL;
@@ -652,7 +652,7 @@ class RERRDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RERRDescriptor);
 
-RERRDescriptor::RERRDescriptor() : cClassDescriptor("RERR", "AODV_msg")
+RERRDescriptor::RERRDescriptor() : cClassDescriptor("RERR", "VS_AODV_msg")
 {
 }
 
@@ -861,7 +861,7 @@ class RREPDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RREPDescriptor);
 
-RREPDescriptor::RREPDescriptor() : cClassDescriptor("RREP", "AODV_msg")
+RREPDescriptor::RREPDescriptor() : cClassDescriptor("RREP", "VS_AODV_msg")
 {
 }
 
@@ -1115,7 +1115,7 @@ class RREP_ackDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RREP_ackDescriptor);
 
-RREP_ackDescriptor::RREP_ackDescriptor() : cClassDescriptor("RREP_ack", "AODV_msg")
+RREP_ackDescriptor::RREP_ackDescriptor() : cClassDescriptor("RREP_ack", "VS_AODV_msg")
 {
 }
 
@@ -1301,7 +1301,7 @@ class RREQDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RREQDescriptor);
 
-RREQDescriptor::RREQDescriptor() : cClassDescriptor("RREQ", "AODV_msg")
+RREQDescriptor::RREQDescriptor() : cClassDescriptor("RREQ", "VS_AODV_msg")
 {
 }
 

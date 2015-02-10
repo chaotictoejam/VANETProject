@@ -19,8 +19,8 @@
  * Authors: Erik Nordström, <erik.nordstrom@it.uu.se>
  *
  *****************************************************************************/
-#ifndef _LOCALITY_H
-#define _LOCALITY_H
+#ifndef _VS_LOCALITY_H
+#define _VS_LOCALITY_H
 
 #ifndef NS_NO_GLOBALS
 

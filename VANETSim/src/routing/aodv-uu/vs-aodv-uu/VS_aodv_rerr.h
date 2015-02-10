@@ -20,8 +20,8 @@
  *
  *
  *****************************************************************************/
-#ifndef _vs_aodv_RERR_H
-#define _vs_aodv_RERR_H
+#ifndef _VS_AODV_RERR_H
+#define _VS_AODV_RERR_H
 
 #ifndef NS_NO_GLOBALS
 
@@ -86,5 +86,5 @@ void rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
                   struct in_addr ip_dst);
 #endif              /* NS_NO_DECLARATIONS */
 
-#endif              /* vs_aodv_RERR_H */
+#endif              /* VS_AODV_RERR_H */
 

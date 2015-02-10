@@ -20,8 +20,8 @@
  *
  *
  *****************************************************************************/
-#ifndef _vs_aodv_HELLO_H
-#define _vs_aodv_HELLO_H
+#ifndef _VS_AODV_HELLO_H
+#define _VS_AODV_HELLO_H
 
 #ifndef NS_NO_GLOBALS
 #include "vs_defs_aodv.h"
@@ -38,7 +38,7 @@ void hello_start();
 void hello_stop();
 void hello_send(void *arg);
 void hello_process(RREP * hello, int rreplen, unsigned int ifindex);
-void hello_process_non_hello(vs_AODV_msg * vs_AODV_msg, const struct in_addr &source,
+void hello_process_non_hello(VS_AODV_msg * VS_AODV_msg, const struct in_addr &source,
                              unsigned int ifindex);
 NS_INLINE void hello_update_timeout(rt_table_t * rt, struct timeval *now,
                                     long time);

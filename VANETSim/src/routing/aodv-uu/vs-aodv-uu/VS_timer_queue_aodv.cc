@@ -66,12 +66,12 @@ int NS_CLASS timer_init(struct timer *t, timeout_func_t f, void *data)
 void NS_CLASS timer_timeout(const simtime_t &now)
 {
 
-    while (!vs_aodvTimerMap.empty())
+    while (!VS_AodvTimerMap.empty())
     {
-        if (vs_aodvTimerMap.begin()->first > now)
+        if (VS_AodvTimerMap.begin()->first > now)
             return;
-        struct timer *t = vs_aodvTimerMap.begin()->second;
-        vs_aodvTimerMap.erase(vs_aodvTimerMap.begin());
+        struct timer *t = VS_AodvTimerMap.begin()->second;
+        VS_AodvTimerMap.erase(VS_AodvTimerMap.begin());
         t->used = 0;
         /* Execute handler function for expired timer... */
         if (t->handler)
@@ -101,7 +101,7 @@ NS_STATIC void NS_CLASS timer_add(struct timer *t)
         timer_remove(t);
 
     t->used = 1;
-    vs_aodvTimerMap.insert(std::make_pair(t->timeout,t));
+    VS_AodvTimerMap.insert(std::make_pair(t->timeout,t));
     return;
 }
 
@@ -111,11 +111,11 @@ int NS_CLASS timer_remove(struct timer *t)
         return -1;
 
     t->used = 0;
-    for (vs_aodvTimerMap::iterator it = vs_aodvTimerMap.begin();it != vs_aodvTimerMap.end();it++)
+    for (VS_AodvTimerMap::iterator it = VS_AodvTimerMap.begin();it != VS_AodvTimerMap.end();it++)
     {
         if (it->second == t)
         {
-            vs_aodvTimerMap.erase(it);
+            VS_AodvTimerMap.erase(it);
             return 1;
         }
     }
@@ -158,9 +158,9 @@ simtime_t NS_CLASS timer_age_queue()
     simtime_t remaining;
     now = simTime();
     timer_timeout(now);
-    if (vs_aodvTimerMap.empty())
+    if (VS_AodvTimerMap.empty())
         return remaining;
-    remaining =  vs_aodvTimerMap.begin()->first - now;
+    remaining =  VS_AodvTimerMap.begin()->first - now;
     return remaining;
 }
 #else
@@ -169,7 +169,7 @@ int NS_CLASS timer_init(struct timer *t, timeout_func_t f, void *data)
     if (!t)
         return -1;
 
-    INIT_vs_list_ELM(&t->l);
+    INIT_VS_LIST_ELM(&t->l);
     t->handler = f;
     t->data = data;
     t->timeout.tv_sec = 0;

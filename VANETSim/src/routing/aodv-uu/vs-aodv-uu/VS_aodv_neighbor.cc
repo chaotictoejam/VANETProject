@@ -34,7 +34,7 @@
 #include "vs_aodv_hello.h"
 #include "vs_aodv_socket.h"
 #include "vs_routing_table.h"
-#include "params.h"
+#include "vs_params.h"
 #include "vs_defs_aodv.h"
 #include "vs_debug_aodv.h"
 
@@ -43,7 +43,7 @@ extern int llfeedback;
 
 
 /* Add/Update neighbor from a non HELLO vs_aodv control message... */
-void NS_CLASS neighbor_add(vs_AODV_msg * vs_AODV_msg, struct in_addr source,
+void NS_CLASS neighbor_add(VS_AODV_msg * VS_AODV_msg, struct in_addr source,
                            unsigned int ifindex)
 {
     struct timeval now;
@@ -57,7 +57,7 @@ void NS_CLASS neighbor_add(vs_AODV_msg * vs_AODV_msg, struct in_addr source,
     rt = rt_table_find(source);
 
     cost = costMobile;
-    if (vs_AODV_msg->prevFix)
+    if (VS_AODV_msg->prevFix)
     {
         fixhop=1;
         cost =  costStatic;
@@ -140,7 +140,7 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
        destination (dest) as next hop. These entries (destinations)
        cannot be reached either since dest is down. They should
        therefore also be included in the RERR. */
-    for (vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.begin(); it != vs_aodvRtTableMap.end(); it++)
+    for (VS_AodvRtTableMap::iterator it = VS_AodvRtTableMap.begin(); it != VS_AodvRtTableMap.end(); it++)
     {
         rt_table_t *rt_u = it->second;;
         if (rt_u->state == VALID &&
@@ -201,7 +201,7 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
         rt_u = rt_table_find(rerr_unicast_dest);
 
         if (rt_u && rerr->dest_count == 1 && (!rerr_unicast_dest.s_addr.isUnspecified()))
-            vs_aodv_socket_send((vs_AODV_msg *) rerr,
+            vs_aodv_socket_send((VS_AODV_msg *) rerr,
                              rerr_unicast_dest,
                              RERR_CALC_SIZE(rerr), 1,
                              &DEV_IFINDEX(rt_u->ifindex));
@@ -219,12 +219,12 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
                 struct in_addr dest;
                 if (!DEV_NR(i).enabled)
                     continue;
-                dest.s_addr = ManetAddress(IPv4Address(vs_aodv_BROADCAST));
+                dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
                 if (cont>1)
-                    vs_aodv_socket_send((vs_AODV_msg *) rerr->dup(), dest,
+                    vs_aodv_socket_send((VS_AODV_msg *) rerr->dup(), dest,
                                      RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
                 else
-                    vs_aodv_socket_send((vs_AODV_msg *) rerr, dest,
+                    vs_aodv_socket_send((VS_AODV_msg *) rerr, dest,
                                      RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
                 cont--;
             }
@@ -362,7 +362,7 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
         rt_u = rt_table_find(rerr_unicast_dest);
 
         if (rt_u && rerr->dest_count == 1 && (rerr_unicast_dest.s_addr!=0))
-            vs_aodv_socket_send((vs_AODV_msg *) rerr,
+            vs_aodv_socket_send((VS_AODV_msg *) rerr,
                              rerr_unicast_dest,
                              RERR_CALC_SIZE(rerr), 1,
                              &DEV_IFINDEX(rt_u->ifindex));
@@ -382,17 +382,17 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
                 struct in_addr dest;
                 if (!DEV_NR(i).enabled)
                     continue;
-                dest.s_addr = vs_aodv_BROADCAST;
+                dest.s_addr = VS_AODV_BROADCAST;
 #ifdef OMNETPP
                 if (cont>1)
-                    vs_aodv_socket_send((vs_AODV_msg *) rerr->dup(), dest,
+                    vs_aodv_socket_send((VS_AODV_msg *) rerr->dup(), dest,
                                      RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
                 else
-                    vs_aodv_socket_send((vs_AODV_msg *) rerr, dest,
+                    vs_aodv_socket_send((VS_AODV_msg *) rerr, dest,
                                      RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
                 cont--;
 #else
-                vs_aodv_socket_send((vs_AODV_msg *) rerr, dest,
+                vs_aodv_socket_send((VS_AODV_msg *) rerr, dest,
                                  RERR_CALC_SIZE(rerr), 1, &DEV_NR(i));
 #endif
             }

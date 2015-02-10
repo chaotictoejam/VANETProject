@@ -20,8 +20,8 @@
  *
  *
  *****************************************************************************/
-#ifndef _vs_aodv_RREQ_H
-#define _vs_aodv_RREQ_H
+#ifndef _VS_AODV_RREQ_H
+#define _VS_AODV_RREQ_H
 
 #ifndef NS_NO_GLOBALS
 
@@ -76,7 +76,7 @@ typedef struct
 #define RREQ_SIZE sizeof(RREQ)
 #endif
 /* A data structure to buffer information about received RREQ's */
-struct rreq_record
+struct vs_rreq_record
 {
     vs_list_t l;
     struct in_addr orig_addr;   /* Source of the RREQ */
@@ -84,7 +84,7 @@ struct rreq_record
     struct timer rec_timer;
 };
 
-struct blackvs_list
+struct blackvslist
 {
     vs_list_t l;
     struct in_addr dest_addr;
@@ -102,21 +102,21 @@ void rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
                   struct in_addr ip_dst, int ip_ttl, unsigned int ifindex);
 void rreq_route_discovery(struct in_addr dest_addr, u_int8_t flags,
                           struct ip_data *ipd);
-void rreq_record_timeout(void *arg);
-struct blackvs_list *rreq_blackvs_list_insert(struct in_addr dest_addr);
-void rreq_blackvs_list_timeout(void *arg);
+void vs_rreq_record_timeout(void *arg);
+struct blackvslist *rreq_black_vs_list_insert(struct in_addr dest_addr);
+void rreq_black_vs_list_timeout(void *arg);
 void rreq_local_repair(rt_table_t * rt, struct in_addr src_addr,
                        struct ip_data *ipd);
 void rreq_proactive (void *arg);
 
 #ifdef NS_PORT
-struct rreq_record *rreq_record_insert(struct in_addr orig_addr,
+struct vs_rreq_record *vs_rreq_record_insert(struct in_addr orig_addr,
                                        u_int32_t rreq_id);
-struct rreq_record *rreq_record_find(struct in_addr orig_addr,
+struct vs_rreq_record *vs_rreq_record_find(struct in_addr orig_addr,
                                      u_int32_t rreq_id);
-struct blackvs_list *rreq_blackvs_list_find(struct in_addr dest_addr);
+struct blackvslist *rreq_black_list_find(struct in_addr dest_addr);
 #endif              /* NS_PORT */
 
 #endif              /* NS_NO_DECLARATIONS */
 
-#endif              /* vs_aodv_RREQ_H */
+#endif              /* VS_AODV_RREQ_H */

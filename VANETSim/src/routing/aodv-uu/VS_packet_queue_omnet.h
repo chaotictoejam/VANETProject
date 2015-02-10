@@ -19,8 +19,8 @@
  * Authors: Erik Nordstr�m, <erik.nordstrom@it.uu.se>
  *
  *****************************************************************************/
-#ifndef _PACKET_QUEUE_H
-#define _PACKET_QUEUE_H
+#ifndef _VS_PACKET_QUEUE_H
+#define _VS_PACKET_QUEUE_H
 
 #ifndef NS_NO_GLOBALS
 

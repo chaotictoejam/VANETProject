@@ -20,8 +20,8 @@
  *
  *
  *****************************************************************************/
-#ifndef _vs_aodv_NEIGHBOR_H
-#define _vs_aodv_NEIGHBOR_H
+#ifndef _VS_AODV_NEIGHBOR_H
+#define _VS_AODV_NEIGHBOR_H
 
 #ifndef NS_NO_GLOBALS
 #include "vs_defs_aodv.h"
@@ -30,7 +30,7 @@
 
 #ifndef NS_NO_DECLARATIONS
 
-void neighbor_add(vs_AODV_msg * vs_AODV_msg, struct in_addr source,
+void neighbor_add(VS_AODV_msg * VS_AODV_msg, struct in_addr source,
                   unsigned int ifindex);
 void neighbor_link_break(rt_table_t * rt);
 

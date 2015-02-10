@@ -29,7 +29,7 @@
 #ifndef AODV_USE_STL
 void NS_CLASS packet_queue_init(void)
 {
-    INIT_VS_list_HEAD(&PQ.head);
+    INIT_VS_LIST_HEAD(&PQ.head);
     PQ.len = 0;
 
 #ifdef GARBAGE_COLLECT
@@ -49,7 +49,7 @@ void NS_CLASS packet_queue_destroy(void)
     VS_list_foreach_safe(pos, tmp, &PQ.head)
     {
         struct q_pkt *qp = (struct q_pkt *)pos;
-        VS_list_detach(pos);
+        vs_list_detach(pos);
 
         delete  qp->p;
 
@@ -75,7 +75,7 @@ int NS_CLASS packet_queue_garbage_collect(void)
         struct q_pkt *qp = (struct q_pkt *)pos;
         if (timeval_diff(&now, &qp->q_time) > MAX_QUEUE_TIME)
         {
-            VS_list_detach(pos);
+            vs_list_detach(pos);
             //icmpAccess.get()->sendErrorMessage(qp->p, ICMP_DESTINATION_UNREACHABLE, 0);
             //   drop (qp->p);
             sendICMP(qp->p);
@@ -103,10 +103,10 @@ void NS_CLASS packet_queue_add(cPacket * p, struct in_addr dest_addr)
     if (PQ.len >= MAX_QUEUE_LENGTH)
     {
         DEBUG(LOG_DEBUG, 0, "MAX Queue length! Removing first packet.");
-        if (!VS_list_empty(&PQ.head))
+        if (!vs_list_empty(&PQ.head))
         {
             qp = (struct q_pkt *)PQ.head.next;
-            VS_list_detach(PQ.head.next);
+            vs_list_detach(PQ.head.next);
             dgram = qp->p;
             // drop (dgram);
             sendICMP(dgram);
@@ -188,7 +188,7 @@ int NS_CLASS packet_queue_set_verdict(struct in_addr dest_addr, int verdict)
             struct q_pkt *qp = (struct q_pkt *)pos;
             if (qp->dest_addr.s_addr == dest_addr.s_addr)
             {
-                VS_list_detach(pos);
+                vs_list_detach(pos);
 
                 switch (verdict)
                 {

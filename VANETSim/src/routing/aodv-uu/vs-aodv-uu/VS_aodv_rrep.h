@@ -20,8 +20,8 @@
  *
  *
  *****************************************************************************/
-#ifndef _vs_aodv_RREP_H
-#define _vs_aodv_RREP_H
+#ifndef _VS_AODV_RREP_H
+#define _VS_AODV_RREP_H
 
 #ifndef NS_NO_GLOBALS
 
@@ -93,7 +93,7 @@ RREP *rrep_create(u_int8_t flags,
                   struct in_addr orig_addr, u_int32_t life);
 
 RREP_ack *rrep_ack_create();
-vs_aodv_ext *rrep_add_ext(RREP * rrep, int type, unsigned int offset,
+VS_AODV_ext *rrep_add_ext(RREP * rrep, int type, unsigned int offset,
                        int len, char *data);
 void rrep_send(RREP * rrep, rt_table_t * rev_rt, rt_table_t * fwd_rt, int size, double delay = 0);
 void rrep_forward(RREP * rrep, int size, rt_table_t * rev_rt,
@@ -104,5 +104,5 @@ void rrep_ack_process(RREP_ack * rrep_ack, int rreplen, struct in_addr ip_src,
                       struct in_addr ip_dst);
 #endif              /* NS_NO_DECLARATIONS */
 
-#endif              /* vs_aodv_RREP_H */
+#endif              /* VS_AODV_RREP_H */
 

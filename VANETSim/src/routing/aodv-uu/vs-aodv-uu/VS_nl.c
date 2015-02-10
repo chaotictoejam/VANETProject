@@ -41,7 +41,7 @@
 #include "vs_aodv_timeout.h"
 #include "vs_routing_table.h"
 #include "vs_aodv_hello.h"
-#include "params.h"
+#include "vs_params.h"
 #include "vs_aodv_socket.h"
 #include "vs_aodv_rerr.h"
 
@@ -189,7 +189,7 @@ static void nl_kvs_aodv_callback(int sock)
 		} else {
 			DEBUG(LOG_DEBUG, 0, "NLMSG_ERROR, error=%d type=%s",
 			      nlmerr->error, 
-			      kvs_AODV_msg_type_to_str(nlmerr->msg.nlmsg_type));
+			      kVS_AODV_msg_type_to_str(nlmerr->msg.nlmsg_type));
 		}
 		break;
 
@@ -243,7 +243,7 @@ static void nl_kvs_aodv_callback(int sock)
 		src_addr.s_addr = m->src;
 
 		//	DEBUG(LOG_DEBUG, 0, "ROute update s=%s d=%s", ip_to_str(src_addr), ip_to_str(dest_addr));
-		if (dest_addr.s_addr == vs_aodv_BROADCAST ||
+		if (dest_addr.s_addr == VS_AODV_BROADCAST ||
 		    dest_addr.s_addr ==
 		    DEV_IFINDEX(m->ifindex).broadcast.s_addr)
 			return;
@@ -259,7 +259,7 @@ static void nl_kvs_aodv_callback(int sock)
 		dest_addr.s_addr = m->dst;
 		src_addr.s_addr = m->src;
 
-		if (dest_addr.s_addr == vs_aodv_BROADCAST ||
+		if (dest_addr.s_addr == VS_AODV_BROADCAST ||
 		    dest_addr.s_addr ==
 		    DEV_IFINDEX(m->ifindex).broadcast.s_addr)
 			return;
@@ -289,9 +289,9 @@ static void nl_kvs_aodv_callback(int sock)
 			if (rev_rt && rev_rt->state == VALID)
 				rerr_dest = rev_rt->next_hop;
 			else
-				rerr_dest.s_addr = vs_aodv_BROADCAST;
+				rerr_dest.s_addr = VS_AODV_BROADCAST;
 
-			vs_aodv_socket_send((vs_AODV_msg *) rerr, rerr_dest,
+			vs_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,
 					 RERR_CALC_SIZE(rerr), 1,
 					 &DEV_IFINDEX(m->ifindex));
 
@@ -510,11 +510,11 @@ int nl_send_add_route_msg(struct in_addr dest, struct in_addr next_hop,
 	areq.m.ifindex = ifindex;
 
 	if (rt_flags & RT_INET_DEST) {
-		areq.m.flags |= Kvs_aodv_RT_GW_ENCAP;
+		areq.m.flags |= KVS_AODV_RT_GW_ENCAP;
 	}
 
 	if (rt_flags & RT_REPAIR)
-		areq.m.flags |= Kvs_aodv_RT_REPAIR;
+		areq.m.flags |= KVS_AODV_RT_REPAIR;
 
 	if (nl_send(&vs_aodvnl, &areq.n) < 0) {
 		DEBUG(LOG_DEBUG, 0, "Failed to send netlink message");

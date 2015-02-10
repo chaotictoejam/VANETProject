@@ -135,10 +135,10 @@ class VS_AODVUU : public ManetRoutingBase
         return false;
     }
     // cMessage  messageEvent;
-    typedef std::multimap<simtime_t, struct timer*> AodvTimerMap;
-    AodvTimerMap VS_aodvTimerMap;
-    typedef std::map<ManetAddress, struct rt_table*> AodvRtTableMap;
-    AodvRtTableMap VS_aodvRtTableMap;
+    typedef std::multimap<simtime_t, struct timer*> VS_AodvTimerMap;
+    VS_AodvTimerMap vs_AodvTimerMap;
+    typedef std::map<ManetAddress, struct rt_table*> VS_AodvRtTableMap;
+    VS_AodvRtTableMap vs_AodvRtTableMap;
 
 
   public:
@@ -201,43 +201,43 @@ class VS_AODVUU : public ManetRoutingBase
 #define NS_NO_GLOBALS
 #undef NS_NO_DECLARATIONS
 
-#undef _AODV_NEIGHBOR_H
+#undef _VS_AODV_NEIGHBOR_H
 #include "vs-aodv-uu/vs_aodv_neighbor.h"
 
-#undef _AODV_HELLO_H
+#undef _VS_AODV_HELLO_H
 #include "vs-aodv-uu/vs_aodv_hello.h"
 
-#undef _AODV_RERR_H
+#undef _VS_AODV_RERR_H
 #include "vs-aodv-uu/vs_aodv_rerr.h"
 
-#undef _AODV_RREP_H
+#undef _VS_AODV_RREP_H
 #include "vs-aodv-uu/vs_aodv_rrep.h"
 
-#undef _AODV_RREQ_H
+#undef _VS_AODV_RREQ_H
 #include "vs-aodv-uu/vs_aodv_rreq.h"
 
-#undef _AODV_SOCKET_H
+#undef _VS_AODV_SOCKET_H
 #include "vs-aodv-uu/vs_aodv_socket.h"
 
-#undef _AODV_TIMEOUT_H
+#undef _VS_AODV_TIMEOUT_H
 #include "vs-aodv-uu/vs_aodv_timeout.h"
 
-#undef _DEBUG_H
+#undef _VS_DEBUG_H
 #include "vs-aodv-uu/vs_debug_aodv.h"
 
-#undef _ROUTING_TABLE_H
+#undef _VS_ROUTING_TABLE_H
 #include "vs-aodv-uu/vs_routing_table.h"
 
-#undef _SEEK_VS_list_H
+#undef _VS_SEEK_LIST_H
 #include "vs-aodv-uu/vs_seek_list.h"
 
-#undef _TIMER_QUEUE_H
+#undef _VS_TIMER_QUEUE_H
 #include "vs-aodv-uu/vs_timer_queue_aodv.h"
 
-#undef _LOCALITY_H
+#undef _VS_LOCALITY_H
 #include "vs-aodv-uu/vs_locality.h"
 
-#undef _PACKET_QUEUE_H
+#undef _VS_PACKET_QUEUE_H
 #include "vs_packet_queue_omnet.h"
 
 #undef NS_NO_GLOBALS
@@ -269,11 +269,11 @@ class VS_AODVUU : public ManetRoutingBase
 #ifndef AODV_USE_STL
     /* From VS_aodv_rreq.c */
     VS_list_t rreqRecords;
-#define rreq_records this->rreqRecords
-    VS_list_t rreqBlackVS_list;
-#define  rreq_blackVS_list this->rreqBlackVS_list
+#define vs_rreq_records this->rreqRecords
+    VS_list_t RreqBlackVSList;
+#define  rreq_black_vs_list this->RreqBlackVSList
 
-    /* From seek_VS_list.c */
+    /* From vs_seek_list.c */
     VS_list_t seekHead;
 #define seekhead this->seekHead
 
@@ -281,13 +281,13 @@ class VS_AODVUU : public ManetRoutingBase
     VS_list_t timeVS_list;
 #define TQ this->timeVS_list
 #else
-    typedef std::vector <rreq_record *>RreqRecords;
-    typedef std::map <ManetAddress, struct blackVS_list *>RreqBlackVS_list;
-    typedef std::map <ManetAddress, seek_VS_list_t*>SeekHead;
+    typedef std::vector <vs_rreq_record *>RreqRecordsVS;
+    typedef std::map <ManetAddress, struct blackvslist *>RreqBlackVSList;
+    typedef std::map <ManetAddress, vs_seek_list_t*>VSSeekHead;
 
-    RreqRecords rreq_records;
-    RreqBlackVS_list rreq_blackVS_list;
-    SeekHead seekhead;
+    RreqRecordsVS vs_rreq_records;
+    RreqBlackVSList rreq_black_vs_list;
+    VSSeekHead seekhead;
 #endif
     /* From debug.c */
 // int  log_file_fd;

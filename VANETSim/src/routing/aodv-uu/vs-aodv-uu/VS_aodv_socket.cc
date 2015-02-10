@@ -41,7 +41,7 @@
 #include "vs_aodv_rreq.h"
 #include "vs_aodv_rerr.h"
 #include "vs_aodv_rrep.h"
-#include "params.h"
+#include "vs_params.h"
 #include "vs_aodv_hello.h"
 #include "vs_aodv_neighbor.h"
 #include "vs_debug_aodv.h"
@@ -233,53 +233,53 @@ void NS_CLASS vs_aodv_socket_init()
     num_rerr = 0;
 }
 
-void NS_CLASS vs_aodv_socket_process_packet(vs_AODV_msg * vs_AODV_msg, int len,
+void NS_CLASS vs_aodv_socket_process_packet(VS_AODV_msg * VS_AODV_msg, int len,
         struct in_addr src,
         struct in_addr dst,
         int ttl, unsigned int ifindex)
 {
     /* If this was a HELLO message... Process as HELLO. */
 #ifndef OMNETPP
-    if ((vs_AODV_msg->type == vs_aodv_RREP && ttl == 1 &&
-            dst.s_addr == vs_aodv_BROADCAST))
+    if ((VS_AODV_msg->type == VS_AODV_RREP && ttl == 1 &&
+            dst.s_addr == VS_AODV_BROADCAST))
     {
-        hello_process((RREP *) vs_AODV_msg, len, ifindex);
+        hello_process((RREP *) VS_AODV_msg, len, ifindex);
         return;
     }
 #else
-    if ((vs_AODV_msg->type == vs_aodv_RREP && ttl == 0 && // ttl is decremented for ip layer before send to vs_aodv
-            dst.s_addr == ManetAddress(IPv4Address(vs_aodv_BROADCAST))))
+    if ((VS_AODV_msg->type == VS_AODV_RREP && ttl == 0 && // ttl is decremented for ip layer before send to vs_aodv
+            dst.s_addr == ManetAddress(IPv4Address(VS_AODV_BROADCAST))))
     {
-        hello_process((RREP *) vs_AODV_msg, len, ifindex);
+        hello_process((RREP *) VS_AODV_msg, len, ifindex);
         return;
     }
 #endif
     /* Make sure we add/update neighbors */
-    neighbor_add(vs_AODV_msg, src, ifindex);
+    neighbor_add(VS_AODV_msg, src, ifindex);
 
     /* Check what type of msg we received and call the corresponding
        function to handle the msg... */
-    switch (vs_AODV_msg->type)
+    switch (VS_AODV_msg->type)
     {
 
-    case vs_aodv_RREQ:
-        rreq_process((RREQ *) vs_AODV_msg, len, src, dst, ttl, ifindex);
+    case VS_AODV_RREQ:
+        rreq_process((RREQ *) VS_AODV_msg, len, src, dst, ttl, ifindex);
         break;
-    case vs_aodv_RREP:
+    case VS_AODV_RREP:
         DEBUG(LOG_DEBUG, 0, "Received RREP");
-        rrep_process((RREP *) vs_AODV_msg, len, src, dst, ttl, ifindex);
+        rrep_process((RREP *) VS_AODV_msg, len, src, dst, ttl, ifindex);
         break;
-    case vs_aodv_RERR:
+    case VS_AODV_RERR:
         DEBUG(LOG_DEBUG, 0, "Received RERR");
-        rerr_process((RERR *) vs_AODV_msg, len, src, dst);
+        rerr_process((RERR *) VS_AODV_msg, len, src, dst);
         break;
-    case vs_aodv_RREP_ACK:
+    case VS_AODV_RREP_ACK:
         DEBUG(LOG_DEBUG, 0, "Received RREP_ACK");
-        rrep_ack_process((RREP_ack *) vs_AODV_msg, len, src, dst);
+        rrep_ack_process((RREP_ack *) VS_AODV_msg, len, src, dst);
         break;
     default:
         alog(LOG_WARNING, 0, __FUNCTION__,
-             "Unknown msg type %u rcvd from %s to %s", vs_AODV_msg->type,
+             "Unknown msg type %u rcvd from %s to %s", VS_AODV_msg->type,
              ip_to_str(src), ip_to_str(dst));
         break;
     }
@@ -287,23 +287,23 @@ void NS_CLASS vs_aodv_socket_process_packet(vs_AODV_msg * vs_AODV_msg, int len,
 
 #ifdef NS_PORT
 #ifndef OMNETPP
-void NS_CLASS recvvs_AODVUUPacket(Packet * p)
+void NS_CLASS recvVS_AODVUUPacket(Packet * p)
 {
     int len, i, ttl = 0;
     struct in_addr src, dst;
     struct hdr_cmn *ch = HDR_CMN(p);
     struct hdr_ip *ih = HDR_IP(p);
-    hdr_vs_AODVUU *ah = HDR_vs_AODVUU(p);
+    hdr_VS_AODVUU *ah = HDR_VS_AODVUU(p);
 
     src.s_addr = ih->saddr();
     dst.s_addr = ih->daddr();
     len = ch->size() - IP_HDR_LEN;
     ttl = ih->ttl();
 
-    vs_AODV_msg *vs_AODV_msg = (vs_AODV_msg *) recv_buf;
+    VS_AODV_msg *VS_AODV_msg = (VS_AODV_msg *) recv_buf;
 
-    /* Only handle vs_AODVUU packets */
-    assert(ch->ptype() == PT_vs_AODVUU);
+    /* Only handle VS_AODVUU packets */
+    assert(ch->ptype() == PT_VS_AODVUU);
 
     /* Only process incoming packets */
     assert(ch->direction() == hdr_cmn::UP);
@@ -321,7 +321,7 @@ void NS_CLASS recvvs_AODVUUPacket(Packet * p)
                        sizeof(struct in_addr)) == 0)
             return;
 
-    vs_aodv_socket_process_packet(vs_AODV_msg, len, src, dst, ttl, NS_IFINDEX);
+    vs_aodv_socket_process_packet(VS_AODV_msg, len, src, dst, ttl, NS_IFINDEX);
 }
 #endif /*no omnet++*/
 #else
@@ -329,7 +329,7 @@ static void vs_aodv_socket_read(int fd)
 {
     struct in_addr src, dst;
     int i, len, ttl = -1;
-    vs_AODV_msg *vs_AODV_msg;
+    VS_AODV_msg *VS_AODV_msg;
     struct dev_info *dev;
     struct msghdr msgh;
     struct cmsghdr *cmsg;
@@ -388,7 +388,7 @@ static void vs_aodv_socket_read(int fd)
                        sizeof(struct in_addr)) == 0)
             return;
 
-    vs_AODV_msg = (vs_AODV_msg *) recv_buf;
+    VS_AODV_msg = (VS_AODV_msg *) recv_buf;
 
     dev = devfromsock(fd);
 
@@ -398,11 +398,11 @@ static void vs_aodv_socket_read(int fd)
         return;
     }
 
-    vs_aodv_socket_process_packet(vs_AODV_msg, len, src, dst, ttl, dev->ifindex);
+    vs_aodv_socket_process_packet(VS_AODV_msg, len, src, dst, ttl, dev->ifindex);
 }
 #endif              /* NS_PORT */
 
-void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
+void NS_CLASS vs_aodv_socket_send(VS_AODV_msg * VS_AODV_msg, struct in_addr dst,
                                int len, u_int8_t ttl, struct dev_info *dev,double delay)
 {
 
@@ -413,7 +413,7 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
 #ifdef OMNETPP
     if (ttl<=0)
     {
-        delete vs_AODV_msg;
+        delete VS_AODV_msg;
         return;
     }
 #endif
@@ -422,7 +422,7 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
 
     struct sockaddr_in dst_addr;
 
-    if (wait_on_reboot && vs_AODV_msg->type == vs_aodv_RREP)
+    if (wait_on_reboot && VS_AODV_msg->type == VS_AODV_RREP)
         return;
 
     memset(&dst_addr, 0, sizeof(dst_addr));
@@ -439,7 +439,7 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
 #else
 
     /*
-       NS_PORT: Sending of vs_AODV_msg messages to other vs_aodv-UU routing agents
+       NS_PORT: Sending of VS_AODV_msg messages to other vs_aodv-UU routing agents
        by encapsulating them in a Packet.
 
        Note: This method is _only_ for sending vs_aodv packets to other routing
@@ -447,10 +447,10 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
      */
 
     /* If we are in waiting phase after reboot, don't send any RREPs */
-    if (wait_on_reboot && vs_AODV_msg->type == vs_aodv_RREP)
+    if (wait_on_reboot && VS_AODV_msg->type == VS_AODV_RREP)
     {
 #ifdef OMNETPP
-        delete vs_AODV_msg;
+        delete VS_AODV_msg;
 #endif
         return;
     }
@@ -463,16 +463,16 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
     Packet *p = allocpkt();
     struct hdr_cmn *ch = HDR_CMN(p);
     struct hdr_ip *ih = HDR_IP(p);
-    hdr_vs_AODVUU *ah = HDR_vs_AODVUU(p);
+    hdr_VS_AODVUU *ah = HDR_VS_AODVUU(p);
 
-    // Clear vs_AODVUU part of packet
+    // Clear VS_AODVUU part of packet
     memset(ah, '\0', ah->size());
 
     // Copy message contents into packet
-    memcpy(ah, vs_AODV_msg, len);
+    memcpy(ah, VS_AODV_msg, len);
 
     // Set common header fields
-    ch->ptype() = PT_vs_AODVUU;
+    ch->ptype() = PT_VS_AODVUU;
     ch->direction() = hdr_cmn::DOWN;
     ch->size() = IP_HDR_LEN + len;
     ch->iface() = -2;
@@ -503,9 +503,9 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
 
         gettimeofday(&now, NULL);
 
-        switch (vs_AODV_msg->type)
+        switch (VS_AODV_msg->type)
         {
-        case vs_aodv_RREQ:
+        case VS_AODV_RREQ:
             if (num_rreq == (RREQ_RATELIMIT - 1))
             {
                 if (timeval_diff(&now, &rreq_ratel[0]) < 1000)
@@ -513,7 +513,7 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
                     DEBUG(LOG_DEBUG, 0, "RATELIMIT: Dropping RREQ %ld ms",
                           timeval_diff(&now, &rreq_ratel[0]));
 #ifdef OMNETPP
-                    delete vs_AODV_msg;
+                    delete VS_AODV_msg;
 #else
 #ifdef NS_PORT
                     Packet::free(p);
@@ -535,7 +535,7 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
                 num_rreq++;
             }
             break;
-        case vs_aodv_RERR:
+        case VS_AODV_RERR:
             if (num_rerr == (RERR_RATELIMIT - 1))
             {
                 if (timeval_diff(&now, &rerr_ratel[0]) < 1000)
@@ -543,7 +543,7 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
                     DEBUG(LOG_DEBUG, 0, "RATELIMIT: Dropping RERR %ld ms",
                           timeval_diff(&now, &rerr_ratel[0]));
 #ifdef OMNETPP
-                    delete vs_AODV_msg;
+                    delete VS_AODV_msg;
 #else
 #ifdef NS_PORT
                     Packet::free(p);
@@ -569,31 +569,31 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
     }
 
 #ifdef OMNETPP
-    vs_AODV_msg->prevFix=this->isStaticNode();
+    VS_AODV_msg->prevFix=this->isStaticNode();
     if (this->isStaticNode())
     {
-        if (dynamic_cast<RREP*>(vs_AODV_msg))
+        if (dynamic_cast<RREP*>(VS_AODV_msg))
         {
-            dynamic_cast<RREP*>(vs_AODV_msg)->cost += costStatic;
+            dynamic_cast<RREP*>(VS_AODV_msg)->cost += costStatic;
         }
-        else if (dynamic_cast<RREQ*> (vs_AODV_msg))
+        else if (dynamic_cast<RREQ*> (VS_AODV_msg))
         {
-            dynamic_cast<RREQ*>(vs_AODV_msg)->cost += costStatic;
+            dynamic_cast<RREQ*>(VS_AODV_msg)->cost += costStatic;
         }
     }
     else
     {
-        if (dynamic_cast<RREP*>(vs_AODV_msg))
+        if (dynamic_cast<RREP*>(VS_AODV_msg))
         {
-            dynamic_cast<RREP*>(vs_AODV_msg)->cost += costMobile;
+            dynamic_cast<RREP*>(VS_AODV_msg)->cost += costMobile;
         }
-        else if (dynamic_cast<RREQ*>(vs_AODV_msg))
+        else if (dynamic_cast<RREQ*>(VS_AODV_msg))
         {
-            dynamic_cast<RREQ*>(vs_AODV_msg)->cost += costMobile;
+            dynamic_cast<RREQ*>(VS_AODV_msg)->cost += costMobile;
         }
     }
     ManetAddress destAdd;
-    if (dst.s_addr == ManetAddress(IPv4Address(vs_aodv_BROADCAST)))
+    if (dst.s_addr == ManetAddress(IPv4Address(VS_AODV_BROADCAST)))
     {
         gettimeofday(&this_host.bcast_time, NULL);
         if (!this->isInMacLayer())
@@ -609,20 +609,20 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
     // if delay is lower than 0 compute the delay using the distributions in the configuration
     if (delay < 0)
     {
-        if (dst.s_addr == ManetAddress(IPv4Address(vs_aodv_BROADCAST)))
+        if (dst.s_addr == ManetAddress(IPv4Address(VS_AODV_BROADCAST)))
             delay = par ("broadcastDelay").doubleValue();
         else
             delay = par ("unicastDelay").doubleValue();
     }
     if (useIndex)
-        sendToIp(vs_AODV_msg, 654, destAdd, 654, ttl, delay, dev->ifindex);
+        sendToIp(VS_AODV_msg, 654, destAdd, 654, ttl, delay, dev->ifindex);
     else
-        sendToIp(vs_AODV_msg, 654, destAdd, 654, ttl, delay, dev->ipaddr.s_addr);
+        sendToIp(VS_AODV_msg, 654, destAdd, 654, ttl, delay, dev->ipaddr.s_addr);
     totalSend++;
 #else
     /* If we broadcast this message we update the time of last broadcast
        to prevent unnecessary broadcasts of HELLO msg's */
-    if (dst.s_addr == ManetAddress(IPv4Address(vs_aodv_BROADCAST)))
+    if (dst.s_addr == ManetAddress(IPv4Address(VS_AODV_BROADCAST)))
     {
         gettimeofday(&this_host.bcast_time, NULL);
 
@@ -647,7 +647,7 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
 #ifdef NS_PORT
         ch->addr_type() = NS_AF_INET;
         /* We trust the decision of next hop for all vs_aodv messages... */
-        if (dst.s_addr == vs_aodv_BROADCAST)
+        if (dst.s_addr == VS_AODV_BROADCAST)
             sendPacket(p, dst, 0.001 * Random::uniform());
         else
             sendPacket(p, dst, 0.0);
@@ -666,7 +666,7 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
 #endif // OMNETPP
 
     /* Do not print hello msgs... */
-    if (!(vs_AODV_msg->type == vs_aodv_RREP && (dst.s_addr == ManetAddress(IPv4Address(vs_aodv_BROADCAST)))))
+    if (!(VS_AODV_msg->type == VS_AODV_RREP && (dst.s_addr == ManetAddress(IPv4Address(VS_AODV_BROADCAST)))))
         DEBUG(LOG_INFO, 0, "vs_aodv msg to %s ttl=%d retval=%u size=%u",
               ip_to_str(dst), ttl, retval, len);
 
@@ -677,17 +677,17 @@ void NS_CLASS vs_aodv_socket_send(vs_AODV_msg * vs_AODV_msg, struct in_addr dst,
 
 
 #ifndef OMNETPP
-vs_AODV_msg *NS_CLASS vs_aodv_socket_new_msg(void)
+VS_AODV_msg *NS_CLASS vs_aodv_socket_new_msg(void)
 {
     memset(send_buf, '\0', SEND_BUF_SIZE);
-    return (vs_AODV_msg *) (send_buf);
+    return (VS_AODV_msg *) (send_buf);
 }
 
 /* Copy an existing vs_aodv message to the send buffer */
-vs_AODV_msg *NS_CLASS vs_aodv_socket_queue_msg(vs_AODV_msg * vs_AODV_msg, int size)
+VS_AODV_msg *NS_CLASS vs_aodv_socket_queue_msg(VS_AODV_msg * VS_AODV_msg, int size)
 {
-    memcpy((char *) send_buf, vs_AODV_msg, size);
-    return (vs_AODV_msg *) send_buf;
+    memcpy((char *) send_buf, VS_AODV_msg, size);
+    return (VS_AODV_msg *) send_buf;
 }
 #endif
 void vs_aodv_socket_cleanup(void)

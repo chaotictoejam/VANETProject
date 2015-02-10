@@ -20,8 +20,8 @@
  *
  *
  *****************************************************************************/
-#ifndef _ROUTING_TABLE_H
-#define _ROUTING_TABLE_H
+#ifndef _VS_ROUTING_TABLE_H
+#define _VS_ROUTING_TABLE_H
 
 #ifndef NS_NO_GLOBALS
 #include "vs_defs_aodv.h"

@@ -35,11 +35,11 @@ typedef struct vs_list_t
 
 #define vs_list(name) vs_list_t name = { &(name), &(name) }
 
-#define INIT_vs_list_HEAD(h) do { \
+#define INIT_VS_LIST_HEAD(h) do { \
     (h)->next = (h); (h)->prev = (h); \
 } while (0)
 
-#define INIT_vs_list_ELM(le) do { \
+#define INIT_VS_LIST_ELM(le) do { \
     (le)->next = NULL; (le)->prev = NULL; \
 } while (0)
 

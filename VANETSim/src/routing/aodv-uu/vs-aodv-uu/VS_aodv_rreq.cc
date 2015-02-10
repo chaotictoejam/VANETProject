@@ -38,8 +38,8 @@
 #include "vs_aodv_timeout.h"
 #include "vs_timer_queue_aodv.h"
 #include "vs_aodv_socket.h"
-#include "params.h"
-#include "seek_vs_list.h"
+#include "vs_params.h"
+#include "vs_seek_list.h"
 #include "vs_defs_aodv.h"
 #include "vs_debug_aodv.h"
 
@@ -52,15 +52,15 @@
 #define HCNT_LIMIT 0
 
 #ifndef NS_PORT
-static vs_list(rreq_records);
-static vs_list(rreq_blackvs_list);
+static vs_list(vs_rreq_records);
+static vs_list(rreq_black_vs_list);
 
-static struct rreq_record *rreq_record_insert(struct in_addr orig_addr,
+static struct vs_rreq_record *vs_rreq_record_insert(struct in_addr orig_addr,
         u_int32_t rreq_id);
-static struct rreq_record *rreq_record_find(struct in_addr orig_addr,
+static struct vs_rreq_record *vs_rreq_record_find(struct in_addr orig_addr,
         u_int32_t rreq_id);
 
-struct blackvs_list *rreq_blackvs_list_find(struct in_addr dest_addr);
+struct blackvslist *rreq_black_list_find(struct in_addr dest_addr);
 
 extern int rreq_gratuitous, expanding_ring_search;
 extern int internet_gw_mode;
@@ -76,7 +76,7 @@ RREQ *NS_CLASS rreq_create(u_int8_t flags,struct in_addr dest_addr,
     rreq = new RREQ();
     rreq->cost=0;
 #endif
-    rreq->type = vs_aodv_RREQ;
+    rreq->type = VS_AODV_RREQ;
     rreq->res1 = 0;
     rreq->res2 = 0;
     rreq->hcnt = 0;
@@ -101,7 +101,7 @@ RREQ *NS_CLASS rreq_create(u_int8_t flags,struct in_addr dest_addr,
 
     DEBUG(LOG_DEBUG, 0, "Assembled RREQ %s", ip_to_str(dest_addr));
 #ifdef DEBUG_OUTPUT
-    log_pkt_fields((vs_AODV_msg *) rreq);
+    log_pkt_fields((VS_AODV_msg *) rreq);
 #endif
 
     return rreq;
@@ -120,7 +120,7 @@ vs_aodv_ext *rreq_add_ext(RREQ * rreq, int type, unsigned int offset,
     ext->type = type;
     ext->length = len;
 
-    memcpy(vs_aodv_EXT_DATA(ext), data, len);
+    memcpy(VS_AODV_EXT_DATA(ext), data, len);
 #else
     ext = rreq->addExtension(type,len,data);
 #endif
@@ -133,7 +133,7 @@ void NS_CLASS rreq_send(struct in_addr dest_addr, u_int32_t dest_seqno,
     RREQ *rreq;
     struct in_addr dest;
     int i;
-    dest.s_addr = ManetAddress(IPv4Address(vs_aodv_BROADCAST));
+    dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
     /* Check if we should force the gratuitous flag... (-g option). */
     if (rreq_gratuitous)
         flags |= RREQ_GRATUITOUS;
@@ -154,10 +154,10 @@ void NS_CLASS rreq_send(struct in_addr dest_addr, u_int32_t dest_seqno,
 
 #ifdef OMNETPP
         rreq->ttl = ttl;
-        vs_aodv_socket_send((vs_AODV_msg *) rreq, dest, RREQ_SIZE, 1, &DEV_NR(i),delay);
+        vs_aodv_socket_send((VS_AODV_msg *) rreq, dest, RREQ_SIZE, 1, &DEV_NR(i),delay);
         totalRreqSend++;
 #else
-        vs_aodv_socket_send((vs_AODV_msg *) rreq, dest, RREQ_SIZE, 1, &DEV_NR(i));
+        vs_aodv_socket_send((VS_AODV_msg *) rreq, dest, RREQ_SIZE, 1, &DEV_NR(i));
 #endif
     }
 }
@@ -167,7 +167,7 @@ void NS_CLASS rreq_forward(RREQ * rreq, int size, int ttl)
     struct in_addr dest, orig;
     int i;
 
-    dest.s_addr = ManetAddress(IPv4Address(vs_aodv_BROADCAST));
+    dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
     orig.s_addr = rreq->orig_addr;
 
     /* FORWARD the RREQ if the TTL allows it. */
@@ -176,7 +176,7 @@ void NS_CLASS rreq_forward(RREQ * rreq, int size, int ttl)
 
     /* Queue the received message in the send buffer */
 #ifndef OMNETPP
-    rreq = (RREQ *) vs_aodv_socket_queue_msg((vs_AODV_msg *) rreq, size);
+    rreq = (RREQ *) vs_aodv_socket_queue_msg((VS_AODV_msg *) rreq, size);
     rreq->hcnt++;       /* Increase hopcount to account for
                  * intermediate route */
 
@@ -185,7 +185,7 @@ void NS_CLASS rreq_forward(RREQ * rreq, int size, int ttl)
     {
         if (!DEV_NR(i).enabled)
             continue;
-        vs_aodv_socket_send((vs_AODV_msg *) rreq, dest, size, ttl, &DEV_NR(i));
+        vs_aodv_socket_send((VS_AODV_msg *) rreq, dest, size, ttl, &DEV_NR(i));
 #else
     rreq->hcnt++;       /* Increase hopcount to account for
                  * intermediate route */
@@ -203,7 +203,7 @@ void NS_CLASS rreq_forward(RREQ * rreq, int size, int ttl)
         totalRreqSend++;
         RREQ * rreq_new = check_and_cast <RREQ*>(rreq->dup());
         rreq_new->ttl=ttl;
-        vs_aodv_socket_send((vs_AODV_msg *) rreq_new, dest, size, ttl, &DEV_NR(i),delay);
+        vs_aodv_socket_send((VS_AODV_msg *) rreq_new, dest, size, ttl, &DEV_NR(i),delay);
 #endif
     }
 }
@@ -278,19 +278,19 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
         return;
     }
 
-    /* Check if the previous hop of the RREQ is in the blackvs_list set. If
+    /* Check if the previous hop of the RREQ is in the blackvslist set. If
        it is, then ignore the RREQ. */
-    if (rreq_blackvs_list_find(ip_src))
+    if (rreq_black_list_find(ip_src))
     {
-        DEBUG(LOG_DEBUG, 0, "prev hop of RREQ blackvs_listed, ignoring!");
+        DEBUG(LOG_DEBUG, 0, "prev hop of RREQ blackvslisted, ignoring!");
 #ifdef OMNETPP
-        EV << "prev hop of RREQ blackvs_listed, ignoring!" << "\n";
+        EV << "prev hop of RREQ blackvslisted, ignoring!" << "\n";
 #endif
         return;
     }
 
     /* Ignore already processed RREQs. */
-    if (rreq_record_find(rreq_orig, rreq_id))
+    if (vs_rreq_record_find(rreq_orig, rreq_id))
     {
 #ifdef OMNETPP
         if (isBroadcast(rreq_dest.s_addr))
@@ -344,7 +344,7 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
 
     /* Now buffer this RREQ so that we don't process a similar RREQ we
        get within PATH_DISCOVERY_TIME. */
-    rreq_record_insert(rreq_orig, rreq_id);
+    vs_rreq_record_insert(rreq_orig, rreq_id);
 
     /* Determine whether there are any RREQ extensions */
 
@@ -369,11 +369,11 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
                  ext->type);
             break;
         }
-        extlen += vs_aodv_EXT_SIZE(ext);
-        ext = vs_aodv_EXT_NEXT(ext);
+        extlen += VS_AODV_EXT_SIZE(ext);
+        ext = VS_AODV_EXT_NEXT(ext);
     }
 #ifdef DEBUG_OUTPUT
-    log_pkt_fields((vs_AODV_msg *) rreq);
+    log_pkt_fields((VS_AODV_msg *) rreq);
 #endif
 
     /* The node always creates or updates a REVERSE ROUTE entry to the
@@ -451,7 +451,7 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
             ext = rrep_add_ext(rrep, RREP_INET_DEST_EXT, rrep_size,
                                sizeof(struct in_addr), (char *) &rreq_dest);
 
-            rrep_size += vs_aodv_EXT_SIZE(ext);
+            rrep_size += VS_AODV_EXT_SIZE(ext);
 
             DEBUG(LOG_DEBUG, 0,
                   "Responding for INTERNET dest: %s rrep_size=%d",
@@ -485,7 +485,7 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
             ext = rrep_add_ext(rrep, RREP_INET_DEST_EXT, rrep_size,
                                sizeof(struct in_addr), (char *) &rreq_dest);
 
-            rrep_size += vs_aodv_EXT_SIZE(ext);
+            rrep_size += VS_AODV_EXT_SIZE(ext);
 
 
             DEBUG(LOG_DEBUG, 0,
@@ -600,7 +600,7 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
                 ext = rrep_add_ext(rrep, RREP_INET_DEST_EXT, rrep_size,
                                    sizeof(struct in_addr), (char *) &rreq_dest);
 
-                rrep_size += vs_aodv_EXT_SIZE(ext);
+                rrep_size += VS_AODV_EXT_SIZE(ext);
 
                 DEBUG(LOG_DEBUG, 0,
                       "Intermediate node response for INTERNET dest: %s rrep_size=%d",
@@ -717,14 +717,14 @@ void NS_CLASS rreq_route_discovery(struct in_addr dest_addr, u_int8_t flags,
 {
     struct timeval now;
     rt_table_t *rt;
-    seek_vs_list_t *seek_entry;
+    vs_seek_list_t *seek_entry;
     u_int32_t dest_seqno;
     int ttl;
 #define TTL_VALUE ttl
 
     gettimeofday(&now, NULL);
 
-    if (seek_vs_list_find(dest_addr))
+    if (vs_seek_list_find(dest_addr))
         return;
 
     /* If we already have a route entry, we use information from it. */
@@ -767,7 +767,7 @@ void NS_CLASS rreq_route_discovery(struct in_addr dest_addr, u_int8_t flags,
     rreq_send(dest_addr, dest_seqno, ttl, flags);
 
     /* Remember that we are seeking this destination */
-    seek_entry = seek_vs_list_insert(dest_addr, dest_seqno, ttl, flags, ipd);
+    seek_entry = vs_seek_list_insert(dest_addr, dest_seqno, ttl, flags, ipd);
 
     /* Set a timer for this RREQ */
     if (expanding_ring_search)
@@ -785,7 +785,7 @@ void NS_CLASS rreq_local_repair(rt_table_t * rt, struct in_addr src_addr,
                                 struct ip_data *ipd)
 {
     struct timeval now;
-    seek_vs_list_t *seek_entry;
+    vs_seek_list_t *seek_entry;
     rt_table_t *src_entry;
     int ttl;
     u_int8_t flags = 0;
@@ -793,7 +793,7 @@ void NS_CLASS rreq_local_repair(rt_table_t * rt, struct in_addr src_addr,
     if (!rt)
         return;
 
-    if (seek_vs_list_find(rt->dest_addr))
+    if (vs_seek_list_find(rt->dest_addr))
         return;
 
     if (!(rt->flags & RT_REPAIR))
@@ -833,7 +833,7 @@ void NS_CLASS rreq_local_repair(rt_table_t * rt, struct in_addr src_addr,
 
     /* Remember that we are seeking this destination and setup the
        timers */
-    seek_entry = seek_vs_list_insert(rt->dest_addr, rt->dest_seqno,
+    seek_entry = vs_seek_list_insert(rt->dest_addr, rt->dest_seqno,
                                   ttl, flags, ipd);
 
     if (expanding_ring_search)
@@ -862,20 +862,20 @@ void NS_CLASS  rreq_proactive (void *arg)
 }
 
 #ifndef vs_aodv_USE_STL
-NS_STATIC struct rreq_record *NS_CLASS rreq_record_insert(struct in_addr orig_addr,
+NS_STATIC struct vs_rreq_record *NS_CLASS vs_rreq_record_insert(struct in_addr orig_addr,
         u_int32_t rreq_id)
 {
-    struct rreq_record *rec;
+    struct vs_rreq_record *rec;
 
     /* First check if this rreq packet is already buffered */
-    rec = rreq_record_find(orig_addr, rreq_id);
+    rec = vs_rreq_record_find(orig_addr, rreq_id);
 
     /* If already buffered, should we update the timer???  */
     if (rec)
         return rec;
 
     if ((rec =
-                (struct rreq_record *) malloc(sizeof(struct rreq_record))) == NULL)
+                (struct vs_rreq_record *) malloc(sizeof(struct vs_rreq_record))) == NULL)
     {
         fprintf(stderr, "Malloc failed!!!\n");
         exit(-1);
@@ -883,9 +883,9 @@ NS_STATIC struct rreq_record *NS_CLASS rreq_record_insert(struct in_addr orig_ad
     rec->orig_addr = orig_addr;
     rec->rreq_id = rreq_id;
 
-    timer_init(&rec->rec_timer, &NS_CLASS rreq_record_timeout, rec);
+    timer_init(&rec->rec_timer, &NS_CLASS vs_rreq_record_timeout, rec);
 
-    vs_list_add(&rreq_records, &rec->l);
+    vs_list_add(&vs_rreq_records, &rec->l);
 
     DEBUG(LOG_INFO, 0, "Buffering RREQ %s rreq_id=%lu time=%u",
           ip_to_str(orig_addr), rreq_id, PATH_DISCOVERY_TIME);
@@ -894,14 +894,14 @@ NS_STATIC struct rreq_record *NS_CLASS rreq_record_insert(struct in_addr orig_ad
     return rec;
 }
 
-NS_STATIC struct rreq_record *NS_CLASS rreq_record_find(struct in_addr orig_addr,
+NS_STATIC struct vs_rreq_record *NS_CLASS vs_rreq_record_find(struct in_addr orig_addr,
         u_int32_t rreq_id)
 {
     vs_list_t *pos;
 
-    vs_list_foreach(pos, &rreq_records)
+    vs_list_foreach(pos, &vs_rreq_records)
     {
-        struct rreq_record *rec = (struct rreq_record *) pos;
+        struct vs_rreq_record *rec = (struct vs_rreq_record *) pos;
         if (rec->orig_addr.s_addr == orig_addr.s_addr &&
                 (rec->rreq_id == rreq_id))
             return rec;
@@ -909,50 +909,50 @@ NS_STATIC struct rreq_record *NS_CLASS rreq_record_find(struct in_addr orig_addr
     return NULL;
 }
 
-void NS_CLASS rreq_record_timeout(void *arg)
+void NS_CLASS vs_rreq_record_timeout(void *arg)
 {
-    struct rreq_record *rec = (struct rreq_record *) arg;
+    struct vs_rreq_record *rec = (struct vs_rreq_record *) arg;
 
     vs_list_detach(&rec->l);
     free(rec);
 }
 
 
-struct blackvs_list *NS_CLASS rreq_blackvs_list_insert(struct in_addr dest_addr)
+struct blackvslist *NS_CLASS rreq_black_vs_list_insert(struct in_addr dest_addr)
 {
 
-    struct blackvs_list *bl;
+    struct blackvslist *bl;
 
     /* First check if this rreq packet is already buffered */
-    bl = rreq_blackvs_list_find(dest_addr);
+    bl = rreq_black_list_find(dest_addr);
 
     /* If already buffered, should we update the timer??? */
     if (bl)
         return bl;
 
-    if ((bl = (struct blackvs_list *) malloc(sizeof(struct blackvs_list))) == NULL)
+    if ((bl = (struct blackvslist *) malloc(sizeof(struct blackvslist))) == NULL)
     {
         fprintf(stderr, "Malloc failed!!!\n");
         exit(-1);
     }
     bl->dest_addr.s_addr = dest_addr.s_addr;
 
-    timer_init(&bl->bl_timer, &NS_CLASS rreq_blackvs_list_timeout, bl);
+    timer_init(&bl->bl_timer, &NS_CLASS rreq_black_vs_list_timeout, bl);
 
-    vs_list_add(&rreq_blackvs_list, &bl->l);
+    vs_list_add(&rreq_black_vs_list, &bl->l);
 
-    timer_set_timeout(&bl->bl_timer, BLACKvs_list_TIMEOUT);
+    timer_set_timeout(&bl->bl_timer, blackvslist_TIMEOUT);
     return bl;
 }
 
 
-struct blackvs_list *NS_CLASS rreq_blackvs_list_find(struct in_addr dest_addr)
+struct blackvslist *NS_CLASS rreq_black_list_find(struct in_addr dest_addr)
 {
     vs_list_t *pos;
 
-    vs_list_foreach(pos, &rreq_blackvs_list)
+    vs_list_foreach(pos, &rreq_black_vs_list)
     {
-        struct blackvs_list *bl = (struct blackvs_list *) pos;
+        struct blackvslist *bl = (struct blackvslist *) pos;
 
         if (bl->dest_addr.s_addr == dest_addr.s_addr)
             return bl;
@@ -960,29 +960,29 @@ struct blackvs_list *NS_CLASS rreq_blackvs_list_find(struct in_addr dest_addr)
     return NULL;
 }
 
-void NS_CLASS rreq_blackvs_list_timeout(void *arg)
+void NS_CLASS rreq_black_vs_list_timeout(void *arg)
 {
 
-    struct blackvs_list *bl = (struct blackvs_list *) arg;
+    struct blackvslist *bl = (struct blackvslist *) arg;
 
     vs_list_detach(&bl->l);
     free(bl);
 }
 #else
-NS_STATIC struct rreq_record *NS_CLASS rreq_record_insert(struct in_addr orig_addr,
+NS_STATIC struct vs_rreq_record *NS_CLASS vs_rreq_record_insert(struct in_addr orig_addr,
         u_int32_t rreq_id)
 {
-    struct rreq_record *rec;
+    struct vs_rreq_record *rec;
 
     /* First check if this rreq packet is already buffered */
-    rec = rreq_record_find(orig_addr, rreq_id);
+    rec = vs_rreq_record_find(orig_addr, rreq_id);
 
     /* If already buffered, should we update the timer???  */
     if (rec)
         return rec;
 
     if ((rec =
-                (struct rreq_record *) malloc(sizeof(struct rreq_record))) == NULL)
+                (struct vs_rreq_record *) malloc(sizeof(struct vs_rreq_record))) == NULL)
     {
         fprintf(stderr, "Malloc failed!!!\n");
         exit(-1);
@@ -990,8 +990,8 @@ NS_STATIC struct rreq_record *NS_CLASS rreq_record_insert(struct in_addr orig_ad
     rec->orig_addr = orig_addr;
     rec->rreq_id = rreq_id;
 
-    timer_init(&rec->rec_timer, &NS_CLASS rreq_record_timeout, rec);
-    rreq_records.push_back(rec);
+    timer_init(&rec->rec_timer, &NS_CLASS vs_rreq_record_timeout, rec);
+    vs_rreq_records.push_back(rec);
 
 
     DEBUG(LOG_INFO, 0, "Buffering RREQ %s rreq_id=%lu time=%u",
@@ -1001,12 +1001,12 @@ NS_STATIC struct rreq_record *NS_CLASS rreq_record_insert(struct in_addr orig_ad
     return rec;
 }
 
-NS_STATIC struct rreq_record *NS_CLASS rreq_record_find(struct in_addr orig_addr,
+NS_STATIC struct vs_rreq_record *NS_CLASS vs_rreq_record_find(struct in_addr orig_addr,
         u_int32_t rreq_id)
 {
-    for (unsigned int i = 0 ; i < rreq_records.size();i++)
+    for (unsigned int i = 0 ; i < vs_rreq_records.size();i++)
     {
-        struct rreq_record *rec = rreq_records[i];
+        struct vs_rreq_record *rec = vs_rreq_records[i];
         if (rec->orig_addr.s_addr == orig_addr.s_addr &&
                 (rec->rreq_id == rreq_id))
             return rec;
@@ -1014,15 +1014,15 @@ NS_STATIC struct rreq_record *NS_CLASS rreq_record_find(struct in_addr orig_addr
     return NULL;
 }
 
-void NS_CLASS rreq_record_timeout(void *arg)
+void NS_CLASS vs_rreq_record_timeout(void *arg)
 {
-    struct rreq_record *rec = (struct rreq_record *) arg;
-    for (RreqRecords::iterator it = rreq_records.begin();it!=rreq_records.end();it++)
+    struct vs_rreq_record *rec = (struct vs_rreq_record *) arg;
+    for (RreqRecords::iterator it = vs_rreq_records.begin();it!=vs_rreq_records.end();it++)
     {
-        struct rreq_record *recAux = *it;
+        struct vs_rreq_record *recAux = *it;
         if (rec  == recAux)
         {
-            rreq_records.erase(it);
+            vs_rreq_records.erase(it);
             break;
         }
     }
@@ -1030,50 +1030,50 @@ void NS_CLASS rreq_record_timeout(void *arg)
 }
 
 
-struct blackvs_list *NS_CLASS rreq_blackvs_list_insert(struct in_addr dest_addr)
+struct blackvslist *NS_CLASS rreq_black_vs_list_insert(struct in_addr dest_addr)
 {
 
-    struct blackvs_list *bl;
+    struct blackvslist *bl;
 
     /* First check if this rreq packet is already buffered */
-    bl = rreq_blackvs_list_find(dest_addr);
+    bl = rreq_black_list_find(dest_addr);
 
     /* If already buffered, should we update the timer??? */
     if (bl)
         return bl;
 
-    if ((bl = (struct blackvs_list *) malloc(sizeof(struct blackvs_list))) == NULL)
+    if ((bl = (struct blackvslist *) malloc(sizeof(struct blackvslist))) == NULL)
     {
         fprintf(stderr, "Malloc failed!!!\n");
         exit(-1);
     }
     bl->dest_addr.s_addr = dest_addr.s_addr;
 
-    timer_init(&bl->bl_timer, &NS_CLASS rreq_blackvs_list_timeout, bl);
-    rreq_blackvs_list.insert(std::make_pair(dest_addr.s_addr,bl));
+    timer_init(&bl->bl_timer, &NS_CLASS rreq_black_vs_list_timeout, bl);
+    rreq_black_vs_list.insert(std::make_pair(dest_addr.s_addr,bl));
 
-    timer_set_timeout(&bl->bl_timer, BLACKvs_list_TIMEOUT);
+    timer_set_timeout(&bl->bl_timer, blackvslist_TIMEOUT);
     return bl;
 }
 
 
-struct blackvs_list *NS_CLASS rreq_blackvs_list_find(struct in_addr dest_addr)
+struct blackvslist *NS_CLASS rreq_black_list_find(struct in_addr dest_addr)
 {
-    RreqBlackvs_list::iterator it = rreq_blackvs_list.find(dest_addr.s_addr);
-    if (it != rreq_blackvs_list.end())
+    RreqBlackVSList::iterator it = rreq_black_vs_list.find(dest_addr.s_addr);
+    if (it != rreq_black_vs_list.end())
         return it->second;
     return NULL;
 }
 
-void NS_CLASS rreq_blackvs_list_timeout(void *arg)
+void NS_CLASS rreq_black_vs_list_timeout(void *arg)
 {
-    struct blackvs_list *bl = (struct blackvs_list *)arg;
-    for (RreqBlackvs_list::iterator it = rreq_blackvs_list.begin();it!=rreq_blackvs_list.end();it++)
+    struct blackvslist *bl = (struct blackvslist *)arg;
+    for (RreqBlackVSList::iterator it = rreq_black_vs_list.begin();it!=rreq_black_vs_list.end();it++)
     {
-        struct blackvs_list *blAux = it->second;
+        struct blackvslist *blAux = it->second;
         if (bl == blAux)
         {
-            rreq_blackvs_list.erase(it);
+            rreq_black_vs_list.erase(it);
 
         }
     }

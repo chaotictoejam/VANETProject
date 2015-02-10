@@ -152,7 +152,7 @@ void NS_CLASS hello_send(void *arg)
                 int i;
 #ifndef OMNETPP
                 if (ext)
-                    ext = vs_aodv_EXT_NEXT(ext);
+                    ext = VS_AODV_EXT_NEXT(ext);
                 else
                     /* Check for hello interval extension: */
                     ext = (vs_aodv_ext *) ((char *) rrep + RREP_SIZE);
@@ -163,7 +163,7 @@ void NS_CLASS hello_send(void *arg)
 #ifdef vs_aodv_USE_STL_RT
                 for (i = 0; i < RT_TABLESIZE; i++)
                 {
-                    for (vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.begin(); it != vs_aodvRtTableMap.end(); it++)
+                    for (VS_AodvRtTableMap::iterator it = VS_AodvRtTableMap.begin(); it != VS_AodvRtTableMap.end(); it++)
                     {
                         rt_table_t *rt = it->second;
                         /* If an entry has an active hello timer, we assume
@@ -200,7 +200,7 @@ void NS_CLASS hello_send(void *arg)
                                   ip_to_str(rt->dest_addr));
 #endif
 #ifndef OMNETPP
-                            memcpy(vs_aodv_EXT_NEXT(ext), &rt->dest_addr,
+                            memcpy(VS_AODV_EXT_NEXT(ext), &rt->dest_addr,
                                    sizeof(struct in_addr));
                             ext->length += sizeof(struct in_addr);
 #else
@@ -217,7 +217,7 @@ void NS_CLASS hello_send(void *arg)
 #ifdef OMNETPP
                 if (ext->length)
                 {
-                    msg_size = RREP_SIZE + vs_aodv_EXT_SIZE(ext);
+                    msg_size = RREP_SIZE + VS_AODV_EXT_SIZE(ext);
 
                 }
                 rrep->setName("vs_aodvHello");
@@ -231,12 +231,12 @@ void NS_CLASS hello_send(void *arg)
 
 #endif
             }
-            dest.s_addr = ManetAddress(IPv4Address(vs_aodv_BROADCAST));
+            dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
 #ifdef OMNETPP
             rrep->ttl=1;
-            vs_aodv_socket_send((vs_AODV_msg *) rrep, dest, msg_size, 1, &DEV_NR(i),delay);
+            vs_aodv_socket_send((VS_AODV_msg *) rrep, dest, msg_size, 1, &DEV_NR(i),delay);
 #else
-            vs_aodv_socket_send((vs_AODV_msg *) rrep, dest, msg_size, 1, &DEV_NR(i));
+            vs_aodv_socket_send((VS_AODV_msg *) rrep, dest, msg_size, 1, &DEV_NR(i));
 #endif
         }
 
@@ -304,7 +304,7 @@ void NS_CLASS hello_process(RREP * hello, int rreplen, unsigned int ifindex)
         case RREP_HELLO_INTERVAL_EXT:
             if (ext->length == 4)
             {
-                memcpy(&hello_interval, vs_aodv_EXT_DATA(ext), 4);
+                memcpy(&hello_interval, VS_AODV_EXT_DATA(ext), 4);
                 hello_interval = ntohl(hello_interval);
 #ifdef DEBUG_HELLO
                 DEBUG(LOG_INFO, 0, "Hello extension interval=%lu!",
@@ -331,7 +331,7 @@ void NS_CLASS hello_process(RREP * hello, int rreplen, unsigned int ifindex)
             for (i = 0; i < ext->length; i = i + 4)
             {
                 ext_neighbor.s_addr =
-                        ManetAddress(IPv4Address(*(in_addr_t *) ((char *) vs_aodv_EXT_DATA(ext) + i)));
+                        ManetAddress(IPv4Address(*(in_addr_t *) ((char *) VS_AODV_EXT_DATA(ext) + i)));
 
                 if (ext_neighbor.s_addr == DEV_IFINDEX(ifindex).ipaddr.s_addr)
                     flags &= ~RT_UNIDIR;
@@ -346,8 +346,8 @@ void NS_CLASS hello_process(RREP * hello, int rreplen, unsigned int ifindex)
         if (ext == NULL)
             break;
 
-        rreplen -= vs_aodv_EXT_SIZE(ext);
-        ext = vs_aodv_EXT_NEXT(ext);
+        rreplen -= VS_AODV_EXT_SIZE(ext);
+        ext = VS_AODV_EXT_NEXT(ext);
     }
 
 #ifdef DEBUG_HELLO

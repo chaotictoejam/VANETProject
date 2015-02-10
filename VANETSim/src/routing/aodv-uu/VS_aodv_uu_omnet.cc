@@ -158,7 +158,7 @@ void NS_CLASS initialize(int stage)
         if (debug && !log_file_fd_init)
         {
             log_file_fd = -1;
-            openlog("VS_aodv-uu ",0,LOG_USER);
+            openlog("vs_aodv-uu ",0,LOG_USER);
             log_init();
             log_file_fd_init=true;
         }
@@ -206,16 +206,16 @@ void NS_CLASS initialize(int stage)
         NS_DEV_NR = getWlanInterfaceIndexByAddress();
         NS_IFINDEX = getWlanInterfaceIndexByAddress();
 #ifndef VS_AODV_USE_STL
-        VS_list_t *VS_lista_ptr;
-        VS_lista_ptr=&rreq_records;
-        INIT_VS_list_HEAD(&rreq_records);
-        VS_lista_ptr=&rreq_blackVS_list;
-        INIT_VS_list_HEAD(&rreq_blackVS_list);
-        VS_lista_ptr=&seekhead;
-        INIT_VS_list_HEAD(&seekhead);
+        vs_list_t *vs_lista_ptr;
+        vs_lista_ptr=&vs_rreq_records;
+        INIT_VS_LIST_HEAD(&vs_rreq_records);
+        vs_lista_ptr=&rreq_black_vs_list;
+        INIT_VS_LIST_HEAD(&rreq_black_vs_list);
+        vs_lista_ptr=&seekhead;
+        INIT_VS_LIST_HEAD(&seekhead);
 
-        VS_lista_ptr=&TQ;
-        INIT_VS_list_HEAD(&TQ);
+        vs_lista_ptr=&TQ;
+        INIT_VS_LIST_HEAD(&TQ);
 #endif
         /* Initialize data structures */
         worb_timer.data = NULL;
@@ -238,7 +238,7 @@ void NS_CLASS initialize(int stage)
 
         propagateProactive = par("propagateProactive");
         strcpy(nodeName,getParentModule()->getParentModule()->getFullName());
-        VS_aodv_socket_init();
+        vs_aodv_socket_init();
         rt_table_init();
         packet_queue_init();
         startVS_AODVUUAgent();
@@ -254,56 +254,56 @@ void NS_CLASS initialize(int stage)
 NS_CLASS ~ VS_AODVUU()
 {
 #ifdef VS_AODV_USE_STL_RT
-    while (!VS_aodvRtTableMap.empty())
+    while (!vs_aodvRtTableMap.empty())
     {
-        free (VS_aodvRtTableMap.begin()->second);
-        VS_aodvRtTableMap.erase(VS_aodvRtTableMap.begin());
+        free (vs_aodvRtTableMap.begin()->second);
+        vs_aodvRtTableMap.erase(vs_aodvRtTableMap.begin());
     }
 #else
-    VS_list_t *tmp = NULL, *pos = NULL;
+    vs_list_t *tmp = NULL, *pos = NULL;
     for (int i = 0; i < RT_TABLESIZE; i++)
     {
-        VS_list_foreach_safe(pos, tmp, &rt_tbl.tbl[i])
+        vs_list_foreach_safe(pos, tmp, &rt_tbl.tbl[i])
         {
             rt_table_t *rt = (rt_table_t *) pos;
-            VS_list_detach(&rt->l);
-            precursor_VS_list_destroy(rt);
+            vs_list_detach(&rt->l);
+            precursor_vs_list_destroy(rt);
             free(rt);
         }
     }
 #endif
 #ifndef VS_AODV_USE_STL
-    while (!VS_list_empty(&rreq_records))
+    while (!vs_list_empty(&vs_rreq_records))
     {
-        pos = VS_list_first(&rreq_records);
-        VS_list_detach(pos);
+        pos = vs_list_first(&vs_rreq_records);
+        vs_list_detach(pos);
         if (pos) free(pos);
     }
 
-    while (!VS_list_empty(&rreq_blackVS_list))
+    while (!vs_list_empty(&rreq_black_vs_list))
     {
-        pos = VS_list_first(&rreq_blackVS_list);
-        VS_list_detach(pos);
+        pos = vs_list_first(&rreq_black_vs_list);
+        vs_list_detach(pos);
         if (pos) free(pos);
     }
 
-    while (!VS_list_empty(&seekhead))
+    while (!vs_list_empty(&seekhead))
     {
-        pos = VS_list_first(&seekhead);
-        VS_list_detach(pos);
+        pos = vs_list_first(&seekhead);
+        vs_list_detach(pos);
         if (pos) free(pos);
     }
 #else
-    while (!rreq_records.empty())
+    while (!vs_rreq_records.empty())
     {
-        free (rreq_records.back());
-        rreq_records.pop_back();
+        free (vs_rreq_records.back());
+        vs_rreq_records.pop_back();
     }
 
-    while (!rreq_blackVS_list.empty())
+    while (!rreq_black_vs_list.empty())
     {
-        free (rreq_blackVS_list.begin()->second);
-        rreq_blackVS_list.erase(rreq_blackVS_list.begin());
+        free (rreq_black_vs_list.begin()->second);
+        rreq_black_vs_list.erase(rreq_black_vs_list.begin());
     }
 
     while (!seekhead.empty())
@@ -346,7 +346,7 @@ void NS_CLASS packetFailed(IPv4Datagram *dgram)
 
     DEBUG(LOG_DEBUG, 0, "LINK FAILURE for next_hop=%s dest=%s ",ip_to_str(next_hop), ip_to_str(dest_addr));
 
-    if (seek_VS_list_find(dest_addr))
+    if (vs_seek_list_find(dest_addr))
     {
         DEBUG(LOG_DEBUG, 0, "Ongoing route discovery, buffering packet...");
         packet_queue_add((IPv4Datagram *)dgram->dup(), dest_addr);
@@ -410,7 +410,7 @@ void NS_CLASS packetFailedMac(Ieee80211DataFrame *dgram)
 
     src_addr.s_addr = ManetAddress(dgram->getAddress3());
     dest_addr.s_addr = ManetAddress(dgram->getAddress4());
-    if (seek_VS_list_find(dest_addr))
+    if (vs_seek_list_find(dest_addr))
     {
         DEBUG(LOG_DEBUG, 0, "Ongoing route discovery, buffering packet...");
         packet_queue_add(dgram->dup(), dest_addr);
@@ -541,7 +541,7 @@ void NS_CLASS handleMessage (cMessage *msg)
                         else
                             rerr_dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
 
-                        VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr), 1, &DEV_IFINDEX(NS_IFINDEX));
+                        vs_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr), 1, &DEV_IFINDEX(NS_IFINDEX));
                     }
                 }
             }
@@ -777,9 +777,9 @@ void NS_CLASS scheduleNextEvent()
     simtime_t timer;
     simtime_t timeout = timer_age_queue();
 
-    if (!VS_aodvTimerMap.empty())
+    if (!VS_AodvTimerMap.empty())
     {
-        timer = VS_aodvTimerMap.begin()->first;
+        timer = VS_AodvTimerMap.begin()->first;
         if (sendMessageEvent->isScheduled())
         {
             if (timer < sendMessageEvent->getArrivalTime())
@@ -842,11 +842,11 @@ void NS_CLASS recvVS_AODVUUPacket(cMessage * msg)
     int ttl;
     int interfaceId;
 
-    VS_AODV_msg *VS_aodv_msg = check_and_cast<VS_AODV_msg *> (msg);
-    int len = VS_aodv_msg->getByteLength();
+    VS_AODV_msg *vs_aodv_msg = check_and_cast<VS_AODV_msg *> (msg);
+    int len = vs_aodv_msg->getByteLength();
     int ifIndex = NS_IFINDEX;
 
-    ttl =  VS_aodv_msg->ttl-1;
+    ttl =  vs_aodv_msg->ttl-1;
     if (!isInMacLayer())
     {
         IPv4ControlInfo *ctrl = check_and_cast<IPv4ControlInfo *>(msg->getControlInfo());
@@ -879,8 +879,8 @@ void NS_CLASS recvVS_AODVUUPacket(cMessage * msg)
             }
         }
     }
-    VS_aodv_socket_process_packet(VS_aodv_msg, len, src, dst, ttl, ifIndex);
-    delete   VS_aodv_msg;
+    vs_aodv_socket_process_packet(vs_aodv_msg, len, src, dst, ttl, ifIndex);
+    delete   vs_aodv_msg;
 }
 
 
@@ -954,7 +954,7 @@ void NS_CLASS processMacPacket(cPacket * p, const ManetAddress &dest, const Mane
                 rerr_dest = rev_rt->next_hop;
             else
                 rerr_dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
-            VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            vs_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
                     1, &DEV_IFINDEX(ifindex));
             if (wait_on_reboot)
             {
@@ -1102,7 +1102,7 @@ void NS_CLASS processPacket(IPv4Datagram * p,unsigned int ifindex)
         else
             rerr_dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
 
-        VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+        vs_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
                          1, &DEV_IFINDEX(ifindex));
         if (wait_on_reboot)
         {
@@ -1372,23 +1372,23 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
              * if possible, otherwise we broadcast it. */
             rerr_dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
 
-            VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            vs_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
                              1, &DEV_IFINDEX(NS_IFINDEX));
         }
         ManetAddress dest = fwd_rt->dest_addr.s_addr;
-        AodvRtTableMap::iterator it = VS_aodvRtTableMap.find(dest);
-        if (it != VS_aodvRtTableMap.end())
+        AodvRtTableMap::iterator it = vs_aodvRtTableMap.find(dest);
+        if (it != vs_aodvRtTableMap.end())
         {
             if (it->second != fwd_rt)
                 opp_error("AODV routing table error");
         }
-        VS_aodvRtTableMap.erase(it);
+        vs_aodvRtTableMap.erase(it);
         if (fwd_rt->state == VALID || fwd_rt->state == IMMORTAL)
             rt_tbl.num_active--;
         timer_remove(&fwd_rt->rt_timer);
         timer_remove(&fwd_rt->hello_timer);
         timer_remove(&fwd_rt->ack_timer);
-        rt_tbl.num_entries = VS_aodvRtTableMap.size();
+        rt_tbl.num_entries = vs_aodvRtTableMap.size();
         free (fwd_rt);
     }
     else
@@ -1435,23 +1435,23 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
              * if possible, otherwise we broadcast it. */
             rerr_dest.s_addr = ManetAddress(IPv4Address(VS_AODV_BROADCAST));
 
-            VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            vs_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
                              1, &DEV_IFINDEX(NS_IFINDEX));
         }
         ManetAddress dest = fwd_rt->dest_addr.s_addr;
-        AodvRtTableMap::iterator it = VS_aodvRtTableMap.find(dest);
-        if (it != VS_aodvRtTableMap.end())
+        AodvRtTableMap::iterator it = vs_aodvRtTableMap.find(dest);
+        if (it != vs_aodvRtTableMap.end())
         {
             if (it->second != fwd_rt)
                 opp_error("AODV routing table error");
         }
-        VS_aodvRtTableMap.erase(it);
+        vs_aodvRtTableMap.erase(it);
         if (fwd_rt->state == VALID || fwd_rt->state == IMMORTAL)
             rt_tbl.num_active--;
         timer_remove(&fwd_rt->rt_timer);
         timer_remove(&fwd_rt->hello_timer);
         timer_remove(&fwd_rt->ack_timer);
-        rt_tbl.num_entries = VS_aodvRtTableMap.size();
+        rt_tbl.num_entries = vs_aodvRtTableMap.size();
         free (fwd_rt);
     }
     else
@@ -1503,11 +1503,11 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
              * if possible, otherwise we broadcast it. */
             rerr_dest.s_addr = VS_AODV_BROADCAST;
 
-            VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            vs_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
                              1, &DEV_IFINDEX(NS_IFINDEX));
         }
-        VS_list_detach(&fwd_rt->l);
-        precursor_VS_list_destroy(fwd_rt);
+        vs_list_detach(&fwd_rt->l);
+        precursor_vs_list_destroy(fwd_rt);
         if (fwd_rt->state == VALID || fwd_rt->state == IMMORTAL)
             rt_tbl.num_active--;
         timer_remove(&fwd_rt->rt_timer);
@@ -1525,7 +1525,7 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
 
     if (!delEntry && ifaceIndex<getNumInterfaces())
     {
-        fwd_rt = modifyAODVTables(destAddr,nextAddr,hops,(uint32_t) SIMTIME_DBL(simTime()), 0xFFFF,IMMORTAL,0, ifaceIndex);
+        fwd_rt = AODVTables(destAddr,nextAddr,hops,(uint32_t) SIMTIME_DBL(simTime()), 0xFFFF,IMMORTAL,0, ifaceIndex);
         status = (fwd_rt!=NULL);
 
     }
@@ -1559,11 +1559,11 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
              * if possible, otherwise we broadcast it. */
             rerr_dest.s_addr = VS_AODV_BROADCAST;
 
-            VS_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            vs_aodv_socket_send((VS_AODV_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
                              1, &DEV_IFINDEX(NS_IFINDEX));
         }
-        VS_list_detach(&fwd_rt->l);
-        precursor_VS_list_destroy(fwd_rt);
+        vs_list_detach(&fwd_rt->l);
+        precursor_vs_list_destroy(fwd_rt);
         if (fwd_rt->state == VALID || fwd_rt->state == IMMORTAL)
             rt_tbl.num_active--;
         timer_remove(&fwd_rt->rt_timer);

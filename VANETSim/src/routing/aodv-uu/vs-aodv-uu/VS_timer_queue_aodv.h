@@ -19,8 +19,8 @@
  * Authors: Erik Nordström, <erik.nordstrom@it.uu.se>
  *
  *****************************************************************************/
-#ifndef _TIMER_QUEUE_H
-#define _TIMER_QUEUE_H
+#ifndef _VS_TIMER_QUEUE_H
+#define _VS_TIMER_QUEUE_H
 
 #ifndef NS_NO_GLOBALS
 
@@ -32,7 +32,7 @@
 #include "vs_list.h"
 
 #ifdef NS_PORT
-typedef void (vs_AODVUU::*timeout_func_t) (void *);
+typedef void (VS_AODVUU::*timeout_func_t) (void *);
 #else
 typedef void (*timeout_func_t) (void *);
 #endif

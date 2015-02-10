@@ -39,8 +39,8 @@
 #include "vs_timer_queue_aodv.h"
 #include "vs_defs_aodv.h"
 #include "vs_debug_aodv.h"
-#include "params.h"
-#include "seek_vs_list.h"
+#include "vs_params.h"
+#include "vs_seek_list.h"
 #include "nl.h"
 extern int llfeedback;
 #endif              /* NS_PORT */
@@ -54,10 +54,10 @@ static unsigned int hashing(struct in_addr *addr, hash_value * hash);
 
 void NS_CLASS rt_table_init()
 {
-    while (!vs_aodvRtTableMap.empty())
+    while (!VS_AodvRtTableMap.empty())
     {
-        rt_table_delete (vs_aodvRtTableMap.begin()->second);
-        vs_aodvRtTableMap.erase(vs_aodvRtTableMap.begin());
+        rt_table_delete (VS_AodvRtTableMap.begin()->second);
+        VS_AodvRtTableMap.erase(VS_AodvRtTableMap.begin());
     }
     rt_tbl.num_entries = 0;
     rt_tbl.num_active = 0;
@@ -65,9 +65,9 @@ void NS_CLASS rt_table_init()
 
 void NS_CLASS rt_table_destroy()
 {
-    while (!vs_aodvRtTableMap.empty())
+    while (!VS_AodvRtTableMap.empty())
     {
-        rt_table_delete (vs_aodvRtTableMap.begin()->second);
+        rt_table_delete (VS_AodvRtTableMap.begin()->second);
     }
 }
 
@@ -85,8 +85,8 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
 
     dest = dest_addr.s_addr;
     /* Check if we already have an entry for dest_addr */
-    vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.find(dest);
-    if (it != vs_aodvRtTableMap.end())
+    VS_AodvRtTableMap::iterator it = VS_AodvRtTableMap.find(dest);
+    if (it != VS_AodvRtTableMap.end())
     {
         DEBUG(LOG_INFO, 0, "%s already exist in routing table!",
               ip_to_str(dest_addr));
@@ -152,8 +152,8 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
     /* Insert first in bucket... */
     DEBUG(LOG_INFO, 0, "Inserting %s (bucket %d) next hop %s",
           ip_to_str(dest_addr), index, ip_to_str(next));
-    vs_aodvRtTableMap.insert(std::make_pair(dest,rt));
-    rt_tbl.num_entries = (int) vs_aodvRtTableMap.size();
+    VS_AodvRtTableMap.insert(std::make_pair(dest,rt));
+    rt_tbl.num_entries = (int) VS_AodvRtTableMap.size();
     if (state == INVALID)
     {
 
@@ -200,7 +200,7 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
     {
         struct in_addr auxAaddr;
         auxAaddr.s_addr = vs_list[i];
-        if ((rt->state == VALID || rt->state == IMMORTAL)  && seek_vs_list_remove(seek_vs_list_find(auxAaddr)))
+        if ((rt->state == VALID || rt->state == IMMORTAL)  && vs_seek_list_remove(vs_seek_list_find(auxAaddr)))
         {
             if (rt->flags & RT_INET_DEST)
                 packet_queue_set_verdict(auxAaddr, PQ_ENC_SEND);
@@ -222,21 +222,21 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
 rt_table_t *NS_CLASS rt_table_find(struct in_addr dest_addr)
 {
 
-    if (vs_aodvRtTableMap.empty())
+    if (VS_AodvRtTableMap.empty())
         return NULL;
 
     /* Check if we already have an entry for dest_addr */
-    vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.find(dest_addr.s_addr);
+    VS_AodvRtTableMap::iterator it = VS_AodvRtTableMap.find(dest_addr.s_addr);
 
-    if (it != vs_aodvRtTableMap.end())
+    if (it != VS_AodvRtTableMap.end())
         return it->second;
     else
     {
         ManetAddress apAdd;
         if (getAp(dest_addr.s_addr, apAdd))
         {
-            it = vs_aodvRtTableMap.find(apAdd);
-            if (it != vs_aodvRtTableMap.end())
+            it = VS_AodvRtTableMap.find(apAdd);
+            if (it != VS_AodvRtTableMap.end())
                 return it->second;
         }
         return NULL;
@@ -247,7 +247,7 @@ rt_table_t *NS_CLASS rt_table_find(struct in_addr dest_addr)
 rt_table_t *NS_CLASS rt_table_find_gateway()
 {
     rt_table_t *gw = NULL;
-    for (vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.begin(); it != vs_aodvRtTableMap.end(); it++)
+    for (VS_AodvRtTableMap::iterator it = VS_AodvRtTableMap.begin(); it != VS_AodvRtTableMap.end(); it++)
     {
         rt_table_t *rt = it->second;
         if ((rt->flags & RT_GATEWAY) && rt->state == VALID)
@@ -268,7 +268,7 @@ int NS_CLASS rt_table_update_inet_rt(rt_table_t * gw, u_int32_t life)
     if (!gw)
         return -1;
 
-    for (vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.begin(); it != vs_aodvRtTableMap.end(); it++)
+    for (VS_AodvRtTableMap::iterator it = VS_AodvRtTableMap.begin(); it != VS_AodvRtTableMap.end(); it++)
     {
         rt_table_t *rt = it->second;
         if (rt->flags & RT_INET_DEST && rt->state == VALID)
@@ -346,7 +346,7 @@ int NS_CLASS rt_table_invalidate(rt_table_t * rt)
         int i;
 
         rt_table_t *gw = rt_table_find_gateway();
-        for (vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.begin(); it != vs_aodvRtTableMap.end(); it++)
+        for (VS_AodvRtTableMap::iterator it = VS_AodvRtTableMap.begin(); it != VS_AodvRtTableMap.end(); it++)
         {
             rt_table_t *rt2 = it->second;
             if (rt2->state == VALID && (rt2->flags & RT_INET_DEST) && (rt2->next_hop.s_addr == rt->dest_addr.s_addr))
@@ -413,13 +413,13 @@ void NS_CLASS rt_table_delete(rt_table_t * rt)
     }
 
     ManetAddress dest = rt->dest_addr.s_addr;
-    vs_aodvRtTableMap::iterator it = vs_aodvRtTableMap.find(dest);
-    if (it != vs_aodvRtTableMap.end())
+    VS_AodvRtTableMap::iterator it = VS_AodvRtTableMap.find(dest);
+    if (it != VS_AodvRtTableMap.end())
     {
         if (it->second != rt)
             opp_error("vs_aodv routing table error");
     }
-    vs_aodvRtTableMap.erase(it);
+    VS_AodvRtTableMap.erase(it);
 
     if (rt->state == VALID || rt->state == IMMORTAL)
     {
@@ -435,7 +435,7 @@ void NS_CLASS rt_table_delete(rt_table_t * rt)
     timer_remove(&rt->rt_timer);
     timer_remove(&rt->hello_timer);
     timer_remove(&rt->ack_timer);
-    rt_tbl.num_entries = (int) vs_aodvRtTableMap.size();
+    rt_tbl.num_entries = (int) VS_AodvRtTableMap.size();
     free(rt);
     return;
 }
@@ -521,8 +521,8 @@ rt_table_t *NS_CLASS modifyAODVTables(struct in_addr dest_addr,
 
     DEBUG(LOG_INFO, 0, "Inserting %s next hop %s",ip_to_str(dest_addr), ip_to_str(next));
 
-    vs_aodvRtTableMap.insert(std::make_pair(dest,rt));
-    rt_tbl.num_entries = (int) vs_aodvRtTableMap.size();
+    VS_AodvRtTableMap.insert(std::make_pair(dest,rt));
+    rt_tbl.num_entries = (int) VS_AodvRtTableMap.size();
     if (state == INVALID)
     {
 
@@ -563,7 +563,7 @@ rt_table_t *NS_CLASS modifyAODVTables(struct in_addr dest_addr,
     {
         struct in_addr auxAaddr;
         auxAaddr.s_addr = vs_list[i];
-        if ((rt->state == VALID || rt->state == IMMORTAL) && seek_vs_list_remove(seek_vs_list_find(auxAaddr)))
+        if ((rt->state == VALID || rt->state == IMMORTAL) && vs_seek_list_remove(vs_seek_list_find(auxAaddr)))
         {
             if (rt->flags & RT_INET_DEST)
                 packet_queue_set_verdict(auxAaddr, PQ_ENC_SEND);
@@ -600,7 +600,7 @@ void NS_CLASS rt_table_init()
     /* We do a for loop here... NS does not like us to use memset() */
     for (i = 0; i < RT_TABLESIZE; i++)
     {
-        INIT_vs_list_HEAD(&rt_tbl.tbl[i]);
+        INIT_VS_LIST_HEAD(&rt_tbl.tbl[i]);
     }
 }
 
@@ -692,7 +692,7 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
     rt->hello_cnt = 0;
 
     rt->nprec = 0;
-    INIT_vs_list_HEAD(&rt->precursors);
+    INIT_VS_LIST_HEAD(&rt->precursors);
 
     /* Insert first in bucket... */
 
@@ -756,7 +756,7 @@ rt_table_t *NS_CLASS rt_table_insert(struct in_addr dest_addr,
     {
         struct in_addr auxAaddr;
         auxAaddr.s_addr = vs_list[i];
-        if ((rt->state == VALID || rt->state == IMMORTAL) && seek_vs_list_remove(seek_vs_list_find(auxAaddr)))
+        if ((rt->state == VALID || rt->state == IMMORTAL) && vs_seek_list_remove(vs_seek_list_find(auxAaddr)))
         {
 #ifdef NS_PORT
 
@@ -1169,7 +1169,7 @@ rt_table_t *NS_CLASS modifyAODVTables(struct in_addr dest_addr,
     rt->last_hello_time.tv_usec = 0;
     rt->hello_cnt = 0;
     rt->nprec = 0;
-    INIT_vs_list_HEAD(&rt->precursors);
+    INIT_VS_LIST_HEAD(&rt->precursors);
     /* Insert first in bucket... */
     rt_tbl.num_entries++;
     DEBUG(LOG_INFO, 0, "Inserting %s (bucket %d) next hop %s",
@@ -1215,7 +1215,7 @@ rt_table_t *NS_CLASS modifyAODVTables(struct in_addr dest_addr,
     {
         struct in_addr auxAaddr;
         auxAaddr.s_addr = vs_list[i];
-        if ((rt->state == VALID || rt->state == IMMORTAL) && seek_vs_list_remove(seek_vs_list_find(auxAaddr)))
+        if ((rt->state == VALID || rt->state == IMMORTAL) && vs_seek_list_remove(vs_seek_list_find(auxAaddr)))
         {
 #ifdef NS_PORT
 
@@ -1351,7 +1351,7 @@ rt_table_t *NS_CLASS rt_table_update(rt_table_t * rt, struct in_addr next,
     {
         struct in_addr auxAaddr;
         auxAaddr.s_addr = vs_list[i];
-        if ((rt->state == VALID || rt->state == IMMORTAL)&& seek_vs_list_remove(seek_vs_list_find(auxAaddr)))
+        if ((rt->state == VALID || rt->state == IMMORTAL)&& vs_seek_list_remove(vs_seek_list_find(auxAaddr)))
         {
 #ifdef NS_PORT
 
