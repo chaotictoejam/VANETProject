@@ -21,17 +21,17 @@
 package vanetsim.simulations._nodes;
 
 
-import inet.networklayer.ipv4.RoutingTable;
-import inet.networklayer.IManetRouting;
+import vanetsim.src.inet.networklayer.ipv4.RoutingTable;
+import vanetsim.src.inet.networklayer.IManetRouting;
 
-import inet.nodes.inet.NetworkLayer;
+import vanetsim.src.inet.nodes.inet.NetworkLayer;
 
-import inet.transport.ISCTP;
-import inet.transport.ITCP;
-import inet.transport.IUDP;
-import inet.nodes.inet.StandardHost;
-import inet.world.radio.ChannelControl;
-import inet.nodes.inet.AdhocHost;
+import vanetsim.src.inet.transport.ISCTP;
+import vanetsim.src.inet.transport.ITCP;
+import vanetsim.src.inet.transport.IUDP;
+import vanetsim.src.inet.nodes.inet.StandardHost;
+import vanetsim.src.inet.world.radio.ChannelControl;
+import vanetsim.src.inet.nodes.inet.AdhocHost;
 
 
 module Car extends StandardHost
