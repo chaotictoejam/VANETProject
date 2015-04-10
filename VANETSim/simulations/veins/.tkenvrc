@@ -1,3 +1,4 @@
-# Partial Tkenv config file -- see $HOME/.tkenvrc as well
-inspector "RSUExample" "RSUExample" "2" "565x342+208+208:normal"
+# Partial OMNeT++/Tkenv config file -- see $HOME/.tkenvrc as well
+config default-configname	{nodebug}
+config default-runnumber	{0}
 
