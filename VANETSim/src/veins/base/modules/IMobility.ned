@@ -1,4 +1,4 @@
-package vanetsim.src.veins.base.modules;
+package vanetsim.veins.base.modules;
 
 // Interface for mobility modules
 moduleinterface IMobility

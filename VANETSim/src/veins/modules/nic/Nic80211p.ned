@@ -18,10 +18,10 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package vanetsim.src.veins.modules.nic;
+package vanetsim.veins.modules.nic;
 
-import vanetsim.src.veins.modules.phy.PhyLayer80211p;
-import vanetsim.src.veins.modules.mac.ieee80211p.Mac1609_4;
+import vanetsim.veins.modules.phy.PhyLayer80211p;
+import vanetsim.veins.modules.mac.ieee80211p.Mac1609_4;
 
 //
 // This NIC implements an 802.11p network interface card.

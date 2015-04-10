@@ -18,9 +18,9 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package vanetsim.src.veins.modules.mobility.traci;
+package vanetsim.veins.modules.mobility.traci;
 
-import vanetsim.src.veins.base.modules.BaseMobility;
+import vanetsim.veins.base.modules.BaseMobility;
 
 //
 // Used in modules created by the TraCIScenarioManager.

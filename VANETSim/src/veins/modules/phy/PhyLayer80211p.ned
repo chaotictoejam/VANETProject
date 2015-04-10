@@ -18,9 +18,9 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package vanetsim.src.veins.modules.phy;
+package vanetsim.veins.modules.phy;
 
-import vanetsim.src.veins.base.phyLayer.BasePhyLayer;
+import vanetsim.veins.base.phyLayer.BasePhyLayer;
 
 //
 // Adaptation of the PhyLayer class for 802.11p.

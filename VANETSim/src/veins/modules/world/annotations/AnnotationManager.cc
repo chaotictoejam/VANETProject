@@ -279,7 +279,7 @@ cModule* AnnotationManager::createDummyModule(std::string displayString) {
 	cModule* parentmod = getParentModule();
 	if (!parentmod) error("Parent Module not found");
 
-	cModuleType* nodeType = cModuleType::get("vanetsim.src.veins.modules.world.annotations.AnnotationDummy");
+	cModuleType* nodeType = cModuleType::get("vanetsim.veins.modules.world.annotations.AnnotationDummy");
 
 	//TODO: this trashes the vectsize member of the cModule, although nobody seems to use it
 	nodeVectorIndex++;

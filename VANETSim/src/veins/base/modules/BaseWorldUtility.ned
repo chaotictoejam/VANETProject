@@ -1,4 +1,4 @@
-package vanetsim.src.veins.base.modules;
+package vanetsim.veins.base.modules;
 
 // Basic utility module for the whole network.
 // Provides utility methods and information used by

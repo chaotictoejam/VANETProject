@@ -18,8 +18,8 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package vanetsim.src.veins.modules.application.ieee80211p;
-import vanetsim.src.veins.base.modules.IBaseApplLayer;
+package vanetsim.veins.modules.application.ieee80211p;
+import vanetsim.veins.base.modules.IBaseApplLayer;
 
 //
 // WAVE application layer base class.

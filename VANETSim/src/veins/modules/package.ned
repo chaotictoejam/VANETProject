@@ -1,2 +1,2 @@
-package vanetsim.src.veins.modules;
+package vanetsim.veins.modules;
 

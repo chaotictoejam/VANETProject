@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-package vanetsim.src.veins.modules.world.annotations;
+package vanetsim.veins.modules.world.annotations;
 
 //
 // manages annotations on the OMNeT++ canvas

@@ -1,2 +1,2 @@
-package vanetsim.src.veins.base;
+package vanetsim.veins.base;
 

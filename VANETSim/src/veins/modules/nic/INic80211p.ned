@@ -13,7 +13,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package vanetsim.src.veins.modules.nic;
+package vanetsim.veins.modules.nic;
 
 moduleinterface INic80211p
 {

@@ -18,9 +18,9 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package vanetsim.src.veins.modules.application.traci;
+package vanetsim.veins.modules.application.traci;
 
-import vanetsim.src.veins.base.modules.IBaseApplLayer;
+import vanetsim.veins.base.modules.IBaseApplLayer;
 
 simple TraCITestApp like IBaseApplLayer
 {

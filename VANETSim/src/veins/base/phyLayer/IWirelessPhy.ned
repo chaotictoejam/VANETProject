@@ -1,4 +1,4 @@
-package vanetsim.src.veins.base.phyLayer;
+package vanetsim.veins.base.phyLayer;
  
 // Wireless physical layer module interface.
 moduleinterface IWirelessPhy

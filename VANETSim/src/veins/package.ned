@@ -5,4 +5,4 @@
 // See the Veins website <a href="http://veins.car2x.org/"> for a tutorial, documentation, and publications </a>.
 //
 
-package vanetsim.src.veins;
+package vanetsim.veins;

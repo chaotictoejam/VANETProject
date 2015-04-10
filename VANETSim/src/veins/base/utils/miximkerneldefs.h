@@ -20,13 +20,13 @@
 
 #define MIXIM_VERSION 0x0202
 
-#define MIXIM_SIGNAL_PACKET_NAME          "vanetsim.src.veins.modules.utility.packet"
-#define MIXIM_SIGNAL_UWBIRPACKET_NAME     "vanetsim.src.veins.modules.utility.uwbirpacket"
-#define MIXIM_SIGNAL_DROPPEDPACKET_NAME   "vanetsim.src.veins.modules.utility.droppedpacket"
-#define MIXIM_SIGNAL_PASSEDMSG_NAME       "vanetsim.src.veins.base.utils.passedmsg"
-#define MIXIM_SIGNAL_HOSTSTATE_NAME       "vanetsim.src.veins.base.utils.hoststate"
+#define MIXIM_SIGNAL_PACKET_NAME          "vanetsim.veins.modules.utility.packet"
+#define MIXIM_SIGNAL_UWBIRPACKET_NAME     "vanetsim.veins.modules.utility.uwbirpacket"
+#define MIXIM_SIGNAL_DROPPEDPACKET_NAME   "vanetsim.veins.modules.utility.droppedpacket"
+#define MIXIM_SIGNAL_PASSEDMSG_NAME       "vanetsim.veins.base.utils.passedmsg"
+#define MIXIM_SIGNAL_HOSTSTATE_NAME       "vanetsim.veins.base.utils.hoststate"
 #define MIXIM_SIGNAL_MOBILITY_CHANGE_NAME "veinsmobilityStateChanged"
-#define MIXIM_SIGNAL_BATTERY_CHANGE_NAME  "vanetsim.src.veins.modules.power.battery.batterystate"
-#define MIXIM_SIGNAL_MOBANMSG_NAME        "vanetsim.src.veins.modules.utility.bbmobanmessage"
+#define MIXIM_SIGNAL_BATTERY_CHANGE_NAME  "vanetsim.veins.modules.power.battery.batterystate"
+#define MIXIM_SIGNAL_MOBANMSG_NAME        "vanetsim.veins.modules.utility.bbmobanmessage"
 
 #endif

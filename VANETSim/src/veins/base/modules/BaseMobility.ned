@@ -1,4 +1,4 @@
-package vanetsim.src.veins.base.modules;
+package vanetsim.veins.base.modules;
 
 // Module which is responsible for mobility
 // related information like position and movement

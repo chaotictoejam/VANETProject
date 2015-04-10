@@ -18,10 +18,10 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package vanetsim.src.veins.nodes;
+package vanetsim.veins.nodes;
 
-import vanetsim.src.veins.base.modules.*;
-import vanetsim.src.veins.modules.nic.Nic80211p;
+import vanetsim.veins.base.modules.*;
+import vanetsim.veins.modules.nic.Nic80211p;
 
 module RSU
 {
@@ -31,12 +31,12 @@ module RSU
     gates:
         input veinsradioIn; // gate for sendDirect
     submodules:
-        appl: <applType> like vanetsim.src.veins.base.modules.IBaseApplLayer {
+        appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
             parameters:
                 @display("p=60,50");
         }
 
-        nic: <nicType> like vanetsim.src.veins.modules.nic.INic80211p {
+        nic: <nicType> like vanetsim.veins.modules.nic.INic80211p {
             parameters:
                 @display("p=60,166");
         }
