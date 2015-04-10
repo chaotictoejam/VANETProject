@@ -20,11 +20,11 @@
 
 package vanetsim.simulations._nodes;
 
-import vanetsim.src.veins.base.connectionManager.ConnectionManager;
-import vanetsim.src.veins.base.modules.BaseWorldUtility;
-import vanetsim.src.veins.modules.mobility.traci.TraCIScenarioManagerLaunchd;
-import vanetsim.src.veins.modules.obstacle.ObstacleControl;
-import vanetsim.src.veins.modules.world.annotations.AnnotationManager;
+import vanetsim.veins.base.connectionManager.ConnectionManager;
+import vanetsim.veins.base.modules.BaseWorldUtility;
+import vanetsim.veins.modules.mobility.traci.TraCIScenarioManagerLaunchd;
+import vanetsim.veins.modules.obstacle.ObstacleControl;
+import vanetsim.veins.modules.world.annotations.AnnotationManager;
 
 network Scenario
 {

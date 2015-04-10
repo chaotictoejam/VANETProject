@@ -18,7 +18,7 @@
 // **************************************************************************/
 
 
-package vanetsim.src.veins.base.connectionManager;
+package vanetsim.veins.base.connectionManager;
 
 // Module to control all connection related stuff
 //

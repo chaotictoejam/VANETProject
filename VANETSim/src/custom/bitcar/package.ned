@@ -13,5 +13,5 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package vanetsim.src.custom.bitcar;
+package vanetsim.custom.bitcar;
 
