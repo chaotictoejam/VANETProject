@@ -29,12 +29,12 @@ import inet.nodes.inet.NetworkLayer;
 import inet.transport.ISCTP;
 import inet.transport.ITCP;
 import inet.transport.IUDP;
-import inet.nodes.inet.StandardHost;
-import inet.world.radio.ChannelControl;
+import inet.nodes.inet.WirelessHost;
+import inet.world.radio.IdealChannelModel;
 import inet.nodes.inet.AdhocHost;
 
 
-module Car extends StandardHost
+module Car extends WirelessHost
 {
 	parameters:
         string applType; //type of the application layer
@@ -47,6 +47,7 @@ module Car extends StandardHost
         @display("bgb=424,541"); 
         
         string routingProtocol @enum("AODVUU","DSRUU") = default("AODVUU");  // used mobile routing protocol
+        wlan[*].mgmtType = default("Ieee80211MgmtAdhoc");
     gates:
         input veinsradioIn; // gate for sendDirect
     submodules:
@@ -65,7 +66,7 @@ module Car extends StandardHost
                 @display("p=130,172;i=block/cogwheel");
         }
         
-        channelControl: ChannelControl {
+        channelControl: IdealChannelModel {
             parameters:
                 @display("p=50,50");
         }

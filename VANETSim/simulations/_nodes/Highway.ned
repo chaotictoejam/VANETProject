@@ -25,6 +25,7 @@ import vanetsim.veins.base.modules.BaseWorldUtility;
 import vanetsim.veins.modules.mobility.traci.TraCIScenarioManagerLaunchd;
 import vanetsim.veins.modules.obstacle.ObstacleControl;
 import vanetsim.veins.modules.world.annotations.AnnotationManager;
+import inet.world.radio.IdealChannelModel;
 
 network Highway
 {
@@ -55,6 +56,5 @@ network Highway
             parameters:
                 @display("p=512,128");
         }
-        
     connections allowunconnected:
 }
