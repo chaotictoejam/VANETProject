@@ -40,23 +40,19 @@ module Car extends WirelessHost
         string nicType = default("Nic80211p"); // type of network interface card
         string veinsmobilityType; //type of the mobility module
         string udpAppType = default("");
-        string LinkLayerType = default("Ieee80211NicMesh");
+        string LinkLayerType = default("Ieee80211Nic");
+        
+        networkLayer.configurator.networkConfiguratorModule = default("");
         
         @display("bgb=424,541"); 
         
         string routingProtocol @enum("AODVUU","DYMOUM","DYMO","DSRUU","OLSR","OLSR_ETX","DSDV_2","Batman", "GPSR", "GPSRU") = default("");  // used mobile routing protocol
         wlan[*].mgmtType = default("Ieee80211MgmtAdhoc");
-        //wlan[*].typename = LinkLayerType;
+        wlan[*].typename = LinkLayerType;
         IPForward = default(true);
-        networkLayer.configurator.networkConfiguratorModule = default("");
     gates:
         input veinsradioIn; // gate for sendDirect
     submodules:
-        channelControl: IdealChannelModel {
-            parameters:
-                @display("p=50,50");
-        }
-       
         appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
             parameters:
                 @display("p=60,50");
