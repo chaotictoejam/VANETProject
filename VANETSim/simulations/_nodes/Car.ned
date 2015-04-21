@@ -33,7 +33,6 @@ import inet.nodes.inet.WirelessHost;
 import inet.world.radio.IdealChannelModel;
 import inet.nodes.inet.AdhocHost;
 
-
 module Car extends WirelessHost
 {
 	parameters:
@@ -41,16 +40,23 @@ module Car extends WirelessHost
         string nicType = default("Nic80211p"); // type of network interface card
         string veinsmobilityType; //type of the mobility module
         string udpAppType = default("");
-        
-        networkLayer.configurator.networkConfiguratorModule = "";
+        string LinkLayerType = default("Ieee80211NicMesh");
         
         @display("bgb=424,541"); 
         
-        string routingProtocol @enum("AODVUU","DSRUU") = default("AODVUU");  // used mobile routing protocol
+        string routingProtocol @enum("AODVUU","DYMOUM","DYMO","DSRUU","OLSR","OLSR_ETX","DSDV_2","Batman", "GPSR", "GPSRU") = default("");  // used mobile routing protocol
         wlan[*].mgmtType = default("Ieee80211MgmtAdhoc");
+        //wlan[*].typename = LinkLayerType;
+        IPForward = default(true);
+        networkLayer.configurator.networkConfiguratorModule = default("");
     gates:
         input veinsradioIn; // gate for sendDirect
     submodules:
+        channelControl: IdealChannelModel {
+            parameters:
+                @display("p=50,50");
+        }
+       
         appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
             parameters:
                 @display("p=60,50");
@@ -66,19 +72,10 @@ module Car extends WirelessHost
                 @display("p=130,172;i=block/cogwheel");
         }
         
-        channelControl: IdealChannelModel {
-            parameters:
-                @display("p=50,50");
-        }
-        
         manetrouting: <routingProtocol> like IManetRouting if routingProtocol != "" {
             @display("p=522,307");
         }
         
-        //host[numHosts]: AdhocHost {
-        //    parameters:
-        //        @display("i=device/pocketpc_s;r=,,#707070");
-        //}
     connections:
        networkLayer.transportOut++ --> manetrouting.from_ip if routingProtocol != "";
        networkLayer.transportIn++ <-- manetrouting.to_ip if routingProtocol != "";
