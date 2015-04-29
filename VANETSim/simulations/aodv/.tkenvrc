@@ -1,4 +1,4 @@
-# Partial Tkenv config file -- see $HOME/.tkenvrc as well
-inspector "AODVSim" "AODVSim" "2" "565x342+52+52:normal"
-inspector "ManetSim" "ManetSim" "2" "565x342+25+25:normal"
+# Partial OMNeT++/Tkenv config file -- see $HOME/.tkenvrc as well
+config default-configname	{AODVUU-SanFrancisco}
+config default-runnumber	{0}
 
