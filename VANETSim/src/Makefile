@@ -57,7 +57,6 @@ INCLUDE_PATH = \
     -Icustom/bitcar \
     -Icustom/rbvtp \
     -Icustom/rbvtr \
-    -Icustom/scripts \
     -Iinet \
     -Iveins \
     -Iveins/base \
@@ -254,7 +253,6 @@ clean:
 	$(Q)-rm -f custom/bitcar/*_m.cc custom/bitcar/*_m.h
 	$(Q)-rm -f custom/rbvtp/*_m.cc custom/rbvtp/*_m.h
 	$(Q)-rm -f custom/rbvtr/*_m.cc custom/rbvtr/*_m.h
-	$(Q)-rm -f custom/scripts/*_m.cc custom/scripts/*_m.h
 	$(Q)-rm -f inet/*_m.cc inet/*_m.h
 	$(Q)-rm -f veins/*_m.cc veins/*_m.h
 	$(Q)-rm -f veins/base/*_m.cc veins/base/*_m.h
@@ -286,7 +284,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/aodvvanet/*.cc custom/bitcar/*.cc custom/rbvtp/*.cc custom/rbvtr/*.cc custom/scripts/*.cc inet/*.cc veins/*.cc veins/base/*.cc veins/base/connectionManager/*.cc veins/base/messages/*.cc veins/base/modules/*.cc veins/base/phyLayer/*.cc veins/base/utils/*.cc veins/modules/*.cc veins/modules/analogueModel/*.cc veins/modules/application/*.cc veins/modules/application/ieee80211p/*.cc veins/modules/application/traci/*.cc veins/modules/mac/*.cc veins/modules/mac/ieee80211p/*.cc veins/modules/messages/*.cc veins/modules/mobility/*.cc veins/modules/mobility/traci/*.cc veins/modules/nic/*.cc veins/modules/obstacle/*.cc veins/modules/phy/*.cc veins/modules/utility/*.cc veins/modules/world/*.cc veins/modules/world/annotations/*.cc veins/nodes/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/aodvvanet/*.cc custom/bitcar/*.cc custom/rbvtp/*.cc custom/rbvtr/*.cc inet/*.cc veins/*.cc veins/base/*.cc veins/base/connectionManager/*.cc veins/base/messages/*.cc veins/base/modules/*.cc veins/base/phyLayer/*.cc veins/base/utils/*.cc veins/modules/*.cc veins/modules/analogueModel/*.cc veins/modules/application/*.cc veins/modules/application/ieee80211p/*.cc veins/modules/application/traci/*.cc veins/modules/mac/*.cc veins/modules/mac/ieee80211p/*.cc veins/modules/messages/*.cc veins/modules/mobility/*.cc veins/modules/mobility/traci/*.cc veins/modules/nic/*.cc veins/modules/obstacle/*.cc veins/modules/phy/*.cc veins/modules/utility/*.cc veins/modules/world/*.cc veins/modules/world/annotations/*.cc veins/nodes/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/veins/base/connectionManager/BaseConnectionManager.o: veins/base/connectionManager/BaseConnectionManager.cc \
