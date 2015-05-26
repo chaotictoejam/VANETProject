@@ -30,8 +30,8 @@ import inet.transport.ISCTP;
 import inet.transport.ITCP;
 import inet.transport.IUDP;
 import inet.nodes.inet.WirelessHost;
-import inet.world.radio.IdealChannelModel;
 import inet.nodes.inet.AdhocHost;
+import inet.world.radio.ChannelControl;
 
 module Car extends WirelessHost
 {
@@ -72,6 +72,11 @@ module Car extends WirelessHost
             @display("p=522,307");
         }
         
+        channelControl: ChannelControl
+        {
+            parameters:
+                @display("p=60,50");
+        }
     connections:
        networkLayer.transportOut++ --> manetrouting.from_ip if routingProtocol != "";
        networkLayer.transportIn++ <-- manetrouting.to_ip if routingProtocol != "";
