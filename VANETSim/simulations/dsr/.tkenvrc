@@ -1,3 +1,4 @@
-# Partial Tkenv config file -- see $HOME/.tkenvrc as well
-inspector "DSRSim" "DSRSim" "2" "565x342+156+156:normal"
+# Partial OMNeT++/Tkenv config file -- see $HOME/.tkenvrc as well
+config default-configname	{DSRUU-Orlando}
+config default-runnumber	{0}
 

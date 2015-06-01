@@ -9,16 +9,20 @@ import inet.networklayer.ipv4.RoutingTable;
 import inet.transport.udp.UDP;
 import inet.nodes.inet.NetworkLayer;
 import inet.linklayer.ieee80211.Ieee80211Nic;
-import inet.networklayer.IManetRouting;
-import inet.mobility.contract.IMobility;
+import inet.nodes.gpsr.GPSRRouter;
+import inet.world.radio.ChannelControl;
+import inet.world.scenario.ScenarioManager;
+import inet.base.LifecycleController;
+import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
+import inet.networklayer.ipv4.RoutingTableRecorder;
 
-module Car
+module GPSRCar
 {
     parameters:
         @node();
         string mobilityType = default("TraCIMobility");
         networkLayer.configurator.networkConfiguratorModule = "";
-        string routingProtocol @enum("AODVUU","DYMOUM","DYMO","DSRUU","OLSR","OLSR_ETX","DSDV_2","Batman", "routing.GPSR",) = default("");  // used mobile routing protocol
+        int numHosts;
     gates:
         input radioIn @directIn;
     submodules:
@@ -64,8 +68,21 @@ module Car
             parameters:
                 @display("p=304,461;q=queue");
         }
-        manetrouting: <routingProtocol> like IManetRouting if routingProtocol != "" {
+        manetrouting: GPSRRouter {
             @display("p=522,307");
+        }
+        configurator: IPv4NetworkConfigurator {
+            parameters:
+                config = xml("<config><interface hosts='*' address='145.236.x.x' netmask='255.255.0.0'/></config>");
+                @display("p=50,100");
+        }
+        channelControl: ChannelControl {
+            parameters:
+                @display("p=50,50");
+        }
+        lifecycleController: LifecycleController {
+            parameters:
+                @display("p=50,200");
         }
     connections allowunconnected:
         udp.appOut++ --> app.udp$i;
@@ -78,7 +95,4 @@ module Car
         wlan.upperLayerIn <-- networkLayer.ifOut[0];
 
         radioIn --> wlan.radioIn;
-        
-        networkLayer.transportOut++ --> manetrouting.from_ip if routingProtocol != "";
-        networkLayer.transportIn++ <-- manetrouting.to_ip if routingProtocol != "";
 }
