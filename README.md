@@ -3,11 +3,11 @@ VANETProject
 
 Solutions for VANET communication with OMNET++
 
-SUMO version 0.21 Required
+SUMO version 0.19 Required
 
-This project references INET
+This project references inetmanet-2.0 forked from aarizaq/inetmanet-2.0
 
-inet master branch from git pulled 4/9/2015
+inetmanet-2.0 inetmanet-2.2 branch from git pulled 5/30/2015
 
-VEINS (3.0) included in src in VANETSim, no reference needed
+VEINS (3.0) included in src in VANETSim, no reference needed (currently excluded from build)
 
