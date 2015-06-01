@@ -3,7 +3,7 @@
 	<name>VANETSim</name>
 	<comment></comment>
 	<projects>
-		<project>inet</project>
+		<project>inetmanet-2.0</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

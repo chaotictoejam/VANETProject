@@ -1,56 +1,65 @@
-//
-// Copyright (C) 2008 Christoph Sommer <christoph.sommer@informatik.uni-erlangen.de>
-//
-// Documentation for these modules is at http://veins.car2x.org/
-//
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-//
-
 package  vanetsim.simulations._nodes;
 
-import vanetsim.veins.base.modules.*;
-import vanetsim.veins.modules.nic.Nic80211p;
+import inet.base.NotificationBoard;
+import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
+import inet.networklayer.common.InterfaceTable;
+import inet.applications.traci.TraCIDemo;
+import inet.mobility.single.LinearMobility;
+import inet.networklayer.ipv4.RoutingTable;
+import inet.transport.udp.UDP;
+import inet.nodes.inet.NetworkLayer;
+import inet.linklayer.ieee80211.Ieee80211Nic;
+import inet.networklayer.IManetRouting;
+import inet.mobility.contract.IMobility;
 
 module RSU
 {
     parameters:
-        string applType; //type of the application layer
-        string nicType = default("Nic80211p"); // type of network interface card
+        @node();
+        string mobilityType;
+        networkLayer.configurator.networkConfiguratorModule = "";
+        string routingProtocol @enum("AODVUU","DYMOUM","DYMO","DSRUU","OLSR","OLSR_ETX","DSDV_2","Batman", "GPSR", "GPSRU") = default("");  // used mobile routing protocol
     gates:
-        input veinsradioIn; // gate for sendDirect
+        input radioIn @directIn;
     submodules:
-        appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
+        notificationBoard: NotificationBoard {
             parameters:
-                @display("p=60,50");
+                @display("p=140,462");
         }
-
-        nic: <nicType> like vanetsim.veins.modules.nic.INic80211p {
+        ac_wlan: HostAutoConfigurator {
+            @display("p=296,402");
+        }
+        interfaceTable: InterfaceTable {
             parameters:
-                @display("p=60,166");
+                @display("p=140,326");
         }
-
-        mobility: BaseMobility {
+        mobility: <mobilityType> like IMobility {
             parameters:
-                @display("p=130,172;i=block/cogwheel");
+                @display("p=60,459");
         }
-        
-    connections:
-        nic.upperLayerOut --> appl.lowerLayerIn;
-        nic.upperLayerIn <-- appl.lowerLayerOut;
-        nic.upperControlOut --> appl.lowerControlIn;
-        nic.upperControlIn <-- appl.lowerControlOut;
+        routingTable: RoutingTable {
+            parameters:
+                IPForward = true;
+                routerId = "";
+                routingFile = "";
+                @display("p=60,326");
+        }
+        networkLayer: NetworkLayer {
+            parameters:
+                proxyARP = false;
+                @display("p=304,327;q=queue");
+            gates:
+                ifIn[1];
+                ifOut[1];
+        }
+        wlan: Ieee80211Nic {
+            parameters:
+                @display("p=304,461;q=queue");
+        }
+    connections allowunconnected:
 
-        veinsradioIn --> nic.radioIn;
+        wlan.upperLayerOut --> networkLayer.ifIn[0];
+        wlan.upperLayerIn <-- networkLayer.ifOut[0];
+
+        radioIn --> wlan.radioIn;
 }
