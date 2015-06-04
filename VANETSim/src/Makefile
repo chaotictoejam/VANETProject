@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -Xveins -LF:/GitHub/inetmanet-2.0/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KINETMANET_2_0_PROJ=F:/GitHub/inetmanet-2.0
+#  opp_makemake -f --deep -Xcustom/aodvvanet -Xcustom/base -Xcustom/util -Xveins -LF:/GitHub/inetmanet-2.0/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KINETMANET_2_0_PROJ=F:/GitHub/inetmanet-2.0
 #
 
 # Name of target to be created (-o option)
@@ -17,7 +17,6 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
 INCLUDE_PATH = \
     -I. \
     -Icustom \
-    -Icustom/aodvvanet \
     -Icustom/bitcar \
     -Icustom/rbvtp \
     -Icustom/rbvtr \
@@ -118,7 +117,6 @@ clean:
 	$(Q)-rm -f VANETSim VANETSim.exe libVANETSim.so libVANETSim.a libVANETSim.dll libVANETSim.dylib
 	$(Q)-rm -f ./*_m.cc ./*_m.h
 	$(Q)-rm -f custom/*_m.cc custom/*_m.h
-	$(Q)-rm -f custom/aodvvanet/*_m.cc custom/aodvvanet/*_m.h
 	$(Q)-rm -f custom/bitcar/*_m.cc custom/bitcar/*_m.h
 	$(Q)-rm -f custom/rbvtp/*_m.cc custom/rbvtp/*_m.h
 	$(Q)-rm -f custom/rbvtr/*_m.cc custom/rbvtr/*_m.h
@@ -130,7 +128,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/aodvvanet/*.cc custom/bitcar/*.cc custom/rbvtp/*.cc custom/rbvtr/*.cc inet/*.cc inetmanet/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/bitcar/*.cc custom/rbvtp/*.cc custom/rbvtr/*.cc inet/*.cc inetmanet/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 
