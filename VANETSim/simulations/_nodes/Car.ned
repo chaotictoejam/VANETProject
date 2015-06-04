@@ -18,7 +18,7 @@ module Car
         @node();
         string mobilityType = default("TraCIMobility");
         networkLayer.configurator.networkConfiguratorModule = "";
-        string routingProtocol @enum("AODVUU","DYMOUM","DYMO","DSRUU","OLSR","OLSR_ETX","DSDV_2","Batman", "routing.GPSR",) = default("");  // used mobile routing protocol
+        string routingProtocol @enum("AODVUU","DYMOUM","DYMO","DSRUU","OLSR","OLSR_ETX","DSDV_2","Batman","GPSR","AODVVANET") = default("");  // used mobile routing protocol
     gates:
         input radioIn @directIn;
     submodules:
