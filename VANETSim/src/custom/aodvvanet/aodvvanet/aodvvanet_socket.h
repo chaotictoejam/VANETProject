@@ -37,17 +37,17 @@
 #define IPHDR_SIZE sizeof(struct iphdr)
 #endif
 
-/* Set a maximun size for AODVVANET msgs. The RERR is the potentially
+/* Set a maximun size for AODVVANET msgs. The VANET_RERR is the potentially
    largest message, depending on how many unreachable destinations
    that are included. Lets limit them to 100 */
-#define AODVVANET_MSG_MAX_SIZE RERR_SIZE + 100 * RERR_UDEST_SIZE
+#define AODVVANET_MSG_MAX_SIZE VANET_RERR_SIZE + 100 * VANET_RERR_UDEST_SIZE
 #define RECV_BUF_SIZE AODVVANET_MSG_MAX_SIZE
 #define SEND_BUF_SIZE RECV_BUF_SIZE
 #endif              /* NS_NO_GLOBALS */
 
 #ifndef NS_NO_DECLARATIONS
 
-struct timeval rreq_ratel[RREQ_RATELIMIT - 1], rerr_ratel[RERR_RATELIMIT - 1];
+struct timeval rreq_ratel[VANET_RREQ_RATELIMIT - 1], rerr_ratel[VANET_RERR_RATELIMIT - 1];
 int num_rreq;
 int num_rerr;
 

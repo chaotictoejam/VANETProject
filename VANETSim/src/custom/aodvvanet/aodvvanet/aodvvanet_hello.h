@@ -37,7 +37,7 @@
 void hello_start();
 void hello_stop();
 void hello_send(void *arg);
-void hello_process(RREP * hello, int rreplen, unsigned int ifindex);
+void hello_process(VANET_RREP * hello, int rreplen, unsigned int ifindex);
 void hello_process_non_hello(AODVVANET_msg * aodvvanet_msg, const struct in_addr &source,
                              unsigned int ifindex);
 NS_INLINE void hello_update_timeout(rt_table_t * rt, struct timeval *now,

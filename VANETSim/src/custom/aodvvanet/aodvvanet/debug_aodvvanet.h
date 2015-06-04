@@ -51,8 +51,8 @@ char *ip_to_str(struct in_addr addr);
 #ifdef NS_PORT
 void write_to_log_file(char *msg, int len);
 char *devs_ip_to_str();
-char *rreq_flags_to_str(RREQ * rreq);
-char *rrep_flags_to_str(RREP * rrep);
+char *rreq_flags_to_str(VANET_RREQ * rreq);
+char *rrep_flags_to_str(VANET_RREP * rrep);
 char *rt_flags_to_str(u_int16_t flags);
 const char *state_to_str(u_int8_t state);
 #endif

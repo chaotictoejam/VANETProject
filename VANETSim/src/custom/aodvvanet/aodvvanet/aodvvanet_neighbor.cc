@@ -98,8 +98,8 @@ void NS_CLASS neighbor_add(AODVVANET_msg * aodvvanet_msg, struct in_addr source,
 void NS_CLASS neighbor_link_break(rt_table_t * rt)
 {
     /* If hopcount = 1, this is a direct neighbor and a link break has
-       occured. Send a RERR with the incremented sequence number */
-    RERR *rerr = NULL;
+       occured. Send a VANET_RERR with the incremented sequence number */
+    VANET_RERR *rerr = NULL;
     rt_table_t *rt_u;
     struct in_addr rerr_unicast_dest;
     int i;
@@ -139,7 +139,7 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
     /* Check the routing table for entries which have the unreachable
        destination (dest) as next hop. These entries (destinations)
        cannot be reached either since dest is down. They should
-       therefore also be included in the RERR. */
+       therefore also be included in the VANET_RERR. */
     for (AodvRtTableMap::iterator it = aodvRtTableMap.begin(); it != aodvRtTableMap.end(); it++)
     {
         rt_table_t *rt_u = it->second;;
@@ -173,7 +173,7 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
                 }
                 else
                 {
-                    /* Decide whether new precursors make this a non unicast RERR */
+                    /* Decide whether new precursors make this a non unicast VANET_RERR */
                     rerr_add_udest(rerr, rt_u->dest_addr, rt_u->dest_seqno);
                     if (!rerr_unicast_dest.s_addr.isUnspecified())
                     {
@@ -196,19 +196,19 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
 
     if (rerr)
     {
-        DEBUG(LOG_DEBUG, 0, "RERR created, %d bytes.", RERR_CALC_SIZE(rerr));
+        DEBUG(LOG_DEBUG, 0, "VANET_RERR created, %d bytes.", VANET_RERR_CALC_SIZE(rerr));
 
         rt_u = rt_table_find(rerr_unicast_dest);
 
         if (rt_u && rerr->dest_count == 1 && (!rerr_unicast_dest.s_addr.isUnspecified()))
             aodvvanet_socket_send((AODVVANET_msg *) rerr,
                              rerr_unicast_dest,
-                             RERR_CALC_SIZE(rerr), 1,
+                             VANET_RERR_CALC_SIZE(rerr), 1,
                              &DEV_IFINDEX(rt_u->ifindex));
 
         else if (rerr->dest_count > 0)
         {
-            /* FIXME: Should only transmit RERR on those interfaces
+            /* FIXME: Should only transmit VANET_RERR on those interfaces
              *       * which have precursor nodes for the broken route */
             double delay = -1;
             if (par("EqualDelay"))
@@ -222,10 +222,10 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
                 dest.s_addr = ManetAddress(IPv4Address(AODVVANET_BROADCAST));
                 if (cont>1)
                     aodvvanet_socket_send((AODVVANET_msg *) rerr->dup(), dest,
-                                     RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
+                                     VANET_RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
                 else
                     aodvvanet_socket_send((AODVVANET_msg *) rerr, dest,
-                                     RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
+                                     VANET_RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
                 cont--;
             }
         }
@@ -238,8 +238,8 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
 void NS_CLASS neighbor_link_break(rt_table_t * rt)
 {
     /* If hopcount = 1, this is a direct neighbor and a link break has
-       occured. Send a RERR with the incremented sequence number */
-    RERR *rerr = NULL;
+       occured. Send a VANET_RERR with the incremented sequence number */
+    VANET_RERR *rerr = NULL;
     rt_table_t *rt_u;
     struct in_addr rerr_unicast_dest;
     int i;
@@ -279,7 +279,7 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
     /* Check the routing table for entries which have the unreachable
        destination (dest) as next hop. These entries (destinations)
        cannot be reached either since dest is down. They should
-       therefore also be included in the RERR. */
+       therefore also be included in the VANET_RERR. */
     for (i = 0; i < RT_TABLESIZE; i++)
     {
         list_t *pos;
@@ -328,7 +328,7 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
                     else
                     {
                         /* Decide whether new precursors make this a non unicast
-                           RERR */
+                           VANET_RERR */
                         rerr_add_udest(rerr, rt_u->dest_addr, rt_u->dest_seqno);
 
                         if (rerr_unicast_dest.s_addr)
@@ -357,19 +357,19 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
 
     if (rerr)
     {
-        DEBUG(LOG_DEBUG, 0, "RERR created, %d bytes.", RERR_CALC_SIZE(rerr));
+        DEBUG(LOG_DEBUG, 0, "VANET_RERR created, %d bytes.", VANET_RERR_CALC_SIZE(rerr));
 
         rt_u = rt_table_find(rerr_unicast_dest);
 
         if (rt_u && rerr->dest_count == 1 && (rerr_unicast_dest.s_addr!=0))
             aodvvanet_socket_send((AODVVANET_msg *) rerr,
                              rerr_unicast_dest,
-                             RERR_CALC_SIZE(rerr), 1,
+                             VANET_RERR_CALC_SIZE(rerr), 1,
                              &DEV_IFINDEX(rt_u->ifindex));
 
         else if (rerr->dest_count > 0)
         {
-            /* FIXME: Should only transmit RERR on those interfaces
+            /* FIXME: Should only transmit VANET_RERR on those interfaces
              *       * which have precursor nodes for the broken route */
 #ifdef OMNETPP
             double delay = -1;
@@ -386,14 +386,14 @@ void NS_CLASS neighbor_link_break(rt_table_t * rt)
 #ifdef OMNETPP
                 if (cont>1)
                     aodvvanet_socket_send((AODVVANET_msg *) rerr->dup(), dest,
-                                     RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
+                                     VANET_RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
                 else
                     aodvvanet_socket_send((AODVVANET_msg *) rerr, dest,
-                                     RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
+                                     VANET_RERR_CALC_SIZE(rerr), 1, &DEV_NR(i),delay);
                 cont--;
 #else
                 aodvvanet_socket_send((AODVVANET_msg *) rerr, dest,
-                                 RERR_CALC_SIZE(rerr), 1, &DEV_NR(i));
+                                 VANET_RERR_CALC_SIZE(rerr), 1, &DEV_NR(i));
 #endif
             }
         }

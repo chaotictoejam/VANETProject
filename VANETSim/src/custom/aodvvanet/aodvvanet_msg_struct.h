@@ -68,46 +68,46 @@ typedef struct
     // u_int32_t dest_addr;
     ManetAddress dest_addr;
     u_int32_t dest_seqno;
-} RERR_udest;
-//#define RERR_UDEST_SIZE sizeof(RERR_udest)
+} VANET_RERR_udest;
+//#define VANET_RERR_UDEST_SIZE sizeof(VANET_RERR_udest)
 // 8 for IPv4
-//#define RERR_UDEST_SIZE 4+ManetAddressSizeUsed
+//#define VANET_RERR_UDEST_SIZE 4+ManetAddressSizeUsed
 
-#ifdef RERR
-#undef RERR
+#ifdef VANET_RERR
+#undef VANET_RERR
 #endif
 
-struct RERR : public AODVVANET_msg
+struct VANET_RERR : public AODVVANET_msg
 {
     unsigned short res1;
     unsigned short n;
     unsigned short res2;
     u_int8_t dest_count;
-    RERR_udest *   _udest;
-    explicit RERR(const char *name="RERRAodvMsg");
-    ~RERR ();
-    RERR (const RERR &m);
+    VANET_RERR_udest *   _udest;
+    explicit VANET_RERR(const char *name="VANET_RERRAodvMsg");
+    ~VANET_RERR ();
+    VANET_RERR (const VANET_RERR &m);
     unsigned short getRes1() const {return res1;}
     unsigned short getN() const {return n;}
     unsigned short getRes2() const {return res2;}
     int getUdestArraySize() {return dest_count;}
     void addUdest(const ManetAddress &,unsigned int);
     void clearUdest();
-    RERR_udest *getUdest(int);
-    RERR_udest& getUdestRef(int i) {return *getUdest(i);}
-    RERR &  operator= (const RERR &m);
-    virtual RERR *dup() const {return new RERR(*this);}
+    VANET_RERR_udest *getUdest(int);
+    VANET_RERR_udest& getUdestRef(int i) {return *getUdest(i);}
+    VANET_RERR &  operator= (const VANET_RERR &m);
+    virtual VANET_RERR *dup() const {return new VANET_RERR(*this);}
   private:
-    void copy(const RERR& other);
+    void copy(const VANET_RERR& other);
 };
 
-#define RERR_UDEST_FIRST(rerr) (rerr->getUdest(0))
-#define RERR_UDEST_NEXT(udest) ((RERR_udest *)((char *)udest + sizeof(RERR_udest)))
+#define VANET_RERR_UDEST_FIRST(rerr) (rerr->getUdest(0))
+#define VANET_RERR_UDEST_NEXT(udest) ((VANET_RERR_udest *)((char *)udest + sizeof(VANET_RERR_udest)))
 // 12 for IPv4
-//#define RERR_SIZE 8+ManetAddressSizeUsed
-#define RERR_CALC_SIZE(rerr) (rerr->getByteLength())
+//#define VANET_RERR_SIZE 8+ManetAddressSizeUsed
+#define VANET_RERR_CALC_SIZE(rerr) (rerr->getByteLength())
 
-struct RREP : public AODVVANET_msg
+struct VANET_RREP : public AODVVANET_msg
 {
     u_int16_t res1;
     u_int16_t a;
@@ -124,10 +124,10 @@ struct RREP : public AODVVANET_msg
     uint32_t cost;
     uint8_t  hopfix;
     uint8_t  totalHops;
-    explicit RREP (const char *name="RREPAodvMsg");
-    RREP (const RREP &m);
-    RREP &  operator= (const RREP &m);
-    virtual RREP *dup() const {return new RREP(*this);}
+    explicit VANET_RREP (const char *name="VANET_RREPAodvMsg");
+    VANET_RREP (const VANET_RREP &m);
+    VANET_RREP &  operator= (const VANET_RREP &m);
+    virtual VANET_RREP *dup() const {return new VANET_RREP(*this);}
     virtual std::string detailedInfo() const;
     uint16_t getRes1() const {return res1;}
     uint16_t getA() const {return a;}
@@ -144,30 +144,30 @@ struct RREP : public AODVVANET_msg
     uint32_t getCost() const {return cost;}
     uint8_t  getHopfix() const {return hopfix;}
   private:
-    void copy(const RREP& other);
+    void copy(const VANET_RREP& other);
 } ;
 // 20 for IPv4
-//#define RREP_SIZE (ManetAddressSizeUsed*2)+12
+//#define VANET_RREP_SIZE (ManetAddressSizeUsed*2)+12
 
-struct RREP_ack : public AODVVANET_msg
+struct VANET_RREP_ack : public AODVVANET_msg
 {
     u_int8_t reserved;
   public:
-    explicit RREP_ack (const char *name="RREPAckAodvMsg") : AODVVANET_msg (name) {setBitLength(2*8);}
-    RREP_ack (const RREP_ack  &m);
-    RREP_ack &  operator= (const RREP_ack &m);
-    virtual RREP_ack *dup() const {return new RREP_ack(*this);}
+    explicit VANET_RREP_ack (const char *name="VANET_RREPAckAodvMsg") : AODVVANET_msg (name) {setBitLength(2*8);}
+    VANET_RREP_ack (const VANET_RREP_ack  &m);
+    VANET_RREP_ack &  operator= (const VANET_RREP_ack &m);
+    virtual VANET_RREP_ack *dup() const {return new VANET_RREP_ack(*this);}
     uint8_t getReserved() const {return reserved;}
   private:
-    void copy(const RREP_ack& other) { reserved = other.reserved; }
+    void copy(const VANET_RREP_ack& other) { reserved = other.reserved; }
 } ;
-#define RREP_ACK_SIZE 2
+#define VANET_RREP_ACK_SIZE 2
 
-struct RREQ : public AODVVANET_msg
+struct VANET_RREQ : public AODVVANET_msg
 {
     u_int8_t j;     /* Join flag (multicast) */
     u_int8_t r;     /* Repair flag */
-    u_int8_t g;     /* Gratuitous RREP flag */
+    u_int8_t g;     /* Gratuitous VANET_RREP flag */
     u_int8_t d;     /* Destination only respond */
     u_int8_t res1;
     u_int8_t res2;
@@ -181,11 +181,11 @@ struct RREQ : public AODVVANET_msg
     u_int32_t orig_seqno;
     uint32_t   cost;
     uint8_t  hopfix;
-    explicit RREQ(const char *name="RREQAodvMsg");
+    explicit VANET_RREQ(const char *name="VANET_RREQAodvMsg");
 
-    RREQ (const RREQ &m);
-    RREQ &  operator= (const RREQ &m);
-    virtual RREQ *dup() const {return new RREQ(*this);}
+    VANET_RREQ (const VANET_RREQ &m);
+    VANET_RREQ &  operator= (const VANET_RREQ &m);
+    virtual VANET_RREQ *dup() const {return new VANET_RREQ(*this);}
     virtual std::string detailedInfo() const;
     uint8_t getJ() const {return j;}
     uint8_t getR() const {return r;}
@@ -204,9 +204,9 @@ struct RREQ : public AODVVANET_msg
     uint32_t getCost() const {return cost;}
     uint8_t getHopfix() const {return hopfix;}
   private:
-    void copy(const RREQ& other);
+    void copy(const VANET_RREQ& other);
 };
 // 24 for IPv4
-//#define RREQ_SIZE 16+(ManetAddressSizeUsed*2)
+//#define VANET_RREQ_SIZE 16+(ManetAddressSizeUsed*2)
 #endif
 

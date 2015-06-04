@@ -45,7 +45,7 @@
 /* Non runtime modifiable settings */
 #define ALLOWED_HELLO_LOSS      2
 /* If expanding ring search is used, BLACKLIST_TIMEOUT should be?: */
-#define BLACKLIST_TIMEOUT       RREQ_RETRIES * NET_TRAVERSAL_TIME + (TTL_THRESHOLD - TTL_START)/TTL_INCREMENT + 1 + RREQ_RETRIES
+#define BLACKLIST_TIMEOUT       VANET_RREQ_RETRIES * NET_TRAVERSAL_TIME + (TTL_THRESHOLD - TTL_START)/TTL_INCREMENT + 1 + VANET_RREQ_RETRIES
 #define HELLO_INTERVAL          1000
 #define LOCAL_ADD_TTL           2
 #define MAX_REPAIR_TTL          3 * NET_DIAMETER / 10
@@ -55,10 +55,10 @@
 #define NEXT_HOP_WAIT           NODE_TRAVERSAL_TIME + 10
 #define NODE_TRAVERSAL_TIME     40
 #define PATH_DISCOVERY_TIME     2 * NET_TRAVERSAL_TIME
-#define RERR_RATELIMIT          10
+#define VANET_RERR_RATELIMIT          10
 #define RING_TRAVERSAL_TIME     2 * NODE_TRAVERSAL_TIME * (TTL_VALUE + TIMEOUT_BUFFER)
-#define RREQ_RETRIES            2
-#define RREQ_RATELIMIT          10
+#define VANET_RREQ_RETRIES            2
+#define VANET_RREQ_RATELIMIT          10
 #define TIMEOUT_BUFFER          2
 #define TTL_INCREMENT           2
 #define TTL_THRESHOLD           7

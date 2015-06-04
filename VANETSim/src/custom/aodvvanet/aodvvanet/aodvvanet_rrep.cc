@@ -48,21 +48,21 @@ extern int unidir_hack, optimized_hellos, llfeedback;
 #endif
 
 
-RREP *NS_CLASS rrep_create(u_int8_t flags,
+VANET_RREP *NS_CLASS rrep_create(u_int8_t flags,
                            u_int8_t prefix,
                            u_int8_t hcnt,
                            struct in_addr dest_addr,
                            u_int32_t dest_seqno,
                            struct in_addr orig_addr, u_int32_t life)
 {
-    RREP *rrep;
+    VANET_RREP *rrep;
 #ifndef OMNETPP
-    rrep = (RREP *) aodvvanet_socket_new_msg();
+    rrep = (VANET_RREP *) aodvvanet_socket_new_msg();
 #else
-    rrep =  new RREP("RouteReply");
+    rrep =  new VANET_RREP("RouteReply");
     rrep->cost=0;
 #endif
-    rrep->type = AODVVANET_RREP;
+    rrep->type = AODVVANET_VANET_RREP;
     rrep->res1 = 0;
     rrep->res2 = 0;
     rrep->prefix = prefix;
@@ -74,16 +74,16 @@ RREP *NS_CLASS rrep_create(u_int8_t flags,
     rrep->a = 0;
     rrep->r = 0;
 
-    if (flags & RREP_REPAIR)
+    if (flags & VANET_RREP_REPAIR)
         rrep->r = 1;
-    if (flags & RREP_ACK)
+    if (flags & VANET_RREP_ACK)
         rrep->a = 1;
 
     /* Don't print information about hello messages... */
 #ifdef DEBUG_OUTPUT
     if (rrep->dest_addr != rrep->orig_addr)
     {
-        DEBUG(LOG_DEBUG, 0, "Assembled RREP:");
+        DEBUG(LOG_DEBUG, 0, "Assembled VANET_RREP:");
         log_pkt_fields((AODVVANET_msg *) rrep);
     }
 #endif
@@ -91,21 +91,21 @@ RREP *NS_CLASS rrep_create(u_int8_t flags,
     return rrep;
 }
 
-RREP_ack *NS_CLASS rrep_ack_create()
+VANET_RREP_ack *NS_CLASS rrep_ack_create()
 {
-    RREP_ack *rrep_ack;
+    VANET_RREP_ack *rrep_ack;
 #ifndef OMNETPP
-    rrep_ack = (RREP_ack *) aodvvanet_socket_new_msg();
+    rrep_ack = (VANET_RREP_ack *) aodvvanet_socket_new_msg();
 #else
-    rrep_ack = new RREP_ack("RouteReplyAck");
+    rrep_ack = new VANET_RREP_ack("RouteReplyAck");
 #endif
-    rrep_ack->type = AODVVANET_RREP_ACK;
+    rrep_ack->type = AODVVANET_VANET_RREP_ACK;
 
-    DEBUG(LOG_DEBUG, 0, "Assembled RREP_ack");
+    DEBUG(LOG_DEBUG, 0, "Assembled VANET_RREP_ack");
     return rrep_ack;
 }
 
-void NS_CLASS rrep_ack_process(RREP_ack * rrep_ack, int rrep_acklen,
+void NS_CLASS rrep_ack_process(VANET_RREP_ack * rrep_ack, int rrep_acklen,
                                struct in_addr ip_src, struct in_addr ip_dst)
 {
     rt_table_t *rt;
@@ -116,22 +116,22 @@ void NS_CLASS rrep_ack_process(RREP_ack * rrep_ack, int rrep_acklen,
 #endif
     if (rt == NULL)
     {
-        DEBUG(LOG_WARNING, 0, "No RREP_ACK expected for %s", ip_to_str(ip_src));
+        DEBUG(LOG_WARNING, 0, "No VANET_RREP_ACK expected for %s", ip_to_str(ip_src));
 
         return;
     }
-    DEBUG(LOG_DEBUG, 0, "Received RREP_ACK from %s", ip_to_str(ip_src));
+    DEBUG(LOG_DEBUG, 0, "Received VANET_RREP_ACK from %s", ip_to_str(ip_src));
 
-    /* Remove unexpired timer for this RREP_ACK */
+    /* Remove unexpired timer for this VANET_RREP_ACK */
     timer_remove(&rt->ack_timer);
 }
 
-AODVVANET_ext *NS_CLASS rrep_add_ext(RREP * rrep, int type, unsigned int offset,
+AODVVANET_ext *NS_CLASS rrep_add_ext(VANET_RREP * rrep, int type, unsigned int offset,
                                 int len, char *data)
 {
     AODVVANET_ext *ext = NULL;
 #ifndef OMNETPP
-    if (offset < RREP_SIZE)
+    if (offset < VANET_RREP_SIZE)
         return NULL;
 
     ext = (AODVVANET_ext *) ((char *) rrep + offset);
@@ -146,7 +146,7 @@ AODVVANET_ext *NS_CLASS rrep_add_ext(RREP * rrep, int type, unsigned int offset,
     return ext;
 }
 
-void NS_CLASS rrep_send(RREP * rrep, rt_table_t * rev_rt,
+void NS_CLASS rrep_send(VANET_RREP * rrep, rt_table_t * rev_rt,
                         rt_table_t * fwd_rt, int size, double delay)
 {
     u_int8_t rrep_flags = 0;
@@ -154,13 +154,13 @@ void NS_CLASS rrep_send(RREP * rrep, rt_table_t * rev_rt,
 
     if (!rev_rt)
     {
-        DEBUG(LOG_WARNING, 0, "Can't send RREP, rev_rt = NULL!");
+        DEBUG(LOG_WARNING, 0, "Can't send VANET_RREP, rev_rt = NULL!");
         return;
     }
 
     dest.s_addr = rrep->dest_addr;
 
-    /* Check if we should request a RREP-ACK */
+    /* Check if we should request a VANET_RREP-ACK */
     if ((rev_rt->state == VALID && rev_rt->flags & RT_UNIDIR) ||
             (rev_rt->hcnt == 1 && unidir_hack))
     {
@@ -168,10 +168,10 @@ void NS_CLASS rrep_send(RREP * rrep, rt_table_t * rev_rt,
 
         if (neighbor && neighbor->state == VALID && !neighbor->ack_timer.used)
         {
-            /* If the node we received a RREQ for is a neighbor we are
+            /* If the node we received a VANET_RREQ for is a neighbor we are
                probably facing a unidirectional link... Better request a
-               RREP-ack */
-            rrep_flags |= RREP_ACK;
+               VANET_RREP-ack */
+            rrep_flags |= VANET_RREP_ACK;
             neighbor->flags |= RT_UNIDIR;
 
             /* Must remove any pending hello timeouts when we set the
@@ -187,7 +187,7 @@ void NS_CLASS rrep_send(RREP * rrep, rt_table_t * rev_rt,
         }
     }
 
-    DEBUG(LOG_DEBUG, 0, "Sending RREP to next hop %s about %s->%s",
+    DEBUG(LOG_DEBUG, 0, "Sending VANET_RREP to next hop %s about %s->%s",
           ip_to_str(rev_rt->next_hop), ip_to_str(rev_rt->dest_addr),
           ip_to_str(dest));
 #ifdef OMNETPP
@@ -217,32 +217,32 @@ void NS_CLASS rrep_send(RREP * rrep, rt_table_t * rev_rt,
         hello_start();
 }
 
-void NS_CLASS rrep_forward(RREP * rrep, int size, rt_table_t * rev_rt,
+void NS_CLASS rrep_forward(VANET_RREP * rrep, int size, rt_table_t * rev_rt,
                            rt_table_t * fwd_rt, int ttl)
 {
     /* Sanity checks... */
     if (!fwd_rt || !rev_rt)
     {
-        DEBUG(LOG_WARNING, 0, "Could not forward RREP because of NULL route!");
+        DEBUG(LOG_WARNING, 0, "Could not forward VANET_RREP because of NULL route!");
         return;
     }
 
     if (!rrep)
     {
-        DEBUG(LOG_WARNING, 0, "No RREP to forward!");
+        DEBUG(LOG_WARNING, 0, "No VANET_RREP to forward!");
         return;
     }
 
-    DEBUG(LOG_DEBUG, 0, "Forwarding RREP to %s", ip_to_str(rev_rt->next_hop));
+    DEBUG(LOG_DEBUG, 0, "Forwarding VANET_RREP to %s", ip_to_str(rev_rt->next_hop));
 
-    /* Here we should do a check if we should request a RREP_ACK,
+    /* Here we should do a check if we should request a VANET_RREP_ACK,
        i.e we suspect a unidirectional link.. But how? */
     if (0)
     {
         rt_table_t *neighbor;
 
-        /* If the source of the RREP is not a neighbor we must find the
-           neighbor (link) entry which is the next hop towards the RREP
+        /* If the source of the VANET_RREP is not a neighbor we must find the
+           neighbor (link) entry which is the next hop towards the VANET_RREP
            source... */
         if (rev_rt->dest_addr.s_addr != rev_rt->next_hop.s_addr)
             neighbor = rt_table_find(rev_rt->next_hop);
@@ -251,9 +251,9 @@ void NS_CLASS rrep_forward(RREP * rrep, int size, rt_table_t * rev_rt,
 
         if (neighbor && !neighbor->ack_timer.used)
         {
-            /* If the node we received a RREQ for is a neighbor we are
+            /* If the node we received a VANET_RREQ for is a neighbor we are
                probably facing a unidirectional link... Better request a
-               RREP-ack */
+               VANET_RREP-ack */
             rrep->a = 1;
             neighbor->flags |= RT_UNIDIR;
 
@@ -261,14 +261,14 @@ void NS_CLASS rrep_forward(RREP * rrep, int size, rt_table_t * rev_rt,
         }
     }
 #ifndef OMNETPP
-    rrep = (RREP *) aodvvanet_socket_queue_msg((AODVVANET_msg *) rrep, size);
+    rrep = (VANET_RREP *) aodvvanet_socket_queue_msg((AODVVANET_msg *) rrep, size);
     rrep->hcnt = fwd_rt->hcnt;  /* Update the hopcount */
 
     aodvvanet_socket_send((AODVVANET_msg *) rrep, rev_rt->next_hop, size, ttl,
                      &DEV_IFINDEX(rev_rt->ifindex));
 
 #else
-    RREP * rrep_new = check_and_cast <RREP *> (rrep->dup());
+    VANET_RREP * rrep_new = check_and_cast <VANET_RREP *> (rrep->dup());
     rrep_new->hcnt = fwd_rt->hcnt;
     rrep_new->hopfix = fwd_rt->hopfix;
     totalRrepSend++;
@@ -282,7 +282,7 @@ void NS_CLASS rrep_forward(RREP * rrep, int size, rt_table_t * rev_rt,
 }
 
 
-void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
+void NS_CLASS rrep_process(VANET_RREP * rrep, int rreplen, struct in_addr ip_src,
                            struct in_addr ip_dst, int ip_ttl,unsigned int ifindex)
 {
     u_int32_t rrep_lifetime, rrep_seqno, rrep_new_hcnt;
@@ -317,14 +317,14 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
 
     rrep_seqno = ntohl(rrep->dest_seqno);
     rrep_lifetime = ntohl(rrep->lifetime);
-    /* Increment RREP hop count to account for intermediate node... */
+    /* Increment VANET_RREP hop count to account for intermediate node... */
     rrep_new_hcnt = rrep->hcnt + 1;
     cost = rrep->cost;
     hopfix = rrep->hopfix;
     if (this->isStaticNode())
         hopfix++;
 
-    if (rreplen < (int) RREP_SIZE)
+    if (rreplen < (int) VANET_RREP_SIZE)
     {
         alog(LOG_WARNING, 0, __FUNCTION__,
              "IP data field too short (%u bytes)"
@@ -350,8 +350,8 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
     if (addressIsForUs(rrep_orig.s_addr))
         DEBUG(LOG_DEBUG, 0, "rrep for us");
 
-    EV << "RREP received, Src Address :" << convertAddressToString(ip_src.s_addr) << "  RREP origin :" <<
-            convertAddressToString(rrep_orig.s_addr) << "  RREP dest :" << convertAddressToString(rrep_dest.s_addr) << "\n";
+    EV << "VANET_RREP received, Src Address :" << convertAddressToString(ip_src.s_addr) << "  VANET_RREP origin :" <<
+            convertAddressToString(rrep_orig.s_addr) << "  VANET_RREP dest :" << convertAddressToString(rrep_dest.s_addr) << "\n";
 
 #endif
 
@@ -364,8 +364,8 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
     /* Determine whether there are any extensions */
 
 #ifndef OMNETPP
-    ext = (AODVVANET_ext *) ((char *) rrep + RREP_SIZE);
-    while ((rreplen - extlen) > RREP_SIZE)
+    ext = (AODVVANET_ext *) ((char *) rrep + VANET_RREP_SIZE);
+    while ((rreplen - extlen) > VANET_RREP_SIZE)
     {
 #else
     totalRrepRec++;
@@ -375,21 +375,21 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
 #endif
         switch (ext->type)
         {
-        case RREP_EXT:
-            DEBUG(LOG_INFO, 0, "RREP include EXTENSION");
+        case VANET_RREP_EXT:
+            DEBUG(LOG_INFO, 0, "VANET_RREP include EXTENSION");
             /* Do something here */
             break;
 #ifdef CONFIG_GATEWAY
-        case RREP_INET_DEST_EXT:
+        case VANET_RREP_INET_DEST_EXT:
             if (ext->length == sizeof(u_int32_t))
             {
 
-                /* Destination address in RREP is the gateway address, while the
+                /* Destination address in VANET_RREP is the gateway address, while the
                  * extension holds the real destination */
                 memcpy(&inet_dest_addr, AODVVANET_EXT_DATA(ext), ext->length);
-                DEBUG(LOG_DEBUG, 0, "RREP_INET_DEST_EXT: <%s>",
+                DEBUG(LOG_DEBUG, 0, "VANET_RREP_INET_DEST_EXT: <%s>",
                       ip_to_str(inet_dest_addr));
-                /* This was a RREP from a gateway */
+                /* This was a VANET_RREP from a gateway */
                 rt_flags |= RT_GATEWAY;
                 inet_rrep = 1;
                 break;
@@ -450,28 +450,28 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
         if (fwd_rt->hcnt > 1)
         {
             DEBUG(LOG_DEBUG, 0,
-                  "Dropping RREP, fwd_rt->hcnt=%d fwd_rt->seqno=%ld",
+                  "Dropping VANET_RREP, fwd_rt->hcnt=%d fwd_rt->seqno=%ld",
                   fwd_rt->hcnt, fwd_rt->dest_seqno);
         }
         return;
     }
 
-    /* If the RREP_ACK flag is set we must send a RREP
+    /* If the VANET_RREP_ACK flag is set we must send a VANET_RREP
        acknowledgement to the destination that replied... */
     if (rrep->a)
     {
-        RREP_ack *rrep_ack;
+        VANET_RREP_ack *rrep_ack;
 
         rrep_ack = rrep_ack_create();
         totalRrepAckSend++;
         rrep_ack->ttl=MAXTTL;
         aodvvanet_socket_send((AODVVANET_msg *) rrep_ack, fwd_rt->next_hop,
                          NEXT_HOP_WAIT, 1, &DEV_IFINDEX(fwd_rt->ifindex));
-        /* Remove RREP_ACK flag... */
+        /* Remove VANET_RREP_ACK flag... */
         rrep->a = 0;
     }
 
-    /* Check if this RREP was for us (i.e. we previously made a RREQ
+    /* Check if this VANET_RREP was for us (i.e. we previously made a VANET_RREQ
        for this host). */
 #ifndef OMNETPP
     if (rrep_orig.s_addr == DEV_IFINDEX(ifindex).ipaddr.s_addr)
@@ -507,21 +507,21 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
         }
 #endif              /* CONFIG_GATEWAY */
 
-        /* If the route was previously in repair, a NO DELETE RERR should be
+        /* If the route was previously in repair, a NO DELETE VANET_RERR should be
            sent to the source of the route, so that it may choose to reinitiate
            route discovery for the destination. Fixed a bug here that caused the
-           repair flag to be unset and the RERR never being sent. Thanks to
+           repair flag to be unset and the VANET_RERR never being sent. Thanks to
            McWood <hjw_5@hotmail.com> for discovering this. */
         if (pre_repair_flags & RT_REPAIR)
         {
             if (fwd_rt->hcnt > pre_repair_hcnt)
             {
-                RERR *rerr;
+                VANET_RERR *rerr;
                 u_int8_t rerr_flags = 0;
                 struct in_addr dest;
 
                 dest.s_addr = ManetAddress(IPv4Address(AODVVANET_BROADCAST));
-                rerr_flags |= RERR_NODELETE;
+                rerr_flags |= VANET_RERR_NODELETE;
 
 #ifdef OMNETPP
                 if (fwd_rt->nprec)
@@ -532,7 +532,7 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
                     rerr->ttl=1;
                     if (fwd_rt->nprec)
                         aodvvanet_socket_send((AODVVANET_msg *) rerr, dest,
-                                         RERR_CALC_SIZE(rerr), 1,
+                                         VANET_RERR_CALC_SIZE(rerr), 1,
                                          &DEV_IFINDEX(fwd_rt->ifindex));
 #ifdef OMNETPP
                 }
@@ -542,7 +542,7 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
     }
     else
     {
-        /* --- Here we FORWARD the RREP on the REVERSE route --- */
+        /* --- Here we FORWARD the VANET_RREP on the REVERSE route --- */
         if (rev_rt && rev_rt->state == VALID)
         {
 #ifndef OMNETPP
@@ -553,7 +553,7 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
         }
         else
         {
-            DEBUG(LOG_DEBUG, 0, "Could not forward RREP - NO ROUTE!!!");
+            DEBUG(LOG_DEBUG, 0, "Could not forward VANET_RREP - NO ROUTE!!!");
         }
     }
 
@@ -563,18 +563,18 @@ void NS_CLASS rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
 
 /************************************************************************/
 
-/* Include a Hello Interval Extension on the RREP and return new offset */
+/* Include a Hello Interval Extension on the VANET_RREP and return new offset */
 
-int rrep_add_hello_ext(RREP * rrep, int offset, u_int32_t interval)
+int rrep_add_hello_ext(VANET_RREP * rrep, int offset, u_int32_t interval)
 {
     AODVVANET_ext *ext;
 #ifndef OMNETPP
-    ext = (AODVVANET_ext *) ((char *) rrep + RREP_SIZE + offset);
-    ext->type = RREP_HELLO_INTERVAL_EXT;
+    ext = (AODVVANET_ext *) ((char *) rrep + VANET_RREP_SIZE + offset);
+    ext->type = VANET_RREP_HELLO_INTERVAL_EXT;
     ext->length = sizeof(interval);
     memcpy(AODVVANET_EXT_DATA(ext), &interval, sizeof(interval));
 #else
-    ext = rrep->addExtension(RREP_HELLO_INTERVAL_EXT,sizeof(interval),(char*)&interval);
+    ext = rrep->addExtension(VANET_RREP_HELLO_INTERVAL_EXT,sizeof(interval),(char*)&interval);
 #endif
     return (offset + AODVVANET_EXT_SIZE(ext));
 }

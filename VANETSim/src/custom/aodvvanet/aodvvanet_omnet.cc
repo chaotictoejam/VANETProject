@@ -79,10 +79,10 @@ void NS_CLASS initialize(int stage)
     if (stage==4)
     {
 
-        RERR_UDEST_SIZE = 4+getAddressSize();
-        RERR_SIZE = 8+getAddressSize();
-        RREP_SIZE = (getAddressSize()*2)+12;
-        RREQ_SIZE = 16+(getAddressSize()*2);
+        VANET_RERR_UDEST_SIZE = 4+getAddressSize();
+        VANET_RERR_SIZE = 8+getAddressSize();
+        VANET_RREP_SIZE = (getAddressSize()*2)+12;
+        VANET_RREQ_SIZE = 16+(getAddressSize()*2);
 
 
 #ifndef AODVVANET_GLOBAL_STATISTISTIC
@@ -159,8 +159,8 @@ void NS_CLASS initialize(int stage)
             delete_period = DELETE_PERIOD_HELLO;
         }
 
-        if (hasPar("avoidDupRREP") && llfeedback)
-            checkRrep = par("avoidDupRREP").boolValue();
+        if (hasPar("avoidDupVANET_RREP") && llfeedback)
+            checkRrep = par("avoidDupVANET_RREP").boolValue();
 
         /* Initialize common manet routing protocol structures */
         registerRoutingModule();
@@ -532,7 +532,7 @@ void NS_CLASS handleMessage (cMessage *msg)
     if (msg->isSelfMessage() && dynamic_cast<AODVVANET_msg*> (msg))
     {
         DelayInfo * delayInfo = check_and_cast<DelayInfo *> (msg->removeControlInfo());
-        RREP * rrep = dynamic_cast<RREP *> (msg);
+        VANET_RREP * rrep = dynamic_cast<VANET_RREP *> (msg);
         if (rrep)
         {
             if (isThisRrepPrevSent(msg))
@@ -546,9 +546,9 @@ void NS_CLASS handleMessage (cMessage *msg)
         delete delayInfo;
         return;
     }
-    else if (msg->isSelfMessage() && dynamic_cast<RREQProcessed*> (msg))
+    else if (msg->isSelfMessage() && dynamic_cast<VANET_RREQProcessed*> (msg))
     {
-        RREQProcessed* rreqList = dynamic_cast<RREQProcessed*> (msg);
+        VANET_RREQProcessed* rreqList = dynamic_cast<VANET_RREQProcessed*> (msg);
         if (rreqList)
         {
             while (!rreqList->infoList.empty())
@@ -559,7 +559,7 @@ void NS_CLASS handleMessage (cMessage *msg)
             }
         }
         // delete rreqList from the list
-        for (std::map<PacketDestOrigin,RREQProcessed*>::iterator it = rreqProc.begin(); it != rreqProc.end(); ++it)
+        for (std::map<PacketDestOrigin,VANET_RREQProcessed*>::iterator it = rreqProc.begin(); it != rreqProc.end(); ++it)
         {
             if (it->second == rreqList)
             {
@@ -604,7 +604,7 @@ void NS_CLASS handleMessage (cMessage *msg)
                         dest_addr.s_addr = control->getDestAddress();
                         rt_table_t * fwd_rt = rt_table_find(dest_addr);
 
-                        RERR *rerr;
+                        VANET_RERR *rerr;
                         DEBUG(LOG_DEBUG, 0,
                                 "No route, src=%s dest=%s prev_hop=%s - DROPPING!",
                                 ip_to_str(src_addr), ip_to_str(dest_addr));
@@ -626,7 +626,7 @@ void NS_CLASS handleMessage (cMessage *msg)
                         else
                             rerr_dest.s_addr = ManetAddress(IPv4Address(AODVVANET_BROADCAST));
 
-                        aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr), 1, &DEV_IFINDEX(NS_IFINDEX));
+                        aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,VANET_RERR_CALC_SIZE(rerr), 1, &DEV_IFINDEX(NS_IFINDEX));
                     }
                 }
             }
@@ -727,16 +727,16 @@ void NS_CLASS handleMessage (cMessage *msg)
     }
     if (storeRreq)
     {
-        RREQInfo rreqInfo;
+        VANET_RREQInfo rreqInfo;
         PacketDestOrigin orgDest;
 
         if (getDestAddressRreq(aodvMsg,orgDest,rreqInfo))
         {
             rreqInfo.pkt = aodvMsg;
-            std::map<PacketDestOrigin,RREQProcessed*>::iterator it = rreqProc.find(orgDest);
+            std::map<PacketDestOrigin,VANET_RREQProcessed*>::iterator it = rreqProc.find(orgDest);
             if (it == rreqProc.end())
             {
-                RREQProcessed* proc = new RREQProcessed;
+                VANET_RREQProcessed* proc = new VANET_RREQProcessed;
                 proc->destOrigin = orgDest;
                 proc->infoList.push_back(rreqInfo);
                 rreqProc.insert(std::make_pair(orgDest,proc));
@@ -745,8 +745,8 @@ void NS_CLASS handleMessage (cMessage *msg)
             else
             {
                 // store the packet in function if the cost and seq num
-                RREQProcessed* proc = it->second;
-                std::deque<RREQInfo>::iterator it2;
+                VANET_RREQProcessed* proc = it->second;
+                std::deque<VANET_RREQInfo>::iterator it2;
                 for (it2 = proc->infoList.begin(); it2 != proc->infoList.end(); ++it2)
                 {
                     if (((*it2).origin_seqno < rreqInfo.origin_seqno) || ((*it2).origin_seqno == rreqInfo.origin_seqno && (*it2).cost > rreqInfo.cost))
@@ -1029,8 +1029,8 @@ void NS_CLASS processMacPacket(cPacket * p, const ManetAddress &dest, const Mane
 
     /* OK, the timeouts have been updated. Now see if either: 1. The
        packet is for this node -> ACCEPT. 2. The packet is not for this
-       node -> Send RERR (someone want's this node to forward packets
-       although there is no route) or Send RREQ. */
+       node -> Send VANET_RERR (someone want's this node to forward packets
+       although there is no route) or Send VANET_RREQ. */
 
     if (!fwd_rt || fwd_rt->state == INVALID ||
             (fwd_rt->hcnt == 1 && (fwd_rt->flags & RT_UNIDIR)))
@@ -1047,16 +1047,16 @@ void NS_CLASS processMacPacket(cPacket * p, const ManetAddress &dest, const Mane
             else
             {
                 if (par("targetOnlyRreq").boolValue())
-                    rreq_flags |= RREQ_DEST_ONLY;
+                    rreq_flags |= VANET_RREQ_DEST_ONLY;
                 rreq_route_discovery(dest_addr, rreq_flags, ipd);
             }
         }
-        // Else we must send a RERR message to the source if
+        // Else we must send a VANET_RERR message to the source if
         // the route has been previously used
         else
         {
 
-            RERR *rerr;
+            VANET_RERR *rerr;
             DEBUG(LOG_DEBUG, 0,
                     "No route, src=%s dest=%s prev_hop=%s - DROPPING!",
                     ip_to_str(src_addr), ip_to_str(dest_addr));
@@ -1067,17 +1067,17 @@ void NS_CLASS processMacPacket(cPacket * p, const ManetAddress &dest, const Mane
             }
             else
                 rerr = rerr_create(0, dest_addr, 0);
-            DEBUG(LOG_DEBUG, 0, "Sending RERR to prev hop %s for unknown dest %s",
+            DEBUG(LOG_DEBUG, 0, "Sending VANET_RERR to prev hop %s for unknown dest %s",
                     ip_to_str(src_addr), ip_to_str(dest_addr));
 
-                /* Unicast the RERR to the source of the data transmission
+                /* Unicast the VANET_RERR to the source of the data transmission
                  * if possible, otherwise we broadcast it. */
             struct in_addr rerr_dest;
             if (rev_rt && rev_rt->state == VALID)
                 rerr_dest = rev_rt->next_hop;
             else
                 rerr_dest.s_addr = ManetAddress(IPv4Address(AODVVANET_BROADCAST));
-            aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,VANET_RERR_CALC_SIZE(rerr),
                     1, &DEV_IFINDEX(ifindex));
             if (wait_on_reboot)
             {
@@ -1141,10 +1141,10 @@ void NS_CLASS processPacket(IPv4Datagram * p,unsigned int ifindex)
 
     ie = getInterfaceEntry (ifindex);
     if (p->getTransportProtocol()==IP_PROT_TCP)
-        rreq_flags |= RREQ_GRATUITOUS;
+        rreq_flags |= VANET_RREQ_GRATUITOUS;
 
     /* If this is a TCP packet and we don't have a route, we should
-       set the gratuituos flag in the RREQ. */
+       set the gratuituos flag in the VANET_RREQ. */
     bool isMcast = ie->ipv4Data()->isMemberOfMulticastGroup(dest_addr.s_addr.getIPv4());
 
     /* If the packet is not interesting we just let it go through... */
@@ -1185,8 +1185,8 @@ void NS_CLASS processPacket(IPv4Datagram * p,unsigned int ifindex)
 
     /* OK, the timeouts have been updated. Now see if either: 1. The
        packet is for this node -> ACCEPT. 2. The packet is not for this
-       node -> Send RERR (someone want's this node to forward packets
-       although there is no route) or Send RREQ. */
+       node -> Send VANET_RERR (someone want's this node to forward packets
+       although there is no route) or Send VANET_RREQ. */
 
     if (!fwd_rt || fwd_rt->state == INVALID ||
             (fwd_rt->hcnt == 1 && (fwd_rt->flags & RT_UNIDIR)))
@@ -1204,7 +1204,7 @@ void NS_CLASS processPacket(IPv4Datagram * p,unsigned int ifindex)
 
 
 
-        RERR *rerr;
+        VANET_RERR *rerr;
         DEBUG(LOG_DEBUG, 0,
               "No route, src=%s dest=%s prev_hop=%s - DROPPING!",
               ip_to_str(src_addr), ip_to_str(dest_addr));
@@ -1215,10 +1215,10 @@ void NS_CLASS processPacket(IPv4Datagram * p,unsigned int ifindex)
         }
         else
             rerr = rerr_create(0, dest_addr, 0);
-        DEBUG(LOG_DEBUG, 0, "Sending RERR to prev hop %s for unknown dest %s",
+        DEBUG(LOG_DEBUG, 0, "Sending VANET_RERR to prev hop %s for unknown dest %s",
               ip_to_str(src_addr), ip_to_str(dest_addr));
 
-        /* Unicast the RERR to the source of the data transmission
+        /* Unicast the VANET_RERR to the source of the data transmission
          * if possible, otherwise we broadcast it. */
 
         if (rev_rt && rev_rt->state == VALID)
@@ -1226,7 +1226,7 @@ void NS_CLASS processPacket(IPv4Datagram * p,unsigned int ifindex)
         else
             rerr_dest.s_addr = ManetAddress(IPv4Address(AODVVANET_BROADCAST));
 
-        aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+        aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,VANET_RERR_CALC_SIZE(rerr),
                          1, &DEV_IFINDEX(ifindex));
         if (wait_on_reboot)
         {
@@ -1252,7 +1252,7 @@ route_discovery:
         else
         {
             if (par("targetOnlyRreq").boolValue())
-                rreq_flags |= RREQ_DEST_ONLY;
+                rreq_flags |= VANET_RREQ_DEST_ONLY;
             rreq_route_discovery(dest_addr, rreq_flags, ipd);
         }
 
@@ -1345,7 +1345,7 @@ void NS_CLASS processPromiscuous(const cObject *details)
                 if (pktAux1)
                 {
                     cPacket * pktAux2 = pktAux->getEncapsulatedPacket(); // protocol
-                    if (pktAux2 && dynamic_cast<RREP *> (pktAux2))
+                    if (pktAux2 && dynamic_cast<VANET_RREP *> (pktAux2))
                     {
 
                     }
@@ -1359,15 +1359,15 @@ void NS_CLASS processPromiscuous(const cObject *details)
             if (meshFrame->getSubType() == ROUTING)
             {
                 cPacket * pktAux2 = meshFrame->getEncapsulatedPacket(); // protocol
-                if (pktAux2 && dynamic_cast<RREP *> (pktAux2) && checkRrep)
+                if (pktAux2 && dynamic_cast<VANET_RREP *> (pktAux2) && checkRrep)
                 {
-                    RREP* rrep = dynamic_cast<RREP *> (pktAux2);
+                    VANET_RREP* rrep = dynamic_cast<VANET_RREP *> (pktAux2);
                     PacketDestOrigin destOrigin(rrep->dest_addr,rrep->orig_addr);
-                    std::map<PacketDestOrigin,RREPProcessed>::iterator it = rrepProc.find(destOrigin);
+                    std::map<PacketDestOrigin,VANET_RREPProcessed>::iterator it = rrepProc.find(destOrigin);
                     if (it == rrepProc.end())
                     {
                         // new
-                        RREPProcessed rproc;
+                        VANET_RREPProcessed rproc;
                         rproc.cost = rrep->cost;
                         rproc.dest_seqno = rrep->dest_seqno;
                         rproc.hcnt = rrep->hcnt;
@@ -1551,7 +1551,7 @@ bool NS_CLASS isOurType(cPacket * msg)
 
 bool NS_CLASS getDestAddress(cPacket *msg,ManetAddress &dest)
 {
-    RREQ *rreq = dynamic_cast <RREQ *>(msg);
+    VANET_RREQ *rreq = dynamic_cast <VANET_RREQ *>(msg);
     if (!rreq)
         return false;
     dest = rreq->dest_addr;
@@ -1559,9 +1559,9 @@ bool NS_CLASS getDestAddress(cPacket *msg,ManetAddress &dest)
 
 }
 
-bool AODVVANET::getDestAddressRreq(cPacket *msg,PacketDestOrigin &orgDest,RREQInfo &rreqInfo)
+bool AODVVANET::getDestAddressRreq(cPacket *msg,PacketDestOrigin &orgDest,VANET_RREQInfo &rreqInfo)
 {
-    RREQ *rreq = dynamic_cast <RREQ *>(msg);
+    VANET_RREQ *rreq = dynamic_cast <VANET_RREQ *>(msg);
     if (!rreq)
         return false;
     orgDest.setDests(rreq->dest_addr);
@@ -1596,14 +1596,14 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
     {
         if (delEntry)
         {
-            RERR* rerr = rerr_create(0, destAddr, 0);
+            VANET_RERR* rerr = rerr_create(0, destAddr, 0);
             DEBUG(LOG_DEBUG, 0, "setRoute Sending for unknown dest %s", ip_to_str(destAddr));
 
-            /* Unicast the RERR to the source of the data transmission
+            /* Unicast the VANET_RERR to the source of the data transmission
              * if possible, otherwise we broadcast it. */
             rerr_dest.s_addr = ManetAddress(IPv4Address(AODVVANET_BROADCAST));
 
-            aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,VANET_RERR_CALC_SIZE(rerr),
                              1, &DEV_IFINDEX(NS_IFINDEX));
         }
         ManetAddress dest = fwd_rt->dest_addr.s_addr;
@@ -1659,14 +1659,14 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
     {
         if (delEntry)
         {
-            RERR* rerr = rerr_create(0, destAddr, 0);
+            VANET_RERR* rerr = rerr_create(0, destAddr, 0);
             DEBUG(LOG_DEBUG, 0, "setRoute Sending for unknown dest %s", ip_to_str(destAddr));
 
-            /* Unicast the RERR to the source of the data transmission
+            /* Unicast the VANET_RERR to the source of the data transmission
              * if possible, otherwise we broadcast it. */
             rerr_dest.s_addr = ManetAddress(IPv4Address(AODVVANET_BROADCAST));
 
-            aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,VANET_RERR_CALC_SIZE(rerr),
                              1, &DEV_IFINDEX(NS_IFINDEX));
         }
         ManetAddress dest = fwd_rt->dest_addr.s_addr;
@@ -1727,14 +1727,14 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
     {
         if (delEntry)
         {
-            RERR* rerr = rerr_create(0, destAddr, 0);
+            VANET_RERR* rerr = rerr_create(0, destAddr, 0);
             DEBUG(LOG_DEBUG, 0, "setRoute Sending for unknown dest %s", ip_to_str(destAddr));
 
-            /* Unicast the RERR to the source of the data transmission
+            /* Unicast the VANET_RERR to the source of the data transmission
              * if possible, otherwise we broadcast it. */
             rerr_dest.s_addr = AODVVANET_BROADCAST;
 
-            aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,VANET_RERR_CALC_SIZE(rerr),
                              1, &DEV_IFINDEX(NS_IFINDEX));
         }
         list_detach(&fwd_rt->l);
@@ -1783,14 +1783,14 @@ bool  NS_CLASS setRoute(const ManetAddress &dest,const ManetAddress &add, const 
     {
         if (delEntry)
         {
-            RERR* rerr = rerr_create(0, destAddr, 0);
+            VANET_RERR* rerr = rerr_create(0, destAddr, 0);
             DEBUG(LOG_DEBUG, 0, "setRoute Sending for unknown dest %s", ip_to_str(destAddr));
 
-            /* Unicast the RERR to the source of the data transmission
+            /* Unicast the VANET_RERR to the source of the data transmission
              * if possible, otherwise we broadcast it. */
             rerr_dest.s_addr = AODVVANET_BROADCAST;
 
-            aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,RERR_CALC_SIZE(rerr),
+            aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,VANET_RERR_CALC_SIZE(rerr),
                              1, &DEV_IFINDEX(NS_IFINDEX));
         }
         list_detach(&fwd_rt->l);
@@ -1830,7 +1830,7 @@ bool NS_CLASS isThisRrepPrevSent(cMessage *msg)
 {
     if (!checkRrep)
         return false;
-    RREP *rrep = dynamic_cast<RREP *>(msg);
+    VANET_RREP *rrep = dynamic_cast<VANET_RREP *>(msg);
     if (rrep->hcnt == 0)
             return false; // this packet had this node like destination, in this case the node must send the packet
 
@@ -1838,7 +1838,7 @@ bool NS_CLASS isThisRrepPrevSent(cMessage *msg)
          return false; // no information, send
 
     PacketDestOrigin destOrigin(rrep->dest_addr,rrep->orig_addr);
-    std::map<PacketDestOrigin,RREPProcessed>::iterator it = rrepProc.find(destOrigin);
+    std::map<PacketDestOrigin,VANET_RREPProcessed>::iterator it = rrepProc.find(destOrigin);
     if (it != rrepProc.end()) // only send if the seq num is bigger
     {
         if (it->second.dest_seqno > rrep->dest_seqno)

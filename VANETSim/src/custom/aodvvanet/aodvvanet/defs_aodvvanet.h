@@ -118,7 +118,7 @@ struct host_info
     u_int32_t seqno;        /* Sequence number */
     struct timeval bcast_time;  /* The time of the last broadcast msg sent */
     struct timeval fwd_time;    /* The time a data packet was last forwarded */
-    u_int32_t rreq_id;      /* RREQ id */
+    u_int32_t rreq_id;      /* VANET_RREQ id */
     int nif;            /* Number of interfaces to broadcast on */
     struct dev_info devs[MAX_NR_INTERFACES];
 };
@@ -195,10 +195,10 @@ static inline int name2index(char *name)
 
 /* AODVVANET Message types */
 #define AODVVANET_HELLO    0     /* Really never used as a separate type... */
-#define AODVVANET_RREQ     1
-#define AODVVANET_RREP     2
-#define AODVVANET_RERR     3
-#define AODVVANET_RREP_ACK 4
+#define AODVVANET_VANET_RREQ     1
+#define AODVVANET_VANET_RREP     2
+#define AODVVANET_VANET_RERR     3
+#define AODVVANET_VANET_RREP_ACK 4
 
 #ifndef OMNETPP
 /* An generic AODVVANET extensions header */
@@ -250,11 +250,11 @@ typedef AODVVANET_msg hdr_aodvuu;    // Name convention for headers
 #endif
 
 /* AODVVANET Extension types */
-#define RREQ_EXT 1
-#define RREP_EXT 1
-#define RREP_HELLO_INTERVAL_EXT 2
-#define RREP_HELLO_NEIGHBOR_SET_EXT 3
-#define RREP_INET_DEST_EXT 4
+#define VANET_RREQ_EXT 1
+#define VANET_RREP_EXT 1
+#define VANET_RREP_HELLO_INTERVAL_EXT 2
+#define VANET_RREP_HELLO_NEIGHBOR_SET_EXT 3
+#define VANET_RREP_INET_DEST_EXT 4
 
 
 

@@ -145,12 +145,12 @@ const char *packet_type(uint32 type)
 
     switch (type)
     {
-    case AODVVANET_RREQ:
-        return "AODVVANET_RREQ";
-    case AODVVANET_RREP:
-        return "AODVVANET_RREP";
-    case AODVVANET_RERR:
-        return "AODVVANET_RERR";
+    case AODVVANET_VANET_RREQ:
+        return "AODVVANET_VANET_RREQ";
+    case AODVVANET_VANET_RREP:
+        return "AODVVANET_VANET_RREP";
+    case AODVVANET_VANET_RERR:
+        return "AODVVANET_VANET_RERR";
     default:
         sprintf(temp, "Unknown packet type %d", type);
         return temp;
@@ -246,7 +246,7 @@ syslog:
 }
 
 
-char *NS_CLASS rreq_flags_to_str(RREQ * rreq)
+char *NS_CLASS rreq_flags_to_str(VANET_RREQ * rreq)
 {
     static char buf[5];
     int len = 0;
@@ -267,7 +267,7 @@ char *NS_CLASS rreq_flags_to_str(RREQ * rreq)
     return str;
 }
 
-char *NS_CLASS rrep_flags_to_str(RREP * rrep)
+char *NS_CLASS rrep_flags_to_str(VANET_RREP * rrep)
 {
     static char buf[3];
     int len = 0;
@@ -287,15 +287,15 @@ char *NS_CLASS rrep_flags_to_str(RREP * rrep)
 void NS_CLASS log_pkt_fields(AODVVANET_msg * msg)
 {
 
-    RREQ *rreq;
-    RREP *rrep;
-    RERR *rerr;
+    VANET_RREQ *rreq;
+    VANET_RREP *rrep;
+    VANET_RERR *rerr;
     struct in_addr dest, orig;
 
     switch (msg->type)
     {
-    case AODVVANET_RREQ:
-        rreq = (RREQ *) msg;
+    case AODVVANET_VANET_RREQ:
+        rreq = (VANET_RREQ *) msg;
         dest.s_addr = rreq->dest_addr;
         orig.s_addr = rreq->orig_addr;
         DEBUG(LOG_DEBUG, 0,
@@ -306,8 +306,8 @@ void NS_CLASS log_pkt_fields(AODVVANET_msg * msg)
         DEBUG(LOG_DEBUG, 0, "rreq->orig_addr:%s rreq->orig_seqno=%ld",
               ip_to_str(orig), ntohl(rreq->orig_seqno));
         break;
-    case AODVVANET_RREP:
-        rrep = (RREP *) msg;
+    case AODVVANET_VANET_RREP:
+        rrep = (VANET_RREP *) msg;
         dest.s_addr = rrep->dest_addr;
         orig.s_addr = rrep->orig_addr;
         DEBUG(LOG_DEBUG, 0, "rrep->flags:%s rrep->hcnt=%d",
@@ -317,8 +317,8 @@ void NS_CLASS log_pkt_fields(AODVVANET_msg * msg)
         DEBUG(LOG_DEBUG, 0, "rrep->orig_addr:%s rrep->lifetime=%d",
               ip_to_str(orig), ntohl(rrep->lifetime));
         break;
-    case AODVVANET_RERR:
-        rerr = (RERR *) msg;
+    case AODVVANET_VANET_RERR:
+        rerr = (VANET_RERR *) msg;
         DEBUG(LOG_DEBUG, 0, "rerr->dest_count:%d rerr->flags=%s",
               rerr->dest_count, rerr->n ? "N" : "-");
         break;

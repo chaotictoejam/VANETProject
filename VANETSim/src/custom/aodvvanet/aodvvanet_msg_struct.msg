@@ -47,7 +47,7 @@ packet AODVVANET_msg
 //
 // Extra unreachable destinations
 //
-struct RERR_udest
+struct VANET_RERR_udest
 {
     @existingClass(true);
     @descriptor(readonly);
@@ -56,17 +56,17 @@ struct RERR_udest
     uint32_t dest_seqno;
 }
 
-packet RERR extends AODVVANET_msg
+packet VANET_RERR extends AODVVANET_msg
 {
     @existingClass(true);
     @descriptor(readonly);
     unsigned short res1;
     unsigned short n;
     unsigned short res2;
-    RERR_udest udest[] @getter(getUdestRef);
+    VANET_RERR_udest udest[] @getter(getUdestRef);
 }
 
-packet RREP extends AODVVANET_msg
+packet VANET_RREP extends AODVVANET_msg
 {
     @existingClass(true);
     @descriptor(readonly);
@@ -86,20 +86,20 @@ packet RREP extends AODVVANET_msg
     uint8_t  hopfix;
 }
 
-packet RREP_ack extends AODVVANET_msg
+packet VANET_RREP_ack extends AODVVANET_msg
 {
     @existingClass(true);
     @descriptor(readonly);
     uint8_t reserved;
 }
 
-packet RREQ extends AODVVANET_msg
+packet VANET_RREQ extends AODVVANET_msg
 {
     @existingClass(true);
     @descriptor(readonly);
     uint8_t j;     // Join flag (multicast)
     uint8_t r;     // Repair flag
-    uint8_t g;     // Gratuitous RREP flag
+    uint8_t g;     // Gratuitous VANET_RREP flag
     uint8_t d;     // Destination only respond
     uint8_t res1;
     uint8_t res2;

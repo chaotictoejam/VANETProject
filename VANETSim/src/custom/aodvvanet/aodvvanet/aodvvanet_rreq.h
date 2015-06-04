@@ -20,8 +20,8 @@
  *
  *
  *****************************************************************************/
-#ifndef _AODVVANET_RREQ_H
-#define _AODVVANET_RREQ_H
+#ifndef _AODVVANET_VANET_RREQ_H
+#define _AODVVANET_VANET_RREQ_H
 
 #ifndef NS_NO_GLOBALS
 
@@ -39,11 +39,11 @@
 #include "seek_list.h"
 #include "routing_table.h"
 
-/* RREQ Flags: */
-#define RREQ_JOIN          0x1
-#define RREQ_REPAIR        0x2
-#define RREQ_GRATUITOUS    0x4
-#define RREQ_DEST_ONLY     0x8
+/* VANET_RREQ Flags: */
+#define VANET_RREQ_JOIN          0x1
+#define VANET_RREQ_REPAIR        0x2
+#define VANET_RREQ_GRATUITOUS    0x4
+#define VANET_RREQ_DEST_ONLY     0x8
 
 #ifndef OMNETPP
 typedef struct
@@ -58,7 +58,7 @@ typedef struct
 #elif defined(__BIG_ENDIAN)
     u_int8_t j:1;       /* Join flag (multicast) */
     u_int8_t r:1;       /* Repair flag */
-    u_int8_t g:1;       /* Gratuitous RREP flag */
+    u_int8_t g:1;       /* Gratuitous VANET_RREP flag */
     u_int8_t d:1;       /* Destination only respond */
     u_int8_t res1:4;
 #else
@@ -71,16 +71,16 @@ typedef struct
     u_int32_t dest_seqno;
     u_int32_t orig_addr;
     u_int32_t orig_seqno;
-} RREQ;
+} VANET_RREQ;
 
-#define RREQ_SIZE sizeof(RREQ)
+#define VANET_RREQ_SIZE sizeof(VANET_RREQ)
 #endif
-/* A data structure to buffer information about received RREQ's */
+/* A data structure to buffer information about received VANET_RREQ's */
 struct rreq_record
 {
     list_t l;
-    struct in_addr orig_addr;   /* Source of the RREQ */
-    u_int32_t rreq_id;      /* RREQ's broadcast ID */
+    struct in_addr orig_addr;   /* Source of the VANET_RREQ */
+    u_int32_t rreq_id;      /* VANET_RREQ's broadcast ID */
     struct timer rec_timer;
 };
 
@@ -93,12 +93,12 @@ struct blacklist
 #endif              /* NS_NO_GLOBALS */
 
 #ifndef NS_NO_DECLARATIONS
-RREQ *rreq_create(u_int8_t flags, struct in_addr dest_addr,
+VANET_RREQ *rreq_create(u_int8_t flags, struct in_addr dest_addr,
                   u_int32_t dest_seqno, struct in_addr orig_addr);
 void rreq_send(struct in_addr dest_addr, u_int32_t dest_seqno, int ttl,
                u_int8_t flags);
-void rreq_forward(RREQ * rreq, int size, int ttl);
-void rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
+void rreq_forward(VANET_RREQ * rreq, int size, int ttl);
+void rreq_process(VANET_RREQ * rreq, int rreqlen, struct in_addr ip_src,
                   struct in_addr ip_dst, int ip_ttl, unsigned int ifindex);
 void rreq_route_discovery(struct in_addr dest_addr, u_int8_t flags,
                           struct ip_data *ipd);
@@ -119,4 +119,4 @@ struct blacklist *rreq_blacklist_find(struct in_addr dest_addr);
 
 #endif              /* NS_NO_DECLARATIONS */
 
-#endif              /* AODVVANET_RREQ_H */
+#endif              /* AODVVANET_VANET_RREQ_H */

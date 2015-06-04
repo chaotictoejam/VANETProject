@@ -116,10 +116,10 @@ AODVVANET_ext * AODVVANET_msg::getNexExtension(AODVVANET_ext* aodvvanet_ext)
 }
 
 //=== registration
-Register_Class(RERR);
+Register_Class(VANET_RERR);
 
 //=========================================================================
-RERR::RERR(const char *name) : AODVVANET_msg (name)
+VANET_RERR::VANET_RERR(const char *name) : AODVVANET_msg (name)
 {
     res1 = 0;
     n = 0;
@@ -130,12 +130,12 @@ RERR::RERR(const char *name) : AODVVANET_msg (name)
     setBitLength((8+(owner->getAddressSize()*2))*8);
 }
 
-RERR::RERR(const RERR& m) : AODVVANET_msg(m)
+VANET_RERR::VANET_RERR(const VANET_RERR& m) : AODVVANET_msg(m)
 {
     copy(m);
 }
 
-RERR& RERR::operator=(const RERR& m)
+VANET_RERR& VANET_RERR::operator=(const VANET_RERR& m)
 {
     if (this==&m) return *this;
     clearUdest();
@@ -144,13 +144,13 @@ RERR& RERR::operator=(const RERR& m)
     return *this;
 }
 
-void RERR::copy(const RERR& m)
+void VANET_RERR::copy(const VANET_RERR& m)
 {
     n = m.n;
     res1 = m.res1;
     res2 = m.res2;
     dest_count = m.dest_count;
-    _udest = new RERR_udest [dest_count];
+    _udest = new VANET_RERR_udest [dest_count];
     for (int i=0; i < dest_count; i++)
     {
         _udest[i].dest_addr = m._udest[i].dest_addr;
@@ -158,16 +158,16 @@ void RERR::copy(const RERR& m)
     }
 }
 
-RERR::~RERR()
+VANET_RERR::~VANET_RERR()
 {
     clearUdest();
 }
 
-void RERR::addUdest(const ManetAddress & src_addr, unsigned int udest_seqno)
+void VANET_RERR::addUdest(const ManetAddress & src_addr, unsigned int udest_seqno)
 {
 
-    RERR_udest *temp_udest;
-    temp_udest = new RERR_udest [dest_count+1];
+    VANET_RERR_udest *temp_udest;
+    temp_udest = new VANET_RERR_udest [dest_count+1];
     for (int i=0; i < dest_count; i++)
     {
         temp_udest[i].dest_addr = _udest[i].dest_addr;
@@ -183,7 +183,7 @@ void RERR::addUdest(const ManetAddress & src_addr, unsigned int udest_seqno)
     setBitLength(getBitLength()+(udestSize));
 }
 
-RERR_udest * RERR::getUdest(int i)
+VANET_RERR_udest * VANET_RERR::getUdest(int i)
 {
     if (i < dest_count)
     {
@@ -195,7 +195,7 @@ RERR_udest * RERR::getUdest(int i)
     }
 }
 
-void RERR::clearUdest()
+void VANET_RERR::clearUdest()
 {
     if (_udest!=NULL)
     {
@@ -205,8 +205,8 @@ void RERR::clearUdest()
 }
 
 
-Register_Class(RREP);
-RREP::RREP (const char *name) : AODVVANET_msg (name)
+Register_Class(VANET_RREP);
+VANET_RREP::VANET_RREP (const char *name) : AODVVANET_msg (name)
 {
     ManetRoutingBase * owner = check_and_cast<ManetRoutingBase*>(this->getOwner());
     setBitLength((12+(owner->getAddressSize()*2))*8);
@@ -225,12 +225,12 @@ RREP::RREP (const char *name) : AODVVANET_msg (name)
     totalHops = 0;
 }
 
-RREP::RREP(const RREP& m) : AODVVANET_msg(m)
+VANET_RREP::VANET_RREP(const VANET_RREP& m) : AODVVANET_msg(m)
 {
     copy(m);
 }
 
-RREP& RREP::operator=(const RREP& m)
+VANET_RREP& VANET_RREP::operator=(const VANET_RREP& m)
 {
     if (this==&m) return *this;
     AODVVANET_msg::operator=(m);
@@ -238,7 +238,7 @@ RREP& RREP::operator=(const RREP& m)
     return *this;
 }
 
-void RREP::copy(const RREP& m)
+void VANET_RREP::copy(const VANET_RREP& m)
 {
     res1 = m.res1;
     a = m.a;
@@ -255,12 +255,12 @@ void RREP::copy(const RREP& m)
     totalHops = m.totalHops;
 }
 
-std::string RREP::detailedInfo() const
+std::string VANET_RREP::detailedInfo() const
 {
     std::stringstream out;
     int timeToLive = ttl;
     int hops = hcnt;
-    out << " RREP "  << "\n"; // Khmm...
+    out << " VANET_RREP "  << "\n"; // Khmm...
     out <<" Source :"<< orig_addr << "\n";
     out <<" Destination :"<< dest_addr << "\n";
     out <<" Destination seq num:"<< dest_seqno << "\n";
@@ -271,13 +271,13 @@ std::string RREP::detailedInfo() const
 
 
 
-Register_Class(RREP_ack);
-RREP_ack::RREP_ack(const RREP_ack& m) : AODVVANET_msg(m)
+Register_Class(VANET_RREP_ack);
+VANET_RREP_ack::VANET_RREP_ack(const VANET_RREP_ack& m) : AODVVANET_msg(m)
 {
     copy(m);
 }
 
-RREP_ack& RREP_ack::operator=(const RREP_ack& m)
+VANET_RREP_ack& VANET_RREP_ack::operator=(const VANET_RREP_ack& m)
 {
     if (this==&m) return *this;
     AODVVANET_msg::operator=(m);
@@ -287,13 +287,13 @@ RREP_ack& RREP_ack::operator=(const RREP_ack& m)
 
 
 
-Register_Class(RREQ);
+Register_Class(VANET_RREQ);
 
-RREQ::RREQ::RREQ(const char *name) : AODVVANET_msg (name)
+VANET_RREQ::VANET_RREQ::VANET_RREQ(const char *name) : AODVVANET_msg (name)
 {
     j = 0;
     r = 0;     /* Repair flag */
-    g = 0;     /* Gratuitous RREP flag */
+    g = 0;     /* Gratuitous VANET_RREP flag */
     d = 0;     /* Destination only respond */
     res1 = 0;
     res2 = 0;
@@ -309,12 +309,12 @@ RREQ::RREQ::RREQ(const char *name) : AODVVANET_msg (name)
     setBitLength((16+(owner->getAddressSize()*2))*8);
 }
 
-RREQ::RREQ(const RREQ& m) : AODVVANET_msg(m)
+VANET_RREQ::VANET_RREQ(const VANET_RREQ& m) : AODVVANET_msg(m)
 {
     copy(m);
 }
 
-RREQ& RREQ::operator=(const RREQ& m)
+VANET_RREQ& VANET_RREQ::operator=(const VANET_RREQ& m)
 {
     if (this==&m) return *this;
     AODVVANET_msg::operator=(m);
@@ -322,11 +322,11 @@ RREQ& RREQ::operator=(const RREQ& m)
     return *this;
 }
 
-void RREQ::copy(const RREQ& m)
+void VANET_RREQ::copy(const VANET_RREQ& m)
 {
     j = m.j;      /* Join flag (multicast) */
     r = m.r;      /* Repair flag */
-    g = m.g;      /* Gratuitous RREP flag */
+    g = m.g;      /* Gratuitous VANET_RREP flag */
     d = m.d;      /* Destination only respond */
     res1 = m.res1;
     res2 = m.res2;
@@ -340,12 +340,12 @@ void RREQ::copy(const RREQ& m)
     hopfix = m.hopfix;
 }
 
-std::string RREQ::detailedInfo() const
+std::string VANET_RREQ::detailedInfo() const
 {
     std::stringstream out;
     int timeToLive = ttl;
     int hops = hcnt;
-    out << " RREQ "  << "\n"; // Khmm...
+    out << " VANET_RREQ "  << "\n"; // Khmm...
     out <<" Source :"<< orig_addr << "\n";
     out <<" Source seq num:"<< orig_seqno << "\n";
     out <<" Destination :"<< dest_addr << "\n";

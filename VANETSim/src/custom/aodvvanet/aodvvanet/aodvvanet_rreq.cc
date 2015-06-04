@@ -66,17 +66,17 @@ extern int rreq_gratuitous, expanding_ring_search;
 extern int internet_gw_mode;
 #endif
 
-RREQ *NS_CLASS rreq_create(u_int8_t flags,struct in_addr dest_addr,
+VANET_RREQ *NS_CLASS rreq_create(u_int8_t flags,struct in_addr dest_addr,
                            u_int32_t dest_seqno, struct in_addr orig_addr)
 {
-    RREQ *rreq;
+    VANET_RREQ *rreq;
 #ifndef OMNETPP
-    rreq = (RREQ *) aodvvanet_socket_new_msg();
+    rreq = (VANET_RREQ *) aodvvanet_socket_new_msg();
 #else
-    rreq = new RREQ();
+    rreq = new VANET_RREQ();
     rreq->cost=0;
 #endif
-    rreq->type = AODVVANET_RREQ;
+    rreq->type = AODVVANET_VANET_RREQ;
     rreq->res1 = 0;
     rreq->res2 = 0;
     rreq->hcnt = 0;
@@ -85,21 +85,21 @@ RREQ *NS_CLASS rreq_create(u_int8_t flags,struct in_addr dest_addr,
     rreq->dest_seqno = htonl(dest_seqno);
     rreq->orig_addr = orig_addr.s_addr;
 
-    /* Immediately before a node originates a RREQ flood it must
+    /* Immediately before a node originates a VANET_RREQ flood it must
        increment its sequence number... */
     seqno_incr(this_host.seqno);
     rreq->orig_seqno = htonl(this_host.seqno);
 
-    if (flags & RREQ_JOIN)
+    if (flags & VANET_RREQ_JOIN)
         rreq->j = 1;
-    if (flags & RREQ_REPAIR)
+    if (flags & VANET_RREQ_REPAIR)
         rreq->r = 1;
-    if (flags & RREQ_GRATUITOUS)
+    if (flags & VANET_RREQ_GRATUITOUS)
         rreq->g = 1;
-    if (flags & RREQ_DEST_ONLY)
+    if (flags & VANET_RREQ_DEST_ONLY)
         rreq->d = 1;
 
-    DEBUG(LOG_DEBUG, 0, "Assembled RREQ %s", ip_to_str(dest_addr));
+    DEBUG(LOG_DEBUG, 0, "Assembled VANET_RREQ %s", ip_to_str(dest_addr));
 #ifdef DEBUG_OUTPUT
     log_pkt_fields((AODVVANET_msg *) rreq);
 #endif
@@ -107,12 +107,12 @@ RREQ *NS_CLASS rreq_create(u_int8_t flags,struct in_addr dest_addr,
     return rreq;
 }
 
-AODVVANET_ext *rreq_add_ext(RREQ * rreq, int type, unsigned int offset,
+AODVVANET_ext *rreq_add_ext(VANET_RREQ * rreq, int type, unsigned int offset,
                        int len, char *data)
 {
     AODVVANET_ext *ext = NULL;
 #ifndef OMNETPP
-    if (offset < RREQ_SIZE)
+    if (offset < VANET_RREQ_SIZE)
         return NULL;
 
     ext = (AODVVANET_ext *) ((char *) rreq + offset);
@@ -130,13 +130,13 @@ AODVVANET_ext *rreq_add_ext(RREQ * rreq, int type, unsigned int offset,
 void NS_CLASS rreq_send(struct in_addr dest_addr, u_int32_t dest_seqno,
                         int ttl, u_int8_t flags)
 {
-    RREQ *rreq;
+    VANET_RREQ *rreq;
     struct in_addr dest;
     int i;
     dest.s_addr = ManetAddress(IPv4Address(AODVVANET_BROADCAST));
     /* Check if we should force the gratuitous flag... (-g option). */
     if (rreq_gratuitous)
-        flags |= RREQ_GRATUITOUS;
+        flags |= VANET_RREQ_GRATUITOUS;
 
     /* Broadcast on all interfaces */
 #ifdef OMNETPP
@@ -154,15 +154,15 @@ void NS_CLASS rreq_send(struct in_addr dest_addr, u_int32_t dest_seqno,
 
 #ifdef OMNETPP
         rreq->ttl = ttl;
-        aodvvanet_socket_send((AODVVANET_msg *) rreq, dest, RREQ_SIZE, 1, &DEV_NR(i),delay);
+        aodvvanet_socket_send((AODVVANET_msg *) rreq, dest, VANET_RREQ_SIZE, 1, &DEV_NR(i),delay);
         totalRreqSend++;
 #else
-        aodvvanet_socket_send((AODVVANET_msg *) rreq, dest, RREQ_SIZE, 1, &DEV_NR(i));
+        aodvvanet_socket_send((AODVVANET_msg *) rreq, dest, VANET_RREQ_SIZE, 1, &DEV_NR(i));
 #endif
     }
 }
 
-void NS_CLASS rreq_forward(RREQ * rreq, int size, int ttl)
+void NS_CLASS rreq_forward(VANET_RREQ * rreq, int size, int ttl)
 {
     struct in_addr dest, orig;
     int i;
@@ -170,13 +170,13 @@ void NS_CLASS rreq_forward(RREQ * rreq, int size, int ttl)
     dest.s_addr = ManetAddress(IPv4Address(AODVVANET_BROADCAST));
     orig.s_addr = rreq->orig_addr;
 
-    /* FORWARD the RREQ if the TTL allows it. */
-    DEBUG(LOG_INFO, 0, "forwarding RREQ src=%s, rreq_id=%lu",
+    /* FORWARD the VANET_RREQ if the TTL allows it. */
+    DEBUG(LOG_INFO, 0, "forwarding VANET_RREQ src=%s, rreq_id=%lu",
           ip_to_str(orig), ntohl(rreq->rreq_id));
 
     /* Queue the received message in the send buffer */
 #ifndef OMNETPP
-    rreq = (RREQ *) aodvvanet_socket_queue_msg((AODVVANET_msg *) rreq, size);
+    rreq = (VANET_RREQ *) aodvvanet_socket_queue_msg((AODVVANET_msg *) rreq, size);
     rreq->hcnt++;       /* Increase hopcount to account for
                  * intermediate route */
 
@@ -203,21 +203,21 @@ void NS_CLASS rreq_forward(RREQ * rreq, int size, int ttl)
         if (!DEV_NR(i).enabled)
             continue;
         totalRreqSend++;
-        RREQ * rreq_new = check_and_cast <RREQ*>(rreq->dup());
+        VANET_RREQ * rreq_new = check_and_cast <VANET_RREQ*>(rreq->dup());
         rreq_new->ttl=ttl;
         aodvvanet_socket_send((AODVVANET_msg *) rreq_new, dest, size, ttl, &DEV_NR(i),delay);
 #endif
     }
 }
 
-void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
+void NS_CLASS rreq_process(VANET_RREQ * rreq, int rreqlen, struct in_addr ip_src,
                            struct in_addr ip_dst, int ip_ttl,
                            unsigned int ifindex)
 {
 
     AODVVANET_ext *ext=NULL;
-    RREP *rrep = NULL;
-    int rrep_size = RREP_SIZE;
+    VANET_RREP *rrep = NULL;
+    int rrep_size = VANET_RREP_SIZE;
     rt_table_t *rev_rt=NULL, *fwd_rt = NULL;
     u_int32_t rreq_orig_seqno, rreq_dest_seqno;
     u_int32_t rreq_id, rreq_new_hcnt, life;
@@ -249,8 +249,8 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
     if (this->isStaticNode())
         hopfix++;
 
-    /* Ignore RREQ's that originated from this node. Either we do this
-       or we buffer our own sent RREQ's as we do with others we
+    /* Ignore VANET_RREQ's that originated from this node. Either we do this
+       or we buffer our own sent VANET_RREQ's as we do with others we
        receive. */
 
 #ifndef OMNETPP
@@ -265,11 +265,11 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
           ip_to_str(ip_src), ip_to_str(rreq_orig), ip_to_str(rreq_dest));
 #ifdef OMNETPP
     totalRreqRec++;
-    EV << "RREQ received, Src Address :" << convertAddressToString(ip_src.s_addr) << "  RREQ origin :" <<
-            convertAddressToString(rreq_orig.s_addr) << "  RREQ dest :" << convertAddressToString(rreq_dest.s_addr) << "\n";
+    EV << "VANET_RREQ received, Src Address :" << convertAddressToString(ip_src.s_addr) << "  VANET_RREQ origin :" <<
+            convertAddressToString(rreq_orig.s_addr) << "  VANET_RREQ dest :" << convertAddressToString(rreq_dest.s_addr) << "\n";
 #endif
 
-    if (rreqlen < (int) RREQ_SIZE)
+    if (rreqlen < (int) VANET_RREQ_SIZE)
     {
         alog(LOG_WARNING, 0,
              __FUNCTION__, "IP data field too short (%u bytes)"
@@ -277,18 +277,18 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
         return;
     }
 
-    /* Check if the previous hop of the RREQ is in the blacklist set. If
-       it is, then ignore the RREQ. */
+    /* Check if the previous hop of the VANET_RREQ is in the blacklist set. If
+       it is, then ignore the VANET_RREQ. */
     if (rreq_blacklist_find(ip_src))
     {
-        DEBUG(LOG_DEBUG, 0, "prev hop of RREQ blacklisted, ignoring!");
+        DEBUG(LOG_DEBUG, 0, "prev hop of VANET_RREQ blacklisted, ignoring!");
 #ifdef OMNETPP
-        EV << "prev hop of RREQ blacklisted, ignoring!" << "\n";
+        EV << "prev hop of VANET_RREQ blacklisted, ignoring!" << "\n";
 #endif
         return;
     }
 
-    /* Ignore already processed RREQs. */
+    /* Ignore already processed VANET_RREQs. */
     if (rreq_record_find(rreq_orig, rreq_id))
     {
 #ifdef OMNETPP
@@ -303,7 +303,7 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
            if (rev_rt == NULL)
            {
                rev_rt = rt_table_insert(rreq_orig, ip_src, rreq_new_hcnt, rreq_orig_seqno, life, VALID, 0, ifindex,cost,hopfix);
-               // opp_error("reverse route NULL with RREQ in the processed table" );
+               // opp_error("reverse route NULL with VANET_RREQ in the processed table" );
            }
            if (rev_rt->dest_seqno != 0)
            {
@@ -325,7 +325,7 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
             if (rev_rt == NULL)
             {
                  rev_rt = rt_table_insert(rreq_orig, ip_src, rreq_new_hcnt,rreq_orig_seqno, life, VALID, 0, ifindex,cost,hopfix);
-                 // opp_error("reverse route NULL with RREQ in the processed table" );
+                 // opp_error("reverse route NULL with VANET_RREQ in the processed table" );
             }
             if (useHover && (rev_rt->dest_seqno == 0 ||
                     (int32_t) rreq_orig_seqno > (int32_t) rev_rt->dest_seqno ||
@@ -341,16 +341,16 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
         }
     }
 
-    /* Now buffer this RREQ so that we don't process a similar RREQ we
+    /* Now buffer this VANET_RREQ so that we don't process a similar VANET_RREQ we
        get within PATH_DISCOVERY_TIME. */
     rreq_record_insert(rreq_orig, rreq_id);
 
-    /* Determine whether there are any RREQ extensions */
+    /* Determine whether there are any VANET_RREQ extensions */
 
 
 #ifndef OMNETPP
-    ext = (AODVVANET_ext *) ((char *) rreq + RREQ_SIZE);
-    while ((rreqlen - extlen) > RREQ_SIZE)
+    ext = (AODVVANET_ext *) ((char *) rreq + VANET_RREQ_SIZE);
+    while ((rreqlen - extlen) > VANET_RREQ_SIZE)
     {
 #else
     ext = rreq->getFirstExtension();
@@ -359,8 +359,8 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
 #endif
         switch (ext->type)
         {
-        case RREQ_EXT:
-            DEBUG(LOG_INFO, 0, "RREQ include EXTENSION");
+        case VANET_RREQ_EXT:
+            DEBUG(LOG_INFO, 0, "VANET_RREQ include EXTENSION");
             /* Do something here */
             break;
         default:
@@ -376,7 +376,7 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
 #endif
 
     /* The node always creates or updates a REVERSE ROUTE entry to the
-       source of the RREQ. */
+       source of the VANET_RREQ. */
     rev_rt = rt_table_find(rreq_orig);
 
     /* Calculate the extended minimal life time. */
@@ -384,7 +384,7 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
 
     if (rev_rt == NULL)
     {
-        DEBUG(LOG_DEBUG, 0, "Creating REVERSE route entry, RREQ orig: %s",
+        DEBUG(LOG_DEBUG, 0, "Creating REVERSE route entry, VANET_RREQ orig: %s",
               ip_to_str(rreq_orig));
 
         rev_rt = rt_table_insert(rreq_orig, ip_src, rreq_new_hcnt,
@@ -416,13 +416,13 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
 #ifdef DISABLED
         /* This is a out of draft modification of AODVVANET-UU to prevent
            nodes from creating routing entries to themselves during
-           the RREP phase. We simple drop the RREQ if there is a
+           the VANET_RREP phase. We simple drop the VANET_RREQ if there is a
            missmatch between the reverse path on the node and the one
-           suggested by the RREQ. */
+           suggested by the VANET_RREQ. */
 
         else if (rev_rt->next_hop.s_addr != ip_src.s_addr)
         {
-            DEBUG(LOG_DEBUG, 0, "Dropping RREQ due to reverse route mismatch!");
+            DEBUG(LOG_DEBUG, 0, "Dropping VANET_RREQ due to reverse route mismatch!");
             return;
         }
 #endif
@@ -439,15 +439,15 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
         case HOST_ADHOC:
             break;
         case HOST_INET:
-            /* We must increase the gw's sequence number before sending a RREP,
-             * otherwise intermediate nodes will not forward the RREP. */
+            /* We must increase the gw's sequence number before sending a VANET_RREP,
+             * otherwise intermediate nodes will not forward the VANET_RREP. */
             seqno_incr(this_host.seqno);
             rrep = rrep_create(0, 0, 0, DEV_IFINDEX(rev_rt->ifindex).ipaddr,
                                this_host.seqno, rev_rt->dest_addr,
                                ACTIVE_ROUTE_TIMEOUT);
             rrep->totalHops =  rev_rt->hcnt;
 
-            ext = rrep_add_ext(rrep, RREP_INET_DEST_EXT, rrep_size,
+            ext = rrep_add_ext(rrep, VANET_RREP_INET_DEST_EXT, rrep_size,
                                sizeof(struct in_addr), (char *) &rreq_dest);
 
             rrep_size += AODVVANET_EXT_SIZE(ext);
@@ -474,14 +474,14 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
         // search address
         if (isAddressInProxyList(rreq_dest.s_addr))
         {
-            /* We must increase the gw's sequence number before sending a RREP,
-             * otherwise intermediate nodes will not forward the RREP. */
+            /* We must increase the gw's sequence number before sending a VANET_RREP,
+             * otherwise intermediate nodes will not forward the VANET_RREP. */
             seqno_incr(this_host.seqno);
             rrep = rrep_create(0, 0, 0, DEV_IFINDEX(rev_rt->ifindex).ipaddr,
                                this_host.seqno, rev_rt->dest_addr,
                                ACTIVE_ROUTE_TIMEOUT);
 
-            ext = rrep_add_ext(rrep, RREP_INET_DEST_EXT, rrep_size,
+            ext = rrep_add_ext(rrep, VANET_RREP_INET_DEST_EXT, rrep_size,
                                sizeof(struct in_addr), (char *) &rreq_dest);
 
             rrep_size += AODVVANET_EXT_SIZE(ext);
@@ -499,8 +499,8 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
         }
     }
 #endif
-    /* Are we the destination of the RREQ?, if so we should immediately send a
-       RREP.. */
+    /* Are we the destination of the VANET_RREQ?, if so we should immediately send a
+       VANET_RREP.. */
 #ifndef OMNETPP
     if (rreq_dest.s_addr == DEV_IFINDEX(ifindex).ipaddr.s_addr)
     {
@@ -508,9 +508,9 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
     if (isLocalAddress (rreq_dest.s_addr))
     {
 #endif
-        /* WE are the RREQ DESTINATION. Update the node's own
+        /* WE are the VANET_RREQ DESTINATION. Update the node's own
            sequence number to the maximum of the current seqno and the
-           one in the RREQ. */
+           one in the VANET_RREQ. */
         if (rreq_dest_seqno != 0)
         {
             if ((int32_t) this_host.seqno < (int32_t) rreq_dest_seqno)
@@ -526,7 +526,7 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
         EV << " create a rrep" << convertAddressToString(DEV_IFINDEX(rev_rt->ifindex).ipaddr.s_addr) << "seq n" << this_host.seqno << " to " << convertAddressToString(rev_rt->dest_addr.s_addr) << "\n";
 #endif
 
-        rrep_send(rrep, rev_rt, NULL, RREP_SIZE);
+        rrep_send(rrep, rev_rt, NULL, VANET_RREP_SIZE);
 
     }
     else if (isBroadcast (rreq_dest.s_addr))
@@ -536,22 +536,22 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
         if (!propagateProactive)
             return;
 
-        /* WE are the RREQ DESTINATION. Update the node's own
+        /* WE are the VANET_RREQ DESTINATION. Update the node's own
            sequence number to the maximum of the current seqno and the
-           one in the RREQ. */
+           one in the VANET_RREQ. */
         seqno_incr(this_host.seqno);
         rrep = rrep_create(0, 0, 0, DEV_IFINDEX(rev_rt->ifindex).ipaddr,this_host.seqno, rev_rt->dest_addr, MY_ROUTE_TIMEOUT);
         rrep->totalHops =  rev_rt->hcnt;
         EV << "Create a rrep" << convertAddressToString(DEV_IFINDEX(rev_rt->ifindex).ipaddr.s_addr) << "seq n" << this_host.seqno << " to " << convertAddressToString(rev_rt->dest_addr.s_addr) << "\n";
-        rrep_send(rrep, rev_rt, NULL, RREP_SIZE);
+        rrep_send(rrep, rev_rt, NULL, VANET_RREP_SIZE);
         if (ip_ttl > 0)
         {
             rreq_forward(rreq, rreqlen, ip_ttl); // the ttl is decremented for ip layer
         }
         else
         {
-            DEBUG(LOG_DEBUG, 0, "RREQ not forwarded - ttl=0");
-            EV << "RREQ not forwarded - ttl=0" << "\n";
+            DEBUG(LOG_DEBUG, 0, "VANET_RREQ not forwarded - ttl=0");
+            EV << "VANET_RREQ not forwarded - ttl=0" << "\n";
         }
         return;
     }
@@ -569,9 +569,9 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
             struct timeval now;
             u_int32_t lifetime;
 
-            /* GENERATE RREP, i.e we have an ACTIVE route entry that is fresh
+            /* GENERATE VANET_RREP, i.e we have an ACTIVE route entry that is fresh
                enough (our destination sequence number for that route is
-               larger than the one in the RREQ). */
+               larger than the one in the VANET_RREQ). */
 
             gettimeofday(&now, NULL);
 #ifdef CONFIG_GATEWAY_DISABLED
@@ -595,7 +595,7 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
                                    lifetime);
                 rrep->totalHops =  rev_rt->hcnt;
 
-                ext = rrep_add_ext(rrep, RREP_INET_DEST_EXT, rrep_size,
+                ext = rrep_add_ext(rrep, VANET_RREP_INET_DEST_EXT, rrep_size,
                                    sizeof(struct in_addr), (char *) &rreq_dest);
 
                 rrep_size += AODVVANET_EXT_SIZE(ext);
@@ -641,15 +641,15 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
 
                 rrep_send(rrep, rev_rt, fwd_rt, rrep_size);
                 /* If the GRATUITOUS flag is set, we must also unicast a
-                   gratuitous RREP to the destination. */
+                   gratuitous VANET_RREP to the destination. */
                 if (rreq->g)
                 {
                     rrep = rrep_create(0, 0, rev_rt->hcnt, rev_rt->dest_addr,
                                        rev_rt->dest_seqno, fwd_rt->dest_addr,
                                        lifetime);
                     rrep->totalHops =  rev_rt->hcnt + fwd_rt->hcnt;
-                    rrep_send(rrep, fwd_rt, rev_rt, RREP_SIZE);
-                    DEBUG(LOG_INFO, 0, "Sending G-RREP to %s with rte to %s",
+                    rrep_send(rrep, fwd_rt, rev_rt, VANET_RREP_SIZE);
+                    DEBUG(LOG_INFO, 0, "Sending G-VANET_RREP to %s with rte to %s",
                           ip_to_str(rreq_dest), ip_to_str(rreq_orig));
                 }
                 return;
@@ -660,16 +660,16 @@ void NS_CLASS rreq_process(RREQ * rreq, int rreqlen, struct in_addr ip_src,
                             goto forward;
                         }
             //      If the GRATUITOUS flag is set, we must also unicast a
-            //             gratuitous RREP to the destination.
+            //             gratuitous VANET_RREP to the destination.
                         if (rreq->g)
                         {
                             rrep = rrep_create(0, 0, rev_rt->hcnt, rev_rt->dest_addr,
                                rev_rt->dest_seqno, fwd_rt->dest_addr,
                                lifetime);
 
-                            rrep_send(rrep, fwd_rt, rev_rt, RREP_SIZE);
+                            rrep_send(rrep, fwd_rt, rev_rt, VANET_RREP_SIZE);
 
-                            DEBUG(LOG_INFO, 0, "Sending G-RREP to %s with rte to %s",
+                            DEBUG(LOG_INFO, 0, "Sending G-VANET_RREP to %s with rte to %s",
                                     ip_to_str(rreq_dest), ip_to_str(rreq_orig));
                         }
                         return;
@@ -701,9 +701,9 @@ forward:
         }
         else
         {
-            DEBUG(LOG_DEBUG, 0, "RREQ not forwarded - ttl=0");
+            DEBUG(LOG_DEBUG, 0, "VANET_RREQ not forwarded - ttl=0");
 #ifdef OMNETPP
-            EV << "RREQ not forwarded - ttl=0" << "\n";
+            EV << "VANET_RREQ not forwarded - ttl=0" << "\n";
 #endif
         }
     }
@@ -749,9 +749,9 @@ void NS_CLASS rreq_route_discovery(struct in_addr dest_addr, u_int8_t flags,
         }
 
         /*  if (rt->flags & RT_INET_DEST) */
-        /*      flags |= RREQ_DEST_ONLY; */
+        /*      flags |= VANET_RREQ_DEST_ONLY; */
 
-        /* A routing table entry waiting for a RREP should not be expunged
+        /* A routing table entry waiting for a VANET_RREP should not be expunged
            before 2 * NET_TRAVERSAL_TIME... */
 #ifdef AODVVANET_USE_STL
         if ((rt->rt_timer.timeout - simTime()) < (2 * NET_TRAVERSAL_TIME))
@@ -768,7 +768,7 @@ void NS_CLASS rreq_route_discovery(struct in_addr dest_addr, u_int8_t flags,
     /* Remember that we are seeking this destination */
     seek_entry = seek_list_insert(dest_addr, dest_seqno, ttl, flags, ipd);
 
-    /* Set a timer for this RREQ */
+    /* Set a timer for this VANET_RREQ */
     if (expanding_ring_search)
         timer_set_timeout(&seek_entry->seek_timer, RING_TRAVERSAL_TIME);
     else
@@ -802,7 +802,7 @@ void NS_CLASS rreq_local_repair(rt_table_t * rt, struct in_addr src_addr,
 
     DEBUG(LOG_DEBUG, 0, "REPAIRING route to %s", ip_to_str(rt->dest_addr));
 
-    /* Caclulate the initial ttl to use for the RREQ. MIN_REPAIR_TTL
+    /* Caclulate the initial ttl to use for the VANET_RREQ. MIN_REPAIR_TTL
        mentioned in the draft is the last known hop count to the
        destination. */
 
@@ -846,7 +846,7 @@ void NS_CLASS rreq_local_repair(rt_table_t * rt, struct in_addr src_addr,
     return;
 }
 
-// proactive RREQ
+// proactive VANET_RREQ
 void NS_CLASS  rreq_proactive (void *arg)
 {
     struct in_addr dest;
@@ -856,7 +856,7 @@ void NS_CLASS  rreq_proactive (void *arg)
          dest.s_addr= ManetAddress(MACAddress::BROADCAST_ADDRESS);
     else
          dest.s_addr= ManetAddress(IPv4Address::ALLONES_ADDRESS);
-    rreq_send(dest,0,NET_DIAMETER, RREQ_DEST_ONLY);
+    rreq_send(dest,0,NET_DIAMETER, VANET_RREQ_DEST_ONLY);
     timer_set_timeout(&proactive_rreq_timer, proactive_rreq_timeout);
 }
 
@@ -886,7 +886,7 @@ NS_STATIC struct rreq_record *NS_CLASS rreq_record_insert(struct in_addr orig_ad
 
     list_add(&rreq_records, &rec->l);
 
-    DEBUG(LOG_INFO, 0, "Buffering RREQ %s rreq_id=%lu time=%u",
+    DEBUG(LOG_INFO, 0, "Buffering VANET_RREQ %s rreq_id=%lu time=%u",
           ip_to_str(orig_addr), rreq_id, PATH_DISCOVERY_TIME);
 
     timer_set_timeout(&rec->rec_timer, PATH_DISCOVERY_TIME);
@@ -993,7 +993,7 @@ NS_STATIC struct rreq_record *NS_CLASS rreq_record_insert(struct in_addr orig_ad
     rreq_records.push_back(rec);
 
 
-    DEBUG(LOG_INFO, 0, "Buffering RREQ %s rreq_id=%lu time=%u",
+    DEBUG(LOG_INFO, 0, "Buffering VANET_RREQ %s rreq_id=%lu time=%u",
           ip_to_str(orig_addr), rreq_id, PATH_DISCOVERY_TIME);
 
     timer_set_timeout(&rec->rec_timer, PATH_DISCOVERY_TIME);

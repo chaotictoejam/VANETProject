@@ -20,8 +20,8 @@
  *
  *
  *****************************************************************************/
-#ifndef _AODVVANET_RERR_H
-#define _AODVVANET_RERR_H
+#ifndef _AODVVANET_VANET_RERR_H
+#define _AODVVANET_VANET_RERR_H
 
 #ifndef NS_NO_GLOBALS
 
@@ -39,8 +39,8 @@
 #include "routing_table.h"
 
 
-/* RERR Flags: */
-#define RERR_NODELETE 0x1
+/* VANET_RERR Flags: */
+#define VANET_RERR_NODELETE 0x1
 
 #ifndef OMNETPP
 /* Extra unreachable destinations... */
@@ -48,8 +48,8 @@ typedef struct
 {
     u_int32_t dest_addr;
     u_int32_t dest_seqno;
-} RERR_udest;
-#define RERR_UDEST_SIZE sizeof(RERR_udest)
+} VANET_RERR_udest;
+#define VANET_RERR_UDEST_SIZE sizeof(VANET_RERR_udest)
 
 typedef struct
 {
@@ -67,24 +67,24 @@ typedef struct
     u_int8_t dest_count;
     u_int32_t dest_addr;
     u_int32_t dest_seqno;
-} RERR;
-#define RERR_SIZE sizeof(RERR)
+} VANET_RERR;
+#define VANET_RERR_SIZE sizeof(VANET_RERR)
 /* Given the total number of unreachable destination this macro
-   returns the RERR size */
-#define RERR_CALC_SIZE(rerr) (RERR_SIZE + (rerr->dest_count-1)*RERR_UDEST_SIZE)
-#define RERR_UDEST_FIRST(rerr) ((RERR_udest *)&rerr->dest_addr)
-#define RERR_UDEST_NEXT(udest) ((RERR_udest *)((char *)udest + RERR_UDEST_SIZE))
+   returns the VANET_RERR size */
+#define VANET_RERR_CALC_SIZE(rerr) (VANET_RERR_SIZE + (rerr->dest_count-1)*VANET_RERR_UDEST_SIZE)
+#define VANET_RERR_UDEST_FIRST(rerr) ((VANET_RERR_udest *)&rerr->dest_addr)
+#define VANET_RERR_UDEST_NEXT(udest) ((VANET_RERR_udest *)((char *)udest + VANET_RERR_UDEST_SIZE))
 
 #endif       /* OMNET++ */
 #endif              /* NS_NO_GLOBALS */
 
 #ifndef NS_NO_DECLARATIONS
-RERR *rerr_create(u_int8_t flags, struct in_addr dest_addr,
+VANET_RERR *rerr_create(u_int8_t flags, struct in_addr dest_addr,
                   u_int32_t dest_seqno);
-void rerr_add_udest(RERR * rerr,struct in_addr udest, u_int32_t udest_seqno);
-void rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
+void rerr_add_udest(VANET_RERR * rerr,struct in_addr udest, u_int32_t udest_seqno);
+void rerr_process(VANET_RERR * rerr, int rerrlen,struct in_addr ip_src,
                   struct in_addr ip_dst);
 #endif              /* NS_NO_DECLARATIONS */
 
-#endif              /* AODVVANET_RERR_H */
+#endif              /* AODVVANET_VANET_RERR_H */
 

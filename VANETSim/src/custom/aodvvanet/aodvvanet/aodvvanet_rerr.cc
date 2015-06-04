@@ -40,36 +40,36 @@
 #include "params.h"
 #endif
 
-RERR *NS_CLASS rerr_create(u_int8_t flags,struct in_addr dest_addr,
+VANET_RERR *NS_CLASS rerr_create(u_int8_t flags,struct in_addr dest_addr,
                            u_int32_t dest_seqno)
 
 {
-    RERR *rerr;
-    DEBUG(LOG_DEBUG, 0, "Assembling RERR about %s seqno=%d",
+    VANET_RERR *rerr;
+    DEBUG(LOG_DEBUG, 0, "Assembling VANET_RERR about %s seqno=%d",
           ip_to_str(dest_addr), dest_seqno);
 #ifndef OMNETPP
-    rerr = (RERR *) aodvvanet_socket_new_msg();
+    rerr = (VANET_RERR *) aodvvanet_socket_new_msg();
     rerr->dest_addr = dest_addr.s_addr;
     rerr->dest_seqno = htonl(dest_seqno);
 #else
-    rerr = new RERR("RouteError");
+    rerr = new VANET_RERR("RouteError");
     rerr->addUdest (dest_addr.s_addr,htonl(dest_seqno));
     totalRerrSend++;
 #endif
-    rerr->type = AODVVANET_RERR;
-    rerr->n = (flags & RERR_NODELETE ? 1 : 0);
+    rerr->type = AODVVANET_VANET_RERR;
+    rerr->n = (flags & VANET_RERR_NODELETE ? 1 : 0);
     rerr->res1 = 0;
     rerr->res2 = 0;
     rerr->dest_count = 1;
     return rerr;
 }
 
-void NS_CLASS rerr_add_udest(RERR * rerr,struct in_addr udest,
+void NS_CLASS rerr_add_udest(VANET_RERR * rerr,struct in_addr udest,
                              u_int32_t udest_seqno)
 {
 #ifndef OMNETPP
-    RERR_udest *ud;
-    ud = (RERR_udest *) ((char *) rerr + RERR_CALC_SIZE(rerr));
+    VANET_RERR_udest *ud;
+    ud = (VANET_RERR_udest *) ((char *) rerr + VANET_RERR_CALC_SIZE(rerr));
     ud->dest_addr = udest.s_addr;
     ud->dest_seqno = htonl(udest_seqno);
     rerr->dest_count++;
@@ -79,11 +79,11 @@ void NS_CLASS rerr_add_udest(RERR * rerr,struct in_addr udest,
 }
 
 
-void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
+void NS_CLASS rerr_process(VANET_RERR * rerr, int rerrlen,struct in_addr ip_src,
                            struct in_addr ip_dst)
 {
-    RERR *new_rerr = NULL;
-    RERR_udest *udest;
+    VANET_RERR *new_rerr = NULL;
+    VANET_RERR_udest *udest;
     rt_table_t *rt;
     u_int32_t rerr_dest_seqno;
     struct in_addr udest_addr, rerr_unicast_dest;
@@ -96,12 +96,12 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
 
     log_pkt_fields((AODVVANET_msg *) rerr);
 
-    if (rerrlen < ((int) RERR_CALC_SIZE(rerr)))
+    if (rerrlen < ((int) VANET_RERR_CALC_SIZE(rerr)))
     {
         alog(LOG_WARNING, 0, __FUNCTION__,
              "IP data too short (%u bytes) from %s to %s. Should be %d bytes.",
              rerrlen, ip_to_str(ip_src), ip_to_str(ip_dst),
-             RERR_CALC_SIZE(rerr));
+             VANET_RERR_CALC_SIZE(rerr));
         return;
     }
 
@@ -111,7 +111,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
 #endif
 
     /* Check which destinations that are unreachable.  */
-    udest = RERR_UDEST_FIRST(rerr);
+    udest = VANET_RERR_UDEST_FIRST(rerr);
 
     while (rerr->dest_count)
     {
@@ -131,11 +131,11 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
             if (0 && (int32_t) rt->dest_seqno > (int32_t) rerr_dest_seqno)
             {
                 DEBUG(LOG_DEBUG, 0, "Udest ignored because of seqno");
-                udest = RERR_UDEST_NEXT(udest);
+                udest = VANET_RERR_UDEST_NEXT(udest);
                 rerr->dest_count--;
                 continue;
             }
-            DEBUG(LOG_DEBUG, 0, "removing rte %s - WAS IN RERR!!",
+            DEBUG(LOG_DEBUG, 0, "removing rte %s - WAS IN VANET_RERR!!",
                   ip_to_str(udest_addr));
 
 #ifdef NS_PORT
@@ -151,11 +151,11 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
 #ifdef OMNETPP
             else
             {
-                if (rt->nprec == 0 && par("RRERFoceDiscover").boolValue() && rt->next_hop.S_addr == ip_src.S_addr)
+                if (rt->nprec == 0 && par("VANET_RRERFoceDiscover").boolValue() && rt->next_hop.S_addr == ip_src.S_addr)
                 {
                     u_int8_t rreq_flags = 0;
                     if (par("targetOnlyRreq").boolValue())
-                        rreq_flags |= RREQ_DEST_ONLY;
+                        rreq_flags |= VANET_RREQ_DEST_ONLY;
                     rreq_route_discovery(udest_addr, rreq_flags, NULL);
                 }
             }
@@ -166,7 +166,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
 
             /* (d) check precursor list for emptiness. If not empty, include
              *         the destination as an unreachable destination in the
-             *         RERR... */
+             *         VANET_RERR... */
             if (rt->nprec && !(rt->flags & RT_REPAIR))
             {
 
@@ -175,7 +175,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
                     u_int8_t flags = 0;
 
                     if (rerr->n)
-                        flags |= RERR_NODELETE;
+                        flags |= VANET_RERR_NODELETE;
 
                     new_rerr = rerr_create(flags, rt->dest_addr,
                                            rt->dest_seqno);
@@ -192,7 +192,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
                 }
                 else
                 {
-                    /* Decide whether new precursors make this a non unicast RERR */
+                    /* Decide whether new precursors make this a non unicast VANET_RERR */
                     rerr_add_udest(new_rerr, rt->dest_addr, rt->dest_seqno);
 
 
@@ -232,7 +232,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
             else
             {
                 DEBUG(LOG_DEBUG, 0,
-                      "Not sending RERR, no precursors or route in RT_REPAIR");
+                      "Not sending VANET_RERR, no precursors or route in RT_REPAIR");
             }
             /* We should delete the precursor list for all unreachable
              *         destinations. */
@@ -243,7 +243,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
         {
             DEBUG(LOG_DEBUG, 0, "Ignoring UDEST %s", ip_to_str(udest_addr));
         }
-        udest = RERR_UDEST_NEXT(udest);
+        udest = VANET_RERR_UDEST_NEXT(udest);
         rerr->dest_count--;
     }               /* End while() */
 #ifdef OMNETPP
@@ -251,7 +251,7 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
         rerr->clearUdest();
 #endif
 
-    /* If a RERR was created, then send it now... */
+    /* If a VANET_RERR was created, then send it now... */
     if (new_rerr)
     {
         rt = rt_table_find(rerr_unicast_dest);
@@ -260,12 +260,12 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
         if (rt && new_rerr->dest_count == 1 && !rerr_unicast_dest.s_addr.isUnspecified())
             aodvvanet_socket_send((AODVVANET_msg *) new_rerr,
                              rerr_unicast_dest,
-                             RERR_CALC_SIZE(new_rerr), 1,
+                             VANET_RERR_CALC_SIZE(new_rerr), 1,
                              &DEV_IFINDEX(rt->ifindex));
 
         else if (new_rerr->dest_count > 0)
         {
-            /* FIXME: Should only transmit RERR on those interfaces
+            /* FIXME: Should only transmit VANET_RERR on those interfaces
              * which have precursor nodes for the broken route */
             numInterfaces = 0;
             for (i = 0; i < MAX_NR_INTERFACES; i++)
@@ -285,11 +285,11 @@ void NS_CLASS rerr_process(RERR * rerr, int rerrlen,struct in_addr ip_src,
 #ifdef OMNETPP
                 if (numInterfaces>1)
                 {
-                    aodvvanet_socket_send((AODVVANET_msg *) new_rerr->dup(), dest,RERR_CALC_SIZE(new_rerr), 1, &DEV_NR(i));
+                    aodvvanet_socket_send((AODVVANET_msg *) new_rerr->dup(), dest,VANET_RERR_CALC_SIZE(new_rerr), 1, &DEV_NR(i));
                 }
                 else
 #endif
-                    aodvvanet_socket_send((AODVVANET_msg *) new_rerr, dest,RERR_CALC_SIZE(new_rerr), 1, &DEV_NR(i));
+                    aodvvanet_socket_send((AODVVANET_msg *) new_rerr, dest,VANET_RERR_CALC_SIZE(new_rerr), 1, &DEV_NR(i));
                 numInterfaces--;
             }
 

@@ -254,7 +254,7 @@ static void nl_kaodvvanet_callback(int sock)
 		rt_table_update_route_timeouts(fwd_rt, rev_rt);
 
 		break;
-	case KAODVVANETM_SEND_RERR:
+	case KAODVVANETM_SEND_VANET_RERR:
 		m = NLMSG_DATA(nlm);
 		dest_addr.s_addr = m->dst;
 		src_addr.s_addr = m->src;
@@ -269,10 +269,10 @@ static void nl_kaodvvanet_callback(int sock)
 
 		do {
 			struct in_addr rerr_dest;
-			RERR *rerr;
+			VANET_RERR *rerr;
 
 			DEBUG(LOG_DEBUG, 0,
-			      "Sending RERR for unsolicited message from %s to dest %s",
+			      "Sending VANET_RERR for unsolicited message from %s to dest %s",
 			      ip_to_str(src_addr), ip_to_str(dest_addr));
 
 			if (fwd_rt) {
@@ -283,7 +283,7 @@ static void nl_kaodvvanet_callback(int sock)
 			} else
 				rerr = rerr_create(0, dest_addr, 0);
 
-			/* Unicast the RERR to the source of the data transmission
+			/* Unicast the VANET_RERR to the source of the data transmission
 			 * if possible, otherwise we broadcast it. */
 
 			if (rev_rt && rev_rt->state == VALID)
@@ -292,7 +292,7 @@ static void nl_kaodvvanet_callback(int sock)
 				rerr_dest.s_addr = AODVVANET_BROADCAST;
 
 			aodvvanet_socket_send((AODVVANET_msg *) rerr, rerr_dest,
-					 RERR_CALC_SIZE(rerr), 1,
+					 VANET_RERR_CALC_SIZE(rerr), 1,
 					 &DEV_IFINDEX(m->ifindex));
 
 			if (wait_on_reboot) {

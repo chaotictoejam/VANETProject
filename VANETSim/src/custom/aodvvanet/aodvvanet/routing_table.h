@@ -55,7 +55,7 @@ struct rt_table
     uint8_t     hopfix;
 
     struct timer rt_timer;  /* The timer associated with this entry */
-    struct timer ack_timer; /* RREP_ack timer for this destination */
+    struct timer ack_timer; /* VANET_RREP_ack timer for this destination */
     struct timer hello_timer;
     struct timeval last_hello_time;
     hash_value hash;
@@ -86,7 +86,7 @@ struct rt_table
     uint8_t     hopfix;
 
     struct timer rt_timer;  /* The timer associated with this entry */
-    struct timer ack_timer; /* RREP_ack timer for this destination */
+    struct timer ack_timer; /* VANET_RREP_ack timer for this destination */
     struct timer hello_timer;
     struct timeval last_hello_time;
     u_int8_t hello_cnt;
