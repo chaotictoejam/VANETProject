@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from custom/base/Vanet_MeshControlInfo.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from custom/vanetrouting/base/Vanet_MeshControlInfo.msg.
 //
 
 #ifndef _VANET_MESHCONTROLINFO_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>custom/base/Vanet_MeshControlInfo.msg:32</tt> by nedtool.
+ * Class generated from <tt>custom/vanetrouting/base/Vanet_MeshControlInfo.msg:32</tt> by nedtool.
  * <pre>
  * //
  * // Control structure for communication between LLC and higher layers

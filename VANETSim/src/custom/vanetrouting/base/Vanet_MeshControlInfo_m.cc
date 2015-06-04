@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from custom/base/ControlVanetRouting.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from custom/vanetrouting/base/Vanet_MeshControlInfo.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:
@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <sstream>
-#include "ControlVanetRouting_m.h"
+#include "Vanet_MeshControlInfo_m.h"
 
 USING_NAMESPACE
 
@@ -53,96 +53,102 @@ inline std::ostream& operator<<(std::ostream& out, const std::vector<T,A>& vec)
 template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
-EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("VanetControlType");
-    if (!e) enums.getInstance()->add(e = new cEnum("VanetControlType"));
-    e->insert(VANET_ROUTE_NO_OPTION, "VANET_ROUTE_NO_OPTION");
-    e->insert(VANET_ROUTE_UPDATE, "VANET_ROUTE_UPDATE");
-    e->insert(VANET_ROUTE_NOROUTE, "VANET_ROUTE_NOROUTE");
-);
-
-Register_Class(ControlVanetRouting);
-
-ControlVanetRouting::ControlVanetRouting(const char *name, int kind) : ::cPacket(name,kind)
+MeshControlInfo::MeshControlInfo() : ::Ieee802Ctrl()
 {
-    this->optionCode_var = VANET_ROUTE_NO_OPTION;
+    this->inputId_var = 0;
+    this->previousFix_var = 0;
+    this->maxHopCollaborative_var = 0;
+    this->collaborativeFeedback_var = 0;
 }
 
-ControlVanetRouting::ControlVanetRouting(const ControlVanetRouting& other) : ::cPacket(other)
+MeshControlInfo::MeshControlInfo(const MeshControlInfo& other) : ::Ieee802Ctrl(other)
 {
     copy(other);
 }
 
-ControlVanetRouting::~ControlVanetRouting()
+MeshControlInfo::~MeshControlInfo()
 {
 }
 
-ControlVanetRouting& ControlVanetRouting::operator=(const ControlVanetRouting& other)
+MeshControlInfo& MeshControlInfo::operator=(const MeshControlInfo& other)
 {
     if (this==&other) return *this;
-    ::cPacket::operator=(other);
+    ::Ieee802Ctrl::operator=(other);
     copy(other);
     return *this;
 }
 
-void ControlVanetRouting::copy(const ControlVanetRouting& other)
+void MeshControlInfo::copy(const MeshControlInfo& other)
 {
-    this->srcAddress_var = other.srcAddress_var;
-    this->destAddress_var = other.destAddress_var;
-    this->optionCode_var = other.optionCode_var;
+    this->inputId_var = other.inputId_var;
+    this->previousFix_var = other.previousFix_var;
+    this->maxHopCollaborative_var = other.maxHopCollaborative_var;
+    this->collaborativeFeedback_var = other.collaborativeFeedback_var;
 }
 
-void ControlVanetRouting::parsimPack(cCommBuffer *b)
+void MeshControlInfo::parsimPack(cCommBuffer *b)
 {
-    ::cPacket::parsimPack(b);
-    doPacking(b,this->srcAddress_var);
-    doPacking(b,this->destAddress_var);
-    doPacking(b,this->optionCode_var);
+    doPacking(b,(::Ieee802Ctrl&)*this);
+    doPacking(b,this->inputId_var);
+    doPacking(b,this->previousFix_var);
+    doPacking(b,this->maxHopCollaborative_var);
+    doPacking(b,this->collaborativeFeedback_var);
 }
 
-void ControlVanetRouting::parsimUnpack(cCommBuffer *b)
+void MeshControlInfo::parsimUnpack(cCommBuffer *b)
 {
-    ::cPacket::parsimUnpack(b);
-    doUnpacking(b,this->srcAddress_var);
-    doUnpacking(b,this->destAddress_var);
-    doUnpacking(b,this->optionCode_var);
+    doUnpacking(b,(::Ieee802Ctrl&)*this);
+    doUnpacking(b,this->inputId_var);
+    doUnpacking(b,this->previousFix_var);
+    doUnpacking(b,this->maxHopCollaborative_var);
+    doUnpacking(b,this->collaborativeFeedback_var);
 }
 
-VanetAddress& ControlVanetRouting::getSrcAddress()
+int MeshControlInfo::getInputId() const
 {
-    return srcAddress_var;
+    return inputId_var;
 }
 
-void ControlVanetRouting::setSrcAddress(const VanetAddress& srcAddress)
+void MeshControlInfo::setInputId(int inputId)
 {
-    this->srcAddress_var = srcAddress;
+    this->inputId_var = inputId;
 }
 
-VanetAddress& ControlVanetRouting::getDestAddress()
+bool MeshControlInfo::getPreviousFix() const
 {
-    return destAddress_var;
+    return previousFix_var;
 }
 
-void ControlVanetRouting::setDestAddress(const VanetAddress& destAddress)
+void MeshControlInfo::setPreviousFix(bool previousFix)
 {
-    this->destAddress_var = destAddress;
+    this->previousFix_var = previousFix;
 }
 
-int ControlVanetRouting::getOptionCode() const
+int MeshControlInfo::getMaxHopCollaborative() const
 {
-    return optionCode_var;
+    return maxHopCollaborative_var;
 }
 
-void ControlVanetRouting::setOptionCode(int optionCode)
+void MeshControlInfo::setMaxHopCollaborative(int maxHopCollaborative)
 {
-    this->optionCode_var = optionCode;
+    this->maxHopCollaborative_var = maxHopCollaborative;
 }
 
-class ControlVanetRoutingDescriptor : public cClassDescriptor
+bool MeshControlInfo::getCollaborativeFeedback() const
+{
+    return collaborativeFeedback_var;
+}
+
+void MeshControlInfo::setCollaborativeFeedback(bool collaborativeFeedback)
+{
+    this->collaborativeFeedback_var = collaborativeFeedback;
+}
+
+class MeshControlInfoDescriptor : public cClassDescriptor
 {
   public:
-    ControlVanetRoutingDescriptor();
-    virtual ~ControlVanetRoutingDescriptor();
+    MeshControlInfoDescriptor();
+    virtual ~MeshControlInfoDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -161,34 +167,34 @@ class ControlVanetRoutingDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(ControlVanetRoutingDescriptor);
+Register_ClassDescriptor(MeshControlInfoDescriptor);
 
-ControlVanetRoutingDescriptor::ControlVanetRoutingDescriptor() : cClassDescriptor("ControlVanetRouting", "cPacket")
+MeshControlInfoDescriptor::MeshControlInfoDescriptor() : cClassDescriptor("MeshControlInfo", "Ieee802Ctrl")
 {
 }
 
-ControlVanetRoutingDescriptor::~ControlVanetRoutingDescriptor()
+MeshControlInfoDescriptor::~MeshControlInfoDescriptor()
 {
 }
 
-bool ControlVanetRoutingDescriptor::doesSupport(cObject *obj) const
+bool MeshControlInfoDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<ControlVanetRouting *>(obj)!=NULL;
+    return dynamic_cast<MeshControlInfo *>(obj)!=NULL;
 }
 
-const char *ControlVanetRoutingDescriptor::getProperty(const char *propertyname) const
+const char *MeshControlInfoDescriptor::getProperty(const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int ControlVanetRoutingDescriptor::getFieldCount(void *object) const
+int MeshControlInfoDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
+    return basedesc ? 4+basedesc->getFieldCount(object) : 4;
 }
 
-unsigned int ControlVanetRoutingDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int MeshControlInfoDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -197,14 +203,15 @@ unsigned int ControlVanetRoutingDescriptor::getFieldTypeFlags(void *object, int 
         field -= basedesc->getFieldCount(object);
     }
     static unsigned int fieldTypeFlags[] = {
-        FD_ISCOMPOUND,
-        FD_ISCOMPOUND,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
         FD_ISEDITABLE,
     };
-    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
 }
 
-const char *ControlVanetRoutingDescriptor::getFieldName(void *object, int field) const
+const char *MeshControlInfoDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -213,24 +220,26 @@ const char *ControlVanetRoutingDescriptor::getFieldName(void *object, int field)
         field -= basedesc->getFieldCount(object);
     }
     static const char *fieldNames[] = {
-        "srcAddress",
-        "destAddress",
-        "optionCode",
+        "inputId",
+        "previousFix",
+        "maxHopCollaborative",
+        "collaborativeFeedback",
     };
-    return (field>=0 && field<3) ? fieldNames[field] : NULL;
+    return (field>=0 && field<4) ? fieldNames[field] : NULL;
 }
 
-int ControlVanetRoutingDescriptor::findField(void *object, const char *fieldName) const
+int MeshControlInfoDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='s' && strcmp(fieldName, "srcAddress")==0) return base+0;
-    if (fieldName[0]=='d' && strcmp(fieldName, "destAddress")==0) return base+1;
-    if (fieldName[0]=='o' && strcmp(fieldName, "optionCode")==0) return base+2;
+    if (fieldName[0]=='i' && strcmp(fieldName, "inputId")==0) return base+0;
+    if (fieldName[0]=='p' && strcmp(fieldName, "previousFix")==0) return base+1;
+    if (fieldName[0]=='m' && strcmp(fieldName, "maxHopCollaborative")==0) return base+2;
+    if (fieldName[0]=='c' && strcmp(fieldName, "collaborativeFeedback")==0) return base+3;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *ControlVanetRoutingDescriptor::getFieldTypeString(void *object, int field) const
+const char *MeshControlInfoDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -239,14 +248,15 @@ const char *ControlVanetRoutingDescriptor::getFieldTypeString(void *object, int 
         field -= basedesc->getFieldCount(object);
     }
     static const char *fieldTypeStrings[] = {
-        "VanetAddress",
-        "VanetAddress",
         "int",
+        "bool",
+        "int",
+        "bool",
     };
-    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *ControlVanetRoutingDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *MeshControlInfoDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -255,14 +265,11 @@ const char *ControlVanetRoutingDescriptor::getFieldProperty(void *object, int fi
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
-        case 2:
-            if (!strcmp(propertyname,"enum")) return "VanetControlType";
-            return NULL;
         default: return NULL;
     }
 }
 
-int ControlVanetRoutingDescriptor::getArraySize(void *object, int field) const
+int MeshControlInfoDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -270,13 +277,13 @@ int ControlVanetRoutingDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    ControlVanetRouting *pp = (ControlVanetRouting *)object; (void)pp;
+    MeshControlInfo *pp = (MeshControlInfo *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string ControlVanetRoutingDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string MeshControlInfoDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -284,16 +291,17 @@ std::string ControlVanetRoutingDescriptor::getFieldAsString(void *object, int fi
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    ControlVanetRouting *pp = (ControlVanetRouting *)object; (void)pp;
+    MeshControlInfo *pp = (MeshControlInfo *)object; (void)pp;
     switch (field) {
-        case 0: {std::stringstream out; out << pp->getSrcAddress(); return out.str();}
-        case 1: {std::stringstream out; out << pp->getDestAddress(); return out.str();}
-        case 2: return long2string(pp->getOptionCode());
+        case 0: return long2string(pp->getInputId());
+        case 1: return bool2string(pp->getPreviousFix());
+        case 2: return long2string(pp->getMaxHopCollaborative());
+        case 3: return bool2string(pp->getCollaborativeFeedback());
         default: return "";
     }
 }
 
-bool ControlVanetRoutingDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool MeshControlInfoDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -301,14 +309,17 @@ bool ControlVanetRoutingDescriptor::setFieldAsString(void *object, int field, in
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    ControlVanetRouting *pp = (ControlVanetRouting *)object; (void)pp;
+    MeshControlInfo *pp = (MeshControlInfo *)object; (void)pp;
     switch (field) {
-        case 2: pp->setOptionCode(string2long(value)); return true;
+        case 0: pp->setInputId(string2long(value)); return true;
+        case 1: pp->setPreviousFix(string2bool(value)); return true;
+        case 2: pp->setMaxHopCollaborative(string2long(value)); return true;
+        case 3: pp->setCollaborativeFeedback(string2bool(value)); return true;
         default: return false;
     }
 }
 
-const char *ControlVanetRoutingDescriptor::getFieldStructName(void *object, int field) const
+const char *MeshControlInfoDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -317,13 +328,11 @@ const char *ControlVanetRoutingDescriptor::getFieldStructName(void *object, int 
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
-        case 0: return opp_typename(typeid(VanetAddress));
-        case 1: return opp_typename(typeid(VanetAddress));
         default: return NULL;
     };
 }
 
-void *ControlVanetRoutingDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *MeshControlInfoDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -331,10 +340,8 @@ void *ControlVanetRoutingDescriptor::getFieldStructPointer(void *object, int fie
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    ControlVanetRouting *pp = (ControlVanetRouting *)object; (void)pp;
+    MeshControlInfo *pp = (MeshControlInfo *)object; (void)pp;
     switch (field) {
-        case 0: return (void *)(&pp->getSrcAddress()); break;
-        case 1: return (void *)(&pp->getDestAddress()); break;
         default: return NULL;
     }
 }

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from custom/base/Vanet_ControlInfoBreakLink.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from custom/vanetrouting/base/Vanet_LocatorNotificationInfo.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:
@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <sstream>
-#include "Vanet_ControlInfoBreakLink_m.h"
+#include "Vanet_LocatorNotificationInfo_m.h"
 
 USING_NAMESPACE
 
@@ -53,22 +53,22 @@ inline std::ostream& operator<<(std::ostream& out, const std::vector<T,A>& vec)
 template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
-Register_Class(Vanet_ControlInfoBreakLink);
+Register_Class(Vanet_LocatorNotificationInfo);
 
-Vanet_ControlInfoBreakLink::Vanet_ControlInfoBreakLink() : ::cObject()
+Vanet_LocatorNotificationInfo::Vanet_LocatorNotificationInfo() : ::cObject()
 {
 }
 
-Vanet_ControlInfoBreakLink::Vanet_ControlInfoBreakLink(const Vanet_ControlInfoBreakLink& other) : ::cObject(other)
+Vanet_LocatorNotificationInfo::Vanet_LocatorNotificationInfo(const Vanet_LocatorNotificationInfo& other) : ::cObject(other)
 {
     copy(other);
 }
 
-Vanet_ControlInfoBreakLink::~Vanet_ControlInfoBreakLink()
+Vanet_LocatorNotificationInfo::~Vanet_LocatorNotificationInfo()
 {
 }
 
-Vanet_ControlInfoBreakLink& Vanet_ControlInfoBreakLink::operator=(const Vanet_ControlInfoBreakLink& other)
+Vanet_LocatorNotificationInfo& Vanet_LocatorNotificationInfo::operator=(const Vanet_LocatorNotificationInfo& other)
 {
     if (this==&other) return *this;
     ::cObject::operator=(other);
@@ -76,36 +76,49 @@ Vanet_ControlInfoBreakLink& Vanet_ControlInfoBreakLink::operator=(const Vanet_Co
     return *this;
 }
 
-void Vanet_ControlInfoBreakLink::copy(const Vanet_ControlInfoBreakLink& other)
+void Vanet_LocatorNotificationInfo::copy(const Vanet_LocatorNotificationInfo& other)
 {
-    this->dest_var = other.dest_var;
+    this->macAddr_var = other.macAddr_var;
+    this->ipAddr_var = other.ipAddr_var;
 }
 
-void Vanet_ControlInfoBreakLink::parsimPack(cCommBuffer *b)
+void Vanet_LocatorNotificationInfo::parsimPack(cCommBuffer *b)
 {
-    doPacking(b,this->dest_var);
+    doPacking(b,this->macAddr_var);
+    doPacking(b,this->ipAddr_var);
 }
 
-void Vanet_ControlInfoBreakLink::parsimUnpack(cCommBuffer *b)
+void Vanet_LocatorNotificationInfo::parsimUnpack(cCommBuffer *b)
 {
-    doUnpacking(b,this->dest_var);
+    doUnpacking(b,this->macAddr_var);
+    doUnpacking(b,this->ipAddr_var);
 }
 
-MACAddress& Vanet_ControlInfoBreakLink::getDest()
+MACAddress& Vanet_LocatorNotificationInfo::getMacAddr()
 {
-    return dest_var;
+    return macAddr_var;
 }
 
-void Vanet_ControlInfoBreakLink::setDest(const MACAddress& dest)
+void Vanet_LocatorNotificationInfo::setMacAddr(const MACAddress& macAddr)
 {
-    this->dest_var = dest;
+    this->macAddr_var = macAddr;
 }
 
-class Vanet_ControlInfoBreakLinkDescriptor : public cClassDescriptor
+IPv4Address& Vanet_LocatorNotificationInfo::getIpAddr()
+{
+    return ipAddr_var;
+}
+
+void Vanet_LocatorNotificationInfo::setIpAddr(const IPv4Address& ipAddr)
+{
+    this->ipAddr_var = ipAddr;
+}
+
+class Vanet_LocatorNotificationInfoDescriptor : public cClassDescriptor
 {
   public:
-    Vanet_ControlInfoBreakLinkDescriptor();
-    virtual ~Vanet_ControlInfoBreakLinkDescriptor();
+    Vanet_LocatorNotificationInfoDescriptor();
+    virtual ~Vanet_LocatorNotificationInfoDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -124,34 +137,34 @@ class Vanet_ControlInfoBreakLinkDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(Vanet_ControlInfoBreakLinkDescriptor);
+Register_ClassDescriptor(Vanet_LocatorNotificationInfoDescriptor);
 
-Vanet_ControlInfoBreakLinkDescriptor::Vanet_ControlInfoBreakLinkDescriptor() : cClassDescriptor("Vanet_ControlInfoBreakLink", "cObject")
+Vanet_LocatorNotificationInfoDescriptor::Vanet_LocatorNotificationInfoDescriptor() : cClassDescriptor("Vanet_LocatorNotificationInfo", "cObject")
 {
 }
 
-Vanet_ControlInfoBreakLinkDescriptor::~Vanet_ControlInfoBreakLinkDescriptor()
+Vanet_LocatorNotificationInfoDescriptor::~Vanet_LocatorNotificationInfoDescriptor()
 {
 }
 
-bool Vanet_ControlInfoBreakLinkDescriptor::doesSupport(cObject *obj) const
+bool Vanet_LocatorNotificationInfoDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<Vanet_ControlInfoBreakLink *>(obj)!=NULL;
+    return dynamic_cast<Vanet_LocatorNotificationInfo *>(obj)!=NULL;
 }
 
-const char *Vanet_ControlInfoBreakLinkDescriptor::getProperty(const char *propertyname) const
+const char *Vanet_LocatorNotificationInfoDescriptor::getProperty(const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int Vanet_ControlInfoBreakLinkDescriptor::getFieldCount(void *object) const
+int Vanet_LocatorNotificationInfoDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
 }
 
-unsigned int Vanet_ControlInfoBreakLinkDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int Vanet_LocatorNotificationInfoDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -161,11 +174,12 @@ unsigned int Vanet_ControlInfoBreakLinkDescriptor::getFieldTypeFlags(void *objec
     }
     static unsigned int fieldTypeFlags[] = {
         FD_ISCOMPOUND,
+        FD_ISCOMPOUND,
     };
-    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
 }
 
-const char *Vanet_ControlInfoBreakLinkDescriptor::getFieldName(void *object, int field) const
+const char *Vanet_LocatorNotificationInfoDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -174,20 +188,22 @@ const char *Vanet_ControlInfoBreakLinkDescriptor::getFieldName(void *object, int
         field -= basedesc->getFieldCount(object);
     }
     static const char *fieldNames[] = {
-        "dest",
+        "macAddr",
+        "ipAddr",
     };
-    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+    return (field>=0 && field<2) ? fieldNames[field] : NULL;
 }
 
-int Vanet_ControlInfoBreakLinkDescriptor::findField(void *object, const char *fieldName) const
+int Vanet_LocatorNotificationInfoDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='d' && strcmp(fieldName, "dest")==0) return base+0;
+    if (fieldName[0]=='m' && strcmp(fieldName, "macAddr")==0) return base+0;
+    if (fieldName[0]=='i' && strcmp(fieldName, "ipAddr")==0) return base+1;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *Vanet_ControlInfoBreakLinkDescriptor::getFieldTypeString(void *object, int field) const
+const char *Vanet_LocatorNotificationInfoDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -197,11 +213,12 @@ const char *Vanet_ControlInfoBreakLinkDescriptor::getFieldTypeString(void *objec
     }
     static const char *fieldTypeStrings[] = {
         "MACAddress",
+        "IPv4Address",
     };
-    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *Vanet_ControlInfoBreakLinkDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *Vanet_LocatorNotificationInfoDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -214,7 +231,7 @@ const char *Vanet_ControlInfoBreakLinkDescriptor::getFieldProperty(void *object,
     }
 }
 
-int Vanet_ControlInfoBreakLinkDescriptor::getArraySize(void *object, int field) const
+int Vanet_LocatorNotificationInfoDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -222,13 +239,13 @@ int Vanet_ControlInfoBreakLinkDescriptor::getArraySize(void *object, int field) 
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    Vanet_ControlInfoBreakLink *pp = (Vanet_ControlInfoBreakLink *)object; (void)pp;
+    Vanet_LocatorNotificationInfo *pp = (Vanet_LocatorNotificationInfo *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string Vanet_ControlInfoBreakLinkDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string Vanet_LocatorNotificationInfoDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -236,14 +253,15 @@ std::string Vanet_ControlInfoBreakLinkDescriptor::getFieldAsString(void *object,
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    Vanet_ControlInfoBreakLink *pp = (Vanet_ControlInfoBreakLink *)object; (void)pp;
+    Vanet_LocatorNotificationInfo *pp = (Vanet_LocatorNotificationInfo *)object; (void)pp;
     switch (field) {
-        case 0: {std::stringstream out; out << pp->getDest(); return out.str();}
+        case 0: {std::stringstream out; out << pp->getMacAddr(); return out.str();}
+        case 1: {std::stringstream out; out << pp->getIpAddr(); return out.str();}
         default: return "";
     }
 }
 
-bool Vanet_ControlInfoBreakLinkDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool Vanet_LocatorNotificationInfoDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -251,13 +269,13 @@ bool Vanet_ControlInfoBreakLinkDescriptor::setFieldAsString(void *object, int fi
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    Vanet_ControlInfoBreakLink *pp = (Vanet_ControlInfoBreakLink *)object; (void)pp;
+    Vanet_LocatorNotificationInfo *pp = (Vanet_LocatorNotificationInfo *)object; (void)pp;
     switch (field) {
         default: return false;
     }
 }
 
-const char *Vanet_ControlInfoBreakLinkDescriptor::getFieldStructName(void *object, int field) const
+const char *Vanet_LocatorNotificationInfoDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -267,11 +285,12 @@ const char *Vanet_ControlInfoBreakLinkDescriptor::getFieldStructName(void *objec
     }
     switch (field) {
         case 0: return opp_typename(typeid(MACAddress));
+        case 1: return opp_typename(typeid(IPv4Address));
         default: return NULL;
     };
 }
 
-void *Vanet_ControlInfoBreakLinkDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *Vanet_LocatorNotificationInfoDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -279,9 +298,10 @@ void *Vanet_ControlInfoBreakLinkDescriptor::getFieldStructPointer(void *object, 
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    Vanet_ControlInfoBreakLink *pp = (Vanet_ControlInfoBreakLink *)object; (void)pp;
+    Vanet_LocatorNotificationInfo *pp = (Vanet_LocatorNotificationInfo *)object; (void)pp;
     switch (field) {
-        case 0: return (void *)(&pp->getDest()); break;
+        case 0: return (void *)(&pp->getMacAddr()); break;
+        case 1: return (void *)(&pp->getIpAddr()); break;
         default: return NULL;
     }
 }

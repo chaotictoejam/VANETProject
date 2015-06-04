@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from custom/base/Vanet_ControlInfoBreakLink.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from custom/vanetrouting/base/Vanet_ControlInfoBreakLink.msg.
 //
 
 #ifndef _VANET_CONTROLINFOBREAKLINK_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>custom/base/Vanet_ControlInfoBreakLink.msg:28</tt> by nedtool.
+ * Class generated from <tt>custom/vanetrouting/base/Vanet_ControlInfoBreakLink.msg:28</tt> by nedtool.
  * <pre>
  * class Vanet_ControlInfoBreakLink
  * {

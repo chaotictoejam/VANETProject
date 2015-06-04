@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from custom/base/Vanet_MeshControlInfo.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from custom/vanetrouting/base/Vanet_ControlInfoBreakLink.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:
@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <sstream>
-#include "Vanet_MeshControlInfo_m.h"
+#include "Vanet_ControlInfoBreakLink_m.h"
 
 USING_NAMESPACE
 
@@ -53,102 +53,59 @@ inline std::ostream& operator<<(std::ostream& out, const std::vector<T,A>& vec)
 template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
-MeshControlInfo::MeshControlInfo() : ::Ieee802Ctrl()
+Register_Class(Vanet_ControlInfoBreakLink);
+
+Vanet_ControlInfoBreakLink::Vanet_ControlInfoBreakLink() : ::cObject()
 {
-    this->inputId_var = 0;
-    this->previousFix_var = 0;
-    this->maxHopCollaborative_var = 0;
-    this->collaborativeFeedback_var = 0;
 }
 
-MeshControlInfo::MeshControlInfo(const MeshControlInfo& other) : ::Ieee802Ctrl(other)
+Vanet_ControlInfoBreakLink::Vanet_ControlInfoBreakLink(const Vanet_ControlInfoBreakLink& other) : ::cObject(other)
 {
     copy(other);
 }
 
-MeshControlInfo::~MeshControlInfo()
+Vanet_ControlInfoBreakLink::~Vanet_ControlInfoBreakLink()
 {
 }
 
-MeshControlInfo& MeshControlInfo::operator=(const MeshControlInfo& other)
+Vanet_ControlInfoBreakLink& Vanet_ControlInfoBreakLink::operator=(const Vanet_ControlInfoBreakLink& other)
 {
     if (this==&other) return *this;
-    ::Ieee802Ctrl::operator=(other);
+    ::cObject::operator=(other);
     copy(other);
     return *this;
 }
 
-void MeshControlInfo::copy(const MeshControlInfo& other)
+void Vanet_ControlInfoBreakLink::copy(const Vanet_ControlInfoBreakLink& other)
 {
-    this->inputId_var = other.inputId_var;
-    this->previousFix_var = other.previousFix_var;
-    this->maxHopCollaborative_var = other.maxHopCollaborative_var;
-    this->collaborativeFeedback_var = other.collaborativeFeedback_var;
+    this->dest_var = other.dest_var;
 }
 
-void MeshControlInfo::parsimPack(cCommBuffer *b)
+void Vanet_ControlInfoBreakLink::parsimPack(cCommBuffer *b)
 {
-    doPacking(b,(::Ieee802Ctrl&)*this);
-    doPacking(b,this->inputId_var);
-    doPacking(b,this->previousFix_var);
-    doPacking(b,this->maxHopCollaborative_var);
-    doPacking(b,this->collaborativeFeedback_var);
+    doPacking(b,this->dest_var);
 }
 
-void MeshControlInfo::parsimUnpack(cCommBuffer *b)
+void Vanet_ControlInfoBreakLink::parsimUnpack(cCommBuffer *b)
 {
-    doUnpacking(b,(::Ieee802Ctrl&)*this);
-    doUnpacking(b,this->inputId_var);
-    doUnpacking(b,this->previousFix_var);
-    doUnpacking(b,this->maxHopCollaborative_var);
-    doUnpacking(b,this->collaborativeFeedback_var);
+    doUnpacking(b,this->dest_var);
 }
 
-int MeshControlInfo::getInputId() const
+MACAddress& Vanet_ControlInfoBreakLink::getDest()
 {
-    return inputId_var;
+    return dest_var;
 }
 
-void MeshControlInfo::setInputId(int inputId)
+void Vanet_ControlInfoBreakLink::setDest(const MACAddress& dest)
 {
-    this->inputId_var = inputId;
+    this->dest_var = dest;
 }
 
-bool MeshControlInfo::getPreviousFix() const
-{
-    return previousFix_var;
-}
-
-void MeshControlInfo::setPreviousFix(bool previousFix)
-{
-    this->previousFix_var = previousFix;
-}
-
-int MeshControlInfo::getMaxHopCollaborative() const
-{
-    return maxHopCollaborative_var;
-}
-
-void MeshControlInfo::setMaxHopCollaborative(int maxHopCollaborative)
-{
-    this->maxHopCollaborative_var = maxHopCollaborative;
-}
-
-bool MeshControlInfo::getCollaborativeFeedback() const
-{
-    return collaborativeFeedback_var;
-}
-
-void MeshControlInfo::setCollaborativeFeedback(bool collaborativeFeedback)
-{
-    this->collaborativeFeedback_var = collaborativeFeedback;
-}
-
-class MeshControlInfoDescriptor : public cClassDescriptor
+class Vanet_ControlInfoBreakLinkDescriptor : public cClassDescriptor
 {
   public:
-    MeshControlInfoDescriptor();
-    virtual ~MeshControlInfoDescriptor();
+    Vanet_ControlInfoBreakLinkDescriptor();
+    virtual ~Vanet_ControlInfoBreakLinkDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -167,34 +124,34 @@ class MeshControlInfoDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(MeshControlInfoDescriptor);
+Register_ClassDescriptor(Vanet_ControlInfoBreakLinkDescriptor);
 
-MeshControlInfoDescriptor::MeshControlInfoDescriptor() : cClassDescriptor("MeshControlInfo", "Ieee802Ctrl")
+Vanet_ControlInfoBreakLinkDescriptor::Vanet_ControlInfoBreakLinkDescriptor() : cClassDescriptor("Vanet_ControlInfoBreakLink", "cObject")
 {
 }
 
-MeshControlInfoDescriptor::~MeshControlInfoDescriptor()
+Vanet_ControlInfoBreakLinkDescriptor::~Vanet_ControlInfoBreakLinkDescriptor()
 {
 }
 
-bool MeshControlInfoDescriptor::doesSupport(cObject *obj) const
+bool Vanet_ControlInfoBreakLinkDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<MeshControlInfo *>(obj)!=NULL;
+    return dynamic_cast<Vanet_ControlInfoBreakLink *>(obj)!=NULL;
 }
 
-const char *MeshControlInfoDescriptor::getProperty(const char *propertyname) const
+const char *Vanet_ControlInfoBreakLinkDescriptor::getProperty(const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int MeshControlInfoDescriptor::getFieldCount(void *object) const
+int Vanet_ControlInfoBreakLinkDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 4+basedesc->getFieldCount(object) : 4;
+    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
 }
 
-unsigned int MeshControlInfoDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int Vanet_ControlInfoBreakLinkDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -203,15 +160,12 @@ unsigned int MeshControlInfoDescriptor::getFieldTypeFlags(void *object, int fiel
         field -= basedesc->getFieldCount(object);
     }
     static unsigned int fieldTypeFlags[] = {
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
+        FD_ISCOMPOUND,
     };
-    return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
 }
 
-const char *MeshControlInfoDescriptor::getFieldName(void *object, int field) const
+const char *Vanet_ControlInfoBreakLinkDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -220,26 +174,20 @@ const char *MeshControlInfoDescriptor::getFieldName(void *object, int field) con
         field -= basedesc->getFieldCount(object);
     }
     static const char *fieldNames[] = {
-        "inputId",
-        "previousFix",
-        "maxHopCollaborative",
-        "collaborativeFeedback",
+        "dest",
     };
-    return (field>=0 && field<4) ? fieldNames[field] : NULL;
+    return (field>=0 && field<1) ? fieldNames[field] : NULL;
 }
 
-int MeshControlInfoDescriptor::findField(void *object, const char *fieldName) const
+int Vanet_ControlInfoBreakLinkDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='i' && strcmp(fieldName, "inputId")==0) return base+0;
-    if (fieldName[0]=='p' && strcmp(fieldName, "previousFix")==0) return base+1;
-    if (fieldName[0]=='m' && strcmp(fieldName, "maxHopCollaborative")==0) return base+2;
-    if (fieldName[0]=='c' && strcmp(fieldName, "collaborativeFeedback")==0) return base+3;
+    if (fieldName[0]=='d' && strcmp(fieldName, "dest")==0) return base+0;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *MeshControlInfoDescriptor::getFieldTypeString(void *object, int field) const
+const char *Vanet_ControlInfoBreakLinkDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -248,15 +196,12 @@ const char *MeshControlInfoDescriptor::getFieldTypeString(void *object, int fiel
         field -= basedesc->getFieldCount(object);
     }
     static const char *fieldTypeStrings[] = {
-        "int",
-        "bool",
-        "int",
-        "bool",
+        "MACAddress",
     };
-    return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *MeshControlInfoDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *Vanet_ControlInfoBreakLinkDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -269,7 +214,7 @@ const char *MeshControlInfoDescriptor::getFieldProperty(void *object, int field,
     }
 }
 
-int MeshControlInfoDescriptor::getArraySize(void *object, int field) const
+int Vanet_ControlInfoBreakLinkDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -277,13 +222,13 @@ int MeshControlInfoDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    MeshControlInfo *pp = (MeshControlInfo *)object; (void)pp;
+    Vanet_ControlInfoBreakLink *pp = (Vanet_ControlInfoBreakLink *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string MeshControlInfoDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string Vanet_ControlInfoBreakLinkDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -291,17 +236,14 @@ std::string MeshControlInfoDescriptor::getFieldAsString(void *object, int field,
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    MeshControlInfo *pp = (MeshControlInfo *)object; (void)pp;
+    Vanet_ControlInfoBreakLink *pp = (Vanet_ControlInfoBreakLink *)object; (void)pp;
     switch (field) {
-        case 0: return long2string(pp->getInputId());
-        case 1: return bool2string(pp->getPreviousFix());
-        case 2: return long2string(pp->getMaxHopCollaborative());
-        case 3: return bool2string(pp->getCollaborativeFeedback());
+        case 0: {std::stringstream out; out << pp->getDest(); return out.str();}
         default: return "";
     }
 }
 
-bool MeshControlInfoDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool Vanet_ControlInfoBreakLinkDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -309,17 +251,13 @@ bool MeshControlInfoDescriptor::setFieldAsString(void *object, int field, int i,
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    MeshControlInfo *pp = (MeshControlInfo *)object; (void)pp;
+    Vanet_ControlInfoBreakLink *pp = (Vanet_ControlInfoBreakLink *)object; (void)pp;
     switch (field) {
-        case 0: pp->setInputId(string2long(value)); return true;
-        case 1: pp->setPreviousFix(string2bool(value)); return true;
-        case 2: pp->setMaxHopCollaborative(string2long(value)); return true;
-        case 3: pp->setCollaborativeFeedback(string2bool(value)); return true;
         default: return false;
     }
 }
 
-const char *MeshControlInfoDescriptor::getFieldStructName(void *object, int field) const
+const char *Vanet_ControlInfoBreakLinkDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -328,11 +266,12 @@ const char *MeshControlInfoDescriptor::getFieldStructName(void *object, int fiel
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
+        case 0: return opp_typename(typeid(MACAddress));
         default: return NULL;
     };
 }
 
-void *MeshControlInfoDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *Vanet_ControlInfoBreakLinkDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -340,8 +279,9 @@ void *MeshControlInfoDescriptor::getFieldStructPointer(void *object, int field, 
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    MeshControlInfo *pp = (MeshControlInfo *)object; (void)pp;
+    Vanet_ControlInfoBreakLink *pp = (Vanet_ControlInfoBreakLink *)object; (void)pp;
     switch (field) {
+        case 0: return (void *)(&pp->getDest()); break;
         default: return NULL;
     }
 }

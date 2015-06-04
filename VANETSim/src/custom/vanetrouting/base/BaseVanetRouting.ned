@@ -1,4 +1,4 @@
-package vanetsim.custom.base;
+package vanetsim.custom.vanetrouting.base;
 
 //
 // Base module for vanet routing protocols

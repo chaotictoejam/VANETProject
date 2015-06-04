@@ -48,17 +48,17 @@ typedef uint32_t in_addr_t;
 #endif
 
 //#ifdef _WIN32
-struct In_addr
+struct Vanet_In_addr
 {
     VanetAddress S_addr;
 #undef s_addr
 #define s_addr S_addr
-    In_addr(const In_addr & addr) {S_addr = addr.S_addr;}
-    In_addr() {S_addr = VanetAddress();}
-    In_addr & operator=(const In_addr &other) {if (this==&other) return *this; S_addr = other.S_addr; return *this;}
+    Vanet_In_addr(const Vanet_In_addr & addr) {S_addr = addr.S_addr;}
+    Vanet_In_addr() {S_addr = VanetAddress();}
+    Vanet_In_addr & operator=(const Vanet_In_addr &other) {if (this==&other) return *this; S_addr = other.S_addr; return *this;}
 };
 
-struct Sockaddr
+struct Vanet_Sockaddr
 {
     sa_family_t sa_family;  /* address family, AF_xxx   */
     char        sa_data[14];    /* 14 bytes of protocol address */
@@ -67,7 +67,7 @@ struct Sockaddr
 #undef in_addr
 #undef sockaddr
 
-#define in_addr In_addr
-#define sockaddr Sockaddr
+#define in_addr Vanet_In_addr
+#define sockaddr Vanet_Sockaddr
 
 #endif              /* _DSR_H */

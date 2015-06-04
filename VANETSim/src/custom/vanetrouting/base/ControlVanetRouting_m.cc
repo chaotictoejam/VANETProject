@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from custom/base/Vanet_LocatorNotificationInfo.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from custom/vanetrouting/base/ControlVanetRouting.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:
@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <sstream>
-#include "Vanet_LocatorNotificationInfo_m.h"
+#include "ControlVanetRouting_m.h"
 
 USING_NAMESPACE
 
@@ -53,72 +53,96 @@ inline std::ostream& operator<<(std::ostream& out, const std::vector<T,A>& vec)
 template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
-Register_Class(Vanet_LocatorNotificationInfo);
+EXECUTE_ON_STARTUP(
+    cEnum *e = cEnum::find("VanetControlType");
+    if (!e) enums.getInstance()->add(e = new cEnum("VanetControlType"));
+    e->insert(VANET_ROUTE_NO_OPTION, "VANET_ROUTE_NO_OPTION");
+    e->insert(VANET_ROUTE_UPDATE, "VANET_ROUTE_UPDATE");
+    e->insert(VANET_ROUTE_NOROUTE, "VANET_ROUTE_NOROUTE");
+);
 
-Vanet_LocatorNotificationInfo::Vanet_LocatorNotificationInfo() : ::cObject()
+Register_Class(ControlVanetRouting);
+
+ControlVanetRouting::ControlVanetRouting(const char *name, int kind) : ::cPacket(name,kind)
 {
+    this->optionCode_var = VANET_ROUTE_NO_OPTION;
 }
 
-Vanet_LocatorNotificationInfo::Vanet_LocatorNotificationInfo(const Vanet_LocatorNotificationInfo& other) : ::cObject(other)
+ControlVanetRouting::ControlVanetRouting(const ControlVanetRouting& other) : ::cPacket(other)
 {
     copy(other);
 }
 
-Vanet_LocatorNotificationInfo::~Vanet_LocatorNotificationInfo()
+ControlVanetRouting::~ControlVanetRouting()
 {
 }
 
-Vanet_LocatorNotificationInfo& Vanet_LocatorNotificationInfo::operator=(const Vanet_LocatorNotificationInfo& other)
+ControlVanetRouting& ControlVanetRouting::operator=(const ControlVanetRouting& other)
 {
     if (this==&other) return *this;
-    ::cObject::operator=(other);
+    ::cPacket::operator=(other);
     copy(other);
     return *this;
 }
 
-void Vanet_LocatorNotificationInfo::copy(const Vanet_LocatorNotificationInfo& other)
+void ControlVanetRouting::copy(const ControlVanetRouting& other)
 {
-    this->macAddr_var = other.macAddr_var;
-    this->ipAddr_var = other.ipAddr_var;
+    this->srcAddress_var = other.srcAddress_var;
+    this->destAddress_var = other.destAddress_var;
+    this->optionCode_var = other.optionCode_var;
 }
 
-void Vanet_LocatorNotificationInfo::parsimPack(cCommBuffer *b)
+void ControlVanetRouting::parsimPack(cCommBuffer *b)
 {
-    doPacking(b,this->macAddr_var);
-    doPacking(b,this->ipAddr_var);
+    ::cPacket::parsimPack(b);
+    doPacking(b,this->srcAddress_var);
+    doPacking(b,this->destAddress_var);
+    doPacking(b,this->optionCode_var);
 }
 
-void Vanet_LocatorNotificationInfo::parsimUnpack(cCommBuffer *b)
+void ControlVanetRouting::parsimUnpack(cCommBuffer *b)
 {
-    doUnpacking(b,this->macAddr_var);
-    doUnpacking(b,this->ipAddr_var);
+    ::cPacket::parsimUnpack(b);
+    doUnpacking(b,this->srcAddress_var);
+    doUnpacking(b,this->destAddress_var);
+    doUnpacking(b,this->optionCode_var);
 }
 
-MACAddress& Vanet_LocatorNotificationInfo::getMacAddr()
+VanetAddress& ControlVanetRouting::getSrcAddress()
 {
-    return macAddr_var;
+    return srcAddress_var;
 }
 
-void Vanet_LocatorNotificationInfo::setMacAddr(const MACAddress& macAddr)
+void ControlVanetRouting::setSrcAddress(const VanetAddress& srcAddress)
 {
-    this->macAddr_var = macAddr;
+    this->srcAddress_var = srcAddress;
 }
 
-IPv4Address& Vanet_LocatorNotificationInfo::getIpAddr()
+VanetAddress& ControlVanetRouting::getDestAddress()
 {
-    return ipAddr_var;
+    return destAddress_var;
 }
 
-void Vanet_LocatorNotificationInfo::setIpAddr(const IPv4Address& ipAddr)
+void ControlVanetRouting::setDestAddress(const VanetAddress& destAddress)
 {
-    this->ipAddr_var = ipAddr;
+    this->destAddress_var = destAddress;
 }
 
-class Vanet_LocatorNotificationInfoDescriptor : public cClassDescriptor
+int ControlVanetRouting::getOptionCode() const
+{
+    return optionCode_var;
+}
+
+void ControlVanetRouting::setOptionCode(int optionCode)
+{
+    this->optionCode_var = optionCode;
+}
+
+class ControlVanetRoutingDescriptor : public cClassDescriptor
 {
   public:
-    Vanet_LocatorNotificationInfoDescriptor();
-    virtual ~Vanet_LocatorNotificationInfoDescriptor();
+    ControlVanetRoutingDescriptor();
+    virtual ~ControlVanetRoutingDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -137,34 +161,34 @@ class Vanet_LocatorNotificationInfoDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(Vanet_LocatorNotificationInfoDescriptor);
+Register_ClassDescriptor(ControlVanetRoutingDescriptor);
 
-Vanet_LocatorNotificationInfoDescriptor::Vanet_LocatorNotificationInfoDescriptor() : cClassDescriptor("Vanet_LocatorNotificationInfo", "cObject")
+ControlVanetRoutingDescriptor::ControlVanetRoutingDescriptor() : cClassDescriptor("ControlVanetRouting", "cPacket")
 {
 }
 
-Vanet_LocatorNotificationInfoDescriptor::~Vanet_LocatorNotificationInfoDescriptor()
+ControlVanetRoutingDescriptor::~ControlVanetRoutingDescriptor()
 {
 }
 
-bool Vanet_LocatorNotificationInfoDescriptor::doesSupport(cObject *obj) const
+bool ControlVanetRoutingDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<Vanet_LocatorNotificationInfo *>(obj)!=NULL;
+    return dynamic_cast<ControlVanetRouting *>(obj)!=NULL;
 }
 
-const char *Vanet_LocatorNotificationInfoDescriptor::getProperty(const char *propertyname) const
+const char *ControlVanetRoutingDescriptor::getProperty(const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int Vanet_LocatorNotificationInfoDescriptor::getFieldCount(void *object) const
+int ControlVanetRoutingDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
+    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
 }
 
-unsigned int Vanet_LocatorNotificationInfoDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int ControlVanetRoutingDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -175,11 +199,12 @@ unsigned int Vanet_LocatorNotificationInfoDescriptor::getFieldTypeFlags(void *ob
     static unsigned int fieldTypeFlags[] = {
         FD_ISCOMPOUND,
         FD_ISCOMPOUND,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
 }
 
-const char *Vanet_LocatorNotificationInfoDescriptor::getFieldName(void *object, int field) const
+const char *ControlVanetRoutingDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -188,22 +213,24 @@ const char *Vanet_LocatorNotificationInfoDescriptor::getFieldName(void *object, 
         field -= basedesc->getFieldCount(object);
     }
     static const char *fieldNames[] = {
-        "macAddr",
-        "ipAddr",
+        "srcAddress",
+        "destAddress",
+        "optionCode",
     };
-    return (field>=0 && field<2) ? fieldNames[field] : NULL;
+    return (field>=0 && field<3) ? fieldNames[field] : NULL;
 }
 
-int Vanet_LocatorNotificationInfoDescriptor::findField(void *object, const char *fieldName) const
+int ControlVanetRoutingDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='m' && strcmp(fieldName, "macAddr")==0) return base+0;
-    if (fieldName[0]=='i' && strcmp(fieldName, "ipAddr")==0) return base+1;
+    if (fieldName[0]=='s' && strcmp(fieldName, "srcAddress")==0) return base+0;
+    if (fieldName[0]=='d' && strcmp(fieldName, "destAddress")==0) return base+1;
+    if (fieldName[0]=='o' && strcmp(fieldName, "optionCode")==0) return base+2;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *Vanet_LocatorNotificationInfoDescriptor::getFieldTypeString(void *object, int field) const
+const char *ControlVanetRoutingDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -212,13 +239,14 @@ const char *Vanet_LocatorNotificationInfoDescriptor::getFieldTypeString(void *ob
         field -= basedesc->getFieldCount(object);
     }
     static const char *fieldTypeStrings[] = {
-        "MACAddress",
-        "IPv4Address",
+        "VanetAddress",
+        "VanetAddress",
+        "int",
     };
-    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *Vanet_LocatorNotificationInfoDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *ControlVanetRoutingDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -227,11 +255,14 @@ const char *Vanet_LocatorNotificationInfoDescriptor::getFieldProperty(void *obje
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
+        case 2:
+            if (!strcmp(propertyname,"enum")) return "VanetControlType";
+            return NULL;
         default: return NULL;
     }
 }
 
-int Vanet_LocatorNotificationInfoDescriptor::getArraySize(void *object, int field) const
+int ControlVanetRoutingDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -239,13 +270,13 @@ int Vanet_LocatorNotificationInfoDescriptor::getArraySize(void *object, int fiel
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    Vanet_LocatorNotificationInfo *pp = (Vanet_LocatorNotificationInfo *)object; (void)pp;
+    ControlVanetRouting *pp = (ControlVanetRouting *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string Vanet_LocatorNotificationInfoDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string ControlVanetRoutingDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -253,15 +284,16 @@ std::string Vanet_LocatorNotificationInfoDescriptor::getFieldAsString(void *obje
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    Vanet_LocatorNotificationInfo *pp = (Vanet_LocatorNotificationInfo *)object; (void)pp;
+    ControlVanetRouting *pp = (ControlVanetRouting *)object; (void)pp;
     switch (field) {
-        case 0: {std::stringstream out; out << pp->getMacAddr(); return out.str();}
-        case 1: {std::stringstream out; out << pp->getIpAddr(); return out.str();}
+        case 0: {std::stringstream out; out << pp->getSrcAddress(); return out.str();}
+        case 1: {std::stringstream out; out << pp->getDestAddress(); return out.str();}
+        case 2: return long2string(pp->getOptionCode());
         default: return "";
     }
 }
 
-bool Vanet_LocatorNotificationInfoDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool ControlVanetRoutingDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -269,13 +301,14 @@ bool Vanet_LocatorNotificationInfoDescriptor::setFieldAsString(void *object, int
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    Vanet_LocatorNotificationInfo *pp = (Vanet_LocatorNotificationInfo *)object; (void)pp;
+    ControlVanetRouting *pp = (ControlVanetRouting *)object; (void)pp;
     switch (field) {
+        case 2: pp->setOptionCode(string2long(value)); return true;
         default: return false;
     }
 }
 
-const char *Vanet_LocatorNotificationInfoDescriptor::getFieldStructName(void *object, int field) const
+const char *ControlVanetRoutingDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -284,13 +317,13 @@ const char *Vanet_LocatorNotificationInfoDescriptor::getFieldStructName(void *ob
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
-        case 0: return opp_typename(typeid(MACAddress));
-        case 1: return opp_typename(typeid(IPv4Address));
+        case 0: return opp_typename(typeid(VanetAddress));
+        case 1: return opp_typename(typeid(VanetAddress));
         default: return NULL;
     };
 }
 
-void *Vanet_LocatorNotificationInfoDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *ControlVanetRoutingDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -298,10 +331,10 @@ void *Vanet_LocatorNotificationInfoDescriptor::getFieldStructPointer(void *objec
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    Vanet_LocatorNotificationInfo *pp = (Vanet_LocatorNotificationInfo *)object; (void)pp;
+    ControlVanetRouting *pp = (ControlVanetRouting *)object; (void)pp;
     switch (field) {
-        case 0: return (void *)(&pp->getMacAddr()); break;
-        case 1: return (void *)(&pp->getIpAddr()); break;
+        case 0: return (void *)(&pp->getSrcAddress()); break;
+        case 1: return (void *)(&pp->getDestAddress()); break;
         default: return NULL;
     }
 }

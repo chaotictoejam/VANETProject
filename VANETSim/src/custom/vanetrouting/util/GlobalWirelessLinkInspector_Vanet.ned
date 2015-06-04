@@ -16,7 +16,7 @@
 
 
 
-package vanetsim.custom.util;
+package vanetsim.custom.vanetrouting.util;
 
 
 simple GlobalWirelessLinkInspector_Vanet_Vanet
