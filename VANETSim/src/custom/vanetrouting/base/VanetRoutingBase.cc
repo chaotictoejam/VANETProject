@@ -1,6 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2008 by Alfonso Ariza                                   *
  *   Copyright (C) 2012 by Alfonso Ariza                                   *
+ *   Copyright (C) 2015 Joanne Skiles                                      *
  *   aarizaq@uma.es                                                        *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *

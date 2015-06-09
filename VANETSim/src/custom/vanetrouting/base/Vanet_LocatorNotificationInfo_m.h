@@ -21,7 +21,7 @@
 // }}
 
 /**
- * Class generated from <tt>custom/vanetrouting/base/Vanet_LocatorNotificationInfo.msg:30</tt> by nedtool.
+ * Class generated from <tt>custom/vanetrouting/base/Vanet_LocatorNotificationInfo.msg:31</tt> by nedtool.
  * <pre>
  * class Vanet_LocatorNotificationInfo
  * {

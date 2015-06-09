@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>custom/vanetrouting/base/ControlVanetRouting.msg:27</tt> by nedtool.
+ * Enum generated from <tt>custom/vanetrouting/base/ControlVanetRouting.msg:28</tt> by nedtool.
  * <pre>
  * enum VanetControlType
  * {
@@ -38,7 +38,7 @@ enum VanetControlType {
 };
 
 /**
- * Class generated from <tt>custom/vanetrouting/base/ControlVanetRouting.msg:38</tt> by nedtool.
+ * Class generated from <tt>custom/vanetrouting/base/ControlVanetRouting.msg:39</tt> by nedtool.
  * <pre>
  * //
  * // ICMP message class

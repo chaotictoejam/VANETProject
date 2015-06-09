@@ -1,6 +1,6 @@
 //
-//   Copyright (C) 2009 by Alfonso Ariza
-//   Malaga University
+//   Copyright (C) 2015 by Joanne Skiles
+//   Florida Atlantic Unversity
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -20,17 +20,6 @@ package vanetsim.custom;
 import inet.networklayer.manetrouting.base.BaseRouting;
 import inet.networklayer.IManetRouting;
 
-
-//
-// Ad hoc On-Demand Distance Vector (AODV) Routing (rfc3561)
-//
-// Implementation is based on rfc3561 draft 13 and implements
-// all features defined in the rfc except noted below:
-//
-// NOTE:
-//  - The initialization of the routing component is done in stage=4
-//  - Message lengths are calculated assuming IPv4 addresses
-//
 simple BITCAR extends BaseRouting like IManetRouting
 {
     parameters:

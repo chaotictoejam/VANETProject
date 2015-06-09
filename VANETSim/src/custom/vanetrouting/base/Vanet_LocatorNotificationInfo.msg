@@ -1,5 +1,6 @@
 //
 // Copyright (C) 2007 Alfonso Ariza
+// Copyright (C) 2015 Joanne Skiles   
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License

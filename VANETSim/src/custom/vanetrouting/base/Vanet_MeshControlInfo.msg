@@ -1,5 +1,6 @@
 //
 // Copyright (C) 2003 CTIE, Monash University
+// Copyright (C) 2015 Joanne Skiles   
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License

@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>custom/vanetrouting/base/Vanet_MeshControlInfo.msg:32</tt> by nedtool.
+ * Class generated from <tt>custom/vanetrouting/base/Vanet_MeshControlInfo.msg:33</tt> by nedtool.
  * <pre>
  * //
  * // Control structure for communication between LLC and higher layers

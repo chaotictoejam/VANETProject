@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>custom/vanetrouting/base/Vanet_ControlInfoBreakLink.msg:28</tt> by nedtool.
+ * Class generated from <tt>custom/vanetrouting/base/Vanet_ControlInfoBreakLink.msg:29</tt> by nedtool.
  * <pre>
  * class Vanet_ControlInfoBreakLink
  * {
