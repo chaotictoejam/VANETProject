@@ -22,7 +22,7 @@ module GPSRCar
         @node();
         string mobilityType = default("TraCIMobility");
         networkLayer.configurator.networkConfiguratorModule = "";
-        int numHosts;
+        //int numHosts;
     gates:
         input radioIn @directIn;
     submodules:
