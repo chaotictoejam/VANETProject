@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -Xveins -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/ipv4 -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/ieee802154/contract -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/aodv-uu -IF:/GitHub/inetmanet-2.0/src -IF:/GitHub/inetmanet-2.0/src/util/headerserializers -IF:/GitHub/inetmanet-2.0/src/networklayer/common -IF:/GitHub/inetmanet-2.0/src/battery/models -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/dsr -IF:/GitHub/inetmanet-2.0/src/linklayer/radio/propagation -IF:/GitHub/inetmanet-2.0/src/transport/tcp_common -IF:/GitHub/inetmanet-2.0/src/networklayer/contract -IF:/GitHub/inetmanet-2.0/src/wpan/networklayer/contract -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/ipv6 -IF:/GitHub/inetmanet-2.0/src/linklayer/common -IF:/GitHub/inetmanet-2.0/src/world/obstacles -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/radio -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/base -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/aodv-uu/aodv-uu -IF:/GitHub/inetmanet-2.0/src/networklayer/autorouting/ipv4 -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/tcp -IF:/GitHub/inetmanet-2.0/src/networklayer/arp -IF:/GitHub/inetmanet-2.0/src/transport/sctp -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/sctp -IF:/GitHub/inetmanet-2.0/src/base -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv6tunneling -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/bmac -IF:/GitHub/inetmanet-2.0/src/linklayer/contract -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/ieee802154/mac -IF:/GitHub/inetmanet-2.0/src/world/radio -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/mac -IF:/GitHub/inetmanet-2.0/src/transport/udp -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv6 -IF:/GitHub/inetmanet-2.0/src/applications/pingapp -IF:/GitHub/inetmanet-2.0/src/linklayer/radio -IF:/GitHub/inetmanet-2.0/src/networklayer/icmpv6 -IF:/GitHub/inetmanet-2.0/src/transport/contract -IF:/GitHub/inetmanet-2.0/src/mobility/contract -IF:/GitHub/inetmanet-2.0/src/networklayer/routing/aodv -IF:/GitHub/inetmanet-2.0/src/world/powercontrol -IF:/GitHub/inetmanet-2.0/src/linklayer/ethernet -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/udp -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211mesh/locator -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/mgmt -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv4 -IF:/GitHub/inetmanet-2.0/src/wpan/phyLayer/ieee802154 -IF:/GitHub/inetmanet-2.0/src/mobility/common -IF:/GitHub/inetmanet-2.0/src/status -IF:/GitHub/inetmanet-2.0/src/util -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/radio/errormodel -IF:/GitHub/inetmanet-2.0/src/networklayer/xmipv6 -LF:/GitHub/inetmanet-2.0/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KINETMANET_2_0_PROJ=F:/GitHub/inetmanet-2.0
+#  opp_makemake -f --deep -Xveins -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/ipv4 -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/ieee802154/contract -IF:/GitHub/inetmanet-2.0/src -IF:/GitHub/inetmanet-2.0/src/util/headerserializers -IF:/GitHub/inetmanet-2.0/src/networklayer/common -IF:/GitHub/inetmanet-2.0/src/battery/models -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/dsr -IF:/GitHub/inetmanet-2.0/src/linklayer/radio/propagation -IF:/GitHub/inetmanet-2.0/src/networklayer/contract -IF:/GitHub/inetmanet-2.0/src/transport/tcp_common -IF:/GitHub/inetmanet-2.0/src/wpan/networklayer/contract -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/ipv6 -IF:/GitHub/inetmanet-2.0/src/linklayer/common -IF:/GitHub/inetmanet-2.0/src/world/obstacles -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/radio -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/base -IF:/GitHub/inetmanet-2.0/src/networklayer/autorouting/ipv4 -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/tcp -IF:/GitHub/inetmanet-2.0/src/networklayer/arp -IF:/GitHub/inetmanet-2.0/src/transport/sctp -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/sctp -IF:/GitHub/inetmanet-2.0/src/base -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv6tunneling -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/bmac -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/ieee802154/mac -IF:/GitHub/inetmanet-2.0/src/linklayer/contract -IF:/GitHub/inetmanet-2.0/src/world/radio -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/mac -IF:/GitHub/inetmanet-2.0/src/transport/udp -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv6 -IF:/GitHub/inetmanet-2.0/src/applications/pingapp -IF:/GitHub/inetmanet-2.0/src/linklayer/radio -IF:/GitHub/inetmanet-2.0/src/transport/contract -IF:/GitHub/inetmanet-2.0/src/networklayer/icmpv6 -IF:/GitHub/inetmanet-2.0/src/mobility/contract -IF:/GitHub/inetmanet-2.0/src/networklayer/routing/aodv -IF:/GitHub/inetmanet-2.0/src/world/powercontrol -IF:/GitHub/inetmanet-2.0/src/linklayer/ethernet -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/udp -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211mesh/locator -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/mgmt -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv4 -IF:/GitHub/inetmanet-2.0/src/wpan/phyLayer/ieee802154 -IF:/GitHub/inetmanet-2.0/src/mobility/common -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/radio/errormodel -IF:/GitHub/inetmanet-2.0/src/util -IF:/GitHub/inetmanet-2.0/src/status -IF:/GitHub/inetmanet-2.0/src/networklayer/xmipv6 -LF:/GitHub/inetmanet-2.0/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KINETMANET_2_0_PROJ=F:/GitHub/inetmanet-2.0
 #
 
 # Name of target to be created (-o option)
@@ -17,22 +17,20 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
 INCLUDE_PATH = \
     -I$(INETMANET_2_0_PROJ)/src/util/headerserializers/ipv4 \
     -I$(INETMANET_2_0_PROJ)/src/wpan/linklayer/ieee802154/contract \
-    -I$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu \
     -I$(INETMANET_2_0_PROJ)/src \
     -I$(INETMANET_2_0_PROJ)/src/util/headerserializers \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/common \
     -I$(INETMANET_2_0_PROJ)/src/battery/models \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/dsr \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/radio/propagation \
-    -I$(INETMANET_2_0_PROJ)/src/transport/tcp_common \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/contract \
+    -I$(INETMANET_2_0_PROJ)/src/transport/tcp_common \
     -I$(INETMANET_2_0_PROJ)/src/wpan/networklayer/contract \
     -I$(INETMANET_2_0_PROJ)/src/util/headerserializers/ipv6 \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/common \
     -I$(INETMANET_2_0_PROJ)/src/world/obstacles \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211/radio \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base \
-    -I$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/autorouting/ipv4 \
     -I$(INETMANET_2_0_PROJ)/src/util/headerserializers/tcp \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/arp \
@@ -41,16 +39,16 @@ INCLUDE_PATH = \
     -I$(INETMANET_2_0_PROJ)/src/base \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/ipv6tunneling \
     -I$(INETMANET_2_0_PROJ)/src/wpan/linklayer/bmac \
-    -I$(INETMANET_2_0_PROJ)/src/linklayer/contract \
     -I$(INETMANET_2_0_PROJ)/src/wpan/linklayer/ieee802154/mac \
+    -I$(INETMANET_2_0_PROJ)/src/linklayer/contract \
     -I$(INETMANET_2_0_PROJ)/src/world/radio \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211/mac \
     -I$(INETMANET_2_0_PROJ)/src/transport/udp \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/ipv6 \
     -I$(INETMANET_2_0_PROJ)/src/applications/pingapp \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/radio \
-    -I$(INETMANET_2_0_PROJ)/src/networklayer/icmpv6 \
     -I$(INETMANET_2_0_PROJ)/src/transport/contract \
+    -I$(INETMANET_2_0_PROJ)/src/networklayer/icmpv6 \
     -I$(INETMANET_2_0_PROJ)/src/mobility/contract \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/routing/aodv \
     -I$(INETMANET_2_0_PROJ)/src/world/powercontrol \
@@ -61,17 +59,18 @@ INCLUDE_PATH = \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/ipv4 \
     -I$(INETMANET_2_0_PROJ)/src/wpan/phyLayer/ieee802154 \
     -I$(INETMANET_2_0_PROJ)/src/mobility/common \
-    -I$(INETMANET_2_0_PROJ)/src/status \
-    -I$(INETMANET_2_0_PROJ)/src/util \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211/radio/errormodel \
+    -I$(INETMANET_2_0_PROJ)/src/util \
+    -I$(INETMANET_2_0_PROJ)/src/status \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/xmipv6 \
     -I. \
     -Icustom \
-    -Icustom/aodvvanet \
-    -Icustom/aodvvanet/aodvvanet \
-    -Icustom/bitcar \
-    -Icustom/rbvtp \
-    -Icustom/rbvtr \
+    -Icustom/routing \
+    -Icustom/routing/aodvvanet \
+    -Icustom/routing/aodvvanet/aodvvanet \
+    -Icustom/routing/bitcar \
+    -Icustom/routing/rbvtp \
+    -Icustom/routing/rbvtr \
     -Icustom/vanetrouting \
     -Icustom/vanetrouting/base \
     -Icustom/vanetrouting/util \
@@ -92,27 +91,27 @@ O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
 OBJS = \
-    $O/custom/aodvvanet/aodvvanet_msg_struct.o \
-    $O/custom/aodvvanet/aodvvanet_omnet.o \
-    $O/custom/aodvvanet/packet_queue_omnet.o \
-    $O/custom/aodvvanet/aodvvanet/aodvvanet_hello.o \
-    $O/custom/aodvvanet/aodvvanet/aodvvanet_neighbor.o \
-    $O/custom/aodvvanet/aodvvanet/aodvvanet_rerr.o \
-    $O/custom/aodvvanet/aodvvanet/aodvvanet_rrep.o \
-    $O/custom/aodvvanet/aodvvanet/aodvvanet_rreq.o \
-    $O/custom/aodvvanet/aodvvanet/aodvvanet_socket.o \
-    $O/custom/aodvvanet/aodvvanet/aodvvanet_timeout.o \
-    $O/custom/aodvvanet/aodvvanet/debug_aodvvanet.o \
-    $O/custom/aodvvanet/aodvvanet/list.o \
-    $O/custom/aodvvanet/aodvvanet/locality.o \
-    $O/custom/aodvvanet/aodvvanet/routing_table.o \
-    $O/custom/aodvvanet/aodvvanet/seek_list.o \
-    $O/custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.o \
+    $O/custom/routing/aodvvanet/aodvvanet_msg_struct.o \
+    $O/custom/routing/aodvvanet/aodvvanet_omnet.o \
+    $O/custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.o \
+    $O/custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.o \
+    $O/custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.o \
+    $O/custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.o \
+    $O/custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.o \
+    $O/custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.o \
+    $O/custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.o \
+    $O/custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.o \
+    $O/custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.o \
+    $O/custom/routing/aodvvanet/aodvvanet/list_aodvvanet.o \
+    $O/custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.o \
+    $O/custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.o \
+    $O/custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.o \
+    $O/custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.o \
     $O/custom/vanetrouting/base/VanetAddress.o \
     $O/custom/vanetrouting/base/VanetNetfilterHook.o \
     $O/custom/vanetrouting/base/VanetRoutingBase.o \
     $O/custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.o \
-    $O/custom/aodvvanet/aodvvanet_msg_struct_m.o \
+    $O/custom/routing/aodvvanet/aodvvanet_msg_struct_m.o \
     $O/custom/vanetrouting/base/ControlVanetRouting_m.o \
     $O/custom/vanetrouting/base/Vanet_ControlInfoBreakLink_m.o \
     $O/custom/vanetrouting/base/Vanet_LocatorNotificationInfo_m.o \
@@ -120,7 +119,7 @@ OBJS = \
 
 # Message files
 MSGFILES = \
-    custom/aodvvanet/aodvvanet_msg_struct.msg \
+    custom/routing/aodvvanet/aodvvanet_msg_struct.msg \
     custom/vanetrouting/base/ControlVanetRouting.msg \
     custom/vanetrouting/base/Vanet_ControlInfoBreakLink.msg \
     custom/vanetrouting/base/Vanet_LocatorNotificationInfo.msg \
@@ -202,11 +201,12 @@ clean:
 	$(Q)-rm -f VANETSim VANETSim.exe libVANETSim.so libVANETSim.a libVANETSim.dll libVANETSim.dylib
 	$(Q)-rm -f ./*_m.cc ./*_m.h
 	$(Q)-rm -f custom/*_m.cc custom/*_m.h
-	$(Q)-rm -f custom/aodvvanet/*_m.cc custom/aodvvanet/*_m.h
-	$(Q)-rm -f custom/aodvvanet/aodvvanet/*_m.cc custom/aodvvanet/aodvvanet/*_m.h
-	$(Q)-rm -f custom/bitcar/*_m.cc custom/bitcar/*_m.h
-	$(Q)-rm -f custom/rbvtp/*_m.cc custom/rbvtp/*_m.h
-	$(Q)-rm -f custom/rbvtr/*_m.cc custom/rbvtr/*_m.h
+	$(Q)-rm -f custom/routing/*_m.cc custom/routing/*_m.h
+	$(Q)-rm -f custom/routing/aodvvanet/*_m.cc custom/routing/aodvvanet/*_m.h
+	$(Q)-rm -f custom/routing/aodvvanet/aodvvanet/*_m.cc custom/routing/aodvvanet/aodvvanet/*_m.h
+	$(Q)-rm -f custom/routing/bitcar/*_m.cc custom/routing/bitcar/*_m.h
+	$(Q)-rm -f custom/routing/rbvtp/*_m.cc custom/routing/rbvtp/*_m.h
+	$(Q)-rm -f custom/routing/rbvtr/*_m.cc custom/routing/rbvtr/*_m.h
 	$(Q)-rm -f custom/vanetrouting/*_m.cc custom/vanetrouting/*_m.h
 	$(Q)-rm -f custom/vanetrouting/base/*_m.cc custom/vanetrouting/base/*_m.h
 	$(Q)-rm -f custom/vanetrouting/util/*_m.cc custom/vanetrouting/util/*_m.h
@@ -218,12 +218,12 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/aodvvanet/*.cc custom/aodvvanet/aodvvanet/*.cc custom/bitcar/*.cc custom/rbvtp/*.cc custom/rbvtr/*.cc custom/vanetrouting/*.cc custom/vanetrouting/base/*.cc custom/vanetrouting/util/*.cc inet/*.cc inetmanet/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/routing/*.cc custom/routing/aodvvanet/*.cc custom/routing/aodvvanet/aodvvanet/*.cc custom/routing/bitcar/*.cc custom/routing/rbvtp/*.cc custom/routing/rbvtr/*.cc custom/vanetrouting/*.cc custom/vanetrouting/base/*.cc custom/vanetrouting/util/*.cc inet/*.cc inetmanet/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
-$O/custom/aodvvanet/aodvvanet_msg_struct.o: custom/aodvvanet/aodvvanet_msg_struct.cc \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
+$O/custom/routing/aodvvanet/aodvvanet_msg_struct.o: custom/routing/aodvvanet/aodvvanet_msg_struct.cc \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -265,9 +265,9 @@ $O/custom/aodvvanet/aodvvanet_msg_struct.o: custom/aodvvanet/aodvvanet_msg_struc
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet_msg_struct_m.o: custom/aodvvanet/aodvvanet_msg_struct_m.cc \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
+$O/custom/routing/aodvvanet/aodvvanet_msg_struct_m.o: custom/routing/aodvvanet/aodvvanet_msg_struct_m.cc \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/linklayer/contract/MACAddress.h \
@@ -276,26 +276,26 @@ $O/custom/aodvvanet/aodvvanet_msg_struct_m.o: custom/aodvvanet/aodvvanet_msg_str
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPvXAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h
-$O/custom/aodvvanet/aodvvanet_omnet.o: custom/aodvvanet/aodvvanet_omnet.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet_omnet.o: custom/routing/aodvvanet/aodvvanet_omnet.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -340,13 +340,6 @@ $O/custom/aodvvanet/aodvvanet_omnet.o: custom/aodvvanet/aodvvanet_omnet.cc \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ControlManetRouting_m.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
@@ -355,26 +348,26 @@ $O/custom/aodvvanet/aodvvanet_omnet.o: custom/aodvvanet/aodvvanet_omnet.cc \
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket.h \
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket_m.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/packet_queue_omnet.o: custom/aodvvanet/packet_queue_omnet.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.o: custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -414,38 +407,31 @@ $O/custom/aodvvanet/packet_queue_omnet.o: custom/aodvvanet/packet_queue_omnet.cc
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet/aodvvanet_hello.o: custom/aodvvanet/aodvvanet/aodvvanet_hello.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.o: custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -485,38 +471,31 @@ $O/custom/aodvvanet/aodvvanet/aodvvanet_hello.o: custom/aodvvanet/aodvvanet/aodv
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet/aodvvanet_neighbor.o: custom/aodvvanet/aodvvanet/aodvvanet_neighbor.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.o: custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -556,38 +535,31 @@ $O/custom/aodvvanet/aodvvanet/aodvvanet_neighbor.o: custom/aodvvanet/aodvvanet/a
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet/aodvvanet_rerr.o: custom/aodvvanet/aodvvanet/aodvvanet_rerr.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.o: custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -627,38 +599,31 @@ $O/custom/aodvvanet/aodvvanet/aodvvanet_rerr.o: custom/aodvvanet/aodvvanet/aodvv
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet/aodvvanet_rrep.o: custom/aodvvanet/aodvvanet/aodvvanet_rrep.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.o: custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -698,38 +663,31 @@ $O/custom/aodvvanet/aodvvanet/aodvvanet_rrep.o: custom/aodvvanet/aodvvanet/aodvv
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet/aodvvanet_rreq.o: custom/aodvvanet/aodvvanet/aodvvanet_rreq.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.o: custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -769,38 +727,31 @@ $O/custom/aodvvanet/aodvvanet/aodvvanet_rreq.o: custom/aodvvanet/aodvvanet/aodvv
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet/aodvvanet_socket.o: custom/aodvvanet/aodvvanet/aodvvanet_socket.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.o: custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -840,38 +791,31 @@ $O/custom/aodvvanet/aodvvanet/aodvvanet_socket.o: custom/aodvvanet/aodvvanet/aod
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet/aodvvanet_timeout.o: custom/aodvvanet/aodvvanet/aodvvanet_timeout.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.o: custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -911,38 +855,31 @@ $O/custom/aodvvanet/aodvvanet/aodvvanet_timeout.o: custom/aodvvanet/aodvvanet/ao
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet/debug_aodvvanet.o: custom/aodvvanet/aodvvanet/debug_aodvvanet.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.o: custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -982,41 +919,33 @@ $O/custom/aodvvanet/aodvvanet/debug_aodvvanet.o: custom/aodvvanet/aodvvanet/debu
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet/list.o: custom/aodvvanet/aodvvanet/list.cc \
-	custom/aodvvanet/aodvvanet/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h
-$O/custom/aodvvanet/aodvvanet/locality.o: custom/aodvvanet/aodvvanet/locality.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet/list_aodvvanet.o: custom/routing/aodvvanet/aodvvanet/list_aodvvanet.cc \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h
+$O/custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.o: custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -1057,38 +986,31 @@ $O/custom/aodvvanet/aodvvanet/locality.o: custom/aodvvanet/aodvvanet/locality.cc
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet/routing_table.o: custom/aodvvanet/aodvvanet/routing_table.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.o: custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -1128,38 +1050,31 @@ $O/custom/aodvvanet/aodvvanet/routing_table.o: custom/aodvvanet/aodvvanet/routin
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet/seek_list.o: custom/aodvvanet/aodvvanet/seek_list.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.o: custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -1199,38 +1114,31 @@ $O/custom/aodvvanet/aodvvanet/seek_list.o: custom/aodvvanet/aodvvanet/seek_list.
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/compatibility.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.o: custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.cc \
-	custom/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	custom/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	custom/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	custom/aodvvanet/aodvvanet/list.h \
-	custom/aodvvanet/aodvvanet/locality.h \
-	custom/aodvvanet/aodvvanet/params.h \
-	custom/aodvvanet/aodvvanet/routing_table.h \
-	custom/aodvvanet/aodvvanet/seek_list.h \
-	custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	custom/aodvvanet/aodvvanet_msg_struct.h \
-	custom/aodvvanet/aodvvanet_msg_struct_m.h \
-	custom/aodvvanet/aodvvanet_omnet.h \
-	custom/aodvvanet/packet_queue_omnet.h \
+$O/custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.o: custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.cc \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_hello.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rerr.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rrep.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_rreq.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_socket.h \
+	custom/routing/aodvvanet/aodvvanet/aodvvanet_timeout.h \
+	custom/routing/aodvvanet/aodvvanet/debug_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/locality_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/params_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/routing_table_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/seek_list_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct.h \
+	custom/routing/aodvvanet/aodvvanet_msg_struct_m.h \
+	custom/routing/aodvvanet/aodvvanet_omnet.h \
+	custom/routing/aodvvanet/aodvvanet_packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -1270,13 +1178,6 @@ $O/custom/aodvvanet/aodvvanet/timer_queue_aodvvanet.o: custom/aodvvanet/aodvvane
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/aodv-uu/packet_queue_omnet.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base/ManetRoutingBase.h \
