@@ -1,4 +1,4 @@
 # Partial OMNeT++/Tkenv config file -- see $HOME/.tkenvrc as well
-config default-configname	{AODVUU-Orlando}
+config default-configname	{AODVVANET-Simple}
 config default-runnumber	{0}
 
