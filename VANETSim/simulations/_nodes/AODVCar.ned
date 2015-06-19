@@ -9,14 +9,14 @@ import inet.networklayer.ipv4.RoutingTable;
 import inet.transport.udp.UDP;
 import inet.nodes.inet.NetworkLayer;
 import inet.linklayer.ieee80211.Ieee80211Nic;
-import inet.nodes.gpsr.GPSRRouter;
+import inet.nodes.aodv.AODVRouter;
 import inet.world.radio.ChannelControl;
 import inet.world.scenario.ScenarioManager;
 import inet.base.LifecycleController;
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.networklayer.ipv4.RoutingTableRecorder;
 
-module GPSRCar
+module AODVCar
 {
     parameters:
         @node();
@@ -68,9 +68,8 @@ module GPSRCar
             parameters:
                 @display("p=304,461;q=queue");
         }
-        manetrouting: GPSRRouter {
-            parameters:
-                @display("i=device/pocketpc_s;r=,,#707070");
+        manetrouting: AODVRouter {
+            @display("p=522,307");
         }
         configurator: IPv4NetworkConfigurator {
             parameters:
