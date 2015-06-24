@@ -74,7 +74,6 @@ INCLUDE_PATH = \
     -Icustom/vanetrouting \
     -Icustom/vanetrouting/base \
     -Icustom/vanetrouting/util \
-    -Iinet \
     -Iinetmanet
 
 # Additional object and library files to link with
@@ -210,7 +209,6 @@ clean:
 	$(Q)-rm -f custom/vanetrouting/*_m.cc custom/vanetrouting/*_m.h
 	$(Q)-rm -f custom/vanetrouting/base/*_m.cc custom/vanetrouting/base/*_m.h
 	$(Q)-rm -f custom/vanetrouting/util/*_m.cc custom/vanetrouting/util/*_m.h
-	$(Q)-rm -f inet/*_m.cc inet/*_m.h
 	$(Q)-rm -f inetmanet/*_m.cc inetmanet/*_m.h
 
 cleanall: clean
@@ -218,7 +216,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/routing/*.cc custom/routing/aodvvanet/*.cc custom/routing/aodvvanet/aodvvanet/*.cc custom/routing/bitcar/*.cc custom/routing/rbvtp/*.cc custom/routing/rbvtr/*.cc custom/vanetrouting/*.cc custom/vanetrouting/base/*.cc custom/vanetrouting/util/*.cc inet/*.cc inetmanet/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/routing/*.cc custom/routing/aodvvanet/*.cc custom/routing/aodvvanet/aodvvanet/*.cc custom/routing/bitcar/*.cc custom/routing/rbvtp/*.cc custom/routing/rbvtr/*.cc custom/vanetrouting/*.cc custom/vanetrouting/base/*.cc custom/vanetrouting/util/*.cc inetmanet/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/custom/routing/aodvvanet/aodvvanet_msg_struct.o: custom/routing/aodvvanet/aodvvanet_msg_struct.cc \
