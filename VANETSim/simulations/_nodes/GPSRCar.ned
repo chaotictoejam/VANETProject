@@ -1,20 +1,19 @@
 package vanetsim.simulations._nodes;
 
-import inet.base.NotificationBoard;
-import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
-import inet.networklayer.common.InterfaceTable;
 import inet.applications.traci.TraCIDemo;
-import inet.mobility.single.TraCIMobility;
-import inet.networklayer.ipv4.RoutingTable;
-import inet.transport.udp.UDP;
-import inet.nodes.inet.NetworkLayer;
-import inet.linklayer.ieee80211.Ieee80211Nic;
-import inet.nodes.gpsr.GPSRRouter;
-import inet.world.radio.ChannelControl;
-import inet.world.scenario.ScenarioManager;
 import inet.base.LifecycleController;
+import inet.base.NotificationBoard;
+import inet.linklayer.ieee80211.Ieee80211Nic;
+import inet.mobility.contract.IMobility;
+import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
-import inet.networklayer.ipv4.RoutingTableRecorder;
+import inet.networklayer.common.InterfaceTable;
+import inet.networklayer.ipv4.RoutingTable;
+import inet.nodes.gpsr.GPSRRouter;
+import inet.nodes.inet.NetworkLayer;
+import inet.transport.udp.UDP;
+import inet.world.radio.ChannelControl;
+
 
 module GPSRCar
 {
@@ -41,7 +40,7 @@ module GPSRCar
             parameters:
                 @display("p=384,46");
         }
-        mobility: TraCIMobility {
+        mobility: <mobilityType> like IMobility {
             parameters:
                 @display("p=60,459");
         }
