@@ -38,7 +38,7 @@
  * in the IP-layer required by this protocol.
  */
 
-class INET_API AODVVANETRouting : public cSimpleModule, public ILifecycle, public INetfilter::IHook, public INotifiable
+class AODVVANETRouting : public cSimpleModule, public ILifecycle, public INetfilter::IHook, public INotifiable
 {
   protected:
     /*
