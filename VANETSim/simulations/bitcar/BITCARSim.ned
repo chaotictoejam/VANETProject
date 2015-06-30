@@ -1,4 +1,4 @@
-package vanetsim.simulations.bittorrent;
+package vanetsim.simulations.bitcar;
 
 import  vanetsim.simulations._nodes.RSU;
 import  vanetsim.simulations._nodes.Car;
