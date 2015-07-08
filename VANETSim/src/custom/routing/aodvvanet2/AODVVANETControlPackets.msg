@@ -64,6 +64,12 @@ class AODVVANETRREQ extends AODVVANETControlPacket
     unsigned int destSeqNum;
     IPv4Address originatorAddr;
     unsigned int originatorSeqNum;
+    double position;
+    double speed;
+    double acceleration;
+    double direction;
+    double twr;
+    double expirationtime;
 }
 
 //
