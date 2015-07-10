@@ -18,9 +18,14 @@
 cplusplus {{
 #include "IPv4Address.h"
 #include "simtime_t.h"
+#include "ModuleAccess.h"
+#include "IVANETMobility.h"
+#include "Coord.h"
 }}
 
 class noncobject IPv4Address;
+class noncobject Coord;
+
 
 //
 // Helper struct to represent (IPv4Address, sequence number) pairs in a RERR message
@@ -40,7 +45,7 @@ enum AODVVANETControlPacketType
 };
 
 //
-// Base packet for AODV Control Packets
+// Base packet for AODVVANET Control Packets
 //
 packet AODVVANETControlPacket
 {
@@ -48,7 +53,7 @@ packet AODVVANETControlPacket
 }
 
 //
-// Represents an AODV Route Request
+// Represents an AODVVANET Route Request
 //
 class AODVVANETRREQ extends AODVVANETControlPacket
 {
@@ -64,16 +69,16 @@ class AODVVANETRREQ extends AODVVANETControlPacket
     unsigned int destSeqNum;
     IPv4Address originatorAddr;
     unsigned int originatorSeqNum;
-    double position;
-    double speed;
-    double acceleration;
-    double direction;
+    Coord position;
+    Coord speed;
+    Coord acceleration;
+    Coord direction;
     double twr;
     double expirationtime;
 }
 
 //
-// Represents an AODV Route Reply
+// Represents an AODVVANET Route Reply
 //
 class AODVVANETRREP extends AODVVANETControlPacket
 {
@@ -87,10 +92,12 @@ class AODVVANETRREP extends AODVVANETControlPacket
     IPv4Address originatorAddr;
     unsigned int originatorSeqNum;
     simtime_t lifeTime;
+    double twr;
+    double expirationtime;
 }
 
 //
-// Represents an AODV Route Error
+// Represents an AODVVANET Route Error
 //
 class AODVVANETRERR extends AODVVANETControlPacket
 {
@@ -101,7 +108,7 @@ class AODVVANETRERR extends AODVVANETControlPacket
 }
 
 //
-// Represents an AODV Route Reply ACK
+// Represents an AODVVANET Route Reply ACK
 //
 class AODVVANETRREPACK extends AODVVANETControlPacket
 {

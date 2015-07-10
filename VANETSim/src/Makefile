@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -Xcustom/routing/gpsr -Xcustom/routing/rbvtp -Xveins -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/ipv4 -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/ieee802154/contract -IF:/GitHub/inetmanet-2.0/src -IF:/GitHub/inetmanet-2.0/src/util/headerserializers -IF:/GitHub/inetmanet-2.0/src/networklayer/common -IF:/GitHub/inetmanet-2.0/src/battery/models -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/dsr -IF:/GitHub/inetmanet-2.0/src/linklayer/radio/propagation -IF:/GitHub/inetmanet-2.0/src/networklayer/contract -IF:/GitHub/inetmanet-2.0/src/transport/tcp_common -IF:/GitHub/inetmanet-2.0/src/wpan/networklayer/contract -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/ipv6 -IF:/GitHub/inetmanet-2.0/src/linklayer/common -IF:/GitHub/inetmanet-2.0/src/world/obstacles -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/radio -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/base -IF:/GitHub/inetmanet-2.0/src/networklayer/autorouting/ipv4 -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/tcp -IF:/GitHub/inetmanet-2.0/src/networklayer/arp -IF:/GitHub/inetmanet-2.0/src/transport/sctp -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/sctp -IF:/GitHub/inetmanet-2.0/src/base -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv6tunneling -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/bmac -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/ieee802154/mac -IF:/GitHub/inetmanet-2.0/src/linklayer/contract -IF:/GitHub/inetmanet-2.0/src/world/radio -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/mac -IF:/GitHub/inetmanet-2.0/src/transport/udp -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv6 -IF:/GitHub/inetmanet-2.0/src/applications/pingapp -IF:/GitHub/inetmanet-2.0/src/linklayer/radio -IF:/GitHub/inetmanet-2.0/src/transport/contract -IF:/GitHub/inetmanet-2.0/src/networklayer/icmpv6 -IF:/GitHub/inetmanet-2.0/src/mobility/contract -IF:/GitHub/inetmanet-2.0/src/networklayer/routing/aodv -IF:/GitHub/inetmanet-2.0/src/world/powercontrol -IF:/GitHub/inetmanet-2.0/src/linklayer/ethernet -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/udp -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211mesh/locator -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/mgmt -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv4 -IF:/GitHub/inetmanet-2.0/src/wpan/phyLayer/ieee802154 -IF:/GitHub/inetmanet-2.0/src/mobility/common -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/radio/errormodel -IF:/GitHub/inetmanet-2.0/src/util -IF:/GitHub/inetmanet-2.0/src/status -IF:/GitHub/inetmanet-2.0/src/networklayer/xmipv6 -LF:/GitHub/inetmanet-2.0/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KINETMANET_2_0_PROJ=F:/GitHub/inetmanet-2.0
+#  opp_makemake -f --deep -Xcustom/routing/gpsr -Xcustom/routing/rbvtp -Xveins -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/ipv4 -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/ieee802154/contract -IF:/GitHub/inetmanet-2.0/src -IF:/GitHub/inetmanet-2.0/src/util/headerserializers -IF:/GitHub/inetmanet-2.0/src/networklayer/common -IF:/GitHub/inetmanet-2.0/src/battery/models -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/dsr -IF:/GitHub/inetmanet-2.0/src/linklayer/radio/propagation -IF:/GitHub/inetmanet-2.0/src/transport/tcp_common -IF:/GitHub/inetmanet-2.0/src/networklayer/contract -IF:/GitHub/inetmanet-2.0/src/wpan/networklayer/contract -IF:/GitHub/inetmanet-2.0/src/linklayer/common -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/ipv6 -IF:/GitHub/inetmanet-2.0/src/world/obstacles -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/radio -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/base -IF:/GitHub/inetmanet-2.0/src/networklayer/autorouting/ipv4 -IF:/GitHub/inetmanet-2.0/src/networklayer/arp -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/tcp -IF:/GitHub/inetmanet-2.0/src/transport/sctp -IF:/GitHub/inetmanet-2.0/src/base -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/sctp -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv6tunneling -IF:/GitHub/inetmanet-2.0/src/linklayer/contract -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/ieee802154/mac -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/bmac -IF:/GitHub/inetmanet-2.0/src/world/radio -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/mac -IF:/GitHub/inetmanet-2.0/src/transport/udp -IF:/GitHub/inetmanet-2.0/src/applications/pingapp -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv6 -IF:/GitHub/inetmanet-2.0/src/linklayer/radio -IF:/GitHub/inetmanet-2.0/src/transport/contract -IF:/GitHub/inetmanet-2.0/src/networklayer/icmpv6 -IF:/GitHub/inetmanet-2.0/src/mobility/contract -IF:/GitHub/inetmanet-2.0/src/networklayer/routing/aodv -IF:/GitHub/inetmanet-2.0/src/world/powercontrol -IF:/GitHub/inetmanet-2.0/src/linklayer/ethernet -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/udp -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211mesh/locator -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/mgmt -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv4 -IF:/GitHub/inetmanet-2.0/src/mobility/common -IF:/GitHub/inetmanet-2.0/src/wpan/phyLayer/ieee802154 -IF:/GitHub/inetmanet-2.0/src/status -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/radio/errormodel -IF:/GitHub/inetmanet-2.0/src/util -IF:/GitHub/inetmanet-2.0/src/networklayer/xmipv6 -LF:/GitHub/inetmanet-2.0/out/$$\(CONFIGNAME\)/src -linet -DINET_IMPORT -KINETMANET_2_0_PROJ=F:/GitHub/inetmanet-2.0
 #
 
 # Name of target to be created (-o option)
@@ -23,29 +23,29 @@ INCLUDE_PATH = \
     -I$(INETMANET_2_0_PROJ)/src/battery/models \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/dsr \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/radio/propagation \
-    -I$(INETMANET_2_0_PROJ)/src/networklayer/contract \
     -I$(INETMANET_2_0_PROJ)/src/transport/tcp_common \
+    -I$(INETMANET_2_0_PROJ)/src/networklayer/contract \
     -I$(INETMANET_2_0_PROJ)/src/wpan/networklayer/contract \
-    -I$(INETMANET_2_0_PROJ)/src/util/headerserializers/ipv6 \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/common \
+    -I$(INETMANET_2_0_PROJ)/src/util/headerserializers/ipv6 \
     -I$(INETMANET_2_0_PROJ)/src/world/obstacles \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211/radio \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/base \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/autorouting/ipv4 \
-    -I$(INETMANET_2_0_PROJ)/src/util/headerserializers/tcp \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/arp \
+    -I$(INETMANET_2_0_PROJ)/src/util/headerserializers/tcp \
     -I$(INETMANET_2_0_PROJ)/src/transport/sctp \
-    -I$(INETMANET_2_0_PROJ)/src/util/headerserializers/sctp \
     -I$(INETMANET_2_0_PROJ)/src/base \
+    -I$(INETMANET_2_0_PROJ)/src/util/headerserializers/sctp \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/ipv6tunneling \
-    -I$(INETMANET_2_0_PROJ)/src/wpan/linklayer/bmac \
-    -I$(INETMANET_2_0_PROJ)/src/wpan/linklayer/ieee802154/mac \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/contract \
+    -I$(INETMANET_2_0_PROJ)/src/wpan/linklayer/ieee802154/mac \
+    -I$(INETMANET_2_0_PROJ)/src/wpan/linklayer/bmac \
     -I$(INETMANET_2_0_PROJ)/src/world/radio \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211/mac \
     -I$(INETMANET_2_0_PROJ)/src/transport/udp \
-    -I$(INETMANET_2_0_PROJ)/src/networklayer/ipv6 \
     -I$(INETMANET_2_0_PROJ)/src/applications/pingapp \
+    -I$(INETMANET_2_0_PROJ)/src/networklayer/ipv6 \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/radio \
     -I$(INETMANET_2_0_PROJ)/src/transport/contract \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/icmpv6 \
@@ -57,11 +57,11 @@ INCLUDE_PATH = \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211mesh/locator \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211/mgmt \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/ipv4 \
-    -I$(INETMANET_2_0_PROJ)/src/wpan/phyLayer/ieee802154 \
     -I$(INETMANET_2_0_PROJ)/src/mobility/common \
+    -I$(INETMANET_2_0_PROJ)/src/wpan/phyLayer/ieee802154 \
+    -I$(INETMANET_2_0_PROJ)/src/status \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211/radio/errormodel \
     -I$(INETMANET_2_0_PROJ)/src/util \
-    -I$(INETMANET_2_0_PROJ)/src/status \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/xmipv6 \
     -I. \
     -Icustom \
@@ -74,6 +74,13 @@ INCLUDE_PATH = \
     -Icustom/routing/rbvtr \
     -Icustom/vanetrouting \
     -Icustom/vanetrouting/base \
+    -Icustom/vanetrouting/mobility \
+    -Icustom/vanetrouting/mobility/common \
+    -Icustom/vanetrouting/mobility/contract \
+    -Icustom/vanetrouting/mobility/group \
+    -Icustom/vanetrouting/mobility/single \
+    -Icustom/vanetrouting/mobility/static \
+    -Icustom/vanetrouting/networklayer \
     -Icustom/vanetrouting/util \
     -Iinetmanet
 
@@ -116,6 +123,12 @@ OBJS = \
     $O/custom/vanetrouting/base/VanetAddress.o \
     $O/custom/vanetrouting/base/VanetNetfilterHook.o \
     $O/custom/vanetrouting/base/VanetRoutingBase.o \
+    $O/custom/vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.o \
+    $O/custom/vanetrouting/mobility/common/MovingVANETMobilityBase.o \
+    $O/custom/vanetrouting/mobility/common/VANETMobilityAccess.o \
+    $O/custom/vanetrouting/mobility/common/VANETMobilityBase.o \
+    $O/custom/vanetrouting/mobility/contract/IVANETMobility.o \
+    $O/custom/vanetrouting/mobility/single/v_TraCIMobility.o \
     $O/custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.o \
     $O/custom/routing/aodvvanet/aodvvanet_msg_struct_m.o \
     $O/custom/routing/aodvvanet2/AODVVANETControlPackets_m.o \
@@ -222,6 +235,13 @@ clean:
 	$(Q)-rm -f custom/routing/rbvtr/*_m.cc custom/routing/rbvtr/*_m.h
 	$(Q)-rm -f custom/vanetrouting/*_m.cc custom/vanetrouting/*_m.h
 	$(Q)-rm -f custom/vanetrouting/base/*_m.cc custom/vanetrouting/base/*_m.h
+	$(Q)-rm -f custom/vanetrouting/mobility/*_m.cc custom/vanetrouting/mobility/*_m.h
+	$(Q)-rm -f custom/vanetrouting/mobility/common/*_m.cc custom/vanetrouting/mobility/common/*_m.h
+	$(Q)-rm -f custom/vanetrouting/mobility/contract/*_m.cc custom/vanetrouting/mobility/contract/*_m.h
+	$(Q)-rm -f custom/vanetrouting/mobility/group/*_m.cc custom/vanetrouting/mobility/group/*_m.h
+	$(Q)-rm -f custom/vanetrouting/mobility/single/*_m.cc custom/vanetrouting/mobility/single/*_m.h
+	$(Q)-rm -f custom/vanetrouting/mobility/static/*_m.cc custom/vanetrouting/mobility/static/*_m.h
+	$(Q)-rm -f custom/vanetrouting/networklayer/*_m.cc custom/vanetrouting/networklayer/*_m.h
 	$(Q)-rm -f custom/vanetrouting/util/*_m.cc custom/vanetrouting/util/*_m.h
 	$(Q)-rm -f inetmanet/*_m.cc inetmanet/*_m.h
 
@@ -230,7 +250,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/nodes/*.cc custom/routing/*.cc custom/routing/aodvvanet/*.cc custom/routing/aodvvanet/aodvvanet/*.cc custom/routing/aodvvanet2/*.cc custom/routing/bitcar/*.cc custom/routing/rbvtr/*.cc custom/vanetrouting/*.cc custom/vanetrouting/base/*.cc custom/vanetrouting/util/*.cc inetmanet/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/nodes/*.cc custom/routing/*.cc custom/routing/aodvvanet/*.cc custom/routing/aodvvanet/aodvvanet/*.cc custom/routing/aodvvanet2/*.cc custom/routing/bitcar/*.cc custom/routing/rbvtr/*.cc custom/vanetrouting/*.cc custom/vanetrouting/base/*.cc custom/vanetrouting/mobility/*.cc custom/vanetrouting/mobility/common/*.cc custom/vanetrouting/mobility/contract/*.cc custom/vanetrouting/mobility/group/*.cc custom/vanetrouting/mobility/single/*.cc custom/vanetrouting/mobility/static/*.cc custom/vanetrouting/networklayer/*.cc custom/vanetrouting/util/*.cc inetmanet/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/custom/routing/aodvvanet/aodvvanet_msg_struct.o: custom/routing/aodvvanet/aodvvanet_msg_struct.cc \
@@ -1197,9 +1217,13 @@ $O/custom/routing/aodvvanet/aodvvanet/timer_queue_aodvvanet.o: custom/routing/ao
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
 $O/custom/routing/aodvvanet2/AODVVANETControlPackets_m.o: custom/routing/aodvvanet2/AODVVANETControlPackets_m.cc \
 	custom/routing/aodvvanet2/AODVVANETControlPackets_m.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h
+	$(INETMANET_2_0_PROJ)/src/base/ModuleAccess.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
 $O/custom/routing/aodvvanet2/AODVVANETRouteData.o: custom/routing/aodvvanet2/AODVVANETRouteData.cc \
 	custom/routing/aodvvanet2/AODVVANETRouteData.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
@@ -1209,7 +1233,9 @@ $O/custom/routing/aodvvanet2/AODVVANETRouting.o: custom/routing/aodvvanet2/AODVV
 	custom/routing/aodvvanet2/AODVVANETControlPackets_m.h \
 	custom/routing/aodvvanet2/AODVVANETRouteData.h \
 	custom/routing/aodvvanet2/AODVVANETRouting.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/base/INotifiable.h \
@@ -1245,7 +1271,8 @@ $O/custom/routing/aodvvanet2/AODVVANETRouting.o: custom/routing/aodvvanet2/AODVV
 	$(INETMANET_2_0_PROJ)/src/transport/contract/UDPControlInfo_m.h \
 	$(INETMANET_2_0_PROJ)/src/transport/contract/UDPSocket.h \
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket.h \
-	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket_m.h
+	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket_m.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
 $O/custom/routing/bitcar/BITCARControlPackets_m.o: custom/routing/bitcar/BITCARControlPackets_m.cc \
 	custom/routing/bitcar/BITCARControlPackets_m.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
@@ -1492,6 +1519,48 @@ $O/custom/vanetrouting/base/Vanet_MeshControlInfo_m.o: custom/vanetrouting/base/
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/linklayer/contract/Ieee802Ctrl_m.h \
 	$(INETMANET_2_0_PROJ)/src/linklayer/contract/MACAddress.h
+$O/custom/vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.o: custom/vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.cc \
+	custom/vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.h \
+	custom/vanetrouting/mobility/common/MovingVANETMobilityBase.h \
+	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
+	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
+	$(INETMANET_2_0_PROJ)/src/base/ModuleAccess.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
+$O/custom/vanetrouting/mobility/common/MovingVANETMobilityBase.o: custom/vanetrouting/mobility/common/MovingVANETMobilityBase.cc \
+	custom/vanetrouting/mobility/common/MovingVANETMobilityBase.h \
+	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
+	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
+	$(INETMANET_2_0_PROJ)/src/base/ModuleAccess.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
+$O/custom/vanetrouting/mobility/common/VANETMobilityAccess.o: custom/vanetrouting/mobility/common/VANETMobilityAccess.cc \
+	custom/vanetrouting/mobility/common/VANETMobilityAccess.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
+	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
+	$(INETMANET_2_0_PROJ)/src/base/ModuleAccess.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
+$O/custom/vanetrouting/mobility/common/VANETMobilityBase.o: custom/vanetrouting/mobility/common/VANETMobilityBase.cc \
+	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
+	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
+	$(INETMANET_2_0_PROJ)/src/base/ModuleAccess.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
+$O/custom/vanetrouting/mobility/contract/IVANETMobility.o: custom/vanetrouting/mobility/contract/IVANETMobility.cc \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
+	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
+$O/custom/vanetrouting/mobility/single/v_TraCIMobility.o: custom/vanetrouting/mobility/single/v_TraCIMobility.cc
 $O/custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.o: custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.cc \
 	custom/vanetrouting/base/VanetAddress.h \
 	custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.h \

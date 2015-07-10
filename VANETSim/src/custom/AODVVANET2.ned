@@ -17,10 +17,10 @@
 
 package vanetsim.custom;
 
-import inet.networklayer.manetrouting.base.BaseRouting;
-import inet.networklayer.IManetRouting;
+import vanetsim.custom.vanetrouting.base.BaseVanetRouting;
+import vanetsim.custom.vanetrouting.networklayer.IVanetRouting;
 
-simple AODVVANET2 extends BaseRouting like IManetRouting
+simple AODVVANET2 extends BaseVanetRouting like IVanetRouting
 {
     parameters:
         @class(AODVVANETRouting);

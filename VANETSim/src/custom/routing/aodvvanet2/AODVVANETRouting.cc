@@ -404,6 +404,21 @@ AODVVANETRREQ *AODVVANETRouting::createRREQ(const IPv4Address& destAddr)
     // The Hop Count field is set to zero.
     rreqPacket->setHopCount(0);
 
+    // The TWR is initialized to zero
+    rreqPacket->setTwr(0);
+
+    // The Expiration time is initialized to a large number
+    rreqPacket->setExpirationtime(100000);
+
+    // Set position, speed, acceleration and direction
+    cModule *host = getContainingNode(this);
+    IVANETMobility  *mod = check_and_cast<IVANETMobility *>(host->getSubmodule("mobility"));
+
+    rreqPacket->setPosition(mod->getCurrentPosition());
+    rreqPacket->setSpeed(mod->getCurrentSpeed());
+    rreqPacket->setAcceleration(mod->getCurrentAcceleration());
+    //rreqPacket->setDirection(direction);
+
     // Before broadcasting the RREQ, the originating node buffers the RREQ
     // ID and the Originator IP address (its own address) of the RREQ for
     // PATH_DISCOVERY_TIME.

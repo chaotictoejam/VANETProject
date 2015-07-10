@@ -18,10 +18,13 @@
 // cplusplus {{
 #include "IPv4Address.h"
 #include "simtime_t.h"
+#include "ModuleAccess.h"
+#include "IVANETMobility.h"
+#include "Coord.h"
 // }}
 
 /**
- * Struct generated from custom/routing/aodvvanet2/AODVVANETControlPackets.msg:29 by nedtool.
+ * Struct generated from custom/routing/aodvvanet2/AODVVANETControlPackets.msg:34 by nedtool.
  */
 struct UnreachableNode
 {
@@ -34,7 +37,7 @@ void doPacking(cCommBuffer *b, UnreachableNode& a);
 void doUnpacking(cCommBuffer *b, UnreachableNode& a);
 
 /**
- * Enum generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:35</tt> by nedtool.
+ * Enum generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:40</tt> by nedtool.
  * <pre>
  * enum AODVVANETControlPacketType
  * {
@@ -54,10 +57,10 @@ enum AODVVANETControlPacketType {
 };
 
 /**
- * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:46</tt> by nedtool.
+ * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:51</tt> by nedtool.
  * <pre>
  * //
- * // Base packet for AODV Control Packets
+ * // Base packet for AODVVANET Control Packets
  * //
  * packet AODVVANETControlPacket
  * {
@@ -95,10 +98,10 @@ inline void doPacking(cCommBuffer *b, AODVVANETControlPacket& obj) {obj.parsimPa
 inline void doUnpacking(cCommBuffer *b, AODVVANETControlPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:54</tt> by nedtool.
+ * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:59</tt> by nedtool.
  * <pre>
  * //
- * // Represents an AODV Route Request
+ * // Represents an AODVVANET Route Request
  * //
  * class AODVVANETRREQ extends AODVVANETControlPacket
  * {
@@ -114,10 +117,10 @@ inline void doUnpacking(cCommBuffer *b, AODVVANETControlPacket& obj) {obj.parsim
  *     unsigned int destSeqNum;
  *     IPv4Address originatorAddr;
  *     unsigned int originatorSeqNum;
- *     double position;
- *     double speed;
- *     double acceleration;
- *     double direction;
+ *     Coord position;
+ *     Coord speed;
+ *     Coord acceleration;
+ *     Coord direction;
  *     double twr;
  *     double expirationtime;
  * }
@@ -138,10 +141,10 @@ class AODVVANETRREQ : public ::AODVVANETControlPacket
     unsigned int destSeqNum_var;
     IPv4Address originatorAddr_var;
     unsigned int originatorSeqNum_var;
-    double position_var;
-    double speed_var;
-    double acceleration_var;
-    double direction_var;
+    Coord position_var;
+    Coord speed_var;
+    Coord acceleration_var;
+    Coord direction_var;
     double twr_var;
     double expirationtime_var;
 
@@ -188,14 +191,18 @@ class AODVVANETRREQ : public ::AODVVANETControlPacket
     virtual void setOriginatorAddr(const IPv4Address& originatorAddr);
     virtual unsigned int getOriginatorSeqNum() const;
     virtual void setOriginatorSeqNum(unsigned int originatorSeqNum);
-    virtual double getPosition() const;
-    virtual void setPosition(double position);
-    virtual double getSpeed() const;
-    virtual void setSpeed(double speed);
-    virtual double getAcceleration() const;
-    virtual void setAcceleration(double acceleration);
-    virtual double getDirection() const;
-    virtual void setDirection(double direction);
+    virtual Coord& getPosition();
+    virtual const Coord& getPosition() const {return const_cast<AODVVANETRREQ*>(this)->getPosition();}
+    virtual void setPosition(const Coord& position);
+    virtual Coord& getSpeed();
+    virtual const Coord& getSpeed() const {return const_cast<AODVVANETRREQ*>(this)->getSpeed();}
+    virtual void setSpeed(const Coord& speed);
+    virtual Coord& getAcceleration();
+    virtual const Coord& getAcceleration() const {return const_cast<AODVVANETRREQ*>(this)->getAcceleration();}
+    virtual void setAcceleration(const Coord& acceleration);
+    virtual Coord& getDirection();
+    virtual const Coord& getDirection() const {return const_cast<AODVVANETRREQ*>(this)->getDirection();}
+    virtual void setDirection(const Coord& direction);
     virtual double getTwr() const;
     virtual void setTwr(double twr);
     virtual double getExpirationtime() const;
@@ -206,10 +213,10 @@ inline void doPacking(cCommBuffer *b, AODVVANETRREQ& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, AODVVANETRREQ& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:79</tt> by nedtool.
+ * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:84</tt> by nedtool.
  * <pre>
  * //
- * // Represents an AODV Route Reply
+ * // Represents an AODVVANET Route Reply
  * //
  * class AODVVANETRREP extends AODVVANETControlPacket
  * {
@@ -223,6 +230,8 @@ inline void doUnpacking(cCommBuffer *b, AODVVANETRREQ& obj) {obj.parsimUnpack(b)
  *     IPv4Address originatorAddr;
  *     unsigned int originatorSeqNum;
  *     simtime_t lifeTime;
+ *     double twr;
+ *     double expirationtime;
  * }
  * </pre>
  */
@@ -239,6 +248,8 @@ class AODVVANETRREP : public ::AODVVANETControlPacket
     IPv4Address originatorAddr_var;
     unsigned int originatorSeqNum_var;
     simtime_t lifeTime_var;
+    double twr_var;
+    double expirationtime_var;
 
   private:
     void copy(const AODVVANETRREP& other);
@@ -279,16 +290,20 @@ class AODVVANETRREP : public ::AODVVANETControlPacket
     virtual void setOriginatorSeqNum(unsigned int originatorSeqNum);
     virtual simtime_t getLifeTime() const;
     virtual void setLifeTime(simtime_t lifeTime);
+    virtual double getTwr() const;
+    virtual void setTwr(double twr);
+    virtual double getExpirationtime() const;
+    virtual void setExpirationtime(double expirationtime);
 };
 
 inline void doPacking(cCommBuffer *b, AODVVANETRREP& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, AODVVANETRREP& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:96</tt> by nedtool.
+ * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:103</tt> by nedtool.
  * <pre>
  * //
- * // Represents an AODV Route Error
+ * // Represents an AODVVANET Route Error
  * //
  * class AODVVANETRERR extends AODVVANETControlPacket
  * {
@@ -342,10 +357,10 @@ inline void doPacking(cCommBuffer *b, AODVVANETRERR& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, AODVVANETRERR& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:107</tt> by nedtool.
+ * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:114</tt> by nedtool.
  * <pre>
  * //
- * // Represents an AODV Route Reply ACK
+ * // Represents an AODVVANET Route Reply ACK
  * //
  * class AODVVANETRREPACK extends AODVVANETControlPacket
  * {
@@ -383,7 +398,7 @@ inline void doPacking(cCommBuffer *b, AODVVANETRREPACK& obj) {obj.parsimPack(b);
 inline void doUnpacking(cCommBuffer *b, AODVVANETRREPACK& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:115</tt> by nedtool.
+ * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:122</tt> by nedtool.
  * <pre>
  * //
  * // Represents a timer for a Route Reply packet

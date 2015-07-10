@@ -519,10 +519,6 @@ AODVVANETRREQ::AODVVANETRREQ(const char *name) : ::AODVVANETControlPacket(name)
     this->rreqId_var = 0;
     this->destSeqNum_var = 0;
     this->originatorSeqNum_var = 0;
-    this->position_var = 0;
-    this->speed_var = 0;
-    this->acceleration_var = 0;
-    this->direction_var = 0;
     this->twr_var = 0;
     this->expirationtime_var = 0;
 }
@@ -732,42 +728,42 @@ void AODVVANETRREQ::setOriginatorSeqNum(unsigned int originatorSeqNum)
     this->originatorSeqNum_var = originatorSeqNum;
 }
 
-double AODVVANETRREQ::getPosition() const
+Coord& AODVVANETRREQ::getPosition()
 {
     return position_var;
 }
 
-void AODVVANETRREQ::setPosition(double position)
+void AODVVANETRREQ::setPosition(const Coord& position)
 {
     this->position_var = position;
 }
 
-double AODVVANETRREQ::getSpeed() const
+Coord& AODVVANETRREQ::getSpeed()
 {
     return speed_var;
 }
 
-void AODVVANETRREQ::setSpeed(double speed)
+void AODVVANETRREQ::setSpeed(const Coord& speed)
 {
     this->speed_var = speed;
 }
 
-double AODVVANETRREQ::getAcceleration() const
+Coord& AODVVANETRREQ::getAcceleration()
 {
     return acceleration_var;
 }
 
-void AODVVANETRREQ::setAcceleration(double acceleration)
+void AODVVANETRREQ::setAcceleration(const Coord& acceleration)
 {
     this->acceleration_var = acceleration;
 }
 
-double AODVVANETRREQ::getDirection() const
+Coord& AODVVANETRREQ::getDirection()
 {
     return direction_var;
 }
 
-void AODVVANETRREQ::setDirection(double direction)
+void AODVVANETRREQ::setDirection(const Coord& direction)
 {
     this->direction_var = direction;
 }
@@ -863,10 +859,10 @@ unsigned int AODVVANETRREQDescriptor::getFieldTypeFlags(void *object, int field)
         FD_ISEDITABLE,
         FD_ISCOMPOUND,
         FD_ISEDITABLE,
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
+        FD_ISCOMPOUND,
+        FD_ISCOMPOUND,
+        FD_ISCOMPOUND,
+        FD_ISCOMPOUND,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
     };
@@ -950,10 +946,10 @@ const char *AODVVANETRREQDescriptor::getFieldTypeString(void *object, int field)
         "unsigned int",
         "IPv4Address",
         "unsigned int",
-        "double",
-        "double",
-        "double",
-        "double",
+        "Coord",
+        "Coord",
+        "Coord",
+        "Coord",
         "double",
         "double",
     };
@@ -1009,10 +1005,10 @@ std::string AODVVANETRREQDescriptor::getFieldAsString(void *object, int field, i
         case 9: return ulong2string(pp->getDestSeqNum());
         case 10: {std::stringstream out; out << pp->getOriginatorAddr(); return out.str();}
         case 11: return ulong2string(pp->getOriginatorSeqNum());
-        case 12: return double2string(pp->getPosition());
-        case 13: return double2string(pp->getSpeed());
-        case 14: return double2string(pp->getAcceleration());
-        case 15: return double2string(pp->getDirection());
+        case 12: {std::stringstream out; out << pp->getPosition(); return out.str();}
+        case 13: {std::stringstream out; out << pp->getSpeed(); return out.str();}
+        case 14: {std::stringstream out; out << pp->getAcceleration(); return out.str();}
+        case 15: {std::stringstream out; out << pp->getDirection(); return out.str();}
         case 16: return double2string(pp->getTwr());
         case 17: return double2string(pp->getExpirationtime());
         default: return "";
@@ -1039,10 +1035,6 @@ bool AODVVANETRREQDescriptor::setFieldAsString(void *object, int field, int i, c
         case 7: pp->setRreqId(string2ulong(value)); return true;
         case 9: pp->setDestSeqNum(string2ulong(value)); return true;
         case 11: pp->setOriginatorSeqNum(string2ulong(value)); return true;
-        case 12: pp->setPosition(string2double(value)); return true;
-        case 13: pp->setSpeed(string2double(value)); return true;
-        case 14: pp->setAcceleration(string2double(value)); return true;
-        case 15: pp->setDirection(string2double(value)); return true;
         case 16: pp->setTwr(string2double(value)); return true;
         case 17: pp->setExpirationtime(string2double(value)); return true;
         default: return false;
@@ -1060,6 +1052,10 @@ const char *AODVVANETRREQDescriptor::getFieldStructName(void *object, int field)
     switch (field) {
         case 8: return opp_typename(typeid(IPv4Address));
         case 10: return opp_typename(typeid(IPv4Address));
+        case 12: return opp_typename(typeid(Coord));
+        case 13: return opp_typename(typeid(Coord));
+        case 14: return opp_typename(typeid(Coord));
+        case 15: return opp_typename(typeid(Coord));
         default: return NULL;
     };
 }
@@ -1076,6 +1072,10 @@ void *AODVVANETRREQDescriptor::getFieldStructPointer(void *object, int field, in
     switch (field) {
         case 8: return (void *)(&pp->getDestAddr()); break;
         case 10: return (void *)(&pp->getOriginatorAddr()); break;
+        case 12: return (void *)(&pp->getPosition()); break;
+        case 13: return (void *)(&pp->getSpeed()); break;
+        case 14: return (void *)(&pp->getAcceleration()); break;
+        case 15: return (void *)(&pp->getDirection()); break;
         default: return NULL;
     }
 }
@@ -1092,6 +1092,8 @@ AODVVANETRREP::AODVVANETRREP(const char *name) : ::AODVVANETControlPacket(name)
     this->destSeqNum_var = 0;
     this->originatorSeqNum_var = 0;
     this->lifeTime_var = 0;
+    this->twr_var = 0;
+    this->expirationtime_var = 0;
 }
 
 AODVVANETRREP::AODVVANETRREP(const AODVVANETRREP& other) : ::AODVVANETControlPacket(other)
@@ -1123,6 +1125,8 @@ void AODVVANETRREP::copy(const AODVVANETRREP& other)
     this->originatorAddr_var = other.originatorAddr_var;
     this->originatorSeqNum_var = other.originatorSeqNum_var;
     this->lifeTime_var = other.lifeTime_var;
+    this->twr_var = other.twr_var;
+    this->expirationtime_var = other.expirationtime_var;
 }
 
 void AODVVANETRREP::parsimPack(cCommBuffer *b)
@@ -1138,6 +1142,8 @@ void AODVVANETRREP::parsimPack(cCommBuffer *b)
     doPacking(b,this->originatorAddr_var);
     doPacking(b,this->originatorSeqNum_var);
     doPacking(b,this->lifeTime_var);
+    doPacking(b,this->twr_var);
+    doPacking(b,this->expirationtime_var);
 }
 
 void AODVVANETRREP::parsimUnpack(cCommBuffer *b)
@@ -1153,6 +1159,8 @@ void AODVVANETRREP::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->originatorAddr_var);
     doUnpacking(b,this->originatorSeqNum_var);
     doUnpacking(b,this->lifeTime_var);
+    doUnpacking(b,this->twr_var);
+    doUnpacking(b,this->expirationtime_var);
 }
 
 unsigned int AODVVANETRREP::getPacketType() const
@@ -1255,6 +1263,26 @@ void AODVVANETRREP::setLifeTime(simtime_t lifeTime)
     this->lifeTime_var = lifeTime;
 }
 
+double AODVVANETRREP::getTwr() const
+{
+    return twr_var;
+}
+
+void AODVVANETRREP::setTwr(double twr)
+{
+    this->twr_var = twr;
+}
+
+double AODVVANETRREP::getExpirationtime() const
+{
+    return expirationtime_var;
+}
+
+void AODVVANETRREP::setExpirationtime(double expirationtime)
+{
+    this->expirationtime_var = expirationtime;
+}
+
 class AODVVANETRREPDescriptor : public cClassDescriptor
 {
   public:
@@ -1302,7 +1330,7 @@ const char *AODVVANETRREPDescriptor::getProperty(const char *propertyname) const
 int AODVVANETRREPDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 10+basedesc->getFieldCount(object) : 10;
+    return basedesc ? 12+basedesc->getFieldCount(object) : 12;
 }
 
 unsigned int AODVVANETRREPDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -1324,8 +1352,10 @@ unsigned int AODVVANETRREPDescriptor::getFieldTypeFlags(void *object, int field)
         FD_ISCOMPOUND,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<10) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<12) ? fieldTypeFlags[field] : 0;
 }
 
 const char *AODVVANETRREPDescriptor::getFieldName(void *object, int field) const
@@ -1347,8 +1377,10 @@ const char *AODVVANETRREPDescriptor::getFieldName(void *object, int field) const
         "originatorAddr",
         "originatorSeqNum",
         "lifeTime",
+        "twr",
+        "expirationtime",
     };
-    return (field>=0 && field<10) ? fieldNames[field] : NULL;
+    return (field>=0 && field<12) ? fieldNames[field] : NULL;
 }
 
 int AODVVANETRREPDescriptor::findField(void *object, const char *fieldName) const
@@ -1365,6 +1397,8 @@ int AODVVANETRREPDescriptor::findField(void *object, const char *fieldName) cons
     if (fieldName[0]=='o' && strcmp(fieldName, "originatorAddr")==0) return base+7;
     if (fieldName[0]=='o' && strcmp(fieldName, "originatorSeqNum")==0) return base+8;
     if (fieldName[0]=='l' && strcmp(fieldName, "lifeTime")==0) return base+9;
+    if (fieldName[0]=='t' && strcmp(fieldName, "twr")==0) return base+10;
+    if (fieldName[0]=='e' && strcmp(fieldName, "expirationtime")==0) return base+11;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1387,8 +1421,10 @@ const char *AODVVANETRREPDescriptor::getFieldTypeString(void *object, int field)
         "IPv4Address",
         "unsigned int",
         "simtime_t",
+        "double",
+        "double",
     };
-    return (field>=0 && field<10) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<12) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *AODVVANETRREPDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -1438,6 +1474,8 @@ std::string AODVVANETRREPDescriptor::getFieldAsString(void *object, int field, i
         case 7: {std::stringstream out; out << pp->getOriginatorAddr(); return out.str();}
         case 8: return ulong2string(pp->getOriginatorSeqNum());
         case 9: return double2string(pp->getLifeTime());
+        case 10: return double2string(pp->getTwr());
+        case 11: return double2string(pp->getExpirationtime());
         default: return "";
     }
 }
@@ -1460,6 +1498,8 @@ bool AODVVANETRREPDescriptor::setFieldAsString(void *object, int field, int i, c
         case 6: pp->setDestSeqNum(string2ulong(value)); return true;
         case 8: pp->setOriginatorSeqNum(string2ulong(value)); return true;
         case 9: pp->setLifeTime(string2double(value)); return true;
+        case 10: pp->setTwr(string2double(value)); return true;
+        case 11: pp->setExpirationtime(string2double(value)); return true;
         default: return false;
     }
 }
