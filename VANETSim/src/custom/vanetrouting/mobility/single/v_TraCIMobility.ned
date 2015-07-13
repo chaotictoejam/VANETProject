@@ -44,6 +44,6 @@ simple v_TraCIMobility extends VANETMobilityBase like IVANETMobility
         double accidentStart @unit("s") = default(uniform(30s,60s));  // time until first accident, relative to departure time
         volatile double accidentDuration @unit("s") = default(uniform(30s,60s));  // duration of accident
         volatile double accidentInterval @unit("s") = default(uniform(30s,60s));  // time between accidents
-        @class(v_TraCIMobilityBase);
+        @class(v_TraCIMobility);
 }
 

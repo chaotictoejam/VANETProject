@@ -20,7 +20,6 @@
 
 #ifndef MOBILITY_TRACI_TraCIMobilityBase_H
 #define MOBILITY_TRACI_TraCIMobilityBase_H
-#ifdef WITH_TRACI
 
 #include <string>
 #include <fstream>
@@ -50,7 +49,7 @@
  *
  * @ingroup mobility
  */
-class v_TraCIMobilityBase : public VANETMobilityBase
+class v_TraCIMobility : public VANETMobilityBase
 {
     public:
         class Statistics {
@@ -69,7 +68,7 @@ class v_TraCIMobilityBase : public VANETMobilityBase
                 void recordScalars(cSimpleModule& module);
         };
 
-        v_TraCIMobilityBase() : VANETMobilityBase(), isPreInitialized(false) {}
+        v_TraCIMobility() : VANETMobilityBase(), isPreInitialized(false) {}
         virtual int numInitStages() const { return 3; }
         virtual void initialize(int stage);
         virtual void setInitialPosition();
@@ -87,8 +86,8 @@ class v_TraCIMobilityBase : public VANETMobilityBase
         }
 
         virtual void handleSelfMessage(cMessage *msg);
-        virtual void preInitialize(std::string external_id, const Coord& position, std::string road_id = "", double speed = -1, double angle = -1);
-        virtual void nextPosition(const Coord& position, std::string road_id = "", double speed = -1, double angle = -1, TraCIScenarioManager::VehicleSignal signals = TraCIScenarioManager::VEH_SIGNAL_UNDEF);
+        virtual void preInitialize(std::string external_id, const Coord& position, std::string road_id = "", double speed = -1,  double acceleration=-1, double angle = -1);
+        virtual void nextPosition(const Coord& position, std::string road_id = "", double speed = -1, double angle = -1, double acceleration=-1, TraCIScenarioManager::VehicleSignal signals = TraCIScenarioManager::VEH_SIGNAL_UNDEF);
         virtual void move();
         virtual void updateDisplayString();
         virtual void setExternalId(std::string external_id) {
@@ -108,6 +107,10 @@ class v_TraCIMobilityBase : public VANETMobilityBase
         virtual double getSpeed() const {
             if (speed == -1) throw cRuntimeError("TraCIMobilityBase::getSpeed called with no speed set yet");
             return speed;
+        }
+        virtual double getAcceleration() const {
+            if (acceleration == -1) throw cRuntimeError("TraCIMobilityBase::getAcceleration called with no acceleration set yet");
+            return acceleration;
         }
         virtual TraCIScenarioManager::VehicleSignal getSignals() const {
             if (signals == -1) throw cRuntimeError("TraCIMobilityBase::getSignals called with no signals set yet");
@@ -187,6 +190,7 @@ class v_TraCIMobilityBase : public VANETMobilityBase
         simtime_t lastUpdate; /**< updated by nextPosition() */
         Coord nextPos; /**< updated by nextPosition() */
         std::string road_id; /**< updated by nextPosition() */
+        double acceleration; /**< updated by nextPosition() */
         double speed; /**< updated by nextPosition() */
         double angle; /**< updated by nextPosition() */
         TraCIScenarioManager::VehicleSignal signals; /**<updated by nextPosition() */
@@ -207,13 +211,12 @@ class v_TraCIMobilityBase : public VANETMobilityBase
         double calculateCO2emission(double v, double a) const;
 };
 
-class v_TraCIMobilityBaseAccess : public ModuleAccess<TraCIMobilityBase>
+class v_TraCIMobilityAccess : public ModuleAccess<v_TraCIMobility>
 {
     public:
-        v_TraCIMobilityBaseAccess() : ModuleAccess<TraCIMobilityBase>("mobility") {};
+        v_TraCIMobilityAccess() : ModuleAccess<v_TraCIMobility>("mobility") {};
 };
 
 
-#endif
 #endif
 

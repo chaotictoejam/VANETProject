@@ -1560,7 +1560,17 @@ $O/custom/vanetrouting/mobility/contract/IVANETMobility.o: custom/vanetrouting/m
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/mobility/single/v_TraCIMobility.o: custom/vanetrouting/mobility/single/v_TraCIMobility.cc
+$O/custom/vanetrouting/mobility/single/v_TraCIMobility.o: custom/vanetrouting/mobility/single/v_TraCIMobility.cc \
+	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+	custom/vanetrouting/mobility/single/v_TraCIMobility.h \
+	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
+	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
+	$(INETMANET_2_0_PROJ)/src/base/ModuleAccess.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h \
+	$(INETMANET_2_0_PROJ)/src/world/traci/TraCIColor.h \
+	$(INETMANET_2_0_PROJ)/src/world/traci/TraCIScenarioManager.h
 $O/custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.o: custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.cc \
 	custom/vanetrouting/base/VanetAddress.h \
 	custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.h \

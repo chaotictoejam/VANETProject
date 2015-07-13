@@ -19,7 +19,7 @@ module AODVVANETCar
 {
     parameters:
         @node();
-        string mobilityType = default("TraCIMobility");
+        string mobilityType = default("v_TraCIMobility");
         networkLayer.configurator.networkConfiguratorModule = "";
         //int numHosts;
     gates:
