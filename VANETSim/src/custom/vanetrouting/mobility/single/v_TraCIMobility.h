@@ -68,7 +68,7 @@ class v_TraCIMobility : public VANETMobilityBase
                 void recordScalars(cSimpleModule& module);
         };
 
-        v_TraCIMobility() : VANETMobilityBase(), isPreInitialized(false) {}
+        v_TraCIMobility() : VANETMobilityBase(), isPreInitialized(true) {}
         virtual int numInitStages() const { return 3; }
         virtual void initialize(int stage);
         virtual void setInitialPosition();
@@ -190,9 +190,9 @@ class v_TraCIMobility : public VANETMobilityBase
         simtime_t lastUpdate; /**< updated by nextPosition() */
         Coord nextPos; /**< updated by nextPosition() */
         std::string road_id; /**< updated by nextPosition() */
-        double acceleration; /**< updated by nextPosition() */
         double speed; /**< updated by nextPosition() */
         double angle; /**< updated by nextPosition() */
+        double acceleration; /**< updated by nextPosition() */
         TraCIScenarioManager::VehicleSignal signals; /**<updated by nextPosition() */
 
         cMessage* startAccidentMsg;

@@ -31,12 +31,12 @@ Define_Module(v_TraCIMobility);
 namespace {
     const double MY_INFINITY = (std::numeric_limits<double>::has_infinity ? std::numeric_limits<double>::infinity() : std::numeric_limits<double>::max());
 
-    double roadIdAsDouble(std::string road_id) {
+    /*double roadIdAsDouble(std::string road_id) {
         std::istringstream iss(road_id);
         double d;
         if (!(iss >> d)) return MY_INFINITY;
         return d;
-    }
+    }*/
 }
 
 void v_TraCIMobility::Statistics::initialize()
@@ -90,6 +90,7 @@ void v_TraCIMobility::initialize(int stage)
 
         WATCH(road_id);
         WATCH(speed);
+        WATCH(acceleration);
         WATCH(angle);
         WATCH(lastPosition.x);
         WATCH(lastPosition.y);
@@ -162,7 +163,7 @@ void v_TraCIMobility::preInitialize(std::string external_id, const Coord& positi
 
 void v_TraCIMobility::nextPosition(const Coord& position, std::string road_id, double speed, double acceleration, double angle, TraCIScenarioManager::VehicleSignal signals)
 {
-    EV_DEBUG << "next position = " << position << " " << road_id << " " << speed << " " << angle << std::endl;
+    EV_DEBUG << "next position = " << position << " " << road_id << " " << speed << " "  << acceleration << " " << angle << std::endl;
     isPreInitialized = false;
     nextPos = position;
     this->road_id = road_id;
@@ -195,7 +196,7 @@ void v_TraCIMobility::move()
             statistics.maxSpeed = std::max(statistics.maxSpeed, speed);
             currentSpeedVec.record(speed);
             if (last_speed != -1) {
-                double acceleration = (speed - last_speed) / updateInterval;
+                acceleration = (speed - last_speed) / updateInterval;
                 double co2emission = calculateCO2emission(speed, acceleration);
                 currentAccelerationVec.record(acceleration);
                 currentCO2EmissionVec.record(co2emission);
