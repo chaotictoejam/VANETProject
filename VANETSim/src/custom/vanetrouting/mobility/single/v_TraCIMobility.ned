@@ -24,17 +24,17 @@ import vanetsim.custom.vanetrouting.mobility.common.VANETMobilityBase;
 import vanetsim.custom.vanetrouting.mobility.contract.IVANETMobility;
 
 //
-// Used in modules created by the TraCIScenarioManager.
+// Used in modules created by the v_TraCIScenarioManager.
 //
-// This module relies on the TraCIScenarioManager for state updates
+// This module relies on the v_TraCIScenarioManager for state updates
 // and can not be used on its own.
 //
 // See the Veins website <a href="http://veins.car2x.org/"> for a tutorial, documentation, and publications </a>.
 //
 // @author Christoph Sommer, David Eckhoff, Luca Bedogni, Bastian Halmos
 //
-// @see TraCIScenarioManager
-// @see TraCIScenarioManagerLaunchd
+// @see v_TraCIScenarioManager
+// @see v_TraCIScenarioManagerLaunchd
 //
 simple v_TraCIMobility extends VANETMobilityBase like IVANETMobility
 {

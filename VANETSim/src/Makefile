@@ -82,6 +82,8 @@ INCLUDE_PATH = \
     -Icustom/vanetrouting/mobility/static \
     -Icustom/vanetrouting/networklayer \
     -Icustom/vanetrouting/util \
+    -Icustom/vanetrouting/world \
+    -Icustom/vanetrouting/world/traci \
     -Iinetmanet
 
 # Additional object and library files to link with
@@ -130,6 +132,9 @@ OBJS = \
     $O/custom/vanetrouting/mobility/contract/IVANETMobility.o \
     $O/custom/vanetrouting/mobility/single/v_TraCIMobility.o \
     $O/custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.o \
+    $O/custom/vanetrouting/world/traci/v_TraCIColor.o \
+    $O/custom/vanetrouting/world/traci/v_TraCIScenarioManager.o \
+    $O/custom/vanetrouting/world/traci/v_TraCIScenarioManagerLaunchd.o \
     $O/custom/routing/aodvvanet/aodvvanet_msg_struct_m.o \
     $O/custom/routing/aodvvanet2/AODVVANETControlPackets_m.o \
     $O/custom/routing/bitcar/BITCARControlPackets_m.o \
@@ -243,6 +248,8 @@ clean:
 	$(Q)-rm -f custom/vanetrouting/mobility/static/*_m.cc custom/vanetrouting/mobility/static/*_m.h
 	$(Q)-rm -f custom/vanetrouting/networklayer/*_m.cc custom/vanetrouting/networklayer/*_m.h
 	$(Q)-rm -f custom/vanetrouting/util/*_m.cc custom/vanetrouting/util/*_m.h
+	$(Q)-rm -f custom/vanetrouting/world/*_m.cc custom/vanetrouting/world/*_m.h
+	$(Q)-rm -f custom/vanetrouting/world/traci/*_m.cc custom/vanetrouting/world/traci/*_m.h
 	$(Q)-rm -f inetmanet/*_m.cc inetmanet/*_m.h
 
 cleanall: clean
@@ -250,7 +257,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/nodes/*.cc custom/routing/*.cc custom/routing/aodvvanet/*.cc custom/routing/aodvvanet/aodvvanet/*.cc custom/routing/aodvvanet2/*.cc custom/routing/bitcar/*.cc custom/routing/rbvtr/*.cc custom/vanetrouting/*.cc custom/vanetrouting/base/*.cc custom/vanetrouting/mobility/*.cc custom/vanetrouting/mobility/common/*.cc custom/vanetrouting/mobility/contract/*.cc custom/vanetrouting/mobility/group/*.cc custom/vanetrouting/mobility/single/*.cc custom/vanetrouting/mobility/static/*.cc custom/vanetrouting/networklayer/*.cc custom/vanetrouting/util/*.cc inetmanet/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/nodes/*.cc custom/routing/*.cc custom/routing/aodvvanet/*.cc custom/routing/aodvvanet/aodvvanet/*.cc custom/routing/aodvvanet2/*.cc custom/routing/bitcar/*.cc custom/routing/rbvtr/*.cc custom/vanetrouting/*.cc custom/vanetrouting/base/*.cc custom/vanetrouting/mobility/*.cc custom/vanetrouting/mobility/common/*.cc custom/vanetrouting/mobility/contract/*.cc custom/vanetrouting/mobility/group/*.cc custom/vanetrouting/mobility/single/*.cc custom/vanetrouting/mobility/static/*.cc custom/vanetrouting/networklayer/*.cc custom/vanetrouting/util/*.cc custom/vanetrouting/world/*.cc custom/vanetrouting/world/traci/*.cc inetmanet/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/custom/routing/aodvvanet/aodvvanet_msg_struct.o: custom/routing/aodvvanet/aodvvanet_msg_struct.cc \
@@ -1564,13 +1571,13 @@ $O/custom/vanetrouting/mobility/single/v_TraCIMobility.o: custom/vanetrouting/mo
 	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
 	custom/vanetrouting/mobility/contract/IVANETMobility.h \
 	custom/vanetrouting/mobility/single/v_TraCIMobility.h \
+	custom/vanetrouting/world/traci/v_TraCIColor.h \
+	custom/vanetrouting/world/traci/v_TraCIScenarioManager.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/base/ModuleAccess.h \
-	$(INETMANET_2_0_PROJ)/src/util/FWMath.h \
-	$(INETMANET_2_0_PROJ)/src/world/traci/TraCIColor.h \
-	$(INETMANET_2_0_PROJ)/src/world/traci/TraCIScenarioManager.h
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
 $O/custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.o: custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.cc \
 	custom/vanetrouting/base/VanetAddress.h \
 	custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.h \
@@ -1580,4 +1587,28 @@ $O/custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.o: custom/vanetrou
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv6Address.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPvXAddress.h
+$O/custom/vanetrouting/world/traci/v_TraCIColor.o: custom/vanetrouting/world/traci/v_TraCIColor.cc \
+	custom/vanetrouting/world/traci/v_TraCIColor.h
+$O/custom/vanetrouting/world/traci/v_TraCIScenarioManager.o: custom/vanetrouting/world/traci/v_TraCIScenarioManager.cc \
+	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+	custom/vanetrouting/mobility/single/v_TraCIMobility.h \
+	custom/vanetrouting/world/traci/v_TraCIColor.h \
+	custom/vanetrouting/world/traci/v_TraCIConstants.h \
+	custom/vanetrouting/world/traci/v_TraCIScenarioManager.h \
+	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
+	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
+	$(INETMANET_2_0_PROJ)/src/base/ModuleAccess.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
+$O/custom/vanetrouting/world/traci/v_TraCIScenarioManagerLaunchd.o: custom/vanetrouting/world/traci/v_TraCIScenarioManagerLaunchd.cc \
+	custom/vanetrouting/world/traci/v_TraCIColor.h \
+	custom/vanetrouting/world/traci/v_TraCIConstants.h \
+	custom/vanetrouting/world/traci/v_TraCIScenarioManager.h \
+	custom/vanetrouting/world/traci/v_TraCIScenarioManagerLaunchd.h \
+	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
+	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
+	$(INETMANET_2_0_PROJ)/src/base/ModuleAccess.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
 

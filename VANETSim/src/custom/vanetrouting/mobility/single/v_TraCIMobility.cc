@@ -161,7 +161,7 @@ void v_TraCIMobility::preInitialize(std::string external_id, const Coord& positi
     isPreInitialized = true;
 }
 
-void v_TraCIMobility::nextPosition(const Coord& position, std::string road_id, double speed, double acceleration, double angle, TraCIScenarioManager::VehicleSignal signals)
+void v_TraCIMobility::nextPosition(const Coord& position, std::string road_id, double speed, double acceleration, double angle, v_TraCIScenarioManager::VehicleSignal signals)
 {
     EV_DEBUG << "next position = " << position << " " << road_id << " " << speed << " "  << acceleration << " " << angle << std::endl;
     isPreInitialized = false;

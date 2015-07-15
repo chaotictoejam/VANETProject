@@ -18,8 +18,8 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#ifndef MOBILITY_TRACI_TraCIMobilityBase_H
-#define MOBILITY_TRACI_TraCIMobilityBase_H
+#ifndef MOBILITY_TRACI_v_TraCIMobility_H
+#define MOBILITY_TRACI_v_TraCIMobility_H
 
 #include <string>
 #include <fstream>
@@ -31,21 +31,21 @@
 #include "INETDefs.h"
 #include "VANETMobilityBase.h"
 #include "ModuleAccess.h"
-#include "world/traci/TraCIScenarioManager.h"
+#include "world/traci/v_TraCIScenarioManager.h"
 
 /**
  * @brief
- * Used in modules created by the TraCIScenarioManager.
+ * Used in modules created by the v_TraCIScenarioManager.
  *
- * This module relies on the TraCIScenarioManager for state updates
+ * This module relies on the v_TraCIScenarioManager for state updates
  * and can not be used on its own.
  *
  * See the Veins website <a href="http://veins.car2x.org/"> for a tutorial, documentation, and publications </a>.
  *
  * @author Christoph Sommer, David Eckhoff, Luca Bedogni, Bastian Halmos
  *
- * @see TraCIScenarioManager
- * @see TraCIScenarioManagerLaunchd
+ * @see v_TraCIScenarioManager
+ * @see v_TraCIScenarioManagerLaunchd
  *
  * @ingroup mobility
  */
@@ -68,7 +68,7 @@ class v_TraCIMobility : public VANETMobilityBase
                 void recordScalars(cSimpleModule& module);
         };
 
-        v_TraCIMobility() : VANETMobilityBase(), isPreInitialized(true) {}
+        v_TraCIMobility() : VANETMobilityBase(), isPreInitialized(false) {}
         virtual int numInitStages() const { return 3; }
         virtual void initialize(int stage);
         virtual void setInitialPosition();
@@ -87,44 +87,44 @@ class v_TraCIMobility : public VANETMobilityBase
 
         virtual void handleSelfMessage(cMessage *msg);
         virtual void preInitialize(std::string external_id, const Coord& position, std::string road_id = "", double speed = -1,  double acceleration=-1, double angle = -1);
-        virtual void nextPosition(const Coord& position, std::string road_id = "", double speed = -1, double angle = -1, double acceleration=-1, TraCIScenarioManager::VehicleSignal signals = TraCIScenarioManager::VEH_SIGNAL_UNDEF);
+        virtual void nextPosition(const Coord& position, std::string road_id = "", double speed = -1, double angle = -1, double acceleration=-1, v_TraCIScenarioManager::VehicleSignal signals = v_TraCIScenarioManager::VEH_SIGNAL_UNDEF);
         virtual void move();
         virtual void updateDisplayString();
         virtual void setExternalId(std::string external_id) {
             this->external_id = external_id;
         }
         virtual std::string getExternalId() const {
-            if (external_id == "") throw cRuntimeError("TraCIMobilityBase::getExternalId called with no external_id set yet");
+            if (external_id == "") throw cRuntimeError("v_TraCIMobility::getExternalId called with no external_id set yet");
             return external_id;
         }
         virtual Coord getPosition() const {
             return lastPosition;
         }
         virtual std::string getRoadId() const {
-            if (road_id == "") throw cRuntimeError("TraCIMobilityBase::getRoadId called with no road_id set yet");
+            if (road_id == "") throw cRuntimeError("v_TraCIMobility::getRoadId called with no road_id set yet");
             return road_id;
         }
         virtual double getSpeed() const {
-            if (speed == -1) throw cRuntimeError("TraCIMobilityBase::getSpeed called with no speed set yet");
+            if (speed == -1) throw cRuntimeError("v_TraCIMobility::getSpeed called with no speed set yet");
             return speed;
         }
         virtual double getAcceleration() const {
-            if (acceleration == -1) throw cRuntimeError("TraCIMobilityBase::getAcceleration called with no acceleration set yet");
+            if (acceleration == -1) throw cRuntimeError("v_TraCIMobility::getAcceleration called with no acceleration set yet");
             return acceleration;
         }
-        virtual TraCIScenarioManager::VehicleSignal getSignals() const {
-            if (signals == -1) throw cRuntimeError("TraCIMobilityBase::getSignals called with no signals set yet");
+        virtual v_TraCIScenarioManager::VehicleSignal getSignals() const {
+            if (signals == -1) throw cRuntimeError("v_TraCIMobility::getSignals called with no signals set yet");
             return signals;
         }
         /**
          * returns angle in rads, 0 being east, with -M_PI <= angle < M_PI.
          */
         virtual double getAngleRad() const {
-            if (angle == M_PI) throw cRuntimeError("TraCIMobilityBase::getAngleRad called with no angle set yet");
+            if (angle == M_PI) throw cRuntimeError("v_TraCIMobility::getAngleRad called with no angle set yet");
             return angle;
         }
-        virtual TraCIScenarioManager* getManager() const {
-            if (!manager) manager = TraCIScenarioManagerAccess().get();
+        virtual v_TraCIScenarioManager* getManager() const {
+            if (!manager) manager = v_TraCIScenarioManagerAccess().get();
             return manager;
         }
         void commandSetSpeedMode(int32_t bitset) {
@@ -163,10 +163,10 @@ class v_TraCIMobility : public VANETMobilityBase
             getManager()->commandSetPolygonShape(polyId, points);
         }
         bool commandAddVehicle(std::string vehicleId, std::string vehicleTypeId, std::string routeId,
-                simtime_t emitTime_st = -TraCIScenarioManager::DEPART_NOW, double emitPosition =
-                        -TraCIScenarioManager::DEPART_POS_BASE, double emitSpeed =
-                        -TraCIScenarioManager::DEPART_SPEED_MAX, int8_t emitLane =
-                        -TraCIScenarioManager::DEPART_LANE_BEST_FREE)
+                simtime_t emitTime_st = -v_TraCIScenarioManager::DEPART_NOW, double emitPosition =
+                        -v_TraCIScenarioManager::DEPART_POS_BASE, double emitSpeed =
+                        -v_TraCIScenarioManager::DEPART_SPEED_MAX, int8_t emitLane =
+                        -v_TraCIScenarioManager::DEPART_LANE_BEST_FREE)
         {
             return getManager()->commandAddVehicle(vehicleId, vehicleTypeId, routeId, emitTime_st, emitPosition,
                     emitSpeed, emitLane);
@@ -193,11 +193,11 @@ class v_TraCIMobility : public VANETMobilityBase
         double speed; /**< updated by nextPosition() */
         double angle; /**< updated by nextPosition() */
         double acceleration; /**< updated by nextPosition() */
-        TraCIScenarioManager::VehicleSignal signals; /**<updated by nextPosition() */
+        v_TraCIScenarioManager::VehicleSignal signals; /**<updated by nextPosition() */
 
         cMessage* startAccidentMsg;
         cMessage* stopAccidentMsg;
-        mutable TraCIScenarioManager* manager;
+        mutable v_TraCIScenarioManager* manager;
         double last_speed;
 
         virtual void fixIfHostGetsOutside(); /**< called after each read to check for (and handle) invalid positions */
