@@ -13,3 +13,4 @@ You will need to have my version of inetmanet-2.0 as there are some small change
 
 VEINS (3.0) included in src in VANETSim, no reference needed (currently excluded from build)
 
+Be sure to edit your path for all launchd.xml in VANETSim/simulations/_maps/[simulationtype]
