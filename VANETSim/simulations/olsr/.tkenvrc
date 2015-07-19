@@ -1,4 +1,4 @@
 # Partial OMNeT++/Tkenv config file -- see $HOME/.tkenvrc as well
-config default-configname	{OLSR-i95}
+config default-configname	{OLSR-Erlangen}
 config default-runnumber	{0}
 

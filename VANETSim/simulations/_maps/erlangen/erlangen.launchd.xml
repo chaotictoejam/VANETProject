@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- debug config -->
+<launch>
+	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\erlangen\erlangen.net.xml" />
+	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\erlangen\erlangen.rou.xml" />
+	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\erlangen\erlangen.poly.xml" />
+	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\erlangen\erlangen.sumo.cfg" type="config" />
+</launch>
+
