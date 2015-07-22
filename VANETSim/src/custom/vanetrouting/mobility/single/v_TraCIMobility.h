@@ -30,7 +30,7 @@
 
 #include "INETDefs.h"
 #include "VANETMobilityBase.h"
-#include "ModuleAccess.h"
+#include "VanetModuleAccess.h"
 #include "world/traci/v_TraCIScenarioManager.h"
 
 /**
@@ -211,10 +211,10 @@ class v_TraCIMobility : public VANETMobilityBase
         double calculateCO2emission(double v, double a) const;
 };
 
-class v_TraCIMobilityAccess : public ModuleAccess<v_TraCIMobility>
+class v_TraCIMobilityAccess : public VanetModuleAccess<v_TraCIMobility>
 {
     public:
-        v_TraCIMobilityAccess() : ModuleAccess<v_TraCIMobility>("mobility") {};
+        v_TraCIMobilityAccess() : VanetModuleAccess<v_TraCIMobility>("mobility") {};
 };
 
 

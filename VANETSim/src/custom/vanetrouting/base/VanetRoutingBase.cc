@@ -324,7 +324,7 @@ void VanetRoutingBase::registerRoutingModule()
     nb->subscribe(this,NF_L2_AP_ASSOCIATED);
 
 #ifdef WITH_80211MESH
-    locator = LocatorModuleAccess().getIfExists();
+    locator = LocatorVanetModuleAccess().getIfExists();
     if (locator)
     {
         InterfaceEntry *ie = getInterfaceWlanByAddress();

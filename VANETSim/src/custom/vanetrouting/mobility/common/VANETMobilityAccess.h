@@ -22,17 +22,17 @@
 
 #include "INETDefs.h"
 
-#include "ModuleAccess.h"
+#include "VanetModuleAccess.h"
 #include "IVANETMobility.h"
 
 
 /**
  * Gives access to the IVANETMobility submodule.
  */
-class VANETMobilityAccess : public ModuleAccess<IVANETMobility>
+class VANETMobilityAccess : public VanetModuleAccess<IVANETMobility>
 {
     public:
-    //VANETMobilityAccess() : VANETMobilityAccess<IVANETMobility>("vanetMobility") {}
+    //VANETMobilityAccess() : VANETMobilityAccess<IVANETMobility>("VANETMobility") {}
 };
 
 #endif

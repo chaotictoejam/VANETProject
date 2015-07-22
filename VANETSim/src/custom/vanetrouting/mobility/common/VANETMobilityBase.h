@@ -24,7 +24,7 @@
 #define VANET_MOBILITY_BASE_H
 
 #include "INETDefs.h"
-#include "ModuleAccess.h"
+#include "VanetModuleAccess.h"
 #include "Coord.h"
 #include "IVANETMobility.h"
 

@@ -18,7 +18,7 @@
 // cplusplus {{
 #include "IPv4Address.h"
 #include "simtime_t.h"
-#include "ModuleAccess.h"
+#include "VanetModuleAccess.h"
 #include "IVANETMobility.h"
 #include "Coord.h"
 // }}

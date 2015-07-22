@@ -22,7 +22,7 @@
 #include "IPSocket.h"
 #include "IPv4ControlInfo.h"
 #include "UDPControlInfo.h"
-#include "ModuleAccess.h"
+#include "VanetModuleAccess.h"
 #include "NodeOperations.h"
 #include "RoutingTableAccess.h"
 

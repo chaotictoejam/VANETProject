@@ -60,10 +60,10 @@ class v_TraCIScenarioManagerLaunchd : public v_TraCIScenarioManager
         virtual void init_traci();
 };
 
-class v_TraCIScenarioManagerLaunchdAccess : public ModuleAccess<v_TraCIScenarioManagerLaunchd>
+class v_TraCIScenarioManagerLaunchdAccess : public VanetModuleAccess<v_TraCIScenarioManagerLaunchd>
 {
     public:
-        v_TraCIScenarioManagerLaunchdAccess() : ModuleAccess<v_TraCIScenarioManagerLaunchd>("manager") {};
+        v_TraCIScenarioManagerLaunchdAccess() : VanetModuleAccess<v_TraCIScenarioManagerLaunchd>("manager") {};
 };
 
 #endif

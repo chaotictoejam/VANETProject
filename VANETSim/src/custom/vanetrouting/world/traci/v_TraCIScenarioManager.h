@@ -31,7 +31,7 @@
 
 #include "INETDefs.h"
 #include "Coord.h"
-#include "ModuleAccess.h"
+#include "VanetModuleAccess.h"
 #include "v_TraCIColor.h"
 
 /**

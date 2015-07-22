@@ -1,6 +1,6 @@
 package vanetsim.simulations._nodes;
 
-import inet.applications.traci.TraCIDemo;
+import vanetsim.custom.vanetrouting.applications.traci.v_TraCIDemo;
 import inet.base.LifecycleController;
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;
@@ -28,7 +28,7 @@ module AODVVANETCar
         notificationBoard: NotificationBoard {
             parameters:
                 @display("p=140,462");
-        }
+        }							
         ac_wlan: HostAutoConfigurator {
             @display("p=296,402");
         }
@@ -36,7 +36,7 @@ module AODVVANETCar
             parameters:
                 @display("p=140,326");
         }
-        app: TraCIDemo {
+        app: v_TraCIDemo {
             parameters:
                 @display("p=384,46");
         }
