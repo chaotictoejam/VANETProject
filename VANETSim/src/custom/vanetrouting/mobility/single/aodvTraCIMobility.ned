@@ -24,19 +24,19 @@ import vanetsim.custom.vanetrouting.mobility.common.VANETMobilityBase;
 import vanetsim.custom.vanetrouting.mobility.contract.IVANETMobility;
 
 //
-// Used in modules created by the v_TraCIScenarioManager.
+// Used in modules created by the aodvTraCIScenarioManager.
 //
-// This module relies on the v_TraCIScenarioManager for state updates
+// This module relies on the aodvTraCIScenarioManager for state updates
 // and can not be used on its own.
 //
 // See the Veins website <a href="http://veins.car2x.org/"> for a tutorial, documentation, and publications </a>.
 //
 // @author Christoph Sommer, David Eckhoff, Luca Bedogni, Bastian Halmos
 //
-// @see v_TraCIScenarioManager
-// @see v_TraCIScenarioManagerLaunchd
+// @see aodvTraCIScenarioManager
+// @see aodvTraCIScenarioManagerLaunchd
 //
-simple v_TraCIMobility extends VANETMobilityBase like IVANETMobility
+simple aodvTraCIMobility extends VANETMobilityBase like IVANETMobility
 {
     parameters:
         @display("i=block/cogwheel");
@@ -44,6 +44,6 @@ simple v_TraCIMobility extends VANETMobilityBase like IVANETMobility
         double accidentStart @unit("s") = default(uniform(30s,60s));  // time until first accident, relative to departure time
         volatile double accidentDuration @unit("s") = default(uniform(30s,60s));  // duration of accident
         volatile double accidentInterval @unit("s") = default(uniform(30s,60s));  // time between accidents
-        @class(v_TraCIMobility);
+        @class(aodvTraCIMobility);
 }
 

@@ -24,9 +24,9 @@
 #include <sstream>
 
 #include "FWMath.h"  // for M_PI
-#include "mobility/single/v_TraCIMobility.h"
+#include "mobility/single/aodvTraCIMobility.h"
 
-Define_Module(v_TraCIMobility);
+Define_Module(aodvTraCIMobility);
 
 namespace {
     const double MY_INFINITY = (std::numeric_limits<double>::has_infinity ? std::numeric_limits<double>::infinity() : std::numeric_limits<double>::max());
@@ -39,7 +39,7 @@ namespace {
     }*/
 }
 
-void v_TraCIMobility::Statistics::initialize()
+void aodvTraCIMobility::Statistics::initialize()
 {
     firstRoadNumber = MY_INFINITY;
     startTime = simTime();
@@ -51,7 +51,7 @@ void v_TraCIMobility::Statistics::initialize()
     totalCO2Emission = 0;
 }
 
-void v_TraCIMobility::Statistics::watch(cSimpleModule& )
+void aodvTraCIMobility::Statistics::watch(cSimpleModule& )
 {
     WATCH(totalTime);
     WATCH(minSpeed);
@@ -59,7 +59,7 @@ void v_TraCIMobility::Statistics::watch(cSimpleModule& )
     WATCH(totalDistance);
 }
 
-void v_TraCIMobility::Statistics::recordScalars(cSimpleModule& module)
+void aodvTraCIMobility::Statistics::recordScalars(cSimpleModule& module)
 {
     if (firstRoadNumber != MY_INFINITY) module.recordScalar("firstRoadNumber", firstRoadNumber);
     module.recordScalar("startTime", startTime);
@@ -71,7 +71,7 @@ void v_TraCIMobility::Statistics::recordScalars(cSimpleModule& module)
     module.recordScalar("totalCO2Emission", totalCO2Emission);
 }
 
-void v_TraCIMobility::initialize(int stage)
+void aodvTraCIMobility::initialize(int stage)
 {
     //TODO why call the base::initialize() at the end?
 
@@ -113,12 +113,12 @@ void v_TraCIMobility::initialize(int stage)
     VANETMobilityBase::initialize(stage);
 }
 
-void v_TraCIMobility::setInitialPosition() {
+void aodvTraCIMobility::setInitialPosition() {
     ASSERT(isPreInitialized);
     isPreInitialized = false;
 }
 
-void v_TraCIMobility::finish()
+void aodvTraCIMobility::finish()
 {
     statistics.stopTime = simTime();
 
@@ -130,7 +130,7 @@ void v_TraCIMobility::finish()
     isPreInitialized = false;
 }
 
-void v_TraCIMobility::handleSelfMessage(cMessage *msg)
+void aodvTraCIMobility::handleSelfMessage(cMessage *msg)
 {
     if (msg == startAccidentMsg) {
         commandSetSpeed(0);
@@ -147,7 +147,7 @@ void v_TraCIMobility::handleSelfMessage(cMessage *msg)
     }
 }
 
-void v_TraCIMobility::preInitialize(std::string external_id, const Coord& position, std::string road_id, double speed, double acceleration, double angle)
+void aodvTraCIMobility::preInitialize(std::string external_id, const Coord& position, std::string road_id, double speed, double acceleration, double angle)
 {
     this->external_id = external_id;
     this->lastUpdate = 0;
@@ -161,7 +161,7 @@ void v_TraCIMobility::preInitialize(std::string external_id, const Coord& positi
     isPreInitialized = true;
 }
 
-void v_TraCIMobility::nextPosition(const Coord& position, std::string road_id, double speed, double acceleration, double angle, v_TraCIScenarioManager::VehicleSignal signals)
+void aodvTraCIMobility::nextPosition(const Coord& position, std::string road_id, double speed, double acceleration, double angle, aodvTraCIScenarioManager::VehicleSignal signals)
 {
     EV_DEBUG << "next position = " << position << " " << road_id << " " << speed << " "  << acceleration << " " << angle << std::endl;
     isPreInitialized = false;
@@ -174,7 +174,7 @@ void v_TraCIMobility::nextPosition(const Coord& position, std::string road_id, d
     move();
 }
 
-void v_TraCIMobility::move()
+void aodvTraCIMobility::move()
 {
     // ensure we're not called twice in one time step
     ASSERT(lastUpdate != simTime());
@@ -216,7 +216,7 @@ void v_TraCIMobility::move()
     updateVisualRepresentation();
 }
 
-void v_TraCIMobility::updateDisplayString() {
+void aodvTraCIMobility::updateDisplayString() {
     ASSERT(-M_PI <= angle);
     ASSERT(angle < M_PI);
 
@@ -272,12 +272,12 @@ void v_TraCIMobility::updateDisplayString() {
     }
 }
 
-void v_TraCIMobility::fixIfHostGetsOutside()
+void aodvTraCIMobility::fixIfHostGetsOutside()
 {
     raiseErrorIfOutside();
 }
 
-double v_TraCIMobility::calculateCO2emission(double v, double a) const {
+double aodvTraCIMobility::calculateCO2emission(double v, double a) const {
     // Calculate CO2 emission parameters according to:
     // Cappiello, A. and Chabini, I. and Nam, E.K. and Lue, A. and Abou Zeid, M., "A statistical model of vehicle emissions and fuel consumption," IEEE 5th International Conference on Intelligent Transportation Systems (IEEE ITSC), pp. 801-809, 2002
 

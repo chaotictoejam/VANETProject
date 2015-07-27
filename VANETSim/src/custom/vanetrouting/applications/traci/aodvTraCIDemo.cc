@@ -18,17 +18,17 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include "applications/traci/v_TraCIDemo.h"
+#include "applications/traci/aodvTraCIDemo.h"
 
 #include "VanetModuleAccess.h"
 #include "NodeStatus.h"
 #include "UDPSocket.h"
 
-Define_Module(v_TraCIDemo);
+Define_Module(aodvTraCIDemo);
 
-simsignal_t v_TraCIDemo::mobilityStateChangedSignal = registerSignal("mobilityStateChanged");
+simsignal_t aodvTraCIDemo::mobilityStateChangedSignal = registerSignal("mobilityStateChanged");
 
-void v_TraCIDemo::initialize(int stage)
+void aodvTraCIDemo::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
 
@@ -44,21 +44,21 @@ void v_TraCIDemo::initialize(int stage)
         if (!isOperational)
             throw cRuntimeError("This module doesn't support starting in node DOWN state");
 
-        traci = v_TraCIMobilityAccess().get();
+        traci = aodvTraCIMobilityAccess().get();
         traci->subscribe(mobilityStateChangedSignal, this);
 
         setupLowerLayer();
     }
 }
 
-void v_TraCIDemo::setupLowerLayer() {
+void aodvTraCIDemo::setupLowerLayer() {
     socket.setOutputGate(gate("udp$o"));
     socket.joinLocalMulticastGroups();
     socket.bind(12345);
     socket.setBroadcast(true);
 }
 
-void v_TraCIDemo::handleMessage(cMessage* msg) {
+void aodvTraCIDemo::handleMessage(cMessage* msg) {
     if (msg->isSelfMessage()) {
         handleSelfMsg(msg);
     } else {
@@ -66,22 +66,22 @@ void v_TraCIDemo::handleMessage(cMessage* msg) {
     }
 }
 
-void v_TraCIDemo::handleSelfMsg(cMessage* msg) {
+void aodvTraCIDemo::handleSelfMsg(cMessage* msg) {
 }
 
-void v_TraCIDemo::handleLowerMsg(cMessage* msg) {
+void aodvTraCIDemo::handleLowerMsg(cMessage* msg) {
     if (!sentMessage) sendMessage();
     delete msg;
 }
 
-void v_TraCIDemo::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) {
+void aodvTraCIDemo::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) {
     Enter_Method_Silent();
     if (signalID == mobilityStateChangedSignal) {
         handlePositionUpdate();
     }
 }
 
-void v_TraCIDemo::sendMessage() {
+void aodvTraCIDemo::sendMessage() {
     sentMessage = true;
 
     cPacket* newMessage = new cPacket();
@@ -89,7 +89,7 @@ void v_TraCIDemo::sendMessage() {
     socket.sendTo(newMessage, IPv4Address::ALL_HOSTS_MCAST, 12345);
 }
 
-void v_TraCIDemo::handlePositionUpdate() {
+void aodvTraCIDemo::handlePositionUpdate() {
     if (traci->getPosition().x < 7350) {
         if (!sentMessage) sendMessage();
     }

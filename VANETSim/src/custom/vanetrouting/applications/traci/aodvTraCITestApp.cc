@@ -18,16 +18,16 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include "applications/traci/v_TraCITestApp.h"
+#include "applications/traci/aodvTraCITestApp.h"
 #include "VanetModuleAccess.h"
 #include "NodeStatus.h"
 #include <cmath>
 
-Define_Module(v_TraCITestApp);
+Define_Module(aodvTraCITestApp);
 
-simsignal_t v_TraCITestApp::mobilityStateChangedSignal = registerSignal("mobilityStateChanged");
+simsignal_t aodvTraCITestApp::mobilityStateChangedSignal = registerSignal("mobilityStateChanged");
 
-void v_TraCITestApp::initialize(int stage)
+void aodvTraCITestApp::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
 
@@ -35,13 +35,13 @@ void v_TraCITestApp::initialize(int stage)
     {
         testNumber = par("testNumber");
 
-        traci = v_TraCIMobilityAccess().get();
+        traci = aodvTraCIMobilityAccess().get();
         traci->subscribe(mobilityStateChangedSignal, this);
 
         visitedEdges.clear();
         hasStopped = false;
 
-        EV_DEBUG << "v_TraCITestApp initialized with testNumber=" << testNumber << std::endl;
+        EV_DEBUG << "aodvTraCITestApp initialized with testNumber=" << testNumber << std::endl;
     }
     else if (stage == 3)
     {
@@ -53,17 +53,17 @@ void v_TraCITestApp::initialize(int stage)
     }
 }
 
-void v_TraCITestApp::finish() {
+void aodvTraCITestApp::finish() {
 }
 
-void v_TraCITestApp::handleSelfMsg(cMessage *msg) {
+void aodvTraCITestApp::handleSelfMsg(cMessage *msg) {
 }
 
-void v_TraCITestApp::handleLowerMsg(cMessage* msg) {
+void aodvTraCITestApp::handleLowerMsg(cMessage* msg) {
     delete msg;
 }
 
-void v_TraCITestApp::handleMessage(cMessage* msg) {
+void aodvTraCITestApp::handleMessage(cMessage* msg) {
     if (msg->isSelfMessage()) {
         handleSelfMsg(msg);
     } else {
@@ -72,7 +72,7 @@ void v_TraCITestApp::handleMessage(cMessage* msg) {
 }
 
 
-void v_TraCITestApp::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) {
+void aodvTraCITestApp::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) {
     if (signalID == mobilityStateChangedSignal) {
         handlePositionUpdate();
     }
@@ -94,7 +94,7 @@ namespace {
     }
 }
 
-void v_TraCITestApp::handlePositionUpdate() {
+void aodvTraCITestApp::handlePositionUpdate() {
     const simtime_t t = simTime();
     const std::string roadId = traci->getRoadId();
     visitedEdges.insert(roadId);
@@ -217,7 +217,7 @@ void v_TraCITestApp::handlePositionUpdate() {
             bool r = (i != traci->getManager()->getManagedHosts().end());
             assertTrue("(commandAddVehicle) vehicle now driving", r);
             cModule* mod = i->second;
-            v_TraCIMobility* traci2 = check_and_cast<v_TraCIMobility*>(findModuleWhereverInNode("mobility", mod));
+            aodvTraCIMobility* traci2 = check_and_cast<aodvTraCIMobility*>(findModuleWhereverInNode("mobility", mod));
             assertTrue("(commandAddVehicle) vehicle driving at speed", traci2->getSpeed() > 25);
         }
     }

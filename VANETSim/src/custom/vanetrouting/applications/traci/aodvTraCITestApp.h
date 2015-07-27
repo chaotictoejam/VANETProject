@@ -18,8 +18,8 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#ifndef v_TraCITestApp_H
-#define v_TraCITestApp_H
+#ifndef aodvTraCITestApp_H
+#define aodvTraCITestApp_H
 
 #include <set>
 #include <list>
@@ -27,12 +27,12 @@
 #include <omnetpp.h>
 #include "ILifecycle.h"
 #include "LifecycleOperation.h"
-#include "mobility/single/v_TraCIMobility.h"
+#include "mobility/single/aodvTraCIMobility.h"
 
 /**
  * FIXME
  */
-class v_TraCITestApp : public cSimpleModule, protected cListener, public ILifecycle
+class aodvTraCITestApp : public cSimpleModule, protected cListener, public ILifecycle
 {
     public:
         virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback)
@@ -47,7 +47,7 @@ class v_TraCITestApp : public cSimpleModule, protected cListener, public ILifecy
         // module parameters
         int testNumber;
 
-        v_TraCIMobility* traci;
+        aodvTraCIMobility* traci;
         std::set<std::string> visitedEdges; /**< set of edges this vehicle visited */
         bool hasStopped; /**< true if at some point in time this vehicle travelled at negligible speed */
         static simsignal_t mobilityStateChangedSignal;

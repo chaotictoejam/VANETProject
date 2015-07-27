@@ -18,8 +18,8 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#ifndef WORLD_TraCI_v_TraCISCENARIOMANAGER_H
-#define WORLD_TraCI_v_TraCISCENARIOMANAGER_H
+#ifndef WORLD_TraCI_rbvtrTraCISCENARIOMANAGER_H
+#define WORLD_TraCI_rbvtrTraCISCENARIOMANAGER_H
 
 #include <utility>
 #include <map>
@@ -32,26 +32,26 @@
 #include "INETDefs.h"
 #include "Coord.h"
 #include "VanetModuleAccess.h"
-#include "v_TraCIColor.h"
+#include "vanetTraCIColor.h"
 
 /**
  * @brief
- * Creates and moves nodes controlled by a v_TraCI server.
+ * Creates and moves nodes controlled by a rbvtrTraCI server.
  *
  * If the server is a SUMO road traffic simulation, you can use the
- * v_TraCIScenarioManagerLaunchd module and sumo-launchd.py script instead.
+ * rbvtrTraCIScenarioManagerLaunchd module and sumo-launchd.py script instead.
  *
- * All nodes created thus must have a v_TraCIMobility submodule.
+ * All nodes created thus must have a rbvtrTraCIMobility submodule.
  *
  * See the Veins website <a href="http://veins.car2x.org/"> for a tutorial, documentation, and publications </a>.
  *
  * @author Christoph Sommer, David Eckhoff, Falko Dressler, Zheng Yao, Tobias Mayer, Alvaro Torres Cortes, Luca Bedogni
  *
- * @see v_TraCIMobility
- * @see v_TraCIScenarioManagerLaunchd
+ * @see rbvtrTraCIMobility
+ * @see rbvtrTraCIScenarioManagerLaunchd
  *
  */
-class v_TraCIScenarioManager : public cSimpleModule
+class rbvtrTraCIScenarioManager : public cSimpleModule
 {
     public:
 
@@ -79,7 +79,7 @@ class v_TraCIScenarioManager : public cSimpleModule
             DEPART_NOW = 2, DEPART_LANE_BEST_FREE = 5, DEPART_POS_BASE = 4, DEPART_SPEED_MAX = 3
         };
 
-        ~v_TraCIScenarioManager();
+        ~rbvtrTraCIScenarioManager();
         virtual int numInitStages() const { return std::max(cSimpleModule::numInitStages(), 2); }
         virtual void initialize(int stage);
         virtual void finish();
@@ -112,10 +112,10 @@ class v_TraCIScenarioManager : public cSimpleModule
         std::string commandGetPolygonTypeId(std::string polyId);
         std::list<Coord> commandGetPolygonShape(std::string polyId);
         void commandSetPolygonShape(std::string polyId, std::list<Coord> points);
-        void commandAddPolygon(std::string polyId, std::string polyType, const v_TraCIColor& color, bool filled,
+        void commandAddPolygon(std::string polyId, std::string polyType, const vanetTraCIColor& color, bool filled,
                 int32_t layer, std::list<Coord> points);
         void commandRemovePolygon(std::string polyId, int32_t layer);
-        void commandAddPoi(std::string poiId, std::string poiType, const v_TraCIColor& color, int32_t layer, Coord pos);
+        void commandAddPoi(std::string poiId, std::string poiType, const vanetTraCIColor& color, int32_t layer, Coord pos);
         void commandRemovePoi(std::string poiId, int32_t layer);
         std::list<std::string> commandGetLaneIds();
         std::list<Coord> commandGetLaneShape(std::string laneId);
@@ -135,25 +135,25 @@ class v_TraCIScenarioManager : public cSimpleModule
 
     protected:
         /**
-         * Coord equivalent for storing v_TraCI coordinates
+         * Coord equivalent for storing rbvtrTraCI coordinates
          */
-        struct v_TraCICoord {
-            v_TraCICoord() : x(0), y(0) {}
-            v_TraCICoord(double x, double y) : x(x), y(y) {}
+        struct rbvtrTraCICoord {
+            rbvtrTraCICoord() : x(0), y(0) {}
+            rbvtrTraCICoord(double x, double y) : x(x), y(y) {}
             double x;
             double y;
         };
 
         /**
-         * Byte-buffer that stores values in v_TraCI byte-order
+         * Byte-buffer that stores values in rbvtrTraCI byte-order
          */
-        class v_TraCIBuffer {
+        class rbvtrTraCIBuffer {
             public:
-                v_TraCIBuffer() : buf() {
+                rbvtrTraCIBuffer() : buf() {
                     buf_index = 0;
                 }
 
-                v_TraCIBuffer(std::string buf) : buf(buf) {
+                rbvtrTraCIBuffer(std::string buf) : buf(buf) {
                     buf_index = 0;
                 }
 
@@ -195,12 +195,12 @@ class v_TraCIScenarioManager : public cSimpleModule
                     return out;
                 }
 
-                template<typename T> v_TraCIBuffer& operator >>(T& out) {
+                template<typename T> rbvtrTraCIBuffer& operator >>(T& out) {
                     out = read<T>();
                     return *this;
                 }
 
-                template<typename T> v_TraCIBuffer& operator <<(const T& inv) {
+                template<typename T> rbvtrTraCIBuffer& operator <<(const T& inv) {
                     write(inv);
                     return *this;
                 }
@@ -243,8 +243,8 @@ class v_TraCIScenarioManager : public cSimpleModule
         };
 
         bool debug; /**< whether to emit debug messages */
-        simtime_t connectAt; /**< when to connect to v_TraCI server (must be the initial timestep of the server) */
-        simtime_t firstStepAt; /**< when to start synchronizing with the v_TraCI server (-1: immediately after connecting) */
+        simtime_t connectAt; /**< when to connect to rbvtrTraCI server (must be the initial timestep of the server) */
+        simtime_t firstStepAt; /**< when to start synchronizing with the rbvtrTraCI server (-1: immediately after connecting) */
         simtime_t updateInterval; /**< time interval of hosts' position updates */
         std::string moduleType; /**< module type to be used in the simulation for each managed vehicle */
         std::string moduleName; /**< module name to be used in the simulation for each managed vehicle */
@@ -255,19 +255,19 @@ class v_TraCIScenarioManager : public cSimpleModule
         int margin;
         double penetrationRate;
         std::list<std::string> roiRoads; /**< which roads (e.g. "hwy1 hwy2") are considered to consitute the region of interest, if not empty */
-        std::list<std::pair<v_TraCICoord, v_TraCICoord> > roiRects; /**< which rectangles (e.g. "0,0-10,10 20,20-30,30) are considered to consitute the region of interest, if not empty */
+        std::list<std::pair<rbvtrTraCICoord, rbvtrTraCICoord> > roiRects; /**< which rectangles (e.g. "0,0-10,10 20,20-30,30) are considered to consitute the region of interest, if not empty */
 
         void* socketPtr;
-        v_TraCICoord netbounds1; /* network boundaries as reported by v_TraCI (x1, y1) */
-        v_TraCICoord netbounds2; /* network boundaries as reported by v_TraCI (x2, y2) */
+        rbvtrTraCICoord netbounds1; /* network boundaries as reported by rbvtrTraCI (x1, y1) */
+        rbvtrTraCICoord netbounds2; /* network boundaries as reported by rbvtrTraCI (x2, y2) */
 
         size_t nextNodeVectorIndex; /**< next OMNeT++ module vector index to use */
         std::map<std::string, cModule*> hosts; /**< vector of all hosts managed by us */
         std::set<std::string> unEquippedHosts;
         std::set<std::string> subscribedVehicles; /**< all vehicles we have already subscribed to */
-        uint32_t activeVehicleCount; /**< number of vehicles reported as active by v_TraCI server */
+        uint32_t activeVehicleCount; /**< number of vehicles reported as active by rbvtrTraCI server */
         bool autoShutdownTriggered;
-        cMessage* connectAndStartTrigger; /**< self-message scheduled for when to connect to v_TraCI server and start running */
+        cMessage* connectAndStartTrigger; /**< self-message scheduled for when to connect to rbvtrTraCI server and start running */
         cMessage* executeOneTimestepTrigger; /**< self-message scheduled for when to next call executeOneTimestep */
 
         uint32_t getCurrentTimeMs(); /**< get current simulation time (in ms) */
@@ -287,35 +287,35 @@ class v_TraCIScenarioManager : public cSimpleModule
          * returns whether a given position lies within the simulation's region of interest.
          * Modules are destroyed and re-created as managed vehicles leave and re-enter the ROI
          */
-        bool isInRegionOfInterest(const v_TraCICoord& position, std::string road_id, double speed, double angle);
+        bool isInRegionOfInterest(const rbvtrTraCICoord& position, std::string road_id, double speed, double angle);
 
         /**
-         * sends a single command via v_TraCI, checks status response, returns additional responses
+         * sends a single command via rbvtrTraCI, checks status response, returns additional responses
          */
-        v_TraCIBuffer queryv_TraCI(uint8_t commandId, const v_TraCIBuffer& buf = v_TraCIBuffer());
+        rbvtrTraCIBuffer queryrbvtrTraCI(uint8_t commandId, const rbvtrTraCIBuffer& buf = rbvtrTraCIBuffer());
 
         /**
-         * sends a single command via v_TraCI, expects no reply, returns true if successful
+         * sends a single command via rbvtrTraCI, expects no reply, returns true if successful
          */
-        v_TraCIScenarioManager::v_TraCIBuffer queryv_TraCIOptional(uint8_t commandId, const v_TraCIBuffer& buf, bool& success, std::string* errorMsg = 0);
+        rbvtrTraCIScenarioManager::rbvtrTraCIBuffer queryrbvtrTraCIOptional(uint8_t commandId, const rbvtrTraCIBuffer& buf, bool& success, std::string* errorMsg = 0);
 
         /**
-         * returns byte-buffer containing a v_TraCI command with optional parameters
+         * returns byte-buffer containing a rbvtrTraCI command with optional parameters
          */
-        std::string makev_TraCICommand(uint8_t commandId, v_TraCIBuffer buf = v_TraCIBuffer());
+        std::string makerbvtrTraCICommand(uint8_t commandId, rbvtrTraCIBuffer buf = rbvtrTraCIBuffer());
 
         /**
-         * sends a message via v_TraCI (after adding the header)
+         * sends a message via rbvtrTraCI (after adding the header)
          */
-        void sendv_TraCIMessage(std::string buf);
+        void sendrbvtrTraCIMessage(std::string buf);
 
         /**
-         * receives a message via v_TraCI (and strips the header)
+         * receives a message via rbvtrTraCI (and strips the header)
          */
-        std::string receivev_TraCIMessage();
+        std::string receiverbvtrTraCIMessage();
 
         /**
-         * commonly employed technique to get string values via v_TraCI
+         * commonly employed technique to get string values via rbvtrTraCI
          */
         std::string genericGetString(uint8_t commandId, std::string objectId, uint8_t variableId, uint8_t responseId);
         Coord genericGetCoord(uint8_t commandId, std::string objectId, uint8_t variableId, uint8_t responseId);
@@ -324,51 +324,51 @@ class v_TraCIScenarioManager : public cSimpleModule
         std::list<Coord> genericGetCoordList(uint8_t commandId, std::string objectId, uint8_t variableId, uint8_t responseId);
 
         /**
-         * convert v_TraCI coordinates to OMNeT++ coordinates
+         * convert rbvtrTraCI coordinates to OMNeT++ coordinates
          */
-        Coord v_TraCI2omnet(v_TraCICoord coord) const;
+        Coord rbvtrTraCI2omnet(rbvtrTraCICoord coord) const;
 
         /**
-         * convert OMNeT++ coordinates to v_TraCI coordinates
+         * convert OMNeT++ coordinates to rbvtrTraCI coordinates
          */
-        v_TraCICoord omnet2v_TraCI(Coord coord) const;
+        rbvtrTraCICoord omnet2rbvtrTraCI(Coord coord) const;
 
         /**
-         * convert v_TraCI angle to OMNeT++ angle (in rad)
+         * convert rbvtrTraCI angle to OMNeT++ angle (in rad)
          */
-        double v_TraCI2omnetAngle(double angle) const;
+        double rbvtrTraCI2omnetAngle(double angle) const;
 
         /**
-         * convert OMNeT++ angle (in rad) to v_TraCI angle
+         * convert OMNeT++ angle (in rad) to rbvtrTraCI angle
          */
-        double omnet2v_TraCIAngle(double angle) const;
+        double omnet2rbvtrTraCIAngle(double angle) const;
 
         void subscribeToVehicleVariables(std::string vehicleId);
         void unsubscribeFromVehicleVariables(std::string vehicleId);
-        void processSimSubscription(std::string objectId, v_TraCIBuffer& buf);
-        void processVehicleSubscription(std::string objectId, v_TraCIBuffer& buf);
-        void processSubcriptionResult(v_TraCIBuffer& buf);
+        void processSimSubscription(std::string objectId, rbvtrTraCIBuffer& buf);
+        void processVehicleSubscription(std::string objectId, rbvtrTraCIBuffer& buf);
+        void processSubcriptionResult(rbvtrTraCIBuffer& buf);
 };
 
-template<> void v_TraCIScenarioManager::v_TraCIBuffer::write(std::string inv);
-template<> void v_TraCIScenarioManager::v_TraCIBuffer::write(v_TraCIScenarioManager::v_TraCICoord inv);
-template<> std::string v_TraCIScenarioManager::v_TraCIBuffer::read();
-template<> v_TraCIScenarioManager::v_TraCICoord v_TraCIScenarioManager::v_TraCIBuffer::read();
+template<> void rbvtrTraCIScenarioManager::rbvtrTraCIBuffer::write(std::string inv);
+template<> void rbvtrTraCIScenarioManager::rbvtrTraCIBuffer::write(rbvtrTraCIScenarioManager::rbvtrTraCICoord inv);
+template<> std::string rbvtrTraCIScenarioManager::rbvtrTraCIBuffer::read();
+template<> rbvtrTraCIScenarioManager::rbvtrTraCICoord rbvtrTraCIScenarioManager::rbvtrTraCIBuffer::read();
 
-class v_TraCIScenarioManagerAccess
+class rbvtrTraCIScenarioManagerAccess
 {
     public:
-        v_TraCIScenarioManagerAccess() {
-            o = dynamic_cast<v_TraCIScenarioManager*>(simulation.getModuleByPath("manager"));
-            if (!o) throw cRuntimeError("Could not find a v_TraCIScenarioManager module named manager");
+        rbvtrTraCIScenarioManagerAccess() {
+            o = dynamic_cast<rbvtrTraCIScenarioManager*>(simulation.getModuleByPath("manager"));
+            if (!o) throw cRuntimeError("Could not find a rbvtrTraCIScenarioManager module named manager");
         };
 
-        v_TraCIScenarioManager* get() {
+        rbvtrTraCIScenarioManager* get() {
             return o;
         }
 
     protected:
-        v_TraCIScenarioManager* o;
+        rbvtrTraCIScenarioManager* o;
 
 };
 

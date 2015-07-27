@@ -9,13 +9,13 @@ import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
-import vanetsim.custom.nodes.AODVVANETRouter;
+import vanetsim.custom.nodes.RBVTRRouter;
 import inet.nodes.inet.NetworkLayer;
 import inet.transport.udp.UDP;
 import inet.world.radio.ChannelControl;
 
 
-module AODVVANETCar
+module RBVTRCar
 {
     parameters:
         @node();

@@ -18,15 +18,26 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package  vanetsim.custom.vanetrouting.applications.traci;
+#ifndef WORLD_TraCI_vanetTraCIColorS_H
+#define WORLD_TraCI_vanetTraCIColorS_H
 
-//
-// v_TraCI IVC Demo
-//
-simple v_TraCIDemo
+#include <omnetpp.h>
+
+/**
+ * aodvTraCI compatible color container
+ */
+class vanetTraCIColor
 {
-    parameters:
-        @display("i=block/app2");
-    gates:
-        inout udp;
-}
+    public:
+        vanetTraCIColor(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
+        static vanetTraCIColor fromTkColor(std::string tkColorName);
+
+    public:
+        uint8_t red;
+        uint8_t green;
+        uint8_t blue;
+        uint8_t alpha;
+};
+
+#endif
+

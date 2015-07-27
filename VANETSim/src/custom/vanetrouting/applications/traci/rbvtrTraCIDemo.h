@@ -18,19 +18,19 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#ifndef v_TraCIDemo_H
-#define v_TraCIDemo_H
+#ifndef rbvtrTraCIDemo_H
+#define rbvtrTraCIDemo_H
 
 #include <omnetpp.h>
 #include "UDPSocket.h"
 #include "ILifecycle.h"
 #include "LifecycleOperation.h"
-#include "mobility/single/v_TraCIMobility.h"
+#include "mobility/single/rbvtrTraCIMobility.h"
 
 /**
  * Small IVC Demo
  */
-class v_TraCIDemo : public cSimpleModule, protected cListener, public ILifecycle
+class rbvtrTraCIDemo : public cSimpleModule, protected cListener, public ILifecycle
 {
     public:
         virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback)
@@ -44,7 +44,7 @@ class v_TraCIDemo : public cSimpleModule, protected cListener, public ILifecycle
         virtual void handleMessage(cMessage* msg);
 
     protected:
-        v_TraCIMobility* traci;
+        rbvtrTraCIMobility* traci;
         bool sentMessage;
         UDPSocket socket;
         static simsignal_t mobilityStateChangedSignal;

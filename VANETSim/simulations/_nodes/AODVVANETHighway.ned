@@ -1,16 +1,16 @@
 package vanetsim.simulations._nodes;
 
 import inet.world.radio.ChannelControl;
-import vanetsim.custom.vanetrouting.world.traci.v_TraCIScenarioManagerLaunchd;
+import vanetsim.custom.vanetrouting.world.traci.aodvTraCIScenarioManagerLaunchd;
 
-module VANETHighway
+module AODVVANETHighway
 {
     submodules:
         channelControl: ChannelControl {
             parameters:
                 @display("p=256,128");
         }
-        manager: v_TraCIScenarioManagerLaunchd {
+        manager: aodvTraCIScenarioManagerLaunchd {
             parameters:
                 @display("p=512,128");
         }

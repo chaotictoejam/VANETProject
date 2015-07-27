@@ -20,13 +20,13 @@
 
 package  vanetsim.custom.vanetrouting.applications.traci;
 
-
-simple v_TraCITestApp
+//
+// rbvtrTraCI IVC Demo
+//
+simple rbvtrTraCIDemo
 {
     parameters:
-        int testNumber;  // number of test to run (-1: no test)
-
         @display("i=block/app2");
     gates:
-
+        inout udp;
 }

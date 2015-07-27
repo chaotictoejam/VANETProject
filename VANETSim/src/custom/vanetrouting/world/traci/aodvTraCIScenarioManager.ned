@@ -21,33 +21,33 @@
 package vanetsim.custom.vanetrouting.world.traci;
 
 //
-// Creates and moves nodes controlled by a v_TraCI server.
+// Creates and moves nodes controlled by a aodvTraCI server.
 //
 // If the server is a SUMO road traffic simulation, you can use the
-// v_TraCIScenarioManagerLaunchd module and sumo-launchd.py script instead.
+// aodvTraCIScenarioManagerLaunchd module and sumo-launchd.py script instead.
 //
-// All nodes created thus must have a v_TraCIMobility submodule.
+// All nodes created thus must have a aodvTraCIMobility submodule.
 //
 // See the Veins website <a href="http://veins.car2x.org/"> for a tutorial, documentation, and publications </a>.
 //
 // @author Christoph Sommer, David Eckhoff, Falko Dressler, Zheng Yao, Tobias Mayer, Alvaro Torres Cortes, Luca Bedogni
 //
-// @see v_TraCIMobility
-// @see v_TraCIScenarioManagerLaunchd
+// @see aodvTraCIMobility
+// @see aodvTraCIScenarioManagerLaunchd
 //
-simple v_TraCIScenarioManager
+simple aodvTraCIScenarioManager
 {
     parameters:
         @display("i=block/network2");
         bool debug = default(false);  // emit debug messages?
-        double connectAt @unit("s") = default(0s);  // when to connect to v_TraCI server (must be the initial timestep of the server)
-        double firstStepAt @unit("s") = default(-1s);  // when to start synchronizing with the v_TraCI server (-1: immediately after connecting)
+        double connectAt @unit("s") = default(0s);  // when to connect to aodvTraCI server (must be the initial timestep of the server)
+        double firstStepAt @unit("s") = default(-1s);  // when to start synchronizing with the aodvTraCI server (-1: immediately after connecting)
         double updateInterval @unit("s") = default(1s);  // time interval of hosts' position updates
         string moduleType = default("inet.nodes.wireless.WirelessHostSimplified");  // module type to be used in the simulation for each managed vehicle
         string moduleName = default("host");  // module name to be used in the simulation for each managed vehicle
         string moduleDisplayString = default("i=misc/node2;is=vs;r=0,,#707070,1");  // module displayString to be used in the simulation for each managed vehicle
-        string host = default("localhost");  // v_TraCI server hostname
-        int port = default(8888);  // v_TraCI server port
+        string host = default("localhost");  // aodvTraCI server hostname
+        int port = default(8888);  // aodvTraCI server port
         bool autoShutdown = default(true);  // Shutdown module as soon as no more vehicles are in the simulation
         int margin = default(25);  // margin to add to all received vehicle positions
         string roiRoads = default("");  // which roads (e.g. "hwy1 hwy2") are considered to consitute the region of interest, if not empty

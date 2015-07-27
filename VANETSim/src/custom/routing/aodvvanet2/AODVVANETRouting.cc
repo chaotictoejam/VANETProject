@@ -417,7 +417,7 @@ AODVVANETRREQ *AODVVANETRouting::createRREQ(const IPv4Address& destAddr)
     rreqPacket->setPosition(mod->getCurrentPosition());
     rreqPacket->setSpeed(mod->getCurrentSpeed());
     rreqPacket->setAcceleration(mod->getCurrentAcceleration());
-    //rreqPacket->setDirection(direction);
+    //rreqPacket->setDirection(mod->getCurrentDirection());
 
     // Before broadcasting the RREQ, the originating node buffers the RREQ
     // ID and the Originator IP address (its own address) of the RREQ for

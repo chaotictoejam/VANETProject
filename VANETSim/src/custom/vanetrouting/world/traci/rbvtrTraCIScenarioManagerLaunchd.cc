@@ -18,8 +18,8 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include "world/traci/v_TraCIScenarioManagerLaunchd.h"
-#include "world/traci/v_TraCIConstants.h"
+#include "world/traci/rbvtrTraCIScenarioManagerLaunchd.h"
+#include "world/traci/rbvtrTraCIConstants.h"
 #define CMD_FILE_SEND 0x75
 
 #include <sstream>
@@ -28,17 +28,17 @@
 
 #define MYDEBUG EV
 
-Define_Module(v_TraCIScenarioManagerLaunchd);
+Define_Module(rbvtrTraCIScenarioManagerLaunchd);
 
-v_TraCIScenarioManagerLaunchd::~v_TraCIScenarioManagerLaunchd()
+rbvtrTraCIScenarioManagerLaunchd::~rbvtrTraCIScenarioManagerLaunchd()
 {
 }
 
 
-void v_TraCIScenarioManagerLaunchd::initialize(int stage)
+void rbvtrTraCIScenarioManagerLaunchd::initialize(int stage)
 {
     if (stage != 1) {
-        v_TraCIScenarioManager::initialize(stage);
+        rbvtrTraCIScenarioManager::initialize(stage);
         return;
     }
     launchConfig = par("launchConfig").xmlValue();
@@ -63,41 +63,41 @@ void v_TraCIScenarioManagerLaunchd::initialize(int stage)
         seed_node->setAttribute("value", ss.str().c_str());
         launchConfig->appendChild(seed_node);
     }
-    v_TraCIScenarioManager::initialize(stage);
+    rbvtrTraCIScenarioManager::initialize(stage);
 }
 
-void v_TraCIScenarioManagerLaunchd::finish()
+void rbvtrTraCIScenarioManagerLaunchd::finish()
 {
-    v_TraCIScenarioManager::finish();
+    rbvtrTraCIScenarioManager::finish();
 }
 
-void v_TraCIScenarioManagerLaunchd::init_traci() {
+void rbvtrTraCIScenarioManagerLaunchd::init_traci() {
     {
-        std::pair<uint32_t, std::string> version = v_TraCIScenarioManager::commandGetVersion();
+        std::pair<uint32_t, std::string> version = rbvtrTraCIScenarioManager::commandGetVersion();
         uint32_t apiVersion = version.first;
         std::string serverVersion = version.second;
 
         ASSERT(apiVersion == 1);
 
-        MYDEBUG << "v_TraCI launchd reports version \"" << serverVersion << "\"" << endl;
+        MYDEBUG << "rbvtrTraCI launchd reports version \"" << serverVersion << "\"" << endl;
     }
 
     std::string contents = launchConfig->tostr(0);
 
-    v_TraCIBuffer buf;
+    rbvtrTraCIBuffer buf;
     buf << std::string("sumo-launchd.launch.xml") << contents;
-    sendv_TraCIMessage(makev_TraCICommand(CMD_FILE_SEND, buf));
+    sendrbvtrTraCIMessage(makerbvtrTraCICommand(CMD_FILE_SEND, buf));
 
-    v_TraCIBuffer obuf(receivev_TraCIMessage());
+    rbvtrTraCIBuffer obuf(receiverbvtrTraCIMessage());
     uint8_t cmdLength; obuf >> cmdLength;
     uint8_t commandResp; obuf >> commandResp; if (commandResp != CMD_FILE_SEND) error("Expected response to command %d, but got one for command %d", CMD_FILE_SEND, commandResp);
     uint8_t result; obuf >> result;
     std::string description; obuf >> description;
     if (result != RTYPE_OK) {
-        EV << "Warning: Received non-OK response from v_TraCI server to command " << CMD_FILE_SEND << ":" << description.c_str() << std::endl;
+        EV << "Warning: Received non-OK response from rbvtrTraCI server to command " << CMD_FILE_SEND << ":" << description.c_str() << std::endl;
     }
 
-    v_TraCIScenarioManager::init_traci();
+    rbvtrTraCIScenarioManager::init_traci();
 }
 
 

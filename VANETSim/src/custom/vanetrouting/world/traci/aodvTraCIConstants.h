@@ -1,5 +1,5 @@
 /****************************************************************************/
-/// @file    v_TraCIConstants.h
+/// @file    aodvTraCIConstants.h
 /// @author  Axel Wegener
 /// @author  Friedemann Wesner
 /// @author  Bjoern Hendriks
@@ -11,7 +11,7 @@
 /// @date    2007/10/24
 /// @version $Id$
 ///
-/// holds codes used for v_TraCI
+/// holds codes used for aodvTraCI
 /****************************************************************************/
 // SUMO, Simulation of Urban MObility; see http://sumo-sim.org/
 // Copyright (C) 2001-2013 DLR (http://www.dlr.de/) and contributors
@@ -24,13 +24,13 @@
 //   (at your option) any later version.
 //
 /****************************************************************************/
-#ifndef v_TraCICONSTANTS_H
-#define v_TraCICONSTANTS_H
+#ifndef aodvTraCICONSTANTS_H
+#define aodvTraCICONSTANTS_H
 
 // ****************************************
 // VERSION
 // ****************************************
-#define v_TraCI_VERSION 7
+#define aodvTraCI_VERSION 7
 
 // ****************************************
 // COMMANDS
@@ -548,8 +548,8 @@
 // speed deviation (set: vehicle)
 #define VAR_SPEED_DEVIATION 0x5f
 
-// speed without v_TraCI influence (get: vehicle)
-#define VAR_SPEED_WITHOUT_v_TraCI 0xb1
+// speed without aodvTraCI influence (get: vehicle)
+#define VAR_SPEED_WITHOUT_aodvTraCI 0xb1
 
 // best lanes (get: vehicle)
 #define VAR_BEST_LANES 0xb2

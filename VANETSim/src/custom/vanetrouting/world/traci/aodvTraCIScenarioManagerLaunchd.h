@@ -18,37 +18,37 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#ifndef WORLD_TraCI_v_TraCISCENARIOMANAGERLAUNCHD_H
-#define WORLD_TraCI_v_TraCISCENARIOMANAGERLAUNCHD_H
+#ifndef WORLD_TraCI_aodvTraCISCENARIOMANAGERLAUNCHD_H
+#define WORLD_TraCI_aodvTraCISCENARIOMANAGERLAUNCHD_H
 
 #include <omnetpp.h>
 
 #include "INETDefs.h"
-#include "world/traci/v_TraCIScenarioManager.h"
+#include "world/traci/aodvTraCIScenarioManager.h"
 
 /**
  * @brief
- * Extends the v_TraCIScenarioManager for use with sumo-launchd.py and SUMO.
+ * Extends the aodvTraCIScenarioManager for use with sumo-launchd.py and SUMO.
  *
  * Connects to a running instance of the sumo-launchd.py script
  * to automatically launch/kill SUMO when the simulation starts/ends.
  *
- * All other functionality is provided by the v_TraCIScenarioManager.
+ * All other functionality is provided by the aodvTraCIScenarioManager.
  *
  * See the Veins website <a href="http://veins.car2x.org/"> for a tutorial, documentation, and publications </a>.
  *
  * @author Christoph Sommer, David Eckhoff
  *
- * @see v_TraCIMobility
- * @see v_TraCIScenarioManager
+ * @see aodvTraCIMobility
+ * @see aodvTraCIScenarioManager
  *
  */
-class v_TraCIScenarioManagerLaunchd : public v_TraCIScenarioManager
+class aodvTraCIScenarioManagerLaunchd : public aodvTraCIScenarioManager
 {
     public:
 
-        virtual ~v_TraCIScenarioManagerLaunchd();
-        virtual int numInitStages() const { return std::max(v_TraCIScenarioManager::numInitStages(), 2); }
+        virtual ~aodvTraCIScenarioManagerLaunchd();
+        virtual int numInitStages() const { return std::max(aodvTraCIScenarioManager::numInitStages(), 2); }
         virtual void initialize(int stage);
         virtual void finish();
 
@@ -60,10 +60,10 @@ class v_TraCIScenarioManagerLaunchd : public v_TraCIScenarioManager
         virtual void init_traci();
 };
 
-class v_TraCIScenarioManagerLaunchdAccess : public VanetModuleAccess<v_TraCIScenarioManagerLaunchd>
+class aodvTraCIScenarioManagerLaunchdAccess : public VanetModuleAccess<aodvTraCIScenarioManagerLaunchd>
 {
     public:
-        v_TraCIScenarioManagerLaunchdAccess() : VanetModuleAccess<v_TraCIScenarioManagerLaunchd>("manager") {};
+        aodvTraCIScenarioManagerLaunchdAccess() : VanetModuleAccess<aodvTraCIScenarioManagerLaunchd>("manager") {};
 };
 
 #endif

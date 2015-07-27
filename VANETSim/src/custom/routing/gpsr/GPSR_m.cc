@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/routing/gpsr/GPSR.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from custom/routing/gpsr/GPSR.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:
