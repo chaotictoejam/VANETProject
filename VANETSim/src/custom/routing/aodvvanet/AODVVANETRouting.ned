@@ -15,7 +15,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package vanetsim.custom.routing.aodvvanet2;
+package vanetsim.custom.routing.aodvvanet;
 
 //
 // Ad hoc On-Demand Distance Vector Routing Protocol module.
