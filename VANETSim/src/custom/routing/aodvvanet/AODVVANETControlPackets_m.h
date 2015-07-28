@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from custom/routing/aodvvanet2/AODVVANETControlPackets.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from custom/routing/aodvvanet/AODVVANETControlPackets.msg.
 //
 
 #ifndef _AODVVANETCONTROLPACKETS_M_H_
@@ -24,7 +24,7 @@
 // }}
 
 /**
- * Struct generated from custom/routing/aodvvanet2/AODVVANETControlPackets.msg:34 by nedtool.
+ * Struct generated from custom/routing/aodvvanet/AODVVANETControlPackets.msg:34 by nedtool.
  */
 struct UnreachableNode
 {
@@ -37,7 +37,7 @@ void doPacking(cCommBuffer *b, UnreachableNode& a);
 void doUnpacking(cCommBuffer *b, UnreachableNode& a);
 
 /**
- * Enum generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:40</tt> by nedtool.
+ * Enum generated from <tt>custom/routing/aodvvanet/AODVVANETControlPackets.msg:40</tt> by nedtool.
  * <pre>
  * enum AODVVANETControlPacketType
  * {
@@ -57,7 +57,7 @@ enum AODVVANETControlPacketType {
 };
 
 /**
- * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:51</tt> by nedtool.
+ * Class generated from <tt>custom/routing/aodvvanet/AODVVANETControlPackets.msg:51</tt> by nedtool.
  * <pre>
  * //
  * // Base packet for AODVVANET Control Packets
@@ -98,7 +98,7 @@ inline void doPacking(cCommBuffer *b, AODVVANETControlPacket& obj) {obj.parsimPa
 inline void doUnpacking(cCommBuffer *b, AODVVANETControlPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:59</tt> by nedtool.
+ * Class generated from <tt>custom/routing/aodvvanet/AODVVANETControlPackets.msg:59</tt> by nedtool.
  * <pre>
  * //
  * // Represents an AODVVANET Route Request
@@ -213,7 +213,7 @@ inline void doPacking(cCommBuffer *b, AODVVANETRREQ& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, AODVVANETRREQ& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:84</tt> by nedtool.
+ * Class generated from <tt>custom/routing/aodvvanet/AODVVANETControlPackets.msg:84</tt> by nedtool.
  * <pre>
  * //
  * // Represents an AODVVANET Route Reply
@@ -300,7 +300,7 @@ inline void doPacking(cCommBuffer *b, AODVVANETRREP& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, AODVVANETRREP& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:103</tt> by nedtool.
+ * Class generated from <tt>custom/routing/aodvvanet/AODVVANETControlPackets.msg:103</tt> by nedtool.
  * <pre>
  * //
  * // Represents an AODVVANET Route Error
@@ -357,7 +357,7 @@ inline void doPacking(cCommBuffer *b, AODVVANETRERR& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, AODVVANETRERR& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:114</tt> by nedtool.
+ * Class generated from <tt>custom/routing/aodvvanet/AODVVANETControlPackets.msg:114</tt> by nedtool.
  * <pre>
  * //
  * // Represents an AODVVANET Route Reply ACK
@@ -398,7 +398,7 @@ inline void doPacking(cCommBuffer *b, AODVVANETRREPACK& obj) {obj.parsimPack(b);
 inline void doUnpacking(cCommBuffer *b, AODVVANETRREPACK& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/aodvvanet2/AODVVANETControlPackets.msg:122</tt> by nedtool.
+ * Class generated from <tt>custom/routing/aodvvanet/AODVVANETControlPackets.msg:122</tt> by nedtool.
  * <pre>
  * //
  * // Represents a timer for a Route Reply packet

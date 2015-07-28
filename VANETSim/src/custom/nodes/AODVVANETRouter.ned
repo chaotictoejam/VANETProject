@@ -17,7 +17,7 @@
 
 package vanetsim.custom.nodes;
 
-import vanetsim.custom.routing.aodvvanet2.AODVVANETRouting;
+import vanetsim.custom.routing.aodvvanet.AODVVANETRouting;
 import inet.nodes.inet.WirelessHost;
 
 
