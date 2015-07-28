@@ -1,10 +1,10 @@
 
-package vanetsim.simulations.aodvvanet2;
+package vanetsim.simulations.aodvvanet;
 
 import  vanetsim.simulations._nodes.RSU;
 import  vanetsim.simulations._nodes.Car;
 
-network AODVVANET2 extends vanetsim.simulations._nodes.AODVVANETScenario
+network AODVVANET extends vanetsim.simulations._nodes.Scenario
 {
     submodules:
         rsu[1]: RSU {
