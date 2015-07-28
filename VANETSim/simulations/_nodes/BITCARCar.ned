@@ -1,6 +1,6 @@
 package vanetsim.simulations._nodes;
 
-import inet.applications.traci.TraCIDemo;
+import vanetsim.custom.vanetrouting.applications.traci.bitcarTraCIDemo;
 import inet.base.LifecycleController;
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;
@@ -36,7 +36,7 @@ module BITCARCar
             parameters:
                 @display("p=140,326");
         }
-        app: TraCIDemo {
+        app: bitcarTraCIDemo {
             parameters:
                 @display("p=384,46");
         }

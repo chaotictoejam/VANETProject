@@ -20,7 +20,7 @@ package vanetsim.custom.routing.bitcar;
 //
 // Ad hoc On-Demand Distance Vector Routing Protocol module.
 //
-// The Ad hoc On-Demand Distance Vector (AODV) routing protocol is
+// The Ad hoc On-Demand Distance Vector (BITCAR) routing protocol is
 // intended for use by mobile nodes in an ad hoc network. It offers
 // quick adaptation to dynamic link conditions, low processing and
 // memory overhead, low network utilization, and determines unicast
@@ -62,9 +62,9 @@ simple BITCARRouting
                                                             // (ALLOWED_HELLO_LOSS * HELLO_INTERVAL).
         int netDiameter = default(35); // the maximum possible number of hops between two nodes in the network
         double nodeTraversalTime @unit("s") = default(0.04s); // an estimation of the average one-hop traversal time
-        int rerrRatelimit = default(10); // maximum number of RERR messages that the AODV may originate in 1s.
-        int rreqRetries = default(2); // specifies the number of times AODV will repeat an expanded ring search for a destination
-        int rreqRatelimit = default(10); // maximum number of RREQ messages that the AODV may originate in 1s.
+        int rerrRatelimit = default(10); // maximum number of RERR messages that the BITCAR may originate in 1s.
+        int rreqRetries = default(2); // specifies the number of times BITCAR will repeat an expanded ring search for a destination
+        int rreqRatelimit = default(10); // maximum number of RREQ messages that the BITCAR may originate in 1s.
         int timeoutBuffer = default(2); // plus time to wait for a delayed RREP (due to congestion) (to omit this buffer set it to 0)
         int ttlStart = default(2); // specifies the TTL value when initiating a route request
         int ttlIncrement = default(2); // specifies the value by which the TTL will be incremented each time a RREQ is retransmitted

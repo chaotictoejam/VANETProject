@@ -108,8 +108,8 @@ void AODVVANETRouting::handleMessage(cMessage *msg)
     }
 
     if (msg->isSelfMessage()) {
-        if (dynamic_cast<WaitForVANETRREP *>(msg))
-            handleWaitForVANETRREP((WaitForVANETRREP *)msg);
+        if (dynamic_cast<WaitForAODVVANETRREP *>(msg))
+            handleWaitForAODVVANETRREP((WaitForAODVVANETRREP *)msg);
         else if (msg == helloMsgTimer)
             sendHelloMessagesIfNeeded();
         else if (msg == expungeTimer)
@@ -273,8 +273,8 @@ void AODVVANETRouting::sendRREQ(AODVVANETRREQ *rreq, const IPv4Address& destAddr
         return;
     }
 
-    std::map<IPv4Address, WaitForVANETRREP *>::iterator rrepTimer = waitForRREPTimers.find(rreq->getDestAddr());
-    WaitForVANETRREP *rrepTimerMsg = NULL;
+    std::map<IPv4Address, WaitForAODVVANETRREP *>::iterator rrepTimer = waitForRREPTimers.find(rreq->getDestAddr());
+    WaitForAODVVANETRREP *rrepTimerMsg = NULL;
     if (rrepTimer != waitForRREPTimers.end()) {
         rrepTimerMsg = rrepTimer->second;
         unsigned int lastTTL = rrepTimerMsg->getLastTTL();
@@ -307,7 +307,7 @@ void AODVVANETRouting::sendRREQ(AODVVANETRREQ *rreq, const IPv4Address& destAddr
         }
     }
     else {
-        rrepTimerMsg = new WaitForVANETRREP();
+        rrepTimerMsg = new WaitForAODVVANETRREP();
         waitForRREPTimers[rreq->getDestAddr()] = rrepTimerMsg;
         ASSERT(hasOngoingRouteDiscovery(rreq->getDestAddr()));
 
@@ -1053,12 +1053,12 @@ void AODVVANETRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAdd
     if (!unreachableRoute || unreachableRoute->getSource() != this)
         return;
 
-    std::vector<UnreachableNode> unreachableNodes;
+    std::vector<UnreachableAODVNode> unreachableAODVNodes;
     AODVVANETRouteData *unreachableRouteData = check_and_cast<AODVVANETRouteData *>(unreachableRoute->getProtocolData());
-    UnreachableNode node;
+    UnreachableAODVNode node;
     node.addr = unreachableAddr;
     node.seqNum = unreachableRouteData->getDestSeqNum();
-    unreachableNodes.push_back(node);
+    unreachableAODVNodes.push_back(node);
 
     // For case (i), the node first makes a list of unreachable destinations
     // consisting of the unreachable neighbor and any additional destinations
@@ -1080,10 +1080,10 @@ void AODVVANETRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAdd
             routeData->setLifeTime(simTime() + deletePeriod);
             scheduleExpungeRoutes();
 
-            UnreachableNode node;
+            UnreachableAODVNode node;
             node.addr = route->getDestination();
             node.seqNum = routeData->getDestSeqNum();
-            unreachableNodes.push_back(node);
+            unreachableAODVNodes.push_back(node);
         }
     }
 
@@ -1101,7 +1101,7 @@ void AODVVANETRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAdd
         return;
     }
 
-    AODVVANETRERR *rerr = createRERR(unreachableNodes);
+    AODVVANETRERR *rerr = createRERR(unreachableAODVNodes);
     rerrCount++;
 
     // broadcast
@@ -1109,20 +1109,20 @@ void AODVVANETRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAdd
     sendAODVPacket(rerr, IPv4Address::ALLONES_ADDRESS, 1, jitterPar->doubleValue());
 }
 
-AODVVANETRERR *AODVVANETRouting::createRERR(const std::vector<UnreachableNode>& unreachableNodes)
+AODVVANETRERR *AODVVANETRouting::createRERR(const std::vector<UnreachableAODVNode>& unreachableAODVNodes)
 {
     AODVVANETRERR *rerr = new AODVVANETRERR("AODV-RERR");
-    unsigned int destCount = unreachableNodes.size();
+    unsigned int destCount = unreachableAODVNodes.size();
 
     rerr->setPacketType(RERR);
     rerr->setDestCount(destCount);
-    rerr->setUnreachableNodesArraySize(destCount);
+    rerr->setUnreachableAODVNodesArraySize(destCount);
 
     for (unsigned int i = 0; i < destCount; i++) {
-        UnreachableNode node;
-        node.addr = unreachableNodes[i].addr;
-        node.seqNum = unreachableNodes[i].seqNum;
-        rerr->setUnreachableNodes(i, node);
+        UnreachableAODVNode node;
+        node.addr = unreachableAODVNodes[i].addr;
+        node.seqNum = unreachableAODVNodes[i].seqNum;
+        rerr->setUnreachableAODVNodes(i, node);
     }
     return rerr;
 }
@@ -1134,8 +1134,8 @@ void AODVVANETRouting::handleRERR(AODVVANETRERR *rerr, const IPv4Address& source
     // A node initiates processing for a RERR message in three situations:
     // (iii)   if it receives a RERR from a neighbor for one or more
     //         active routes.
-    unsigned int unreachableArraySize = rerr->getUnreachableNodesArraySize();
-    std::vector<UnreachableNode> unreachableNeighbors;
+    unsigned int unreachableArraySize = rerr->getUnreachableAODVNodesArraySize();
+    std::vector<UnreachableAODVNode> unreachableNeighbors;
 
     for (int i = 0; i < routingTable->getNumRoutes(); i++) {
         IPv4Route *route = routingTable->getRoute(i);
@@ -1150,12 +1150,12 @@ void AODVVANETRouting::handleRERR(AODVVANETRERR *rerr, const IPv4Address& source
 
         if (route->getGateway() == sourceAddr) {
             for (unsigned int j = 0; j < unreachableArraySize; j++) {
-                if (route->getDestination() == rerr->getUnreachableNodes(j).addr) {
+                if (route->getDestination() == rerr->getUnreachableAODVNodes(j).addr) {
                     // 1. The destination sequence number of this routing entry, if it
                     // exists and is valid, is incremented for cases (i) and (ii) above,
                     // ! and copied from the incoming RERR in case (iii) above.
 
-                    routeData->setDestSeqNum(rerr->getUnreachableNodes(j).seqNum);
+                    routeData->setDestSeqNum(rerr->getUnreachableAODVNodes(j).seqNum);
                     routeData->setIsActive(false);    // it means invalid, see 3. AODV Terminology p.3. in RFC 3561
                     routeData->setLifeTime(simTime() + deletePeriod);
 
@@ -1164,7 +1164,7 @@ void AODVVANETRouting::handleRERR(AODVVANETRERR *rerr, const IPv4Address& source
                     // precursor list.
 
                     if (routeData->getPrecursorList().size() > 0) {
-                        UnreachableNode node;
+                        UnreachableAODVNode node;
                         node.addr = route->getDestination();
                         node.seqNum = routeData->getDestSeqNum();
                         unreachableNeighbors.push_back(node);
@@ -1226,7 +1226,7 @@ void AODVVANETRouting::clearState()
 {
     rerrCount = rreqCount = rreqId = sequenceNum = 0;
     addressToRreqRetries.clear();
-    for (std::map<IPv4Address, WaitForVANETRREP *>::iterator it = waitForRREPTimers.begin(); it != waitForRREPTimers.end(); ++it)
+    for (std::map<IPv4Address, WaitForAODVVANETRREP *>::iterator it = waitForRREPTimers.begin(); it != waitForRREPTimers.end(); ++it)
         cancelAndDelete(it->second);
 
     // FIXME: Drop the queued datagrams.
@@ -1247,7 +1247,7 @@ void AODVVANETRouting::clearState()
     cancelEvent(rrepAckTimer);
 }
 
-void AODVVANETRouting::handleWaitForVANETRREP(WaitForVANETRREP *rrepTimer)
+void AODVVANETRouting::handleWaitForAODVVANETRREP(WaitForAODVVANETRREP *rrepTimer)
 {
     EV_INFO << "We didn't get any Route Reply within RREP timeout" << endl;
     IPv4Address destAddr = rrepTimer->getDestAddr();
@@ -1303,8 +1303,8 @@ void AODVVANETRouting::completeRouteDiscovery(const IPv4Address& target)
     // clear the multimap
     targetAddressToDelayedPackets.erase(lt, ut);
 
-    // we have a route for the destination, thus we must cancel the WaitForVANETRREPTimer events
-    std::map<IPv4Address, WaitForVANETRREP *>::iterator waitRREPIter = waitForRREPTimers.find(target);
+    // we have a route for the destination, thus we must cancel the WaitForAODVVANETRREPTimer events
+    std::map<IPv4Address, WaitForAODVVANETRREP *>::iterator waitRREPIter = waitForRREPTimers.find(target);
     ASSERT(waitRREPIter != waitForRREPTimers.end());
     cancelAndDelete(waitRREPIter->second);
     waitForRREPTimers.erase(waitRREPIter);
@@ -1557,8 +1557,8 @@ void AODVVANETRouting::sendRERRWhenNoRouteToForward(const IPv4Address& unreachab
         EV_WARN << "A node should not generate more than RERR_RATELIMIT RERR messages per second. Canceling sending RERR" << endl;
         return;
     }
-    std::vector<UnreachableNode> unreachableNodes;
-    UnreachableNode node;
+    std::vector<UnreachableAODVNode> unreachableAODVNodes;
+    UnreachableAODVNode node;
     node.addr = unreachableAddr;
 
     IPv4Route *unreachableRoute = routingTable->findBestMatchingRoute(unreachableAddr);
@@ -1569,8 +1569,8 @@ void AODVVANETRouting::sendRERRWhenNoRouteToForward(const IPv4Address& unreachab
     else
         node.seqNum = 0;
 
-    unreachableNodes.push_back(node);
-    AODVVANETRERR *rerr = createRERR(unreachableNodes);
+    unreachableAODVNodes.push_back(node);
+    AODVVANETRERR *rerr = createRERR(unreachableAODVNodes);
 
     rerrCount++;
     EV_INFO << "Broadcasting Route Error message with TTL=1" << endl;

@@ -30,7 +30,7 @@ class noncobject Coord;
 //
 // Helper struct to represent (IPv4Address, sequence number) pairs in a RERR message
 //
-struct UnreachableNode
+struct UnreachableAODVNode
 {
     IPv4Address addr;
     unsigned int seqNum;
@@ -102,7 +102,7 @@ class AODVVANETRREP extends AODVVANETControlPacket
 class AODVVANETRERR extends AODVVANETControlPacket
 {
     unsigned int packetType = RERR;
-    UnreachableNode unreachableNodes[];
+    UnreachableAODVNode unreachableAODVNodes[];
     bool noDeleteFlag;
     unsigned int destCount;
 }
@@ -118,7 +118,7 @@ class AODVVANETRREPACK extends AODVVANETControlPacket
 //
 // Represents a timer for a Route Reply packet
 //
-message WaitForVANETRREP
+message WaitForAODVVANETRREP
 {
     IPv4Address destAddr;
     unsigned int lastTTL;

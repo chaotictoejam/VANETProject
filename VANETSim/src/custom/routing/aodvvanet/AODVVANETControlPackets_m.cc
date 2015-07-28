@@ -53,28 +53,28 @@ inline std::ostream& operator<<(std::ostream& out, const std::vector<T,A>& vec)
 template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
-UnreachableNode::UnreachableNode()
+UnreachableAODVNode::UnreachableAODVNode()
 {
     seqNum = 0;
 }
 
-void doPacking(cCommBuffer *b, UnreachableNode& a)
+void doPacking(cCommBuffer *b, UnreachableAODVNode& a)
 {
     doPacking(b,a.addr);
     doPacking(b,a.seqNum);
 }
 
-void doUnpacking(cCommBuffer *b, UnreachableNode& a)
+void doUnpacking(cCommBuffer *b, UnreachableAODVNode& a)
 {
     doUnpacking(b,a.addr);
     doUnpacking(b,a.seqNum);
 }
 
-class UnreachableNodeDescriptor : public cClassDescriptor
+class UnreachableAODVNodeDescriptor : public cClassDescriptor
 {
   public:
-    UnreachableNodeDescriptor();
-    virtual ~UnreachableNodeDescriptor();
+    UnreachableAODVNodeDescriptor();
+    virtual ~UnreachableAODVNodeDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -93,34 +93,34 @@ class UnreachableNodeDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(UnreachableNodeDescriptor);
+Register_ClassDescriptor(UnreachableAODVNodeDescriptor);
 
-UnreachableNodeDescriptor::UnreachableNodeDescriptor() : cClassDescriptor("UnreachableNode", "")
+UnreachableAODVNodeDescriptor::UnreachableAODVNodeDescriptor() : cClassDescriptor("UnreachableAODVNode", "")
 {
 }
 
-UnreachableNodeDescriptor::~UnreachableNodeDescriptor()
+UnreachableAODVNodeDescriptor::~UnreachableAODVNodeDescriptor()
 {
 }
 
-bool UnreachableNodeDescriptor::doesSupport(cObject *obj) const
+bool UnreachableAODVNodeDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<UnreachableNode *>(obj)!=NULL;
+    return dynamic_cast<UnreachableAODVNode *>(obj)!=NULL;
 }
 
-const char *UnreachableNodeDescriptor::getProperty(const char *propertyname) const
+const char *UnreachableAODVNodeDescriptor::getProperty(const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int UnreachableNodeDescriptor::getFieldCount(void *object) const
+int UnreachableAODVNodeDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? 2+basedesc->getFieldCount(object) : 2;
 }
 
-unsigned int UnreachableNodeDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int UnreachableAODVNodeDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -135,7 +135,7 @@ unsigned int UnreachableNodeDescriptor::getFieldTypeFlags(void *object, int fiel
     return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
 }
 
-const char *UnreachableNodeDescriptor::getFieldName(void *object, int field) const
+const char *UnreachableAODVNodeDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -150,7 +150,7 @@ const char *UnreachableNodeDescriptor::getFieldName(void *object, int field) con
     return (field>=0 && field<2) ? fieldNames[field] : NULL;
 }
 
-int UnreachableNodeDescriptor::findField(void *object, const char *fieldName) const
+int UnreachableAODVNodeDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
@@ -159,7 +159,7 @@ int UnreachableNodeDescriptor::findField(void *object, const char *fieldName) co
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *UnreachableNodeDescriptor::getFieldTypeString(void *object, int field) const
+const char *UnreachableAODVNodeDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -174,7 +174,7 @@ const char *UnreachableNodeDescriptor::getFieldTypeString(void *object, int fiel
     return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *UnreachableNodeDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *UnreachableAODVNodeDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -187,7 +187,7 @@ const char *UnreachableNodeDescriptor::getFieldProperty(void *object, int field,
     }
 }
 
-int UnreachableNodeDescriptor::getArraySize(void *object, int field) const
+int UnreachableAODVNodeDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -195,13 +195,13 @@ int UnreachableNodeDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    UnreachableNode *pp = (UnreachableNode *)object; (void)pp;
+    UnreachableAODVNode *pp = (UnreachableAODVNode *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string UnreachableNodeDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string UnreachableAODVNodeDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -209,7 +209,7 @@ std::string UnreachableNodeDescriptor::getFieldAsString(void *object, int field,
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    UnreachableNode *pp = (UnreachableNode *)object; (void)pp;
+    UnreachableAODVNode *pp = (UnreachableAODVNode *)object; (void)pp;
     switch (field) {
         case 0: {std::stringstream out; out << pp->addr; return out.str();}
         case 1: return ulong2string(pp->seqNum);
@@ -217,7 +217,7 @@ std::string UnreachableNodeDescriptor::getFieldAsString(void *object, int field,
     }
 }
 
-bool UnreachableNodeDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool UnreachableAODVNodeDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -225,14 +225,14 @@ bool UnreachableNodeDescriptor::setFieldAsString(void *object, int field, int i,
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    UnreachableNode *pp = (UnreachableNode *)object; (void)pp;
+    UnreachableAODVNode *pp = (UnreachableAODVNode *)object; (void)pp;
     switch (field) {
         case 1: pp->seqNum = string2ulong(value); return true;
         default: return false;
     }
 }
 
-const char *UnreachableNodeDescriptor::getFieldStructName(void *object, int field) const
+const char *UnreachableAODVNodeDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -246,7 +246,7 @@ const char *UnreachableNodeDescriptor::getFieldStructName(void *object, int fiel
     };
 }
 
-void *UnreachableNodeDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *UnreachableAODVNodeDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -254,7 +254,7 @@ void *UnreachableNodeDescriptor::getFieldStructPointer(void *object, int field, 
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    UnreachableNode *pp = (UnreachableNode *)object; (void)pp;
+    UnreachableAODVNode *pp = (UnreachableAODVNode *)object; (void)pp;
     switch (field) {
         case 0: return (void *)(&pp->addr); break;
         default: return NULL;
@@ -1540,22 +1540,22 @@ Register_Class(AODVVANETRERR);
 AODVVANETRERR::AODVVANETRERR(const char *name) : ::AODVVANETControlPacket(name)
 {
     this->packetType_var = RERR;
-    unreachableNodes_arraysize = 0;
-    this->unreachableNodes_var = 0;
+    unreachableAODVNodes_arraysize = 0;
+    this->unreachableAODVNodes_var = 0;
     this->noDeleteFlag_var = 0;
     this->destCount_var = 0;
 }
 
 AODVVANETRERR::AODVVANETRERR(const AODVVANETRERR& other) : ::AODVVANETControlPacket(other)
 {
-    unreachableNodes_arraysize = 0;
-    this->unreachableNodes_var = 0;
+    unreachableAODVNodes_arraysize = 0;
+    this->unreachableAODVNodes_var = 0;
     copy(other);
 }
 
 AODVVANETRERR::~AODVVANETRERR()
 {
-    delete [] unreachableNodes_var;
+    delete [] unreachableAODVNodes_var;
 }
 
 AODVVANETRERR& AODVVANETRERR::operator=(const AODVVANETRERR& other)
@@ -1569,11 +1569,11 @@ AODVVANETRERR& AODVVANETRERR::operator=(const AODVVANETRERR& other)
 void AODVVANETRERR::copy(const AODVVANETRERR& other)
 {
     this->packetType_var = other.packetType_var;
-    delete [] this->unreachableNodes_var;
-    this->unreachableNodes_var = (other.unreachableNodes_arraysize==0) ? NULL : new UnreachableNode[other.unreachableNodes_arraysize];
-    unreachableNodes_arraysize = other.unreachableNodes_arraysize;
-    for (unsigned int i=0; i<unreachableNodes_arraysize; i++)
-        this->unreachableNodes_var[i] = other.unreachableNodes_var[i];
+    delete [] this->unreachableAODVNodes_var;
+    this->unreachableAODVNodes_var = (other.unreachableAODVNodes_arraysize==0) ? NULL : new UnreachableAODVNode[other.unreachableAODVNodes_arraysize];
+    unreachableAODVNodes_arraysize = other.unreachableAODVNodes_arraysize;
+    for (unsigned int i=0; i<unreachableAODVNodes_arraysize; i++)
+        this->unreachableAODVNodes_var[i] = other.unreachableAODVNodes_var[i];
     this->noDeleteFlag_var = other.noDeleteFlag_var;
     this->destCount_var = other.destCount_var;
 }
@@ -1582,8 +1582,8 @@ void AODVVANETRERR::parsimPack(cCommBuffer *b)
 {
     ::AODVVANETControlPacket::parsimPack(b);
     doPacking(b,this->packetType_var);
-    b->pack(unreachableNodes_arraysize);
-    doPacking(b,this->unreachableNodes_var,unreachableNodes_arraysize);
+    b->pack(unreachableAODVNodes_arraysize);
+    doPacking(b,this->unreachableAODVNodes_var,unreachableAODVNodes_arraysize);
     doPacking(b,this->noDeleteFlag_var);
     doPacking(b,this->destCount_var);
 }
@@ -1592,13 +1592,13 @@ void AODVVANETRERR::parsimUnpack(cCommBuffer *b)
 {
     ::AODVVANETControlPacket::parsimUnpack(b);
     doUnpacking(b,this->packetType_var);
-    delete [] this->unreachableNodes_var;
-    b->unpack(unreachableNodes_arraysize);
-    if (unreachableNodes_arraysize==0) {
-        this->unreachableNodes_var = 0;
+    delete [] this->unreachableAODVNodes_var;
+    b->unpack(unreachableAODVNodes_arraysize);
+    if (unreachableAODVNodes_arraysize==0) {
+        this->unreachableAODVNodes_var = 0;
     } else {
-        this->unreachableNodes_var = new UnreachableNode[unreachableNodes_arraysize];
-        doUnpacking(b,this->unreachableNodes_var,unreachableNodes_arraysize);
+        this->unreachableAODVNodes_var = new UnreachableAODVNode[unreachableAODVNodes_arraysize];
+        doUnpacking(b,this->unreachableAODVNodes_var,unreachableAODVNodes_arraysize);
     }
     doUnpacking(b,this->noDeleteFlag_var);
     doUnpacking(b,this->destCount_var);
@@ -1614,32 +1614,32 @@ void AODVVANETRERR::setPacketType(unsigned int packetType)
     this->packetType_var = packetType;
 }
 
-void AODVVANETRERR::setUnreachableNodesArraySize(unsigned int size)
+void AODVVANETRERR::setUnreachableAODVNodesArraySize(unsigned int size)
 {
-    UnreachableNode *unreachableNodes_var2 = (size==0) ? NULL : new UnreachableNode[size];
-    unsigned int sz = unreachableNodes_arraysize < size ? unreachableNodes_arraysize : size;
+    UnreachableAODVNode *unreachableAODVNodes_var2 = (size==0) ? NULL : new UnreachableAODVNode[size];
+    unsigned int sz = unreachableAODVNodes_arraysize < size ? unreachableAODVNodes_arraysize : size;
     for (unsigned int i=0; i<sz; i++)
-        unreachableNodes_var2[i] = this->unreachableNodes_var[i];
-    unreachableNodes_arraysize = size;
-    delete [] this->unreachableNodes_var;
-    this->unreachableNodes_var = unreachableNodes_var2;
+        unreachableAODVNodes_var2[i] = this->unreachableAODVNodes_var[i];
+    unreachableAODVNodes_arraysize = size;
+    delete [] this->unreachableAODVNodes_var;
+    this->unreachableAODVNodes_var = unreachableAODVNodes_var2;
 }
 
-unsigned int AODVVANETRERR::getUnreachableNodesArraySize() const
+unsigned int AODVVANETRERR::getUnreachableAODVNodesArraySize() const
 {
-    return unreachableNodes_arraysize;
+    return unreachableAODVNodes_arraysize;
 }
 
-UnreachableNode& AODVVANETRERR::getUnreachableNodes(unsigned int k)
+UnreachableAODVNode& AODVVANETRERR::getUnreachableAODVNodes(unsigned int k)
 {
-    if (k>=unreachableNodes_arraysize) throw cRuntimeError("Array of size %d indexed by %d", unreachableNodes_arraysize, k);
-    return unreachableNodes_var[k];
+    if (k>=unreachableAODVNodes_arraysize) throw cRuntimeError("Array of size %d indexed by %d", unreachableAODVNodes_arraysize, k);
+    return unreachableAODVNodes_var[k];
 }
 
-void AODVVANETRERR::setUnreachableNodes(unsigned int k, const UnreachableNode& unreachableNodes)
+void AODVVANETRERR::setUnreachableAODVNodes(unsigned int k, const UnreachableAODVNode& unreachableAODVNodes)
 {
-    if (k>=unreachableNodes_arraysize) throw cRuntimeError("Array of size %d indexed by %d", unreachableNodes_arraysize, k);
-    this->unreachableNodes_var[k] = unreachableNodes;
+    if (k>=unreachableAODVNodes_arraysize) throw cRuntimeError("Array of size %d indexed by %d", unreachableAODVNodes_arraysize, k);
+    this->unreachableAODVNodes_var[k] = unreachableAODVNodes;
 }
 
 bool AODVVANETRERR::getNoDeleteFlag() const
@@ -1739,7 +1739,7 @@ const char *AODVVANETRERRDescriptor::getFieldName(void *object, int field) const
     }
     static const char *fieldNames[] = {
         "packetType",
-        "unreachableNodes",
+        "unreachableAODVNodes",
         "noDeleteFlag",
         "destCount",
     };
@@ -1751,7 +1751,7 @@ int AODVVANETRERRDescriptor::findField(void *object, const char *fieldName) cons
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
-    if (fieldName[0]=='u' && strcmp(fieldName, "unreachableNodes")==0) return base+1;
+    if (fieldName[0]=='u' && strcmp(fieldName, "unreachableAODVNodes")==0) return base+1;
     if (fieldName[0]=='n' && strcmp(fieldName, "noDeleteFlag")==0) return base+2;
     if (fieldName[0]=='d' && strcmp(fieldName, "destCount")==0) return base+3;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
@@ -1767,7 +1767,7 @@ const char *AODVVANETRERRDescriptor::getFieldTypeString(void *object, int field)
     }
     static const char *fieldTypeStrings[] = {
         "unsigned int",
-        "UnreachableNode",
+        "UnreachableAODVNode",
         "bool",
         "unsigned int",
     };
@@ -1797,7 +1797,7 @@ int AODVVANETRERRDescriptor::getArraySize(void *object, int field) const
     }
     AODVVANETRERR *pp = (AODVVANETRERR *)object; (void)pp;
     switch (field) {
-        case 1: return pp->getUnreachableNodesArraySize();
+        case 1: return pp->getUnreachableAODVNodesArraySize();
         default: return 0;
     }
 }
@@ -1813,7 +1813,7 @@ std::string AODVVANETRERRDescriptor::getFieldAsString(void *object, int field, i
     AODVVANETRERR *pp = (AODVVANETRERR *)object; (void)pp;
     switch (field) {
         case 0: return ulong2string(pp->getPacketType());
-        case 1: {std::stringstream out; out << pp->getUnreachableNodes(i); return out.str();}
+        case 1: {std::stringstream out; out << pp->getUnreachableAODVNodes(i); return out.str();}
         case 2: return bool2string(pp->getNoDeleteFlag());
         case 3: return ulong2string(pp->getDestCount());
         default: return "";
@@ -1846,7 +1846,7 @@ const char *AODVVANETRERRDescriptor::getFieldStructName(void *object, int field)
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
-        case 1: return opp_typename(typeid(UnreachableNode));
+        case 1: return opp_typename(typeid(UnreachableAODVNode));
         default: return NULL;
     };
 }
@@ -1861,7 +1861,7 @@ void *AODVVANETRERRDescriptor::getFieldStructPointer(void *object, int field, in
     }
     AODVVANETRERR *pp = (AODVVANETRERR *)object; (void)pp;
     switch (field) {
-        case 1: return (void *)(&pp->getUnreachableNodes(i)); break;
+        case 1: return (void *)(&pp->getUnreachableAODVNodes(i)); break;
         default: return NULL;
     }
 }
@@ -2101,24 +2101,24 @@ void *AODVVANETRREPACKDescriptor::getFieldStructPointer(void *object, int field,
     }
 }
 
-Register_Class(WaitForVANETRREP);
+Register_Class(WaitForAODVVANETRREP);
 
-WaitForVANETRREP::WaitForVANETRREP(const char *name, int kind) : ::cMessage(name,kind)
+WaitForAODVVANETRREP::WaitForAODVVANETRREP(const char *name, int kind) : ::cMessage(name,kind)
 {
     this->lastTTL_var = 0;
     this->fromInvalidEntry_var = 0;
 }
 
-WaitForVANETRREP::WaitForVANETRREP(const WaitForVANETRREP& other) : ::cMessage(other)
+WaitForAODVVANETRREP::WaitForAODVVANETRREP(const WaitForAODVVANETRREP& other) : ::cMessage(other)
 {
     copy(other);
 }
 
-WaitForVANETRREP::~WaitForVANETRREP()
+WaitForAODVVANETRREP::~WaitForAODVVANETRREP()
 {
 }
 
-WaitForVANETRREP& WaitForVANETRREP::operator=(const WaitForVANETRREP& other)
+WaitForAODVVANETRREP& WaitForAODVVANETRREP::operator=(const WaitForAODVVANETRREP& other)
 {
     if (this==&other) return *this;
     ::cMessage::operator=(other);
@@ -2126,14 +2126,14 @@ WaitForVANETRREP& WaitForVANETRREP::operator=(const WaitForVANETRREP& other)
     return *this;
 }
 
-void WaitForVANETRREP::copy(const WaitForVANETRREP& other)
+void WaitForAODVVANETRREP::copy(const WaitForAODVVANETRREP& other)
 {
     this->destAddr_var = other.destAddr_var;
     this->lastTTL_var = other.lastTTL_var;
     this->fromInvalidEntry_var = other.fromInvalidEntry_var;
 }
 
-void WaitForVANETRREP::parsimPack(cCommBuffer *b)
+void WaitForAODVVANETRREP::parsimPack(cCommBuffer *b)
 {
     ::cMessage::parsimPack(b);
     doPacking(b,this->destAddr_var);
@@ -2141,7 +2141,7 @@ void WaitForVANETRREP::parsimPack(cCommBuffer *b)
     doPacking(b,this->fromInvalidEntry_var);
 }
 
-void WaitForVANETRREP::parsimUnpack(cCommBuffer *b)
+void WaitForAODVVANETRREP::parsimUnpack(cCommBuffer *b)
 {
     ::cMessage::parsimUnpack(b);
     doUnpacking(b,this->destAddr_var);
@@ -2149,41 +2149,41 @@ void WaitForVANETRREP::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->fromInvalidEntry_var);
 }
 
-IPv4Address& WaitForVANETRREP::getDestAddr()
+IPv4Address& WaitForAODVVANETRREP::getDestAddr()
 {
     return destAddr_var;
 }
 
-void WaitForVANETRREP::setDestAddr(const IPv4Address& destAddr)
+void WaitForAODVVANETRREP::setDestAddr(const IPv4Address& destAddr)
 {
     this->destAddr_var = destAddr;
 }
 
-unsigned int WaitForVANETRREP::getLastTTL() const
+unsigned int WaitForAODVVANETRREP::getLastTTL() const
 {
     return lastTTL_var;
 }
 
-void WaitForVANETRREP::setLastTTL(unsigned int lastTTL)
+void WaitForAODVVANETRREP::setLastTTL(unsigned int lastTTL)
 {
     this->lastTTL_var = lastTTL;
 }
 
-bool WaitForVANETRREP::getFromInvalidEntry() const
+bool WaitForAODVVANETRREP::getFromInvalidEntry() const
 {
     return fromInvalidEntry_var;
 }
 
-void WaitForVANETRREP::setFromInvalidEntry(bool fromInvalidEntry)
+void WaitForAODVVANETRREP::setFromInvalidEntry(bool fromInvalidEntry)
 {
     this->fromInvalidEntry_var = fromInvalidEntry;
 }
 
-class WaitForVANETRREPDescriptor : public cClassDescriptor
+class WaitForAODVVANETRREPDescriptor : public cClassDescriptor
 {
   public:
-    WaitForVANETRREPDescriptor();
-    virtual ~WaitForVANETRREPDescriptor();
+    WaitForAODVVANETRREPDescriptor();
+    virtual ~WaitForAODVVANETRREPDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -2202,34 +2202,34 @@ class WaitForVANETRREPDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(WaitForVANETRREPDescriptor);
+Register_ClassDescriptor(WaitForAODVVANETRREPDescriptor);
 
-WaitForVANETRREPDescriptor::WaitForVANETRREPDescriptor() : cClassDescriptor("WaitForVANETRREP", "cMessage")
+WaitForAODVVANETRREPDescriptor::WaitForAODVVANETRREPDescriptor() : cClassDescriptor("WaitForAODVVANETRREP", "cMessage")
 {
 }
 
-WaitForVANETRREPDescriptor::~WaitForVANETRREPDescriptor()
+WaitForAODVVANETRREPDescriptor::~WaitForAODVVANETRREPDescriptor()
 {
 }
 
-bool WaitForVANETRREPDescriptor::doesSupport(cObject *obj) const
+bool WaitForAODVVANETRREPDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<WaitForVANETRREP *>(obj)!=NULL;
+    return dynamic_cast<WaitForAODVVANETRREP *>(obj)!=NULL;
 }
 
-const char *WaitForVANETRREPDescriptor::getProperty(const char *propertyname) const
+const char *WaitForAODVVANETRREPDescriptor::getProperty(const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int WaitForVANETRREPDescriptor::getFieldCount(void *object) const
+int WaitForAODVVANETRREPDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? 3+basedesc->getFieldCount(object) : 3;
 }
 
-unsigned int WaitForVANETRREPDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int WaitForAODVVANETRREPDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2245,7 +2245,7 @@ unsigned int WaitForVANETRREPDescriptor::getFieldTypeFlags(void *object, int fie
     return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
 }
 
-const char *WaitForVANETRREPDescriptor::getFieldName(void *object, int field) const
+const char *WaitForAODVVANETRREPDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2261,7 +2261,7 @@ const char *WaitForVANETRREPDescriptor::getFieldName(void *object, int field) co
     return (field>=0 && field<3) ? fieldNames[field] : NULL;
 }
 
-int WaitForVANETRREPDescriptor::findField(void *object, const char *fieldName) const
+int WaitForAODVVANETRREPDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
@@ -2271,7 +2271,7 @@ int WaitForVANETRREPDescriptor::findField(void *object, const char *fieldName) c
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *WaitForVANETRREPDescriptor::getFieldTypeString(void *object, int field) const
+const char *WaitForAODVVANETRREPDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2287,7 +2287,7 @@ const char *WaitForVANETRREPDescriptor::getFieldTypeString(void *object, int fie
     return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *WaitForVANETRREPDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *WaitForAODVVANETRREPDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2300,7 +2300,7 @@ const char *WaitForVANETRREPDescriptor::getFieldProperty(void *object, int field
     }
 }
 
-int WaitForVANETRREPDescriptor::getArraySize(void *object, int field) const
+int WaitForAODVVANETRREPDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2308,13 +2308,13 @@ int WaitForVANETRREPDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    WaitForVANETRREP *pp = (WaitForVANETRREP *)object; (void)pp;
+    WaitForAODVVANETRREP *pp = (WaitForAODVVANETRREP *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string WaitForVANETRREPDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string WaitForAODVVANETRREPDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2322,7 +2322,7 @@ std::string WaitForVANETRREPDescriptor::getFieldAsString(void *object, int field
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    WaitForVANETRREP *pp = (WaitForVANETRREP *)object; (void)pp;
+    WaitForAODVVANETRREP *pp = (WaitForAODVVANETRREP *)object; (void)pp;
     switch (field) {
         case 0: {std::stringstream out; out << pp->getDestAddr(); return out.str();}
         case 1: return ulong2string(pp->getLastTTL());
@@ -2331,7 +2331,7 @@ std::string WaitForVANETRREPDescriptor::getFieldAsString(void *object, int field
     }
 }
 
-bool WaitForVANETRREPDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool WaitForAODVVANETRREPDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2339,7 +2339,7 @@ bool WaitForVANETRREPDescriptor::setFieldAsString(void *object, int field, int i
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    WaitForVANETRREP *pp = (WaitForVANETRREP *)object; (void)pp;
+    WaitForAODVVANETRREP *pp = (WaitForAODVVANETRREP *)object; (void)pp;
     switch (field) {
         case 1: pp->setLastTTL(string2ulong(value)); return true;
         case 2: pp->setFromInvalidEntry(string2bool(value)); return true;
@@ -2347,7 +2347,7 @@ bool WaitForVANETRREPDescriptor::setFieldAsString(void *object, int field, int i
     }
 }
 
-const char *WaitForVANETRREPDescriptor::getFieldStructName(void *object, int field) const
+const char *WaitForAODVVANETRREPDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2361,7 +2361,7 @@ const char *WaitForVANETRREPDescriptor::getFieldStructName(void *object, int fie
     };
 }
 
-void *WaitForVANETRREPDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *WaitForAODVVANETRREPDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2369,7 +2369,7 @@ void *WaitForVANETRREPDescriptor::getFieldStructPointer(void *object, int field,
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    WaitForVANETRREP *pp = (WaitForVANETRREP *)object; (void)pp;
+    WaitForAODVVANETRREP *pp = (WaitForAODVVANETRREP *)object; (void)pp;
     switch (field) {
         case 0: return (void *)(&pp->getDestAddr()); break;
         default: return NULL;

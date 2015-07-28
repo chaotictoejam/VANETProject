@@ -26,15 +26,15 @@
 /**
  * Struct generated from custom/routing/aodvvanet/AODVVANETControlPackets.msg:34 by nedtool.
  */
-struct UnreachableNode
+struct UnreachableAODVNode
 {
-    UnreachableNode();
+    UnreachableAODVNode();
     IPv4Address addr;
     unsigned int seqNum;
 };
 
-void doPacking(cCommBuffer *b, UnreachableNode& a);
-void doUnpacking(cCommBuffer *b, UnreachableNode& a);
+void doPacking(cCommBuffer *b, UnreachableAODVNode& a);
+void doUnpacking(cCommBuffer *b, UnreachableAODVNode& a);
 
 /**
  * Enum generated from <tt>custom/routing/aodvvanet/AODVVANETControlPackets.msg:40</tt> by nedtool.
@@ -308,7 +308,7 @@ inline void doUnpacking(cCommBuffer *b, AODVVANETRREP& obj) {obj.parsimUnpack(b)
  * class AODVVANETRERR extends AODVVANETControlPacket
  * {
  *     unsigned int packetType = RERR;
- *     UnreachableNode unreachableNodes[];
+ *     UnreachableAODVNode unreachableAODVNodes[];
  *     bool noDeleteFlag;
  *     unsigned int destCount;
  * }
@@ -318,8 +318,8 @@ class AODVVANETRERR : public ::AODVVANETControlPacket
 {
   protected:
     unsigned int packetType_var;
-    UnreachableNode *unreachableNodes_var; // array ptr
-    unsigned int unreachableNodes_arraysize;
+    UnreachableAODVNode *unreachableAODVNodes_var; // array ptr
+    unsigned int unreachableAODVNodes_arraysize;
     bool noDeleteFlag_var;
     unsigned int destCount_var;
 
@@ -342,11 +342,11 @@ class AODVVANETRERR : public ::AODVVANETControlPacket
     // field getter/setter methods
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
-    virtual void setUnreachableNodesArraySize(unsigned int size);
-    virtual unsigned int getUnreachableNodesArraySize() const;
-    virtual UnreachableNode& getUnreachableNodes(unsigned int k);
-    virtual const UnreachableNode& getUnreachableNodes(unsigned int k) const {return const_cast<AODVVANETRERR*>(this)->getUnreachableNodes(k);}
-    virtual void setUnreachableNodes(unsigned int k, const UnreachableNode& unreachableNodes);
+    virtual void setUnreachableAODVNodesArraySize(unsigned int size);
+    virtual unsigned int getUnreachableAODVNodesArraySize() const;
+    virtual UnreachableAODVNode& getUnreachableAODVNodes(unsigned int k);
+    virtual const UnreachableAODVNode& getUnreachableAODVNodes(unsigned int k) const {return const_cast<AODVVANETRERR*>(this)->getUnreachableAODVNodes(k);}
+    virtual void setUnreachableAODVNodes(unsigned int k, const UnreachableAODVNode& unreachableAODVNodes);
     virtual bool getNoDeleteFlag() const;
     virtual void setNoDeleteFlag(bool noDeleteFlag);
     virtual unsigned int getDestCount() const;
@@ -403,7 +403,7 @@ inline void doUnpacking(cCommBuffer *b, AODVVANETRREPACK& obj) {obj.parsimUnpack
  * //
  * // Represents a timer for a Route Reply packet
  * //
- * message WaitForVANETRREP
+ * message WaitForAODVVANETRREP
  * {
  *     IPv4Address destAddr;
  *     unsigned int lastTTL;
@@ -411,7 +411,7 @@ inline void doUnpacking(cCommBuffer *b, AODVVANETRREPACK& obj) {obj.parsimUnpack
  * }
  * </pre>
  */
-class WaitForVANETRREP : public ::cMessage
+class WaitForAODVVANETRREP : public ::cMessage
 {
   protected:
     IPv4Address destAddr_var;
@@ -419,24 +419,24 @@ class WaitForVANETRREP : public ::cMessage
     bool fromInvalidEntry_var;
 
   private:
-    void copy(const WaitForVANETRREP& other);
+    void copy(const WaitForAODVVANETRREP& other);
 
   protected:
     // protected and unimplemented operator==(), to prevent accidental usage
-    bool operator==(const WaitForVANETRREP&);
+    bool operator==(const WaitForAODVVANETRREP&);
 
   public:
-    WaitForVANETRREP(const char *name=NULL, int kind=0);
-    WaitForVANETRREP(const WaitForVANETRREP& other);
-    virtual ~WaitForVANETRREP();
-    WaitForVANETRREP& operator=(const WaitForVANETRREP& other);
-    virtual WaitForVANETRREP *dup() const {return new WaitForVANETRREP(*this);}
+    WaitForAODVVANETRREP(const char *name=NULL, int kind=0);
+    WaitForAODVVANETRREP(const WaitForAODVVANETRREP& other);
+    virtual ~WaitForAODVVANETRREP();
+    WaitForAODVVANETRREP& operator=(const WaitForAODVVANETRREP& other);
+    virtual WaitForAODVVANETRREP *dup() const {return new WaitForAODVVANETRREP(*this);}
     virtual void parsimPack(cCommBuffer *b);
     virtual void parsimUnpack(cCommBuffer *b);
 
     // field getter/setter methods
     virtual IPv4Address& getDestAddr();
-    virtual const IPv4Address& getDestAddr() const {return const_cast<WaitForVANETRREP*>(this)->getDestAddr();}
+    virtual const IPv4Address& getDestAddr() const {return const_cast<WaitForAODVVANETRREP*>(this)->getDestAddr();}
     virtual void setDestAddr(const IPv4Address& destAddr);
     virtual unsigned int getLastTTL() const;
     virtual void setLastTTL(unsigned int lastTTL);
@@ -444,8 +444,8 @@ class WaitForVANETRREP : public ::cMessage
     virtual void setFromInvalidEntry(bool fromInvalidEntry);
 };
 
-inline void doPacking(cCommBuffer *b, WaitForVANETRREP& obj) {obj.parsimPack(b);}
-inline void doUnpacking(cCommBuffer *b, WaitForVANETRREP& obj) {obj.parsimUnpack(b);}
+inline void doPacking(cCommBuffer *b, WaitForAODVVANETRREP& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, WaitForAODVVANETRREP& obj) {obj.parsimUnpack(b);}
 
 
 #endif // ifndef _AODVVANETCONTROLPACKETS_M_H_

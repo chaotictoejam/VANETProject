@@ -15,8 +15,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef AODVROUTING_H_
-#define AODVROUTING_H_
+#ifndef RBVTRROUTING_H_
+#define RBVTROUTING_H_
 
 #include "INETDefs.h"
 #include "IInterfaceTable.h"
@@ -34,7 +34,7 @@
 #include <map>
 
 /*
- * This class implements AODV routing protocol and Netfilter hooks
+ * This class implements RBVTR routing protocol and Netfilter hooks
  * in the IP-layer required by this protocol.
  */
 
@@ -76,7 +76,7 @@ class RBVTRRouting : public cSimpleModule, public ILifecycle, public INetfilter:
     INetfilter *networkProtocol;
     NotificationBoard *nb;
 
-    // AODV parameters: the following parameters are configurable, see the NED file for more info.
+    // RBVTR parameters: the following parameters are configurable, see the NED file for more info.
     unsigned int rerrRatelimit;
     unsigned int aodvUDPPort;
     bool askGratuitousRREP;
@@ -109,7 +109,7 @@ class RBVTRRouting : public cSimpleModule, public ILifecycle, public INetfilter:
     // state
     unsigned int rreqId;    // when sending a new RREQ packet, rreqID incremented by one from the last id used by this node
     unsigned int sequenceNum;    // it helps to prevent loops in the routes (RFC 3561 6.1 p11.)
-    std::map<IPv4Address, WaitForRBVTRVANETRREP *> waitForRREPTimers;    // timeout for Route Replies
+    std::map<IPv4Address, WaitForRBVTRRREP *> waitForRREPTimers;    // timeout for Route Replies
     std::map<RREQIdentifier, simtime_t, RREQIdentifierCompare> rreqsArrivalTime;    // maps RREQ id to its arriving time
     IPv4Address failedNextHop;    // next hop to the destination who failed to send us RREP-ACK
     std::map<IPv4Address, simtime_t> blacklist;    // we don't accept RREQs from blacklisted nodes
@@ -156,7 +156,7 @@ class RBVTRRouting : public cSimpleModule, public ILifecycle, public INetfilter:
     RBVTRRREQ *createRREQ(const IPv4Address& destAddr);
     RBVTRRREP *createRREP(RBVTRRREQ *rreq, IPv4Route *destRoute, IPv4Route *originatorRoute, const IPv4Address& sourceAddr);
     RBVTRRREP *createGratuitousRREP(RBVTRRREQ *rreq, IPv4Route *originatorRoute);
-    RBVTRRERR *createRERR(const std::vector<UnreachableNodeRBVTR>& unreachableNodes);
+    RBVTRRERR *createRERR(const std::vector<UnreachableRBVTRNode>& unreachableRBVTRNodes);
 
     /* Control Packet handlers */
     void handleRREP(RBVTRRREP *rrep, const IPv4Address& sourceAddr);
@@ -179,7 +179,7 @@ class RBVTRRouting : public cSimpleModule, public ILifecycle, public INetfilter:
     void handleRREPACKTimer();
     void handleBlackListTimer();
     void sendHelloMessagesIfNeeded();
-    void handleWaitForRBVTRVANETRREP(WaitForRBVTRVANETRREP *rrepTimer);
+    void handleWaitForRBVTRRREP(WaitForRBVTRRREP *rrepTimer);
 
     /* General functions to handle route errors */
     void sendRERRWhenNoRouteToForward(const IPv4Address& unreachableAddr);
@@ -197,7 +197,7 @@ class RBVTRRouting : public cSimpleModule, public ILifecycle, public INetfilter:
 
     /* Helper functions */
     IPv4Address getSelfIPAddress() const;
-    void sendAODVPacket(RBVTRControlPacket *packet, const IPv4Address& destAddr, unsigned int timeToLive, double delay);
+    void sendRBVTRPacket(RBVTRControlPacket *packet, const IPv4Address& destAddr, unsigned int timeToLive, double delay);
     void clearState();
 
     /* Lifecycle */
@@ -208,5 +208,5 @@ class RBVTRRouting : public cSimpleModule, public ILifecycle, public INetfilter:
     virtual ~RBVTRRouting();
 };
 
-#endif // ifndef AODVROUTING_H_
+#endif // ifndef RBVTRROUTING_H_
 

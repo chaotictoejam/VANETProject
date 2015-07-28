@@ -108,8 +108,8 @@ void BITCARRouting::handleMessage(cMessage *msg)
     }
 
     if (msg->isSelfMessage()) {
-        if (dynamic_cast<WaitForBITCARVANETRREP *>(msg))
-            handleWaitForBITCARVANETRREP((WaitForBITCARVANETRREP *)msg);
+        if (dynamic_cast<WaitForBITCARRREP *>(msg))
+            handleWaitForBITCARRREP((WaitForBITCARRREP *)msg);
         else if (msg == helloMsgTimer)
             sendHelloMessagesIfNeeded();
         else if (msg == expungeTimer)
@@ -151,7 +151,7 @@ void BITCARRouting::handleMessage(cMessage *msg)
                 break;
 
             default:
-                throw cRuntimeError("AODV Control Packet arrived with undefined packet type: %d", ctrlPacket->getPacketType());
+                throw cRuntimeError("BITCAR Control Packet arrived with undefined packet type: %d", ctrlPacket->getPacketType());
         }
         delete udpPacket;
     }
@@ -273,8 +273,8 @@ void BITCARRouting::sendRREQ(BITCARRREQ *rreq, const IPv4Address& destAddr, unsi
         return;
     }
 
-    std::map<IPv4Address, WaitForBITCARVANETRREP *>::iterator rrepTimer = waitForRREPTimers.find(rreq->getDestAddr());
-    WaitForBITCARVANETRREP *rrepTimerMsg = NULL;
+    std::map<IPv4Address, WaitForBITCARRREP *>::iterator rrepTimer = waitForRREPTimers.find(rreq->getDestAddr());
+    WaitForBITCARRREP *rrepTimerMsg = NULL;
     if (rrepTimer != waitForRREPTimers.end()) {
         rrepTimerMsg = rrepTimer->second;
         unsigned int lastTTL = rrepTimerMsg->getLastTTL();
@@ -307,7 +307,7 @@ void BITCARRouting::sendRREQ(BITCARRREQ *rreq, const IPv4Address& destAddr, unsi
         }
     }
     else {
-        rrepTimerMsg = new WaitForBITCARVANETRREP();
+        rrepTimerMsg = new WaitForBITCARRREP();
         waitForRREPTimers[rreq->getDestAddr()] = rrepTimerMsg;
         ASSERT(hasOngoingRouteDiscovery(rreq->getDestAddr()));
 
@@ -322,7 +322,7 @@ void BITCARRouting::sendRREQ(BITCARRREQ *rreq, const IPv4Address& destAddr, unsi
     scheduleAt(simTime() + ringTraversalTime, rrepTimerMsg);
 
     EV_INFO << "Sending a Route Request with target " << rreq->getDestAddr() << " and TTL= " << timeToLive << endl;
-    sendAODVPacket(rreq, destAddr, timeToLive, jitterPar->doubleValue());
+    sendBITCARPacket(rreq, destAddr, timeToLive, jitterPar->doubleValue());
     rreqCount++;
 }
 
@@ -358,12 +358,12 @@ void BITCARRouting::sendRREP(BITCARRREP *rrep, const IPv4Address& destAddr, unsi
 
         scheduleAt(simTime() + nextHopWait, rrepAckTimer);
     }
-    sendAODVPacket(rrep, nextHop, timeToLive, 0);
+    sendBITCARPacket(rrep, nextHop, timeToLive, 0);
 }
 
 BITCARRREQ *BITCARRouting::createRREQ(const IPv4Address& destAddr)
 {
-    BITCARRREQ *rreqPacket = new BITCARRREQ("AODV-RREQ");
+    BITCARRREQ *rreqPacket = new BITCARRREQ("BITCAR-RREQ");
 
     rreqPacket->setGratuitousRREPFlag(askGratuitousRREP);
     IPv4Route *lastKnownRoute = routingTable->findBestMatchingRoute(destAddr);
@@ -404,6 +404,21 @@ BITCARRREQ *BITCARRouting::createRREQ(const IPv4Address& destAddr)
     // The Hop Count field is set to zero.
     rreqPacket->setHopCount(0);
 
+    // The TWR is initialized to zero
+    rreqPacket->setTwr(0);
+
+    // The Expiration time is initialized to a large number
+    rreqPacket->setExpirationtime(100000);
+
+    // Set position, speed, acceleration and direction
+    cModule *host = getContainingNode(this);
+    IVANETMobility  *mod = check_and_cast<IVANETMobility *>(host->getSubmodule("mobility"));
+
+    rreqPacket->setPosition(mod->getCurrentPosition());
+    rreqPacket->setSpeed(mod->getCurrentSpeed());
+    rreqPacket->setAcceleration(mod->getCurrentAcceleration());
+    //rreqPacket->setDirection(mod->getCurrentDirection());
+
     // Before broadcasting the RREQ, the originating node buffers the RREQ
     // ID and the Originator IP address (its own address) of the RREQ for
     // PATH_DISCOVERY_TIME.
@@ -418,7 +433,7 @@ BITCARRREQ *BITCARRouting::createRREQ(const IPv4Address& destAddr)
 
 BITCARRREP *BITCARRouting::createRREP(BITCARRREQ *rreq, IPv4Route *destRoute, IPv4Route *originatorRoute, const IPv4Address& lastHopAddr)
 {
-    BITCARRREP *rrep = new BITCARRREP("AODV-RREP");
+    BITCARRREP *rrep = new BITCARRREP("BITCAR-RREP");
     rrep->setPacketType(RREP);
 
     // When generating a RREP message, a node copies the Destination IP
@@ -497,7 +512,7 @@ BITCARRREP *BITCARRouting::createRREP(BITCARRREQ *rreq, IPv4Route *destRoute, IP
 BITCARRREP *BITCARRouting::createGratuitousRREP(BITCARRREQ *rreq, IPv4Route *originatorRoute)
 {
     ASSERT(originatorRoute != NULL);
-    BITCARRREP *grrep = new BITCARRREP("AODV-GRREP");
+    BITCARRREP *grrep = new BITCARRREP("BITCAR-GRREP");
     BITCARRouteData *routeData = check_and_cast<BITCARRouteData *>(originatorRoute->getProtocolData());
 
     // Hop Count                        The Hop Count as indicated in the
@@ -529,7 +544,7 @@ BITCARRREP *BITCARRouting::createGratuitousRREP(BITCARRREQ *rreq, IPv4Route *ori
 
 void BITCARRouting::handleRREP(BITCARRREP *rrep, const IPv4Address& sourceAddr)
 {
-    EV_INFO << "AODV Route Reply arrived with source addr: " << sourceAddr << " originator addr: " << rrep->getOriginatorAddr()
+    EV_INFO << "BITCAR Route Reply arrived with source addr: " << sourceAddr << " originator addr: " << rrep->getOriginatorAddr()
             << " destination addr: " << rrep->getDestAddr() << endl;
 
     if (rrep->getOriginatorAddr().isUnspecified()) {
@@ -708,7 +723,7 @@ void BITCARRouting::updateRoutingTable(IPv4Route *route, const IPv4Address& next
     scheduleExpungeRoutes();
 }
 
-void BITCARRouting::sendAODVPacket(BITCARControlPacket *packet, const IPv4Address& destAddr, unsigned int timeToLive, double delay)
+void BITCARRouting::sendBITCARPacket(BITCARControlPacket *packet, const IPv4Address& destAddr, unsigned int timeToLive, double delay)
 {
     ASSERT(timeToLive != 0);
 
@@ -741,7 +756,7 @@ void BITCARRouting::sendAODVPacket(BITCARControlPacket *packet, const IPv4Addres
 
 void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, unsigned int timeToLive)
 {
-    EV_INFO << "AODV Route Request arrived with source addr: " << sourceAddr << " originator addr: " << rreq->getOriginatorAddr()
+    EV_INFO << "BITCAR Route Request arrived with source addr: " << sourceAddr << " originator addr: " << rreq->getOriginatorAddr()
             << " destination addr: " << rreq->getDestAddr() << endl;
 
     // A node ignores all RREQs received from any node in its blacklist set.
@@ -940,7 +955,7 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
         forwardRREQ(outgoingRREQ, timeToLive);
     }
     else
-        EV_WARN << "Can't forward the RREQ because of its small (<= 1) TTL: " << timeToLive << " or the AODV reboot has not completed yet" << endl;
+        EV_WARN << "Can't forward the RREQ because of its small (<= 1) TTL: " << timeToLive << " or the BITCAR reboot has not completed yet" << endl;
 
     delete rreq;
 }
@@ -969,7 +984,7 @@ IPv4Route *BITCARRouting::createRoute(const IPv4Address& destAddr, const IPv4Add
         newRoute->setInterface(ifEntry);
 
     newRoute->setDestination(destAddr);
-    newRoute->setSourceType(IPv4Route::AODV);
+    newRoute->setSourceType(IPv4Route::BITCAR);
     newRoute->setSource(this);
     newRoute->setProtocolData(newProtocolData);
     newRoute->setMetric(hopCount);
@@ -1038,12 +1053,12 @@ void BITCARRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAddr)
     if (!unreachableRoute || unreachableRoute->getSource() != this)
         return;
 
-    std::vector<UnreachableNodeBITCAR> unreachableNodes;
+    std::vector<UnreachableBITCARNode> unreachableBITCARNodes;
     BITCARRouteData *unreachableRouteData = check_and_cast<BITCARRouteData *>(unreachableRoute->getProtocolData());
-    UnreachableNodeBITCAR node;
+    UnreachableBITCARNode node;
     node.addr = unreachableAddr;
     node.seqNum = unreachableRouteData->getDestSeqNum();
-    unreachableNodes.push_back(node);
+    unreachableBITCARNodes.push_back(node);
 
     // For case (i), the node first makes a list of unreachable destinations
     // consisting of the unreachable neighbor and any additional destinations
@@ -1065,10 +1080,10 @@ void BITCARRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAddr)
             routeData->setLifeTime(simTime() + deletePeriod);
             scheduleExpungeRoutes();
 
-            UnreachableNodeBITCAR node;
+            UnreachableBITCARNode node;
             node.addr = route->getDestination();
             node.seqNum = routeData->getDestSeqNum();
-            unreachableNodes.push_back(node);
+            unreachableBITCARNodes.push_back(node);
         }
     }
 
@@ -1086,41 +1101,41 @@ void BITCARRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAddr)
         return;
     }
 
-    BITCARRERR *rerr = createRERR(unreachableNodes);
+    BITCARRERR *rerr = createRERR(unreachableBITCARNodes);
     rerrCount++;
 
     // broadcast
     EV_INFO << "Broadcasting Route Error message with TTL=1" << endl;
-    sendAODVPacket(rerr, IPv4Address::ALLONES_ADDRESS, 1, jitterPar->doubleValue());
+    sendBITCARPacket(rerr, IPv4Address::ALLONES_ADDRESS, 1, jitterPar->doubleValue());
 }
 
-BITCARRERR *BITCARRouting::createRERR(const std::vector<UnreachableNodeBITCAR>& unreachableNodes)
+BITCARRERR *BITCARRouting::createRERR(const std::vector<UnreachableBITCARNode>& unreachableBITCARNodes)
 {
-    BITCARRERR *rerr = new BITCARRERR("AODV-RERR");
-    unsigned int destCount = unreachableNodes.size();
+    BITCARRERR *rerr = new BITCARRERR("BITCAR-RERR");
+    unsigned int destCount = unreachableBITCARNodes.size();
 
     rerr->setPacketType(RERR);
     rerr->setDestCount(destCount);
-    rerr->setUnreachableNodesArraySize(destCount);
+    rerr->setUnreachableBITCARNodesArraySize(destCount);
 
     for (unsigned int i = 0; i < destCount; i++) {
-        UnreachableNodeBITCAR node;
-        node.addr = unreachableNodes[i].addr;
-        node.seqNum = unreachableNodes[i].seqNum;
-        rerr->setUnreachableNodes(i, node);
+        UnreachableBITCARNode node;
+        node.addr = unreachableBITCARNodes[i].addr;
+        node.seqNum = unreachableBITCARNodes[i].seqNum;
+        rerr->setUnreachableBITCARNodes(i, node);
     }
     return rerr;
 }
 
 void BITCARRouting::handleRERR(BITCARRERR *rerr, const IPv4Address& sourceAddr)
 {
-    EV_INFO << "AODV Route Error arrived with source addr: " << sourceAddr << endl;
+    EV_INFO << "BITCAR Route Error arrived with source addr: " << sourceAddr << endl;
 
     // A node initiates processing for a RERR message in three situations:
     // (iii)   if it receives a RERR from a neighbor for one or more
     //         active routes.
-    unsigned int unreachableArraySize = rerr->getUnreachableNodesArraySize();
-    std::vector<UnreachableNodeBITCAR> unreachableNeighbors;
+    unsigned int unreachableArraySize = rerr->getUnreachableBITCARNodesArraySize();
+    std::vector<UnreachableBITCARNode> unreachableNeighbors;
 
     for (int i = 0; i < routingTable->getNumRoutes(); i++) {
         IPv4Route *route = routingTable->getRoute(i);
@@ -1135,13 +1150,13 @@ void BITCARRouting::handleRERR(BITCARRERR *rerr, const IPv4Address& sourceAddr)
 
         if (route->getGateway() == sourceAddr) {
             for (unsigned int j = 0; j < unreachableArraySize; j++) {
-                if (route->getDestination() == rerr->getUnreachableNodes(j).addr) {
+                if (route->getDestination() == rerr->getUnreachableBITCARNodes(j).addr) {
                     // 1. The destination sequence number of this routing entry, if it
                     // exists and is valid, is incremented for cases (i) and (ii) above,
                     // ! and copied from the incoming RERR in case (iii) above.
 
-                    routeData->setDestSeqNum(rerr->getUnreachableNodes(j).seqNum);
-                    routeData->setIsActive(false);    // it means invalid, see 3. AODV Terminology p.3. in RFC 3561
+                    routeData->setDestSeqNum(rerr->getUnreachableBITCARNodes(j).seqNum);
+                    routeData->setIsActive(false);    // it means invalid, see 3. BITCAR Terminology p.3. in RFC 3561
                     routeData->setLifeTime(simTime() + deletePeriod);
 
                     // The RERR should contain those destinations that are part of
@@ -1149,7 +1164,7 @@ void BITCARRouting::handleRERR(BITCARRERR *rerr, const IPv4Address& sourceAddr)
                     // precursor list.
 
                     if (routeData->getPrecursorList().size() > 0) {
-                        UnreachableNodeBITCAR node;
+                        UnreachableBITCARNode node;
                         node.addr = route->getDestination();
                         node.seqNum = routeData->getDestSeqNum();
                         unreachableNeighbors.push_back(node);
@@ -1169,7 +1184,7 @@ void BITCARRouting::handleRERR(BITCARRERR *rerr, const IPv4Address& sourceAddr)
     if (unreachableNeighbors.size() > 0 && (simTime() > rebootTime + deletePeriod || rebootTime == 0)) {
         EV_INFO << "Sending RERR to inform our neighbors about link breaks." << endl;
         BITCARRERR *newRERR = createRERR(unreachableNeighbors);
-        sendAODVPacket(newRERR, IPv4Address::ALLONES_ADDRESS, 1, 0);
+        sendBITCARPacket(newRERR, IPv4Address::ALLONES_ADDRESS, 1, 0);
         rerrCount++;
     }
     delete rerr;
@@ -1211,7 +1226,7 @@ void BITCARRouting::clearState()
 {
     rerrCount = rreqCount = rreqId = sequenceNum = 0;
     addressToRreqRetries.clear();
-    for (std::map<IPv4Address, WaitForBITCARVANETRREP *>::iterator it = waitForRREPTimers.begin(); it != waitForRREPTimers.end(); ++it)
+    for (std::map<IPv4Address, WaitForBITCARRREP *>::iterator it = waitForRREPTimers.begin(); it != waitForRREPTimers.end(); ++it)
         cancelAndDelete(it->second);
 
     // FIXME: Drop the queued datagrams.
@@ -1232,7 +1247,7 @@ void BITCARRouting::clearState()
     cancelEvent(rrepAckTimer);
 }
 
-void BITCARRouting::handleWaitForBITCARVANETRREP(WaitForBITCARVANETRREP *rrepTimer)
+void BITCARRouting::handleWaitForBITCARRREP(WaitForBITCARRREP *rrepTimer)
 {
     EV_INFO << "We didn't get any Route Reply within RREP timeout" << endl;
     IPv4Address destAddr = rrepTimer->getDestAddr();
@@ -1261,13 +1276,13 @@ void BITCARRouting::forwardRREP(BITCARRREP *rrep, const IPv4Address& destAddr, u
     // When a node forwards a message, it SHOULD be jittered by delaying it
     // by a random duration.  This delay SHOULD be generated uniformly in an
     // interval between zero and MAXJITTER.
-    sendAODVPacket(rrep, destAddr, 100, jitterPar->doubleValue());
+    sendBITCARPacket(rrep, destAddr, 100, jitterPar->doubleValue());
 }
 
 void BITCARRouting::forwardRREQ(BITCARRREQ *rreq, unsigned int timeToLive)
 {
     EV_INFO << "Forwarding the Route Request message with TTL= " << timeToLive << endl;
-    sendAODVPacket(rreq, IPv4Address::ALLONES_ADDRESS, timeToLive, jitterPar->doubleValue());
+    sendBITCARPacket(rreq, IPv4Address::ALLONES_ADDRESS, timeToLive, jitterPar->doubleValue());
 }
 
 void BITCARRouting::completeRouteDiscovery(const IPv4Address& target)
@@ -1288,8 +1303,8 @@ void BITCARRouting::completeRouteDiscovery(const IPv4Address& target)
     // clear the multimap
     targetAddressToDelayedPackets.erase(lt, ut);
 
-    // we have a route for the destination, thus we must cancel the WaitForBITCARVANETRREPTimer events
-    std::map<IPv4Address, WaitForBITCARVANETRREP *>::iterator waitRREPIter = waitForRREPTimers.find(target);
+    // we have a route for the destination, thus we must cancel the WaitForBITCARRREPTimer events
+    std::map<IPv4Address, WaitForBITCARRREP *>::iterator waitRREPIter = waitForRREPTimers.find(target);
     ASSERT(waitRREPIter != waitForRREPTimers.end());
     cancelAndDelete(waitRREPIter->second);
     waitForRREPTimers.erase(waitRREPIter);
@@ -1302,7 +1317,7 @@ void BITCARRouting::sendGRREP(BITCARRREP *grrep, const IPv4Address& destAddr, un
     IPv4Route *destRoute = routingTable->findBestMatchingRoute(destAddr);
     const IPv4Address& nextHop = destRoute->getGateway();
 
-    sendAODVPacket(grrep, nextHop, timeToLive, 0);
+    sendBITCARPacket(grrep, nextHop, timeToLive, 0);
 }
 
 BITCARRREP *BITCARRouting::createHelloMessage()
@@ -1318,7 +1333,7 @@ BITCARRREP *BITCARRouting::createHelloMessage()
     //
     //    Lifetime                       ALLOWED_HELLO_LOSS *HELLO_INTERVAL
 
-    BITCARRREP *helloMessage = new BITCARRREP("AODV-HelloMsg");
+    BITCARRREP *helloMessage = new BITCARRREP("BITCAR-HelloMsg");
     helloMessage->setPacketType(RREP);
     helloMessage->setDestAddr(getSelfIPAddress());
     helloMessage->setDestSeqNum(sequenceNum);
@@ -1354,7 +1369,7 @@ void BITCARRouting::sendHelloMessagesIfNeeded()
     if (hasActiveRoute && (lastBroadcastTime == 0 || simTime() - lastBroadcastTime > helloInterval)) {
         EV_INFO << "It is hello time, broadcasting Hello Messages with TTL=1" << endl;
         BITCARRREP *helloMessage = createHelloMessage();
-        sendAODVPacket(helloMessage, IPv4Address::ALLONES_ADDRESS, 1, 0);
+        sendBITCARPacket(helloMessage, IPv4Address::ALLONES_ADDRESS, 1, 0);
     }
 
     scheduleAt(simTime() + helloInterval - periodicJitter->doubleValue(), helloMsgTimer);
@@ -1542,8 +1557,8 @@ void BITCARRouting::sendRERRWhenNoRouteToForward(const IPv4Address& unreachableA
         EV_WARN << "A node should not generate more than RERR_RATELIMIT RERR messages per second. Canceling sending RERR" << endl;
         return;
     }
-    std::vector<UnreachableNodeBITCAR> unreachableNodes;
-    UnreachableNodeBITCAR node;
+    std::vector<UnreachableBITCARNode> unreachableBITCARNodes;
+    UnreachableBITCARNode node;
     node.addr = unreachableAddr;
 
     IPv4Route *unreachableRoute = routingTable->findBestMatchingRoute(unreachableAddr);
@@ -1554,12 +1569,12 @@ void BITCARRouting::sendRERRWhenNoRouteToForward(const IPv4Address& unreachableA
     else
         node.seqNum = 0;
 
-    unreachableNodes.push_back(node);
-    BITCARRERR *rerr = createRERR(unreachableNodes);
+    unreachableBITCARNodes.push_back(node);
+    BITCARRERR *rerr = createRERR(unreachableBITCARNodes);
 
     rerrCount++;
     EV_INFO << "Broadcasting Route Error message with TTL=1" << endl;
-    sendAODVPacket(rerr, IPv4Address::ALLONES_ADDRESS, 1, jitterPar->doubleValue());    // TODO: unicast if there exists a route to the source
+    sendBITCARPacket(rerr, IPv4Address::ALLONES_ADDRESS, 1, jitterPar->doubleValue());    // TODO: unicast if there exists a route to the source
 }
 
 void BITCARRouting::cancelRouteDiscovery(const IPv4Address& destAddr)
@@ -1590,7 +1605,7 @@ bool BITCARRouting::updateValidRouteLifeTime(const IPv4Address& destAddr, simtim
 
 BITCARRREPACK *BITCARRouting::createRREPACK()
 {
-    BITCARRREPACK *rrepACK = new BITCARRREPACK("AODV-RREPACK");
+    BITCARRREPACK *rrepACK = new BITCARRREPACK("BITCAR-RREPACK");
     rrepACK->setPacketType(RREPACK);
     return rrepACK;
 }
@@ -1598,7 +1613,7 @@ BITCARRREPACK *BITCARRouting::createRREPACK()
 void BITCARRouting::sendRREPACK(BITCARRREPACK *rrepACK, const IPv4Address& destAddr)
 {
     EV_INFO << "Sending Route Reply ACK to " << destAddr << endl;
-    sendAODVPacket(rrepACK, destAddr, 100, 0);
+    sendBITCARPacket(rrepACK, destAddr, 100, 0);
 }
 
 void BITCARRouting::handleRREPACK(BITCARRREPACK *rrepACK, const IPv4Address& neighborAddr)

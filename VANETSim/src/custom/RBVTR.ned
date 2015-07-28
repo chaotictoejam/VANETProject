@@ -17,24 +17,13 @@
 
 package vanetsim.custom;
 
-import inet.networklayer.manetrouting.base.BaseRouting;
-import inet.networklayer.IManetRouting;
+import vanetsim.custom.vanetrouting.base.BaseVanetRouting;
+import vanetsim.custom.vanetrouting.networklayer.IVanetRouting;
 
-
-//
-// Ad hoc On-Demand Distance Vector (AODV) Routing (rfc3561)
-//
-// Implementation is based on rfc3561 draft 13 and implements
-// all features defined in the rfc except noted below:
-//
-// NOTE:
-//  - The initialization of the routing component is done in stage=4
-//  - Message lengths are calculated assuming IPv4 addresses
-//
-simple RBVTR extends BaseRouting like IManetRouting
+simple RBVTR extends BaseVanetRouting like IVanetRouting
 {
     parameters:
-        @class(RBVTR);
+        @class(RBVTRRouting);
         @reactive;                             // IP module will send control messages when no route is present to the destination
         bool log_to_file = default(false);     // dump AODV log files (non RFC parameter)
         bool hello_jittering = default(true);  // add a +-50ms jitter to the hello interval (non RFC parameter)

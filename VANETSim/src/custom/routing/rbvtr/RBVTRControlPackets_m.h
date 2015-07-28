@@ -18,23 +18,26 @@
 // cplusplus {{
 #include "IPv4Address.h"
 #include "simtime_t.h"
+#include "VanetModuleAccess.h"
+#include "IVANETMobility.h"
+#include "Coord.h"
 // }}
 
 /**
- * Struct generated from custom/routing/rbvtr/RBVTRControlPackets.msg:29 by nedtool.
+ * Struct generated from custom/routing/rbvtr/RBVTRControlPackets.msg:34 by nedtool.
  */
-struct UnreachableNodeRBVTR
+struct UnreachableRBVTRNode
 {
-    UnreachableNodeRBVTR();
+    UnreachableRBVTRNode();
     IPv4Address addr;
     unsigned int seqNum;
 };
 
-void doPacking(cCommBuffer *b, UnreachableNodeRBVTR& a);
-void doUnpacking(cCommBuffer *b, UnreachableNodeRBVTR& a);
+void doPacking(cCommBuffer *b, UnreachableRBVTRNode& a);
+void doUnpacking(cCommBuffer *b, UnreachableRBVTRNode& a);
 
 /**
- * Enum generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:35</tt> by nedtool.
+ * Enum generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:40</tt> by nedtool.
  * <pre>
  * enum RBVTRControlPacketType
  * {
@@ -54,10 +57,10 @@ enum RBVTRControlPacketType {
 };
 
 /**
- * Class generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:46</tt> by nedtool.
+ * Class generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:51</tt> by nedtool.
  * <pre>
  * //
- * // Base packet for AODV Control Packets
+ * // Base packet for RBVTR Control Packets
  * //
  * packet RBVTRControlPacket
  * {
@@ -95,10 +98,10 @@ inline void doPacking(cCommBuffer *b, RBVTRControlPacket& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, RBVTRControlPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:54</tt> by nedtool.
+ * Class generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:59</tt> by nedtool.
  * <pre>
  * //
- * // Represents an AODV Route Request
+ * // Represents an RBVTR Route Request
  * //
  * class RBVTRRREQ extends RBVTRControlPacket
  * {
@@ -114,6 +117,12 @@ inline void doUnpacking(cCommBuffer *b, RBVTRControlPacket& obj) {obj.parsimUnpa
  *     unsigned int destSeqNum;
  *     IPv4Address originatorAddr;
  *     unsigned int originatorSeqNum;
+ *     Coord position;
+ *     Coord speed;
+ *     Coord acceleration;
+ *     Coord direction;
+ *     double twr;
+ *     double expirationtime;
  * }
  * </pre>
  */
@@ -132,6 +141,12 @@ class RBVTRRREQ : public ::RBVTRControlPacket
     unsigned int destSeqNum_var;
     IPv4Address originatorAddr_var;
     unsigned int originatorSeqNum_var;
+    Coord position_var;
+    Coord speed_var;
+    Coord acceleration_var;
+    Coord direction_var;
+    double twr_var;
+    double expirationtime_var;
 
   private:
     void copy(const RBVTRRREQ& other);
@@ -176,16 +191,32 @@ class RBVTRRREQ : public ::RBVTRControlPacket
     virtual void setOriginatorAddr(const IPv4Address& originatorAddr);
     virtual unsigned int getOriginatorSeqNum() const;
     virtual void setOriginatorSeqNum(unsigned int originatorSeqNum);
+    virtual Coord& getPosition();
+    virtual const Coord& getPosition() const {return const_cast<RBVTRRREQ*>(this)->getPosition();}
+    virtual void setPosition(const Coord& position);
+    virtual Coord& getSpeed();
+    virtual const Coord& getSpeed() const {return const_cast<RBVTRRREQ*>(this)->getSpeed();}
+    virtual void setSpeed(const Coord& speed);
+    virtual Coord& getAcceleration();
+    virtual const Coord& getAcceleration() const {return const_cast<RBVTRRREQ*>(this)->getAcceleration();}
+    virtual void setAcceleration(const Coord& acceleration);
+    virtual Coord& getDirection();
+    virtual const Coord& getDirection() const {return const_cast<RBVTRRREQ*>(this)->getDirection();}
+    virtual void setDirection(const Coord& direction);
+    virtual double getTwr() const;
+    virtual void setTwr(double twr);
+    virtual double getExpirationtime() const;
+    virtual void setExpirationtime(double expirationtime);
 };
 
 inline void doPacking(cCommBuffer *b, RBVTRRREQ& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RBVTRRREQ& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:73</tt> by nedtool.
+ * Class generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:84</tt> by nedtool.
  * <pre>
  * //
- * // Represents an AODV Route Reply
+ * // Represents an RBVTR Route Reply
  * //
  * class RBVTRRREP extends RBVTRControlPacket
  * {
@@ -199,6 +230,8 @@ inline void doUnpacking(cCommBuffer *b, RBVTRRREQ& obj) {obj.parsimUnpack(b);}
  *     IPv4Address originatorAddr;
  *     unsigned int originatorSeqNum;
  *     simtime_t lifeTime;
+ *     double twr;
+ *     double expirationtime;
  * }
  * </pre>
  */
@@ -215,6 +248,8 @@ class RBVTRRREP : public ::RBVTRControlPacket
     IPv4Address originatorAddr_var;
     unsigned int originatorSeqNum_var;
     simtime_t lifeTime_var;
+    double twr_var;
+    double expirationtime_var;
 
   private:
     void copy(const RBVTRRREP& other);
@@ -255,21 +290,25 @@ class RBVTRRREP : public ::RBVTRControlPacket
     virtual void setOriginatorSeqNum(unsigned int originatorSeqNum);
     virtual simtime_t getLifeTime() const;
     virtual void setLifeTime(simtime_t lifeTime);
+    virtual double getTwr() const;
+    virtual void setTwr(double twr);
+    virtual double getExpirationtime() const;
+    virtual void setExpirationtime(double expirationtime);
 };
 
 inline void doPacking(cCommBuffer *b, RBVTRRREP& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RBVTRRREP& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:90</tt> by nedtool.
+ * Class generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:103</tt> by nedtool.
  * <pre>
  * //
- * // Represents an AODV Route Error
+ * // Represents an RBVTR Route Error
  * //
  * class RBVTRRERR extends RBVTRControlPacket
  * {
  *     unsigned int packetType = RERR;
- *     UnreachableNodeRBVTR unreachableNodes[];
+ *     UnreachableRBVTRNode unreachableRBVTRNodes[];
  *     bool noDeleteFlag;
  *     unsigned int destCount;
  * }
@@ -279,8 +318,8 @@ class RBVTRRERR : public ::RBVTRControlPacket
 {
   protected:
     unsigned int packetType_var;
-    UnreachableNodeRBVTR *unreachableNodes_var; // array ptr
-    unsigned int unreachableNodes_arraysize;
+    UnreachableRBVTRNode *unreachableRBVTRNodes_var; // array ptr
+    unsigned int unreachableRBVTRNodes_arraysize;
     bool noDeleteFlag_var;
     unsigned int destCount_var;
 
@@ -303,11 +342,11 @@ class RBVTRRERR : public ::RBVTRControlPacket
     // field getter/setter methods
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
-    virtual void setUnreachableNodesArraySize(unsigned int size);
-    virtual unsigned int getUnreachableNodesArraySize() const;
-    virtual UnreachableNodeRBVTR& getUnreachableNodes(unsigned int k);
-    virtual const UnreachableNodeRBVTR& getUnreachableNodes(unsigned int k) const {return const_cast<RBVTRRERR*>(this)->getUnreachableNodes(k);}
-    virtual void setUnreachableNodes(unsigned int k, const UnreachableNodeRBVTR& unreachableNodes);
+    virtual void setUnreachableRBVTRNodesArraySize(unsigned int size);
+    virtual unsigned int getUnreachableRBVTRNodesArraySize() const;
+    virtual UnreachableRBVTRNode& getUnreachableRBVTRNodes(unsigned int k);
+    virtual const UnreachableRBVTRNode& getUnreachableRBVTRNodes(unsigned int k) const {return const_cast<RBVTRRERR*>(this)->getUnreachableRBVTRNodes(k);}
+    virtual void setUnreachableRBVTRNodes(unsigned int k, const UnreachableRBVTRNode& unreachableRBVTRNodes);
     virtual bool getNoDeleteFlag() const;
     virtual void setNoDeleteFlag(bool noDeleteFlag);
     virtual unsigned int getDestCount() const;
@@ -318,10 +357,10 @@ inline void doPacking(cCommBuffer *b, RBVTRRERR& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RBVTRRERR& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:101</tt> by nedtool.
+ * Class generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:114</tt> by nedtool.
  * <pre>
  * //
- * // Represents an AODV Route Reply ACK
+ * // Represents an RBVTR Route Reply ACK
  * //
  * class RBVTRRREPACK extends RBVTRControlPacket
  * {
@@ -359,12 +398,12 @@ inline void doPacking(cCommBuffer *b, RBVTRRREPACK& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RBVTRRREPACK& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:109</tt> by nedtool.
+ * Class generated from <tt>custom/routing/rbvtr/RBVTRControlPackets.msg:122</tt> by nedtool.
  * <pre>
  * //
  * // Represents a timer for a Route Reply packet
  * //
- * message WaitForRBVTRVANETRREP
+ * message WaitForRBVTRRREP
  * {
  *     IPv4Address destAddr;
  *     unsigned int lastTTL;
@@ -372,7 +411,7 @@ inline void doUnpacking(cCommBuffer *b, RBVTRRREPACK& obj) {obj.parsimUnpack(b);
  * }
  * </pre>
  */
-class WaitForRBVTRVANETRREP : public ::cMessage
+class WaitForRBVTRRREP : public ::cMessage
 {
   protected:
     IPv4Address destAddr_var;
@@ -380,24 +419,24 @@ class WaitForRBVTRVANETRREP : public ::cMessage
     bool fromInvalidEntry_var;
 
   private:
-    void copy(const WaitForRBVTRVANETRREP& other);
+    void copy(const WaitForRBVTRRREP& other);
 
   protected:
     // protected and unimplemented operator==(), to prevent accidental usage
-    bool operator==(const WaitForRBVTRVANETRREP&);
+    bool operator==(const WaitForRBVTRRREP&);
 
   public:
-    WaitForRBVTRVANETRREP(const char *name=NULL, int kind=0);
-    WaitForRBVTRVANETRREP(const WaitForRBVTRVANETRREP& other);
-    virtual ~WaitForRBVTRVANETRREP();
-    WaitForRBVTRVANETRREP& operator=(const WaitForRBVTRVANETRREP& other);
-    virtual WaitForRBVTRVANETRREP *dup() const {return new WaitForRBVTRVANETRREP(*this);}
+    WaitForRBVTRRREP(const char *name=NULL, int kind=0);
+    WaitForRBVTRRREP(const WaitForRBVTRRREP& other);
+    virtual ~WaitForRBVTRRREP();
+    WaitForRBVTRRREP& operator=(const WaitForRBVTRRREP& other);
+    virtual WaitForRBVTRRREP *dup() const {return new WaitForRBVTRRREP(*this);}
     virtual void parsimPack(cCommBuffer *b);
     virtual void parsimUnpack(cCommBuffer *b);
 
     // field getter/setter methods
     virtual IPv4Address& getDestAddr();
-    virtual const IPv4Address& getDestAddr() const {return const_cast<WaitForRBVTRVANETRREP*>(this)->getDestAddr();}
+    virtual const IPv4Address& getDestAddr() const {return const_cast<WaitForRBVTRRREP*>(this)->getDestAddr();}
     virtual void setDestAddr(const IPv4Address& destAddr);
     virtual unsigned int getLastTTL() const;
     virtual void setLastTTL(unsigned int lastTTL);
@@ -405,8 +444,8 @@ class WaitForRBVTRVANETRREP : public ::cMessage
     virtual void setFromInvalidEntry(bool fromInvalidEntry);
 };
 
-inline void doPacking(cCommBuffer *b, WaitForRBVTRVANETRREP& obj) {obj.parsimPack(b);}
-inline void doUnpacking(cCommBuffer *b, WaitForRBVTRVANETRREP& obj) {obj.parsimUnpack(b);}
+inline void doPacking(cCommBuffer *b, WaitForRBVTRRREP& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, WaitForRBVTRRREP& obj) {obj.parsimUnpack(b);}
 
 
 #endif // ifndef _RBVTRCONTROLPACKETS_M_H_

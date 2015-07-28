@@ -108,8 +108,8 @@ void RBVTRRouting::handleMessage(cMessage *msg)
     }
 
     if (msg->isSelfMessage()) {
-        if (dynamic_cast<WaitForRBVTRVANETRREP *>(msg))
-            handleWaitForRBVTRVANETRREP((WaitForRBVTRVANETRREP *)msg);
+        if (dynamic_cast<WaitForRBVTRRREP *>(msg))
+            handleWaitForRBVTRRREP((WaitForRBVTRRREP *)msg);
         else if (msg == helloMsgTimer)
             sendHelloMessagesIfNeeded();
         else if (msg == expungeTimer)
@@ -151,7 +151,7 @@ void RBVTRRouting::handleMessage(cMessage *msg)
                 break;
 
             default:
-                throw cRuntimeError("AODV Control Packet arrived with undefined packet type: %d", ctrlPacket->getPacketType());
+                throw cRuntimeError("RBVTR Control Packet arrived with undefined packet type: %d", ctrlPacket->getPacketType());
         }
         delete udpPacket;
     }
@@ -273,8 +273,8 @@ void RBVTRRouting::sendRREQ(RBVTRRREQ *rreq, const IPv4Address& destAddr, unsign
         return;
     }
 
-    std::map<IPv4Address, WaitForRBVTRVANETRREP *>::iterator rrepTimer = waitForRREPTimers.find(rreq->getDestAddr());
-    WaitForRBVTRVANETRREP *rrepTimerMsg = NULL;
+    std::map<IPv4Address, WaitForRBVTRRREP *>::iterator rrepTimer = waitForRREPTimers.find(rreq->getDestAddr());
+    WaitForRBVTRRREP *rrepTimerMsg = NULL;
     if (rrepTimer != waitForRREPTimers.end()) {
         rrepTimerMsg = rrepTimer->second;
         unsigned int lastTTL = rrepTimerMsg->getLastTTL();
@@ -307,7 +307,7 @@ void RBVTRRouting::sendRREQ(RBVTRRREQ *rreq, const IPv4Address& destAddr, unsign
         }
     }
     else {
-        rrepTimerMsg = new WaitForRBVTRVANETRREP();
+        rrepTimerMsg = new WaitForRBVTRRREP();
         waitForRREPTimers[rreq->getDestAddr()] = rrepTimerMsg;
         ASSERT(hasOngoingRouteDiscovery(rreq->getDestAddr()));
 
@@ -322,7 +322,7 @@ void RBVTRRouting::sendRREQ(RBVTRRREQ *rreq, const IPv4Address& destAddr, unsign
     scheduleAt(simTime() + ringTraversalTime, rrepTimerMsg);
 
     EV_INFO << "Sending a Route Request with target " << rreq->getDestAddr() << " and TTL= " << timeToLive << endl;
-    sendAODVPacket(rreq, destAddr, timeToLive, jitterPar->doubleValue());
+    sendRBVTRPacket(rreq, destAddr, timeToLive, jitterPar->doubleValue());
     rreqCount++;
 }
 
@@ -358,12 +358,12 @@ void RBVTRRouting::sendRREP(RBVTRRREP *rrep, const IPv4Address& destAddr, unsign
 
         scheduleAt(simTime() + nextHopWait, rrepAckTimer);
     }
-    sendAODVPacket(rrep, nextHop, timeToLive, 0);
+    sendRBVTRPacket(rrep, nextHop, timeToLive, 0);
 }
 
 RBVTRRREQ *RBVTRRouting::createRREQ(const IPv4Address& destAddr)
 {
-    RBVTRRREQ *rreqPacket = new RBVTRRREQ("AODV-RREQ");
+    RBVTRRREQ *rreqPacket = new RBVTRRREQ("RBVTR-RREQ");
 
     rreqPacket->setGratuitousRREPFlag(askGratuitousRREP);
     IPv4Route *lastKnownRoute = routingTable->findBestMatchingRoute(destAddr);
@@ -404,6 +404,21 @@ RBVTRRREQ *RBVTRRouting::createRREQ(const IPv4Address& destAddr)
     // The Hop Count field is set to zero.
     rreqPacket->setHopCount(0);
 
+    // The TWR is initialized to zero
+    rreqPacket->setTwr(0);
+
+    // The Expiration time is initialized to a large number
+    rreqPacket->setExpirationtime(100000);
+
+    // Set position, speed, acceleration and direction
+    cModule *host = getContainingNode(this);
+    IVANETMobility  *mod = check_and_cast<IVANETMobility *>(host->getSubmodule("mobility"));
+
+    rreqPacket->setPosition(mod->getCurrentPosition());
+    rreqPacket->setSpeed(mod->getCurrentSpeed());
+    rreqPacket->setAcceleration(mod->getCurrentAcceleration());
+    //rreqPacket->setDirection(mod->getCurrentDirection());
+
     // Before broadcasting the RREQ, the originating node buffers the RREQ
     // ID and the Originator IP address (its own address) of the RREQ for
     // PATH_DISCOVERY_TIME.
@@ -418,7 +433,7 @@ RBVTRRREQ *RBVTRRouting::createRREQ(const IPv4Address& destAddr)
 
 RBVTRRREP *RBVTRRouting::createRREP(RBVTRRREQ *rreq, IPv4Route *destRoute, IPv4Route *originatorRoute, const IPv4Address& lastHopAddr)
 {
-    RBVTRRREP *rrep = new RBVTRRREP("AODV-RREP");
+    RBVTRRREP *rrep = new RBVTRRREP("RBVTR-RREP");
     rrep->setPacketType(RREP);
 
     // When generating a RREP message, a node copies the Destination IP
@@ -497,7 +512,7 @@ RBVTRRREP *RBVTRRouting::createRREP(RBVTRRREQ *rreq, IPv4Route *destRoute, IPv4R
 RBVTRRREP *RBVTRRouting::createGratuitousRREP(RBVTRRREQ *rreq, IPv4Route *originatorRoute)
 {
     ASSERT(originatorRoute != NULL);
-    RBVTRRREP *grrep = new RBVTRRREP("AODV-GRREP");
+    RBVTRRREP *grrep = new RBVTRRREP("RBVTR-GRREP");
     RBVTRRouteData *routeData = check_and_cast<RBVTRRouteData *>(originatorRoute->getProtocolData());
 
     // Hop Count                        The Hop Count as indicated in the
@@ -529,7 +544,7 @@ RBVTRRREP *RBVTRRouting::createGratuitousRREP(RBVTRRREQ *rreq, IPv4Route *origin
 
 void RBVTRRouting::handleRREP(RBVTRRREP *rrep, const IPv4Address& sourceAddr)
 {
-    EV_INFO << "AODV Route Reply arrived with source addr: " << sourceAddr << " originator addr: " << rrep->getOriginatorAddr()
+    EV_INFO << "RBVTR Route Reply arrived with source addr: " << sourceAddr << " originator addr: " << rrep->getOriginatorAddr()
             << " destination addr: " << rrep->getDestAddr() << endl;
 
     if (rrep->getOriginatorAddr().isUnspecified()) {
@@ -708,7 +723,7 @@ void RBVTRRouting::updateRoutingTable(IPv4Route *route, const IPv4Address& nextH
     scheduleExpungeRoutes();
 }
 
-void RBVTRRouting::sendAODVPacket(RBVTRControlPacket *packet, const IPv4Address& destAddr, unsigned int timeToLive, double delay)
+void RBVTRRouting::sendRBVTRPacket(RBVTRControlPacket *packet, const IPv4Address& destAddr, unsigned int timeToLive, double delay)
 {
     ASSERT(timeToLive != 0);
 
@@ -741,7 +756,7 @@ void RBVTRRouting::sendAODVPacket(RBVTRControlPacket *packet, const IPv4Address&
 
 void RBVTRRouting::handleRREQ(RBVTRRREQ *rreq, const IPv4Address& sourceAddr, unsigned int timeToLive)
 {
-    EV_INFO << "AODV Route Request arrived with source addr: " << sourceAddr << " originator addr: " << rreq->getOriginatorAddr()
+    EV_INFO << "RBVTR Route Request arrived with source addr: " << sourceAddr << " originator addr: " << rreq->getOriginatorAddr()
             << " destination addr: " << rreq->getDestAddr() << endl;
 
     // A node ignores all RREQs received from any node in its blacklist set.
@@ -940,7 +955,7 @@ void RBVTRRouting::handleRREQ(RBVTRRREQ *rreq, const IPv4Address& sourceAddr, un
         forwardRREQ(outgoingRREQ, timeToLive);
     }
     else
-        EV_WARN << "Can't forward the RREQ because of its small (<= 1) TTL: " << timeToLive << " or the AODV reboot has not completed yet" << endl;
+        EV_WARN << "Can't forward the RREQ because of its small (<= 1) TTL: " << timeToLive << " or the RBVTR reboot has not completed yet" << endl;
 
     delete rreq;
 }
@@ -969,7 +984,7 @@ IPv4Route *RBVTRRouting::createRoute(const IPv4Address& destAddr, const IPv4Addr
         newRoute->setInterface(ifEntry);
 
     newRoute->setDestination(destAddr);
-    newRoute->setSourceType(IPv4Route::AODV);
+    newRoute->setSourceType(IPv4Route::RBVTR);
     newRoute->setSource(this);
     newRoute->setProtocolData(newProtocolData);
     newRoute->setMetric(hopCount);
@@ -1038,12 +1053,12 @@ void RBVTRRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAddr)
     if (!unreachableRoute || unreachableRoute->getSource() != this)
         return;
 
-    std::vector<UnreachableNodeRBVTR> unreachableNodes;
+    std::vector<UnreachableRBVTRNode> unreachableRBVTRNodes;
     RBVTRRouteData *unreachableRouteData = check_and_cast<RBVTRRouteData *>(unreachableRoute->getProtocolData());
-    UnreachableNodeRBVTR node;
+    UnreachableRBVTRNode node;
     node.addr = unreachableAddr;
     node.seqNum = unreachableRouteData->getDestSeqNum();
-    unreachableNodes.push_back(node);
+    unreachableRBVTRNodes.push_back(node);
 
     // For case (i), the node first makes a list of unreachable destinations
     // consisting of the unreachable neighbor and any additional destinations
@@ -1065,10 +1080,10 @@ void RBVTRRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAddr)
             routeData->setLifeTime(simTime() + deletePeriod);
             scheduleExpungeRoutes();
 
-            UnreachableNodeRBVTR node;
+            UnreachableRBVTRNode node;
             node.addr = route->getDestination();
             node.seqNum = routeData->getDestSeqNum();
-            unreachableNodes.push_back(node);
+            unreachableRBVTRNodes.push_back(node);
         }
     }
 
@@ -1086,41 +1101,41 @@ void RBVTRRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAddr)
         return;
     }
 
-    RBVTRRERR *rerr = createRERR(unreachableNodes);
+    RBVTRRERR *rerr = createRERR(unreachableRBVTRNodes);
     rerrCount++;
 
     // broadcast
     EV_INFO << "Broadcasting Route Error message with TTL=1" << endl;
-    sendAODVPacket(rerr, IPv4Address::ALLONES_ADDRESS, 1, jitterPar->doubleValue());
+    sendRBVTRPacket(rerr, IPv4Address::ALLONES_ADDRESS, 1, jitterPar->doubleValue());
 }
 
-RBVTRRERR *RBVTRRouting::createRERR(const std::vector<UnreachableNodeRBVTR>& unreachableNodes)
+RBVTRRERR *RBVTRRouting::createRERR(const std::vector<UnreachableRBVTRNode>& unreachableRBVTRNodes)
 {
-    RBVTRRERR *rerr = new RBVTRRERR("AODV-RERR");
-    unsigned int destCount = unreachableNodes.size();
+    RBVTRRERR *rerr = new RBVTRRERR("RBVTR-RERR");
+    unsigned int destCount = unreachableRBVTRNodes.size();
 
     rerr->setPacketType(RERR);
     rerr->setDestCount(destCount);
-    rerr->setUnreachableNodesArraySize(destCount);
+    rerr->setUnreachableRBVTRNodesArraySize(destCount);
 
     for (unsigned int i = 0; i < destCount; i++) {
-        UnreachableNodeRBVTR node;
-        node.addr = unreachableNodes[i].addr;
-        node.seqNum = unreachableNodes[i].seqNum;
-        rerr->setUnreachableNodes(i, node);
+        UnreachableRBVTRNode node;
+        node.addr = unreachableRBVTRNodes[i].addr;
+        node.seqNum = unreachableRBVTRNodes[i].seqNum;
+        rerr->setUnreachableRBVTRNodes(i, node);
     }
     return rerr;
 }
 
 void RBVTRRouting::handleRERR(RBVTRRERR *rerr, const IPv4Address& sourceAddr)
 {
-    EV_INFO << "AODV Route Error arrived with source addr: " << sourceAddr << endl;
+    EV_INFO << "RBVTR Route Error arrived with source addr: " << sourceAddr << endl;
 
     // A node initiates processing for a RERR message in three situations:
     // (iii)   if it receives a RERR from a neighbor for one or more
     //         active routes.
-    unsigned int unreachableArraySize = rerr->getUnreachableNodesArraySize();
-    std::vector<UnreachableNodeRBVTR> unreachableNeighbors;
+    unsigned int unreachableArraySize = rerr->getUnreachableRBVTRNodesArraySize();
+    std::vector<UnreachableRBVTRNode> unreachableNeighbors;
 
     for (int i = 0; i < routingTable->getNumRoutes(); i++) {
         IPv4Route *route = routingTable->getRoute(i);
@@ -1135,13 +1150,13 @@ void RBVTRRouting::handleRERR(RBVTRRERR *rerr, const IPv4Address& sourceAddr)
 
         if (route->getGateway() == sourceAddr) {
             for (unsigned int j = 0; j < unreachableArraySize; j++) {
-                if (route->getDestination() == rerr->getUnreachableNodes(j).addr) {
+                if (route->getDestination() == rerr->getUnreachableRBVTRNodes(j).addr) {
                     // 1. The destination sequence number of this routing entry, if it
                     // exists and is valid, is incremented for cases (i) and (ii) above,
                     // ! and copied from the incoming RERR in case (iii) above.
 
-                    routeData->setDestSeqNum(rerr->getUnreachableNodes(j).seqNum);
-                    routeData->setIsActive(false);    // it means invalid, see 3. AODV Terminology p.3. in RFC 3561
+                    routeData->setDestSeqNum(rerr->getUnreachableRBVTRNodes(j).seqNum);
+                    routeData->setIsActive(false);    // it means invalid, see 3. RBVTR Terminology p.3. in RFC 3561
                     routeData->setLifeTime(simTime() + deletePeriod);
 
                     // The RERR should contain those destinations that are part of
@@ -1149,7 +1164,7 @@ void RBVTRRouting::handleRERR(RBVTRRERR *rerr, const IPv4Address& sourceAddr)
                     // precursor list.
 
                     if (routeData->getPrecursorList().size() > 0) {
-                        UnreachableNodeRBVTR node;
+                        UnreachableRBVTRNode node;
                         node.addr = route->getDestination();
                         node.seqNum = routeData->getDestSeqNum();
                         unreachableNeighbors.push_back(node);
@@ -1169,7 +1184,7 @@ void RBVTRRouting::handleRERR(RBVTRRERR *rerr, const IPv4Address& sourceAddr)
     if (unreachableNeighbors.size() > 0 && (simTime() > rebootTime + deletePeriod || rebootTime == 0)) {
         EV_INFO << "Sending RERR to inform our neighbors about link breaks." << endl;
         RBVTRRERR *newRERR = createRERR(unreachableNeighbors);
-        sendAODVPacket(newRERR, IPv4Address::ALLONES_ADDRESS, 1, 0);
+        sendRBVTRPacket(newRERR, IPv4Address::ALLONES_ADDRESS, 1, 0);
         rerrCount++;
     }
     delete rerr;
@@ -1211,7 +1226,7 @@ void RBVTRRouting::clearState()
 {
     rerrCount = rreqCount = rreqId = sequenceNum = 0;
     addressToRreqRetries.clear();
-    for (std::map<IPv4Address, WaitForRBVTRVANETRREP *>::iterator it = waitForRREPTimers.begin(); it != waitForRREPTimers.end(); ++it)
+    for (std::map<IPv4Address, WaitForRBVTRRREP *>::iterator it = waitForRREPTimers.begin(); it != waitForRREPTimers.end(); ++it)
         cancelAndDelete(it->second);
 
     // FIXME: Drop the queued datagrams.
@@ -1232,7 +1247,7 @@ void RBVTRRouting::clearState()
     cancelEvent(rrepAckTimer);
 }
 
-void RBVTRRouting::handleWaitForRBVTRVANETRREP(WaitForRBVTRVANETRREP *rrepTimer)
+void RBVTRRouting::handleWaitForRBVTRRREP(WaitForRBVTRRREP *rrepTimer)
 {
     EV_INFO << "We didn't get any Route Reply within RREP timeout" << endl;
     IPv4Address destAddr = rrepTimer->getDestAddr();
@@ -1261,13 +1276,13 @@ void RBVTRRouting::forwardRREP(RBVTRRREP *rrep, const IPv4Address& destAddr, uns
     // When a node forwards a message, it SHOULD be jittered by delaying it
     // by a random duration.  This delay SHOULD be generated uniformly in an
     // interval between zero and MAXJITTER.
-    sendAODVPacket(rrep, destAddr, 100, jitterPar->doubleValue());
+    sendRBVTRPacket(rrep, destAddr, 100, jitterPar->doubleValue());
 }
 
 void RBVTRRouting::forwardRREQ(RBVTRRREQ *rreq, unsigned int timeToLive)
 {
     EV_INFO << "Forwarding the Route Request message with TTL= " << timeToLive << endl;
-    sendAODVPacket(rreq, IPv4Address::ALLONES_ADDRESS, timeToLive, jitterPar->doubleValue());
+    sendRBVTRPacket(rreq, IPv4Address::ALLONES_ADDRESS, timeToLive, jitterPar->doubleValue());
 }
 
 void RBVTRRouting::completeRouteDiscovery(const IPv4Address& target)
@@ -1288,8 +1303,8 @@ void RBVTRRouting::completeRouteDiscovery(const IPv4Address& target)
     // clear the multimap
     targetAddressToDelayedPackets.erase(lt, ut);
 
-    // we have a route for the destination, thus we must cancel the WaitForRBVTRVANETRREPTimer events
-    std::map<IPv4Address, WaitForRBVTRVANETRREP *>::iterator waitRREPIter = waitForRREPTimers.find(target);
+    // we have a route for the destination, thus we must cancel the WaitForRBVTRRREPTimer events
+    std::map<IPv4Address, WaitForRBVTRRREP *>::iterator waitRREPIter = waitForRREPTimers.find(target);
     ASSERT(waitRREPIter != waitForRREPTimers.end());
     cancelAndDelete(waitRREPIter->second);
     waitForRREPTimers.erase(waitRREPIter);
@@ -1302,7 +1317,7 @@ void RBVTRRouting::sendGRREP(RBVTRRREP *grrep, const IPv4Address& destAddr, unsi
     IPv4Route *destRoute = routingTable->findBestMatchingRoute(destAddr);
     const IPv4Address& nextHop = destRoute->getGateway();
 
-    sendAODVPacket(grrep, nextHop, timeToLive, 0);
+    sendRBVTRPacket(grrep, nextHop, timeToLive, 0);
 }
 
 RBVTRRREP *RBVTRRouting::createHelloMessage()
@@ -1318,7 +1333,7 @@ RBVTRRREP *RBVTRRouting::createHelloMessage()
     //
     //    Lifetime                       ALLOWED_HELLO_LOSS *HELLO_INTERVAL
 
-    RBVTRRREP *helloMessage = new RBVTRRREP("AODV-HelloMsg");
+    RBVTRRREP *helloMessage = new RBVTRRREP("RBVTR-HelloMsg");
     helloMessage->setPacketType(RREP);
     helloMessage->setDestAddr(getSelfIPAddress());
     helloMessage->setDestSeqNum(sequenceNum);
@@ -1354,7 +1369,7 @@ void RBVTRRouting::sendHelloMessagesIfNeeded()
     if (hasActiveRoute && (lastBroadcastTime == 0 || simTime() - lastBroadcastTime > helloInterval)) {
         EV_INFO << "It is hello time, broadcasting Hello Messages with TTL=1" << endl;
         RBVTRRREP *helloMessage = createHelloMessage();
-        sendAODVPacket(helloMessage, IPv4Address::ALLONES_ADDRESS, 1, 0);
+        sendRBVTRPacket(helloMessage, IPv4Address::ALLONES_ADDRESS, 1, 0);
     }
 
     scheduleAt(simTime() + helloInterval - periodicJitter->doubleValue(), helloMsgTimer);
@@ -1542,8 +1557,8 @@ void RBVTRRouting::sendRERRWhenNoRouteToForward(const IPv4Address& unreachableAd
         EV_WARN << "A node should not generate more than RERR_RATELIMIT RERR messages per second. Canceling sending RERR" << endl;
         return;
     }
-    std::vector<UnreachableNodeRBVTR> unreachableNodes;
-    UnreachableNodeRBVTR node;
+    std::vector<UnreachableRBVTRNode> unreachableRBVTRNodes;
+    UnreachableRBVTRNode node;
     node.addr = unreachableAddr;
 
     IPv4Route *unreachableRoute = routingTable->findBestMatchingRoute(unreachableAddr);
@@ -1554,12 +1569,12 @@ void RBVTRRouting::sendRERRWhenNoRouteToForward(const IPv4Address& unreachableAd
     else
         node.seqNum = 0;
 
-    unreachableNodes.push_back(node);
-    RBVTRRERR *rerr = createRERR(unreachableNodes);
+    unreachableRBVTRNodes.push_back(node);
+    RBVTRRERR *rerr = createRERR(unreachableRBVTRNodes);
 
     rerrCount++;
     EV_INFO << "Broadcasting Route Error message with TTL=1" << endl;
-    sendAODVPacket(rerr, IPv4Address::ALLONES_ADDRESS, 1, jitterPar->doubleValue());    // TODO: unicast if there exists a route to the source
+    sendRBVTRPacket(rerr, IPv4Address::ALLONES_ADDRESS, 1, jitterPar->doubleValue());    // TODO: unicast if there exists a route to the source
 }
 
 void RBVTRRouting::cancelRouteDiscovery(const IPv4Address& destAddr)
@@ -1590,7 +1605,7 @@ bool RBVTRRouting::updateValidRouteLifeTime(const IPv4Address& destAddr, simtime
 
 RBVTRRREPACK *RBVTRRouting::createRREPACK()
 {
-    RBVTRRREPACK *rrepACK = new RBVTRRREPACK("AODV-RREPACK");
+    RBVTRRREPACK *rrepACK = new RBVTRRREPACK("RBVTR-RREPACK");
     rrepACK->setPacketType(RREPACK);
     return rrepACK;
 }
@@ -1598,7 +1613,7 @@ RBVTRRREPACK *RBVTRRouting::createRREPACK()
 void RBVTRRouting::sendRREPACK(RBVTRRREPACK *rrepACK, const IPv4Address& destAddr)
 {
     EV_INFO << "Sending Route Reply ACK to " << destAddr << endl;
-    sendAODVPacket(rrepACK, destAddr, 100, 0);
+    sendRBVTRPacket(rrepACK, destAddr, 100, 0);
 }
 
 void RBVTRRouting::handleRREPACK(RBVTRRREPACK *rrepACK, const IPv4Address& neighborAddr)

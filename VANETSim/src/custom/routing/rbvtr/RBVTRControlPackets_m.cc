@@ -53,28 +53,28 @@ inline std::ostream& operator<<(std::ostream& out, const std::vector<T,A>& vec)
 template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
-UnreachableNodeRBVTR::UnreachableNodeRBVTR()
+UnreachableRBVTRNode::UnreachableRBVTRNode()
 {
     seqNum = 0;
 }
 
-void doPacking(cCommBuffer *b, UnreachableNodeRBVTR& a)
+void doPacking(cCommBuffer *b, UnreachableRBVTRNode& a)
 {
     doPacking(b,a.addr);
     doPacking(b,a.seqNum);
 }
 
-void doUnpacking(cCommBuffer *b, UnreachableNodeRBVTR& a)
+void doUnpacking(cCommBuffer *b, UnreachableRBVTRNode& a)
 {
     doUnpacking(b,a.addr);
     doUnpacking(b,a.seqNum);
 }
 
-class UnreachableNodeRBVTRDescriptor : public cClassDescriptor
+class UnreachableRBVTRNodeDescriptor : public cClassDescriptor
 {
   public:
-    UnreachableNodeRBVTRDescriptor();
-    virtual ~UnreachableNodeRBVTRDescriptor();
+    UnreachableRBVTRNodeDescriptor();
+    virtual ~UnreachableRBVTRNodeDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -93,34 +93,34 @@ class UnreachableNodeRBVTRDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(UnreachableNodeRBVTRDescriptor);
+Register_ClassDescriptor(UnreachableRBVTRNodeDescriptor);
 
-UnreachableNodeRBVTRDescriptor::UnreachableNodeRBVTRDescriptor() : cClassDescriptor("UnreachableNodeRBVTR", "")
+UnreachableRBVTRNodeDescriptor::UnreachableRBVTRNodeDescriptor() : cClassDescriptor("UnreachableRBVTRNode", "")
 {
 }
 
-UnreachableNodeRBVTRDescriptor::~UnreachableNodeRBVTRDescriptor()
+UnreachableRBVTRNodeDescriptor::~UnreachableRBVTRNodeDescriptor()
 {
 }
 
-bool UnreachableNodeRBVTRDescriptor::doesSupport(cObject *obj) const
+bool UnreachableRBVTRNodeDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<UnreachableNodeRBVTR *>(obj)!=NULL;
+    return dynamic_cast<UnreachableRBVTRNode *>(obj)!=NULL;
 }
 
-const char *UnreachableNodeRBVTRDescriptor::getProperty(const char *propertyname) const
+const char *UnreachableRBVTRNodeDescriptor::getProperty(const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int UnreachableNodeRBVTRDescriptor::getFieldCount(void *object) const
+int UnreachableRBVTRNodeDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? 2+basedesc->getFieldCount(object) : 2;
 }
 
-unsigned int UnreachableNodeRBVTRDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int UnreachableRBVTRNodeDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -135,7 +135,7 @@ unsigned int UnreachableNodeRBVTRDescriptor::getFieldTypeFlags(void *object, int
     return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
 }
 
-const char *UnreachableNodeRBVTRDescriptor::getFieldName(void *object, int field) const
+const char *UnreachableRBVTRNodeDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -150,7 +150,7 @@ const char *UnreachableNodeRBVTRDescriptor::getFieldName(void *object, int field
     return (field>=0 && field<2) ? fieldNames[field] : NULL;
 }
 
-int UnreachableNodeRBVTRDescriptor::findField(void *object, const char *fieldName) const
+int UnreachableRBVTRNodeDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
@@ -159,7 +159,7 @@ int UnreachableNodeRBVTRDescriptor::findField(void *object, const char *fieldNam
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *UnreachableNodeRBVTRDescriptor::getFieldTypeString(void *object, int field) const
+const char *UnreachableRBVTRNodeDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -174,7 +174,7 @@ const char *UnreachableNodeRBVTRDescriptor::getFieldTypeString(void *object, int
     return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *UnreachableNodeRBVTRDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *UnreachableRBVTRNodeDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -187,7 +187,7 @@ const char *UnreachableNodeRBVTRDescriptor::getFieldProperty(void *object, int f
     }
 }
 
-int UnreachableNodeRBVTRDescriptor::getArraySize(void *object, int field) const
+int UnreachableRBVTRNodeDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -195,13 +195,13 @@ int UnreachableNodeRBVTRDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    UnreachableNodeRBVTR *pp = (UnreachableNodeRBVTR *)object; (void)pp;
+    UnreachableRBVTRNode *pp = (UnreachableRBVTRNode *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string UnreachableNodeRBVTRDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string UnreachableRBVTRNodeDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -209,7 +209,7 @@ std::string UnreachableNodeRBVTRDescriptor::getFieldAsString(void *object, int f
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    UnreachableNodeRBVTR *pp = (UnreachableNodeRBVTR *)object; (void)pp;
+    UnreachableRBVTRNode *pp = (UnreachableRBVTRNode *)object; (void)pp;
     switch (field) {
         case 0: {std::stringstream out; out << pp->addr; return out.str();}
         case 1: return ulong2string(pp->seqNum);
@@ -217,7 +217,7 @@ std::string UnreachableNodeRBVTRDescriptor::getFieldAsString(void *object, int f
     }
 }
 
-bool UnreachableNodeRBVTRDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool UnreachableRBVTRNodeDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -225,14 +225,14 @@ bool UnreachableNodeRBVTRDescriptor::setFieldAsString(void *object, int field, i
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    UnreachableNodeRBVTR *pp = (UnreachableNodeRBVTR *)object; (void)pp;
+    UnreachableRBVTRNode *pp = (UnreachableRBVTRNode *)object; (void)pp;
     switch (field) {
         case 1: pp->seqNum = string2ulong(value); return true;
         default: return false;
     }
 }
 
-const char *UnreachableNodeRBVTRDescriptor::getFieldStructName(void *object, int field) const
+const char *UnreachableRBVTRNodeDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -246,7 +246,7 @@ const char *UnreachableNodeRBVTRDescriptor::getFieldStructName(void *object, int
     };
 }
 
-void *UnreachableNodeRBVTRDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *UnreachableRBVTRNodeDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -254,7 +254,7 @@ void *UnreachableNodeRBVTRDescriptor::getFieldStructPointer(void *object, int fi
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    UnreachableNodeRBVTR *pp = (UnreachableNodeRBVTR *)object; (void)pp;
+    UnreachableRBVTRNode *pp = (UnreachableRBVTRNode *)object; (void)pp;
     switch (field) {
         case 0: return (void *)(&pp->addr); break;
         default: return NULL;
@@ -519,6 +519,8 @@ RBVTRRREQ::RBVTRRREQ(const char *name) : ::RBVTRControlPacket(name)
     this->rreqId_var = 0;
     this->destSeqNum_var = 0;
     this->originatorSeqNum_var = 0;
+    this->twr_var = 0;
+    this->expirationtime_var = 0;
 }
 
 RBVTRRREQ::RBVTRRREQ(const RBVTRRREQ& other) : ::RBVTRControlPacket(other)
@@ -552,6 +554,12 @@ void RBVTRRREQ::copy(const RBVTRRREQ& other)
     this->destSeqNum_var = other.destSeqNum_var;
     this->originatorAddr_var = other.originatorAddr_var;
     this->originatorSeqNum_var = other.originatorSeqNum_var;
+    this->position_var = other.position_var;
+    this->speed_var = other.speed_var;
+    this->acceleration_var = other.acceleration_var;
+    this->direction_var = other.direction_var;
+    this->twr_var = other.twr_var;
+    this->expirationtime_var = other.expirationtime_var;
 }
 
 void RBVTRRREQ::parsimPack(cCommBuffer *b)
@@ -569,6 +577,12 @@ void RBVTRRREQ::parsimPack(cCommBuffer *b)
     doPacking(b,this->destSeqNum_var);
     doPacking(b,this->originatorAddr_var);
     doPacking(b,this->originatorSeqNum_var);
+    doPacking(b,this->position_var);
+    doPacking(b,this->speed_var);
+    doPacking(b,this->acceleration_var);
+    doPacking(b,this->direction_var);
+    doPacking(b,this->twr_var);
+    doPacking(b,this->expirationtime_var);
 }
 
 void RBVTRRREQ::parsimUnpack(cCommBuffer *b)
@@ -586,6 +600,12 @@ void RBVTRRREQ::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->destSeqNum_var);
     doUnpacking(b,this->originatorAddr_var);
     doUnpacking(b,this->originatorSeqNum_var);
+    doUnpacking(b,this->position_var);
+    doUnpacking(b,this->speed_var);
+    doUnpacking(b,this->acceleration_var);
+    doUnpacking(b,this->direction_var);
+    doUnpacking(b,this->twr_var);
+    doUnpacking(b,this->expirationtime_var);
 }
 
 unsigned int RBVTRRREQ::getPacketType() const
@@ -708,6 +728,66 @@ void RBVTRRREQ::setOriginatorSeqNum(unsigned int originatorSeqNum)
     this->originatorSeqNum_var = originatorSeqNum;
 }
 
+Coord& RBVTRRREQ::getPosition()
+{
+    return position_var;
+}
+
+void RBVTRRREQ::setPosition(const Coord& position)
+{
+    this->position_var = position;
+}
+
+Coord& RBVTRRREQ::getSpeed()
+{
+    return speed_var;
+}
+
+void RBVTRRREQ::setSpeed(const Coord& speed)
+{
+    this->speed_var = speed;
+}
+
+Coord& RBVTRRREQ::getAcceleration()
+{
+    return acceleration_var;
+}
+
+void RBVTRRREQ::setAcceleration(const Coord& acceleration)
+{
+    this->acceleration_var = acceleration;
+}
+
+Coord& RBVTRRREQ::getDirection()
+{
+    return direction_var;
+}
+
+void RBVTRRREQ::setDirection(const Coord& direction)
+{
+    this->direction_var = direction;
+}
+
+double RBVTRRREQ::getTwr() const
+{
+    return twr_var;
+}
+
+void RBVTRRREQ::setTwr(double twr)
+{
+    this->twr_var = twr;
+}
+
+double RBVTRRREQ::getExpirationtime() const
+{
+    return expirationtime_var;
+}
+
+void RBVTRRREQ::setExpirationtime(double expirationtime)
+{
+    this->expirationtime_var = expirationtime;
+}
+
 class RBVTRRREQDescriptor : public cClassDescriptor
 {
   public:
@@ -755,7 +835,7 @@ const char *RBVTRRREQDescriptor::getProperty(const char *propertyname) const
 int RBVTRRREQDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 12+basedesc->getFieldCount(object) : 12;
+    return basedesc ? 18+basedesc->getFieldCount(object) : 18;
 }
 
 unsigned int RBVTRRREQDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -779,8 +859,14 @@ unsigned int RBVTRRREQDescriptor::getFieldTypeFlags(void *object, int field) con
         FD_ISEDITABLE,
         FD_ISCOMPOUND,
         FD_ISEDITABLE,
+        FD_ISCOMPOUND,
+        FD_ISCOMPOUND,
+        FD_ISCOMPOUND,
+        FD_ISCOMPOUND,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<12) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<18) ? fieldTypeFlags[field] : 0;
 }
 
 const char *RBVTRRREQDescriptor::getFieldName(void *object, int field) const
@@ -804,8 +890,14 @@ const char *RBVTRRREQDescriptor::getFieldName(void *object, int field) const
         "destSeqNum",
         "originatorAddr",
         "originatorSeqNum",
+        "position",
+        "speed",
+        "acceleration",
+        "direction",
+        "twr",
+        "expirationtime",
     };
-    return (field>=0 && field<12) ? fieldNames[field] : NULL;
+    return (field>=0 && field<18) ? fieldNames[field] : NULL;
 }
 
 int RBVTRRREQDescriptor::findField(void *object, const char *fieldName) const
@@ -824,6 +916,12 @@ int RBVTRRREQDescriptor::findField(void *object, const char *fieldName) const
     if (fieldName[0]=='d' && strcmp(fieldName, "destSeqNum")==0) return base+9;
     if (fieldName[0]=='o' && strcmp(fieldName, "originatorAddr")==0) return base+10;
     if (fieldName[0]=='o' && strcmp(fieldName, "originatorSeqNum")==0) return base+11;
+    if (fieldName[0]=='p' && strcmp(fieldName, "position")==0) return base+12;
+    if (fieldName[0]=='s' && strcmp(fieldName, "speed")==0) return base+13;
+    if (fieldName[0]=='a' && strcmp(fieldName, "acceleration")==0) return base+14;
+    if (fieldName[0]=='d' && strcmp(fieldName, "direction")==0) return base+15;
+    if (fieldName[0]=='t' && strcmp(fieldName, "twr")==0) return base+16;
+    if (fieldName[0]=='e' && strcmp(fieldName, "expirationtime")==0) return base+17;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -848,8 +946,14 @@ const char *RBVTRRREQDescriptor::getFieldTypeString(void *object, int field) con
         "unsigned int",
         "IPv4Address",
         "unsigned int",
+        "Coord",
+        "Coord",
+        "Coord",
+        "Coord",
+        "double",
+        "double",
     };
-    return (field>=0 && field<12) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<18) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *RBVTRRREQDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -901,6 +1005,12 @@ std::string RBVTRRREQDescriptor::getFieldAsString(void *object, int field, int i
         case 9: return ulong2string(pp->getDestSeqNum());
         case 10: {std::stringstream out; out << pp->getOriginatorAddr(); return out.str();}
         case 11: return ulong2string(pp->getOriginatorSeqNum());
+        case 12: {std::stringstream out; out << pp->getPosition(); return out.str();}
+        case 13: {std::stringstream out; out << pp->getSpeed(); return out.str();}
+        case 14: {std::stringstream out; out << pp->getAcceleration(); return out.str();}
+        case 15: {std::stringstream out; out << pp->getDirection(); return out.str();}
+        case 16: return double2string(pp->getTwr());
+        case 17: return double2string(pp->getExpirationtime());
         default: return "";
     }
 }
@@ -925,6 +1035,8 @@ bool RBVTRRREQDescriptor::setFieldAsString(void *object, int field, int i, const
         case 7: pp->setRreqId(string2ulong(value)); return true;
         case 9: pp->setDestSeqNum(string2ulong(value)); return true;
         case 11: pp->setOriginatorSeqNum(string2ulong(value)); return true;
+        case 16: pp->setTwr(string2double(value)); return true;
+        case 17: pp->setExpirationtime(string2double(value)); return true;
         default: return false;
     }
 }
@@ -940,6 +1052,10 @@ const char *RBVTRRREQDescriptor::getFieldStructName(void *object, int field) con
     switch (field) {
         case 8: return opp_typename(typeid(IPv4Address));
         case 10: return opp_typename(typeid(IPv4Address));
+        case 12: return opp_typename(typeid(Coord));
+        case 13: return opp_typename(typeid(Coord));
+        case 14: return opp_typename(typeid(Coord));
+        case 15: return opp_typename(typeid(Coord));
         default: return NULL;
     };
 }
@@ -956,6 +1072,10 @@ void *RBVTRRREQDescriptor::getFieldStructPointer(void *object, int field, int i)
     switch (field) {
         case 8: return (void *)(&pp->getDestAddr()); break;
         case 10: return (void *)(&pp->getOriginatorAddr()); break;
+        case 12: return (void *)(&pp->getPosition()); break;
+        case 13: return (void *)(&pp->getSpeed()); break;
+        case 14: return (void *)(&pp->getAcceleration()); break;
+        case 15: return (void *)(&pp->getDirection()); break;
         default: return NULL;
     }
 }
@@ -972,6 +1092,8 @@ RBVTRRREP::RBVTRRREP(const char *name) : ::RBVTRControlPacket(name)
     this->destSeqNum_var = 0;
     this->originatorSeqNum_var = 0;
     this->lifeTime_var = 0;
+    this->twr_var = 0;
+    this->expirationtime_var = 0;
 }
 
 RBVTRRREP::RBVTRRREP(const RBVTRRREP& other) : ::RBVTRControlPacket(other)
@@ -1003,6 +1125,8 @@ void RBVTRRREP::copy(const RBVTRRREP& other)
     this->originatorAddr_var = other.originatorAddr_var;
     this->originatorSeqNum_var = other.originatorSeqNum_var;
     this->lifeTime_var = other.lifeTime_var;
+    this->twr_var = other.twr_var;
+    this->expirationtime_var = other.expirationtime_var;
 }
 
 void RBVTRRREP::parsimPack(cCommBuffer *b)
@@ -1018,6 +1142,8 @@ void RBVTRRREP::parsimPack(cCommBuffer *b)
     doPacking(b,this->originatorAddr_var);
     doPacking(b,this->originatorSeqNum_var);
     doPacking(b,this->lifeTime_var);
+    doPacking(b,this->twr_var);
+    doPacking(b,this->expirationtime_var);
 }
 
 void RBVTRRREP::parsimUnpack(cCommBuffer *b)
@@ -1033,6 +1159,8 @@ void RBVTRRREP::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->originatorAddr_var);
     doUnpacking(b,this->originatorSeqNum_var);
     doUnpacking(b,this->lifeTime_var);
+    doUnpacking(b,this->twr_var);
+    doUnpacking(b,this->expirationtime_var);
 }
 
 unsigned int RBVTRRREP::getPacketType() const
@@ -1135,6 +1263,26 @@ void RBVTRRREP::setLifeTime(simtime_t lifeTime)
     this->lifeTime_var = lifeTime;
 }
 
+double RBVTRRREP::getTwr() const
+{
+    return twr_var;
+}
+
+void RBVTRRREP::setTwr(double twr)
+{
+    this->twr_var = twr;
+}
+
+double RBVTRRREP::getExpirationtime() const
+{
+    return expirationtime_var;
+}
+
+void RBVTRRREP::setExpirationtime(double expirationtime)
+{
+    this->expirationtime_var = expirationtime;
+}
+
 class RBVTRRREPDescriptor : public cClassDescriptor
 {
   public:
@@ -1182,7 +1330,7 @@ const char *RBVTRRREPDescriptor::getProperty(const char *propertyname) const
 int RBVTRRREPDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 10+basedesc->getFieldCount(object) : 10;
+    return basedesc ? 12+basedesc->getFieldCount(object) : 12;
 }
 
 unsigned int RBVTRRREPDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -1204,8 +1352,10 @@ unsigned int RBVTRRREPDescriptor::getFieldTypeFlags(void *object, int field) con
         FD_ISCOMPOUND,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<10) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<12) ? fieldTypeFlags[field] : 0;
 }
 
 const char *RBVTRRREPDescriptor::getFieldName(void *object, int field) const
@@ -1227,8 +1377,10 @@ const char *RBVTRRREPDescriptor::getFieldName(void *object, int field) const
         "originatorAddr",
         "originatorSeqNum",
         "lifeTime",
+        "twr",
+        "expirationtime",
     };
-    return (field>=0 && field<10) ? fieldNames[field] : NULL;
+    return (field>=0 && field<12) ? fieldNames[field] : NULL;
 }
 
 int RBVTRRREPDescriptor::findField(void *object, const char *fieldName) const
@@ -1245,6 +1397,8 @@ int RBVTRRREPDescriptor::findField(void *object, const char *fieldName) const
     if (fieldName[0]=='o' && strcmp(fieldName, "originatorAddr")==0) return base+7;
     if (fieldName[0]=='o' && strcmp(fieldName, "originatorSeqNum")==0) return base+8;
     if (fieldName[0]=='l' && strcmp(fieldName, "lifeTime")==0) return base+9;
+    if (fieldName[0]=='t' && strcmp(fieldName, "twr")==0) return base+10;
+    if (fieldName[0]=='e' && strcmp(fieldName, "expirationtime")==0) return base+11;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1267,8 +1421,10 @@ const char *RBVTRRREPDescriptor::getFieldTypeString(void *object, int field) con
         "IPv4Address",
         "unsigned int",
         "simtime_t",
+        "double",
+        "double",
     };
-    return (field>=0 && field<10) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<12) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *RBVTRRREPDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -1318,6 +1474,8 @@ std::string RBVTRRREPDescriptor::getFieldAsString(void *object, int field, int i
         case 7: {std::stringstream out; out << pp->getOriginatorAddr(); return out.str();}
         case 8: return ulong2string(pp->getOriginatorSeqNum());
         case 9: return double2string(pp->getLifeTime());
+        case 10: return double2string(pp->getTwr());
+        case 11: return double2string(pp->getExpirationtime());
         default: return "";
     }
 }
@@ -1340,6 +1498,8 @@ bool RBVTRRREPDescriptor::setFieldAsString(void *object, int field, int i, const
         case 6: pp->setDestSeqNum(string2ulong(value)); return true;
         case 8: pp->setOriginatorSeqNum(string2ulong(value)); return true;
         case 9: pp->setLifeTime(string2double(value)); return true;
+        case 10: pp->setTwr(string2double(value)); return true;
+        case 11: pp->setExpirationtime(string2double(value)); return true;
         default: return false;
     }
 }
@@ -1380,22 +1540,22 @@ Register_Class(RBVTRRERR);
 RBVTRRERR::RBVTRRERR(const char *name) : ::RBVTRControlPacket(name)
 {
     this->packetType_var = RERR;
-    unreachableNodes_arraysize = 0;
-    this->unreachableNodes_var = 0;
+    unreachableRBVTRNodes_arraysize = 0;
+    this->unreachableRBVTRNodes_var = 0;
     this->noDeleteFlag_var = 0;
     this->destCount_var = 0;
 }
 
 RBVTRRERR::RBVTRRERR(const RBVTRRERR& other) : ::RBVTRControlPacket(other)
 {
-    unreachableNodes_arraysize = 0;
-    this->unreachableNodes_var = 0;
+    unreachableRBVTRNodes_arraysize = 0;
+    this->unreachableRBVTRNodes_var = 0;
     copy(other);
 }
 
 RBVTRRERR::~RBVTRRERR()
 {
-    delete [] unreachableNodes_var;
+    delete [] unreachableRBVTRNodes_var;
 }
 
 RBVTRRERR& RBVTRRERR::operator=(const RBVTRRERR& other)
@@ -1409,11 +1569,11 @@ RBVTRRERR& RBVTRRERR::operator=(const RBVTRRERR& other)
 void RBVTRRERR::copy(const RBVTRRERR& other)
 {
     this->packetType_var = other.packetType_var;
-    delete [] this->unreachableNodes_var;
-    this->unreachableNodes_var = (other.unreachableNodes_arraysize==0) ? NULL : new UnreachableNodeRBVTR[other.unreachableNodes_arraysize];
-    unreachableNodes_arraysize = other.unreachableNodes_arraysize;
-    for (unsigned int i=0; i<unreachableNodes_arraysize; i++)
-        this->unreachableNodes_var[i] = other.unreachableNodes_var[i];
+    delete [] this->unreachableRBVTRNodes_var;
+    this->unreachableRBVTRNodes_var = (other.unreachableRBVTRNodes_arraysize==0) ? NULL : new UnreachableRBVTRNode[other.unreachableRBVTRNodes_arraysize];
+    unreachableRBVTRNodes_arraysize = other.unreachableRBVTRNodes_arraysize;
+    for (unsigned int i=0; i<unreachableRBVTRNodes_arraysize; i++)
+        this->unreachableRBVTRNodes_var[i] = other.unreachableRBVTRNodes_var[i];
     this->noDeleteFlag_var = other.noDeleteFlag_var;
     this->destCount_var = other.destCount_var;
 }
@@ -1422,8 +1582,8 @@ void RBVTRRERR::parsimPack(cCommBuffer *b)
 {
     ::RBVTRControlPacket::parsimPack(b);
     doPacking(b,this->packetType_var);
-    b->pack(unreachableNodes_arraysize);
-    doPacking(b,this->unreachableNodes_var,unreachableNodes_arraysize);
+    b->pack(unreachableRBVTRNodes_arraysize);
+    doPacking(b,this->unreachableRBVTRNodes_var,unreachableRBVTRNodes_arraysize);
     doPacking(b,this->noDeleteFlag_var);
     doPacking(b,this->destCount_var);
 }
@@ -1432,13 +1592,13 @@ void RBVTRRERR::parsimUnpack(cCommBuffer *b)
 {
     ::RBVTRControlPacket::parsimUnpack(b);
     doUnpacking(b,this->packetType_var);
-    delete [] this->unreachableNodes_var;
-    b->unpack(unreachableNodes_arraysize);
-    if (unreachableNodes_arraysize==0) {
-        this->unreachableNodes_var = 0;
+    delete [] this->unreachableRBVTRNodes_var;
+    b->unpack(unreachableRBVTRNodes_arraysize);
+    if (unreachableRBVTRNodes_arraysize==0) {
+        this->unreachableRBVTRNodes_var = 0;
     } else {
-        this->unreachableNodes_var = new UnreachableNodeRBVTR[unreachableNodes_arraysize];
-        doUnpacking(b,this->unreachableNodes_var,unreachableNodes_arraysize);
+        this->unreachableRBVTRNodes_var = new UnreachableRBVTRNode[unreachableRBVTRNodes_arraysize];
+        doUnpacking(b,this->unreachableRBVTRNodes_var,unreachableRBVTRNodes_arraysize);
     }
     doUnpacking(b,this->noDeleteFlag_var);
     doUnpacking(b,this->destCount_var);
@@ -1454,32 +1614,32 @@ void RBVTRRERR::setPacketType(unsigned int packetType)
     this->packetType_var = packetType;
 }
 
-void RBVTRRERR::setUnreachableNodesArraySize(unsigned int size)
+void RBVTRRERR::setUnreachableRBVTRNodesArraySize(unsigned int size)
 {
-    UnreachableNodeRBVTR *unreachableNodes_var2 = (size==0) ? NULL : new UnreachableNodeRBVTR[size];
-    unsigned int sz = unreachableNodes_arraysize < size ? unreachableNodes_arraysize : size;
+    UnreachableRBVTRNode *unreachableRBVTRNodes_var2 = (size==0) ? NULL : new UnreachableRBVTRNode[size];
+    unsigned int sz = unreachableRBVTRNodes_arraysize < size ? unreachableRBVTRNodes_arraysize : size;
     for (unsigned int i=0; i<sz; i++)
-        unreachableNodes_var2[i] = this->unreachableNodes_var[i];
-    unreachableNodes_arraysize = size;
-    delete [] this->unreachableNodes_var;
-    this->unreachableNodes_var = unreachableNodes_var2;
+        unreachableRBVTRNodes_var2[i] = this->unreachableRBVTRNodes_var[i];
+    unreachableRBVTRNodes_arraysize = size;
+    delete [] this->unreachableRBVTRNodes_var;
+    this->unreachableRBVTRNodes_var = unreachableRBVTRNodes_var2;
 }
 
-unsigned int RBVTRRERR::getUnreachableNodesArraySize() const
+unsigned int RBVTRRERR::getUnreachableRBVTRNodesArraySize() const
 {
-    return unreachableNodes_arraysize;
+    return unreachableRBVTRNodes_arraysize;
 }
 
-UnreachableNodeRBVTR& RBVTRRERR::getUnreachableNodes(unsigned int k)
+UnreachableRBVTRNode& RBVTRRERR::getUnreachableRBVTRNodes(unsigned int k)
 {
-    if (k>=unreachableNodes_arraysize) throw cRuntimeError("Array of size %d indexed by %d", unreachableNodes_arraysize, k);
-    return unreachableNodes_var[k];
+    if (k>=unreachableRBVTRNodes_arraysize) throw cRuntimeError("Array of size %d indexed by %d", unreachableRBVTRNodes_arraysize, k);
+    return unreachableRBVTRNodes_var[k];
 }
 
-void RBVTRRERR::setUnreachableNodes(unsigned int k, const UnreachableNodeRBVTR& unreachableNodes)
+void RBVTRRERR::setUnreachableRBVTRNodes(unsigned int k, const UnreachableRBVTRNode& unreachableRBVTRNodes)
 {
-    if (k>=unreachableNodes_arraysize) throw cRuntimeError("Array of size %d indexed by %d", unreachableNodes_arraysize, k);
-    this->unreachableNodes_var[k] = unreachableNodes;
+    if (k>=unreachableRBVTRNodes_arraysize) throw cRuntimeError("Array of size %d indexed by %d", unreachableRBVTRNodes_arraysize, k);
+    this->unreachableRBVTRNodes_var[k] = unreachableRBVTRNodes;
 }
 
 bool RBVTRRERR::getNoDeleteFlag() const
@@ -1579,7 +1739,7 @@ const char *RBVTRRERRDescriptor::getFieldName(void *object, int field) const
     }
     static const char *fieldNames[] = {
         "packetType",
-        "unreachableNodes",
+        "unreachableRBVTRNodes",
         "noDeleteFlag",
         "destCount",
     };
@@ -1591,7 +1751,7 @@ int RBVTRRERRDescriptor::findField(void *object, const char *fieldName) const
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
-    if (fieldName[0]=='u' && strcmp(fieldName, "unreachableNodes")==0) return base+1;
+    if (fieldName[0]=='u' && strcmp(fieldName, "unreachableRBVTRNodes")==0) return base+1;
     if (fieldName[0]=='n' && strcmp(fieldName, "noDeleteFlag")==0) return base+2;
     if (fieldName[0]=='d' && strcmp(fieldName, "destCount")==0) return base+3;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
@@ -1607,7 +1767,7 @@ const char *RBVTRRERRDescriptor::getFieldTypeString(void *object, int field) con
     }
     static const char *fieldTypeStrings[] = {
         "unsigned int",
-        "UnreachableNodeRBVTR",
+        "UnreachableRBVTRNode",
         "bool",
         "unsigned int",
     };
@@ -1637,7 +1797,7 @@ int RBVTRRERRDescriptor::getArraySize(void *object, int field) const
     }
     RBVTRRERR *pp = (RBVTRRERR *)object; (void)pp;
     switch (field) {
-        case 1: return pp->getUnreachableNodesArraySize();
+        case 1: return pp->getUnreachableRBVTRNodesArraySize();
         default: return 0;
     }
 }
@@ -1653,7 +1813,7 @@ std::string RBVTRRERRDescriptor::getFieldAsString(void *object, int field, int i
     RBVTRRERR *pp = (RBVTRRERR *)object; (void)pp;
     switch (field) {
         case 0: return ulong2string(pp->getPacketType());
-        case 1: {std::stringstream out; out << pp->getUnreachableNodes(i); return out.str();}
+        case 1: {std::stringstream out; out << pp->getUnreachableRBVTRNodes(i); return out.str();}
         case 2: return bool2string(pp->getNoDeleteFlag());
         case 3: return ulong2string(pp->getDestCount());
         default: return "";
@@ -1686,7 +1846,7 @@ const char *RBVTRRERRDescriptor::getFieldStructName(void *object, int field) con
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
-        case 1: return opp_typename(typeid(UnreachableNodeRBVTR));
+        case 1: return opp_typename(typeid(UnreachableRBVTRNode));
         default: return NULL;
     };
 }
@@ -1701,7 +1861,7 @@ void *RBVTRRERRDescriptor::getFieldStructPointer(void *object, int field, int i)
     }
     RBVTRRERR *pp = (RBVTRRERR *)object; (void)pp;
     switch (field) {
-        case 1: return (void *)(&pp->getUnreachableNodes(i)); break;
+        case 1: return (void *)(&pp->getUnreachableRBVTRNodes(i)); break;
         default: return NULL;
     }
 }
@@ -1941,24 +2101,24 @@ void *RBVTRRREPACKDescriptor::getFieldStructPointer(void *object, int field, int
     }
 }
 
-Register_Class(WaitForRBVTRVANETRREP);
+Register_Class(WaitForRBVTRRREP);
 
-WaitForRBVTRVANETRREP::WaitForRBVTRVANETRREP(const char *name, int kind) : ::cMessage(name,kind)
+WaitForRBVTRRREP::WaitForRBVTRRREP(const char *name, int kind) : ::cMessage(name,kind)
 {
     this->lastTTL_var = 0;
     this->fromInvalidEntry_var = 0;
 }
 
-WaitForRBVTRVANETRREP::WaitForRBVTRVANETRREP(const WaitForRBVTRVANETRREP& other) : ::cMessage(other)
+WaitForRBVTRRREP::WaitForRBVTRRREP(const WaitForRBVTRRREP& other) : ::cMessage(other)
 {
     copy(other);
 }
 
-WaitForRBVTRVANETRREP::~WaitForRBVTRVANETRREP()
+WaitForRBVTRRREP::~WaitForRBVTRRREP()
 {
 }
 
-WaitForRBVTRVANETRREP& WaitForRBVTRVANETRREP::operator=(const WaitForRBVTRVANETRREP& other)
+WaitForRBVTRRREP& WaitForRBVTRRREP::operator=(const WaitForRBVTRRREP& other)
 {
     if (this==&other) return *this;
     ::cMessage::operator=(other);
@@ -1966,14 +2126,14 @@ WaitForRBVTRVANETRREP& WaitForRBVTRVANETRREP::operator=(const WaitForRBVTRVANETR
     return *this;
 }
 
-void WaitForRBVTRVANETRREP::copy(const WaitForRBVTRVANETRREP& other)
+void WaitForRBVTRRREP::copy(const WaitForRBVTRRREP& other)
 {
     this->destAddr_var = other.destAddr_var;
     this->lastTTL_var = other.lastTTL_var;
     this->fromInvalidEntry_var = other.fromInvalidEntry_var;
 }
 
-void WaitForRBVTRVANETRREP::parsimPack(cCommBuffer *b)
+void WaitForRBVTRRREP::parsimPack(cCommBuffer *b)
 {
     ::cMessage::parsimPack(b);
     doPacking(b,this->destAddr_var);
@@ -1981,7 +2141,7 @@ void WaitForRBVTRVANETRREP::parsimPack(cCommBuffer *b)
     doPacking(b,this->fromInvalidEntry_var);
 }
 
-void WaitForRBVTRVANETRREP::parsimUnpack(cCommBuffer *b)
+void WaitForRBVTRRREP::parsimUnpack(cCommBuffer *b)
 {
     ::cMessage::parsimUnpack(b);
     doUnpacking(b,this->destAddr_var);
@@ -1989,41 +2149,41 @@ void WaitForRBVTRVANETRREP::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->fromInvalidEntry_var);
 }
 
-IPv4Address& WaitForRBVTRVANETRREP::getDestAddr()
+IPv4Address& WaitForRBVTRRREP::getDestAddr()
 {
     return destAddr_var;
 }
 
-void WaitForRBVTRVANETRREP::setDestAddr(const IPv4Address& destAddr)
+void WaitForRBVTRRREP::setDestAddr(const IPv4Address& destAddr)
 {
     this->destAddr_var = destAddr;
 }
 
-unsigned int WaitForRBVTRVANETRREP::getLastTTL() const
+unsigned int WaitForRBVTRRREP::getLastTTL() const
 {
     return lastTTL_var;
 }
 
-void WaitForRBVTRVANETRREP::setLastTTL(unsigned int lastTTL)
+void WaitForRBVTRRREP::setLastTTL(unsigned int lastTTL)
 {
     this->lastTTL_var = lastTTL;
 }
 
-bool WaitForRBVTRVANETRREP::getFromInvalidEntry() const
+bool WaitForRBVTRRREP::getFromInvalidEntry() const
 {
     return fromInvalidEntry_var;
 }
 
-void WaitForRBVTRVANETRREP::setFromInvalidEntry(bool fromInvalidEntry)
+void WaitForRBVTRRREP::setFromInvalidEntry(bool fromInvalidEntry)
 {
     this->fromInvalidEntry_var = fromInvalidEntry;
 }
 
-class WaitForRBVTRVANETRREPDescriptor : public cClassDescriptor
+class WaitForRBVTRRREPDescriptor : public cClassDescriptor
 {
   public:
-    WaitForRBVTRVANETRREPDescriptor();
-    virtual ~WaitForRBVTRVANETRREPDescriptor();
+    WaitForRBVTRRREPDescriptor();
+    virtual ~WaitForRBVTRRREPDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -2042,34 +2202,34 @@ class WaitForRBVTRVANETRREPDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(WaitForRBVTRVANETRREPDescriptor);
+Register_ClassDescriptor(WaitForRBVTRRREPDescriptor);
 
-WaitForRBVTRVANETRREPDescriptor::WaitForRBVTRVANETRREPDescriptor() : cClassDescriptor("WaitForRBVTRVANETRREP", "cMessage")
+WaitForRBVTRRREPDescriptor::WaitForRBVTRRREPDescriptor() : cClassDescriptor("WaitForRBVTRRREP", "cMessage")
 {
 }
 
-WaitForRBVTRVANETRREPDescriptor::~WaitForRBVTRVANETRREPDescriptor()
+WaitForRBVTRRREPDescriptor::~WaitForRBVTRRREPDescriptor()
 {
 }
 
-bool WaitForRBVTRVANETRREPDescriptor::doesSupport(cObject *obj) const
+bool WaitForRBVTRRREPDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<WaitForRBVTRVANETRREP *>(obj)!=NULL;
+    return dynamic_cast<WaitForRBVTRRREP *>(obj)!=NULL;
 }
 
-const char *WaitForRBVTRVANETRREPDescriptor::getProperty(const char *propertyname) const
+const char *WaitForRBVTRRREPDescriptor::getProperty(const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int WaitForRBVTRVANETRREPDescriptor::getFieldCount(void *object) const
+int WaitForRBVTRRREPDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? 3+basedesc->getFieldCount(object) : 3;
 }
 
-unsigned int WaitForRBVTRVANETRREPDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int WaitForRBVTRRREPDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2085,7 +2245,7 @@ unsigned int WaitForRBVTRVANETRREPDescriptor::getFieldTypeFlags(void *object, in
     return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
 }
 
-const char *WaitForRBVTRVANETRREPDescriptor::getFieldName(void *object, int field) const
+const char *WaitForRBVTRRREPDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2101,7 +2261,7 @@ const char *WaitForRBVTRVANETRREPDescriptor::getFieldName(void *object, int fiel
     return (field>=0 && field<3) ? fieldNames[field] : NULL;
 }
 
-int WaitForRBVTRVANETRREPDescriptor::findField(void *object, const char *fieldName) const
+int WaitForRBVTRRREPDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
@@ -2111,7 +2271,7 @@ int WaitForRBVTRVANETRREPDescriptor::findField(void *object, const char *fieldNa
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *WaitForRBVTRVANETRREPDescriptor::getFieldTypeString(void *object, int field) const
+const char *WaitForRBVTRRREPDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2127,7 +2287,7 @@ const char *WaitForRBVTRVANETRREPDescriptor::getFieldTypeString(void *object, in
     return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *WaitForRBVTRVANETRREPDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *WaitForRBVTRRREPDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2140,7 +2300,7 @@ const char *WaitForRBVTRVANETRREPDescriptor::getFieldProperty(void *object, int 
     }
 }
 
-int WaitForRBVTRVANETRREPDescriptor::getArraySize(void *object, int field) const
+int WaitForRBVTRRREPDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2148,13 +2308,13 @@ int WaitForRBVTRVANETRREPDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    WaitForRBVTRVANETRREP *pp = (WaitForRBVTRVANETRREP *)object; (void)pp;
+    WaitForRBVTRRREP *pp = (WaitForRBVTRRREP *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string WaitForRBVTRVANETRREPDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string WaitForRBVTRRREPDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2162,7 +2322,7 @@ std::string WaitForRBVTRVANETRREPDescriptor::getFieldAsString(void *object, int 
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    WaitForRBVTRVANETRREP *pp = (WaitForRBVTRVANETRREP *)object; (void)pp;
+    WaitForRBVTRRREP *pp = (WaitForRBVTRRREP *)object; (void)pp;
     switch (field) {
         case 0: {std::stringstream out; out << pp->getDestAddr(); return out.str();}
         case 1: return ulong2string(pp->getLastTTL());
@@ -2171,7 +2331,7 @@ std::string WaitForRBVTRVANETRREPDescriptor::getFieldAsString(void *object, int 
     }
 }
 
-bool WaitForRBVTRVANETRREPDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool WaitForRBVTRRREPDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2179,7 +2339,7 @@ bool WaitForRBVTRVANETRREPDescriptor::setFieldAsString(void *object, int field, 
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    WaitForRBVTRVANETRREP *pp = (WaitForRBVTRVANETRREP *)object; (void)pp;
+    WaitForRBVTRRREP *pp = (WaitForRBVTRRREP *)object; (void)pp;
     switch (field) {
         case 1: pp->setLastTTL(string2ulong(value)); return true;
         case 2: pp->setFromInvalidEntry(string2bool(value)); return true;
@@ -2187,7 +2347,7 @@ bool WaitForRBVTRVANETRREPDescriptor::setFieldAsString(void *object, int field, 
     }
 }
 
-const char *WaitForRBVTRVANETRREPDescriptor::getFieldStructName(void *object, int field) const
+const char *WaitForRBVTRRREPDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2201,7 +2361,7 @@ const char *WaitForRBVTRVANETRREPDescriptor::getFieldStructName(void *object, in
     };
 }
 
-void *WaitForRBVTRVANETRREPDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *WaitForRBVTRRREPDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -2209,7 +2369,7 @@ void *WaitForRBVTRVANETRREPDescriptor::getFieldStructPointer(void *object, int f
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    WaitForRBVTRVANETRREP *pp = (WaitForRBVTRVANETRREP *)object; (void)pp;
+    WaitForRBVTRRREP *pp = (WaitForRBVTRRREP *)object; (void)pp;
     switch (field) {
         case 0: return (void *)(&pp->getDestAddr()); break;
         default: return NULL;

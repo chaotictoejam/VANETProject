@@ -18,23 +18,26 @@
 // cplusplus {{
 #include "IPv4Address.h"
 #include "simtime_t.h"
+#include "VanetModuleAccess.h"
+#include "IVANETMobility.h"
+#include "Coord.h"
 // }}
 
 /**
- * Struct generated from custom/routing/bitcar/BITCARControlPackets.msg:29 by nedtool.
+ * Struct generated from custom/routing/bitcar/BITCARControlPackets.msg:34 by nedtool.
  */
-struct UnreachableNodeBITCAR
+struct UnreachableBITCARNode
 {
-    UnreachableNodeBITCAR();
+    UnreachableBITCARNode();
     IPv4Address addr;
     unsigned int seqNum;
 };
 
-void doPacking(cCommBuffer *b, UnreachableNodeBITCAR& a);
-void doUnpacking(cCommBuffer *b, UnreachableNodeBITCAR& a);
+void doPacking(cCommBuffer *b, UnreachableBITCARNode& a);
+void doUnpacking(cCommBuffer *b, UnreachableBITCARNode& a);
 
 /**
- * Enum generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:35</tt> by nedtool.
+ * Enum generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:40</tt> by nedtool.
  * <pre>
  * enum BITCARControlPacketType
  * {
@@ -54,10 +57,10 @@ enum BITCARControlPacketType {
 };
 
 /**
- * Class generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:46</tt> by nedtool.
+ * Class generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:51</tt> by nedtool.
  * <pre>
  * //
- * // Base packet for AODV Control Packets
+ * // Base packet for BITCAR Control Packets
  * //
  * packet BITCARControlPacket
  * {
@@ -95,10 +98,10 @@ inline void doPacking(cCommBuffer *b, BITCARControlPacket& obj) {obj.parsimPack(
 inline void doUnpacking(cCommBuffer *b, BITCARControlPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:54</tt> by nedtool.
+ * Class generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:59</tt> by nedtool.
  * <pre>
  * //
- * // Represents an AODV Route Request
+ * // Represents an BITCAR Route Request
  * //
  * class BITCARRREQ extends BITCARControlPacket
  * {
@@ -114,6 +117,12 @@ inline void doUnpacking(cCommBuffer *b, BITCARControlPacket& obj) {obj.parsimUnp
  *     unsigned int destSeqNum;
  *     IPv4Address originatorAddr;
  *     unsigned int originatorSeqNum;
+ *     Coord position;
+ *     Coord speed;
+ *     Coord acceleration;
+ *     Coord direction;
+ *     double twr;
+ *     double expirationtime;
  * }
  * </pre>
  */
@@ -132,6 +141,12 @@ class BITCARRREQ : public ::BITCARControlPacket
     unsigned int destSeqNum_var;
     IPv4Address originatorAddr_var;
     unsigned int originatorSeqNum_var;
+    Coord position_var;
+    Coord speed_var;
+    Coord acceleration_var;
+    Coord direction_var;
+    double twr_var;
+    double expirationtime_var;
 
   private:
     void copy(const BITCARRREQ& other);
@@ -176,16 +191,32 @@ class BITCARRREQ : public ::BITCARControlPacket
     virtual void setOriginatorAddr(const IPv4Address& originatorAddr);
     virtual unsigned int getOriginatorSeqNum() const;
     virtual void setOriginatorSeqNum(unsigned int originatorSeqNum);
+    virtual Coord& getPosition();
+    virtual const Coord& getPosition() const {return const_cast<BITCARRREQ*>(this)->getPosition();}
+    virtual void setPosition(const Coord& position);
+    virtual Coord& getSpeed();
+    virtual const Coord& getSpeed() const {return const_cast<BITCARRREQ*>(this)->getSpeed();}
+    virtual void setSpeed(const Coord& speed);
+    virtual Coord& getAcceleration();
+    virtual const Coord& getAcceleration() const {return const_cast<BITCARRREQ*>(this)->getAcceleration();}
+    virtual void setAcceleration(const Coord& acceleration);
+    virtual Coord& getDirection();
+    virtual const Coord& getDirection() const {return const_cast<BITCARRREQ*>(this)->getDirection();}
+    virtual void setDirection(const Coord& direction);
+    virtual double getTwr() const;
+    virtual void setTwr(double twr);
+    virtual double getExpirationtime() const;
+    virtual void setExpirationtime(double expirationtime);
 };
 
 inline void doPacking(cCommBuffer *b, BITCARRREQ& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, BITCARRREQ& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:73</tt> by nedtool.
+ * Class generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:84</tt> by nedtool.
  * <pre>
  * //
- * // Represents an AODV Route Reply
+ * // Represents an BITCAR Route Reply
  * //
  * class BITCARRREP extends BITCARControlPacket
  * {
@@ -199,6 +230,8 @@ inline void doUnpacking(cCommBuffer *b, BITCARRREQ& obj) {obj.parsimUnpack(b);}
  *     IPv4Address originatorAddr;
  *     unsigned int originatorSeqNum;
  *     simtime_t lifeTime;
+ *     double twr;
+ *     double expirationtime;
  * }
  * </pre>
  */
@@ -215,6 +248,8 @@ class BITCARRREP : public ::BITCARControlPacket
     IPv4Address originatorAddr_var;
     unsigned int originatorSeqNum_var;
     simtime_t lifeTime_var;
+    double twr_var;
+    double expirationtime_var;
 
   private:
     void copy(const BITCARRREP& other);
@@ -255,21 +290,25 @@ class BITCARRREP : public ::BITCARControlPacket
     virtual void setOriginatorSeqNum(unsigned int originatorSeqNum);
     virtual simtime_t getLifeTime() const;
     virtual void setLifeTime(simtime_t lifeTime);
+    virtual double getTwr() const;
+    virtual void setTwr(double twr);
+    virtual double getExpirationtime() const;
+    virtual void setExpirationtime(double expirationtime);
 };
 
 inline void doPacking(cCommBuffer *b, BITCARRREP& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, BITCARRREP& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:90</tt> by nedtool.
+ * Class generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:103</tt> by nedtool.
  * <pre>
  * //
- * // Represents an AODV Route Error
+ * // Represents an BITCAR Route Error
  * //
  * class BITCARRERR extends BITCARControlPacket
  * {
  *     unsigned int packetType = RERR;
- *     UnreachableNodeBITCAR unreachableNodes[];
+ *     UnreachableBITCARNode unreachableBITCARNodes[];
  *     bool noDeleteFlag;
  *     unsigned int destCount;
  * }
@@ -279,8 +318,8 @@ class BITCARRERR : public ::BITCARControlPacket
 {
   protected:
     unsigned int packetType_var;
-    UnreachableNodeBITCAR *unreachableNodes_var; // array ptr
-    unsigned int unreachableNodes_arraysize;
+    UnreachableBITCARNode *unreachableBITCARNodes_var; // array ptr
+    unsigned int unreachableBITCARNodes_arraysize;
     bool noDeleteFlag_var;
     unsigned int destCount_var;
 
@@ -303,11 +342,11 @@ class BITCARRERR : public ::BITCARControlPacket
     // field getter/setter methods
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
-    virtual void setUnreachableNodesArraySize(unsigned int size);
-    virtual unsigned int getUnreachableNodesArraySize() const;
-    virtual UnreachableNodeBITCAR& getUnreachableNodes(unsigned int k);
-    virtual const UnreachableNodeBITCAR& getUnreachableNodes(unsigned int k) const {return const_cast<BITCARRERR*>(this)->getUnreachableNodes(k);}
-    virtual void setUnreachableNodes(unsigned int k, const UnreachableNodeBITCAR& unreachableNodes);
+    virtual void setUnreachableBITCARNodesArraySize(unsigned int size);
+    virtual unsigned int getUnreachableBITCARNodesArraySize() const;
+    virtual UnreachableBITCARNode& getUnreachableBITCARNodes(unsigned int k);
+    virtual const UnreachableBITCARNode& getUnreachableBITCARNodes(unsigned int k) const {return const_cast<BITCARRERR*>(this)->getUnreachableBITCARNodes(k);}
+    virtual void setUnreachableBITCARNodes(unsigned int k, const UnreachableBITCARNode& unreachableBITCARNodes);
     virtual bool getNoDeleteFlag() const;
     virtual void setNoDeleteFlag(bool noDeleteFlag);
     virtual unsigned int getDestCount() const;
@@ -318,10 +357,10 @@ inline void doPacking(cCommBuffer *b, BITCARRERR& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, BITCARRERR& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:101</tt> by nedtool.
+ * Class generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:114</tt> by nedtool.
  * <pre>
  * //
- * // Represents an AODV Route Reply ACK
+ * // Represents an BITCAR Route Reply ACK
  * //
  * class BITCARRREPACK extends BITCARControlPacket
  * {
@@ -359,12 +398,12 @@ inline void doPacking(cCommBuffer *b, BITCARRREPACK& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, BITCARRREPACK& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:109</tt> by nedtool.
+ * Class generated from <tt>custom/routing/bitcar/BITCARControlPackets.msg:122</tt> by nedtool.
  * <pre>
  * //
  * // Represents a timer for a Route Reply packet
  * //
- * message WaitForBITCARVANETRREP
+ * message WaitForBITCARRREP
  * {
  *     IPv4Address destAddr;
  *     unsigned int lastTTL;
@@ -372,7 +411,7 @@ inline void doUnpacking(cCommBuffer *b, BITCARRREPACK& obj) {obj.parsimUnpack(b)
  * }
  * </pre>
  */
-class WaitForBITCARVANETRREP : public ::cMessage
+class WaitForBITCARRREP : public ::cMessage
 {
   protected:
     IPv4Address destAddr_var;
@@ -380,24 +419,24 @@ class WaitForBITCARVANETRREP : public ::cMessage
     bool fromInvalidEntry_var;
 
   private:
-    void copy(const WaitForBITCARVANETRREP& other);
+    void copy(const WaitForBITCARRREP& other);
 
   protected:
     // protected and unimplemented operator==(), to prevent accidental usage
-    bool operator==(const WaitForBITCARVANETRREP&);
+    bool operator==(const WaitForBITCARRREP&);
 
   public:
-    WaitForBITCARVANETRREP(const char *name=NULL, int kind=0);
-    WaitForBITCARVANETRREP(const WaitForBITCARVANETRREP& other);
-    virtual ~WaitForBITCARVANETRREP();
-    WaitForBITCARVANETRREP& operator=(const WaitForBITCARVANETRREP& other);
-    virtual WaitForBITCARVANETRREP *dup() const {return new WaitForBITCARVANETRREP(*this);}
+    WaitForBITCARRREP(const char *name=NULL, int kind=0);
+    WaitForBITCARRREP(const WaitForBITCARRREP& other);
+    virtual ~WaitForBITCARRREP();
+    WaitForBITCARRREP& operator=(const WaitForBITCARRREP& other);
+    virtual WaitForBITCARRREP *dup() const {return new WaitForBITCARRREP(*this);}
     virtual void parsimPack(cCommBuffer *b);
     virtual void parsimUnpack(cCommBuffer *b);
 
     // field getter/setter methods
     virtual IPv4Address& getDestAddr();
-    virtual const IPv4Address& getDestAddr() const {return const_cast<WaitForBITCARVANETRREP*>(this)->getDestAddr();}
+    virtual const IPv4Address& getDestAddr() const {return const_cast<WaitForBITCARRREP*>(this)->getDestAddr();}
     virtual void setDestAddr(const IPv4Address& destAddr);
     virtual unsigned int getLastTTL() const;
     virtual void setLastTTL(unsigned int lastTTL);
@@ -405,8 +444,8 @@ class WaitForBITCARVANETRREP : public ::cMessage
     virtual void setFromInvalidEntry(bool fromInvalidEntry);
 };
 
-inline void doPacking(cCommBuffer *b, WaitForBITCARVANETRREP& obj) {obj.parsimPack(b);}
-inline void doUnpacking(cCommBuffer *b, WaitForBITCARVANETRREP& obj) {obj.parsimUnpack(b);}
+inline void doPacking(cCommBuffer *b, WaitForBITCARRREP& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, WaitForBITCARRREP& obj) {obj.parsimUnpack(b);}
 
 
 #endif // ifndef _BITCARCONTROLPACKETS_M_H_

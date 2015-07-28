@@ -109,7 +109,7 @@ class AODVVANETRouting : public cSimpleModule, public ILifecycle, public INetfil
     // state
     unsigned int rreqId;    // when sending a new RREQ packet, rreqID incremented by one from the last id used by this node
     unsigned int sequenceNum;    // it helps to prevent loops in the routes (RFC 3561 6.1 p11.)
-    std::map<IPv4Address, WaitForVANETRREP *> waitForRREPTimers;    // timeout for Route Replies
+    std::map<IPv4Address, WaitForAODVVANETRREP *> waitForRREPTimers;    // timeout for Route Replies
     std::map<RREQIdentifier, simtime_t, RREQIdentifierCompare> rreqsArrivalTime;    // maps RREQ id to its arriving time
     IPv4Address failedNextHop;    // next hop to the destination who failed to send us RREP-ACK
     std::map<IPv4Address, simtime_t> blacklist;    // we don't accept RREQs from blacklisted nodes
@@ -156,7 +156,7 @@ class AODVVANETRouting : public cSimpleModule, public ILifecycle, public INetfil
     AODVVANETRREQ *createRREQ(const IPv4Address& destAddr);
     AODVVANETRREP *createRREP(AODVVANETRREQ *rreq, IPv4Route *destRoute, IPv4Route *originatorRoute, const IPv4Address& sourceAddr);
     AODVVANETRREP *createGratuitousRREP(AODVVANETRREQ *rreq, IPv4Route *originatorRoute);
-    AODVVANETRERR *createRERR(const std::vector<UnreachableNode>& unreachableNodes);
+    AODVVANETRERR *createRERR(const std::vector<UnreachableAODVNode>& unreachableAODVNodes);
 
     /* Control Packet handlers */
     void handleRREP(AODVVANETRREP *rrep, const IPv4Address& sourceAddr);
@@ -179,7 +179,7 @@ class AODVVANETRouting : public cSimpleModule, public ILifecycle, public INetfil
     void handleRREPACKTimer();
     void handleBlackListTimer();
     void sendHelloMessagesIfNeeded();
-    void handleWaitForVANETRREP(WaitForVANETRREP *rrepTimer);
+    void handleWaitForAODVVANETRREP(WaitForAODVVANETRREP *rrepTimer);
 
     /* General functions to handle route errors */
     void sendRERRWhenNoRouteToForward(const IPv4Address& unreachableAddr);

@@ -18,14 +18,19 @@
 cplusplus {{
 #include "IPv4Address.h"
 #include "simtime_t.h"
+#include "VanetModuleAccess.h"
+#include "IVANETMobility.h"
+#include "Coord.h"
 }}
 
 class noncobject IPv4Address;
+class noncobject Coord;
+
 
 //
 // Helper struct to represent (IPv4Address, sequence number) pairs in a RERR message
 //
-struct UnreachableNodeBITCAR
+struct UnreachableBITCARNode
 {
     IPv4Address addr;
     unsigned int seqNum;
@@ -40,7 +45,7 @@ enum BITCARControlPacketType
 };
 
 //
-// Base packet for AODV Control Packets
+// Base packet for BITCAR Control Packets
 //
 packet BITCARControlPacket
 {
@@ -48,7 +53,7 @@ packet BITCARControlPacket
 }
 
 //
-// Represents an AODV Route Request
+// Represents an BITCAR Route Request
 //
 class BITCARRREQ extends BITCARControlPacket
 {
@@ -64,10 +69,16 @@ class BITCARRREQ extends BITCARControlPacket
     unsigned int destSeqNum;
     IPv4Address originatorAddr;
     unsigned int originatorSeqNum;
+    Coord position;
+    Coord speed;
+    Coord acceleration;
+    Coord direction;
+    double twr;
+    double expirationtime;
 }
 
 //
-// Represents an AODV Route Reply
+// Represents an BITCAR Route Reply
 //
 class BITCARRREP extends BITCARControlPacket
 {
@@ -81,21 +92,23 @@ class BITCARRREP extends BITCARControlPacket
     IPv4Address originatorAddr;
     unsigned int originatorSeqNum;
     simtime_t lifeTime;
+    double twr;
+    double expirationtime;
 }
 
 //
-// Represents an AODV Route Error
+// Represents an BITCAR Route Error
 //
 class BITCARRERR extends BITCARControlPacket
 {
     unsigned int packetType = RERR;
-    UnreachableNodeBITCAR unreachableNodes[];
+    UnreachableBITCARNode unreachableBITCARNodes[];
     bool noDeleteFlag;
     unsigned int destCount;
 }
 
 //
-// Represents an AODV Route Reply ACK
+// Represents an BITCAR Route Reply ACK
 //
 class BITCARRREPACK extends BITCARControlPacket
 {
@@ -105,7 +118,7 @@ class BITCARRREPACK extends BITCARControlPacket
 //
 // Represents a timer for a Route Reply packet
 //
-message WaitForBITCARVANETRREP
+message WaitForBITCARRREP
 {
     IPv4Address destAddr;
     unsigned int lastTTL;

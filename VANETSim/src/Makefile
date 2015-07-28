@@ -314,9 +314,13 @@ $O/custom/routing/aodvvanet/AODVVANETRouting.o: custom/routing/aodvvanet/AODVVAN
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
 $O/custom/routing/bitcar/BITCARControlPackets_m.o: custom/routing/bitcar/BITCARControlPackets_m.cc \
 	custom/routing/bitcar/BITCARControlPackets_m.h \
+	custom/vanetrouting/base/VanetModuleAccess.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h
+	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
 $O/custom/routing/bitcar/BITCARRouteData.o: custom/routing/bitcar/BITCARRouteData.cc \
 	custom/routing/bitcar/BITCARRouteData.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
@@ -327,7 +331,9 @@ $O/custom/routing/bitcar/BITCARRouting.o: custom/routing/bitcar/BITCARRouting.cc
 	custom/routing/bitcar/BITCARRouteData.h \
 	custom/routing/bitcar/BITCARRouting.h \
 	custom/vanetrouting/base/VanetModuleAccess.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/base/INotifiable.h \
@@ -363,12 +369,17 @@ $O/custom/routing/bitcar/BITCARRouting.o: custom/routing/bitcar/BITCARRouting.cc
 	$(INETMANET_2_0_PROJ)/src/transport/contract/UDPControlInfo_m.h \
 	$(INETMANET_2_0_PROJ)/src/transport/contract/UDPSocket.h \
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket.h \
-	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket_m.h
+	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket_m.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
 $O/custom/routing/rbvtr/RBVTRControlPackets_m.o: custom/routing/rbvtr/RBVTRControlPackets_m.cc \
 	custom/routing/rbvtr/RBVTRControlPackets_m.h \
+	custom/vanetrouting/base/VanetModuleAccess.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h
+	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
 $O/custom/routing/rbvtr/RBVTRRouteData.o: custom/routing/rbvtr/RBVTRRouteData.cc \
 	custom/routing/rbvtr/RBVTRRouteData.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
@@ -379,7 +390,9 @@ $O/custom/routing/rbvtr/RBVTRRouting.o: custom/routing/rbvtr/RBVTRRouting.cc \
 	custom/routing/rbvtr/RBVTRRouteData.h \
 	custom/routing/rbvtr/RBVTRRouting.h \
 	custom/vanetrouting/base/VanetModuleAccess.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/base/INotifiable.h \
@@ -415,7 +428,8 @@ $O/custom/routing/rbvtr/RBVTRRouting.o: custom/routing/rbvtr/RBVTRRouting.cc \
 	$(INETMANET_2_0_PROJ)/src/transport/contract/UDPControlInfo_m.h \
 	$(INETMANET_2_0_PROJ)/src/transport/contract/UDPSocket.h \
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket.h \
-	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket_m.h
+	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket_m.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
 $O/custom/vanetrouting/applications/traci/aodvTraCIDemo.o: custom/vanetrouting/applications/traci/aodvTraCIDemo.cc \
 	custom/vanetrouting/applications/traci/aodvTraCIDemo.h \
 	custom/vanetrouting/base/VanetModuleAccess.h \

@@ -17,13 +17,13 @@
 
 package vanetsim.custom;
 
-import inet.networklayer.manetrouting.base.BaseRouting;
-import inet.networklayer.IManetRouting;
+import vanetsim.custom.vanetrouting.base.BaseVanetRouting;
+import vanetsim.custom.vanetrouting.networklayer.IVanetRouting;
 
-simple AODVVANET extends BaseRouting like IManetRouting
+simple AODVVANET extends BaseVanetRouting like IVanetRouting
 {
     parameters:
-        @class(AODVVANET);
+        @class(AODVVANETRouting);
         @reactive;                             // IP module will send control messages when no route is present to the destination
         bool log_to_file = default(false);     // dump AODV log files (non RFC parameter)
         bool hello_jittering = default(true);  // add a +-50ms jitter to the hello interval (non RFC parameter)

@@ -18,14 +18,19 @@
 cplusplus {{
 #include "IPv4Address.h"
 #include "simtime_t.h"
+#include "VanetModuleAccess.h"
+#include "IVANETMobility.h"
+#include "Coord.h"
 }}
 
 class noncobject IPv4Address;
+class noncobject Coord;
+
 
 //
 // Helper struct to represent (IPv4Address, sequence number) pairs in a RERR message
 //
-struct UnreachableNodeRBVTR
+struct UnreachableRBVTRNode
 {
     IPv4Address addr;
     unsigned int seqNum;
@@ -40,7 +45,7 @@ enum RBVTRControlPacketType
 };
 
 //
-// Base packet for AODV Control Packets
+// Base packet for RBVTR Control Packets
 //
 packet RBVTRControlPacket
 {
@@ -48,7 +53,7 @@ packet RBVTRControlPacket
 }
 
 //
-// Represents an AODV Route Request
+// Represents an RBVTR Route Request
 //
 class RBVTRRREQ extends RBVTRControlPacket
 {
@@ -64,10 +69,16 @@ class RBVTRRREQ extends RBVTRControlPacket
     unsigned int destSeqNum;
     IPv4Address originatorAddr;
     unsigned int originatorSeqNum;
+    Coord position;
+    Coord speed;
+    Coord acceleration;
+    Coord direction;
+    double twr;
+    double expirationtime;
 }
 
 //
-// Represents an AODV Route Reply
+// Represents an RBVTR Route Reply
 //
 class RBVTRRREP extends RBVTRControlPacket
 {
@@ -81,21 +92,23 @@ class RBVTRRREP extends RBVTRControlPacket
     IPv4Address originatorAddr;
     unsigned int originatorSeqNum;
     simtime_t lifeTime;
+    double twr;
+    double expirationtime;
 }
 
 //
-// Represents an AODV Route Error
+// Represents an RBVTR Route Error
 //
 class RBVTRRERR extends RBVTRControlPacket
 {
     unsigned int packetType = RERR;
-    UnreachableNodeRBVTR unreachableNodes[];
+    UnreachableRBVTRNode unreachableRBVTRNodes[];
     bool noDeleteFlag;
     unsigned int destCount;
 }
 
 //
-// Represents an AODV Route Reply ACK
+// Represents an RBVTR Route Reply ACK
 //
 class RBVTRRREPACK extends RBVTRControlPacket
 {
@@ -105,7 +118,7 @@ class RBVTRRREPACK extends RBVTRControlPacket
 //
 // Represents a timer for a Route Reply packet
 //
-message WaitForRBVTRVANETRREP
+message WaitForRBVTRRREP
 {
     IPv4Address destAddr;
     unsigned int lastTTL;
