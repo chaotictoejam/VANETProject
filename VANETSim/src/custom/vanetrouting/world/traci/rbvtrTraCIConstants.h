@@ -570,27 +570,6 @@
 // maximum speed regarding max speed on the current lane and speed factor (get: vehicle)
 #define VAR_ALLOWED_SPEED 0xb7
 
-// current CO2 emission of a node (get: vehicle, lane, edge)
-#define VAR_CO2EMISSION 0x60
-
-// current CO emission of a node (get: vehicle, lane, edge)
-#define VAR_COEMISSION 0x61
-
-// current HC emission of a node (get: vehicle, lane, edge)
-#define VAR_HCEMISSION 0x62
-
-// current PMx emission of a node (get: vehicle, lane, edge)
-#define VAR_PMXEMISSION 0x63
-
-// current NOx emission of a node (get: vehicle, lane, edge)
-#define VAR_NOXEMISSION 0x64
-
-// current fuel consumption of a node (get: vehicle, lane, edge)
-#define VAR_FUELCONSUMPTION 0x65
-
-// current noise emission of a node (get: vehicle, lane, edge)
-#define VAR_NOISEEMISSION 0x66
-
 // current person number (get: vehicle)
 #define VAR_PERSON_NUMBER 0x67
 

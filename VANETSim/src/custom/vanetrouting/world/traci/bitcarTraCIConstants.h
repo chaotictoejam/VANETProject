@@ -570,9 +570,6 @@
 // maximum speed regarding max speed on the current lane and speed factor (get: vehicle)
 #define VAR_ALLOWED_SPEED 0xb7
 
-// current CO2 emission of a node (get: vehicle, lane, edge)
-#define VAR_CO2EMISSION 0x60
-
 // current CO emission of a node (get: vehicle, lane, edge)
 #define VAR_COEMISSION 0x61
 

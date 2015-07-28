@@ -61,7 +61,6 @@ class bitcarTraCIMobility : public VANETMobilityBase
                 double minSpeed; /**< for statistics: minimum value of currentSpeed */
                 double maxSpeed; /**< for statistics: maximum value of currentSpeed */
                 double totalDistance; /**< for statistics: total distance travelled */
-                double totalCO2Emission; /**< for statistics: total CO2 emission */
 
                 void initialize();
                 void watch(cSimpleModule& module);
@@ -179,7 +178,6 @@ class bitcarTraCIMobility : public VANETMobilityBase
         cOutVector currentPosYVec; /**< vector plotting posy */
         cOutVector currentSpeedVec; /**< vector plotting speed */
         cOutVector currentAccelerationVec; /**< vector plotting acceleration */
-        cOutVector currentCO2EmissionVec; /**< vector plotting current CO2 emission */
 
         Statistics statistics; /**< everything statistics-related */
 
@@ -201,14 +199,6 @@ class bitcarTraCIMobility : public VANETMobilityBase
         double last_speed;
 
         virtual void fixIfHostGetsOutside(); /**< called after each read to check for (and handle) invalid positions */
-
-        /**
-         * Returns the amount of CO2 emissions in grams/second, calculated for an average Car
-         * @param v speed in m/s
-         * @param a acceleration in m/s^2
-         * @returns emission in g/s
-         */
-        double calculateCO2emission(double v, double a) const;
 };
 
 class bitcarTraCIMobilityAccess : public VanetModuleAccess<bitcarTraCIMobility>

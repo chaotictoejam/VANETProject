@@ -19,7 +19,7 @@ module RBVTRCar
 {
     parameters:
         @node();
-        string mobilityType = default("aodvTraCIMobility");
+        string mobilityType = default("rbvtrTraCIMobility");
         networkLayer.configurator.networkConfiguratorModule = "";
         //int numHosts;
     gates:
