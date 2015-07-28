@@ -1,6 +1,6 @@
 package vanetsim.simulations._nodes;
 
-import vanetsim.custom.vanetrouting.applications.traci.aodvTraCIDemo;
+import vanetsim.custom.vanetrouting.applications.traci.rbvtrTraCIDemo;
 import inet.base.LifecycleController;
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;
@@ -36,7 +36,7 @@ module RBVTRCar
             parameters:
                 @display("p=140,326");
         }
-        app: aodvTraCIDemo {
+        app: rbvtrTraCIDemo {
             parameters:
                 @display("p=384,46");
         }
@@ -67,7 +67,7 @@ module RBVTRCar
             parameters:
                 @display("p=304,461;q=queue");
         }
-        manetrouting: AODVVANETRouter {
+        manetrouting: RBVTRRouter {
             @display("p=522,307");
         }
         configurator: IPv4NetworkConfigurator {
