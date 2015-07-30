@@ -4,7 +4,7 @@ import vanetsim.custom.vanetrouting.applications.traci.bitcarTraCIDemo;
 import inet.base.LifecycleController;
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;
-import inet.mobility.contract.IMobility;
+import vanetsim.custom.vanetrouting.mobility.contract.IVANETMobility;
 import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.networklayer.common.InterfaceTable;
@@ -40,7 +40,7 @@ module BITCARCar
             parameters:
                 @display("p=384,46");
         }
-        mobility: <mobilityType> like IMobility {
+        mobility: <mobilityType> like IVANETMobility {
             parameters:
                 @display("p=60,459");
         }

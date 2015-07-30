@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!-- debug config -->
 <launch>
-	<copy file="C:\\VANETProject\\GIT\\VANETProject\\VANETSim\simulations\_maps\downtownorlando\downtownorlando.net.xml" />
-	<copy file="C:\\VANETProject\\GIT\\VANETProject\\VANETSim\simulations\_maps\downtownorlando\downtownorlando.rou.xml" />
-	<copy file="C:\\VANETProject\\GIT\\VANETProject\\VANETSim\simulations\_maps\downtownorlando\downtownorlando.sumo.cfg" type="config" />
+	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\downtownorlando\downtownorlando.net.xml" />
+	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\downtownorlando\downtownorlando.rou.xml" />
+	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\downtownorlando\downtownorlando.sumo.cfg" type="config" />
 </launch>
 

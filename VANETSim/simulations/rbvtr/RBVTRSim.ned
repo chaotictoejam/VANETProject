@@ -3,7 +3,7 @@ package vanetsim.simulations.rbvtr;
 import  vanetsim.simulations._nodes.RSU;
 import  vanetsim.simulations._nodes.Car;
 
-network RBVTRSim extends vanetsim.simulations._nodes.Scenario
+network RBVTRSim extends vanetsim.simulations._nodes.RBVTRScenario
 {
     submodules:
         rsu[1]: RSU {
