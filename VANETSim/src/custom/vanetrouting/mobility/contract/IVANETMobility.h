@@ -53,8 +53,11 @@ class IVANETMobility
     /** @brief Returns the current acceleration at the current simulation time. */
     virtual Coord getCurrentAcceleration() = 0;
 
+    /** @brief Returns the current direction at the current simulation time. */
+    //virtual Coord getCurrentDirection() = 0;
+
     /** @brief Returns the current angular position at the current simulation time. */
-    //virtual Coord getCurrentAngularPosition() = 0;
+    virtual Coord getCurrentAngularPosition() = 0;
 
     /** @brief Returns the current angular speed at the current simulation time. */
     //virtual Coord getCurrentAngularSpeed() = 0;

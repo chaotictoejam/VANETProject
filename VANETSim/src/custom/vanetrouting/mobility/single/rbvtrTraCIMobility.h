@@ -83,6 +83,10 @@ class rbvtrTraCIMobility : public VANETMobilityBase
             Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad()));
             return v * getAcceleration();
         }
+        virtual Coord getCurrentAngularPosition() {
+            Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad()));
+            return v;
+        }
 
         virtual void handleSelfMessage(cMessage *msg);
         virtual void preInitialize(std::string external_id, const Coord& position, std::string road_id = "", double speed = -1,  double acceleration=-1, double angle = -1);

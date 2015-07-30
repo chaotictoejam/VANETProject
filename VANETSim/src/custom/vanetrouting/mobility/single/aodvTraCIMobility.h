@@ -82,7 +82,11 @@ class aodvTraCIMobility : public VANETMobilityBase
         }
         virtual Coord getCurrentAcceleration() {
             Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad()));
-            return v * getAcceleration();
+            return v *  getAcceleration();
+        }
+        virtual Coord getCurrentAngularPosition() {
+            Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad()));
+            return v;
         }
 
         virtual void handleSelfMessage(cMessage *msg);

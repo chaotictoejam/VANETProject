@@ -404,12 +404,7 @@ AODVVANETRREQ *AODVVANETRouting::createRREQ(const IPv4Address& destAddr)
     // The Hop Count field is set to zero.
     rreqPacket->setHopCount(0);
 
-    // The TWR is initialized to zero
-    rreqPacket->setTwr(0);
-
-    // The Expiration time is initialized to a large number
-    rreqPacket->setExpirationtime(100000);
-
+    //AODVVANET RREQ ITEMS
     // Set position, speed, acceleration and direction
     cModule *host = getContainingNode(this);
     IVANETMobility  *mod = check_and_cast<IVANETMobility *>(host->getSubmodule("mobility"));
@@ -417,7 +412,13 @@ AODVVANETRREQ *AODVVANETRouting::createRREQ(const IPv4Address& destAddr)
     rreqPacket->setPosition(mod->getCurrentPosition());
     rreqPacket->setSpeed(mod->getCurrentSpeed());
     rreqPacket->setAcceleration(mod->getCurrentAcceleration());
-    //rreqPacket->setDirection(mod->getCurrentDirection());
+    rreqPacket->setDirection(mod->getCurrentAngularPosition()); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
+
+    // The TWR is initialized to zero
+    rreqPacket->setTwr(0);
+
+    // The Expiration time is initialized to a large number
+    rreqPacket->setExpirationtime(100000);
 
     // Before broadcasting the RREQ, the originating node buffers the RREQ
     // ID and the Originator IP address (its own address) of the RREQ for
@@ -756,6 +757,14 @@ void AODVVANETRouting::sendAODVPacket(AODVVANETControlPacket *packet, const IPv4
 
 void AODVVANETRouting::handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& sourceAddr, unsigned int timeToLive)
 {
+    //TO DO: UPDATE FUNCTION TO AODVVANET RULES
+    //When a node receives RREQ Message
+    //(1) Extracts movement details and uses this information with its own to compute TWR & ExpirationTime
+    //(2) If Expiration Time is less than current, updates expiration time
+    //(3) Find and store link quality between two nodes
+    //(4) Attach new TWR & Expiration  time and own movement details two the RREQ message.
+    //    If node doesn't have route to destination flood neighbors with new RREQ message.
+
     EV_INFO << "AODV Route Request arrived with source addr: " << sourceAddr << " originator addr: " << rreq->getOriginatorAddr()
             << " destination addr: " << rreq->getDestAddr() << endl;
 
