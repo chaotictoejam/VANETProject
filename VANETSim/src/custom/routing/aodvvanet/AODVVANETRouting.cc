@@ -418,7 +418,7 @@ AODVVANETRREQ *AODVVANETRouting::createRREQ(const IPv4Address& destAddr)
     rreqPacket->setTwr(0);
 
     // The Expiration time is initialized to a large number
-    rreqPacket->setExpirationtime(100000);
+    rreqPacket->setExpirationTime(100000);
 
     // Before broadcasting the RREQ, the originating node buffers the RREQ
     // ID and the Originator IP address (its own address) of the RREQ for
@@ -757,19 +757,10 @@ void AODVVANETRouting::sendAODVPacket(AODVVANETControlPacket *packet, const IPv4
 
 void AODVVANETRouting::handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& sourceAddr, unsigned int timeToLive)
 {
-    //TO DO: UPDATE FUNCTION TO AODVVANET RULES
-    //When a node receives RREQ Message
-    //(1) Extracts movement details and uses this information with its own to compute TWR & ExpirationTime
-    //(2) If Expiration Time is less than current, updates expiration time
-    //(3) Find and store link quality between two nodes
-    //(4) Attach new TWR & Expiration  time and own movement details two the RREQ message.
-    //    If node doesn't have route to destination flood neighbors with new RREQ message.
-
     EV_INFO << "AODV Route Request arrived with source addr: " << sourceAddr << " originator addr: " << rreq->getOriginatorAddr()
             << " destination addr: " << rreq->getDestAddr() << endl;
 
     // A node ignores all RREQs received from any node in its blacklist set.
-
     std::map<IPv4Address, simtime_t>::iterator blackListIt = blacklist.find(sourceAddr);
     if (blackListIt != blacklist.end()) {
         EV_INFO << "The sender node " << sourceAddr << " is in our blacklist. Ignoring the Route Request" << endl;
@@ -777,9 +768,7 @@ void AODVVANETRouting::handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& source
         return;
     }
 
-    // When a node receives a RREQ, it first creates or updates a route to
-    // the previous hop without a valid sequence number (see section 6.2).
-
+    // When a node receives a RREQ, it first creates or updates a route to the previous hop without a valid sequence number.
     IPv4Route *previousHopRoute = routingTable->findBestMatchingRoute(sourceAddr);
 
     if (!previousHopRoute || previousHopRoute->getSource() != this) {
@@ -789,10 +778,8 @@ void AODVVANETRouting::handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& source
     else
         updateRoutingTable(previousHopRoute, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, simTime() + activeRouteTimeout);
 
-    // then checks to determine whether it has received a RREQ with the same
-    // Originator IP address and RREQ ID within at least the last PATH_DISCOVERY_TIME.
-    // If such a RREQ has been received, the node silently discards the newly received RREQ.
-
+    // then checks to determine whether it has received a RREQ with the same Originator IP address and RREQ ID within at least the last
+    // PATH_DISCOVERY_TIME. If such a RREQ has been received, the node silently discards the newly received RREQ.
     RREQIdentifier rreqIdentifier(rreq->getOriginatorAddr(), rreq->getRreqId());
     std::map<RREQIdentifier, simtime_t, RREQIdentifierCompare>::iterator checkRREQArrivalTime = rreqsArrivalTime.find(rreqIdentifier);
     if (checkRREQArrivalTime != rreqsArrivalTime.end() && simTime() - checkRREQArrivalTime->second <= pathDiscoveryTime) {
@@ -804,14 +791,10 @@ void AODVVANETRouting::handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& source
     // update or create
     rreqsArrivalTime[rreqIdentifier] = simTime();
 
-    // First, it first increments the hop count value in the RREQ by one, to
-    // account for the new hop through the intermediate node.
-
+    // First, it first increments the hop count value in the RREQ by one, to account for the new hop through the intermediate node.
     rreq->setHopCount(rreq->getHopCount() + 1);
 
-    // Then the node searches for a reverse route to the Originator IP Address (see
-    // section 6.2), using longest-prefix matching.
-
+    // Then the node searches for a reverse route to the Originator IP Address, using longest-prefix matching.
     IPv4Route *reverseRoute = routingTable->findBestMatchingRoute(rreq->getOriginatorAddr());
 
     // If need be, the route is created, or updated using the Originator Sequence Number from the
@@ -839,9 +822,59 @@ void AODVVANETRouting::handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& source
     //
     //   MinimalLifetime = (current time + 2*NET_TRAVERSAL_TIME - 2*HopCount*NODE_TRAVERSAL_TIME).
 
+    //TO DO: UPDATE FUNCTION TO AODVVANET RULES
+    //When a node receives RREQ Message
+    //(1) Extracts movement details and uses this information with its own to compute TWR & ExpirationTime
+    //(2) If Expiration Time is less than current, updates expiration time
+    //(3) Find and store link quality between two nodes
+    //(4) Attach new TWR & Expiration  time and own movement details two the RREQ message.
+    //    If node doesn't have route to destination flood neighbors with new RREQ message.
+
     unsigned int hopCount = rreq->getHopCount();
     simtime_t minimalLifeTime = simTime() + 2 * netTraversalTime - 2 * hopCount * nodeTraversalTime;
     simtime_t newLifeTime = std::max(simTime(), minimalLifeTime);
+
+    //   Whenever a RREQ message is received, the minimum expiration time is stored
+    IVANETMobility  *mod = check_and_cast<IVANETMobility *>(host->getSubmodule("mobility"));
+
+    Coord currentPosition = mod->getCurrentPosition();
+    Coord currentSpeed = mod->getCurrentSpeed();
+    Coord currentAcceleration = mod->getCurrentAcceleration();
+    Coord currentDirection = mod->getCurrentAngularPosition(); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
+
+    Coord lastPosition = rreq->getPosition();
+    Coord lastSpeed = rreq->getSpeed();
+    Coord lastAcceleration = rreq->getAcceleration();
+    Coord lastDirection = rreq->getDirection(); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
+
+    double range = 0;
+
+    //   expirationTime = (-(a*b+c*d)+sqrt((a*a+c*c)*R*R-(a*d-b*c)*(a*d-b*c)))/(a*a+c*c)
+    //          a = vi*(cos(vanglei)-vj(cos(vanglej)
+    //          b = xi - xj
+    //          c = vi*(sin(vanglei)-vj(sin(vanglej)
+    //          d = yi - yj
+    //          R is   line of site range
+
+    //virtual Coord getCurrentSpeed() {
+    //    Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad()));
+    //    return v * getSpeed();
+    //}
+
+    //virtual Coord getCurrentAngularPosition() {
+    //    Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad()));
+    //    return v;
+    //}
+
+    double a = lastSpeed.x - currentSpeed.x;
+    double b = lastSpeed.x/lastDirection.x - currentSpeed.x/currentSpeed.x;
+    double c = -lastSpeed.y + currentSpeed.y;
+    double d = lastSpeed.y/lastDirection.x - currentSpeed.y/currentSpeed.x;
+
+    double newExpirationTime = (-(a*b+c*d)+sqrt((a*a+c*c)*range*range-(a*d-b*c)*(a*d-b*c)))/(a*a+c*c);
+
+    double expirationTime =std::min(rreq->getExpirationTime(), newExpirationTime);
+
     int rreqSeqNum = rreq->getOriginatorSeqNum();
     if (!reverseRoute || reverseRoute->getSource() != this) {    // create
         // This reverse route will be needed if the node receives a RREP back to the

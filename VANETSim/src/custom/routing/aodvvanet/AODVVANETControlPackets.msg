@@ -74,7 +74,7 @@ class AODVVANETRREQ extends AODVVANETControlPacket
     Coord acceleration;
     Coord direction;
     double twr;
-    double expirationtime;
+    double expirationTime;
 }
 
 //

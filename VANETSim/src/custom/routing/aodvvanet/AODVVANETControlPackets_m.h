@@ -122,7 +122,7 @@ inline void doUnpacking(cCommBuffer *b, AODVVANETControlPacket& obj) {obj.parsim
  *     Coord acceleration;
  *     Coord direction;
  *     double twr;
- *     double expirationtime;
+ *     double expirationTime;
  * }
  * </pre>
  */
@@ -146,7 +146,7 @@ class AODVVANETRREQ : public ::AODVVANETControlPacket
     Coord acceleration_var;
     Coord direction_var;
     double twr_var;
-    double expirationtime_var;
+    double expirationTime_var;
 
   private:
     void copy(const AODVVANETRREQ& other);
@@ -205,8 +205,8 @@ class AODVVANETRREQ : public ::AODVVANETControlPacket
     virtual void setDirection(const Coord& direction);
     virtual double getTwr() const;
     virtual void setTwr(double twr);
-    virtual double getExpirationtime() const;
-    virtual void setExpirationtime(double expirationtime);
+    virtual double getExpirationTime() const;
+    virtual void setExpirationTime(double expirationTime);
 };
 
 inline void doPacking(cCommBuffer *b, AODVVANETRREQ& obj) {obj.parsimPack(b);}

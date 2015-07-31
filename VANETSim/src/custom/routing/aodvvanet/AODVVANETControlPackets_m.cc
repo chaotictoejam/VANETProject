@@ -520,7 +520,7 @@ AODVVANETRREQ::AODVVANETRREQ(const char *name) : ::AODVVANETControlPacket(name)
     this->destSeqNum_var = 0;
     this->originatorSeqNum_var = 0;
     this->twr_var = 0;
-    this->expirationtime_var = 0;
+    this->expirationTime_var = 0;
 }
 
 AODVVANETRREQ::AODVVANETRREQ(const AODVVANETRREQ& other) : ::AODVVANETControlPacket(other)
@@ -559,7 +559,7 @@ void AODVVANETRREQ::copy(const AODVVANETRREQ& other)
     this->acceleration_var = other.acceleration_var;
     this->direction_var = other.direction_var;
     this->twr_var = other.twr_var;
-    this->expirationtime_var = other.expirationtime_var;
+    this->expirationTime_var = other.expirationTime_var;
 }
 
 void AODVVANETRREQ::parsimPack(cCommBuffer *b)
@@ -582,7 +582,7 @@ void AODVVANETRREQ::parsimPack(cCommBuffer *b)
     doPacking(b,this->acceleration_var);
     doPacking(b,this->direction_var);
     doPacking(b,this->twr_var);
-    doPacking(b,this->expirationtime_var);
+    doPacking(b,this->expirationTime_var);
 }
 
 void AODVVANETRREQ::parsimUnpack(cCommBuffer *b)
@@ -605,7 +605,7 @@ void AODVVANETRREQ::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->acceleration_var);
     doUnpacking(b,this->direction_var);
     doUnpacking(b,this->twr_var);
-    doUnpacking(b,this->expirationtime_var);
+    doUnpacking(b,this->expirationTime_var);
 }
 
 unsigned int AODVVANETRREQ::getPacketType() const
@@ -778,14 +778,14 @@ void AODVVANETRREQ::setTwr(double twr)
     this->twr_var = twr;
 }
 
-double AODVVANETRREQ::getExpirationtime() const
+double AODVVANETRREQ::getExpirationTime() const
 {
-    return expirationtime_var;
+    return expirationTime_var;
 }
 
-void AODVVANETRREQ::setExpirationtime(double expirationtime)
+void AODVVANETRREQ::setExpirationTime(double expirationTime)
 {
-    this->expirationtime_var = expirationtime;
+    this->expirationTime_var = expirationTime;
 }
 
 class AODVVANETRREQDescriptor : public cClassDescriptor
@@ -895,7 +895,7 @@ const char *AODVVANETRREQDescriptor::getFieldName(void *object, int field) const
         "acceleration",
         "direction",
         "twr",
-        "expirationtime",
+        "expirationTime",
     };
     return (field>=0 && field<18) ? fieldNames[field] : NULL;
 }
@@ -921,7 +921,7 @@ int AODVVANETRREQDescriptor::findField(void *object, const char *fieldName) cons
     if (fieldName[0]=='a' && strcmp(fieldName, "acceleration")==0) return base+14;
     if (fieldName[0]=='d' && strcmp(fieldName, "direction")==0) return base+15;
     if (fieldName[0]=='t' && strcmp(fieldName, "twr")==0) return base+16;
-    if (fieldName[0]=='e' && strcmp(fieldName, "expirationtime")==0) return base+17;
+    if (fieldName[0]=='e' && strcmp(fieldName, "expirationTime")==0) return base+17;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1010,7 +1010,7 @@ std::string AODVVANETRREQDescriptor::getFieldAsString(void *object, int field, i
         case 14: {std::stringstream out; out << pp->getAcceleration(); return out.str();}
         case 15: {std::stringstream out; out << pp->getDirection(); return out.str();}
         case 16: return double2string(pp->getTwr());
-        case 17: return double2string(pp->getExpirationtime());
+        case 17: return double2string(pp->getExpirationTime());
         default: return "";
     }
 }
@@ -1036,7 +1036,7 @@ bool AODVVANETRREQDescriptor::setFieldAsString(void *object, int field, int i, c
         case 9: pp->setDestSeqNum(string2ulong(value)); return true;
         case 11: pp->setOriginatorSeqNum(string2ulong(value)); return true;
         case 16: pp->setTwr(string2double(value)); return true;
-        case 17: pp->setExpirationtime(string2double(value)); return true;
+        case 17: pp->setExpirationTime(string2double(value)); return true;
         default: return false;
     }
 }
