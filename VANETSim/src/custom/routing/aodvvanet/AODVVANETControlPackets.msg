@@ -93,7 +93,7 @@ class AODVVANETRREP extends AODVVANETControlPacket
     unsigned int originatorSeqNum;
     simtime_t lifeTime;
     double twr;
-    double expirationtime;
+    double expirationTime;
 }
 
 //

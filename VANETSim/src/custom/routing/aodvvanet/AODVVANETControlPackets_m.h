@@ -292,7 +292,7 @@ class AODVVANETRREP : public ::AODVVANETControlPacket
     virtual void setLifeTime(simtime_t lifeTime);
     virtual double getTwr() const;
     virtual void setTwr(double twr);
-    virtual double getExpirationtime() const;
+    virtual double getExpirationTime() const;
     virtual void setExpirationtime(double expirationtime);
 };
 

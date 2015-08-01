@@ -1273,7 +1273,7 @@ void AODVVANETRREP::setTwr(double twr)
     this->twr_var = twr;
 }
 
-double AODVVANETRREP::getExpirationtime() const
+double AODVVANETRREP::getExpirationTime() const
 {
     return expirationtime_var;
 }
@@ -1475,7 +1475,7 @@ std::string AODVVANETRREPDescriptor::getFieldAsString(void *object, int field, i
         case 8: return ulong2string(pp->getOriginatorSeqNum());
         case 9: return double2string(pp->getLifeTime());
         case 10: return double2string(pp->getTwr());
-        case 11: return double2string(pp->getExpirationtime());
+        case 11: return double2string(pp->getExpirationTime());
         default: return "";
     }
 }

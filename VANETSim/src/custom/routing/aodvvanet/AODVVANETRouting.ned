@@ -70,6 +70,12 @@ simple AODVVANETRouting
         int ttlIncrement = default(2); // specifies the value by which the TTL will be incremented each time a RREQ is retransmitted
         int ttlThreshold = default(7); // the maximum value of TTL over which NET_DIAMETER value will be used to broadcast any RREQ
         int localAddTTL = default(2); // it is used by the formula which calculates the initial TTL of the RREQ for a local repair
+        
+        double losRange = default(10); // line of site range.
+        double speedWeight = default(10); // speed weight factor
+        double accelerationWeight = default(10); // acceleration weight factor
+        double directionWeight = default(10); // direction weight factor
+        double linkQualityWeight = default(10); // link quality weight factor
 
         double myRouteTimeout @unit("s") = default(2 * activeRouteTimeout); // the value of the lifetime field that a destination node places in RREPs
         double deletePeriod @unit("s") = default(5 * max(activeRouteTimeout, helloInterval)); // the time after which an expired route is deleted

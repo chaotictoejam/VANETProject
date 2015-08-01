@@ -97,6 +97,13 @@ class AODVVANETRouting : public cSimpleModule, public ILifecycle, public INetfil
     cPar *jitterPar;
     cPar *periodicJitter;
 
+
+    double losRange; // line of site range.
+    double speedWeight; // speed weight factor
+    double accelerationWeight; // acceleration weight factor
+    double directionWeight; // direction weight factor
+    double linkQualityWeight; // link quality weight factor
+
     // the following parameters are calculated from the parameters defined above
     // see the NED file for more info
     simtime_t deletePeriod;
@@ -144,8 +151,8 @@ class AODVVANETRouting : public cSimpleModule, public ILifecycle, public INetfil
     void cancelRouteDiscovery(const IPv4Address& destAddr);
 
     /* Routing Table management */
-    void updateRoutingTable(IPv4Route *route, const IPv4Address& nextHop, unsigned int hopCount, bool hasValidDestNum, unsigned int destSeqNum, bool isActive, simtime_t lifeTime);
-    IPv4Route *createRoute(const IPv4Address& destAddr, const IPv4Address& nextHop, unsigned int hopCount, bool hasValidDestNum, unsigned int destSeqNum, bool isActive, simtime_t lifeTime);
+    void updateRoutingTable(IPv4Route *route, const IPv4Address& nextHop, unsigned int hopCount, bool hasValidDestNum, unsigned int destSeqNum, bool isActive, simtime_t lifeTime, double twr, double expirationTime);
+    IPv4Route *createRoute(const IPv4Address& destAddr, const IPv4Address& nextHop, unsigned int hopCount, bool hasValidDestNum, unsigned int destSeqNum, bool isActive, simtime_t lifeTime, double twr, double expirationTime);
     bool updateValidRouteLifeTime(const IPv4Address& destAddr, simtime_t lifetime);
     void scheduleExpungeRoutes();
     void expungeRoutes();
