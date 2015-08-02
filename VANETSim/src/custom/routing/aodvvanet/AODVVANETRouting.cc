@@ -76,7 +76,7 @@ void AODVVANETRouting::initialize(int stage)
         NodeStatus *nodeStatus = dynamic_cast<NodeStatus *>(host->getSubmodule("status"));
         isOperational = !nodeStatus || nodeStatus->getState() == NodeStatus::UP;
 
-        IPSocket socket(gate("ipOut"));
+        IPSocket socket(gate("to_ip"));
         socket.registerProtocol(IP_PROT_MANET);
         networkProtocol->registerHook(0, this);
         nb = NotificationBoardAccess().get();
@@ -424,7 +424,7 @@ AODVVANETRREQ *AODVVANETRouting::createRREQ(const IPv4Address& destAddr)
     rreqPacket->setTwr(0);
 
     // The Expiration time is initialized to a large number
-    rreqPacket->setExpirationTime(100000);
+    rreqPacket->setExpirationTime(10000);
 
     // Before broadcasting the RREQ, the originating node buffers the RREQ
     // ID and the Originator IP address (its own address) of the RREQ for
@@ -545,6 +545,8 @@ AODVVANETRREP *AODVVANETRouting::createGratuitousRREP(AODVVANETRREQ *rreq, IPv4R
     grrep->setDestSeqNum(rreq->getOriginatorSeqNum());
     grrep->setOriginatorAddr(rreq->getDestAddr());
     grrep->setLifeTime(routeData->getLifeTime());
+    grrep->setTwr(routeData->getTWR());
+    grrep->setExpirationTime(routeData->getExpirationTime());
 
     return grrep;
 }
@@ -729,6 +731,8 @@ void AODVVANETRouting::updateRoutingTable(IPv4Route *route, const IPv4Address& n
     routingData->setDestSeqNum(destSeqNum);
     routingData->setIsActive(isActive);
     routingData->setHasValidDestNum(hasValidDestNum);
+    routingData->setTWR(twr);
+    routingData->setExpirationTime(expirationTime);
 
     EV_DETAIL << "Route updated: " << route << endl;
 
@@ -761,9 +765,9 @@ void AODVVANETRouting::sendAODVPacket(AODVVANETControlPacket *packet, const IPv4
         lastBroadcastTime = simTime();
 
     if (delay == 0)
-        send(udpPacket, "ipOut");
+        send(udpPacket, "to_ip");
     else
-        sendDelayed(udpPacket, delay, "ipOut");
+        sendDelayed(udpPacket, delay, "to_ip");
 }
 
 void AODVVANETRouting::handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& sourceAddr, unsigned int timeToLive)
@@ -1042,6 +1046,8 @@ IPv4Route *AODVVANETRouting::createRoute(const IPv4Address& destAddr, const IPv4
 
     newProtocolData->setLifeTime(lifeTime);
     newProtocolData->setDestSeqNum(destSeqNum);
+    newProtocolData->setTWR(twr);
+    newProtocolData->setExpirationTime(expirationTime);
 
     InterfaceEntry *ifEntry = interfaceTable->getInterfaceByName("wlan0");    // TODO: IMPLEMENT: multiple interfaces
     if (ifEntry)

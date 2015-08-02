@@ -19,7 +19,7 @@ module BITCARCar
 {
     parameters:
         @node();
-        string mobilityType = default("bitcarTraCIMobility");
+        string mobilityType = default("BITCAR");
         networkLayer.configurator.networkConfiguratorModule = "";
         //int numHosts;
     gates:

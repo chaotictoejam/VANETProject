@@ -53,8 +53,11 @@ class MovingVANETMobilityBase : public VANETMobilityBase
     /** @brief The last speed that was reported at lastUpdate. */
     Coord lastSpeed;
 
-    /** @brief The last speed that was reported at lastUpdate. */
-    Coord lastAccelaration;
+    /** @brief The last accelaration that was reported at lastUpdate. */
+    Coord lastAcceleration;
+
+    /** @brief The last AngularPosition that was reported at lastUpdate. */
+    Coord lastAngularPosition;
 
     /** @brief The simulation time when the mobility state was last updated. */
     simtime_t lastUpdate;
@@ -83,7 +86,7 @@ class MovingVANETMobilityBase : public VANETMobilityBase
 
     /** @brief Moves according to the mobility model to the current simulation time.
      *
-     * Subclasses must override and update lastPosition, lastSpeed, lastAccelaration, lastUpdate, nextChange
+     * Subclasses must override and update lastPosition, lastSpeed, lastAcceleration, lastUpdate, nextChange
      * and other state according to the mobility model.
      */
     virtual void move() = 0;
@@ -96,7 +99,9 @@ class MovingVANETMobilityBase : public VANETMobilityBase
     virtual Coord getCurrentSpeed();
 
     /** @brief Returns the current speed at the current simulation time. */
-    virtual Coord getCurrentAccelartion();
+    virtual Coord getCurrentAcceleration();
+
+    virtual Coord getCurrentAngularPosition();
 };
 
 #endif

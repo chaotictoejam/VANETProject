@@ -231,7 +231,7 @@ inline void doUnpacking(cCommBuffer *b, AODVVANETRREQ& obj) {obj.parsimUnpack(b)
  *     unsigned int originatorSeqNum;
  *     simtime_t lifeTime;
  *     double twr;
- *     double expirationtime;
+ *     double expirationTime;
  * }
  * </pre>
  */
@@ -249,7 +249,7 @@ class AODVVANETRREP : public ::AODVVANETControlPacket
     unsigned int originatorSeqNum_var;
     simtime_t lifeTime_var;
     double twr_var;
-    double expirationtime_var;
+    double expirationTime_var;
 
   private:
     void copy(const AODVVANETRREP& other);
@@ -293,7 +293,7 @@ class AODVVANETRREP : public ::AODVVANETControlPacket
     virtual double getTwr() const;
     virtual void setTwr(double twr);
     virtual double getExpirationTime() const;
-    virtual void setExpirationtime(double expirationtime);
+    virtual void setExpirationTime(double expirationTime);
 };
 
 inline void doPacking(cCommBuffer *b, AODVVANETRREP& obj) {obj.parsimPack(b);}

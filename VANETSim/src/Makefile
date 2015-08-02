@@ -123,6 +123,7 @@ OBJS = \
     $O/custom/vanetrouting/mobility/contract/IVANETMobility.o \
     $O/custom/vanetrouting/mobility/single/aodvTraCIMobility.o \
     $O/custom/vanetrouting/mobility/single/bitcarTraCIMobility.o \
+    $O/custom/vanetrouting/mobility/single/LinearVANETMobility.o \
     $O/custom/vanetrouting/mobility/single/rbvtrTraCIMobility.o \
     $O/custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.o \
     $O/custom/vanetrouting/world/traci/aodvTraCIScenarioManager.o \
@@ -719,6 +720,16 @@ $O/custom/vanetrouting/mobility/common/VANETMobilityBase.o: custom/vanetrouting/
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
 $O/custom/vanetrouting/mobility/contract/IVANETMobility.o: custom/vanetrouting/mobility/contract/IVANETMobility.cc \
 	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
+	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
+$O/custom/vanetrouting/mobility/single/LinearVANETMobility.o: custom/vanetrouting/mobility/single/LinearVANETMobility.cc \
+	custom/vanetrouting/base/VanetModuleAccess.h \
+	custom/vanetrouting/mobility/common/MovingVANETMobilityBase.h \
+	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
+	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+	custom/vanetrouting/mobility/single/LinearVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \

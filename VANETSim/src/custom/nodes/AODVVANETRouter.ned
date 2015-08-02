@@ -49,6 +49,6 @@ module AODVVANETRouter extends WirelessHost
             @display("p=558,307");
         }
     connections:
-        aodvvanet.ipOut --> networkLayer.transportIn++;
-        aodvvanet.ipIn <-- networkLayer.transportOut++;
+        aodvvanet.to_ip --> networkLayer.transportIn++;
+        aodvvanet.from_ip <-- networkLayer.transportOut++;
 }

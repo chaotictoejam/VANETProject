@@ -1093,7 +1093,7 @@ AODVVANETRREP::AODVVANETRREP(const char *name) : ::AODVVANETControlPacket(name)
     this->originatorSeqNum_var = 0;
     this->lifeTime_var = 0;
     this->twr_var = 0;
-    this->expirationtime_var = 0;
+    this->expirationTime_var = 0;
 }
 
 AODVVANETRREP::AODVVANETRREP(const AODVVANETRREP& other) : ::AODVVANETControlPacket(other)
@@ -1126,7 +1126,7 @@ void AODVVANETRREP::copy(const AODVVANETRREP& other)
     this->originatorSeqNum_var = other.originatorSeqNum_var;
     this->lifeTime_var = other.lifeTime_var;
     this->twr_var = other.twr_var;
-    this->expirationtime_var = other.expirationtime_var;
+    this->expirationTime_var = other.expirationTime_var;
 }
 
 void AODVVANETRREP::parsimPack(cCommBuffer *b)
@@ -1143,7 +1143,7 @@ void AODVVANETRREP::parsimPack(cCommBuffer *b)
     doPacking(b,this->originatorSeqNum_var);
     doPacking(b,this->lifeTime_var);
     doPacking(b,this->twr_var);
-    doPacking(b,this->expirationtime_var);
+    doPacking(b,this->expirationTime_var);
 }
 
 void AODVVANETRREP::parsimUnpack(cCommBuffer *b)
@@ -1160,7 +1160,7 @@ void AODVVANETRREP::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->originatorSeqNum_var);
     doUnpacking(b,this->lifeTime_var);
     doUnpacking(b,this->twr_var);
-    doUnpacking(b,this->expirationtime_var);
+    doUnpacking(b,this->expirationTime_var);
 }
 
 unsigned int AODVVANETRREP::getPacketType() const
@@ -1275,12 +1275,12 @@ void AODVVANETRREP::setTwr(double twr)
 
 double AODVVANETRREP::getExpirationTime() const
 {
-    return expirationtime_var;
+    return expirationTime_var;
 }
 
-void AODVVANETRREP::setExpirationtime(double expirationtime)
+void AODVVANETRREP::setExpirationTime(double expirationTime)
 {
-    this->expirationtime_var = expirationtime;
+    this->expirationTime_var = expirationTime;
 }
 
 class AODVVANETRREPDescriptor : public cClassDescriptor
@@ -1378,7 +1378,7 @@ const char *AODVVANETRREPDescriptor::getFieldName(void *object, int field) const
         "originatorSeqNum",
         "lifeTime",
         "twr",
-        "expirationtime",
+        "expirationTime",
     };
     return (field>=0 && field<12) ? fieldNames[field] : NULL;
 }
@@ -1398,7 +1398,7 @@ int AODVVANETRREPDescriptor::findField(void *object, const char *fieldName) cons
     if (fieldName[0]=='o' && strcmp(fieldName, "originatorSeqNum")==0) return base+8;
     if (fieldName[0]=='l' && strcmp(fieldName, "lifeTime")==0) return base+9;
     if (fieldName[0]=='t' && strcmp(fieldName, "twr")==0) return base+10;
-    if (fieldName[0]=='e' && strcmp(fieldName, "expirationtime")==0) return base+11;
+    if (fieldName[0]=='e' && strcmp(fieldName, "expirationTime")==0) return base+11;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1499,7 +1499,7 @@ bool AODVVANETRREPDescriptor::setFieldAsString(void *object, int field, int i, c
         case 8: pp->setOriginatorSeqNum(string2ulong(value)); return true;
         case 9: pp->setLifeTime(string2double(value)); return true;
         case 10: pp->setTwr(string2double(value)); return true;
-        case 11: pp->setExpirationtime(string2double(value)); return true;
+        case 11: pp->setExpirationTime(string2double(value)); return true;
         default: return false;
     }
 }

@@ -30,7 +30,8 @@ MovingVANETMobilityBase::MovingVANETMobilityBase()
     updateInterval = 0;
     stationary = false;
     lastSpeed = Coord::ZERO;
-    lastAccelaration = Coord::ZERO;
+    lastAcceleration = Coord::ZERO;
+    lastAngularPosition = Coord::ZERO;
     lastUpdate = 0;
     nextChange = -1;
 }
@@ -104,8 +105,14 @@ Coord MovingVANETMobilityBase::getCurrentSpeed()
     return lastSpeed;
 }
 
-Coord MovingVANETMobilityBase::getCurrentAccelartion()
+Coord MovingVANETMobilityBase::getCurrentAcceleration()
 {
     moveAndUpdate();
-    return lastAccelaration;
+    return lastAcceleration;
+}
+
+Coord MovingVANETMobilityBase::getCurrentAngularPosition()
+{
+    moveAndUpdate();
+    return lastAngularPosition;
 }

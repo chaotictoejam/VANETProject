@@ -9,7 +9,7 @@ import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
-import vanetsim.custom.nodes.AODVVANETRouter;
+import vanetsim.custom.vanetrouting.networklayer.IVanetRouting;
 import inet.nodes.inet.NetworkLayer;
 import inet.transport.udp.UDP;
 import inet.world.radio.ChannelControl;
@@ -21,6 +21,7 @@ module AODVVANETCar
         @node();
         string mobilityType = default("aodvTraCIMobility");
         networkLayer.configurator.networkConfiguratorModule = "";
+        string routingProtocol @enum("AODVVANET","RBVTR","BITCAR") = default("");
         //int numHosts;
     gates:
         input radioIn @directIn;
@@ -67,7 +68,7 @@ module AODVVANETCar
             parameters:
                 @display("p=304,461;q=queue");
         }
-        manetrouting: AODVVANETRouter {
+        vanetrouting:  <routingProtocol> like IVanetRouting if routingProtocol != "" {
             @display("p=522,307");
         }
         configurator: IPv4NetworkConfigurator {
@@ -94,4 +95,7 @@ module AODVVANETCar
         wlan.upperLayerIn <-- networkLayer.ifOut[0];
 
         radioIn --> wlan.radioIn;
+        
+        networkLayer.transportOut++ --> vanetrouting.from_ip if routingProtocol != "";
+        networkLayer.transportIn++ <-- vanetrouting.to_ip if routingProtocol != "";
 }
