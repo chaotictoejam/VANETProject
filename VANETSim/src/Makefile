@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -Xcustom/routing/gpsr -Xcustom/routing/rbvtp -Xveins -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/ipv4 -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/ieee802154/contract -IF:/GitHub/inetmanet-2.0/src -IF:/GitHub/inetmanet-2.0/src/util/headerserializers -IF:/GitHub/inetmanet-2.0/src/networklayer/common -IF:/GitHub/inetmanet-2.0/src/battery/models -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/dsr -IF:/GitHub/inetmanet-2.0/src/linklayer/radio/propagation -IF:/GitHub/inetmanet-2.0/src/transport/tcp_common -IF:/GitHub/inetmanet-2.0/src/networklayer/contract -IF:/GitHub/inetmanet-2.0/src/wpan/networklayer/contract -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/ipv6 -IF:/GitHub/inetmanet-2.0/src/linklayer/common -IF:/GitHub/inetmanet-2.0/src/world/obstacles -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/radio -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/base -IF:/GitHub/inetmanet-2.0/src/networklayer/autorouting/ipv4 -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/tcp -IF:/GitHub/inetmanet-2.0/src/networklayer/arp -IF:/GitHub/inetmanet-2.0/src/transport/sctp -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/sctp -IF:/GitHub/inetmanet-2.0/src/base -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv6tunneling -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/bmac -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/ieee802154/mac -IF:/GitHub/inetmanet-2.0/src/linklayer/contract -IF:/GitHub/inetmanet-2.0/src/world/radio -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/mac -IF:/GitHub/inetmanet-2.0/src/transport/udp -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv6 -IF:/GitHub/inetmanet-2.0/src/applications/pingapp -IF:/GitHub/inetmanet-2.0/src/linklayer/radio -IF:/GitHub/inetmanet-2.0/src/transport/contract -IF:/GitHub/inetmanet-2.0/src/networklayer/icmpv6 -IF:/GitHub/inetmanet-2.0/src/mobility/contract -IF:/GitHub/inetmanet-2.0/src/networklayer/routing/aodv -IF:/GitHub/inetmanet-2.0/src/world/powercontrol -IF:/GitHub/inetmanet-2.0/src/linklayer/ethernet -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/udp -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211mesh/locator -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/mgmt -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv4 -IF:/GitHub/inetmanet-2.0/src/wpan/phyLayer/ieee802154 -IF:/GitHub/inetmanet-2.0/src/mobility/common -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/radio/errormodel -IF:/GitHub/inetmanet-2.0/src/status -IF:/GitHub/inetmanet-2.0/src/util -IF:/GitHub/inetmanet-2.0/src/networklayer/xmipv6 -LF:/GitHub/inetmanet-2.0/out/$$\(CONFIGNAME\)/src -linetmanet -DINET_IMPORT -KINETMANET_2_0_PROJ=F:/GitHub/inetmanet-2.0
+#  opp_makemake -f --deep -Xrouting/gpsr -Xveins -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/ipv4 -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/ieee802154/contract -IF:/GitHub/inetmanet-2.0/src -IF:/GitHub/inetmanet-2.0/src/util/headerserializers -IF:/GitHub/inetmanet-2.0/src/networklayer/common -IF:/GitHub/inetmanet-2.0/src/battery/models -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/dsr -IF:/GitHub/inetmanet-2.0/src/linklayer/radio/propagation -IF:/GitHub/inetmanet-2.0/src/networklayer/contract -IF:/GitHub/inetmanet-2.0/src/transport/tcp_common -IF:/GitHub/inetmanet-2.0/src/wpan/networklayer/contract -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/ipv6 -IF:/GitHub/inetmanet-2.0/src/linklayer/common -IF:/GitHub/inetmanet-2.0/src/world/obstacles -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/radio -IF:/GitHub/inetmanet-2.0/src/networklayer/manetrouting/base -IF:/GitHub/inetmanet-2.0/src/networklayer/autorouting/ipv4 -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/tcp -IF:/GitHub/inetmanet-2.0/src/networklayer/arp -IF:/GitHub/inetmanet-2.0/src/transport/sctp -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/sctp -IF:/GitHub/inetmanet-2.0/src/base -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv6tunneling -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/bmac -IF:/GitHub/inetmanet-2.0/src/wpan/linklayer/ieee802154/mac -IF:/GitHub/inetmanet-2.0/src/linklayer/contract -IF:/GitHub/inetmanet-2.0/src/world/radio -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/mac -IF:/GitHub/inetmanet-2.0/src/transport/udp -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv6 -IF:/GitHub/inetmanet-2.0/src/applications/pingapp -IF:/GitHub/inetmanet-2.0/src/linklayer/radio -IF:/GitHub/inetmanet-2.0/src/transport/contract -IF:/GitHub/inetmanet-2.0/src/networklayer/icmpv6 -IF:/GitHub/inetmanet-2.0/src/mobility/contract -IF:/GitHub/inetmanet-2.0/src/networklayer/routing/aodv -IF:/GitHub/inetmanet-2.0/src/world/powercontrol -IF:/GitHub/inetmanet-2.0/src/linklayer/ethernet -IF:/GitHub/inetmanet-2.0/src/util/headerserializers/udp -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211mesh/locator -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/mgmt -IF:/GitHub/inetmanet-2.0/src/networklayer/ipv4 -IF:/GitHub/inetmanet-2.0/src/wpan/phyLayer/ieee802154 -IF:/GitHub/inetmanet-2.0/src/mobility/common -IF:/GitHub/inetmanet-2.0/src/linklayer/ieee80211/radio/errormodel -IF:/GitHub/inetmanet-2.0/src/util -IF:/GitHub/inetmanet-2.0/src/status -IF:/GitHub/inetmanet-2.0/src/networklayer/xmipv6 -LF:/GitHub/inetmanet-2.0/out/$$\(CONFIGNAME\)/src -linetmanet -DINET_IMPORT -KINETMANET_2_0_PROJ=F:/GitHub/inetmanet-2.0
 #
 
 # Name of target to be created (-o option)
@@ -23,8 +23,8 @@ INCLUDE_PATH = \
     -I$(INETMANET_2_0_PROJ)/src/battery/models \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/dsr \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/radio/propagation \
-    -I$(INETMANET_2_0_PROJ)/src/transport/tcp_common \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/contract \
+    -I$(INETMANET_2_0_PROJ)/src/transport/tcp_common \
     -I$(INETMANET_2_0_PROJ)/src/wpan/networklayer/contract \
     -I$(INETMANET_2_0_PROJ)/src/util/headerserializers/ipv6 \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/common \
@@ -60,31 +60,30 @@ INCLUDE_PATH = \
     -I$(INETMANET_2_0_PROJ)/src/wpan/phyLayer/ieee802154 \
     -I$(INETMANET_2_0_PROJ)/src/mobility/common \
     -I$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211/radio/errormodel \
-    -I$(INETMANET_2_0_PROJ)/src/status \
     -I$(INETMANET_2_0_PROJ)/src/util \
+    -I$(INETMANET_2_0_PROJ)/src/status \
     -I$(INETMANET_2_0_PROJ)/src/networklayer/xmipv6 \
     -I. \
-    -Icustom \
-    -Icustom/nodes \
-    -Icustom/routing \
-    -Icustom/routing/aodvvanet \
-    -Icustom/routing/bitcar \
-    -Icustom/routing/rbvtr \
-    -Icustom/vanetrouting \
-    -Icustom/vanetrouting/applications \
-    -Icustom/vanetrouting/applications/traci \
-    -Icustom/vanetrouting/base \
-    -Icustom/vanetrouting/mobility \
-    -Icustom/vanetrouting/mobility/common \
-    -Icustom/vanetrouting/mobility/contract \
-    -Icustom/vanetrouting/mobility/group \
-    -Icustom/vanetrouting/mobility/single \
-    -Icustom/vanetrouting/mobility/static \
-    -Icustom/vanetrouting/networklayer \
-    -Icustom/vanetrouting/util \
-    -Icustom/vanetrouting/world \
-    -Icustom/vanetrouting/world/traci \
-    -Iinetmanet
+    -Inodes \
+    -Irouting \
+    -Irouting/aodvvanet \
+    -Irouting/bitcar \
+    -Irouting/rbvtp \
+    -Irouting/rbvtr \
+    -Ivanetrouting \
+    -Ivanetrouting/applications \
+    -Ivanetrouting/applications/traci \
+    -Ivanetrouting/base \
+    -Ivanetrouting/mobility \
+    -Ivanetrouting/mobility/common \
+    -Ivanetrouting/mobility/contract \
+    -Ivanetrouting/mobility/group \
+    -Ivanetrouting/mobility/single \
+    -Ivanetrouting/mobility/static \
+    -Ivanetrouting/networklayer \
+    -Ivanetrouting/util \
+    -Ivanetrouting/world \
+    -Ivanetrouting/world/traci
 
 # Additional object and library files to link with
 EXTRA_OBJS =
@@ -100,56 +99,56 @@ O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
 OBJS = \
-    $O/custom/routing/aodvvanet/AODVVANETRouteData.o \
-    $O/custom/routing/aodvvanet/AODVVANETRouting.o \
-    $O/custom/routing/bitcar/BITCARRouteData.o \
-    $O/custom/routing/bitcar/BITCARRouting.o \
-    $O/custom/routing/rbvtr/RBVTRRouteData.o \
-    $O/custom/routing/rbvtr/RBVTRRouting.o \
-    $O/custom/vanetrouting/applications/traci/aodvTraCIDemo.o \
-    $O/custom/vanetrouting/applications/traci/aodvTraCITestApp.o \
-    $O/custom/vanetrouting/applications/traci/bitcarTraCIDemo.o \
-    $O/custom/vanetrouting/applications/traci/bitcarTraCITestApp.o \
-    $O/custom/vanetrouting/applications/traci/rbvtrTraCIDemo.o \
-    $O/custom/vanetrouting/applications/traci/rbvtrTraCITestApp.o \
-    $O/custom/vanetrouting/base/VanetAddress.o \
-    $O/custom/vanetrouting/base/VanetModuleAccess.o \
-    $O/custom/vanetrouting/base/VanetNetfilterHook.o \
-    $O/custom/vanetrouting/base/VanetRoutingBase.o \
-    $O/custom/vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.o \
-    $O/custom/vanetrouting/mobility/common/MovingVANETMobilityBase.o \
-    $O/custom/vanetrouting/mobility/common/VANETMobilityAccess.o \
-    $O/custom/vanetrouting/mobility/common/VANETMobilityBase.o \
-    $O/custom/vanetrouting/mobility/contract/IVANETMobility.o \
-    $O/custom/vanetrouting/mobility/single/aodvTraCIMobility.o \
-    $O/custom/vanetrouting/mobility/single/bitcarTraCIMobility.o \
-    $O/custom/vanetrouting/mobility/single/LinearVANETMobility.o \
-    $O/custom/vanetrouting/mobility/single/rbvtrTraCIMobility.o \
-    $O/custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.o \
-    $O/custom/vanetrouting/world/traci/aodvTraCIScenarioManager.o \
-    $O/custom/vanetrouting/world/traci/aodvTraCIScenarioManagerLaunchd.o \
-    $O/custom/vanetrouting/world/traci/bitcarTraCIScenarioManager.o \
-    $O/custom/vanetrouting/world/traci/bitcarTraCIScenarioManagerLaunchd.o \
-    $O/custom/vanetrouting/world/traci/rbvtrTraCIScenarioManager.o \
-    $O/custom/vanetrouting/world/traci/rbvtrTraCIScenarioManagerLaunchd.o \
-    $O/custom/vanetrouting/world/traci/vanetTraCIColor.o \
-    $O/custom/routing/aodvvanet/AODVVANETControlPackets_m.o \
-    $O/custom/routing/bitcar/BITCARControlPackets_m.o \
-    $O/custom/routing/rbvtr/RBVTRControlPackets_m.o \
-    $O/custom/vanetrouting/base/ControlVanetRouting_m.o \
-    $O/custom/vanetrouting/base/Vanet_ControlInfoBreakLink_m.o \
-    $O/custom/vanetrouting/base/Vanet_LocatorNotificationInfo_m.o \
-    $O/custom/vanetrouting/base/Vanet_MeshControlInfo_m.o
+    $O/routing/aodvvanet/AODVVANETRouteData.o \
+    $O/routing/aodvvanet/AODVVANETRouting.o \
+    $O/routing/bitcar/BITCARRouteData.o \
+    $O/routing/bitcar/BITCARRouting.o \
+    $O/routing/rbvtr/RBVTRRouteData.o \
+    $O/routing/rbvtr/RBVTRRouting.o \
+    $O/vanetrouting/applications/traci/aodvTraCI.o \
+    $O/vanetrouting/applications/traci/aodvTraCITestApp.o \
+    $O/vanetrouting/applications/traci/bitcarTraCIDemo.o \
+    $O/vanetrouting/applications/traci/bitcarTraCITestApp.o \
+    $O/vanetrouting/applications/traci/rbvtrTraCIDemo.o \
+    $O/vanetrouting/applications/traci/rbvtrTraCITestApp.o \
+    $O/vanetrouting/base/VanetAddress.o \
+    $O/vanetrouting/base/VanetModuleAccess.o \
+    $O/vanetrouting/base/VanetNetfilterHook.o \
+    $O/vanetrouting/base/VanetRoutingBase.o \
+    $O/vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.o \
+    $O/vanetrouting/mobility/common/MovingVANETMobilityBase.o \
+    $O/vanetrouting/mobility/common/VANETMobilityAccess.o \
+    $O/vanetrouting/mobility/common/VANETMobilityBase.o \
+    $O/vanetrouting/mobility/contract/IVANETMobility.o \
+    $O/vanetrouting/mobility/single/aodvTraCIMobility.o \
+    $O/vanetrouting/mobility/single/bitcarTraCIMobility.o \
+    $O/vanetrouting/mobility/single/LinearVANETMobility.o \
+    $O/vanetrouting/mobility/single/rbvtrTraCIMobility.o \
+    $O/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.o \
+    $O/vanetrouting/world/traci/aodvTraCIScenarioManager.o \
+    $O/vanetrouting/world/traci/aodvTraCIScenarioManagerLaunchd.o \
+    $O/vanetrouting/world/traci/bitcarTraCIScenarioManager.o \
+    $O/vanetrouting/world/traci/bitcarTraCIScenarioManagerLaunchd.o \
+    $O/vanetrouting/world/traci/rbvtrTraCIScenarioManager.o \
+    $O/vanetrouting/world/traci/rbvtrTraCIScenarioManagerLaunchd.o \
+    $O/vanetrouting/world/traci/vanetTraCIColor.o \
+    $O/routing/aodvvanet/AODVVANETControlPackets_m.o \
+    $O/routing/bitcar/BITCARControlPackets_m.o \
+    $O/routing/rbvtr/RBVTRControlPackets_m.o \
+    $O/vanetrouting/base/ControlVanetRouting_m.o \
+    $O/vanetrouting/base/Vanet_ControlInfoBreakLink_m.o \
+    $O/vanetrouting/base/Vanet_LocatorNotificationInfo_m.o \
+    $O/vanetrouting/base/Vanet_MeshControlInfo_m.o
 
 # Message files
 MSGFILES = \
-    custom/routing/aodvvanet/AODVVANETControlPackets.msg \
-    custom/routing/bitcar/BITCARControlPackets.msg \
-    custom/routing/rbvtr/RBVTRControlPackets.msg \
-    custom/vanetrouting/base/ControlVanetRouting.msg \
-    custom/vanetrouting/base/Vanet_ControlInfoBreakLink.msg \
-    custom/vanetrouting/base/Vanet_LocatorNotificationInfo.msg \
-    custom/vanetrouting/base/Vanet_MeshControlInfo.msg
+    routing/aodvvanet/AODVVANETControlPackets.msg \
+    routing/bitcar/BITCARControlPackets.msg \
+    routing/rbvtr/RBVTRControlPackets.msg \
+    vanetrouting/base/ControlVanetRouting.msg \
+    vanetrouting/base/Vanet_ControlInfoBreakLink.msg \
+    vanetrouting/base/Vanet_LocatorNotificationInfo.msg \
+    vanetrouting/base/Vanet_MeshControlInfo.msg
 
 # Other makefile variables (-K)
 INETMANET_2_0_PROJ=F:/GitHub/inetmanet-2.0
@@ -226,56 +225,55 @@ clean:
 	$(Q)-rm -rf $O
 	$(Q)-rm -f VANETSim VANETSim.exe libVANETSim.so libVANETSim.a libVANETSim.dll libVANETSim.dylib
 	$(Q)-rm -f ./*_m.cc ./*_m.h
-	$(Q)-rm -f custom/*_m.cc custom/*_m.h
-	$(Q)-rm -f custom/nodes/*_m.cc custom/nodes/*_m.h
-	$(Q)-rm -f custom/routing/*_m.cc custom/routing/*_m.h
-	$(Q)-rm -f custom/routing/aodvvanet/*_m.cc custom/routing/aodvvanet/*_m.h
-	$(Q)-rm -f custom/routing/bitcar/*_m.cc custom/routing/bitcar/*_m.h
-	$(Q)-rm -f custom/routing/rbvtr/*_m.cc custom/routing/rbvtr/*_m.h
-	$(Q)-rm -f custom/vanetrouting/*_m.cc custom/vanetrouting/*_m.h
-	$(Q)-rm -f custom/vanetrouting/applications/*_m.cc custom/vanetrouting/applications/*_m.h
-	$(Q)-rm -f custom/vanetrouting/applications/traci/*_m.cc custom/vanetrouting/applications/traci/*_m.h
-	$(Q)-rm -f custom/vanetrouting/base/*_m.cc custom/vanetrouting/base/*_m.h
-	$(Q)-rm -f custom/vanetrouting/mobility/*_m.cc custom/vanetrouting/mobility/*_m.h
-	$(Q)-rm -f custom/vanetrouting/mobility/common/*_m.cc custom/vanetrouting/mobility/common/*_m.h
-	$(Q)-rm -f custom/vanetrouting/mobility/contract/*_m.cc custom/vanetrouting/mobility/contract/*_m.h
-	$(Q)-rm -f custom/vanetrouting/mobility/group/*_m.cc custom/vanetrouting/mobility/group/*_m.h
-	$(Q)-rm -f custom/vanetrouting/mobility/single/*_m.cc custom/vanetrouting/mobility/single/*_m.h
-	$(Q)-rm -f custom/vanetrouting/mobility/static/*_m.cc custom/vanetrouting/mobility/static/*_m.h
-	$(Q)-rm -f custom/vanetrouting/networklayer/*_m.cc custom/vanetrouting/networklayer/*_m.h
-	$(Q)-rm -f custom/vanetrouting/util/*_m.cc custom/vanetrouting/util/*_m.h
-	$(Q)-rm -f custom/vanetrouting/world/*_m.cc custom/vanetrouting/world/*_m.h
-	$(Q)-rm -f custom/vanetrouting/world/traci/*_m.cc custom/vanetrouting/world/traci/*_m.h
-	$(Q)-rm -f inetmanet/*_m.cc inetmanet/*_m.h
+	$(Q)-rm -f nodes/*_m.cc nodes/*_m.h
+	$(Q)-rm -f routing/*_m.cc routing/*_m.h
+	$(Q)-rm -f routing/aodvvanet/*_m.cc routing/aodvvanet/*_m.h
+	$(Q)-rm -f routing/bitcar/*_m.cc routing/bitcar/*_m.h
+	$(Q)-rm -f routing/rbvtp/*_m.cc routing/rbvtp/*_m.h
+	$(Q)-rm -f routing/rbvtr/*_m.cc routing/rbvtr/*_m.h
+	$(Q)-rm -f vanetrouting/*_m.cc vanetrouting/*_m.h
+	$(Q)-rm -f vanetrouting/applications/*_m.cc vanetrouting/applications/*_m.h
+	$(Q)-rm -f vanetrouting/applications/traci/*_m.cc vanetrouting/applications/traci/*_m.h
+	$(Q)-rm -f vanetrouting/base/*_m.cc vanetrouting/base/*_m.h
+	$(Q)-rm -f vanetrouting/mobility/*_m.cc vanetrouting/mobility/*_m.h
+	$(Q)-rm -f vanetrouting/mobility/common/*_m.cc vanetrouting/mobility/common/*_m.h
+	$(Q)-rm -f vanetrouting/mobility/contract/*_m.cc vanetrouting/mobility/contract/*_m.h
+	$(Q)-rm -f vanetrouting/mobility/group/*_m.cc vanetrouting/mobility/group/*_m.h
+	$(Q)-rm -f vanetrouting/mobility/single/*_m.cc vanetrouting/mobility/single/*_m.h
+	$(Q)-rm -f vanetrouting/mobility/static/*_m.cc vanetrouting/mobility/static/*_m.h
+	$(Q)-rm -f vanetrouting/networklayer/*_m.cc vanetrouting/networklayer/*_m.h
+	$(Q)-rm -f vanetrouting/util/*_m.cc vanetrouting/util/*_m.h
+	$(Q)-rm -f vanetrouting/world/*_m.cc vanetrouting/world/*_m.h
+	$(Q)-rm -f vanetrouting/world/traci/*_m.cc vanetrouting/world/traci/*_m.h
 
 cleanall: clean
 	$(Q)-rm -rf $(PROJECT_OUTPUT_DIR)
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc custom/*.cc custom/nodes/*.cc custom/routing/*.cc custom/routing/aodvvanet/*.cc custom/routing/bitcar/*.cc custom/routing/rbvtr/*.cc custom/vanetrouting/*.cc custom/vanetrouting/applications/*.cc custom/vanetrouting/applications/traci/*.cc custom/vanetrouting/base/*.cc custom/vanetrouting/mobility/*.cc custom/vanetrouting/mobility/common/*.cc custom/vanetrouting/mobility/contract/*.cc custom/vanetrouting/mobility/group/*.cc custom/vanetrouting/mobility/single/*.cc custom/vanetrouting/mobility/static/*.cc custom/vanetrouting/networklayer/*.cc custom/vanetrouting/util/*.cc custom/vanetrouting/world/*.cc custom/vanetrouting/world/traci/*.cc inetmanet/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc nodes/*.cc routing/*.cc routing/aodvvanet/*.cc routing/bitcar/*.cc routing/rbvtp/*.cc routing/rbvtr/*.cc vanetrouting/*.cc vanetrouting/applications/*.cc vanetrouting/applications/traci/*.cc vanetrouting/base/*.cc vanetrouting/mobility/*.cc vanetrouting/mobility/common/*.cc vanetrouting/mobility/contract/*.cc vanetrouting/mobility/group/*.cc vanetrouting/mobility/single/*.cc vanetrouting/mobility/static/*.cc vanetrouting/networklayer/*.cc vanetrouting/util/*.cc vanetrouting/world/*.cc vanetrouting/world/traci/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
-$O/custom/routing/aodvvanet/AODVVANETControlPackets_m.o: custom/routing/aodvvanet/AODVVANETControlPackets_m.cc \
-	custom/routing/aodvvanet/AODVVANETControlPackets_m.h \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+$O/routing/aodvvanet/AODVVANETControlPackets_m.o: routing/aodvvanet/AODVVANETControlPackets_m.cc \
+	routing/aodvvanet/AODVVANETControlPackets_m.h \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/routing/aodvvanet/AODVVANETRouteData.o: custom/routing/aodvvanet/AODVVANETRouteData.cc \
-	custom/routing/aodvvanet/AODVVANETRouteData.h \
+$O/routing/aodvvanet/AODVVANETRouteData.o: routing/aodvvanet/AODVVANETRouteData.cc \
+	routing/aodvvanet/AODVVANETRouteData.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h
-$O/custom/routing/aodvvanet/AODVVANETRouting.o: custom/routing/aodvvanet/AODVVANETRouting.cc \
-	custom/routing/aodvvanet/AODVVANETControlPackets_m.h \
-	custom/routing/aodvvanet/AODVVANETRouteData.h \
-	custom/routing/aodvvanet/AODVVANETRouting.h \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+$O/routing/aodvvanet/AODVVANETRouting.o: routing/aodvvanet/AODVVANETRouting.cc \
+	routing/aodvvanet/AODVVANETControlPackets_m.h \
+	routing/aodvvanet/AODVVANETRouteData.h \
+	routing/aodvvanet/AODVVANETRouting.h \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
@@ -315,26 +313,26 @@ $O/custom/routing/aodvvanet/AODVVANETRouting.o: custom/routing/aodvvanet/AODVVAN
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket.h \
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket_m.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/routing/bitcar/BITCARControlPackets_m.o: custom/routing/bitcar/BITCARControlPackets_m.cc \
-	custom/routing/bitcar/BITCARControlPackets_m.h \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+$O/routing/bitcar/BITCARControlPackets_m.o: routing/bitcar/BITCARControlPackets_m.cc \
+	routing/bitcar/BITCARControlPackets_m.h \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/routing/bitcar/BITCARRouteData.o: custom/routing/bitcar/BITCARRouteData.cc \
-	custom/routing/bitcar/BITCARRouteData.h \
+$O/routing/bitcar/BITCARRouteData.o: routing/bitcar/BITCARRouteData.cc \
+	routing/bitcar/BITCARRouteData.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h
-$O/custom/routing/bitcar/BITCARRouting.o: custom/routing/bitcar/BITCARRouting.cc \
-	custom/routing/bitcar/BITCARControlPackets_m.h \
-	custom/routing/bitcar/BITCARRouteData.h \
-	custom/routing/bitcar/BITCARRouting.h \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+$O/routing/bitcar/BITCARRouting.o: routing/bitcar/BITCARRouting.cc \
+	routing/bitcar/BITCARControlPackets_m.h \
+	routing/bitcar/BITCARRouteData.h \
+	routing/bitcar/BITCARRouting.h \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
@@ -374,26 +372,26 @@ $O/custom/routing/bitcar/BITCARRouting.o: custom/routing/bitcar/BITCARRouting.cc
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket.h \
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket_m.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/routing/rbvtr/RBVTRControlPackets_m.o: custom/routing/rbvtr/RBVTRControlPackets_m.cc \
-	custom/routing/rbvtr/RBVTRControlPackets_m.h \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+$O/routing/rbvtr/RBVTRControlPackets_m.o: routing/rbvtr/RBVTRControlPackets_m.cc \
+	routing/rbvtr/RBVTRControlPackets_m.h \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/routing/rbvtr/RBVTRRouteData.o: custom/routing/rbvtr/RBVTRRouteData.cc \
-	custom/routing/rbvtr/RBVTRRouteData.h \
+$O/routing/rbvtr/RBVTRRouteData.o: routing/rbvtr/RBVTRRouteData.cc \
+	routing/rbvtr/RBVTRRouteData.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h
-$O/custom/routing/rbvtr/RBVTRRouting.o: custom/routing/rbvtr/RBVTRRouting.cc \
-	custom/routing/rbvtr/RBVTRControlPackets_m.h \
-	custom/routing/rbvtr/RBVTRRouteData.h \
-	custom/routing/rbvtr/RBVTRRouting.h \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+$O/routing/rbvtr/RBVTRRouting.o: routing/rbvtr/RBVTRRouting.cc \
+	routing/rbvtr/RBVTRControlPackets_m.h \
+	routing/rbvtr/RBVTRRouteData.h \
+	routing/rbvtr/RBVTRRouting.h \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
@@ -433,14 +431,14 @@ $O/custom/routing/rbvtr/RBVTRRouting.o: custom/routing/rbvtr/RBVTRRouting.cc \
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket.h \
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket_m.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/applications/traci/aodvTraCIDemo.o: custom/vanetrouting/applications/traci/aodvTraCIDemo.cc \
-	custom/vanetrouting/applications/traci/aodvTraCIDemo.h \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/aodvTraCIMobility.h \
-	custom/vanetrouting/world/traci/aodvTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/applications/traci/aodvTraCI.o: vanetrouting/applications/traci/aodvTraCI.cc \
+	vanetrouting/applications/traci/aodvTraCI.h \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/aodvTraCIMobility.h \
+	vanetrouting/world/traci/aodvTraCIScenarioManager.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
@@ -452,14 +450,14 @@ $O/custom/vanetrouting/applications/traci/aodvTraCIDemo.o: custom/vanetrouting/a
 	$(INETMANET_2_0_PROJ)/src/status/NodeStatus.h \
 	$(INETMANET_2_0_PROJ)/src/transport/contract/UDPSocket.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/applications/traci/aodvTraCITestApp.o: custom/vanetrouting/applications/traci/aodvTraCITestApp.cc \
-	custom/vanetrouting/applications/traci/aodvTraCITestApp.h \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/aodvTraCIMobility.h \
-	custom/vanetrouting/world/traci/aodvTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/applications/traci/aodvTraCITestApp.o: vanetrouting/applications/traci/aodvTraCITestApp.cc \
+	vanetrouting/applications/traci/aodvTraCITestApp.h \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/aodvTraCIMobility.h \
+	vanetrouting/world/traci/aodvTraCIScenarioManager.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
@@ -467,48 +465,14 @@ $O/custom/vanetrouting/applications/traci/aodvTraCITestApp.o: custom/vanetroutin
 	$(INETMANET_2_0_PROJ)/src/base/LifecycleOperation.h \
 	$(INETMANET_2_0_PROJ)/src/status/NodeStatus.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/applications/traci/bitcarTraCIDemo.o: custom/vanetrouting/applications/traci/bitcarTraCIDemo.cc \
-	custom/vanetrouting/applications/traci/bitcarTraCIDemo.h \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/bitcarTraCIMobility.h \
-	custom/vanetrouting/world/traci/bitcarTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
-	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
-	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
-	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
-	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
-	$(INETMANET_2_0_PROJ)/src/base/LifecycleOperation.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv6Address.h \
-	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPvXAddress.h \
-	$(INETMANET_2_0_PROJ)/src/status/NodeStatus.h \
-	$(INETMANET_2_0_PROJ)/src/transport/contract/UDPSocket.h \
-	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/applications/traci/bitcarTraCITestApp.o: custom/vanetrouting/applications/traci/bitcarTraCITestApp.cc \
-	custom/vanetrouting/applications/traci/bitcarTraCITestApp.h \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/bitcarTraCIMobility.h \
-	custom/vanetrouting/world/traci/bitcarTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
-	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
-	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
-	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
-	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
-	$(INETMANET_2_0_PROJ)/src/base/LifecycleOperation.h \
-	$(INETMANET_2_0_PROJ)/src/status/NodeStatus.h \
-	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/applications/traci/rbvtrTraCIDemo.o: custom/vanetrouting/applications/traci/rbvtrTraCIDemo.cc \
-	custom/vanetrouting/applications/traci/rbvtrTraCIDemo.h \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/rbvtrTraCIMobility.h \
-	custom/vanetrouting/world/traci/rbvtrTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/applications/traci/bitcarTraCIDemo.o: vanetrouting/applications/traci/bitcarTraCIDemo.cc \
+	vanetrouting/applications/traci/bitcarTraCIDemo.h \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/bitcarTraCIMobility.h \
+	vanetrouting/world/traci/bitcarTraCIScenarioManager.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
@@ -520,14 +484,14 @@ $O/custom/vanetrouting/applications/traci/rbvtrTraCIDemo.o: custom/vanetrouting/
 	$(INETMANET_2_0_PROJ)/src/status/NodeStatus.h \
 	$(INETMANET_2_0_PROJ)/src/transport/contract/UDPSocket.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/applications/traci/rbvtrTraCITestApp.o: custom/vanetrouting/applications/traci/rbvtrTraCITestApp.cc \
-	custom/vanetrouting/applications/traci/rbvtrTraCITestApp.h \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/rbvtrTraCIMobility.h \
-	custom/vanetrouting/world/traci/rbvtrTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/applications/traci/bitcarTraCITestApp.o: vanetrouting/applications/traci/bitcarTraCITestApp.cc \
+	vanetrouting/applications/traci/bitcarTraCITestApp.h \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/bitcarTraCIMobility.h \
+	vanetrouting/world/traci/bitcarTraCIScenarioManager.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
@@ -535,31 +499,65 @@ $O/custom/vanetrouting/applications/traci/rbvtrTraCITestApp.o: custom/vanetrouti
 	$(INETMANET_2_0_PROJ)/src/base/LifecycleOperation.h \
 	$(INETMANET_2_0_PROJ)/src/status/NodeStatus.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/base/ControlVanetRouting_m.o: custom/vanetrouting/base/ControlVanetRouting_m.cc \
-	custom/vanetrouting/base/ControlVanetRouting_m.h \
-	custom/vanetrouting/base/VanetAddress.h \
+$O/vanetrouting/applications/traci/rbvtrTraCIDemo.o: vanetrouting/applications/traci/rbvtrTraCIDemo.cc \
+	vanetrouting/applications/traci/rbvtrTraCIDemo.h \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/rbvtrTraCIMobility.h \
+	vanetrouting/world/traci/rbvtrTraCIScenarioManager.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
+	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
+	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
+	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
+	$(INETMANET_2_0_PROJ)/src/base/LifecycleOperation.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv6Address.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPvXAddress.h \
+	$(INETMANET_2_0_PROJ)/src/status/NodeStatus.h \
+	$(INETMANET_2_0_PROJ)/src/transport/contract/UDPSocket.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
+$O/vanetrouting/applications/traci/rbvtrTraCITestApp.o: vanetrouting/applications/traci/rbvtrTraCITestApp.cc \
+	vanetrouting/applications/traci/rbvtrTraCITestApp.h \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/rbvtrTraCIMobility.h \
+	vanetrouting/world/traci/rbvtrTraCIScenarioManager.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
+	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
+	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
+	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
+	$(INETMANET_2_0_PROJ)/src/base/LifecycleOperation.h \
+	$(INETMANET_2_0_PROJ)/src/status/NodeStatus.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
+$O/vanetrouting/base/ControlVanetRouting_m.o: vanetrouting/base/ControlVanetRouting_m.cc \
+	vanetrouting/base/ControlVanetRouting_m.h \
+	vanetrouting/base/VanetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/linklayer/contract/MACAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv6Address.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPvXAddress.h
-$O/custom/vanetrouting/base/VanetAddress.o: custom/vanetrouting/base/VanetAddress.cc \
-	custom/vanetrouting/base/VanetAddress.h \
+$O/vanetrouting/base/VanetAddress.o: vanetrouting/base/VanetAddress.cc \
+	vanetrouting/base/VanetAddress.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/linklayer/contract/MACAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv6Address.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPvXAddress.h
-$O/custom/vanetrouting/base/VanetModuleAccess.o: custom/vanetrouting/base/VanetModuleAccess.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
+$O/vanetrouting/base/VanetModuleAccess.o: vanetrouting/base/VanetModuleAccess.cc \
+	vanetrouting/base/VanetModuleAccess.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h
-$O/custom/vanetrouting/base/VanetNetfilterHook.o: custom/vanetrouting/base/VanetNetfilterHook.cc \
-	custom/vanetrouting/base/ControlVanetRouting_m.h \
-	custom/vanetrouting/base/VanetAddress.h \
-	custom/vanetrouting/base/VanetNetfilterHook.h \
+$O/vanetrouting/base/VanetNetfilterHook.o: vanetrouting/base/VanetNetfilterHook.cc \
+	vanetrouting/base/ControlVanetRouting_m.h \
+	vanetrouting/base/VanetAddress.h \
+	vanetrouting/base/VanetNetfilterHook.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
@@ -600,13 +598,13 @@ $O/custom/vanetrouting/base/VanetNetfilterHook.o: custom/vanetrouting/base/Vanet
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/dsr/dsr-uu/dsr-pkt.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/dsr/dsr-uu/dsr.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/manetrouting/dsr/dsr-uu/timer.h
-$O/custom/vanetrouting/base/VanetRoutingBase.o: custom/vanetrouting/base/VanetRoutingBase.cc \
-	custom/vanetrouting/base/VanetAddress.h \
-	custom/vanetrouting/base/VanetNetfilterHook.h \
-	custom/vanetrouting/base/VanetRoutingBase.h \
-	custom/vanetrouting/base/Vanet_ControlInfoBreakLink_m.h \
-	custom/vanetrouting/base/compatibility_vanet.h \
-	custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.h \
+$O/vanetrouting/base/VanetRoutingBase.o: vanetrouting/base/VanetRoutingBase.cc \
+	vanetrouting/base/VanetAddress.h \
+	vanetrouting/base/VanetNetfilterHook.h \
+	vanetrouting/base/VanetRoutingBase.h \
+	vanetrouting/base/Vanet_ControlInfoBreakLink_m.h \
+	vanetrouting/base/compatibility_vanet.h \
+	vanetrouting/util/GlobalWirelessLinkInspector_Vanet.h \
 	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
@@ -666,182 +664,182 @@ $O/custom/vanetrouting/base/VanetRoutingBase.o: custom/vanetrouting/base/VanetRo
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket.h \
 	$(INETMANET_2_0_PROJ)/src/transport/udp/UDPPacket_m.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/base/Vanet_ControlInfoBreakLink_m.o: custom/vanetrouting/base/Vanet_ControlInfoBreakLink_m.cc \
-	custom/vanetrouting/base/Vanet_ControlInfoBreakLink_m.h \
+$O/vanetrouting/base/Vanet_ControlInfoBreakLink_m.o: vanetrouting/base/Vanet_ControlInfoBreakLink_m.cc \
+	vanetrouting/base/Vanet_ControlInfoBreakLink_m.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/linklayer/contract/MACAddress.h
-$O/custom/vanetrouting/base/Vanet_LocatorNotificationInfo_m.o: custom/vanetrouting/base/Vanet_LocatorNotificationInfo_m.cc \
-	custom/vanetrouting/base/Vanet_LocatorNotificationInfo_m.h \
+$O/vanetrouting/base/Vanet_LocatorNotificationInfo_m.o: vanetrouting/base/Vanet_LocatorNotificationInfo_m.cc \
+	vanetrouting/base/Vanet_LocatorNotificationInfo_m.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/linklayer/contract/MACAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h
-$O/custom/vanetrouting/base/Vanet_MeshControlInfo_m.o: custom/vanetrouting/base/Vanet_MeshControlInfo_m.cc \
-	custom/vanetrouting/base/Vanet_MeshControlInfo_m.h \
+$O/vanetrouting/base/Vanet_MeshControlInfo_m.o: vanetrouting/base/Vanet_MeshControlInfo_m.cc \
+	vanetrouting/base/Vanet_MeshControlInfo_m.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/linklayer/contract/Ieee802Ctrl_m.h \
 	$(INETMANET_2_0_PROJ)/src/linklayer/contract/MACAddress.h
-$O/custom/vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.o: custom/vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.h \
-	custom/vanetrouting/mobility/common/MovingVANETMobilityBase.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+$O/vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.o: vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.h \
+	vanetrouting/mobility/common/MovingVANETMobilityBase.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/mobility/common/MovingVANETMobilityBase.o: custom/vanetrouting/mobility/common/MovingVANETMobilityBase.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/MovingVANETMobilityBase.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+$O/vanetrouting/mobility/common/MovingVANETMobilityBase.o: vanetrouting/mobility/common/MovingVANETMobilityBase.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/MovingVANETMobilityBase.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/mobility/common/VANETMobilityAccess.o: custom/vanetrouting/mobility/common/VANETMobilityAccess.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityAccess.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+$O/vanetrouting/mobility/common/VANETMobilityAccess.o: vanetrouting/mobility/common/VANETMobilityAccess.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityAccess.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/mobility/common/VANETMobilityBase.o: custom/vanetrouting/mobility/common/VANETMobilityBase.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+$O/vanetrouting/mobility/common/VANETMobilityBase.o: vanetrouting/mobility/common/VANETMobilityBase.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/mobility/contract/IVANETMobility.o: custom/vanetrouting/mobility/contract/IVANETMobility.cc \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
+$O/vanetrouting/mobility/contract/IVANETMobility.o: vanetrouting/mobility/contract/IVANETMobility.cc \
+	vanetrouting/mobility/contract/IVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/mobility/single/LinearVANETMobility.o: custom/vanetrouting/mobility/single/LinearVANETMobility.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/MovingVANETMobilityBase.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/LinearVANETMobility.h \
+$O/vanetrouting/mobility/single/LinearVANETMobility.o: vanetrouting/mobility/single/LinearVANETMobility.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/MovingVANETMobilityBase.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/LinearVANETMobility.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/mobility/single/aodvTraCIMobility.o: custom/vanetrouting/mobility/single/aodvTraCIMobility.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/aodvTraCIMobility.h \
-	custom/vanetrouting/world/traci/aodvTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/mobility/single/aodvTraCIMobility.o: vanetrouting/mobility/single/aodvTraCIMobility.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/aodvTraCIMobility.h \
+	vanetrouting/world/traci/aodvTraCIScenarioManager.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/mobility/single/bitcarTraCIMobility.o: custom/vanetrouting/mobility/single/bitcarTraCIMobility.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/bitcarTraCIMobility.h \
-	custom/vanetrouting/world/traci/bitcarTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/mobility/single/bitcarTraCIMobility.o: vanetrouting/mobility/single/bitcarTraCIMobility.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/bitcarTraCIMobility.h \
+	vanetrouting/world/traci/bitcarTraCIScenarioManager.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/mobility/single/rbvtrTraCIMobility.o: custom/vanetrouting/mobility/single/rbvtrTraCIMobility.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/rbvtrTraCIMobility.h \
-	custom/vanetrouting/world/traci/rbvtrTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/mobility/single/rbvtrTraCIMobility.o: vanetrouting/mobility/single/rbvtrTraCIMobility.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/rbvtrTraCIMobility.h \
+	vanetrouting/world/traci/rbvtrTraCIScenarioManager.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.o: custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.cc \
-	custom/vanetrouting/base/VanetAddress.h \
-	custom/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.h \
+$O/vanetrouting/util/GlobalWirelessLinkInspector_Vanet.o: vanetrouting/util/GlobalWirelessLinkInspector_Vanet.cc \
+	vanetrouting/base/VanetAddress.h \
+	vanetrouting/util/GlobalWirelessLinkInspector_Vanet.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/linklayer/contract/MACAddress.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv6Address.h \
 	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPvXAddress.h
-$O/custom/vanetrouting/world/traci/aodvTraCIScenarioManager.o: custom/vanetrouting/world/traci/aodvTraCIScenarioManager.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/aodvTraCIMobility.h \
-	custom/vanetrouting/world/traci/aodvTraCIConstants.h \
-	custom/vanetrouting/world/traci/aodvTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/world/traci/aodvTraCIScenarioManager.o: vanetrouting/world/traci/aodvTraCIScenarioManager.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/aodvTraCIMobility.h \
+	vanetrouting/world/traci/aodvTraCIConstants.h \
+	vanetrouting/world/traci/aodvTraCIScenarioManager.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/world/traci/aodvTraCIScenarioManagerLaunchd.o: custom/vanetrouting/world/traci/aodvTraCIScenarioManagerLaunchd.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/world/traci/aodvTraCIConstants.h \
-	custom/vanetrouting/world/traci/aodvTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/aodvTraCIScenarioManagerLaunchd.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/world/traci/aodvTraCIScenarioManagerLaunchd.o: vanetrouting/world/traci/aodvTraCIScenarioManagerLaunchd.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/world/traci/aodvTraCIConstants.h \
+	vanetrouting/world/traci/aodvTraCIScenarioManager.h \
+	vanetrouting/world/traci/aodvTraCIScenarioManagerLaunchd.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/world/traci/bitcarTraCIScenarioManager.o: custom/vanetrouting/world/traci/bitcarTraCIScenarioManager.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/bitcarTraCIMobility.h \
-	custom/vanetrouting/world/traci/bitcarTraCIConstants.h \
-	custom/vanetrouting/world/traci/bitcarTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/world/traci/bitcarTraCIScenarioManager.o: vanetrouting/world/traci/bitcarTraCIScenarioManager.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/bitcarTraCIMobility.h \
+	vanetrouting/world/traci/bitcarTraCIConstants.h \
+	vanetrouting/world/traci/bitcarTraCIScenarioManager.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/world/traci/bitcarTraCIScenarioManagerLaunchd.o: custom/vanetrouting/world/traci/bitcarTraCIScenarioManagerLaunchd.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/world/traci/bitcarTraCIConstants.h \
-	custom/vanetrouting/world/traci/bitcarTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/bitcarTraCIScenarioManagerLaunchd.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/world/traci/bitcarTraCIScenarioManagerLaunchd.o: vanetrouting/world/traci/bitcarTraCIScenarioManagerLaunchd.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/world/traci/bitcarTraCIConstants.h \
+	vanetrouting/world/traci/bitcarTraCIScenarioManager.h \
+	vanetrouting/world/traci/bitcarTraCIScenarioManagerLaunchd.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/world/traci/rbvtrTraCIScenarioManager.o: custom/vanetrouting/world/traci/rbvtrTraCIScenarioManager.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/mobility/common/VANETMobilityBase.h \
-	custom/vanetrouting/mobility/contract/IVANETMobility.h \
-	custom/vanetrouting/mobility/single/rbvtrTraCIMobility.h \
-	custom/vanetrouting/world/traci/rbvtrTraCIConstants.h \
-	custom/vanetrouting/world/traci/rbvtrTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/world/traci/rbvtrTraCIScenarioManager.o: vanetrouting/world/traci/rbvtrTraCIScenarioManager.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/mobility/common/VANETMobilityBase.h \
+	vanetrouting/mobility/contract/IVANETMobility.h \
+	vanetrouting/mobility/single/rbvtrTraCIMobility.h \
+	vanetrouting/world/traci/rbvtrTraCIConstants.h \
+	vanetrouting/world/traci/rbvtrTraCIScenarioManager.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/world/traci/rbvtrTraCIScenarioManagerLaunchd.o: custom/vanetrouting/world/traci/rbvtrTraCIScenarioManagerLaunchd.cc \
-	custom/vanetrouting/base/VanetModuleAccess.h \
-	custom/vanetrouting/world/traci/rbvtrTraCIConstants.h \
-	custom/vanetrouting/world/traci/rbvtrTraCIScenarioManager.h \
-	custom/vanetrouting/world/traci/rbvtrTraCIScenarioManagerLaunchd.h \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h \
+$O/vanetrouting/world/traci/rbvtrTraCIScenarioManagerLaunchd.o: vanetrouting/world/traci/rbvtrTraCIScenarioManagerLaunchd.cc \
+	vanetrouting/base/VanetModuleAccess.h \
+	vanetrouting/world/traci/rbvtrTraCIConstants.h \
+	vanetrouting/world/traci/rbvtrTraCIScenarioManager.h \
+	vanetrouting/world/traci/rbvtrTraCIScenarioManagerLaunchd.h \
+	vanetrouting/world/traci/vanetTraCIColor.h \
 	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
 	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
-$O/custom/vanetrouting/world/traci/vanetTraCIColor.o: custom/vanetrouting/world/traci/vanetTraCIColor.cc \
-	custom/vanetrouting/world/traci/vanetTraCIColor.h
+$O/vanetrouting/world/traci/vanetTraCIColor.o: vanetrouting/world/traci/vanetTraCIColor.cc \
+	vanetrouting/world/traci/vanetTraCIColor.h
 

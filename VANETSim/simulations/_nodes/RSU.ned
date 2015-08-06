@@ -57,7 +57,6 @@ module RSU
                 @display("p=304,461;q=queue");
         }
     connections allowunconnected:
-
         wlan.upperLayerOut --> networkLayer.ifIn[0];
         wlan.upperLayerIn <-- networkLayer.ifOut[0];
 

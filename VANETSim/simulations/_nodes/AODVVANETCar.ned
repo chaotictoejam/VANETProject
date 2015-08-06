@@ -1,15 +1,15 @@
 package vanetsim.simulations._nodes;
 
-import vanetsim.custom.vanetrouting.applications.traci.aodvTraCIDemo;
+import vanetsim.vanetrouting.applications.traci.aodvTraCI;
 import inet.base.LifecycleController;
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;
-import vanetsim.custom.vanetrouting.mobility.contract.IVANETMobility;
+import vanetsim.vanetrouting.mobility.contract.IVANETMobility;
 import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
-import vanetsim.custom.vanetrouting.networklayer.IVanetRouting;
+import vanetsim.vanetrouting.networklayer.IVanetRouting;
 import inet.nodes.inet.NetworkLayer;
 import inet.transport.udp.UDP;
 import inet.world.radio.ChannelControl;
@@ -37,7 +37,7 @@ module AODVVANETCar
             parameters:
                 @display("p=140,326");
         }
-        app: aodvTraCIDemo {
+        app: aodvTraCI {
             parameters:
                 @display("p=384,46");
         }
