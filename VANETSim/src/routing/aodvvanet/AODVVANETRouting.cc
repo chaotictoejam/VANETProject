@@ -184,8 +184,8 @@ INetfilter::IHook::Result AODVVANETRouting::ensureRouteForDatagram(IPv4Datagram 
             // path to the destination is updated to be no less than the current
             // time plus ACTIVE_ROUTE_TIMEOUT.
 
-            updateValidRouteLifeTime(destAddr, simTime() + activeRouteTimeout);
-            updateValidRouteLifeTime(route->getGateway(), simTime() + activeRouteTimeout);
+            //updateValidRouteLifeTime(destAddr, route->getExpirationTime());
+            //updateValidRouteLifeTime(route->getGateway(), route->getExpirationTime());
 
             return ACCEPT;
         }
@@ -476,9 +476,7 @@ AODVVANETRREP *AODVVANETRouting::createRREP(AODVVANETRREQ *rreq, IPv4Route *dest
         // of the RREP.
         rrep->setHopCount(0);
 
-        // The destination node copies the value MY_ROUTE_TIMEOUT
-        // into the Lifetime field of the RREP.
-        rrep->setLifeTime(myRouteTimeout);
+        rrep->setExpirationTime(rreq->getExpirationTime());
     }
     else {    // intermediate node
               // it copies its known sequence number for the destination into
@@ -511,7 +509,7 @@ AODVVANETRREP *AODVVANETRouting::createRREP(AODVVANETRREQ *rreq, IPv4Route *dest
         // The Lifetime field of the RREP is calculated by subtracting the
         // current time from the expiration time in its route table entry.
 
-        rrep->setLifeTime(destRouteData->getLifeTime() - simTime());
+        rrep->setExpirationTime(rreq->getExpirationTime());
     }
     return rrep;
 }
@@ -544,7 +542,7 @@ AODVVANETRREP *AODVVANETRouting::createGratuitousRREP(AODVVANETRREQ *rreq, IPv4R
     grrep->setDestAddr(rreq->getOriginatorAddr());
     grrep->setDestSeqNum(rreq->getOriginatorSeqNum());
     grrep->setOriginatorAddr(rreq->getDestAddr());
-    grrep->setLifeTime(routeData->getLifeTime());
+    //grrep->setLifeTime(routeData->getLifeTime());
     grrep->setTwr(routeData->getTWR());
     grrep->setExpirationTime(routeData->getExpirationTime());
 
@@ -575,10 +573,10 @@ void AODVVANETRouting::handleRREP(AODVVANETRREP *rrep, const IPv4Address& source
 
     if (!previousHopRoute || previousHopRoute->getSource() != this) {
         // create without valid sequence number
-        previousHopRoute = createRoute(sourceAddr, sourceAddr, 1, false, rrep->getOriginatorSeqNum(), true, simTime() + activeRouteTimeout,twr, expirationTime);
+        previousHopRoute = createRoute(sourceAddr, sourceAddr, 1, false, rrep->getOriginatorSeqNum(), true, twr, expirationTime);
     }
     else
-        updateRoutingTable(previousHopRoute, sourceAddr, 1, false, rrep->getOriginatorSeqNum(), true, simTime() + activeRouteTimeout,twr, expirationTime);
+        updateRoutingTable(previousHopRoute, sourceAddr, 1, false, rrep->getOriginatorSeqNum(), true, twr, expirationTime);
 
     // Next, the node then increments the hop count value in the RREP by one,
     // to account for the new hop through the intermediate node
@@ -590,7 +588,6 @@ void AODVVANETRouting::handleRREP(AODVVANETRREP *rrep, const IPv4Address& source
 
     IPv4Route *destRoute = routingTable->findBestMatchingRoute(rrep->getDestAddr());
     AODVVANETRouteData *destRouteData = NULL;
-    simtime_t lifeTime = rrep->getLifeTime();
     unsigned int destSeqNum = rrep->getDestSeqNum();
 
     if (destRoute && destRoute->getSource() == this) {    // already exists
@@ -601,7 +598,7 @@ void AODVVANETRouting::handleRREP(AODVVANETRREP *rrep, const IPv4Address& source
         //     invalid in route table entry.
 
         if (!destRouteData->hasValidDestNum()) {
-            updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, simTime() + lifeTime,twr, expirationTime);
+            updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, twr, expirationTime);
 
             // If the route table entry to the destination is created or updated,
             // then the following actions occur:
@@ -626,23 +623,23 @@ void AODVVANETRouting::handleRREP(AODVVANETRREP *rrep, const IPv4Address& source
         //      the node's copy of the destination sequence number and the
         //      known value is valid, or
         else if (destSeqNum > destRouteData->getDestSeqNum()) {
-            updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, simTime() + lifeTime,twr, expirationTime);
+            updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, twr, expirationTime);
         }
         else {
             // (iii) the sequence numbers are the same, but the route is
             //       marked as inactive, or
             if (destSeqNum == destRouteData->getDestSeqNum() && !destRouteData->isActive()) {
-                updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, simTime() + lifeTime,twr, expirationTime);
+                updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, twr, expirationTime);
             }
             // (iv) the sequence numbers are the same, and the New Hop Count is
             //      smaller than the hop count in route table entry.
             else if (destSeqNum == destRouteData->getDestSeqNum() && newHopCount < (unsigned int)destRoute->getMetric()) {
-                updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, simTime() + lifeTime,twr, expirationTime);
+                updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, twr, expirationTime);
             }
         }
     }
     else {    // create forward route for the destination: this path will be used by the originator to send data packets
-        destRoute = createRoute(rrep->getDestAddr(), sourceAddr, newHopCount, true, destSeqNum, true, simTime() + lifeTime,twr, expirationTime);
+        destRoute = createRoute(rrep->getDestAddr(), sourceAddr, newHopCount, true, destSeqNum, true, twr, expirationTime);
         destRouteData = check_and_cast<AODVVANETRouteData *>(destRoute->getProtocolData());
     }
 
@@ -661,14 +658,14 @@ void AODVVANETRouting::handleRREP(AODVVANETRREP *rrep, const IPv4Address& source
         // message back (see section 6.8).
 
         if (originatorRoute && originatorRoute->getSource() == this) {
-            AODVVANETRouteData *originatorRouteData = check_and_cast<AODVVANETRouteData *>(originatorRoute->getProtocolData());
+            //AODVVANETRouteData *originatorRouteData = check_and_cast<AODVVANETRouteData *>(originatorRoute->getProtocolData());
 
             // Also, at each node the (reverse) route used to forward a
             // RREP has its lifetime changed to be the maximum of (existing-
             // lifetime, (current time + ACTIVE_ROUTE_TIMEOUT).
 
-            simtime_t existingLifeTime = originatorRouteData->getLifeTime();
-            originatorRouteData->setLifeTime(std::max(simTime() + activeRouteTimeout, existingLifeTime));
+            //simtime_t existingLifeTime = originatorRouteData->getLifeTime();
+            //originatorRouteData->setLifeTime(std::max(simTime() + activeRouteTimeout, existingLifeTime));
 
             if (simTime() > rebootTime + deletePeriod || rebootTime == 0) {
                 // If a node forwards a RREP over a link that is likely to have errors
@@ -707,7 +704,7 @@ void AODVVANETRouting::handleRREP(AODVVANETRREP *rrep, const IPv4Address& source
     else {
         if (hasOngoingRouteDiscovery(rrep->getDestAddr())) {
             EV_INFO << "The Route Reply has arrived for our Route Request to node " << rrep->getDestAddr() << endl;
-            updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, simTime() + lifeTime, twr, expirationTime);
+            updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, twr, expirationTime);
             completeRouteDiscovery(rrep->getDestAddr());
         }
     }
@@ -716,8 +713,7 @@ void AODVVANETRouting::handleRREP(AODVVANETRREP *rrep, const IPv4Address& source
 }
 
 void AODVVANETRouting::updateRoutingTable(IPv4Route *route, const IPv4Address& nextHop, unsigned int hopCount, bool hasValidDestNum,
-        unsigned int destSeqNum, bool isActive, simtime_t lifeTime,
-        double twr, double expirationTime)
+        unsigned int destSeqNum, bool isActive, double twr, double expirationTime)
 {
     EV_DETAIL << "Updating existing route: " << route << endl;
 
@@ -727,7 +723,6 @@ void AODVVANETRouting::updateRoutingTable(IPv4Route *route, const IPv4Address& n
     AODVVANETRouteData *routingData = check_and_cast<AODVVANETRouteData *>(route->getProtocolData());
     ASSERT(routingData != NULL);
 
-    routingData->setLifeTime(lifeTime);
     routingData->setDestSeqNum(destSeqNum);
     routingData->setIsActive(isActive);
     routingData->setHasValidDestNum(hasValidDestNum);
@@ -788,10 +783,10 @@ void AODVVANETRouting::handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& source
 
     if (!previousHopRoute || previousHopRoute->getSource() != this) {
         // create without valid sequence number
-        previousHopRoute = createRoute(sourceAddr, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, simTime() + activeRouteTimeout,rreq->getTwr(), rreq->getExpirationTime());
+        previousHopRoute = createRoute(sourceAddr, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, rreq->getTwr(), rreq->getExpirationTime());
     }
     else
-        updateRoutingTable(previousHopRoute, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, simTime() + activeRouteTimeout,rreq->getTwr(), rreq->getExpirationTime());
+        updateRoutingTable(previousHopRoute, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, rreq->getTwr(), rreq->getExpirationTime());
 
     // then checks to determine whether it has received a RREQ with the same Originator IP address and RREQ ID within at least the last
     // PATH_DISCOVERY_TIME. If such a RREQ has been received, the node silently discards the newly received RREQ.
@@ -845,8 +840,6 @@ void AODVVANETRouting::handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& source
     //    If node doesn't have route to destination flood neighbors with new RREQ message.
 
     unsigned int hopCount = rreq->getHopCount();
-    simtime_t minimalLifeTime = simTime() + 2 * netTraversalTime - 2 * hopCount * nodeTraversalTime;
-    simtime_t newLifeTime = std::max(simTime(), minimalLifeTime);
 
     //Extracts movement details and uses this information
     IVANETMobility  *mod = check_and_cast<IVANETMobility *>(host->getSubmodule("mobility"));
@@ -904,7 +897,7 @@ void AODVVANETRouting::handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& source
     if (!reverseRoute || reverseRoute->getSource() != this) {    // create
         // This reverse route will be needed if the node receives a RREP back to the
         // node that originated the RREQ (identified by the Originator IP Address).
-        reverseRoute = createRoute(rreq->getOriginatorAddr(), sourceAddr, hopCount, true, rreqSeqNum, true, newLifeTime, twr, expirationTime);
+        reverseRoute = createRoute(rreq->getOriginatorAddr(), sourceAddr, hopCount, true, rreqSeqNum, true, twr, expirationTime);
     }
     else {
         AODVVANETRouteData *routeData = check_and_cast<AODVVANETRouteData *>(reverseRoute->getProtocolData());
@@ -927,7 +920,7 @@ void AODVVANETRouting::handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& source
             (rreqSeqNum == routeSeqNum && newHopCount < routeHopCount) ||
             rreq->getUnknownSeqNumFlag())
         {
-            updateRoutingTable(reverseRoute, sourceAddr, hopCount, true, newSeqNum, true, newLifeTime, twr, expirationTime);
+            updateRoutingTable(reverseRoute, sourceAddr, hopCount, true, newSeqNum, true, twr, expirationTime);
         }
     }
 
@@ -1029,8 +1022,7 @@ void AODVVANETRouting::handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& source
 
 IPv4Route *AODVVANETRouting::createRoute(const IPv4Address& destAddr, const IPv4Address& nextHop,
         unsigned int hopCount, bool hasValidDestNum, unsigned int destSeqNum,
-        bool isActive, simtime_t lifeTime,
-        double twr, double expirationTime)
+        bool isActive, double twr, double expirationTime)
 {
     IPv4Route *newRoute = new IPv4Route();
     AODVVANETRouteData *newProtocolData = new AODVVANETRouteData();
@@ -1044,7 +1036,7 @@ IPv4Route *AODVVANETRouting::createRoute(const IPv4Address& destAddr, const IPv4
     // that is marked as valid.  Only active routes can be used to
     // forward data packets.
 
-    newProtocolData->setLifeTime(lifeTime);
+    //newProtocolData->setLifeTime(lifeTime);
     newProtocolData->setDestSeqNum(destSeqNum);
     newProtocolData->setTWR(twr);
     newProtocolData->setExpirationTime(expirationTime);
@@ -1147,7 +1139,7 @@ void AODVVANETRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAdd
             EV_DETAIL << "Marking route to " << route->getDestination() << " as inactive" << endl;
 
             routeData->setIsActive(false);
-            routeData->setLifeTime(simTime() + deletePeriod);
+            //routeData->setLifeTime(simTime() + deletePeriod);
             scheduleExpungeRoutes();
 
             UnreachableAODVNode node;
@@ -1227,7 +1219,7 @@ void AODVVANETRouting::handleRERR(AODVVANETRERR *rerr, const IPv4Address& source
 
                     routeData->setDestSeqNum(rerr->getUnreachableAODVNodes(j).seqNum);
                     routeData->setIsActive(false);    // it means invalid, see 3. AODV Terminology p.3. in RFC 3561
-                    routeData->setLifeTime(simTime() + deletePeriod);
+                    //routeData->setLifeTime(simTime() + deletePeriod);
 
                     // The RERR should contain those destinations that are part of
                     // the created list of unreachable destinations and have a non-empty
@@ -1463,14 +1455,14 @@ void AODVVANETRouting::handleHelloMessage(AODVVANETRREP *helloMessage)
     // if the neighbor moves away and a neighbor timeout occurs.
 
     unsigned int latestDestSeqNum = helloMessage->getDestSeqNum();
-    simtime_t newLifeTime = simTime() + allowedHelloLoss * helloInterval;
+    //simtime_t newLifeTime = simTime() + allowedHelloLoss * helloInterval;
 
     if (!routeHelloOriginator || routeHelloOriginator->getSource() != this)
-        createRoute(helloOriginatorAddr, helloOriginatorAddr, 1, true, latestDestSeqNum, true, newLifeTime,helloMessage->getTwr(), helloMessage->getExpirationTime());
+        createRoute(helloOriginatorAddr, helloOriginatorAddr, 1, true, latestDestSeqNum, true,helloMessage->getTwr(), helloMessage->getExpirationTime());
     else {
         AODVVANETRouteData *routeData = check_and_cast<AODVVANETRouteData *>(routeHelloOriginator->getProtocolData());
-        simtime_t lifeTime = routeData->getLifeTime();
-        updateRoutingTable(routeHelloOriginator, helloOriginatorAddr, 1, true, latestDestSeqNum, true, std::max(lifeTime, newLifeTime),helloMessage->getTwr(), helloMessage->getExpirationTime());
+        double extime = routeData->getExpirationTime();
+        updateRoutingTable(routeHelloOriginator, helloOriginatorAddr, 1, true, latestDestSeqNum, true, helloMessage->getTwr(), std::min(helloMessage->getExpirationTime(), extime));
     }
 
     // TODO: This feature has not implemented yet.
@@ -1485,12 +1477,13 @@ void AODVVANETRouting::handleHelloMessage(AODVVANETRREP *helloMessage)
 
 void AODVVANETRouting::expungeRoutes()
 {
+    //TO DO SIMPLIFY?
     for (int i = 0; i < routingTable->getNumRoutes(); i++) {
         IPv4Route *route = routingTable->getRoute(i);
         if (route->getSource() == this) {
             AODVVANETRouteData *routeData = check_and_cast<AODVVANETRouteData *>(route->getProtocolData());
             ASSERT(routeData != NULL);
-            if (routeData->getLifeTime() <= simTime()) {
+            if (routeData->getExpirationTime() <= simTime().dbl()) {
                 if (routeData->isActive()) {
                     EV_DETAIL << "Route to " << route->getDestination() << " expired and set to inactive. It will be deleted after DELETE_PERIOD time" << endl;
                     // An expired routing table entry SHOULD NOT be expunged before
@@ -1498,14 +1491,14 @@ void AODVVANETRouting::expungeRoutes()
                     // soft state corresponding to the route (e.g., last known hop count)
                     // will be lost.
                     routeData->setIsActive(false);
-                    routeData->setLifeTime(simTime() + deletePeriod);
+                    routeData->setExpirationTime(routeData->getExpirationTime() + deletePeriod.dbl());
                 }
                 else {
                     // Any routing table entry waiting for a RREP SHOULD NOT be expunged
                     // before (current_time + 2 * NET_TRAVERSAL_TIME).
                     if (hasOngoingRouteDiscovery(route->getDestination())) {
                         EV_DETAIL << "Route to " << route->getDestination() << " expired and is inactive, but we are waiting for a RREP to this destination, so we extend its lifetime with 2 * NET_TRAVERSAL_TIME" << endl;
-                        routeData->setLifeTime(simTime() + 2 * netTraversalTime);
+                        routeData->setExpirationTime(routeData->getExpirationTime() + 2 * netTraversalTime.dbl());
                     }
                     else {
                         EV_DETAIL << "Route to " << route->getDestination() << " expired and is inactive and we are not expecting any RREP to this destination, so we delete this route" << endl;
@@ -1520,7 +1513,7 @@ void AODVVANETRouting::expungeRoutes()
 
 void AODVVANETRouting::scheduleExpungeRoutes()
 {
-    simtime_t nextExpungeTime = SimTime::getMaxTime();
+    double nextExpungeTime = SimTime::getMaxTime().dbl();
     for (int i = 0; i < routingTable->getNumRoutes(); i++) {
         IPv4Route *route = routingTable->getRoute(i);
 
@@ -1528,11 +1521,11 @@ void AODVVANETRouting::scheduleExpungeRoutes()
             AODVVANETRouteData *routeData = check_and_cast<AODVVANETRouteData *>(route->getProtocolData());
             ASSERT(routeData != NULL);
 
-            if (routeData->getLifeTime() < nextExpungeTime)
-                nextExpungeTime = routeData->getLifeTime();
+            if (routeData->getExpirationTime() < nextExpungeTime)
+                nextExpungeTime = routeData->getExpirationTime();
         }
     }
-    if (nextExpungeTime == SimTime::getMaxTime()) {
+    if (nextExpungeTime == SimTime::getMaxTime().dbl()) {
         if (expungeTimer->isScheduled())
             cancelEvent(expungeTimer);
     }
@@ -1552,8 +1545,7 @@ INetfilter::IHook::Result AODVVANETRouting::datagramForwardHook(IPv4Datagram *da
 {
     // TODO: Implement: Actions After Reboot
     // If the node receives a data packet for some other destination, it SHOULD
-    // broadcast a RERR as described in subsection 6.11 and MUST reset the waiting
-    // timer to expire after current time plus DELETE_PERIOD.
+    // broadcast a RERR and MUST reset the waiting timer to expire after current time plus DELETE_PERIOD.
 
     Enter_Method("datagramForwardHook");
     const IPv4Address& destAddr = datagram->getDestAddress();
@@ -1562,7 +1554,7 @@ INetfilter::IHook::Result AODVVANETRouting::datagramForwardHook(IPv4Datagram *da
 
     if (destAddr.isLimitedBroadcastAddress() || routingTable->isLocalAddress(destAddr) || destAddr.isMulticast()) {
         if (routingTable->isLocalAddress(destAddr) && ipSource && ipSource->getSource() == this)
-            updateValidRouteLifeTime(ipSource->getGateway(), simTime() + activeRouteTimeout);
+            //updateValidRouteLifeTime(ipSource->getGateway(), simTime() + activeRouteTimeout);
 
         return ACCEPT;
     }
@@ -1577,11 +1569,11 @@ INetfilter::IHook::Result AODVVANETRouting::datagramForwardHook(IPv4Datagram *da
     // path to the destination is updated to be no less than the current
     // time plus ACTIVE_ROUTE_TIMEOUT
 
-    updateValidRouteLifeTime(sourceAddr, simTime() + activeRouteTimeout);
-    updateValidRouteLifeTime(destAddr, simTime() + activeRouteTimeout);
+    updateValidRouteLifeTime(sourceAddr, routeDestData->getExpirationTime());
+    updateValidRouteLifeTime(destAddr, routeDestData->getExpirationTime());
 
     if (routeDest && routeDest->getSource() == this)
-        updateValidRouteLifeTime(routeDest->getGateway(), simTime() + activeRouteTimeout);
+        updateValidRouteLifeTime(routeDest->getGateway(), routeDestData->getExpirationTime());
 
     // Since the route between each originator and destination pair is expected
     // to be symmetric, the Active Route Lifetime for the previous hop, along the
@@ -1589,7 +1581,7 @@ INetfilter::IHook::Result AODVVANETRouting::datagramForwardHook(IPv4Datagram *da
     // current time plus ACTIVE_ROUTE_TIMEOUT.
 
     if (ipSource && ipSource->getSource() == this)
-        updateValidRouteLifeTime(ipSource->getGateway(), simTime() + activeRouteTimeout);
+        updateValidRouteLifeTime(ipSource->getGateway(), routeDestData->getExpirationTime());
 
     EV_INFO << "We can't forward datagram because we have no active route for " << destAddr << endl;
     if (routeDest && routeDestData && !routeDestData->isActive()) {    // exists but is not active
@@ -1611,7 +1603,7 @@ INetfilter::IHook::Result AODVVANETRouting::datagramForwardHook(IPv4Datagram *da
 
         // 3. The Lifetime field is updated to current time plus DELETE_PERIOD.
         //    Before this time, the entry SHOULD NOT be deleted.
-        routeDestData->setLifeTime(simTime() + deletePeriod);
+        //routeDestData->setLifeTime(simTime() + deletePeriod);
 
         sendRERRWhenNoRouteToForward(destAddr);
     }
@@ -1658,15 +1650,15 @@ void AODVVANETRouting::cancelRouteDiscovery(const IPv4Address& destAddr)
     targetAddressToDelayedPackets.erase(lt, ut);
 }
 
-bool AODVVANETRouting::updateValidRouteLifeTime(const IPv4Address& destAddr, simtime_t lifetime)
+bool AODVVANETRouting::updateValidRouteLifeTime(const IPv4Address& destAddr, double expirationTime)
 {
     IPv4Route *route = routingTable->findBestMatchingRoute(destAddr);
     if (route && route->getSource() == this) {
         AODVVANETRouteData *routeData = check_and_cast<AODVVANETRouteData *>(route->getProtocolData());
         if (routeData->isActive()) {
-            simtime_t newLifeTime = std::max(routeData->getLifeTime(), lifetime);
-            EV_DETAIL << "Updating " << route << " lifetime to " << newLifeTime << endl;
-            routeData->setLifeTime(newLifeTime);
+            double newExpirationTime = std::min(routeData->getExpirationTime(), expirationTime);
+            EV_DETAIL << "Updating " << route << " expiration time to " << newExpirationTime << endl;
+            routeData->setExpirationTime(newExpirationTime);
             return true;
         }
     }

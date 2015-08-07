@@ -1,18 +1,18 @@
 package vanetsim.simulations._nodes;
 
-import vanetsim.vanetrouting.applications.traci.aodvTraCI;
 import inet.base.LifecycleController;
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;
-import vanetsim.vanetrouting.mobility.contract.IVANETMobility;
 import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
-import vanetsim.vanetrouting.networklayer.IVanetRouting;
 import inet.nodes.inet.NetworkLayer;
 import inet.transport.udp.UDP;
 import inet.world.radio.ChannelControl;
+import vanetsim.nodes.AODVVANETRouter;
+import vanetsim.vanetrouting.applications.traci.aodvTraCI;
+import vanetsim.vanetrouting.mobility.contract.IVANETMobility;
 
 
 module AODVVANETCar
@@ -29,7 +29,7 @@ module AODVVANETCar
         notificationBoard: NotificationBoard {
             parameters:
                 @display("p=140,462");
-        }							
+        }
         ac_wlan: HostAutoConfigurator {
             @display("p=296,402");
         }
@@ -68,7 +68,7 @@ module AODVVANETCar
             parameters:
                 @display("p=304,461;q=queue");
         }
-        vanetrouting:  <routingProtocol> like IVanetRouting if routingProtocol != "" {
+        manetrouting: AODVVANETRouter {
             @display("p=522,307");
         }
         configurator: IPv4NetworkConfigurator {
@@ -95,7 +95,7 @@ module AODVVANETCar
         wlan.upperLayerIn <-- networkLayer.ifOut[0];
 
         radioIn --> wlan.radioIn;
-        
-        networkLayer.transportOut++ --> vanetrouting.from_ip if routingProtocol != "";
-        networkLayer.transportIn++ <-- vanetrouting.to_ip if routingProtocol != "";
+
+        //networkLayer.transportOut++ --> manetrouting.from_ip;
+        //networkLayer.transportIn++ <-- manetrouting.to_ip;
 }

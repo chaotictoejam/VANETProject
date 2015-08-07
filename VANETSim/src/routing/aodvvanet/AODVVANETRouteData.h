@@ -31,7 +31,6 @@ class AODVVANETRouteData : public cObject
     bool beingRepaired;
     bool validDestNum;
     unsigned int destSeqNum;
-    simtime_t lifeTime;    // expiration or deletion time of the route
     double twr;
     double expirationTime;
 
@@ -43,7 +42,6 @@ class AODVVANETRouteData : public cObject
         repariable = false;
         beingRepaired = false;
         validDestNum = true;
-        lifeTime = SIMTIME_ZERO;
         destSeqNum = 0;
         twr = 0;
         expirationTime = 10000;
@@ -59,12 +57,10 @@ class AODVVANETRouteData : public cObject
     void setIsBeingRepaired(bool isBeingRepaired) { this->beingRepaired = isBeingRepaired; }
     bool isRepariable() const { return repariable; }
     void setIsRepariable(bool isRepariable) { this->repariable = isRepariable; }
-    const simtime_t& getLifeTime() const { return lifeTime; }
-    void setLifeTime(const simtime_t& lifeTime) { this->lifeTime = lifeTime; }
     void setTWR(double twr) { this->twr = twr; }
-    double getTWR() { return twr; }
+    const double& getTWR() const { return twr; }
     void setExpirationTime(double expirationTime) { this->expirationTime = expirationTime; }
-    double getExpirationTime() { return expirationTime; }
+    const double&  getExpirationTime() const { return expirationTime; }
     bool isActive() const { return active; }
     void setIsActive(bool active) { this->active = active; }
     void addPrecursor(const IPv4Address& precursorAddr) { precursorList.insert(precursorAddr); }

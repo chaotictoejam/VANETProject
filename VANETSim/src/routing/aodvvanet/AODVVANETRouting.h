@@ -151,9 +151,9 @@ class AODVVANETRouting : public cSimpleModule, public ILifecycle, public INetfil
     void cancelRouteDiscovery(const IPv4Address& destAddr);
 
     /* Routing Table management */
-    void updateRoutingTable(IPv4Route *route, const IPv4Address& nextHop, unsigned int hopCount, bool hasValidDestNum, unsigned int destSeqNum, bool isActive, simtime_t lifeTime, double twr, double expirationTime);
-    IPv4Route *createRoute(const IPv4Address& destAddr, const IPv4Address& nextHop, unsigned int hopCount, bool hasValidDestNum, unsigned int destSeqNum, bool isActive, simtime_t lifeTime, double twr, double expirationTime);
-    bool updateValidRouteLifeTime(const IPv4Address& destAddr, simtime_t lifetime);
+    void updateRoutingTable(IPv4Route *route, const IPv4Address& nextHop, unsigned int hopCount, bool hasValidDestNum, unsigned int destSeqNum, bool isActive, double twr, double expirationTime);
+    IPv4Route *createRoute(const IPv4Address& destAddr, const IPv4Address& nextHop, unsigned int hopCount, bool hasValidDestNum, unsigned int destSeqNum, bool isActive, double twr, double expirationTime);
+    bool updateValidRouteLifeTime(const IPv4Address& destAddr, double expirationTime);
     void scheduleExpungeRoutes();
     void expungeRoutes();
 

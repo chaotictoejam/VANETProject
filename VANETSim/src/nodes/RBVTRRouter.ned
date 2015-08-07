@@ -25,7 +25,7 @@ module RBVTRRouter extends WirelessHost
     parameters:
         @display("i=device/cellphone");
         IPForward = true;
-        wlan[*].mgmtType = default("Ieee80211MgmtAdhoc");
+        //wlan[*].mgmtType = default("Ieee80211MgmtAdhoc");
     submodules:
         rbvtr: RBVTRRouting {
             @display("p=558,307");

@@ -22,7 +22,8 @@ std::ostream & operator<<(std::ostream& out, const AODVVANETRouteData *data)
     out << " isActive = " << data->isActive()
         << ", hasValidDestNum = " << data->hasValidDestNum()
         << ", destNum = " << data->getDestSeqNum()
-        << ", lifetime = " << data->getLifeTime();
+        << ", twr = " << data->getTWR()
+        << ", ExpirationTime = " << data->getExpirationTime();
 
     const std::set<IPv4Address>& preList = data->getPrecursorList();
 
