@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!-- debug config -->
+<launch>
+	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\simple\sumotest.net.xml" />
+	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\simple\sumotest300.rou.xml" />
+	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\simple\sumotest300.sumo.cfg" type="config" />
+</launch>
+
