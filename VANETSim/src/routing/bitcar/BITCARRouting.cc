@@ -79,10 +79,6 @@ void BITCARRouting::initialize(int stage)
         if (useHelloMessages) {
             helloMsgTimer = new cMessage("HelloMsgTimer");
 
-            // RFC 5148:
-            // Jitter SHOULD be applied by reducing this delay by a random amount, so that
-            // the delay between consecutive transmissions of messages of the same type is
-            // equal to (MESSAGE_INTERVAL - jitter), where jitter is the random value.
             if (isOperational)
                 scheduleAt(simTime() + helloInterval - periodicJitter->doubleValue(), helloMsgTimer);
         }
@@ -258,8 +254,7 @@ void BITCARRouting::sendRREQ(BITCARRREQ *rreq, const IPv4Address& destAddr, unsi
 {
     // In an expanding ring search, the originating node initially uses a TTL =
     // TTL_START in the RREQ packet IP header and sets the timeout for
-    // receiving a RREP to RING_TRAVERSAL_TIME milliseconds.
-    // RING_TRAVERSAL_TIME is calculated as described in section 10.  The
+    // receiving a RREP to RING_TRAVERSAL_TIME milliseconds.  The
     // TTL_VALUE used in calculating RING_TRAVERSAL_TIME is set equal to the
     // value of the TTL field in the IP header.  If the RREQ times out
     // without a corresponding RREP, the originator broadcasts the RREQ
@@ -288,7 +283,7 @@ void BITCARRouting::sendRREQ(BITCARRREQ *rreq, const IPv4Address& destAddr, unsi
         // timeout the TTL is incremented by TTL_INCREMENT until TTL =
         // TTL_THRESHOLD is reached.  Beyond this TTL = NET_DIAMETER is used.
         // Once TTL = NET_DIAMETER, the timeout for waiting for the RREP is set
-        // to NET_TRAVERSAL_TIME, as specified in section 6.3.
+        // to NET_TRAVERSAL_TIME
 
         if (timeToLive != 0) {
             rrepTimerMsg->setLastTTL(timeToLive);
@@ -448,9 +443,8 @@ BITCARRREP *BITCARRouting::createRREP(BITCARRREQ *rreq, IPv4Route *destRoute, IP
     rrep->setOriginatorAddr(rreq->getOriginatorAddr());
 
     // Processing is slightly different, depending on whether the node is
-    // itself the requested destination (see section 6.6.1), or instead
+    // itself the requested destination, or instead
     // if it is an intermediate node with an fresh enough route to the destination
-    // (see section 6.6.2).
 
     if (rreq->getDestAddr() == getSelfIPAddress()) {    // node is itself the requested destination
         // If the generating node is the destination itself, it MUST increment
@@ -557,7 +551,7 @@ void BITCARRouting::handleRREP(BITCARRREP *rrep, const IPv4Address& sourceAddr)
     // prefix matching) for a route to the previous hop.
 
     // If needed, a route is created for the previous hop,
-    // but without a valid sequence number (see section 6.2)
+    // but without a valid sequence number
 
     IPv4Route *previousHopRoute = routingTable->findBestMatchingRoute(sourceAddr);
 
@@ -646,7 +640,7 @@ void BITCARRouting::handleRREP(BITCARRREP *rrep, const IPv4Address& sourceAddr)
         // If a node forwards a RREP over a link that is likely to have errors or
         // be unidirectional, the node SHOULD set the 'A' flag to require that the
         // recipient of the RREP acknowledge receipt of the RREP by sending a RREP-ACK
-        // message back (see section 6.8).
+        // message back
 
         if (originatorRoute && originatorRoute->getSource() == this) {
             BITCARRouteData *originatorRouteData = check_and_cast<BITCARRouteData *>(originatorRoute->getProtocolData());
@@ -662,7 +656,7 @@ void BITCARRouting::handleRREP(BITCARRREP *rrep, const IPv4Address& sourceAddr)
                 // If a node forwards a RREP over a link that is likely to have errors
                 // or be unidirectional, the node SHOULD set the 'A' flag to require that
                 // the recipient of the RREP acknowledge receipt of the RREP by sending a
-                // RREP-ACK message back (see section 6.8).
+                // RREP-ACK message back
 
                 if (rrep->getAckRequiredFlag()) {
                     BITCARRREPACK *rrepACK = createRREPACK();
@@ -769,7 +763,7 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
     }
 
     // When a node receives a RREQ, it first creates or updates a route to
-    // the previous hop without a valid sequence number (see section 6.2).
+    // the previous hop without a valid sequence number
 
     IPv4Route *previousHopRoute = routingTable->findBestMatchingRoute(sourceAddr);
 
@@ -800,8 +794,7 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
 
     rreq->setHopCount(rreq->getHopCount() + 1);
 
-    // Then the node searches for a reverse route to the Originator IP Address (see
-    // section 6.2), using longest-prefix matching.
+    // Then the node searches for a reverse route to the Originator IP Address, using longest-prefix matching.
 
     IPv4Route *reverseRoute = routingTable->findBestMatchingRoute(rreq->getOriginatorAddr());
 
@@ -930,10 +923,9 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
         delete rreq;
         return;    // discard RREQ, in this case, we also do not forward it.
     }
-    // If a node does not generate a RREP (following the processing rules in
-    // section 6.6), and if the incoming IP header has TTL larger than 1,
+    // If a node does not generate a RREP, and if the incoming IP header has TTL larger than 1,
     // the node updates and broadcasts the RREQ to address 255.255.255.255
-    // on each of its configured interfaces (see section 6.14).  To update
+    // on each of its configured interfaces.  To update
     // the RREQ, the TTL or hop limit field in the outgoing IP header is
     // decreased by one, and the Hop Count field in the RREQ message is
     // incremented by one, to account for the new hop through the
@@ -1031,7 +1023,7 @@ void BITCARRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAddr)
 {
     // For case (i), the node first makes a list of unreachable destinations
     // consisting of the unreachable neighbor and any additional
-    // destinations (or subnets, see section 7) in the local routing table
+    // destinations in the local routing table
     // that use the unreachable neighbor as the next hop.
 
     // Just before transmitting the RERR, certain updates are made on the
@@ -1062,8 +1054,7 @@ void BITCARRouting::handleLinkBreakSendRERR(const IPv4Address& unreachableAddr)
 
     // For case (i), the node first makes a list of unreachable destinations
     // consisting of the unreachable neighbor and any additional destinations
-    // (or subnets, see section 7) in the local routing table that use the
-    // unreachable neighbor as the next hop.
+    // in the local routing table that use the unreachable neighbor as the next hop.
 
     for (int i = 0; i < routingTable->getNumRoutes(); i++) {
         IPv4Route *route = routingTable->getRoute(i);
@@ -1410,7 +1401,7 @@ void BITCARRouting::handleHelloMessage(BITCARRREP *helloMessage)
     // receive any packets (Hello messages or otherwise) for more than
     // ALLOWED_HELLO_LOSS * HELLO_INTERVAL milliseconds, the node SHOULD
     // assume that the link to this neighbor is currently lost.  When this
-    // happens, the node SHOULD proceed as in Section 6.11.
+    // happens, the node SHOULD proceed
 }
 
 void BITCARRouting::expungeRoutes()
@@ -1424,7 +1415,7 @@ void BITCARRouting::expungeRoutes()
                 if (routeData->isActive()) {
                     EV_DETAIL << "Route to " << route->getDestination() << " expired and set to inactive. It will be deleted after DELETE_PERIOD time" << endl;
                     // An expired routing table entry SHOULD NOT be expunged before
-                    // (current_time + DELETE_PERIOD) (see section 6.11).  Otherwise, the
+                    // (current_time + DELETE_PERIOD).  Otherwise, the
                     // soft state corresponding to the route (e.g., last known hop count)
                     // will be lost.
                     routeData->setIsActive(false);
@@ -1482,8 +1473,7 @@ INetfilter::IHook::Result BITCARRouting::datagramForwardHook(IPv4Datagram *datag
 {
     // TODO: Implement: Actions After Reboot
     // If the node receives a data packet for some other destination, it SHOULD
-    // broadcast a RERR as described in subsection 6.11 and MUST reset the waiting
-    // timer to expire after current time plus DELETE_PERIOD.
+    // broadcast a RERR and MUST reset the waiting timer to expire after current time plus DELETE_PERIOD.
 
     Enter_Method("datagramForwardHook");
     const IPv4Address& destAddr = datagram->getDestAddress();
