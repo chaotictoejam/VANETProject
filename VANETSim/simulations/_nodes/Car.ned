@@ -33,14 +33,6 @@ module Car
             parameters:
                 @display("p=140,326");
         }
-        app: TraCIDemo {
-            parameters:
-                @display("p=384,46");
-        }
-        mobility: <mobilityType> like IMobility {
-            parameters:
-                @display("p=60,459");
-        }
         routingTable: RoutingTable {
             parameters:
                 IPForward = true;
@@ -59,6 +51,14 @@ module Car
             gates:
                 ifIn[1];
                 ifOut[1];
+        }
+        app: TraCIDemo {
+            parameters:
+                @display("p=384,46");
+        }
+        mobility: <mobilityType> like IMobility {
+            parameters:
+                @display("p=60,459");
         }
         wlan: Ieee80211Nic {
             parameters:

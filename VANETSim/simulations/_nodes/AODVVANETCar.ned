@@ -10,9 +10,9 @@ import inet.networklayer.ipv4.RoutingTable;
 import inet.nodes.inet.NetworkLayer;
 import inet.transport.udp.UDP;
 import inet.world.radio.ChannelControl;
-import vanetsim.nodes.AODVVANETRouter;
 import vanetsim.vanetrouting.applications.traci.aodvTraCI;
 import vanetsim.vanetrouting.mobility.contract.IVANETMobility;
+import vanetsim.vanetrouting.networklayer.IVanetRouting;
 
 
 module AODVVANETCar
@@ -37,14 +37,6 @@ module AODVVANETCar
             parameters:
                 @display("p=140,326");
         }
-        app: aodvTraCI {
-            parameters:
-                @display("p=384,46");
-        }
-        mobility: <mobilityType> like IVANETMobility {
-            parameters:
-                @display("p=60,459");
-        }
         routingTable: RoutingTable {
             parameters:
                 IPForward = true;
@@ -64,13 +56,6 @@ module AODVVANETCar
                 ifIn[1];
                 ifOut[1];
         }
-        wlan: Ieee80211Nic {
-            parameters:
-                @display("p=304,461;q=queue");
-        }
-        manetrouting: AODVVANETRouter {
-            @display("p=522,307");
-        }
         configurator: IPv4NetworkConfigurator {
             parameters:
                 config = xml("<config><interface hosts='*' address='145.236.x.x' netmask='255.255.0.0'/></config>");
@@ -84,6 +69,21 @@ module AODVVANETCar
             parameters:
                 @display("p=50,200");
         }
+        app: aodvTraCI {
+            parameters:
+                @display("p=384,46");
+        }
+        mobility: <mobilityType> like IVANETMobility {
+            parameters:
+                @display("p=60,459");
+        }
+        wlan: Ieee80211Nic {
+            parameters:
+                @display("p=304,461;q=queue");
+        }
+        vanetrouting: <routingProtocol> like IVanetRouting if routingProtocol != "" {
+            @display("p=522,307");
+        }
     connections allowunconnected:
         udp.appOut++ --> app.udp$i;
         udp.appIn++ <-- app.udp$o;
@@ -96,6 +96,6 @@ module AODVVANETCar
 
         radioIn --> wlan.radioIn;
 
-        //networkLayer.transportOut++ --> manetrouting.from_ip;
-        //networkLayer.transportIn++ <-- manetrouting.to_ip;
+        networkLayer.transportOut++ --> vanetrouting.from_ip if routingProtocol != "";
+        networkLayer.transportIn++ <-- vanetrouting.to_ip if routingProtocol != "";
 }

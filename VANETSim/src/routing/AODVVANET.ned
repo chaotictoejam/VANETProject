@@ -23,7 +23,7 @@ import vanetsim.vanetrouting.networklayer.IVanetRouting;
 simple AODVVANET extends BaseVanetRouting like IVanetRouting
 {
     parameters:
-        @class(AODVVANET);
+        @class(AODVVANETRouting);
         @reactive;                             // IP module will send control messages when no route is present to the destination
         string networkProtocolModule = default("^.networkLayer.ip");
 

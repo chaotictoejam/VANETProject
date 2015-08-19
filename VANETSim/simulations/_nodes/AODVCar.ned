@@ -93,5 +93,6 @@ module AODVCar
         wlan.upperLayerOut --> networkLayer.ifIn[0];
         wlan.upperLayerIn <-- networkLayer.ifOut[0];
 
-        radioIn --> wlan.radioIn;
+        radioIn --> manetrouting.radioIn[0];
+        
 }
