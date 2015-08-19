@@ -15,15 +15,15 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package vanetsim;
+package vanetsim.routing;
 
 import vanetsim.vanetrouting.base.BaseVanetRouting;
 import vanetsim.vanetrouting.networklayer.IVanetRouting;
 
-simple RBVTP extends BaseVanetRouting like IVanetRouting
+simple RBVTR extends BaseVanetRouting like IVanetRouting
 {
     parameters:
-        @class(RBVTPRouting);
+        @class(RBVTR);
         @reactive;                             // IP module will send control messages when no route is present to the destination
         bool log_to_file = default(false);     // dump AODV log files (non RFC parameter)
         bool hello_jittering = default(true);  // add a +-50ms jitter to the hello interval (non RFC parameter)

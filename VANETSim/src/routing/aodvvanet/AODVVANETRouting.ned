@@ -17,31 +17,15 @@
 
 package vanetsim.routing.aodvvanet;
 
-//
-// Ad hoc On-Demand Distance Vector Routing Protocol module.
-//
-// The Ad hoc On-Demand Distance Vector (AODV) routing protocol is
-// intended for use by mobile nodes in an ad hoc network. It offers
-// quick adaptation to dynamic link conditions, low processing and
-// memory overhead, low network utilization, and determines unicast
-// routes to destinations within the ad hoc network.
-//
-// This routing protocol communicates over UDP and used in ~AODVVANETRouter
-// nodes as a routing submodule. ~AODVVANETRouter is just a ~WirelessHost
-// extended with ~AODVVANETRouting submodule.
-//
-// This implementation is based on RFC 3561. For more information, you may
-// refer to the following link: https://tools.ietf.org/html/rfc3561.html.
-//
 simple AODVVANETRouting
 {
     parameters:
         @display("i=block/network2");
         string networkProtocolModule = default("^.networkLayer.ip");
 
-        bool askGratuitousRREP = default(false); // see RFC 3561: 6.6.3
-        bool useHelloMessages = default(true); // see RFC 3561: 6.9
-        bool useLocalRepair = default(false); // see RFC 3561: 6.12 *not implemented yet*
+        bool askGratuitousRREP = default(false); 
+        bool useHelloMessages = default(true); 
+        bool useLocalRepair = default(false); 
         int udpPort = default(654);
 
         double maxPeriodicJitter @unit("s") = default(helloInterval / 4); // it MUST NOT be negative; it MUST NOT be greater than MESSAGE_INTERVAL/2; it SHOULD NOT be greater than MESSAGE_INTERVAL/4.
