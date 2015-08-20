@@ -70,19 +70,6 @@ module AODVCar
         manetrouting: AODVRouter {
             @display("p=522,307");
         }
-        configurator: IPv4NetworkConfigurator {
-            parameters:
-                config = xml("<config><interface hosts='*' address='145.236.x.x' netmask='255.255.0.0'/></config>");
-                @display("p=50,100");
-        }
-        channelControl: ChannelControl {
-            parameters:
-                @display("p=50,50");
-        }
-        lifecycleController: LifecycleController {
-            parameters:
-                @display("p=50,200");
-        }
     connections allowunconnected:
         udp.appOut++ --> app.udp$i;
         udp.appIn++ <-- app.udp$o;

@@ -56,19 +56,6 @@ module AODVVANETCar
                 ifIn[1];
                 ifOut[1];
         }
-        configurator: IPv4NetworkConfigurator {
-            parameters:
-                config = xml("<config><interface hosts='*' address='145.236.x.x' netmask='255.255.0.0'/></config>");
-                @display("p=50,100");
-        }
-        channelControl: ChannelControl {
-            parameters:
-                @display("p=50,50");
-        }
-        lifecycleController: LifecycleController {
-            parameters:
-                @display("p=50,200");
-        }
         app: aodvTraCI {
             parameters:
                 @display("p=384,46");
