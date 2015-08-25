@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from routing/aodvvanet/AODVVANETControlPackets.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from routing/aodvvanet/_old/AODVVANETControlPackets.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

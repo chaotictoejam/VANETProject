@@ -15,7 +15,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package vanetsim.routing.aodvvanet;
+package vanetsim.routing.aodvvanet._old;
 
 simple AODVVANETRouting
 {
