@@ -21,7 +21,7 @@ module AODVVANETCar
         @node();
         string mobilityType = default("aodvTraCIMobility");
         networkLayer.configurator.networkConfiguratorModule = "";
-        string routingProtocol @enum("AODVVANET","RBVTR","BITCAR") = default("");
+        string routingProtocol @enum("AODVVANET") = default("AODVVANET");
         //int numHosts;
     gates:
         input radioIn @directIn;
