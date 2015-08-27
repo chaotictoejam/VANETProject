@@ -15,7 +15,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package vanetsim.routing.aodvvanet._old;
+package vanetsim.routing.aodvvanetrouting;
 
 simple AODVVANETRouting
 {
@@ -68,6 +68,6 @@ simple AODVVANETRouting
         double nextHopWait @unit("s") = default(nodeTraversalTime + 0.01s); // timeout for a RREP-ACK
         double pathDiscoveryTime @unit("s") = default(2 * netTraversalTime); // buffer timeout for each broadcasted RREQ message
     gates:
-        input from_ip;
-        output to_ip;
+        input ipIn;
+        output ipOut;
 }
