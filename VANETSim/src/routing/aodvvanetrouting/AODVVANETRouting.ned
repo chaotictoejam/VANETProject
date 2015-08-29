@@ -24,7 +24,7 @@ simple AODVVANETRouting
         string networkProtocolModule = default("^.networkLayer.ip");
 
         bool askGratuitousRREP = default(false); 
-        bool useHelloMessages = default(true); 
+        bool useHelloMessages = default(false); 
         bool useLocalRepair = default(false); 
         int udpPort = default(654);
 
@@ -68,6 +68,6 @@ simple AODVVANETRouting
         double nextHopWait @unit("s") = default(nodeTraversalTime + 0.01s); // timeout for a RREP-ACK
         double pathDiscoveryTime @unit("s") = default(2 * netTraversalTime); // buffer timeout for each broadcasted RREQ message
     gates:
-        input ipIn;
-        output ipOut;
+        input from_ip;
+        output to_ip;
 }
