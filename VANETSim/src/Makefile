@@ -72,11 +72,15 @@ INCLUDE_PATH = \
     -Irouting/aodvvanet/aodvvanet \
     -Irouting/aodvvanetrouting \
     -Irouting/bitcar \
+    -Irouting/geoadv \
     -Irouting/rbvtr \
     -Ivanetrouting \
     -Ivanetrouting/applications \
     -Ivanetrouting/applications/traci \
     -Ivanetrouting/base \
+    -Ivanetrouting/linklayer \
+    -Ivanetrouting/linklayer/ieee80211 \
+    -Ivanetrouting/linklayer/ieee80211/mgmt \
     -Ivanetrouting/mobility \
     -Ivanetrouting/mobility/common \
     -Ivanetrouting/mobility/contract \
@@ -134,6 +138,7 @@ OBJS = \
     $O/vanetrouting/base/VanetModuleAccess.o \
     $O/vanetrouting/base/VanetNetfilterHook.o \
     $O/vanetrouting/base/VanetRoutingBase.o \
+    $O/vanetrouting/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhocWithVanetRouting.o \
     $O/vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.o \
     $O/vanetrouting/mobility/common/MovingVANETMobilityBase.o \
     $O/vanetrouting/mobility/common/VANETMobilityAccess.o \
@@ -252,11 +257,15 @@ clean:
 	$(Q)-rm -f routing/aodvvanet/aodvvanet/*_m.cc routing/aodvvanet/aodvvanet/*_m.h
 	$(Q)-rm -f routing/aodvvanetrouting/*_m.cc routing/aodvvanetrouting/*_m.h
 	$(Q)-rm -f routing/bitcar/*_m.cc routing/bitcar/*_m.h
+	$(Q)-rm -f routing/geoadv/*_m.cc routing/geoadv/*_m.h
 	$(Q)-rm -f routing/rbvtr/*_m.cc routing/rbvtr/*_m.h
 	$(Q)-rm -f vanetrouting/*_m.cc vanetrouting/*_m.h
 	$(Q)-rm -f vanetrouting/applications/*_m.cc vanetrouting/applications/*_m.h
 	$(Q)-rm -f vanetrouting/applications/traci/*_m.cc vanetrouting/applications/traci/*_m.h
 	$(Q)-rm -f vanetrouting/base/*_m.cc vanetrouting/base/*_m.h
+	$(Q)-rm -f vanetrouting/linklayer/*_m.cc vanetrouting/linklayer/*_m.h
+	$(Q)-rm -f vanetrouting/linklayer/ieee80211/*_m.cc vanetrouting/linklayer/ieee80211/*_m.h
+	$(Q)-rm -f vanetrouting/linklayer/ieee80211/mgmt/*_m.cc vanetrouting/linklayer/ieee80211/mgmt/*_m.h
 	$(Q)-rm -f vanetrouting/mobility/*_m.cc vanetrouting/mobility/*_m.h
 	$(Q)-rm -f vanetrouting/mobility/common/*_m.cc vanetrouting/mobility/common/*_m.h
 	$(Q)-rm -f vanetrouting/mobility/contract/*_m.cc vanetrouting/mobility/contract/*_m.h
@@ -273,7 +282,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc nodes/*.cc routing/*.cc routing/aodvvanet/*.cc routing/aodvvanet/aodvvanet/*.cc routing/aodvvanetrouting/*.cc routing/bitcar/*.cc routing/rbvtr/*.cc vanetrouting/*.cc vanetrouting/applications/*.cc vanetrouting/applications/traci/*.cc vanetrouting/base/*.cc vanetrouting/mobility/*.cc vanetrouting/mobility/common/*.cc vanetrouting/mobility/contract/*.cc vanetrouting/mobility/group/*.cc vanetrouting/mobility/single/*.cc vanetrouting/mobility/static/*.cc vanetrouting/networklayer/*.cc vanetrouting/util/*.cc vanetrouting/world/*.cc vanetrouting/world/traci/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc nodes/*.cc routing/*.cc routing/aodvvanet/*.cc routing/aodvvanet/aodvvanet/*.cc routing/aodvvanetrouting/*.cc routing/bitcar/*.cc routing/geoadv/*.cc routing/rbvtr/*.cc vanetrouting/*.cc vanetrouting/applications/*.cc vanetrouting/applications/traci/*.cc vanetrouting/base/*.cc vanetrouting/linklayer/*.cc vanetrouting/linklayer/ieee80211/*.cc vanetrouting/linklayer/ieee80211/mgmt/*.cc vanetrouting/mobility/*.cc vanetrouting/mobility/common/*.cc vanetrouting/mobility/contract/*.cc vanetrouting/mobility/group/*.cc vanetrouting/mobility/single/*.cc vanetrouting/mobility/static/*.cc vanetrouting/networklayer/*.cc vanetrouting/util/*.cc vanetrouting/world/*.cc vanetrouting/world/traci/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/routing/aodvvanet/aodvvanet_msg_struct.o: routing/aodvvanet/aodvvanet_msg_struct.cc \
@@ -1763,6 +1772,57 @@ $O/vanetrouting/base/Vanet_MeshControlInfo_m.o: vanetrouting/base/Vanet_MeshCont
 	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
 	$(INETMANET_2_0_PROJ)/src/linklayer/contract/Ieee802Ctrl_m.h \
 	$(INETMANET_2_0_PROJ)/src/linklayer/contract/MACAddress.h
+$O/vanetrouting/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhocWithVanetRouting.o: vanetrouting/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhocWithVanetRouting.cc \
+	vanetrouting/base/ControlVanetRouting_m.h \
+	vanetrouting/base/VanetAddress.h \
+	vanetrouting/base/VanetNetfilterHook.h \
+	vanetrouting/base/VanetRoutingBase.h \
+	vanetrouting/base/compatibility_vanet.h \
+	vanetrouting/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhocWithVanetRouting.h \
+	$(INETMANET_2_0_PROJ)/src/base/AbstractQueue.h \
+	$(INETMANET_2_0_PROJ)/src/base/Compat.h \
+	$(INETMANET_2_0_PROJ)/src/base/Coord.h \
+	$(INETMANET_2_0_PROJ)/src/base/ILifecycle.h \
+	$(INETMANET_2_0_PROJ)/src/base/INETDefs.h \
+	$(INETMANET_2_0_PROJ)/src/base/INotifiable.h \
+	$(INETMANET_2_0_PROJ)/src/base/IPassiveQueue.h \
+	$(INETMANET_2_0_PROJ)/src/base/ModuleAccess.h \
+	$(INETMANET_2_0_PROJ)/src/base/NotificationBoard.h \
+	$(INETMANET_2_0_PROJ)/src/base/NotifierConsts.h \
+	$(INETMANET_2_0_PROJ)/src/base/PassiveQueueBase.h \
+	$(INETMANET_2_0_PROJ)/src/base/ProtocolMap.h \
+	$(INETMANET_2_0_PROJ)/src/base/QueueBase.h \
+	$(INETMANET_2_0_PROJ)/src/base/ReassemblyBuffer.h \
+	$(INETMANET_2_0_PROJ)/src/linklayer/contract/Ieee802Ctrl_m.h \
+	$(INETMANET_2_0_PROJ)/src/linklayer/contract/MACAddress.h \
+	$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211/mac/Ieee80211Consts.h \
+	$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211/mac/Ieee80211Frame_m.h \
+	$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211/mgmt/Ieee80211MgmtBase.h \
+	$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h \
+	$(INETMANET_2_0_PROJ)/src/linklayer/ieee80211mesh/locator/ILocator.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/arp/ARP.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/arp/IARPCache.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/common/IInterfaceTable.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/common/INetfilter.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/common/InterfaceEntry.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/common/InterfaceToken.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPProtocolId_m.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv4Address.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPv6Address.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/contract/IPvXAddress.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/ICMP.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/ICMPAccess.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/ICMPMessage.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/ICMPMessage_m.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4Datagram.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4Datagram_m.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4FragBuf.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4Route.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IPv4RouteRule.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/IRoutingTable.h \
+	$(INETMANET_2_0_PROJ)/src/networklayer/ipv4/RoutingTableAccess.h \
+	$(INETMANET_2_0_PROJ)/src/util/FWMath.h
 $O/vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.o: vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.cc \
 	vanetrouting/base/VanetModuleAccess.h \
 	vanetrouting/mobility/common/LineSegmentsVANETMobilityBase.h \

@@ -79,6 +79,6 @@ module AODVVANETROUTECar
 
         vanetrouting.to_ip --> networkLayer.transportIn++;
         vanetrouting.from_ip <-- networkLayer.transportOut++;
-        
+
         radioIn --> wlan.radioIn;
 }
