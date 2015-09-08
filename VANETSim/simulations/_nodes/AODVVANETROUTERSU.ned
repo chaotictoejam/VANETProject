@@ -2,12 +2,12 @@ package vanetsim.simulations._nodes;
 
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;
+import inet.mobility.contract.IVANETMobility;
 import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
+import inet.networklayer.vanetrouting.aodvvanetrouting.AODVVANETRouting;
 import inet.nodes.inet.NetworkLayer;
-import vanetsim.routing.aodvvanetrouting.AODVVANETRouting;
-import vanetsim.vanetrouting.mobility.contract.IVANETMobility;
 
 
 module AODVVANETROUTERSU
@@ -64,6 +64,6 @@ module AODVVANETROUTERSU
 
         vanetrouting.to_ip --> networkLayer.transportIn++;
         vanetrouting.from_ip <-- networkLayer.transportOut++;
-        
+
         radioIn --> wlan.radioIn;
 }

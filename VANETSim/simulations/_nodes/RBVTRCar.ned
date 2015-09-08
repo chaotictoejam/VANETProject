@@ -1,16 +1,16 @@
 package vanetsim.simulations._nodes;
 
-import vanetsim.vanetrouting.applications.traci.rbvtrTraCIDemo;
+import inet.applications.traci.rbvtrTraCIDemo;
 import inet.base.LifecycleController;
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;
-import vanetsim.vanetrouting.mobility.contract.IVANETMobility;
+import inet.mobility.contract.IVANETMobility;
 import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
-import vanetsim.nodes.RBVTRRouter;
 import inet.nodes.inet.NetworkLayer;
+import inet.nodes.rbvtr.RBVTRRouter;
 import inet.transport.udp.UDP;
 import inet.world.radio.ChannelControl;
 
@@ -28,7 +28,7 @@ module RBVTRCar
         notificationBoard: NotificationBoard {
             parameters:
                 @display("p=140,462");
-        }							
+        }
         ac_wlan: HostAutoConfigurator {
             @display("p=296,402");
         }

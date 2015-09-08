@@ -2,11 +2,11 @@ package vanetsim.simulations._nodes;
 
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;
+import inet.mobility.contract.IVANETMobility;
 import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.nodes.inet.NetworkLayer;
-import vanetsim.vanetrouting.mobility.contract.IVANETMobility;
 
 
 module BITCARRSU

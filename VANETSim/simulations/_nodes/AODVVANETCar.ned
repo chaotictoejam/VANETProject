@@ -1,18 +1,15 @@
 package vanetsim.simulations._nodes;
 
-import inet.base.LifecycleController;
+import inet.applications.traci.aodvTraCI;
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;
+import inet.mobility.contract.IVANETMobility;
+import inet.networklayer.IVanetRouting;
 import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
-import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.nodes.inet.NetworkLayer;
 import inet.transport.udp.UDP;
-import inet.world.radio.ChannelControl;
-import vanetsim.vanetrouting.applications.traci.aodvTraCI;
-import vanetsim.vanetrouting.mobility.contract.IVANETMobility;
-import vanetsim.vanetrouting.networklayer.IVanetRouting;
 
 
 module AODVVANETCar
