@@ -1,5 +1,5 @@
 
-package vanetsim.simulations.aodvvanetrouting;
+package vanetsim.simulations.aodv.aodvvanetrouting;
 
 import vanetsim.simulations._nodes.AODVVANETROUTERSU;
 

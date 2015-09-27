@@ -1,5 +1,5 @@
 
-package vanetsim.simulations.aodvvanet;
+package vanetsim.simulations.aodv.aodvvanet;
 
 import vanetsim.simulations._nodes.AODVVANETRSU;
 
