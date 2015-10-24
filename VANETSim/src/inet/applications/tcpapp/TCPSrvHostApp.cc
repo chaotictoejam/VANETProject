@@ -1,42 +1,38 @@
 //
-// Copyright (C) 2004 Andras Varga
+// Copyright 2004 Andras Varga
 //
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
+// This library is free software, you can redistribute it and/or modify
+// it under  the terms of the GNU Lesser General Public License
+// as published by the Free Software Foundation;
+// either version 2 of the License, or any later version.
+// The library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with this program; if not, see <http://www.gnu.org/licenses/>.
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// See the GNU Lesser General Public License for more details.
 //
 
-#include "inet/applications/tcpapp/TCPSrvHostApp.h"
 
-#include "inet/networklayer/common/L3AddressResolver.h"
-#include "inet/common/ModuleAccess.h"
-#include "inet/common/lifecycle/NodeStatus.h"
-#include "inet/common/INETUtils.h"
+#include "TCPSrvHostApp.h"
 
-namespace inet {
+#include "IPvXAddressResolver.h"
+#include "ModuleAccess.h"
+#include "NodeStatus.h"
 
 Define_Module(TCPSrvHostApp);
+
 
 void TCPSrvHostApp::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
 
-    if (stage == INITSTAGE_APPLICATION_LAYER) {
+    if (stage == 3)
+    {
         const char *localAddress = par("localAddress");
         int localPort = par("localPort");
 
         serverSocket.setOutputGate(gate("tcpOut"));
         serverSocket.readDataTransferModePar(*this);
-        serverSocket.bind(localAddress[0] ? L3Address(localAddress) : L3Address(), localPort);
+        serverSocket.bind(localAddress[0] ? IPvXAddressResolver().resolve(localAddress) : IPvXAddress(), localPort);
         serverSocket.listen();
 
         bool isOperational;
@@ -49,7 +45,7 @@ void TCPSrvHostApp::initialize(int stage)
 
 void TCPSrvHostApp::updateDisplay()
 {
-    if (!hasGUI())
+    if (!ev.isGUI())
         return;
 
     char buf[32];
@@ -59,21 +55,24 @@ void TCPSrvHostApp::updateDisplay()
 
 void TCPSrvHostApp::handleMessage(cMessage *msg)
 {
-    if (msg->isSelfMessage()) {
+    if (msg->isSelfMessage())
+    {
         TCPServerThreadBase *thread = (TCPServerThreadBase *)msg->getContextPointer();
         thread->timerExpired(msg);
     }
-    else {
+    else
+    {
         TCPSocket *socket = socketMap.findSocketFor(msg);
 
-        if (!socket) {
+        if (!socket)
+        {
             // new connection -- create new socket object and server process
             socket = new TCPSocket(msg);
             socket->setOutputGate(gate("tcpOut"));
 
             const char *serverThreadClass = par("serverThreadClass");
             TCPServerThreadBase *proc =
-                check_and_cast<TCPServerThreadBase *>(inet::utils::createOne(serverThreadClass));
+                    check_and_cast<TCPServerThreadBase *>(createOne(serverThreadClass));
 
             socket->setCallbackObject(proc);
             proc->init(this, socket);
@@ -101,6 +100,4 @@ void TCPSrvHostApp::removeThread(TCPServerThreadBase *thread)
 
     updateDisplay();
 }
-
-} // namespace inet
 

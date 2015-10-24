@@ -17,17 +17,11 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211Etx.h"
-#include "inet/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
-#include "inet/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.h"
-#include "inet/common/GlobalWirelessLinkInspector.h"
-#include "inet/common/ModuleAccess.h"
-
-namespace inet {
-
-namespace ieee80211 {
-
-using namespace physicallayer;
+#include "InterfaceTableAccess.h"
+#include "Ieee80211Etx.h"
+#include "Ieee80211Frame_m.h"
+#include "Radio80211aControlInfo_m.h"
+#include "GlobalWirelessLinkInspector.h"
 
 Define_Module(Ieee80211Etx);
 
@@ -54,9 +48,10 @@ void Ieee80211Etx::initialize(int stage)
         powerWindowTime = par("powerWindowTime");
         hysteresis = par("ETXHysteresis");
         pasiveMeasure = par("pasiveMeasure");
-        subscribe(NF_LINK_BREAK,this);
-        subscribe(NF_LINK_FULL_PROMISCUOUS,this);
-        IInterfaceTable *inet_ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
+        NotificationBoard *nb = NotificationBoardAccess().get();
+        nb->subscribe(this, NF_LINK_BREAK);
+        nb->subscribe(this, NF_LINK_FULL_PROMISCUOUS);
+        IInterfaceTable *inet_ift = InterfaceTableAccess().get();
         for (int i = 0; i < inet_ift->getNumInterfaces(); i++)
         {
             InterfaceEntry * ie = inet_ift->getInterface(i);
@@ -69,9 +64,9 @@ void Ieee80211Etx::initialize(int stage)
         {
             // integrity check
             if (etxSize <0  || etxInterval < 0)
-                throw cRuntimeError("ETT need ETX");
+                opp_error("ETT need ETX");
             if (ettInterval/etxInterval < 2)
-                throw cRuntimeError("ETT interval must be at least 2 times the ETX interval");
+                opp_error("ETT interval must be at least 2 times the ETX interval");
             scheduleAt(simTime()+par("startEtt"), ettTimer);
         }
     }
@@ -118,11 +113,11 @@ void Ieee80211Etx::handleTimer(cMessage *msg)
             pkt->setByteLength(etxSize);
             pkt->setSource(myAddress);
             pkt->setDest(MACAddress::BROADCAST_ADDRESS);
-            for (auto it = neighbors[i].begin(); it != neighbors[i].end();)
+            for (NeighborsMap::iterator it = neighbors[i].begin(); it != neighbors[i].end();)
             {
                 if (simTime() - it->second.getTime() > maxLive)
                 {
-                    auto itAux = it;
+                    NeighborsMap::iterator itAux = it;
                     it++;
                     neighbors[i].erase(itAux);
                     continue;
@@ -132,7 +127,7 @@ void Ieee80211Etx::handleTimer(cMessage *msg)
             pkt->setNeighborsArraySize(neighbors[i].size());
             pkt->setRecPacketsArraySize(neighbors[i].size());
             int j = 0;
-            for (auto it = neighbors[i].begin(); it != neighbors[i].end(); it++)
+            for (NeighborsMap::iterator it = neighbors[i].begin(); it != neighbors[i].end(); it++)
             {
                 pkt->setNeighbors(j, it->second.getAddress());
                 checkSizeEtxArray(&(it->second));
@@ -140,11 +135,7 @@ void Ieee80211Etx::handleTimer(cMessage *msg)
                 pkt->setRecPackets(j, it->second.timeVector.size());
                 j++;
             }
-
-            if (!pkt->hasPar("indexGate"))
-                pkt->addPar("indexGate") = i;
-            else
-                pkt->par("indexGate") = i;
+            pkt->setKind(i);
             send(pkt, "toMac");
         }
         if (!pasiveMeasure)
@@ -154,11 +145,11 @@ void Ieee80211Etx::handleTimer(cMessage *msg)
     {
         for (unsigned int i = 0; i < neighbors.size(); i++)
         {
-            for (auto it = neighbors[i].begin(); it != neighbors[i].end();)
+            for (NeighborsMap::iterator it = neighbors[i].begin(); it != neighbors[i].end();)
             {
                 if (simTime() - it->second.getTime() > maxLive)
                 {
-                    auto itAux = it;
+                    NeighborsMap::iterator itAux = it;
                     it++;
                     neighbors[i].erase(itAux);
                     continue;
@@ -174,17 +165,8 @@ void Ieee80211Etx::handleTimer(cMessage *msg)
                 it->second.setEttTime(simTime());
                 pkt1->setType(0);
                 pkt2->setType(0);
-
-                if (!pkt1->hasPar("indexGate"))
-                    pkt1->addPar("indexGate") = i;
-                 else
-                     pkt1->par("indexGate") = i;
-
-                if (!pkt2->hasPar("indexGate"))
-                    pkt2->addPar("indexGate") = i;
-                else
-                    pkt2->par("indexGate") = i;
-
+                pkt1->setKind(i);
+                pkt2->setKind(i);
                 pkt1->setIndex(ettIndex);
                 pkt2->setIndex(ettIndex);
                 ettIndex ++;
@@ -205,7 +187,7 @@ int Ieee80211Etx::getEtx(const MACAddress &add, double &val)
     int interface = -1;
     for (unsigned int i = 0; i < neighbors.size(); i++)
     {
-        auto it = neighbors[i].find(add);
+        NeighborsMap::iterator it = neighbors[i].find(add);
         if (it == neighbors[i].end())
         {
             continue;
@@ -237,7 +219,7 @@ int Ieee80211Etx::getEtx(const MACAddress &add, double &val)
 
 double Ieee80211Etx::getEtx(const MACAddress &add, const int &iface)
 {
-    auto it = neighbors[iface].find(add);
+    NeighborsMap::iterator it = neighbors[iface].find(add);
     MacEtxNeighbor *neig;
     if (it==neighbors[iface].end())
     {
@@ -266,7 +248,7 @@ int Ieee80211Etx::getEtxEtt(const MACAddress &add, double &etx, double &ett)
     int interface = -1;
     for (unsigned int i = 0; i < neighbors.size(); i++)
     {
-        auto it = neighbors[i].find(add);
+        NeighborsMap::iterator it = neighbors[i].find(add);
         MacEtxNeighbor *neig;
         if (it == neighbors[i].end())
         {
@@ -316,7 +298,7 @@ double Ieee80211Etx::getEtt(const MACAddress &add, const int &iface)
     if (ettInterval<=0 || ettSize1 <= 0 || ettSize2<=0)
 	    return -1;
 
-    auto it = neighbors[iface].find(add);
+    NeighborsMap::iterator it = neighbors[iface].find(add);
     MacEtxNeighbor *neig;
     if (it==neighbors[iface].end())
     {
@@ -354,7 +336,7 @@ int Ieee80211Etx::getEtt(const MACAddress &add, double &val)
     int interface = -1;
     for (unsigned int i = 0; i < neighbors.size(); i++)
     {
-        auto it = neighbors[i].find(add);
+        NeighborsMap::iterator it = neighbors[i].find(add);
         MacEtxNeighbor *neig;
         if (it == neighbors[i].end())
         {
@@ -398,7 +380,7 @@ int Ieee80211Etx::getEtt(const MACAddress &add, double &val)
 
 double Ieee80211Etx::getPrec(const MACAddress &add, const int &iface)
 {
-    auto it = neighbors[iface].find(add);
+    NeighborsMap::iterator it = neighbors[iface].find(add);
     MacEtxNeighbor *neig;
     if (it==neighbors[iface].end())
     {
@@ -411,12 +393,13 @@ double Ieee80211Etx::getPrec(const MACAddress &add, const int &iface)
             return 0;
 
         double sum = 0;
+        std::vector<SNRDataTime>::iterator itNeig;
 
-        for (auto itNeig = neig->signalToNoiseAndSignal.begin(); itNeig!=neig->signalToNoiseAndSignal.end();)
+        for (itNeig = neig->signalToNoiseAndSignal.begin(); itNeig!=neig->signalToNoiseAndSignal.end();)
         {
             if ((simTime()- itNeig->snrTime)>powerWindowTime)
             {
-                auto itAux = itNeig+1;
+                std::vector<SNRDataTime>::iterator itAux = itNeig+1;
                 neig->signalToNoiseAndSignal.erase(itNeig);
                 itNeig = itAux;
                 continue;
@@ -435,7 +418,7 @@ int Ieee80211Etx::getPrec(const MACAddress &add, double &val)
     int interface = -1;
     for (unsigned int i = 0; i < neighbors.size(); i++)
     {
-        auto it = neighbors[i].find(add);
+        NeighborsMap::iterator it = neighbors[i].find(add);
         MacEtxNeighbor *neig;
         if (it == neighbors[i].end())
         {
@@ -448,12 +431,13 @@ int Ieee80211Etx::getPrec(const MACAddress &add, double &val)
                 continue;
 
             double sum = 0;
+            std::vector<SNRDataTime>::iterator itNeig;
 
-            for (auto itNeig = neig->signalToNoiseAndSignal.begin(); itNeig != neig->signalToNoiseAndSignal.end();)
+            for (itNeig = neig->signalToNoiseAndSignal.begin(); itNeig != neig->signalToNoiseAndSignal.end();)
             {
                 if ((simTime() - itNeig->snrTime) > powerWindowTime)
                 {
-                    auto itAux = itNeig + 1;
+                    std::vector<SNRDataTime>::iterator itAux = itNeig + 1;
                     neig->signalToNoiseAndSignal.erase(itNeig);
                     itNeig = itAux;
                     continue;
@@ -475,7 +459,7 @@ int Ieee80211Etx::getPrec(const MACAddress &add, double &val)
 
 double Ieee80211Etx::getSignalToNoise(const MACAddress &add, const int &iface)
 {
-    auto it = neighbors[iface].find(add);
+    NeighborsMap::iterator it = neighbors[iface].find(add);
     MacEtxNeighbor *neig;
     if (it==neighbors[iface].end())
     {
@@ -488,12 +472,13 @@ double Ieee80211Etx::getSignalToNoise(const MACAddress &add, const int &iface)
             return 0;
 
         double sum = 0;
+        std::vector<SNRDataTime>::iterator itNeig;
 
-        for (auto itNeig = neig->signalToNoiseAndSignal.begin(); itNeig!=neig->signalToNoiseAndSignal.end();)
+        for (itNeig = neig->signalToNoiseAndSignal.begin(); itNeig!=neig->signalToNoiseAndSignal.end();)
         {
             if ((simTime()- itNeig->snrTime)>powerWindowTime)
             {
-                auto itAux = itNeig+1;
+                std::vector<SNRDataTime>::iterator itAux = itNeig+1;
                 neig->signalToNoiseAndSignal.erase(itNeig);
                 itNeig = itAux;
                 continue;
@@ -512,7 +497,7 @@ int Ieee80211Etx::getSignalToNoise(const MACAddress &add, double &val)
     int interface = -1;
     for (unsigned int i = 0; i < neighbors.size(); i++)
     {
-        auto it = neighbors[i].find(add);
+        NeighborsMap::iterator it = neighbors[i].find(add);
         if (it == neighbors[i].end())
         {
             continue;
@@ -524,12 +509,13 @@ int Ieee80211Etx::getSignalToNoise(const MACAddress &add, double &val)
                 continue;
 
             double sum = 0;
+            std::vector<SNRDataTime>::iterator itNeig;
 
-            for (auto itNeig = neig->signalToNoiseAndSignal.begin(); itNeig != neig->signalToNoiseAndSignal.end();)
+            for (itNeig = neig->signalToNoiseAndSignal.begin(); itNeig != neig->signalToNoiseAndSignal.end();)
             {
                 if ((simTime() - itNeig->snrTime) > powerWindowTime)
                 {
-                    auto itAux = itNeig + 1;
+                    std::vector<SNRDataTime>::iterator itAux = itNeig + 1;
                     neig->signalToNoiseAndSignal.erase(itNeig);
                     itNeig = itAux;
                     continue;
@@ -550,7 +536,7 @@ int Ieee80211Etx::getSignalToNoise(const MACAddress &add, double &val)
 
 double Ieee80211Etx::getPacketErrorToNeigh(const MACAddress &add, const int &iface)
 {
-    auto it = neighbors[iface].find(add);
+    NeighborsMap::iterator it = neighbors[iface].find(add);
     MacEtxNeighbor *neig;
 
     if (it == neighbors[iface].end())
@@ -576,7 +562,7 @@ int Ieee80211Etx::getPacketErrorToNeigh(const MACAddress &add, double &val)
     int interface = -1;
     for (unsigned int i = 0; i < neighbors.size(); i++)
     {
-        auto it = neighbors[i].find(add);
+        NeighborsMap::iterator it = neighbors[i].find(add);
         if (it == neighbors[i].end())
         {
             continue;
@@ -601,7 +587,7 @@ int Ieee80211Etx::getPacketErrorToNeigh(const MACAddress &add, double &val)
 
 double Ieee80211Etx::getPacketErrorFromNeigh(const MACAddress &add, const int &iface)
 {
-    auto it = neighbors[iface].find(add);
+    NeighborsMap::iterator it = neighbors[iface].find(add);
     MacEtxNeighbor *neig;
     if (it==neighbors[iface].end())
     {
@@ -624,7 +610,7 @@ int Ieee80211Etx::getPacketErrorFromNeigh(const MACAddress &add, double &val)
     int interface = -1;
     for (unsigned int i = 0; i < neighbors.size(); i++)
     {
-        auto it = neighbors[i].find(add);
+        NeighborsMap::iterator it = neighbors[i].find(add);
         MacEtxNeighbor *neig;
         if (it == neighbors[i].end())
         {
@@ -655,7 +641,7 @@ void Ieee80211Etx::handleEtxMessage(MACETXPacket *msg)
     int interface = msg->getKind();
     if (interface<0 || interface>= (int)numInterfaces)
         interface = 0;
-    auto it = neighbors[interface].find(msg->getSource());
+    NeighborsMap::iterator it = neighbors[interface].find(msg->getSource());
     MacEtxNeighbor *neig;
     if (it==neighbors[interface].end())
     {
@@ -684,24 +670,32 @@ void Ieee80211Etx::handleEtxMessage(MACETXPacket *msg)
     {
         // compute and actualize the costs
         GlobalWirelessLinkInspector::Link link;
-        L3Address org = L3Address(this->myAddress);
-        L3Address dest = L3Address(msg->getSource());
+        ManetAddress org = ManetAddress(this->myAddress);
+        ManetAddress dest = ManetAddress(msg->getSource());
 
         double etx;
         double ett;
+        double snr;
         getEtxEtt(msg->getSource(),etx,ett);
-
+        int iface = getSignalToNoise(msg->getSource(), snr);
         if (GlobalWirelessLinkInspector::getLinkCost(org,dest,link))
         {
             link.costEtx = etx;
             link.costEtt = ett;
+            if (iface >= 0)
+                link.snr = snr;
+            else
+                link.snr = 0;
             GlobalWirelessLinkInspector::setLinkCost(org,dest,link);
         }
         else
         {
             link.costEtt = ett;
             link.costEtx = etx;
-            link.snr = 0;
+            if (iface >= 0)
+                link.snr = snr;
+            else
+                link.snr = 0;
             GlobalWirelessLinkInspector::setLinkCost(org,dest,link);
         }
     }
@@ -714,8 +708,8 @@ void Ieee80211Etx::handleBwMessage(MACBwPacket *msg)
     int interface = msg->getKind();
     if (interface<0 || interface>= (int)numInterfaces)
         interface = 0;
-    auto it = neighbors[interface].find(msg->getSource());
-    MacEtxNeighbor *neig = nullptr;
+    NeighborsMap::iterator it = neighbors[interface].find(msg->getSource());
+    MacEtxNeighbor *neig = NULL;
     if (it!=neighbors[interface].end())
     {
         neig = &(it->second);
@@ -733,7 +727,7 @@ void Ieee80211Etx::handleBwMessage(MACBwPacket *msg)
         }
         else if (msg->getByteLength() == ettSize2)
         {
-            auto it = infoEtt.find(msg->getSource());
+            InfoEtt::iterator it = infoEtt.find(msg->getSource());
             if (it != infoEtt.end())
             {
                 if (msg->getIndex() == it->second.ettIndex) // if different index some packet of the pair has been lost
@@ -744,7 +738,7 @@ void Ieee80211Etx::handleBwMessage(MACBwPacket *msg)
                     msg->setByteLength(ettSize1);
                     msg->setSource(myAddress);
                     send(msg, "toMac");
-                    msg = nullptr;
+                    msg = NULL;
                 }
                 infoEtt.erase(it);
             }
@@ -775,8 +769,8 @@ void Ieee80211Etx::handleBwMessage(MACBwPacket *msg)
         {
             // compute and actualize the costs
             GlobalWirelessLinkInspector::Link link;
-            L3Address org = L3Address(this->myAddress);
-            L3Address dest = L3Address(msg->getSource());
+            ManetAddress org = ManetAddress(this->myAddress);
+            ManetAddress dest = ManetAddress(msg->getSource());
             double ett;
             getEtt(msg->getSource(),ett);
 
@@ -805,25 +799,25 @@ void Ieee80211Etx::getNeighbors(std::vector<MACAddress> & add,const int &iface)
 {
     Enter_Method_Silent();
     add.clear();
-    for (auto it = neighbors[iface].begin(); it != neighbors[iface].end(); it++)
+    for (NeighborsMap::iterator it = neighbors[iface].begin(); it != neighbors[iface].end(); it++)
     {
         add.push_back(it->second.getAddress());
     }
     return;
 }
 
-void Ieee80211Etx::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj)
+void Ieee80211Etx::receiveChangeNotification(int category, const cObject *details)
 {
     Enter_Method("Ieee80211Etx llf");
-    if (obj==nullptr)
+    if (details==NULL)
         return;
-    Ieee80211TwoAddressFrame *frame = dynamic_cast<Ieee80211TwoAddressFrame *>(const_cast<cObject*> (obj));
-    if (frame==nullptr)
+    Ieee80211TwoAddressFrame *frame = dynamic_cast<Ieee80211TwoAddressFrame *>(const_cast<cObject*> (details));
+    if (frame==NULL)
         return;
     int index = frame->getKind();
-    if (signalID == NF_LINK_BREAK)
+    if (category == NF_LINK_BREAK)
     {
-        auto it = neighbors[index].find(frame->getReceiverAddress());
+        NeighborsMap::iterator it = neighbors[index].find(frame->getReceiverAddress());
         if (it!=neighbors[index].end())
         {
             it->second.setNumFailures(it->second.getNumFailures()+1);
@@ -833,14 +827,14 @@ void Ieee80211Etx::receiveSignal(cComponent *source, simsignal_t signalID, cObje
             }
         }
     }
-    else if (signalID == NF_LINK_FULL_PROMISCUOUS)
+    else if (category == NF_LINK_FULL_PROMISCUOUS)
     {
-        auto it = neighbors[index].find(frame->getTransmitterAddress());
+        NeighborsMap::iterator it = neighbors[index].find(frame->getTransmitterAddress());
         if (it!=neighbors[index].end())
             it->second.setNumFailures(0);
         if (powerWindow>0)
         {
-            Ieee80211ReceptionIndication * cinfo = dynamic_cast<Ieee80211ReceptionIndication *> (frame->getControlInfo());
+            Radio80211aControlInfo * cinfo = dynamic_cast<Radio80211aControlInfo *> (frame->getControlInfo());
             // use only data frames
             if (!dynamic_cast<Ieee80211DataFrame *>(frame))
                 return;
@@ -900,7 +894,7 @@ void Ieee80211Etx::receiveSignal(cComponent *source, simsignal_t signalID, cObje
 
 uint32_t Ieee80211Etx::getAirtimeMetric(const MACAddress &addr, const int &iface)
 {
-    auto it = neighbors[iface].find(addr);
+    NeighborsMap::iterator it = neighbors[iface].find(addr);
     if (it != neighbors[iface].end())
     {
         MacEtxNeighbor ng = it->second;
@@ -924,14 +918,14 @@ void Ieee80211Etx::getAirtimeMetricNeighbors(std::vector<MACAddress> &addr, std:
 {
     addr.clear();
     cost.clear();
-    for (auto it = neighbors[iface].begin(); it != neighbors[iface].end();)
+    for (NeighborsMap::iterator it = neighbors[iface].begin(); it != neighbors[iface].end();)
     {
         MacEtxNeighbor ng = it->second;
         while (simTime() - ng.signalToNoiseAndSignal.front().snrTime > powerWindowTime)
             ng.signalToNoiseAndSignal.erase(ng.signalToNoiseAndSignal.begin());
         if (ng.signalToNoiseAndSignal.empty() && (simTime() - ng.getTime() > maxLive))
         {
-            auto itAux = it;
+            NeighborsMap::iterator itAux = it;
             it++;
             neighbors[iface].erase(itAux);
         }
@@ -983,8 +977,4 @@ std::string Ieee80211Etx::info() const
         }
     }
     return out.str();
-}
-
-}
-
 }

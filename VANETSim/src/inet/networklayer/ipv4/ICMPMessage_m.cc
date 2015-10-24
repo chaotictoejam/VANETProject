@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -55,69 +54,16 @@ template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ICMPType");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ICMPType"));
+    cEnum *e = cEnum::find("ICMPType");
+    if (!e) enums.getInstance()->add(e = new cEnum("ICMPType"));
     e->insert(ICMP_DESTINATION_UNREACHABLE, "ICMP_DESTINATION_UNREACHABLE");
-    e->insert(ICMP_SOURCEQUENCH, "ICMP_SOURCEQUENCH");
     e->insert(ICMP_REDIRECT, "ICMP_REDIRECT");
-    e->insert(ICMP_ECHO_REQUEST, "ICMP_ECHO_REQUEST");
-    e->insert(ICMP_ROUTER_ADVERTISEMENT, "ICMP_ROUTER_ADVERTISEMENT");
-    e->insert(ICMP_ROUTER_SOLICITATION, "ICMP_ROUTER_SOLICITATION");
     e->insert(ICMP_TIME_EXCEEDED, "ICMP_TIME_EXCEEDED");
     e->insert(ICMP_PARAMETER_PROBLEM, "ICMP_PARAMETER_PROBLEM");
+    e->insert(ICMP_ECHO_REQUEST, "ICMP_ECHO_REQUEST");
     e->insert(ICMP_ECHO_REPLY, "ICMP_ECHO_REPLY");
     e->insert(ICMP_TIMESTAMP_REQUEST, "ICMP_TIMESTAMP_REQUEST");
     e->insert(ICMP_TIMESTAMP_REPLY, "ICMP_TIMESTAMP_REPLY");
-    e->insert(ICMP_INFORMATION_REQUEST, "ICMP_INFORMATION_REQUEST");
-    e->insert(ICMP_INFORMATION_REPLY, "ICMP_INFORMATION_REPLY");
-    e->insert(ICMP_MASK_REQUEST, "ICMP_MASK_REQUEST");
-    e->insert(ICMP_MASK_REPLY, "ICMP_MASK_REPLY");
-);
-
-EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ICMPRedirectSubcodes");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ICMPRedirectSubcodes"));
-    e->insert(ICMP_REDIRECT_NET, "ICMP_REDIRECT_NET");
-    e->insert(ICMP_REDIRECT_HOST, "ICMP_REDIRECT_HOST");
-    e->insert(ICMP_REDIRECT_TOSNET, "ICMP_REDIRECT_TOSNET");
-    e->insert(ICMP_REDIRECT_TOSHOST, "ICMP_REDIRECT_TOSHOST");
-);
-
-EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ICMPTimeExceededSubcodes");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ICMPTimeExceededSubcodes"));
-    e->insert(ICMP_TIMXCEED_INTRANS, "ICMP_TIMXCEED_INTRANS");
-    e->insert(ICMP_TIMXCEED_REASS, "ICMP_TIMXCEED_REASS");
-);
-
-EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ICMPParameterProblemSubcodes");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ICMPParameterProblemSubcodes"));
-    e->insert(ICMP_PARAMPROB_ERRATPTR, "ICMP_PARAMPROB_ERRATPTR");
-    e->insert(ICMP_PARAMPROB_OPTABSENT, "ICMP_PARAMPROB_OPTABSENT");
-    e->insert(ICMP_PARAMPROB_LENGTH, "ICMP_PARAMPROB_LENGTH");
-);
-
-EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ICMPDestinationUnreachableCodes");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ICMPDestinationUnreachableCodes"));
-    e->insert(ICMP_DU_NETWORK_UNREACHABLE, "ICMP_DU_NETWORK_UNREACHABLE");
-    e->insert(ICMP_DU_HOST_UNREACHABLE, "ICMP_DU_HOST_UNREACHABLE");
-    e->insert(ICMP_DU_PROTOCOL_UNREACHABLE, "ICMP_DU_PROTOCOL_UNREACHABLE");
-    e->insert(ICMP_DU_PORT_UNREACHABLE, "ICMP_DU_PORT_UNREACHABLE");
-    e->insert(ICMP_DU_FRAGMENTATION_NEEDED, "ICMP_DU_FRAGMENTATION_NEEDED");
-    e->insert(ICMP_DU_SOURCE_ROUTE_FAILED, "ICMP_DU_SOURCE_ROUTE_FAILED");
-    e->insert(ICMP_DU_DESTINATION_NETWORK_UNKNOWN, "ICMP_DU_DESTINATION_NETWORK_UNKNOWN");
-    e->insert(ICMP_DU_DESTINATION_HOST_UNKNOWN, "ICMP_DU_DESTINATION_HOST_UNKNOWN");
-    e->insert(ICMP_DU_SOURCE_HOST_ISOLATED, "ICMP_DU_SOURCE_HOST_ISOLATED");
-    e->insert(ICMP_DU_NETWORK_PROHIBITED, "ICMP_DU_NETWORK_PROHIBITED");
-    e->insert(ICMP_DU_HOST_PROHIBITED, "ICMP_DU_HOST_PROHIBITED");
-    e->insert(ICMP_DU_NETWORK_UNREACHABLE_FOR_TYPE_OF_SERVICE, "ICMP_DU_NETWORK_UNREACHABLE_FOR_TYPE_OF_SERVICE");
-    e->insert(ICMP_DU_HOST_UNREACHABLE_FOR_TYPE_OF_SERVICE, "ICMP_DU_HOST_UNREACHABLE_FOR_TYPE_OF_SERVICE");
-    e->insert(ICMP_DU_COMMUNICATION_PROHIBITED, "ICMP_DU_COMMUNICATION_PROHIBITED");
-    e->insert(ICMP_DU_HOST_PRECEDENCE_VIOLATION, "ICMP_DU_HOST_PRECEDENCE_VIOLATION");
-    e->insert(ICMP_DU_PRECEDENCE_CUTOFF_IN_EFFECT, "ICMP_DU_PRECEDENCE_CUTOFF_IN_EFFECT");
-    e->insert(ICMP_AODV_QUEUE_FULL, "ICMP_AODV_QUEUE_FULL");
 );
 
 Register_Class(ICMPMessage);
@@ -210,7 +156,7 @@ class ICMPMessageDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(ICMPMessageDescriptor);
 
-ICMPMessageDescriptor::ICMPMessageDescriptor() : cClassDescriptor("inet::ICMPMessage", "cPacket")
+ICMPMessageDescriptor::ICMPMessageDescriptor() : cClassDescriptor("ICMPMessage", "cPacket")
 {
 }
 
@@ -299,7 +245,7 @@ const char *ICMPMessageDescriptor::getFieldProperty(void *object, int field, con
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ICMPType";
+            if (!strcmp(propertyname,"enum")) return "ICMPType";
             return NULL;
         default: return NULL;
     }
@@ -378,5 +324,4 @@ void *ICMPMessageDescriptor::getFieldStructPointer(void *object, int field, int 
     }
 }
 
-} // namespace inet
 

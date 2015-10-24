@@ -18,7 +18,7 @@
 
 package inet.mobility.single;
 
-import inet.mobility.base.MovingMobilityBase;
+import inet.mobility.common.MovingMobilityBase;
 
 // TODO: why does this comment refer to BonnMotion instead of NS2?
 //

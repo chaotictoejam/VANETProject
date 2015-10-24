@@ -17,18 +17,19 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inet/mobility/single/MassMobility.h"
-#include "inet/common/INETMath.h"
 
-namespace inet {
+#include "MassMobility.h"
+#include "FWMath.h"
+
 
 Define_Module(MassMobility);
 
+
 MassMobility::MassMobility()
 {
-    changeIntervalParameter = nullptr;
-    changeAngleByParameter = nullptr;
-    speedParameter = nullptr;
+    changeIntervalParameter = NULL;
+    changeAngleByParameter = NULL;
+    speedParameter = NULL;
     angle = 0;
 }
 
@@ -37,7 +38,8 @@ void MassMobility::initialize(int stage)
     LineSegmentsMobilityBase::initialize(stage);
 
     EV_TRACE << "initializing MassMobility stage " << stage << endl;
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         angle = par("startAngle").doubleValue();
         changeIntervalParameter = &par("changeInterval");
         changeAngleByParameter = &par("changeAngleBy");
@@ -53,36 +55,13 @@ void MassMobility::setTargetPosition()
     Coord direction(cos(rad), sin(rad));
     simtime_t nextChangeInterval = changeIntervalParameter->doubleValue();
     EV_DEBUG << "interval: " << nextChangeInterval << endl;
-    sourcePosition = lastPosition;
     targetPosition = lastPosition + direction * speedParameter->doubleValue() * nextChangeInterval.dbl();
-    previousChange = simTime();
-    nextChange = previousChange + nextChangeInterval;
+    nextChange = simTime() + nextChangeInterval;
 }
 
 void MassMobility::move()
 {
-    simtime_t now = simTime();
-    if (now == nextChange) {
-        lastPosition = targetPosition;
-        handleIfOutside(REFLECT, lastPosition, lastSpeed, angle);
-        EV_INFO << "reached current target position = " << lastPosition << endl;
-        setTargetPosition();
-        EV_INFO << "new target position = " << targetPosition << ", next change = " << nextChange << endl;
-        lastSpeed = (targetPosition - lastPosition) / (nextChange - simTime()).dbl();
-    }
-    else if (now > lastUpdate) {
-        ASSERT(nextChange == -1 || now < nextChange);
-        double alpha = (now - previousChange) / (nextChange - previousChange);
-        lastPosition = sourcePosition * (1 - alpha) + targetPosition * alpha;
-        double dummyAngle;
-        handleIfOutside(REFLECT, lastPosition, lastSpeed, dummyAngle);
-    }
+    LineSegmentsMobilityBase::move();
+    Coord dummy;
+    handleIfOutside(REFLECT, dummy, lastSpeed, angle);
 }
-
-double MassMobility::getMaxSpeed() const
-{
-    return NaN;
-}
-
-} // namespace inet
-

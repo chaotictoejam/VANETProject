@@ -16,38 +16,42 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IGMPV2_H
-#define __INET_IGMPV2_H
+#ifndef __INET_IGMP_H
+#define __INET_IGMP_H
 
-#include "inet/common/INETDefs.h"
-#include "inet/networklayer/contract/ipv4/IPv4Address.h"
-#include "inet/networklayer/ipv4/IGMPMessage_m.h"
-#include "inet/networklayer/common/InterfaceEntry.h"
+#include "INETDefs.h"
+#include "INotifiable.h"
+#include "IPv4Address.h"
+#include "IGMPMessage_m.h"
+#include "InterfaceEntry.h"
 
 #include <set>
 
-namespace inet {
-
 class IInterfaceTable;
-class IIPv4RoutingTable;
+class IRoutingTable;
+class NotificationBoard;
 
-class INET_API IGMPv2 : public cSimpleModule, protected cListener
+
+class INET_API IGMPv2 : public cSimpleModule, protected INotifiable
 {
   protected:
-    enum RouterState {
+    enum RouterState
+    {
         IGMP_RS_INITIAL,
         IGMP_RS_QUERIER,
         IGMP_RS_NON_QUERIER,
     };
 
-    enum RouterGroupState {
+    enum RouterGroupState
+    {
         IGMP_RGS_NO_MEMBERS_PRESENT,
         IGMP_RGS_MEMBERS_PRESENT,
         IGMP_RGS_V1_MEMBERS_PRESENT,
         IGMP_RGS_CHECKING_MEMBERSHIP,
     };
 
-    enum HostGroupState {
+    enum HostGroupState
+    {
         IGMP_HGS_NON_MEMBER,
         IGMP_HGS_DELAYING_MEMBER,
         IGMP_HGS_IDLE_MEMBER,
@@ -58,13 +62,13 @@ class INET_API IGMPv2 : public cSimpleModule, protected cListener
         IGMPv2 *owner;
         IPv4Address groupAddr;
         HostGroupState state;
-        bool flag;    // true when we were the last host to send a report for this group
+        bool flag;                // true when we were the last host to send a report for this group
         cMessage *timer;
 
-        HostGroupData(IGMPv2 *owner, const IPv4Address& group);
+        HostGroupData(IGMPv2 *owner, const IPv4Address &group);
         virtual ~HostGroupData();
     };
-    typedef std::map<IPv4Address, HostGroupData *> GroupToHostDataMap;
+    typedef std::map<IPv4Address, HostGroupData*> GroupToHostDataMap;
 
     struct RouterGroupData
     {
@@ -75,10 +79,10 @@ class INET_API IGMPv2 : public cSimpleModule, protected cListener
         cMessage *rexmtTimer;
         //cMessage *v1HostTimer;
 
-        RouterGroupData(IGMPv2 *owner, const IPv4Address& group);
+        RouterGroupData(IGMPv2 *owner, const IPv4Address &group);
         virtual ~RouterGroupData();
     };
-    typedef std::map<IPv4Address, RouterGroupData *> GroupToRouterDataMap;
+    typedef std::map<IPv4Address, RouterGroupData*> GroupToRouterDataMap;
 
     struct HostInterfaceData
     {
@@ -88,7 +92,7 @@ class INET_API IGMPv2 : public cSimpleModule, protected cListener
         HostInterfaceData(IGMPv2 *owner);
         virtual ~HostInterfaceData();
     };
-    typedef std::map<int, HostInterfaceData *> InterfaceToHostDataMap;
+    typedef std::map<int, HostInterfaceData*> InterfaceToHostDataMap;
 
     struct RouterInterfaceData
     {
@@ -100,10 +104,11 @@ class INET_API IGMPv2 : public cSimpleModule, protected cListener
         RouterInterfaceData(IGMPv2 *owner);
         virtual ~RouterInterfaceData();
     };
-    typedef std::map<int, RouterInterfaceData *> InterfaceToRouterDataMap;
+    typedef std::map<int, RouterInterfaceData*> InterfaceToRouterDataMap;
 
     // Timers
-    enum IGMPTimerKind {
+    enum IGMPTimerKind
+    {
         IGMP_QUERY_TIMER,
         IGMP_HOSTGROUP_TIMER,
         IGMP_LEAVE_TIMER,
@@ -125,21 +130,22 @@ class INET_API IGMPv2 : public cSimpleModule, protected cListener
     };
 
   protected:
-    IIPv4RoutingTable *rt;    // cached pointer
-    IInterfaceTable *ift;    // cached pointer
+    IRoutingTable *rt;     // cached pointer
+    IInterfaceTable *ift;  // cached pointer
+    NotificationBoard *nb; // cached pointer
 
     bool enabled;
     bool externalRouter;
-    int robustness;    // RFC 2236: Section 8.1
-    double queryInterval;    // RFC 2236: Section 8.2
-    double queryResponseInterval;    // RFC 2236: Section 8.3
-    double groupMembershipInterval;    // RFC 2236: Section 8.4
-    double otherQuerierPresentInterval;    // RFC 2236: Section 8.5
-    double startupQueryInterval;    // RFC 2236: Section 8.6
-    double startupQueryCount;    // RFC 2236: Section 8.7
-    double lastMemberQueryInterval;    // RFC 2236: Section 8.8
-    double lastMemberQueryCount;    // RFC 2236: Section 8.9
-    double unsolicitedReportInterval;    // RFC 2236: Section 8.10
+    int robustness;                          // RFC 2236: Section 8.1
+    double queryInterval;                    // RFC 2236: Section 8.2
+    double queryResponseInterval;            // RFC 2236: Section 8.3
+    double groupMembershipInterval;          // RFC 2236: Section 8.4
+    double otherQuerierPresentInterval;      // RFC 2236: Section 8.5
+    double startupQueryInterval;             // RFC 2236: Section 8.6
+    double startupQueryCount;                // RFC 2236: Section 8.7
+    double lastMemberQueryInterval;          // RFC 2236: Section 8.8
+    double lastMemberQueryCount;             // RFC 2236: Section 8.9
+    double unsolicitedReportInterval;        // RFC 2236: Section 8.10
     //double version1RouterPresentInterval;  // RFC 2236: Section 8.11
 
     // state variables per interface
@@ -164,36 +170,36 @@ class INET_API IGMPv2 : public cSimpleModule, protected cListener
     int numLeavesRecv;
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int stage) override;
-    virtual void handleMessage(cMessage *msg) override;
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) override;
+    virtual int numInitStages() const { return 2; }
+    virtual void initialize(int stage);
+    virtual void handleMessage(cMessage *msg);
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
     virtual ~IGMPv2();
 
   protected:
     virtual HostInterfaceData *createHostInterfaceData();
     virtual RouterInterfaceData *createRouterInterfaceData();
-    virtual HostGroupData *createHostGroupData(InterfaceEntry *ie, const IPv4Address& group);
-    virtual RouterGroupData *createRouterGroupData(InterfaceEntry *ie, const IPv4Address& group);
+    virtual HostGroupData *createHostGroupData(InterfaceEntry *ie, const IPv4Address &group);
+    virtual RouterGroupData *createRouterGroupData(InterfaceEntry *ie, const IPv4Address &group);
     virtual HostInterfaceData *getHostInterfaceData(InterfaceEntry *ie);
     virtual RouterInterfaceData *getRouterInterfaceData(InterfaceEntry *ie);
-    virtual HostGroupData *getHostGroupData(InterfaceEntry *ie, const IPv4Address& group);
-    virtual RouterGroupData *getRouterGroupData(InterfaceEntry *ie, const IPv4Address& group);
+    virtual HostGroupData *getHostGroupData(InterfaceEntry *ie, const IPv4Address &group);
+    virtual RouterGroupData *getRouterGroupData(InterfaceEntry *ie, const IPv4Address &group);
     virtual void deleteHostInterfaceData(int interfaceId);
     virtual void deleteRouterInterfaceData(int interfaceId);
-    virtual void deleteHostGroupData(InterfaceEntry *ie, const IPv4Address& group);
-    virtual void deleteRouterGroupData(InterfaceEntry *ie, const IPv4Address& group);
+    virtual void deleteHostGroupData(InterfaceEntry *ie, const IPv4Address &group);
+    virtual void deleteRouterGroupData(InterfaceEntry *ie, const IPv4Address &group);
 
     virtual void configureInterface(InterfaceEntry *ie);
     virtual void multicastGroupJoined(InterfaceEntry *ie, const IPv4Address& groupAddr);
     virtual void multicastGroupLeft(InterfaceEntry *ie, const IPv4Address& groupAddr);
 
     virtual void startTimer(cMessage *timer, double interval);
-    virtual void startHostTimer(InterfaceEntry *ie, HostGroupData *group, double maxRespTime);
+    virtual void startHostTimer(InterfaceEntry *ie, HostGroupData* group, double maxRespTime);
 
     virtual void sendQuery(InterfaceEntry *ie, const IPv4Address& groupAddr, double maxRespTime);
-    virtual void sendReport(InterfaceEntry *ie, HostGroupData *group);
-    virtual void sendLeave(InterfaceEntry *ie, HostGroupData *group);
+    virtual void sendReport(InterfaceEntry *ie, HostGroupData* group);
+    virtual void sendLeave(InterfaceEntry *ie, HostGroupData* group);
     virtual void sendToIP(IGMPMessage *msg, InterfaceEntry *ie, const IPv4Address& dest);
 
     virtual void processQueryTimer(cMessage *msg);
@@ -202,14 +208,11 @@ class INET_API IGMPv2 : public cSimpleModule, protected cListener
     virtual void processRexmtTimer(cMessage *msg);
 
     virtual void processIgmpMessage(IGMPMessage *msg);
-    virtual void processQuery(InterfaceEntry *ie, const IPv4Address& sender, IGMPQuery *msg);
-    virtual void processGroupQuery(InterfaceEntry *ie, HostGroupData *group, int maxRespTime);
+    virtual void processQuery(InterfaceEntry *ie, const IPv4Address& sender, IGMPMessage *msg);
+    virtual void processGroupQuery(InterfaceEntry *ie, HostGroupData* group, int maxRespTime);
     //virtual void processV1Report(InterfaceEntry *ie, IGMPMessage *msg);
-    virtual void processV2Report(InterfaceEntry *ie, IGMPv2Report *msg);
-    virtual void processLeave(InterfaceEntry *ie, IGMPv2Leave *msg);
+    virtual void processV2Report(InterfaceEntry *ie, IGMPMessage *msg);
+    virtual void processLeave(InterfaceEntry *ie, IGMPMessage *msg);
 };
 
-}    // namespace inet
-
-#endif    // ifndef __INET_IGMPV2_H
-
+#endif

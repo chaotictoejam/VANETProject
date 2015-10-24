@@ -16,8 +16,8 @@
 // 
 
 package inet.linklayer.ieee80211mesh.hwmp;
-import inet.routing.extras.base.BaseRouting;
-import inet.networklayer.contract.IManetRouting;
+import inet.networklayer.manetrouting.base.BaseRouting;
+import inet.networklayer.IManetRouting;
 
 //
 // Dynamic MANET On-demand (DYMO) Routing

@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -54,21 +53,13 @@ inline std::ostream& operator<<(std::ostream& out, const std::vector<T,A>& vec)
 template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
-EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::IPv6TLVOptionTypes");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::IPv6TLVOptionTypes"));
-    e->insert(IPv6TLVOPTION_NOP1, "IPv6TLVOPTION_NOP1");
-    e->insert(IPv6TLVOPTION_NOPN, "IPv6TLVOPTION_NOPN");
-    e->insert(IPv6TLVOPTION_TLV_GPSR, "IPv6TLVOPTION_TLV_GPSR");
-);
-
-IPv6HopByHopOptionsHeader::IPv6HopByHopOptionsHeader() : ::inet::IPv6ExtensionHeader()
+IPv6HopByHopOptionsHeader::IPv6HopByHopOptionsHeader() : ::IPv6ExtensionHeader()
 {
     this->setExtensionType(IP_PROT_IPv6EXT_HOP);
-
+    this->setByteLength(8);
 }
 
-IPv6HopByHopOptionsHeader::IPv6HopByHopOptionsHeader(const IPv6HopByHopOptionsHeader& other) : ::inet::IPv6ExtensionHeader(other)
+IPv6HopByHopOptionsHeader::IPv6HopByHopOptionsHeader(const IPv6HopByHopOptionsHeader& other) : ::IPv6ExtensionHeader(other)
 {
     copy(other);
 }
@@ -80,36 +71,23 @@ IPv6HopByHopOptionsHeader::~IPv6HopByHopOptionsHeader()
 IPv6HopByHopOptionsHeader& IPv6HopByHopOptionsHeader::operator=(const IPv6HopByHopOptionsHeader& other)
 {
     if (this==&other) return *this;
-    ::inet::IPv6ExtensionHeader::operator=(other);
+    ::IPv6ExtensionHeader::operator=(other);
     copy(other);
     return *this;
 }
 
 void IPv6HopByHopOptionsHeader::copy(const IPv6HopByHopOptionsHeader& other)
 {
-    this->tlvOptions_var = other.tlvOptions_var;
 }
 
 void IPv6HopByHopOptionsHeader::parsimPack(cCommBuffer *b)
 {
-    doPacking(b,(::inet::IPv6ExtensionHeader&)*this);
-    doPacking(b,this->tlvOptions_var);
+    doPacking(b,(::IPv6ExtensionHeader&)*this);
 }
 
 void IPv6HopByHopOptionsHeader::parsimUnpack(cCommBuffer *b)
 {
-    doUnpacking(b,(::inet::IPv6ExtensionHeader&)*this);
-    doUnpacking(b,this->tlvOptions_var);
-}
-
-TLVOptions& IPv6HopByHopOptionsHeader::getTlvOptions()
-{
-    return tlvOptions_var;
-}
-
-void IPv6HopByHopOptionsHeader::setTlvOptions(const TLVOptions& tlvOptions)
-{
-    this->tlvOptions_var = tlvOptions;
+    doUnpacking(b,(::IPv6ExtensionHeader&)*this);
 }
 
 class IPv6HopByHopOptionsHeaderDescriptor : public cClassDescriptor
@@ -137,7 +115,7 @@ class IPv6HopByHopOptionsHeaderDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6HopByHopOptionsHeaderDescriptor);
 
-IPv6HopByHopOptionsHeaderDescriptor::IPv6HopByHopOptionsHeaderDescriptor() : cClassDescriptor("inet::IPv6HopByHopOptionsHeader", "inet::IPv6ExtensionHeader")
+IPv6HopByHopOptionsHeaderDescriptor::IPv6HopByHopOptionsHeaderDescriptor() : cClassDescriptor("IPv6HopByHopOptionsHeader", "IPv6ExtensionHeader")
 {
 }
 
@@ -159,7 +137,7 @@ const char *IPv6HopByHopOptionsHeaderDescriptor::getProperty(const char *propert
 int IPv6HopByHopOptionsHeaderDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+    return basedesc ? 0+basedesc->getFieldCount(object) : 0;
 }
 
 unsigned int IPv6HopByHopOptionsHeaderDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -170,10 +148,7 @@ unsigned int IPv6HopByHopOptionsHeaderDescriptor::getFieldTypeFlags(void *object
             return basedesc->getFieldTypeFlags(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    static unsigned int fieldTypeFlags[] = {
-        FD_ISCOMPOUND,
-    };
-    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+    return 0;
 }
 
 const char *IPv6HopByHopOptionsHeaderDescriptor::getFieldName(void *object, int field) const
@@ -184,17 +159,12 @@ const char *IPv6HopByHopOptionsHeaderDescriptor::getFieldName(void *object, int 
             return basedesc->getFieldName(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    static const char *fieldNames[] = {
-        "tlvOptions",
-    };
-    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+    return NULL;
 }
 
 int IPv6HopByHopOptionsHeaderDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='t' && strcmp(fieldName, "tlvOptions")==0) return base+0;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -206,10 +176,7 @@ const char *IPv6HopByHopOptionsHeaderDescriptor::getFieldTypeString(void *object
             return basedesc->getFieldTypeString(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    static const char *fieldTypeStrings[] = {
-        "TLVOptions",
-    };
-    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+    return NULL;
 }
 
 const char *IPv6HopByHopOptionsHeaderDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -249,7 +216,6 @@ std::string IPv6HopByHopOptionsHeaderDescriptor::getFieldAsString(void *object, 
     }
     IPv6HopByHopOptionsHeader *pp = (IPv6HopByHopOptionsHeader *)object; (void)pp;
     switch (field) {
-        case 0: {std::stringstream out; out << pp->getTlvOptions(); return out.str();}
         default: return "";
     }
 }
@@ -276,10 +242,7 @@ const char *IPv6HopByHopOptionsHeaderDescriptor::getFieldStructName(void *object
             return basedesc->getFieldStructName(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    switch (field) {
-        case 0: return opp_typename(typeid(TLVOptions));
-        default: return NULL;
-    };
+    return NULL;
 }
 
 void *IPv6HopByHopOptionsHeaderDescriptor::getFieldStructPointer(void *object, int field, int i) const
@@ -292,12 +255,11 @@ void *IPv6HopByHopOptionsHeaderDescriptor::getFieldStructPointer(void *object, i
     }
     IPv6HopByHopOptionsHeader *pp = (IPv6HopByHopOptionsHeader *)object; (void)pp;
     switch (field) {
-        case 0: return (void *)(&pp->getTlvOptions()); break;
         default: return NULL;
     }
 }
 
-IPv6RoutingHeader_Base::IPv6RoutingHeader_Base() : ::inet::IPv6ExtensionHeader()
+IPv6RoutingHeader_Base::IPv6RoutingHeader_Base() : ::IPv6ExtensionHeader()
 {
     this->setExtensionType(IP_PROT_IPv6EXT_ROUTING);
     this->setByteLength(8);
@@ -308,7 +270,7 @@ IPv6RoutingHeader_Base::IPv6RoutingHeader_Base() : ::inet::IPv6ExtensionHeader()
     this->address_var = 0;
 }
 
-IPv6RoutingHeader_Base::IPv6RoutingHeader_Base(const IPv6RoutingHeader_Base& other) : ::inet::IPv6ExtensionHeader(other)
+IPv6RoutingHeader_Base::IPv6RoutingHeader_Base(const IPv6RoutingHeader_Base& other) : ::IPv6ExtensionHeader(other)
 {
     address_arraysize = 0;
     this->address_var = 0;
@@ -323,7 +285,7 @@ IPv6RoutingHeader_Base::~IPv6RoutingHeader_Base()
 IPv6RoutingHeader_Base& IPv6RoutingHeader_Base::operator=(const IPv6RoutingHeader_Base& other)
 {
     if (this==&other) return *this;
-    ::inet::IPv6ExtensionHeader::operator=(other);
+    ::IPv6ExtensionHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -341,7 +303,7 @@ void IPv6RoutingHeader_Base::copy(const IPv6RoutingHeader_Base& other)
 
 void IPv6RoutingHeader_Base::parsimPack(cCommBuffer *b)
 {
-    doPacking(b,(::inet::IPv6ExtensionHeader&)*this);
+    doPacking(b,(::IPv6ExtensionHeader&)*this);
     doPacking(b,this->routingType_var);
     doPacking(b,this->segmentsLeft_var);
     b->pack(address_arraysize);
@@ -350,7 +312,7 @@ void IPv6RoutingHeader_Base::parsimPack(cCommBuffer *b)
 
 void IPv6RoutingHeader_Base::parsimUnpack(cCommBuffer *b)
 {
-    doUnpacking(b,(::inet::IPv6ExtensionHeader&)*this);
+    doUnpacking(b,(::IPv6ExtensionHeader&)*this);
     doUnpacking(b,this->routingType_var);
     doUnpacking(b,this->segmentsLeft_var);
     delete [] this->address_var;
@@ -436,7 +398,7 @@ class IPv6RoutingHeaderDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6RoutingHeaderDescriptor);
 
-IPv6RoutingHeaderDescriptor::IPv6RoutingHeaderDescriptor() : cClassDescriptor("inet::IPv6RoutingHeader", "inet::IPv6ExtensionHeader")
+IPv6RoutingHeaderDescriptor::IPv6RoutingHeaderDescriptor() : cClassDescriptor("IPv6RoutingHeader", "IPv6ExtensionHeader")
 {
 }
 
@@ -610,7 +572,7 @@ void *IPv6RoutingHeaderDescriptor::getFieldStructPointer(void *object, int field
     }
 }
 
-IPv6FragmentHeader::IPv6FragmentHeader() : ::inet::IPv6ExtensionHeader()
+IPv6FragmentHeader::IPv6FragmentHeader() : ::IPv6ExtensionHeader()
 {
     this->setExtensionType(IP_PROT_IPv6EXT_FRAGMENT);
     this->setByteLength(IPv6_FRAGMENT_HEADER_LENGTH);
@@ -620,7 +582,7 @@ IPv6FragmentHeader::IPv6FragmentHeader() : ::inet::IPv6ExtensionHeader()
     this->moreFragments_var = 0;
 }
 
-IPv6FragmentHeader::IPv6FragmentHeader(const IPv6FragmentHeader& other) : ::inet::IPv6ExtensionHeader(other)
+IPv6FragmentHeader::IPv6FragmentHeader(const IPv6FragmentHeader& other) : ::IPv6ExtensionHeader(other)
 {
     copy(other);
 }
@@ -632,7 +594,7 @@ IPv6FragmentHeader::~IPv6FragmentHeader()
 IPv6FragmentHeader& IPv6FragmentHeader::operator=(const IPv6FragmentHeader& other)
 {
     if (this==&other) return *this;
-    ::inet::IPv6ExtensionHeader::operator=(other);
+    ::IPv6ExtensionHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -646,7 +608,7 @@ void IPv6FragmentHeader::copy(const IPv6FragmentHeader& other)
 
 void IPv6FragmentHeader::parsimPack(cCommBuffer *b)
 {
-    doPacking(b,(::inet::IPv6ExtensionHeader&)*this);
+    doPacking(b,(::IPv6ExtensionHeader&)*this);
     doPacking(b,this->fragmentOffset_var);
     doPacking(b,this->identification_var);
     doPacking(b,this->moreFragments_var);
@@ -654,7 +616,7 @@ void IPv6FragmentHeader::parsimPack(cCommBuffer *b)
 
 void IPv6FragmentHeader::parsimUnpack(cCommBuffer *b)
 {
-    doUnpacking(b,(::inet::IPv6ExtensionHeader&)*this);
+    doUnpacking(b,(::IPv6ExtensionHeader&)*this);
     doUnpacking(b,this->fragmentOffset_var);
     doUnpacking(b,this->identification_var);
     doUnpacking(b,this->moreFragments_var);
@@ -715,7 +677,7 @@ class IPv6FragmentHeaderDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6FragmentHeaderDescriptor);
 
-IPv6FragmentHeaderDescriptor::IPv6FragmentHeaderDescriptor() : cClassDescriptor("inet::IPv6FragmentHeader", "inet::IPv6ExtensionHeader")
+IPv6FragmentHeaderDescriptor::IPv6FragmentHeaderDescriptor() : cClassDescriptor("IPv6FragmentHeader", "IPv6ExtensionHeader")
 {
 }
 
@@ -886,14 +848,13 @@ void *IPv6FragmentHeaderDescriptor::getFieldStructPointer(void *object, int fiel
     }
 }
 
-IPv6DestinationOptionsHeader::IPv6DestinationOptionsHeader() : ::inet::IPv6ExtensionHeader()
+IPv6DestinationOptionsHeader::IPv6DestinationOptionsHeader() : ::IPv6ExtensionHeader()
 {
     this->setExtensionType(IP_PROT_IPv6EXT_DEST);
     this->setByteLength(8);
-
 }
 
-IPv6DestinationOptionsHeader::IPv6DestinationOptionsHeader(const IPv6DestinationOptionsHeader& other) : ::inet::IPv6ExtensionHeader(other)
+IPv6DestinationOptionsHeader::IPv6DestinationOptionsHeader(const IPv6DestinationOptionsHeader& other) : ::IPv6ExtensionHeader(other)
 {
     copy(other);
 }
@@ -905,36 +866,23 @@ IPv6DestinationOptionsHeader::~IPv6DestinationOptionsHeader()
 IPv6DestinationOptionsHeader& IPv6DestinationOptionsHeader::operator=(const IPv6DestinationOptionsHeader& other)
 {
     if (this==&other) return *this;
-    ::inet::IPv6ExtensionHeader::operator=(other);
+    ::IPv6ExtensionHeader::operator=(other);
     copy(other);
     return *this;
 }
 
 void IPv6DestinationOptionsHeader::copy(const IPv6DestinationOptionsHeader& other)
 {
-    this->tlvOptions_var = other.tlvOptions_var;
 }
 
 void IPv6DestinationOptionsHeader::parsimPack(cCommBuffer *b)
 {
-    doPacking(b,(::inet::IPv6ExtensionHeader&)*this);
-    doPacking(b,this->tlvOptions_var);
+    doPacking(b,(::IPv6ExtensionHeader&)*this);
 }
 
 void IPv6DestinationOptionsHeader::parsimUnpack(cCommBuffer *b)
 {
-    doUnpacking(b,(::inet::IPv6ExtensionHeader&)*this);
-    doUnpacking(b,this->tlvOptions_var);
-}
-
-TLVOptions& IPv6DestinationOptionsHeader::getTlvOptions()
-{
-    return tlvOptions_var;
-}
-
-void IPv6DestinationOptionsHeader::setTlvOptions(const TLVOptions& tlvOptions)
-{
-    this->tlvOptions_var = tlvOptions;
+    doUnpacking(b,(::IPv6ExtensionHeader&)*this);
 }
 
 class IPv6DestinationOptionsHeaderDescriptor : public cClassDescriptor
@@ -962,7 +910,7 @@ class IPv6DestinationOptionsHeaderDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6DestinationOptionsHeaderDescriptor);
 
-IPv6DestinationOptionsHeaderDescriptor::IPv6DestinationOptionsHeaderDescriptor() : cClassDescriptor("inet::IPv6DestinationOptionsHeader", "inet::IPv6ExtensionHeader")
+IPv6DestinationOptionsHeaderDescriptor::IPv6DestinationOptionsHeaderDescriptor() : cClassDescriptor("IPv6DestinationOptionsHeader", "IPv6ExtensionHeader")
 {
 }
 
@@ -984,7 +932,7 @@ const char *IPv6DestinationOptionsHeaderDescriptor::getProperty(const char *prop
 int IPv6DestinationOptionsHeaderDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+    return basedesc ? 0+basedesc->getFieldCount(object) : 0;
 }
 
 unsigned int IPv6DestinationOptionsHeaderDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -995,10 +943,7 @@ unsigned int IPv6DestinationOptionsHeaderDescriptor::getFieldTypeFlags(void *obj
             return basedesc->getFieldTypeFlags(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    static unsigned int fieldTypeFlags[] = {
-        FD_ISCOMPOUND,
-    };
-    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+    return 0;
 }
 
 const char *IPv6DestinationOptionsHeaderDescriptor::getFieldName(void *object, int field) const
@@ -1009,17 +954,12 @@ const char *IPv6DestinationOptionsHeaderDescriptor::getFieldName(void *object, i
             return basedesc->getFieldName(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    static const char *fieldNames[] = {
-        "tlvOptions",
-    };
-    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+    return NULL;
 }
 
 int IPv6DestinationOptionsHeaderDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='t' && strcmp(fieldName, "tlvOptions")==0) return base+0;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1031,10 +971,7 @@ const char *IPv6DestinationOptionsHeaderDescriptor::getFieldTypeString(void *obj
             return basedesc->getFieldTypeString(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    static const char *fieldTypeStrings[] = {
-        "TLVOptions",
-    };
-    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+    return NULL;
 }
 
 const char *IPv6DestinationOptionsHeaderDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -1074,7 +1011,6 @@ std::string IPv6DestinationOptionsHeaderDescriptor::getFieldAsString(void *objec
     }
     IPv6DestinationOptionsHeader *pp = (IPv6DestinationOptionsHeader *)object; (void)pp;
     switch (field) {
-        case 0: {std::stringstream out; out << pp->getTlvOptions(); return out.str();}
         default: return "";
     }
 }
@@ -1101,10 +1037,7 @@ const char *IPv6DestinationOptionsHeaderDescriptor::getFieldStructName(void *obj
             return basedesc->getFieldStructName(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    switch (field) {
-        case 0: return opp_typename(typeid(TLVOptions));
-        default: return NULL;
-    };
+    return NULL;
 }
 
 void *IPv6DestinationOptionsHeaderDescriptor::getFieldStructPointer(void *object, int field, int i) const
@@ -1117,18 +1050,17 @@ void *IPv6DestinationOptionsHeaderDescriptor::getFieldStructPointer(void *object
     }
     IPv6DestinationOptionsHeader *pp = (IPv6DestinationOptionsHeader *)object; (void)pp;
     switch (field) {
-        case 0: return (void *)(&pp->getTlvOptions()); break;
         default: return NULL;
     }
 }
 
-IPv6AuthenticationHeader::IPv6AuthenticationHeader() : ::inet::IPv6ExtensionHeader()
+IPv6AuthenticationHeader::IPv6AuthenticationHeader() : ::IPv6ExtensionHeader()
 {
     this->setExtensionType(IP_PROT_IPv6EXT_AUTH);
     this->setByteLength(8);
 }
 
-IPv6AuthenticationHeader::IPv6AuthenticationHeader(const IPv6AuthenticationHeader& other) : ::inet::IPv6ExtensionHeader(other)
+IPv6AuthenticationHeader::IPv6AuthenticationHeader(const IPv6AuthenticationHeader& other) : ::IPv6ExtensionHeader(other)
 {
     copy(other);
 }
@@ -1140,7 +1072,7 @@ IPv6AuthenticationHeader::~IPv6AuthenticationHeader()
 IPv6AuthenticationHeader& IPv6AuthenticationHeader::operator=(const IPv6AuthenticationHeader& other)
 {
     if (this==&other) return *this;
-    ::inet::IPv6ExtensionHeader::operator=(other);
+    ::IPv6ExtensionHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -1151,12 +1083,12 @@ void IPv6AuthenticationHeader::copy(const IPv6AuthenticationHeader& other)
 
 void IPv6AuthenticationHeader::parsimPack(cCommBuffer *b)
 {
-    doPacking(b,(::inet::IPv6ExtensionHeader&)*this);
+    doPacking(b,(::IPv6ExtensionHeader&)*this);
 }
 
 void IPv6AuthenticationHeader::parsimUnpack(cCommBuffer *b)
 {
-    doUnpacking(b,(::inet::IPv6ExtensionHeader&)*this);
+    doUnpacking(b,(::IPv6ExtensionHeader&)*this);
 }
 
 class IPv6AuthenticationHeaderDescriptor : public cClassDescriptor
@@ -1184,7 +1116,7 @@ class IPv6AuthenticationHeaderDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6AuthenticationHeaderDescriptor);
 
-IPv6AuthenticationHeaderDescriptor::IPv6AuthenticationHeaderDescriptor() : cClassDescriptor("inet::IPv6AuthenticationHeader", "inet::IPv6ExtensionHeader")
+IPv6AuthenticationHeaderDescriptor::IPv6AuthenticationHeaderDescriptor() : cClassDescriptor("IPv6AuthenticationHeader", "IPv6ExtensionHeader")
 {
 }
 
@@ -1328,7 +1260,7 @@ void *IPv6AuthenticationHeaderDescriptor::getFieldStructPointer(void *object, in
     }
 }
 
-IPv6EncapsulatingSecurityPayloadHeader::IPv6EncapsulatingSecurityPayloadHeader() : ::inet::IPv6ExtensionHeader()
+IPv6EncapsulatingSecurityPayloadHeader::IPv6EncapsulatingSecurityPayloadHeader() : ::IPv6ExtensionHeader()
 {
     this->setExtensionType(IP_PROT_IPv6EXT_ESP);
     this->setByteLength(8);
@@ -1336,7 +1268,7 @@ IPv6EncapsulatingSecurityPayloadHeader::IPv6EncapsulatingSecurityPayloadHeader()
     this->spi_var = 0;
 }
 
-IPv6EncapsulatingSecurityPayloadHeader::IPv6EncapsulatingSecurityPayloadHeader(const IPv6EncapsulatingSecurityPayloadHeader& other) : ::inet::IPv6ExtensionHeader(other)
+IPv6EncapsulatingSecurityPayloadHeader::IPv6EncapsulatingSecurityPayloadHeader(const IPv6EncapsulatingSecurityPayloadHeader& other) : ::IPv6ExtensionHeader(other)
 {
     copy(other);
 }
@@ -1348,7 +1280,7 @@ IPv6EncapsulatingSecurityPayloadHeader::~IPv6EncapsulatingSecurityPayloadHeader(
 IPv6EncapsulatingSecurityPayloadHeader& IPv6EncapsulatingSecurityPayloadHeader::operator=(const IPv6EncapsulatingSecurityPayloadHeader& other)
 {
     if (this==&other) return *this;
-    ::inet::IPv6ExtensionHeader::operator=(other);
+    ::IPv6ExtensionHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -1360,13 +1292,13 @@ void IPv6EncapsulatingSecurityPayloadHeader::copy(const IPv6EncapsulatingSecurit
 
 void IPv6EncapsulatingSecurityPayloadHeader::parsimPack(cCommBuffer *b)
 {
-    doPacking(b,(::inet::IPv6ExtensionHeader&)*this);
+    doPacking(b,(::IPv6ExtensionHeader&)*this);
     doPacking(b,this->spi_var);
 }
 
 void IPv6EncapsulatingSecurityPayloadHeader::parsimUnpack(cCommBuffer *b)
 {
-    doUnpacking(b,(::inet::IPv6ExtensionHeader&)*this);
+    doUnpacking(b,(::IPv6ExtensionHeader&)*this);
     doUnpacking(b,this->spi_var);
 }
 
@@ -1405,7 +1337,7 @@ class IPv6EncapsulatingSecurityPayloadHeaderDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6EncapsulatingSecurityPayloadHeaderDescriptor);
 
-IPv6EncapsulatingSecurityPayloadHeaderDescriptor::IPv6EncapsulatingSecurityPayloadHeaderDescriptor() : cClassDescriptor("inet::IPv6EncapsulatingSecurityPayloadHeader", "inet::IPv6ExtensionHeader")
+IPv6EncapsulatingSecurityPayloadHeaderDescriptor::IPv6EncapsulatingSecurityPayloadHeaderDescriptor() : cClassDescriptor("IPv6EncapsulatingSecurityPayloadHeader", "IPv6ExtensionHeader")
 {
 }
 
@@ -1564,5 +1496,4 @@ void *IPv6EncapsulatingSecurityPayloadHeaderDescriptor::getFieldStructPointer(vo
     }
 }
 
-} // namespace inet
 

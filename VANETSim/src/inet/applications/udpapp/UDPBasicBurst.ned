@@ -20,7 +20,7 @@
 
 package inet.applications.udpapp;
 
-import inet.applications.contract.IUDPApp;
+import inet.applications.IUDPApp;
 
 
 //
@@ -39,7 +39,7 @@ import inet.applications.contract.IUDPApp;
 // The own addresses will be ignored.
 //
 // An address may be given in the dotted decimal notation, or with the module
-// name. (The L3AddressResolver class is used to resolve the address.)
+// name. (The IPvXAddressResolver class is used to resolve the address.)
 // You can use the "Broadcast" string as address for sending broadcast messages.
 //
 // INET also defines several NED functions that can be useful:
@@ -54,7 +54,7 @@ import inet.applications.contract.IUDPApp;
 //          All modules whose getNedTypeName() is listed in the given parameters will get included.
 //          The NED type name is fully qualified.
 //          See cTopology::extractByNedTypeName() function
-//          example: destaddresses = moduleListByNedType("inet.node.inet.StandardHost")
+//          example: destaddresses = moduleListByNedType("inet.nodes.inet.StandardHost")
 //
 // The peer can be UDPSink or another UDPBasicBurst.
 //
@@ -104,7 +104,6 @@ import inet.applications.contract.IUDPApp;
 simple UDPBasicBurst like IUDPApp
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module
         string destAddresses; // space-separated list of destination IP addresses, can be empty;
                               // see module description for possibilities
         bool excludeLocalDestAddresses = default(true);     // excluding local addresses from destAddresses
@@ -119,10 +118,10 @@ simple UDPBasicBurst like IUDPApp
         volatile double sleepDuration @unit(s); // time between bursts (zero allowed)
         volatile double sendInterval @unit(s); // time between messages during bursts; usually a random value, e.g. 0.1s+uniform(-0.001s,0.001s); zero not allowed
         double delayLimit @unit(s) = default(0); // maximum accepted delay for a packet; packets with a bigger delay are discarded (dropped), zero value means no limit
-        bool configureInInit = default(true);
         string outputInterface = default(""); // select the interface in which the packets will be sent
         string outputInterfaceMulticastBroadcast = default(""); // select the interface in which the broadcast packets will be sent
         bool setBroadcast = default(false); // Configure the socket for receive broadcast packets
+        bool configureInInit = default(true);
         @signal[sentPk](type=cPacket);
         @signal[rcvdPk](type=cPacket);
         @signal[dropPk](type=cPacket);

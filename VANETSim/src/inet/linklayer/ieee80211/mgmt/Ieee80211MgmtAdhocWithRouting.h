@@ -18,16 +18,14 @@
 #ifndef IEEE80211_MGMT_ADHOC_H
 #define IEEE80211_MGMT_ADHOC_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtBase.h"
+#include "Ieee80211MgmtBase.h"
+#include "NotificationBoard.h"
 #include <map>
 #include <deque>
-#include "inet/routing/extras/base/ManetRoutingBase.h"
+#include "ManetRoutingBase.h"
 
-namespace inet {
-
-namespace ieee80211 {
 
 /**
  * Used in 802.11 ad-hoc mode. See corresponding NED file for a detailed description.
@@ -42,7 +40,7 @@ class INET_API Ieee80211MgmtAdhocWithRouting : public Ieee80211MgmtBase
     typedef std::map<uint64_t, SeqNumberVector> SeqNumberInfo;
     SeqNumberInfo mySeqNumberInfo;
     uint16_t mySeqNumber;
-    inetmanet::ManetRoutingBase *routingModule;
+    ManetRoutingBase *routingModule;
     int maxTTL;
 
 
@@ -56,7 +54,7 @@ class INET_API Ieee80211MgmtAdhocWithRouting : public Ieee80211MgmtBase
     virtual void handleMessage(cMessage *msg);
     virtual void startRouting();
 
-    virtual int numInitStages() const {return NUM_INIT_STAGES;}
+    virtual int numInitStages() const {return 5;}
     virtual void initialize(int);
 
     /** Implements abstract Ieee80211MgmtBase method */
@@ -70,6 +68,9 @@ class INET_API Ieee80211MgmtAdhocWithRouting : public Ieee80211MgmtBase
 
     /** Utility function for handleUpperMessage() */
     virtual Ieee80211DataFrame *encapsulate(cPacket *msg);
+
+    /** Called by the NotificationBoard whenever a change occurs we're interested in */
+    virtual void receiveChangeNotification(int category, const cObject *details);
 
     /** @name Processing of different frame types */
     //@{
@@ -88,8 +89,6 @@ class INET_API Ieee80211MgmtAdhocWithRouting : public Ieee80211MgmtBase
     //@}
 };
 
-}
-}
 #endif
 
 

@@ -46,9 +46,8 @@ package inet.linklayer.ppp;
 simple PPP
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module
         int txQueueLimit = default(1000);  // only used if queueModule==""; zero means infinite
-        string queueModule = default("");  // path of external (QoS,RED,etc) queue module
+        string queueModule = default("");  // name of external (QoS,RED,etc) queue module
         int mtu @unit("B") = default(4470B);
         @display("i=block/rxtx");
 
@@ -60,9 +59,6 @@ simple PPP
         @signal[packetReceivedFromLower](type=cPacket);
         @signal[packetSentToUpper](type=cPacket);
         @signal[packetReceivedFromUpper](type=cPacket);
-        @signal[NF_PP_TX_BEGIN](type=TxNotifDetails);
-        @signal[NF_PP_TX_END](type=TxNotifDetails);
-        @signal[NF_PP_RX_END](type=TxNotifDetails);
         @statistic[txState](title="tx state"; record=timeavg,vector; interpolationmode=sample-hold);
         @statistic[txPk](title="packets transmitted"; source=packetSentToLower; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
         @statistic[rxPkOk](title="packets received OK"; source=rxPkOk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);

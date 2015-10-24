@@ -13,17 +13,15 @@
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
- */
+*/
 
-#include "inet/linklayer/ethernet/EtherLLC.h"
+#include "EtherLLC.h"
 
-#include "inet/linklayer/ethernet/EtherFrame.h"
-#include "inet/linklayer/ethernet/Ethernet.h"
-#include "inet/linklayer/common/Ieee802Ctrl.h"
-#include "inet/common/ModuleAccess.h"
-#include "inet/common/lifecycle/NodeOperations.h"
-
-namespace inet {
+#include "EtherFrame.h"
+#include "Ethernet.h"
+#include "Ieee802Ctrl_m.h"
+#include "ModuleAccess.h"
+#include "NodeOperations.h"
 
 Define_Module(EtherLLC);
 
@@ -34,11 +32,13 @@ simsignal_t EtherLLC::passedUpPkSignal = registerSignal("passedUpPk");
 simsignal_t EtherLLC::droppedPkUnknownDSAPSignal = registerSignal("droppedPkUnknownDSAP");
 simsignal_t EtherLLC::pauseSentSignal = registerSignal("pauseSent");
 
+
 void EtherLLC::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
 
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         seqNum = 0;
         WATCH(seqNum);
 
@@ -50,7 +50,8 @@ void EtherLLC::initialize(int stage)
         WATCH(totalPassedUp);
         WATCH(droppedUnknownDSAP);
     }
-    else if (stage == INITSTAGE_LINK_LAYER) {
+    else if (stage == 1)
+    {
         // lifecycle
         NodeStatus *nodeStatus = dynamic_cast<NodeStatus *>(findContainingNode(this)->getSubmodule("status"));
         isUp = !nodeStatus || nodeStatus->getState() == NodeStatus::UP;
@@ -61,52 +62,58 @@ void EtherLLC::initialize(int stage)
 
 void EtherLLC::handleMessage(cMessage *msg)
 {
-    if (!isUp) {
+    if (!isUp)
+    {
         EV << "EtherLLC is down -- discarding message\n";
         delete msg;
         return;
     }
 
-    if (msg->arrivedOn("lowerLayerIn")) {
+    if (msg->arrivedOn("lowerLayerIn"))
+    {
         // frame received from lower layer
         EtherFrameWithLLC *etherFrameWithLLC = dynamic_cast<EtherFrameWithLLC *>(msg);
-        if (etherFrameWithLLC) {
+        if (etherFrameWithLLC)
+        {
             processFrameFromMAC(etherFrameWithLLC);
         }
-        else {
+        else
+        {
             EV << "Drop received " << msg->getClassName() << " msg.\n";
             delete msg;
         }
     }
-    else {
-        switch (msg->getKind()) {
-            case IEEE802CTRL_DATA:
-                // data received from higher layer
-                processPacketFromHigherLayer(PK(msg));
-                break;
+    else
+    {
+        switch (msg->getKind())
+        {
+          case IEEE802CTRL_DATA:
+            // data received from higher layer
+            processPacketFromHigherLayer(PK(msg));
+            break;
 
-            case IEEE802CTRL_REGISTER_DSAP:
-                // higher layer registers itself
-                handleRegisterSAP(msg);
-                break;
+          case IEEE802CTRL_REGISTER_DSAP:
+            // higher layer registers itself
+            handleRegisterSAP(msg);
+            break;
 
-            case IEEE802CTRL_DEREGISTER_DSAP:
-                // higher layer deregisters itself
-                handleDeregisterSAP(msg);
-                break;
+          case IEEE802CTRL_DEREGISTER_DSAP:
+            // higher layer deregisters itself
+            handleDeregisterSAP(msg);
+            break;
 
-            case IEEE802CTRL_SENDPAUSE:
-                // higher layer want MAC to send PAUSE frame
-                handleSendPause(msg);
-                break;
+          case IEEE802CTRL_SENDPAUSE:
+            // higher layer want MAC to send PAUSE frame
+            handleSendPause(msg);
+            break;
 
-            default:
-                throw cRuntimeError("Received message `%s' with unknown message kind %d",
-                    msg->getName(), msg->getKind());
+          default:
+            throw cRuntimeError("Received message `%s' with unknown message kind %d",
+                  msg->getName(), msg->getKind());
         }
     }
 
-    if (hasGUI())
+    if (ev.isGUI())
         updateDisplayString();
 }
 
@@ -115,8 +122,9 @@ void EtherLLC::updateDisplayString()
     char buf[80];
     sprintf(buf, "passed up: %ld\nsent: %ld", totalPassedUp, totalFromHigherLayer);
 
-    if (droppedUnknownDSAP > 0) {
-        sprintf(buf + strlen(buf), "\ndropped (wrong DSAP): %ld", droppedUnknownDSAP);
+    if (droppedUnknownDSAP > 0)
+    {
+        sprintf(buf+strlen(buf), "\ndropped (wrong DSAP): %ld", droppedUnknownDSAP);
     }
 
     getDisplayString().setTagArg("t", 0, buf);
@@ -124,8 +132,8 @@ void EtherLLC::updateDisplayString()
 
 void EtherLLC::processPacketFromHigherLayer(cPacket *msg)
 {
-    if (msg->getByteLength() > (MAX_ETHERNET_DATA_BYTES - ETHER_LLC_HEADER_LENGTH))
-        throw cRuntimeError("packet from higher layer (%d bytes) plus LLC header exceeds maximum Ethernet payload length (%d)", (int)(msg->getByteLength()), MAX_ETHERNET_DATA_BYTES);
+    if (msg->getByteLength() > (MAX_ETHERNET_DATA_BYTES-ETHER_LLC_HEADER_LENGTH))
+        error("packet from higher layer (%d bytes) plus LLC header exceeds maximum Ethernet payload length (%d)", (int)(msg->getByteLength()), MAX_ETHERNET_DATA_BYTES);
 
     totalFromHigherLayer++;
     emit(encapPkSignal, msg);
@@ -134,20 +142,20 @@ void EtherLLC::processPacketFromHigherLayer(cPacket *msg)
     // with this information and transmits resultant frame to lower layer
 
     // create Ethernet frame, fill it in from Ieee802Ctrl and encapsulate msg in it
-    EV << "Encapsulating higher layer packet `" << msg->getName() << "' for MAC\n";
-    EV << "Sent from " << getSimulation()->getModule(msg->getSenderModuleId())->getFullPath() << " at " << msg->getSendingTime() << " and was created " << msg->getCreationTime() << "\n";
+    EV << "Encapsulating higher layer packet `" << msg->getName() <<"' for MAC\n";
+    EV << "Sent from " << simulation.getModule(msg->getSenderModuleId())->getFullPath() << " at " << msg->getSendingTime() << " and was created " << msg->getCreationTime() <<  "\n";
 
     Ieee802Ctrl *etherctrl = dynamic_cast<Ieee802Ctrl *>(msg->removeControlInfo());
     if (!etherctrl)
-        throw cRuntimeError("packet `%s' from higher layer received without Ieee802Ctrl", msg->getName());
+        error("packet `%s' from higher layer received without Ieee802Ctrl", msg->getName());
 
     EtherFrameWithLLC *frame = new EtherFrameWithLLC(msg->getName());
 
     frame->setControl(0);
     frame->setSsap(etherctrl->getSsap());
     frame->setDsap(etherctrl->getDsap());
-    frame->setDest(etherctrl->getDest());    // src address is filled in by MAC
-    frame->setByteLength(ETHER_MAC_FRAME_BYTES + ETHER_LLC_HEADER_LENGTH);
+    frame->setDest(etherctrl->getDest()); // src address is filled in by MAC
+    frame->setByteLength(ETHER_MAC_FRAME_BYTES+ETHER_LLC_HEADER_LENGTH);
     delete etherctrl;
 
     frame->encapsulate(msg);
@@ -162,8 +170,9 @@ void EtherLLC::processFrameFromMAC(EtherFrameWithLLC *frame)
     // check SAP
     int sap = frame->getDsap();
     int port = findPortForSAP(sap);
-    if (port < 0) {
-        EV << "No higher layer registered for DSAP=" << sap << ", discarding frame `" << frame->getName() << "'\n";
+    if (port < 0)
+    {
+        EV << "No higher layer registered for DSAP="<< sap <<", discarding frame `" << frame->getName() <<"'\n";
         droppedUnknownDSAP++;
         emit(droppedPkUnknownDSAPSignal, frame);
         delete frame;
@@ -180,9 +189,9 @@ void EtherLLC::processFrameFromMAC(EtherFrameWithLLC *frame)
     etherctrl->setDest(frame->getDest());
     higherlayermsg->setControlInfo(etherctrl);
 
-    EV << "Decapsulating frame `" << frame->getName() << "', "
-                                                         "passing up contained packet `" << higherlayermsg->getName() << "' "
-                                                                                                                         "to higher layer " << port << "\n";
+    EV << "Decapsulating frame `" << frame->getName() <<"', "
+          "passing up contained packet `" << higherlayermsg->getName() << "' "
+          "to higher layer " << port << "\n";
 
     totalFromMAC++;
     emit(decapPkSignal, higherlayermsg);
@@ -196,22 +205,22 @@ void EtherLLC::processFrameFromMAC(EtherFrameWithLLC *frame)
 
 int EtherLLC::findPortForSAP(int dsap)
 {
-    auto it = dsapToPort.find(dsap);
+    DsapToPortMap::iterator it = dsapToPort.find(dsap);
     return (it == dsapToPort.end()) ? -1 : it->second;
 }
 
 void EtherLLC::handleRegisterSAP(cMessage *msg)
 {
     int port = msg->getArrivalGate()->getIndex();
-    Ieee802Ctrl *etherctrl = dynamic_cast<Ieee802Ctrl *>(msg->getControlInfo());
+    Ieee802Ctrl *etherctrl = dynamic_cast<Ieee802Ctrl *>(msg->removeControlInfo());
     if (!etherctrl)
-        throw cRuntimeError("packet `%s' from higher layer received without Ieee802Ctrl", msg->getName());
+        error("packet `%s' from higher layer received without Ieee802Ctrl", msg->getName());
     int dsap = etherctrl->getDsap();
 
     EV << "Registering higher layer with DSAP=" << dsap << " on port=" << port << "\n";
 
     if (dsapToPort.find(dsap) != dsapToPort.end())
-        throw cRuntimeError("DSAP=%d already registered with port=%d", dsap, dsapToPort[dsap]);
+        error("DSAP=%d already registered with port=%d", dsap, dsapToPort[dsap]);
 
     dsapToPort[dsap] = port;
     dsapsRegistered = dsapToPort.size();
@@ -221,15 +230,15 @@ void EtherLLC::handleRegisterSAP(cMessage *msg)
 
 void EtherLLC::handleDeregisterSAP(cMessage *msg)
 {
-    Ieee802Ctrl *etherctrl = dynamic_cast<Ieee802Ctrl *>(msg->getControlInfo());
+    Ieee802Ctrl *etherctrl = dynamic_cast<Ieee802Ctrl *>(msg->removeControlInfo());
     if (!etherctrl)
-        throw cRuntimeError("packet `%s' from higher layer received without Ieee802Ctrl", msg->getName());
+        error("packet `%s' from higher layer received without Ieee802Ctrl", msg->getName());
     int dsap = etherctrl->getDsap();
 
     EV << "Deregistering higher layer with DSAP=" << dsap << "\n";
 
     if (dsapToPort.find(dsap) == dsapToPort.end())
-        throw cRuntimeError("DSAP=%d not registered with port=%d", dsap, dsapToPort[dsap]);
+        error("DSAP=%d not registered with port=%d", dsap, dsapToPort[dsap]);
 
     // delete from table (don't care if it's not in there)
     dsapToPort.erase(dsapToPort.find(dsap));
@@ -238,11 +247,12 @@ void EtherLLC::handleDeregisterSAP(cMessage *msg)
     delete msg;
 }
 
+
 void EtherLLC::handleSendPause(cMessage *msg)
 {
-    Ieee802Ctrl *etherctrl = dynamic_cast<Ieee802Ctrl *>(msg->getControlInfo());
+    Ieee802Ctrl *etherctrl = dynamic_cast<Ieee802Ctrl *>(msg->removeControlInfo());
     if (!etherctrl)
-        throw cRuntimeError("PAUSE command `%s' from higher layer received without Ieee802Ctrl", msg->getName());
+        error("PAUSE command `%s' from higher layer received without Ieee802Ctrl", msg->getName());
 
     int pauseUnits = etherctrl->getPauseUnits();
     EV << "Creating and sending PAUSE frame, with duration=" << pauseUnits << " units\n";
@@ -268,15 +278,15 @@ bool EtherLLC::handleOperationStage(LifecycleOperation *operation, int stage, ID
 {
     Enter_Method_Silent();
     if (dynamic_cast<NodeStartOperation *>(operation)) {
-        if ((NodeStartOperation::Stage)stage == NodeStartOperation::STAGE_NETWORK_LAYER)
+        if (stage == NodeStartOperation::STAGE_NETWORK_LAYER)
             start();
     }
     else if (dynamic_cast<NodeShutdownOperation *>(operation)) {
-        if ((NodeShutdownOperation::Stage)stage == NodeShutdownOperation::STAGE_NETWORK_LAYER)
+        if (stage == NodeShutdownOperation::STAGE_NETWORK_LAYER)
             stop();
     }
     else if (dynamic_cast<NodeCrashOperation *>(operation)) {
-        if ((NodeCrashOperation::Stage)stage == NodeCrashOperation::STAGE_CRASH)
+        if (stage == NodeCrashOperation::STAGE_CRASH)
             stop();
     }
     return true;
@@ -295,6 +305,4 @@ void EtherLLC::stop()
     dsapsRegistered = dsapToPort.size();
     isUp = false;
 }
-
-} // namespace inet
 

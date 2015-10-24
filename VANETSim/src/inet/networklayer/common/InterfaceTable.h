@@ -20,13 +20,13 @@
 
 #include <vector>
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/networklayer/contract/IInterfaceTable.h"
-#include "inet/networklayer/common/InterfaceEntry.h"
-#include "inet/common/lifecycle/ILifecycle.h"
-
-namespace inet {
+#include "IInterfaceTable.h"
+#include "InterfaceEntry.h"
+#include "NotificationBoard.h"
+#include "ILifecycle.h"
+#include "IPvXAddress.h"
 
 /**
  * Represents the interface table. This object has one instance per host
@@ -41,7 +41,7 @@ namespace inet {
  *
  * Interfaces are dynamically registered: at the start of the simulation,
  * every L2 module adds its own InterfaceEntry to the table; after that,
- * IPv4's IIPv4RoutingTable and IPv6's IPv6RoutingTable (an possibly, further
+ * IPv4's IRoutingTable and IPv6's RoutingTable6 (an possibly, further
  * L3 protocols) add protocol-specific data on each InterfaceEntry
  * (see IPv4InterfaceData, IPv6InterfaceData, and InterfaceEntry::setIPv4Data(),
  * InterfaceEntry::setIPv6Data())
@@ -58,18 +58,18 @@ namespace inet {
  * stale Ids can be detected, and they are also invariant to insertion/deletion.
  *
  * Clients can get notified about interface changes by subscribing to
- * the following signals on host module: NF_INTERFACE_CREATED,
+ * the following notifications in NotificationBoard: NF_INTERFACE_CREATED,
  * NF_INTERFACE_DELETED, NF_INTERFACE_STATE_CHANGED, NF_INTERFACE_CONFIG_CHANGED.
  * State change gets fired for up/down events; all other changes fire as
  * config change.
  *
  * @see InterfaceEntry
  */
-
-class INET_API InterfaceTable : public cSimpleModule, public IInterfaceTable, protected cListener, public ILifecycle
+class INET_API InterfaceTable : public cSimpleModule, public IInterfaceTable, protected INotifiable, public ILifecycle
 {
   protected:
-    cModule *host;    // cached pointer
+    cModule *host; // cached pointer
+    NotificationBoard *nb; // cached pointer
 
     // primary storage for interfaces: vector indexed by id; may contain NULLs;
     // slots are never reused to ensure id uniqueness
@@ -77,8 +77,8 @@ class INET_API InterfaceTable : public cSimpleModule, public IInterfaceTable, pr
     InterfaceVector idToInterface;
 
     // fields to support getNumInterfaces() and getInterface(pos)
-    int tmpNumInterfaces;    // caches number of non-nullptr elements of idToInterface; -1 if invalid
-    InterfaceEntry **tmpInterfaceList;    // caches non-nullptr elements of idToInterface; nullptr if invalid
+    int tmpNumInterfaces; // caches number of non-NULL elements of idToInterface; -1 if invalid
+    InterfaceEntry **tmpInterfaceList; // caches non-NULL elements of idToInterface; NULL if invalid
 
   protected:
     // displays summary above the icon
@@ -91,7 +91,7 @@ class INET_API InterfaceTable : public cSimpleModule, public IInterfaceTable, pr
     virtual void discoverConnectingGates(InterfaceEntry *entry);
 
     // called from InterfaceEntry
-    virtual void interfaceChanged(simsignal_t signalID, const InterfaceEntryChangeDetails *details) override;
+    virtual void interfaceChanged(int category, const InterfaceEntryChangeDetails *details);
 
     // internal
     virtual void invalidateTmpInterfaceList();
@@ -101,64 +101,64 @@ class INET_API InterfaceTable : public cSimpleModule, public IInterfaceTable, pr
   public:
     InterfaceTable();
     virtual ~InterfaceTable();
-    virtual std::string getFullPath() const override { return cSimpleModule::getFullPath(); }
+    virtual std::string getFullPath() const {return cSimpleModule::getFullPath();}
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int stage) override;
+    virtual int numInitStages() const { return 2; }
+    virtual void initialize(int stage);
 
     /**
      * Raises an error.
      */
-    virtual void handleMessage(cMessage *) override;
+    virtual void handleMessage(cMessage *);
 
   public:
     /**
-     * Called by the signal handler whenever a change of a category
+     * Called by the NotificationBoard whenever a change of a category
      * occurs to which this client has subscribed.
      */
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) override;
+    virtual void receiveChangeNotification(int category, const cObject *details);
 
     /**
      * Returns the host or router this interface table lives in.
      */
-    virtual cModule *getHostModule() override;
+    virtual cModule *getHostModule();
 
     /**
      * Checks if the address is a local one, i.e. one of the host's.
      */
-    virtual bool isLocalAddress(const L3Address& address) const override;
+    virtual bool isLocalAddress(const IPvXAddress& address) const;
 
     /**
      * Checks if the address is on the network of one of the interfaces,
      * but not local.
      */
-    virtual bool isNeighborAddress(const L3Address& address) const override;
+    virtual bool isNeighborAddress(const IPvXAddress &address) const;
 
     /**
-     * Returns an interface given by its address. Returns nullptr if not found.
+     * Returns an interface given by its address. Returns NULL if not found.
      */
-    virtual InterfaceEntry *findInterfaceByAddress(const L3Address& address) const override;
+    virtual InterfaceEntry *findInterfaceByAddress(const IPvXAddress& address) const;
 
     /**
      * Adds an interface. The entry->getInterfaceModule() will be used
      * to discover and fill in getNetworkLayerGateIndex(), getNodeOutputGateId(),
-     * and getNodeInputGateId() in InterfaceEntry. It should be nullptr if this is
+     * and getNodeInputGateId() in InterfaceEntry. It should be NULL if this is
      * a virtual interface (e.g. loopback).
      */
-    virtual void addInterface(InterfaceEntry *entry) override;
+    virtual void addInterface(InterfaceEntry *entry);
 
     /**
      * Deletes the given interface from the table. Indices of existing
      * interfaces (see getInterface(int)) may change. It is an error if
      * the given interface is not in the table.
      */
-    virtual void deleteInterface(InterfaceEntry *entry) override;
+    virtual void deleteInterface(InterfaceEntry *entry);
 
     /**
      * Returns the number of interfaces.
      */
-    virtual int getNumInterfaces() override;
+    virtual int getNumInterfaces();
 
     /**
      * Returns the InterfaceEntry specified by an index 0..numInterfaces-1.
@@ -169,75 +169,67 @@ class INET_API InterfaceTable : public cSimpleModule, public IInterfaceTable, pr
      * so cannot be used to reliably identify the interface. Use interfaceId
      * to refer to interfaces from other modules or from messages/packets.
      */
-    virtual InterfaceEntry *getInterface(int pos) override;
+    virtual InterfaceEntry *getInterface(int pos);
 
     /**
      * Returns an interface by its Id. Ids are guaranteed to be invariant
-     * to interface deletions/additions. Returns nullptr if there is no such
+     * to interface deletions/additions. Returns NULL if there is no such
      * interface (This allows detecting stale IDs without raising an error.)
      */
-    virtual InterfaceEntry *getInterfaceById(int id) override;
+    virtual InterfaceEntry *getInterfaceById(int id);
 
     /**
      * Returns the biggest interface Id.
      */
-    virtual int getBiggestInterfaceId() override;
+    virtual int getBiggestInterfaceId();
 
     /**
      * Returns an interface given by its getNodeOutputGateId().
-     * Returns nullptr if not found.
+     * Returns NULL if not found.
      */
-    virtual InterfaceEntry *getInterfaceByNodeOutputGateId(int id) override;
+    virtual InterfaceEntry *getInterfaceByNodeOutputGateId(int id);
 
     /**
      * Returns an interface given by its getNodeInputGateId().
-     * Returns nullptr if not found.
+     * Returns NULL if not found.
      */
-    virtual InterfaceEntry *getInterfaceByNodeInputGateId(int id) override;
+    virtual InterfaceEntry *getInterfaceByNodeInputGateId(int id);
 
     /**
      * Returns an interface given by its getNetworkLayerGateIndex().
-     * Returns nullptr if not found.
+     * Returns NULL if not found.
      */
-    virtual InterfaceEntry *getInterfaceByNetworkLayerGateIndex(int index) override;
+    virtual InterfaceEntry *getInterfaceByNetworkLayerGateIndex(int index);
 
     /**
      * Returns an interface by one of its component module (e.g. PPP).
-     * Returns nullptr if not found.
+     * Returns NULL if not found.
      */
-    virtual InterfaceEntry *getInterfaceByInterfaceModule(cModule *ifmod) override;
+    virtual InterfaceEntry *getInterfaceByInterfaceModule(cModule *ifmod);
 
     /**
-     * Returns an interface given by its name. Returns nullptr if not found.
+     * Returns an interface given by its name. Returns NULL if not found.
      */
-    virtual InterfaceEntry *getInterfaceByName(const char *name) override;
+    virtual InterfaceEntry *getInterfaceByName(const char *name);
 
     /**
      * Returns the first interface with the isLoopback flag set.
-     * (If there's no loopback, it returns nullptr -- but this
+     * (If there's no loopback, it returns NULL -- but this
      * should never happen because InterfaceTable itself registers a
      * loopback interface on startup.)
      */
-    virtual InterfaceEntry *getFirstLoopbackInterface() override;
+    virtual InterfaceEntry *getFirstLoopbackInterface();
 
     /**
      * Returns the first multicast capable interface.
-     * If there is no such interface, then returns nullptr.
+     * If there is no such interface, then returns NULL.
      */
-    virtual InterfaceEntry *getFirstMulticastInterface() override;
+    virtual InterfaceEntry *getFirstMulticastInterface();
 
     /**
      * ILifecycle method
      */
-    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) override;
-
-    /**
-     * Returns all multicast group address, with it's interfaceId
-     */
-    virtual MulticastGroupList collectMulticastGroups() override;
+    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback);
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_INTERFACETABLE_H
-
+#endif

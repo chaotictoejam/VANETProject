@@ -21,9 +21,6 @@ package inet.networklayer.rsvp_te;
 simple SimpleClassifier
 {
     parameters:
-        string routingTableModule;
-        string libTableModule;
-        string rsvpModule;
         xml config = default(xml("<fectable/>"));
         @display("i=block/classifier");
 }

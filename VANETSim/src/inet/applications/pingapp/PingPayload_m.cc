@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -194,7 +193,7 @@ class PingPayloadDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(PingPayloadDescriptor);
 
-PingPayloadDescriptor::PingPayloadDescriptor() : cClassDescriptor("inet::PingPayload", "cPacket")
+PingPayloadDescriptor::PingPayloadDescriptor() : cClassDescriptor("PingPayload", "cPacket")
 {
 }
 
@@ -366,5 +365,4 @@ void *PingPayloadDescriptor::getFieldStructPointer(void *object, int field, int 
     }
 }
 
-} // namespace inet
 

@@ -17,32 +17,14 @@
 // Author: Benjamin Martin Seregi
 //
 
-#include "inet/linklayer/configurator/Ieee8021dInterfaceData.h"
-
-namespace inet {
-
-Ieee8021dInterfaceData::PortInfo::PortInfo()
-{
-    priority = 0;
-    linkCost = 1;
-    edge = false;
-
-    // If there is no STP module then all ports
-    // must be in forwarding state.
-    state = FORWARDING;
-    role = NOTASSIGNED;
-
-    rootPriority = 0;
-    rootPathCost = 0;
-    bridgePriority = 0;
-    portPriority = 0;
-    portNum = -1;
-
-    lostBPDU = 0;
-}
+#include "Ieee8021dInterfaceData.h"
 
 Ieee8021dInterfaceData::Ieee8021dInterfaceData()
 {
+    // If there is no STP module then all ports
+    // must be in forwarding state.
+    portData.role = NOTASSIGNED;
+    portData.state = FORWARDING;
 }
 
 std::string Ieee8021dInterfaceData::info() const
@@ -64,46 +46,25 @@ std::string Ieee8021dInterfaceData::detailedInfo() const
 
 const char *Ieee8021dInterfaceData::getRoleName(PortRole role)
 {
-    switch (role) {
-        case ALTERNATE:
-            return "ALTERNATE";
-
-        case NOTASSIGNED:
-            return "NOTASSIGNED";
-
-        case DISABLED:
-            return "DISABLED";
-
-        case DESIGNATED:
-            return "DESIGNATED";
-
-        case BACKUP:
-            return "BACKUP";
-
-        case ROOT:
-            return "ROOT";
-
-        default:
-            throw cRuntimeError("Unknown port role %d", role);
+    switch (role)
+    {
+        case ALTERNATE: return "ALTERNATE";
+        case NOTASSIGNED: return "NOTASSIGNED";
+        case DISABLED: return "DISABLED";
+        case DESIGNATED: return "DESIGNATED";
+        case BACKUP: return "BACKUP";
+        case ROOT: return "ROOT";
+        default: throw cRuntimeError("Unknown port role %d", role);
     }
 }
 
 const char *Ieee8021dInterfaceData::getStateName(PortState state)
 {
-    switch (state) {
-        case DISCARDING:
-            return "DISCARDING";
-
-        case LEARNING:
-            return "LEARNING";
-
-        case FORWARDING:
-            return "FORWARDING";
-
-        default:
-            throw cRuntimeError("Unknown port state %d", state);
+    switch (state)
+    {
+        case DISCARDING: return "DISCARDING";
+        case LEARNING: return "LEARNING";
+        case FORWARDING: return "FORWARDING";
+        default: throw cRuntimeError("Unknown port state %d", state);
     }
 }
-
-} // namespace inet
-

@@ -13,46 +13,35 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_L2NODECONFIGURATOR_H
-#define __INET_L2NODECONFIGURATOR_H
+#ifndef __INET_L2NODECONFIGURATOR_H_
+#define __INET_L2NODECONFIGURATOR_H_
 
-#include "inet/common/INETDefs.h"
-#include "inet/common/lifecycle/ILifecycle.h"
-#include "inet/common/lifecycle/NodeStatus.h"
-#include "inet/networklayer/contract/IInterfaceTable.h"
-#include "inet/linklayer/configurator/L2NetworkConfigurator.h"
-
-namespace inet {
+#include "INETDefs.h"
+#include "ILifecycle.h"
+#include "NodeStatus.h"
+#include "IInterfaceTable.h"
+#include "L2NetworkConfigurator.h"
 
 /**
  * Configures L2 data of a node. See the NED definition for details.
  */
-class L2NodeConfigurator : public cSimpleModule, public ILifecycle, public cListener
-{
-  protected:
-    NodeStatus *nodeStatus;
-    IInterfaceTable *interfaceTable;
-    L2NetworkConfigurator *networkConfigurator;
+class L2NodeConfigurator : public cSimpleModule, public ILifecycle {
+    protected:
+        NodeStatus * nodeStatus;
+        IInterfaceTable * interfaceTable;
+        L2NetworkConfigurator * networkConfigurator;
 
-  public:
-    L2NodeConfigurator();
+    public:
+        L2NodeConfigurator();
 
-  protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void handleMessage(cMessage *msg) override { throw cRuntimeError("this module doesn't handle messages, it runs only in initialize()"); }
-    virtual void initialize(int stage) override;
-
-    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) override;
-
-    virtual void prepareNode();
-    virtual void prepareInterface(InterfaceEntry *interfaceEntry);
-    virtual void configureNode();
-
-    // cListener:
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) override;
+    protected:
+        virtual int numInitStages() const { return 4; }
+        virtual void handleMessage(cMessage *msg) { throw cRuntimeError("this module doesn't handle messages, it runs only in initialize()"); }
+        virtual void initialize(int stage);
+        virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback);
+        virtual void prepareNode();
+        virtual void prepareInterface(InterfaceEntry *interfaceEntry);
+        virtual void configureNode();
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_L2NODECONFIGURATOR_H
-
+#endif

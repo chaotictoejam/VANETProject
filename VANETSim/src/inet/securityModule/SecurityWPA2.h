@@ -20,28 +20,29 @@
 #define IEEE80211_SECURITY_STA_H
 
 #include <vector>
+
+#include "INETDefs.h"
+#include "NewMsgWithMacAddr_m.h"
+#include "Ieee80211Primitives_m.h"
+#include "NotificationBoard.h"
+#include "InterfaceTable.h"
+#include <csimplemodule.h>
+#include <map>
+#include <set>
+#include "IRoutingTable.h"
+#include "IInterfaceTable.h"
+#include "INotifiable.h"
+
 #include <iostream>
 #include <vector>
 #include <cstdarg>
-#include <map>
-#include <set>
 
-#include "inet/common/INETDefs.h"
-#include "inet/securityModule/message/NewMsgWithMacAddr_m.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211Primitives_m.h"
-#include "inet/networklayer/common/InterfaceTable.h"
-#include "inet/networklayer/contract/IRoutingTable.h"
-#include "inet/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
-#include "inet/networklayer/ipv4/IPv4Datagram.h"
-#include "inet/transportlayer/udp/UDPPacket_m.h"
-#include "inet/securityModule/SecurityKeys.h"
+#include "Ieee80211Frame_m.h"
+#include "IPv4Datagram.h"
+#include "UDPPacket_m.h"
+#include "SecurityKeys.h"
 
-namespace inet {
-
-namespace ieee80211 {
-
-
-class SecurityWPA2 : public cSimpleModule, public cListener, public SecurityKeys
+class SecurityWPA2 : public cSimpleModule, public INotifiable, public SecurityKeys
 {
         const char *msg;
 
@@ -92,13 +93,13 @@ public:
                     beaconInterval = 0.1;
                     authSeqExpected = -1;
                     isCandidate = -1;
-                    authTimeoutMsg_a = nullptr;
-                    authTimeoutMsg_b = nullptr;
-                    groupAuthTimeoutMsg = nullptr;
+                    authTimeoutMsg_a = NULL;
+                    authTimeoutMsg_b = NULL;
+                    groupAuthTimeoutMsg = NULL;
                     status=NOT_AUTHENTICATED;
-                    beaconTimeoutMsg = nullptr;
+                    beaconTimeoutMsg = NULL;
                     isAuthenticated = false;
-                    PTKTimerMsg =nullptr;
+                    PTKTimerMsg =NULL;
                     sideA=0;
                }
 
@@ -175,6 +176,7 @@ protected:
         int interfaceId;
         IInterfaceTable *itable;
         IRoutingTable *rt;
+        NotificationBoard *nb;
 
 public:
         friend std::ostream & operator <<(std::ostream & os, const SecurityWPA2::LocEntry & e);
@@ -183,10 +185,10 @@ public:
         virtual void initialize(int stage);
         virtual int numInitStages() const
         {
-            return NUM_INIT_STAGES;
+            return 4;
         }
 
-        virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj);
+        virtual void receiveChangeNotification(int category, const cObject *details);
         virtual void handleMessage(cMessage*);
         virtual void setMacAddress(const MACAddress & add)
         {
@@ -249,19 +251,15 @@ public:
       //  virtual char* encapsulate(cPacket *msg, unsigned int* length);
         virtual uint32_t stringToUint32_t(std::string s);
         virtual IPv4Datagram * handleIPv4Datagram(IPv4Datagram* IP,MeshInfo *mesh);
-        virtual Ieee80211ActionMeshFrame * encryptActionHWMPFrame(Ieee80211ActionMeshFrame* frame,MeshInfo *mesh);
+        virtual Ieee80211ActionHWMPFrame * encryptActionHWMPFrame(Ieee80211ActionHWMPFrame* frame,MeshInfo *mesh);
 
         virtual void handleIeee80211MeshFrame(cMessage *msg);
-        virtual void handleIeee80211ActionMeshFrame(cMessage *msg);
+        virtual void handleIeee80211ActionHWMPFrame(cMessage *msg);
         virtual void handleIeee80211DataFrameWithSNAP(cMessage *msg);
 
 
 
 };
-
-}
-
-}
 
 #endif
 

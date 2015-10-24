@@ -1,6 +1,5 @@
 //
 // Copyright (C) 2005 Andras Varga
-// Copyright (C) 2015 A. Ariza (Malaga University)
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public License
@@ -24,18 +23,15 @@
 #ifndef __INET_UDPVIDEOSTREAMCLI2_H
 #define __INET_UDPVIDEOSTREAMCLI2_H
 
-#include "inet/common/INETDefs.h"
-#include "inet/applications/base/ApplicationBase.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
+#include "INETDefs.h"
+#include "UDPSocket.h"
+#include "ApplicationBase.h"
 /**
  * A "Realtime" VideoStream client application.
  *
  * Basic video stream application. Clients connect to server and get a stream of
  * video back.
  */
-
-namespace inet {
-
 class INET_API UDPVideoStreamCli2 : public ApplicationBase
 {
   protected:
@@ -62,15 +58,20 @@ class INET_API UDPVideoStreamCli2 : public ApplicationBase
 
     bool recieved;
 
+
+  public:
+    UDPVideoStreamCli2();
+    virtual ~UDPVideoStreamCli2();
   protected:
     ///@name Overridden cSimpleModule functions
     //@{
-    virtual int numInitStages() const { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 4; }
     virtual void initialize(int stage);
     virtual void finish();
     virtual void handleMessageWhenUp(cMessage *msg);
     //@}
 
+  protected:
     virtual void requestStream();
     virtual void receiveStream(cPacket *msg);
     virtual void timeOutData();
@@ -79,14 +80,7 @@ class INET_API UDPVideoStreamCli2 : public ApplicationBase
     virtual bool handleNodeStart(IDoneCallback *doneCallback);
     virtual bool handleNodeShutdown(IDoneCallback *doneCallback);
     virtual void handleNodeCrash();
-
-  public:
-    UDPVideoStreamCli2();
-    virtual ~UDPVideoStreamCli2();
-
 };
-
-}
 
 #endif
 

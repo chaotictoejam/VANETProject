@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -158,7 +157,7 @@ class UDPVideoDataPacketDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(UDPVideoDataPacketDescriptor);
 
-UDPVideoDataPacketDescriptor::UDPVideoDataPacketDescriptor() : cClassDescriptor("inet::UDPVideoDataPacket", "cPacket")
+UDPVideoDataPacketDescriptor::UDPVideoDataPacketDescriptor() : cClassDescriptor("UDPVideoDataPacket", "cPacket")
 {
 }
 
@@ -329,5 +328,4 @@ void *UDPVideoDataPacketDescriptor::getFieldStructPointer(void *object, int fiel
     }
 }
 
-} // namespace inet
 

@@ -19,20 +19,13 @@
 #define __INET_ETHERENCAPMESH_H
 
 #include <stdio.h>
-#include "inet/linklayer/ethernet/EtherEncap.h"
-#include "inet/linklayer/ethernet/Ethernet.h"
-#include "inet/linklayer/ethernet/EtherFrame.h"
-#include "inet/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
-
-#include "inet/common/INETDefs.h"
-
-#include "inet/linklayer/ethernet/EtherMACBase.h"
-
+#include "EtherEncap.h"
+#include "Ethernet.h"
+#include "EtherFrame_m.h"
+#include "Ieee80211Frame_m.h"
 /**
  * Performs Ethernet II encapsulation/decapsulation. More info in the NED file.
  */
-namespace inet {
-
 class INET_API EtherEncapMesh : public EtherEncap
 {
   protected:
@@ -42,10 +35,9 @@ class INET_API EtherEncapMesh : public EtherEncap
     virtual void updateDisplayString();
     virtual void handleMessage(cMessage *msg);
     virtual void processFrameFromMAC(EtherFrame *msg);
-    virtual void processFrameFromWifiMesh(ieee80211::Ieee80211Frame *);
+    virtual void processFrameFromWifiMesh(Ieee80211Frame *);
 };
 
-}
 #endif
 
 

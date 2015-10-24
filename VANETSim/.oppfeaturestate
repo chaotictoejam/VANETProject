@@ -43,4 +43,5 @@
     <feature enabled="true" id="CSMA"/>
     <feature enabled="true" id="XMAC"/>
     <feature enabled="true" id="Ieee80211_mesh"/>
+	<feature enabled="true" id="traci"/>
 </featurestates>

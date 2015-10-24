@@ -12,20 +12,20 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#include "inet/networklayer/rsvp_te/Utils.h"
-#include "inet/networklayer/rsvp_te/IntServ.h"
+#include "Utils.h"
+#include "IntServ.h"
 
-namespace inet {
 
-std::string vectorToString(const IPAddressVector& vec)
+std::string vectorToString(IPAddressVector vec)
 {
     return vectorToString(vec, ", ");
 }
 
-std::string vectorToString(const IPAddressVector& vec, const char *delim)
+std::string vectorToString(IPAddressVector vec, const char *delim)
 {
     std::ostringstream stream;
-    for (unsigned int i = 0; i < vec.size(); i++) {
+    for (unsigned int i = 0; i < vec.size(); i++)
+    {
         stream << vec[i];
         if (i < vec.size() - 1)
             stream << delim;
@@ -35,15 +35,16 @@ std::string vectorToString(const IPAddressVector& vec, const char *delim)
     return str;
 }
 
-std::string vectorToString(const EroVector& vec)
+std::string vectorToString(EroVector vec)
 {
     return vectorToString(vec, ", ");
 }
 
-std::string vectorToString(const EroVector& vec, const char *delim)
+std::string vectorToString(EroVector vec, const char *delim)
 {
     std::ostringstream stream;
-    for (unsigned int i = 0; i < vec.size(); i++) {
+    for (unsigned int i = 0; i < vec.size(); i++)
+    {
         stream << vec[i].node;
 
         if (i < vec.size() - 1)
@@ -54,29 +55,32 @@ std::string vectorToString(const EroVector& vec, const char *delim)
     return str;
 }
 
-EroVector routeToEro(const IPAddressVector& rro)
+EroVector routeToEro(IPAddressVector rro)
 {
     EroVector ero;
 
-    for (auto & elem : rro) {
+    for (unsigned int i = 0; i < rro.size(); i++)
+    {
         EroObj_t hop;
         hop.L = false;
-        hop.node = elem;
+        hop.node = rro[i];
         ero.push_back(hop);
     }
 
     return ero;
 }
 
+
 void removeDuplicates(std::vector<int>& vec)
 {
-    for (unsigned int i = 0; i < vec.size(); i++) {
+    for (unsigned int i = 0; i < vec.size(); i++)
+    {
         unsigned int j;
         for (j = 0; j < i; j++)
             if (vec[j] == vec[i])
                 break;
-
-        if (j < i) {
+        if (j < i)
+        {
             vec.erase(vec.begin() + i);
             --i;
         }
@@ -88,33 +92,30 @@ int find(const EroVector& ERO, IPv4Address node)
     for (unsigned int i = 0; i < ERO.size(); i++)
         if (ERO[i].node == node)
             return i;
-
     ASSERT(false);
-    return -1;    // to prevent warning
+    return -1; // to prevent warning
 }
 
 bool find(std::vector<int>& vec, int value)
 {
-    for (auto & elem : vec)
-        if (elem == value)
+    for (unsigned int i = 0; i < vec.size(); i++)
+        if (vec[i] == value)
             return true;
-
     return false;
 }
 
 bool find(const IPAddressVector& vec, IPv4Address addr)
 {
-    for (auto & elem : vec)
-        if (elem == addr)
+    for (unsigned int i = 0; i < vec.size(); i++)
+        if (vec[i] == addr)
             return true;
-
     return false;
 }
 
 void append(std::vector<int>& dest, const std::vector<int>& src)
 {
-    for (auto & elem : src)
-        dest.push_back(elem);
+    for (unsigned int i = 0; i < src.size(); i++)
+        dest.push_back(src[i]);
 }
 
 cModule *getPayloadOwner(cPacket *msg)
@@ -123,14 +124,14 @@ cModule *getPayloadOwner(cPacket *msg)
         msg = msg->getEncapsulatedPacket();
 
     if (msg->hasPar("owner"))
-        return getSimulation()->getModule(msg->par("owner"));
+        return simulation.getModule(msg->par("owner"));
     else
-        return nullptr;
+        return NULL;
 }
 
 /*
-   void prepend(EroVector& dest, const EroVector& src, bool reverse)
-   {
+void prepend(EroVector& dest, const EroVector& src, bool reverse)
+{
     ASSERT(dest.size() > 0);
     ASSERT(src.size() > 0);
 
@@ -144,8 +145,8 @@ cModule *getPayloadOwner(cPacket *msg)
 
         dest.insert(dest.begin(), src[n]);
     }
-   }
- */
+}
+*/
 
-} // namespace inet
+
 

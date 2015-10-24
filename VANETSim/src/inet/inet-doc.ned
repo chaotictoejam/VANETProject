@@ -19,7 +19,7 @@
 //
 // <pre>
 // <nohtml>
-// @include ../../WHATSNEW
+// @include ../WHATSNEW
 // </nohtml>
 // </pre>
 //
@@ -47,10 +47,11 @@
 // a MAC, and possibly other simple modules. See ~EthernetInterface as an example.
 //
 // Not all modules implement protocols though. There are modules which hold
-// data (for example ~IPv4RoutingTable), perform autoconfiguration of a network
+// data (for example ~RoutingTable), facilitate communication of modules
+// (~NotificationBoard), perform autoconfiguration of a network
 // (~FlatNetworkConfigurator), move a mobile node around (for example
 // ~ConstSpeedMobility), and perform housekeeping associated with radio channels
-// in wireless simulations (~IRadioMedium).
+// in wireless simulations (~ChannelControl).
 //
 // Protocol headers and packet formats are described in message definition
 // files (msg files), which are translated into C++ classes by OMNeT++'s
@@ -82,7 +83,7 @@
 //   functions). Network interfaces get dynamically registered (added to the table)
 //   by simple modules implementing the network interface, for example ~EtherMAC.
 //
-// - ~IPv4RoutingTable. This module contains the IP (v4) routing table, and heavily relies
+// - ~RoutingTable. This module contains the IP (v4) routing table, and heavily relies
 //   on ~InterfaceTable for its operation. This module is also accessed from other
 //   modules (typically ~IPv4) by calling the public member functions of its C++ class.
 //   There are member functions for querying, adding, deleting routes, and
@@ -90,7 +91,18 @@
 //   The routing table submodule within the host (router) must be called
 //   <code>routingTable</code> for other modules to find it.
 //
-// - ~IPv6RoutingTable. This is like ~IPv4RoutingTable, but for IPv6.
+// - ~RoutingTable6. This is like ~RoutingTable, but for IPv6.
+//
+// - ~NotificationBoard. This module makes it possible for several modules to
+//   communicate in a publish-subscribe manner. For example, the radio module
+//   (~Ieee80211Radio) fires a <i>"radio state changed"</i> notification when
+//   the state of the radio channel changes (from TRANSMIT to IDLE, for example),
+//   and it will be delivered to other modules that have previously subscribed
+//   to that notification category. The notification mechanism also works
+//   my C++ functions calls, no message sending is involved.
+//   The notification board submodule within the host (router) must be called
+//   <code>notificationBoard</code> for other modules to find it.
+//
 //
 // <h3>Common modules at network level</h3>
 //
@@ -102,7 +114,7 @@
 // - ~ScenarioManager makes simulations scriptable. Modules can be made to support
 //   scripting by implementing the <code>IScriptable</code> C++ interface.
 //
-// - ~IRadioMedium is required for wireless simulations. It keeps track of which
+// - ~ChannelControl is required for wireless simulations. It keeps track of which
 //   nodes are within interference distance of other nodes.
 //
 // <h3>Communication between protocol layers</h3>
@@ -130,12 +142,12 @@
 // @page ipaddresses.html, Specifying IP (IPv6) addresses in module parameters
 //
 // In INET, ~TCP, ~UDP and all application layer modules work with
-// both IPv4 and IPv6. Internally they use the Address C++ class, which
+// both IPv4 and IPv6. Internally they use the IPvXAddress C++ class, which
 // can represent both IPv4 and IPv6 addresses.
 //
-// Most modules use the L3AddressResolver C++ class to resolve addresses
+// Most modules use the IPvXAddressResolver C++ class to resolve addresses
 // specified in module parameters in omnetpp.ini.
-// L3AddressResolver accepts the following syntax:
+// IPvXAddressResolver accepts the following syntax:
 //
 //    - literal IPv4 address: "186.54.66.2"
 //    - literal IPv6 address: "3011:7cd6:750b:5fd6:aba3:c231:e9f9:6a43"
@@ -150,7 +162,7 @@
 //
 // Routing files are files with <tt>.irt</tt> or <tt>.mrt</tt> extension,
 // and their names are passed in the routingFileName parameter
-// to ~IPv4RoutingTable modules. RoutingTables are present in all
+// to ~RoutingTable modules. RoutingTables are present in all
 // IP nodes (hosts and routers).
 //
 // Routing files may contain network interface configuration and static
@@ -159,7 +171,7 @@
 //
 // Interfaces themselves are represented in the simulation by modules
 // (such as the ~PPP module). Modules automatically register themselves
-// with appropriate defaults in the ~IPv4RoutingTable, and entries in the
+// with appropriate defaults in the ~RoutingTable, and entries in the
 // routing file refine (overwrite) these settings.
 // Interfaces are identified by names (e.g. ppp0, ppp1, eth0) which
 // are normally derived from the module's name: a module called
@@ -207,7 +219,7 @@
 //    - <tt>inet_addr:</tt> - IP address
 //    - <tt>Mask:</tt> - netmask
 //    - <tt>Groups:</tt> Multicast groups. 224.0.0.1 is added automatically,
-//      and 224.0.0.2 also if the node is a router (forwarding==true).
+//      and 224.0.0.2 also if the node is a router (IPForward==true).
 //    - <tt>MTU:</tt> - MTU on the link (e.g. Ethernet: 1500)
 //    - <tt>Metric:</tt> - integer route metric
 //    - flags: <tt>BROADCAST</tt>, <tt>MULTICAST</tt>, <tt>POINTTOPOINT</tt>
@@ -243,7 +255,7 @@
 //
 // IPv6 support is implemented by several cooperating modules. The ~IPv6 module
 // implements IPv6 datagram handling (sending, forwarding etc). It relies on
-// ~IPv6RoutingTable to get access to the routes. ~IPv6RoutingTable also contains the
+// ~RoutingTable6 to get access to the routes. ~RoutingTable6 also contains the
 // neighbour discovery data structures (destination cache, neighbour cache,
 // prefix list -- the latter effectively merged into the route table). Interface
 // configuration (address, state, timeouts etc) is held in the ~InterfaceTable,
@@ -253,7 +265,7 @@
 // The ~IPv6NeighbourDiscovery module implements all tasks associated with
 // neighbour discovery and stateless address autoconfiguration. The data
 // structures themselves (destination cache, neighbour cache, prefix list)
-// are kept in ~IPv6RoutingTable, and are accessed via public C++ methods.
+// are kept in ~RoutingTable6, and are accessed via public C++ methods.
 // Neighbour discovery packets are only sent and processed by this module --
 // when ~IPv6 receives one, it forwards the packet to ~IPv6NeighbourDiscovery.
 //

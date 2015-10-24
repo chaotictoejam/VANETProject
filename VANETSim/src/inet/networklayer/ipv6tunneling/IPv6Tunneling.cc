@@ -34,45 +34,49 @@
 // TODO
 //  - 8.: Tunnel Error Reporting and Processing
 
-#include "inet/networklayer/ipv6tunneling/IPv6Tunneling.h"
 
-#include "inet/networklayer/contract/ipv6/IPv6ControlInfo.h"
-#include "inet/networklayer/ipv6/IPv6Datagram.h"
-#include "inet/networklayer/ipv6/IPv6InterfaceData.h"
-#include "inet/networklayer/ipv6/IPv6RoutingTable.h"
-#include "inet/networklayer/contract/IInterfaceTable.h"
-#include "inet/common/ModuleAccess.h"
-#include "inet/common/lifecycle/NodeStatus.h"
+#include "IPv6Tunneling.h"
+
+#include "InterfaceTableAccess.h"
+#include "IPv6ControlInfo.h"
+#include "IPv6Datagram.h"
+#include "IPv6InterfaceData.h"
+#include "ModuleAccess.h"
+#include "NodeStatus.h"
+#include "RoutingTable6Access.h"
 
 #ifdef WITH_xMIPv6
-#include "inet/networklayer/xmipv6/xMIPv6.h"
-#include "inet/networklayer/xmipv6/MobilityHeader_m.h"    // for HA Option header
-#endif // ifdef WITH_xMIPv6
+#include "MobilityHeader_m.h" // for HA Option header
+#include "xMIPv6Access.h"
+#endif
 
 #include <algorithm>
 
-namespace inet {
 
 Define_Module(IPv6Tunneling);
 
 IPv6Tunneling::IPv6Tunneling()
 {
+    ift = NULL;
+    rt = NULL;
 }
 
 void IPv6Tunneling::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
 
-    if (stage == INITSTAGE_LOCAL) {
-        ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
-        rt = getModuleFromPar<IPv6RoutingTable>(par("routingTableModule"), this);
+    if (stage == 0)
+    {
+        ift = InterfaceTableAccess().get();
+        rt = RoutingTable6Access().get();
 
-        vIfIndexTop = INT_MAX;    // virtual interface number set to maximum int value
-        noOfNonSplitTunnels = 0;    // current number of non-split tunnels on this host
+        vIfIndexTop = INT_MAX; // virtual interface number set to maximum int value
+        noOfNonSplitTunnels = 0; // current number of non-split tunnels on this host
 
         WATCH_MAP(tunnels);
     }
-    else if (stage == INITSTAGE_NETWORK_LAYER) {
+    else if (stage == 1)
+    {
         bool isOperational;
         NodeStatus *nodeStatus = dynamic_cast<NodeStatus *>(findContainingNode(this)->getSubmodule("status"));
         isOperational = (!nodeStatus) || nodeStatus->getState() == NodeStatus::UP;
@@ -81,20 +85,22 @@ void IPv6Tunneling::initialize(int stage)
     }
 }
 
-void IPv6Tunneling::handleMessage(cMessage *msg)
+void IPv6Tunneling::handleMessage(cMessage* msg)
 {
-    IPv6Datagram *dgram = check_and_cast<IPv6Datagram *>(msg);
+    IPv6Datagram *dgram = check_and_cast<IPv6Datagram*>(msg);
 
-    if (msg->getArrivalGate()->isName("upperLayerIn")) {
+    if (msg->getArrivalGate()->isName("upperLayerIn"))
+    {
         // decapsulate
         decapsulateDatagram(dgram);
     }
-    else if (msg->getArrivalGate()->isName("linkLayerIn")) {
+    else if (msg->getArrivalGate()->isName("linkLayerIn"))
+    {
         // encapsulate
         encapsulateDatagram(dgram);
     }
     else
-        throw cRuntimeError("IPv6Tunneling: Unknown gate: %s!", msg->getArrivalGate()->getFullName());
+        opp_error("IPv6Tunneling: Unknown gate: %s!", msg->getArrivalGate()->getFullName());
 }
 
 bool IPv6Tunneling::handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback)
@@ -103,7 +109,7 @@ bool IPv6Tunneling::handleOperationStage(LifecycleOperation *operation, int stag
 }
 
 IPv6Tunneling::Tunnel::Tunnel(const IPv6Address& _entry, const IPv6Address& _exit, const IPv6Address& _destTrigger)
-    : entry(_entry), exit(_exit), tunnelMTU(IPv6_MIN_MTU - 40), tunnelType(SPLIT), destTrigger(_destTrigger)
+    :entry(_entry), exit(_exit), tunnelMTU(IPv6_MIN_MTU - 40), tunnelType(SPLIT), destTrigger(_destTrigger)
 {
 }
 
@@ -115,32 +121,35 @@ int IPv6Tunneling::createTunnel(TunnelType tunnelType,
 
     // Test for entry and exit point node pointing to same node i.e. localDeliver
     // addresses to prevent loopback encapsulation 4.1.2
-    if ((tunnelType == NORMAL || tunnelType == SPLIT || tunnelType == NON_SPLIT)    // check does not work for T2RH or HoA_Opt. Why?
-        && rt->isLocalAddress(entry) && rt->isLocalAddress(exit))
+    if ((tunnelType == NORMAL || tunnelType == SPLIT || tunnelType == NON_SPLIT) // check does not work for T2RH or HoA_Opt. Why?
+         && rt->isLocalAddress(entry) && rt->isLocalAddress(exit))
     {
-        EV_INFO << "Cannot create tunnel with local endpoints (prevents loopback tunneling)" << endl;
+        EV << "Cannot create tunnel with local endpoints (prevents loopback tunneling)" << endl;
         return 0;
     }
 
     int search = findTunnel(entry, exit, destTrigger);
-    if (search != 0) {
-        EV_INFO << "Tunnel with entry = " << entry << ", exit = " << exit << " and trigger = "
-                << destTrigger << " already exists!" << endl;
+    if (search != 0)
+    {
+        EV << "Tunnel with entry = " << entry << ", exit = " << exit << " and trigger = "
+           << destTrigger << " already exists!" << endl;
         return search;
     }
 
     if (vIfIndexTop <= (ift->getBiggestInterfaceId()))
-        throw cRuntimeError("Error: Not more than %d tunnels supported!", INT_MAX - ift->getBiggestInterfaceId());
+        opp_error("Error: Not more than %d tunnels supported!", INT_MAX - ift->getBiggestInterfaceId());
 
     if ((destTrigger == IPv6Address::UNSPECIFIED_ADDRESS) && (noOfNonSplitTunnels == 1))
-        throw cRuntimeError("Error: Not more than 1 non-split tunnel supported!");
+        opp_error("Error: Not more than 1 non-split tunnel supported!");
 
     // 6.1-6.2
     ASSERT(entry.isUnicast());
     tunnels[vIfIndexTop] = Tunnel(entry, exit, destTrigger);
 
-    if (tunnelType == NORMAL || tunnelType == SPLIT || tunnelType == NON_SPLIT) {
-        if (destTrigger == IPv6Address::UNSPECIFIED_ADDRESS) {
+    if (tunnelType == NORMAL || tunnelType == SPLIT || tunnelType == NON_SPLIT)
+    {
+        if (destTrigger == IPv6Address::UNSPECIFIED_ADDRESS)
+        {
             // this is a "full" tunnel over which everything gets routed
             tunnels[vIfIndexTop].tunnelType = NON_SPLIT;
             noOfNonSplitTunnels++;
@@ -165,31 +174,33 @@ int IPv6Tunneling::createTunnel(TunnelType tunnelType,
         // TODO perform path MTU on link (interface resolved via exit address)
         tunnels[vIfIndexTop].tunnelMTU = IPv6_MIN_MTU - 40;
 
-        EV_INFO << "Tunneling: Created tunnel with entry=" << entry << ", exit=" << exit
-                << " and trigger=" << destTrigger << endl;
+        EV << "Tunneling: Created tunnel with entry=" << entry << ", exit=" << exit
+           << " and trigger=" << destTrigger << endl;
     }
-    else if (tunnelType == T2RH || tunnelType == HA_OPT) {
+    else if (tunnelType == T2RH || tunnelType == HA_OPT)
+    {
         tunnels[vIfIndexTop].tunnelType = tunnelType;
 
         if (tunnelType == T2RH)
-            EV_INFO << "Tunneling: Created RH2 path with entry=" << entry << ", exit=" << exit
-                    << " and trigger=" << destTrigger << endl;
+            EV << "Tunneling: Created RH2 path with entry=" << entry << ", exit=" << exit
+               << " and trigger=" << destTrigger << endl;
         else
-            EV_INFO << "Tunneling: Created HA option path with entry=" << entry << ", exit=" << exit
-                    << " and trigger=" << destTrigger << endl;
+            EV << "Tunneling: Created HA option path with entry=" << entry << ", exit=" << exit
+               << " and trigger=" << destTrigger << endl;
     }
-    else {
-        throw cRuntimeError("tunnel type %d not supported for createTunnel()", tunnelType);
+    else
+    {
+        opp_error("tunnel type %d not supported for createTunnel()", tunnelType);
     }
 
-    if (hasGUI())
+    if (ev.isGUI())
         bubble("Created Tunnel");
 
-    return vIfIndexTop--;    // decrement vIfIndex for use with next createTunnel() call
+    return vIfIndexTop--; // decrement vIfIndex for use with next createTunnel() call
 }
 
 int IPv6Tunneling::findTunnel(const IPv6Address& src, const IPv6Address& dest,
-        const IPv6Address& destTrigger) const
+                              const IPv6Address& destTrigger) const
 {
     TI it = find_if(tunnels.begin(), tunnels.end(),
                 bind1st(equalTunnel(), std::make_pair((int)0, Tunnel(src, dest, destTrigger))));
@@ -201,16 +212,17 @@ int IPv6Tunneling::findTunnel(const IPv6Address& src, const IPv6Address& dest,
 }
 
 bool IPv6Tunneling::destroyTunnel(const IPv6Address& src, const IPv6Address& dest,
-        const IPv6Address& destTrigger)
+                                  const IPv6Address& destTrigger)
 {
-    EV_INFO << "Destroy tunnel entry =" << src << ", exit = " << dest
-            << ", destTrigger = " << destTrigger << "\n";
+    EV << "Destroy tunnel entry =" << src << ", exit = " << dest
+       << ", destTrigger = " << destTrigger << "\n";
 
     // search for tunnel with given entry and exit point as well as trigger
     int vIfIndex = findTunnel(src, dest, destTrigger);
 
-    if (vIfIndex == 0) {
-        EV_WARN << "Tunnel not found\n";
+    if (vIfIndex == 0)
+    {
+        EV << "Tunnel not found\n";
         return false;
     }
 
@@ -225,7 +237,7 @@ bool IPv6Tunneling::destroyTunnel(const IPv6Address& src, const IPv6Address& des
     // reset the index if we do not have a single tunnel anymore
     resetVIfIndex();
 
-    if (hasGUI())
+    if (ev.isGUI())
         bubble("Destroyed Tunnel");
 
     return true;
@@ -233,8 +245,10 @@ bool IPv6Tunneling::destroyTunnel(const IPv6Address& src, const IPv6Address& des
 
 void IPv6Tunneling::destroyTunnel(const IPv6Address& entry, const IPv6Address& exit)
 {
-    for (auto it = tunnels.begin(); it != tunnels.end(); ) {
-        if (it->second.entry == entry && it->second.exit == exit) {
+    for (Tunnels::iterator it = tunnels.begin(); it != tunnels.end();)
+    {
+        if (it->second.entry == entry && it->second.exit == exit)
+        {
             destroyTunnel(it->second.entry, it->second.exit, it->second.destTrigger);
             break;
         }
@@ -248,8 +262,10 @@ void IPv6Tunneling::destroyTunnel(const IPv6Address& entry, const IPv6Address& e
 
 void IPv6Tunneling::destroyTunnelForExitAndTrigger(const IPv6Address& exit, const IPv6Address& trigger)
 {
-    for (auto it = tunnels.begin(); it != tunnels.end(); ) {
-        if (it->second.exit == exit && it->second.destTrigger == trigger) {
+    for (Tunnels::iterator it = tunnels.begin(); it != tunnels.end(); )
+    {
+        if (it->second.exit == exit && it->second.destTrigger == trigger)
+        {
             destroyTunnel(it->second.entry, it->second.exit, it->second.destTrigger);
             break;
         }
@@ -263,8 +279,10 @@ void IPv6Tunneling::destroyTunnelForExitAndTrigger(const IPv6Address& exit, cons
 
 void IPv6Tunneling::destroyTunnelForEntryAndTrigger(const IPv6Address& entry, const IPv6Address& trigger)
 {
-    for (auto it = tunnels.begin(); it != tunnels.end(); ) {
-        if (it->second.entry == entry && it->second.destTrigger == trigger) {
+    for (Tunnels::iterator it = tunnels.begin(); it != tunnels.end(); )
+    {
+        if (it->second.entry == entry && it->second.destTrigger == trigger)
+        {
             destroyTunnel(it->second.entry, it->second.exit, it->second.destTrigger);
             break;
         }
@@ -278,9 +296,11 @@ void IPv6Tunneling::destroyTunnelForEntryAndTrigger(const IPv6Address& entry, co
 
 void IPv6Tunneling::destroyTunnels(const IPv6Address& entry)
 {
-    for (auto it = tunnels.begin(); it != tunnels.end(); ) {
-        if (it->second.entry == entry) {
-            auto oldIt = it;
+    for (Tunnels::iterator it = tunnels.begin(); it != tunnels.end(); )
+    {
+        if (it->second.entry == entry)
+        {
+            Tunnels::iterator oldIt = it;
             ++it;
 
             destroyTunnel(oldIt->second.entry, oldIt->second.exit, oldIt->second.destTrigger);
@@ -295,14 +315,16 @@ void IPv6Tunneling::destroyTunnels(const IPv6Address& entry)
 
 void IPv6Tunneling::destroyTunnelFromTrigger(const IPv6Address& trigger)
 {
-    for (auto & elem : tunnels) {
-        if (elem.second.destTrigger == trigger) {
-            destroyTunnel(elem.second.entry, elem.second.exit, elem.second.destTrigger);
+    for (Tunnels::iterator it = tunnels.begin(); it != tunnels.end(); ++it)
+    {
+        if (it->second.destTrigger == trigger)
+        {
+            destroyTunnel(it->second.entry, it->second.exit, it->second.destTrigger);
 
             // reset the index if we do not have a single tunnel anymore
             resetVIfIndex();
 
-            return;    // there can not be more than one tunnel for a trigger
+            return; // there can not be more than one tunnel for a trigger
         }
     }
 }
@@ -310,18 +332,19 @@ void IPv6Tunneling::destroyTunnelFromTrigger(const IPv6Address& trigger)
 int IPv6Tunneling::getVIfIndexForDest(const IPv6Address& destAddress)
 {
     //Enter_Method("Looking up Tunnels (%s)", destAddress.str().c_str());
-    EV_INFO << "Looking up tunnels...";
+    EV << "Looking up tunnels...";
 
     // first we look for tunnels with destAddress as trigger
     int vIfIndex = lookupTunnels(destAddress);
 
-    if (vIfIndex == -1) {
+    if (vIfIndex == -1)
+    {
         // then the only chance left for finding a suitable tunnel
         // is to find a non-split tunnel
         vIfIndex = doPrefixMatch(destAddress);
     }
 
-    EV_DETAIL << "found vIf=" << vIfIndex << endl;
+    EV << "found vIf=" << vIfIndex << endl;
 
     return vIfIndex;
 }
@@ -330,25 +353,28 @@ int IPv6Tunneling::getVIfIndexForDest(const IPv6Address& destAddress, TunnelType
 {
     int outInterfaceId = -1;
 
-    for (auto & elem : tunnels) {
-        if (tunnelType == NORMAL || tunnelType == NON_SPLIT || tunnelType == SPLIT) {
+    for (Tunnels::iterator it = tunnels.begin(); it != tunnels.end(); it++)
+    {
+        if (tunnelType == NORMAL || tunnelType == NON_SPLIT || tunnelType == SPLIT)
+        {
             // we search here for tunnels which have a destination trigger and
             // check whether the trigger is equal to the destination
             // only "normal" tunnels, both split and non-split, are possible entry points
-            if ((elem.second.tunnelType == NON_SPLIT) ||
-                (elem.second.tunnelType == SPLIT && elem.second.destTrigger == destAddress))
+            if ((it->second.tunnelType == NON_SPLIT) ||
+                    (it->second.tunnelType == SPLIT && it->second.destTrigger == destAddress))
             {
-                outInterfaceId = elem.first;
+                outInterfaceId = it->first;
                 break;
             }
         }
-        else if (tunnelType == MOBILITY || tunnelType == HA_OPT || tunnelType == T2RH) {
-            if (elem.second.tunnelType != NON_SPLIT &&
-                elem.second.tunnelType != SPLIT &&
-                elem.second.destTrigger == destAddress
-                )
+        else if (tunnelType == MOBILITY || tunnelType == HA_OPT || tunnelType == T2RH)
+        {
+            if (it->second.tunnelType != NON_SPLIT &&
+                it->second.tunnelType != SPLIT &&
+                it->second.destTrigger == destAddress
+               )
             {
-                outInterfaceId = elem.first;
+                outInterfaceId = it->first;
                 break;
             }
         }
@@ -357,72 +383,79 @@ int IPv6Tunneling::getVIfIndexForDest(const IPv6Address& destAddress, TunnelType
     return outInterfaceId;
 }
 
-void IPv6Tunneling::encapsulateDatagram(IPv6Datagram *dgram)
+void IPv6Tunneling::encapsulateDatagram(IPv6Datagram* dgram)
 {
     int vIfIndex = -1;
 
-    if (dgram->getTransportProtocol() == IP_PROT_IPv6EXT_MOB) {
+    if (dgram->getTransportProtocol() == IP_PROT_IPv6EXT_MOB)
+    {
         // only look at non-split tunnel
         // (HoTI is only sent over HA tunnel)
         vIfIndex = doPrefixMatch(dgram->getDestAddress());
     }
 
-    if ((dgram->getTransportProtocol() != IP_PROT_IPv6EXT_MOB) || (vIfIndex == -1)) {
+    if ((dgram->getTransportProtocol() != IP_PROT_IPv6EXT_MOB) || (vIfIndex == -1))
+    {
         // look up all tunnels for dgram's destination
         vIfIndex = getVIfIndexForDest(dgram->getDestAddress());
         //EV << "looked up again!" << endl;
     }
 
     if (vIfIndex == -1)
-        throw cRuntimeError("encapsulateDatagram(): tunnel not existent");
+        opp_error("encapsulateDatagram(): tunnel not existent");
 
     // TODO copy information from old ctrlInfo into new one (Traffic Class, Flow label, etc.)
     delete dgram->removeControlInfo();
 
 #ifdef WITH_xMIPv6
-    if ((tunnels[vIfIndex].tunnelType == T2RH) || (tunnels[vIfIndex].tunnelType == HA_OPT)) {
+    if ((tunnels[vIfIndex].tunnelType == T2RH) || (tunnels[vIfIndex].tunnelType == HA_OPT))
+    {
         // pseudo-tunnel for Type 2 Routing Header
         // or Home Address Option
 
         IPv6Address src = dgram->getSrcAddress();
         IPv6Address dest = dgram->getDestAddress();
-        IPv6Address rh2;    //dest
+        IPv6Address rh2; //dest
 
-        if (src.isUnspecified()) {
+        if (src.isUnspecified())
+        {
             // if we do not have a valid source address, we'll have to ask
             // the routing table for the correct interface.
             int interfaceId;
-            (void)(rt->lookupDestCache(dest, interfaceId));
+            IPv6Address nextHop = rt->lookupDestCache(dest, interfaceId);
         }
 
-        if (tunnels[vIfIndex].tunnelType == T2RH) {    // update 15.01.08 - CB
+        if (tunnels[vIfIndex].tunnelType == T2RH) // update 15.01.08 - CB
+        {
             // this is the CN -> MN path
-            src = tunnels[vIfIndex].entry;    // CN address
-            dest = tunnels[vIfIndex].exit;    // CoA
-            rh2 = tunnels[vIfIndex].destTrigger;    // HoA
+            src = tunnels[vIfIndex].entry; // CN address
+            dest = tunnels[vIfIndex].exit; // CoA
+            rh2 = tunnels[vIfIndex].destTrigger; // HoA
         }
-        else {
+        else
+        {
             // path MN -> CN
-            src = tunnels[vIfIndex].entry;    // CoA
-            dest = tunnels[vIfIndex].destTrigger;    // CN address
-            rh2 = tunnels[vIfIndex].exit;    // HoA
+            src = tunnels[vIfIndex].entry; // CoA
+            dest = tunnels[vIfIndex].destTrigger; // CN address
+            rh2 = tunnels[vIfIndex].exit; // HoA
         }
 
         // and now construct the new control info for the packet
-        IPv6ControlInfo *controlInfo = new IPv6ControlInfo();
+        IPv6ControlInfo* controlInfo = new IPv6ControlInfo();
         controlInfo->setProtocol(dgram->getTransportProtocol());
 
         // get rid of the encapsulation of the IPv6 module
-        cMessage *packet = dgram->decapsulate();
+        cMessage* packet = dgram->decapsulate();
         delete dgram;
 
-        if (tunnels[vIfIndex].tunnelType == T2RH) {
+        if (tunnels[vIfIndex].tunnelType == T2RH)
+        {
             // construct Type 2 Routing Header (RFC 3775 - 6.4.1)
             /*For a type 2 routing header, the Hdr Ext Len MUST be 2.  The Segments
-               Left value describes the number of route segments remaining; i.e.,
-               number of explicitly listed intermediate nodes still to be visited
-               before reaching the final destination.  Segments Left MUST be 1.*/
-            IPv6RoutingHeader *t2RH = new IPv6RoutingHeader();
+              Left value describes the number of route segments remaining; i.e.,
+              number of explicitly listed intermediate nodes still to be visited
+              before reaching the final destination.  Segments Left MUST be 1.*/
+            IPv6RoutingHeader* t2RH = new IPv6RoutingHeader();
             t2RH->setRoutingType(2);
             t2RH->setSegmentsLeft(1);
             t2RH->setAddressArraySize(1);
@@ -432,20 +465,21 @@ void IPv6Tunneling::encapsulateDatagram(IPv6Datagram *dgram)
             // append T2RH to routing headers
             controlInfo->addExtensionHeader(t2RH);
 
-            EV_INFO << "Added Type 2 Routing Header." << endl;
+            EV << "Added Type 2 Routing Header." << endl;
         }
-        else {    // HA_OPT
-                  /*The Home Address option is carried by the Destination Option
-                     extension header (Next Header value = 60).  It is used in a packet
-                     sent by a mobile node while away from home, to inform the recipient
-                     of the mobile node's home address.*/
-            HomeAddressOption *haOpt = new HomeAddressOption();
+        else // HA_OPT
+        {
+            /*The Home Address option is carried by the Destination Option
+              extension header (Next Header value = 60).  It is used in a packet
+              sent by a mobile node while away from home, to inform the recipient
+              of the mobile node's home address.*/
+            HomeAddressOption* haOpt = new HomeAddressOption();
             haOpt->setHomeAddress(rh2);
 
             // append HA option to routing headers
             controlInfo->addExtensionHeader(haOpt);
 
-            EV_INFO << "Added Home Address Option header." << endl;
+            EV << "Added Home Address Option header." << endl;
         }
 
         // new src is tunnel entry (either CoA or CN)
@@ -456,52 +490,53 @@ void IPv6Tunneling::encapsulateDatagram(IPv6Datagram *dgram)
         packet->setControlInfo(controlInfo);
         send(packet, "upperLayerOut");
     }
-    else {
-#endif    // WITH_xMIPv6
-          // normal tunnel - just modify controlInfo and send
-          // datagram back to IPv6 module for encapsulation
+    else
+    {
+#endif // WITH_xMIPv6
+        // normal tunnel - just modify controlInfo and send
+        // datagram back to IPv6 module for encapsulation
 
-    IPv6ControlInfo *controlInfo = new IPv6ControlInfo();
-    controlInfo->setProtocol(IP_PROT_IPv6);
-    controlInfo->setSrcAddr(tunnels[vIfIndex].entry);
-    controlInfo->setDestAddr(tunnels[vIfIndex].exit);
-    controlInfo->setInterfaceId(-1);
+        IPv6ControlInfo* controlInfo = new IPv6ControlInfo();
+        controlInfo->setProtocol(IP_PROT_IPv6);
+        controlInfo->setSrcAddr(tunnels[vIfIndex].entry);
+        controlInfo->setDestAddr(tunnels[vIfIndex].exit);
+        controlInfo->setInterfaceId(-1);
 
-    dgram->setControlInfo(controlInfo);
-    send(dgram, "upperLayerOut");
+        dgram->setControlInfo(controlInfo);
+        send(dgram, "upperLayerOut");
 #ifdef WITH_xMIPv6
+    }
+#endif
 }
 
-#endif // ifdef WITH_xMIPv6
-}
-
-void IPv6Tunneling::decapsulateDatagram(IPv6Datagram *dgram)
+void IPv6Tunneling::decapsulateDatagram(IPv6Datagram* dgram)
 {
     // decapsulation is performed in IPv6 module
     // just update controlInfo
-    IPv6ControlInfo *controlInfo = check_and_cast<IPv6ControlInfo *>(dgram->removeControlInfo());
+    IPv6ControlInfo *controlInfo = check_and_cast<IPv6ControlInfo*>(dgram->removeControlInfo());
 
 #ifdef WITH_xMIPv6
     // we only decapsulate packets for which we have a tunnel
     // where the exit point is equal to the packets source
     // 11.9.07 - CB
-    if (rt->isHomeAgent() && !isTunnelExit(controlInfo->getSrcAddr())) {
+    if (rt->isHomeAgent() && !isTunnelExit(controlInfo->getSrcAddr()))
+    {
         /*RFC 3775, 10.4.5
-           Otherwise, when a home agent decapsulates a tunneled packet from
-           the mobile node, the home agent MUST verify that the Source
-           Address in the tunnel IP header is the mobile node's primary
-           care-of address.  Otherwise, any node in the Internet could send
-           traffic through the home agent and escape ingress filtering
-           limitations.  This simple check forces the attacker to know the
-           current location of the real mobile node and be able to defeat
-           ingress filtering. This check is not necessary if the reverse-
-           tunneled packet is protected by ESP in tunnel mode.*/
-        EV_INFO << "Dropping packet: source address of tunnel IP header different from tunnel exit points!" << endl;
+          Otherwise, when a home agent decapsulates a tunneled packet from
+          the mobile node, the home agent MUST verify that the Source
+          Address in the tunnel IP header is the mobile node's primary
+          care-of address.  Otherwise, any node in the Internet could send
+          traffic through the home agent and escape ingress filtering
+          limitations.  This simple check forces the attacker to know the
+          current location of the real mobile node and be able to defeat
+          ingress filtering. This check is not necessary if the reverse-
+          tunneled packet is protected by ESP in tunnel mode.*/
+        EV << "Dropping packet: source address of tunnel IP header different from tunnel exit points!" << endl;
         delete controlInfo;
         delete dgram;
         return;
     }
-#endif // ifdef WITH_xMIPv6
+#endif
 
     // FIX: we leave the interface Id to it's previous value to make sure
     // that later processing knowns from which interface the datagram came from
@@ -516,14 +551,17 @@ void IPv6Tunneling::decapsulateDatagram(IPv6Datagram *dgram)
     // The following code is used for triggering RO to a CN
     InterfaceEntry *ie = ift->getInterfaceById(controlInfo->getInterfaceId());
     if (rt->isMobileNode() && (controlInfo->getSrcAddr() == ie->ipv6Data()->getHomeAgentAddress())
-        && (dgram->getTransportProtocol() != IP_PROT_IPv6EXT_MOB))
+            && (dgram->getTransportProtocol() != IP_PROT_IPv6EXT_MOB))
     {
-        EV_INFO << "Checking Route Optimization for: " << dgram->getSrcAddress() << endl;
-        xMIPv6 *mipv6 = findModuleFromPar<xMIPv6>(par("xmipv6Module"), this);
-        if (mipv6)
-            mipv6->triggerRouteOptimization(dgram->getSrcAddress(), ie->ipv6Data()->getMNHomeAddress(), ie);
+        EV << "Checking Route Optimization for: " << dgram->getSrcAddress() << endl;
+
+        xMIPv6* mipv6 = xMIPv6Access().getIfExists();
+        if (!mipv6)
+            return;
+
+        mipv6->triggerRouteOptimization(dgram->getSrcAddress(), ie->ipv6Data()->getMNHomeAddress(), ie);
     }
-#endif // ifdef WITH_xMIPv6
+#endif
 }
 
 int IPv6Tunneling::lookupTunnels(const IPv6Address& dest)
@@ -533,9 +571,11 @@ int IPv6Tunneling::lookupTunnels(const IPv6Address& dest)
     // we search here for tunnels which have a destination trigger and
     // check whether the trigger is equal to the destination
     // only split tunnels or mobility paths are possible entry points
-    for (auto & elem : tunnels) {
-        if ((elem.second.tunnelType != NON_SPLIT) && (elem.second.destTrigger == dest)) {
-            outInterfaceId = elem.first;
+    for (Tunnels::iterator it = tunnels.begin(); it != tunnels.end(); it++)
+    {
+        if ((it->second.tunnelType != NON_SPLIT) && (it->second.destTrigger == dest))
+        {
+            outInterfaceId = it->first;
             break;
         }
     }
@@ -549,9 +589,11 @@ int IPv6Tunneling::doPrefixMatch(const IPv6Address& dest)
 
     // we'll just stop at the first match, because it is assumed that not
     // more than a single non-split tunnel is possible
-    for (auto & elem : tunnels) {
-        if (elem.second.tunnelType == NON_SPLIT) {
-            outInterfaceId = elem.first;
+    for (Tunnels::iterator it = tunnels.begin(); it != tunnels.end(); it++)
+    {
+        if (it->second.tunnelType == NON_SPLIT)
+        {
+            outInterfaceId = it->first;
             break;
         }
     }
@@ -561,11 +603,12 @@ int IPv6Tunneling::doPrefixMatch(const IPv6Address& dest)
 
 bool IPv6Tunneling::isTunnelExit(const IPv6Address& exit)
 {
-    for (auto & elem : tunnels) {
+    for (Tunnels::iterator it = tunnels.begin(); it != tunnels.end(); it++)
+    {
         // mobility "tunnels" are not relevant for decapsulation
         // 17.10.07 - same for Home Address Option
-        if (elem.second.tunnelType != T2RH && elem.second.tunnelType != HA_OPT
-            && elem.second.exit == exit)
+        if (it->second.tunnelType != T2RH && it->second.tunnelType != HA_OPT
+                && it->second.exit == exit)
         {
             return true;
         }
@@ -575,23 +618,24 @@ bool IPv6Tunneling::isTunnelExit(const IPv6Address& exit)
 }
 
 /*
-   TunnelType IPv6Tunneling::getTunnelType(const int vIfIndex)
-   {
-    auto i = tunnels.find(vIfIndex);
+TunnelType IPv6Tunneling::getTunnelType(const int vIfIndex)
+{
+    Tunnels::iterator i = tunnels.find(vIfIndex);
 
     if (i == tunnels.end())
         return 0;
     else
         return i->second.tunnelType;
-   }
- */
+}
+*/
 
 std::ostream& operator<<(std::ostream& os, const IPv6Tunneling::Tunnel& tun)
 {
     os << "tunnel entry = " << tun.entry << ", exit = " << tun.exit << ", tunnelMTU = "
-       << tun.tunnelMTU << ", dest = " << tun.destTrigger << ", type: ";
+        << tun.tunnelMTU << ", dest = " << tun.destTrigger << ", type: ";
 
-    switch (tun.tunnelType) {
+    switch (tun.tunnelType)
+    {
         case IPv6Tunneling::SPLIT:
             os << "split tunnel";
             break;
@@ -609,7 +653,7 @@ std::ostream& operator<<(std::ostream& os, const IPv6Tunneling::Tunnel& tun)
             break;
 
         default:
-            throw cRuntimeError("Not a valid type for an existing tunnel!");
+            opp_error("Not a valid type for an existing tunnel!");
             break;
     }
 
@@ -617,6 +661,3 @@ std::ostream& operator<<(std::ostream& os, const IPv6Tunneling::Tunnel& tun)
 
     return os;
 }
-
-} // namespace inet
-

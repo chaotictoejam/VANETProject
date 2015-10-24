@@ -14,10 +14,8 @@
 //
 
 cplusplus {{
-#include "inet/linklayer/common/MACAddress.h"
+#include "MACAddress.h"
 }}
-
-namespace inet;
 
 class noncobject MACAddress;
 
@@ -28,7 +26,6 @@ class noncobject MACAddress;
 //
 packet BPDU
 {
-    byteLength = 35;
     unsigned int protocolIdentifier;          // 0 for STP, 1 for RSTP (TODO use them)
     unsigned int protocolVersionIdentifier;   // currently 0
 

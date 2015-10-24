@@ -16,37 +16,34 @@
 #ifndef LOCATORMODULECLIENT_H_
 #define LOCATORMODULECLIENT_H_
 
+#include <csimplemodule.h>
 #include <map>
 #include <set>
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
-#include "inet/networklayer/ipv4/IIPv4RoutingTable.h"
-#include "inet/networklayer/contract/IARP.h"
-#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "IRoutingTable.h"
+#include "IInterfaceTable.h"
+#include "INotifiable.h"
+#include "UDPSocket.h"
+#include "INotifiable.h"
+#include "ARP.h"
 
 
-namespace inet {
-namespace ieee80211 {
-class LocatorModuleClient : public cSimpleModule, protected cListener
+class LocatorModuleClient : public cSimpleModule, protected INotifiable
 {
     protected:
         IInterfaceTable *itable;
-        IIPv4RoutingTable *rt;
+        IRoutingTable *rt;
         int port;
         int interfaceId;
         UDPSocket * socket;
         InterfaceEntry * iface;
-        IARP *arp;
+        ARP *arp;
     public:
         LocatorModuleClient();
         virtual ~LocatorModuleClient();
         virtual void handleMessage(cMessage *msg);
         virtual void initialize(int stage);
         virtual int numInitStages() const {return 4;}
-        virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj);
+        virtual void receiveChangeNotification(int category, const cObject *details);
 };
-
-}
-
-}
 
 #endif /* LOCATORMODULE_H_ */

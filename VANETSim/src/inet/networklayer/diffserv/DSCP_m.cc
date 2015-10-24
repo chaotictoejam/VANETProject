@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -55,8 +54,8 @@ template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::DSCP");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::DSCP"));
+    cEnum *e = cEnum::find("DSCP");
+    if (!e) enums.getInstance()->add(e = new cEnum("DSCP"));
     e->insert(DSCP_BE, "DSCP_BE");
     e->insert(DSCP_AF11, "DSCP_AF11");
     e->insert(DSCP_AF12, "DSCP_AF12");
@@ -81,5 +80,4 @@ EXECUTE_ON_STARTUP(
     e->insert(DSCP_MAX, "DSCP_MAX");
 );
 
-} // namespace inet
 

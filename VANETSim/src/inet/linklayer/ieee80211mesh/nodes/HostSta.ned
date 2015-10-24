@@ -15,9 +15,9 @@
 
 package inet.linklayer.ieee80211mesh.nodes;
 
-import inet.networklayer.contract.IManetRouting;
-import inet.node.inet.WirelessHost;
-import inet.networklayer.configurator.ipv4.HostAutoConfigurator2;
+import inet.networklayer.IManetRouting;
+import inet.nodes.inet.WirelessHost;
+import inet.networklayer.autorouting.ipv4.HostAutoConfigurator2;
 
 
 //
@@ -38,10 +38,10 @@ module HostSta extends WirelessHost
     parameters:
         @display("i=device/cellphone");
         wlan[*].typename = "Ieee80211Nic";
-        forwarding = default(true);
+        IPForward = default(true);
         networkLayer.configurator.networkConfiguratorModule = default("");
     submodules:
         autoconfigurator: HostAutoConfigurator2 {
-            @display("p=50,13");
+            @display("p=53,71");
         }
 }

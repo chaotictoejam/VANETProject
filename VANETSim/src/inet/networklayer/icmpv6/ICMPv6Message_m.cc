@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -55,8 +54,8 @@ template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ICMPv6Type");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ICMPv6Type"));
+    cEnum *e = cEnum::find("ICMPv6Type");
+    if (!e) enums.getInstance()->add(e = new cEnum("ICMPv6Type"));
     e->insert(ICMPv6_UNSPECIFIED, "ICMPv6_UNSPECIFIED");
     e->insert(ICMPv6_DESTINATION_UNREACHABLE, "ICMPv6_DESTINATION_UNREACHABLE");
     e->insert(ICMPv6_PACKET_TOO_BIG, "ICMPv6_PACKET_TOO_BIG");
@@ -77,8 +76,8 @@ EXECUTE_ON_STARTUP(
 );
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ICMPv6DEST_UN");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ICMPv6DEST_UN"));
+    cEnum *e = cEnum::find("ICMPv6DEST_UN");
+    if (!e) enums.getInstance()->add(e = new cEnum("ICMPv6DEST_UN"));
     e->insert(NO_ROUTE_TO_DEST, "NO_ROUTE_TO_DEST");
     e->insert(COMM_WITH_DEST_PROHIBITED, "COMM_WITH_DEST_PROHIBITED");
     e->insert(ADDRESS_UNREACHABLE, "ADDRESS_UNREACHABLE");
@@ -86,15 +85,15 @@ EXECUTE_ON_STARTUP(
 );
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ICMPv6_TIME_EX");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ICMPv6_TIME_EX"));
+    cEnum *e = cEnum::find("ICMPv6_TIME_EX");
+    if (!e) enums.getInstance()->add(e = new cEnum("ICMPv6_TIME_EX"));
     e->insert(ND_HOP_LIMIT_EXCEEDED, "ND_HOP_LIMIT_EXCEEDED");
     e->insert(ND_FRAGMENT_REASSEMBLY_TIME, "ND_FRAGMENT_REASSEMBLY_TIME");
 );
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ICMPv6_PARAMETER_PROB");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ICMPv6_PARAMETER_PROB"));
+    cEnum *e = cEnum::find("ICMPv6_PARAMETER_PROB");
+    if (!e) enums.getInstance()->add(e = new cEnum("ICMPv6_PARAMETER_PROB"));
     e->insert(ERROREOUS_HDR_FIELD, "ERROREOUS_HDR_FIELD");
     e->insert(UNRECOGNIZED_NEXT_HDR_TYPE, "UNRECOGNIZED_NEXT_HDR_TYPE");
     e->insert(UNRECOGNIZED_IPV6_OPTION, "UNRECOGNIZED_IPV6_OPTION");
@@ -176,7 +175,7 @@ class ICMPv6MessageDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(ICMPv6MessageDescriptor);
 
-ICMPv6MessageDescriptor::ICMPv6MessageDescriptor() : cClassDescriptor("inet::ICMPv6Message", "cPacket")
+ICMPv6MessageDescriptor::ICMPv6MessageDescriptor() : cClassDescriptor("ICMPv6Message", "cPacket")
 {
 }
 
@@ -261,7 +260,7 @@ const char *ICMPv6MessageDescriptor::getFieldProperty(void *object, int field, c
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ICMPv6Type";
+            if (!strcmp(propertyname,"enum")) return "ICMPv6Type";
             return NULL;
         default: return NULL;
     }
@@ -340,12 +339,12 @@ void *ICMPv6MessageDescriptor::getFieldStructPointer(void *object, int field, in
 
 Register_Class(ICMPv6DestUnreachableMsg);
 
-ICMPv6DestUnreachableMsg::ICMPv6DestUnreachableMsg(const char *name, int kind) : ::inet::ICMPv6Message(name,kind)
+ICMPv6DestUnreachableMsg::ICMPv6DestUnreachableMsg(const char *name, int kind) : ::ICMPv6Message(name,kind)
 {
     this->code_var = 0;
 }
 
-ICMPv6DestUnreachableMsg::ICMPv6DestUnreachableMsg(const ICMPv6DestUnreachableMsg& other) : ::inet::ICMPv6Message(other)
+ICMPv6DestUnreachableMsg::ICMPv6DestUnreachableMsg(const ICMPv6DestUnreachableMsg& other) : ::ICMPv6Message(other)
 {
     copy(other);
 }
@@ -357,7 +356,7 @@ ICMPv6DestUnreachableMsg::~ICMPv6DestUnreachableMsg()
 ICMPv6DestUnreachableMsg& ICMPv6DestUnreachableMsg::operator=(const ICMPv6DestUnreachableMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::ICMPv6Message::operator=(other);
+    ::ICMPv6Message::operator=(other);
     copy(other);
     return *this;
 }
@@ -369,13 +368,13 @@ void ICMPv6DestUnreachableMsg::copy(const ICMPv6DestUnreachableMsg& other)
 
 void ICMPv6DestUnreachableMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimPack(b);
+    ::ICMPv6Message::parsimPack(b);
     doPacking(b,this->code_var);
 }
 
 void ICMPv6DestUnreachableMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimUnpack(b);
+    ::ICMPv6Message::parsimUnpack(b);
     doUnpacking(b,this->code_var);
 }
 
@@ -414,7 +413,7 @@ class ICMPv6DestUnreachableMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(ICMPv6DestUnreachableMsgDescriptor);
 
-ICMPv6DestUnreachableMsgDescriptor::ICMPv6DestUnreachableMsgDescriptor() : cClassDescriptor("inet::ICMPv6DestUnreachableMsg", "inet::ICMPv6Message")
+ICMPv6DestUnreachableMsgDescriptor::ICMPv6DestUnreachableMsgDescriptor() : cClassDescriptor("ICMPv6DestUnreachableMsg", "ICMPv6Message")
 {
 }
 
@@ -499,7 +498,7 @@ const char *ICMPv6DestUnreachableMsgDescriptor::getFieldProperty(void *object, i
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ICMPv6DEST_UN";
+            if (!strcmp(propertyname,"enum")) return "ICMPv6DEST_UN";
             return NULL;
         default: return NULL;
     }
@@ -578,13 +577,13 @@ void *ICMPv6DestUnreachableMsgDescriptor::getFieldStructPointer(void *object, in
 
 Register_Class(ICMPv6PacketTooBigMsg);
 
-ICMPv6PacketTooBigMsg::ICMPv6PacketTooBigMsg(const char *name, int kind) : ::inet::ICMPv6Message(name,kind)
+ICMPv6PacketTooBigMsg::ICMPv6PacketTooBigMsg(const char *name, int kind) : ::ICMPv6Message(name,kind)
 {
     this->code_var = 0;
     this->MTU_var = 0;
 }
 
-ICMPv6PacketTooBigMsg::ICMPv6PacketTooBigMsg(const ICMPv6PacketTooBigMsg& other) : ::inet::ICMPv6Message(other)
+ICMPv6PacketTooBigMsg::ICMPv6PacketTooBigMsg(const ICMPv6PacketTooBigMsg& other) : ::ICMPv6Message(other)
 {
     copy(other);
 }
@@ -596,7 +595,7 @@ ICMPv6PacketTooBigMsg::~ICMPv6PacketTooBigMsg()
 ICMPv6PacketTooBigMsg& ICMPv6PacketTooBigMsg::operator=(const ICMPv6PacketTooBigMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::ICMPv6Message::operator=(other);
+    ::ICMPv6Message::operator=(other);
     copy(other);
     return *this;
 }
@@ -609,14 +608,14 @@ void ICMPv6PacketTooBigMsg::copy(const ICMPv6PacketTooBigMsg& other)
 
 void ICMPv6PacketTooBigMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimPack(b);
+    ::ICMPv6Message::parsimPack(b);
     doPacking(b,this->code_var);
     doPacking(b,this->MTU_var);
 }
 
 void ICMPv6PacketTooBigMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimUnpack(b);
+    ::ICMPv6Message::parsimUnpack(b);
     doUnpacking(b,this->code_var);
     doUnpacking(b,this->MTU_var);
 }
@@ -666,7 +665,7 @@ class ICMPv6PacketTooBigMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(ICMPv6PacketTooBigMsgDescriptor);
 
-ICMPv6PacketTooBigMsgDescriptor::ICMPv6PacketTooBigMsgDescriptor() : cClassDescriptor("inet::ICMPv6PacketTooBigMsg", "inet::ICMPv6Message")
+ICMPv6PacketTooBigMsgDescriptor::ICMPv6PacketTooBigMsgDescriptor() : cClassDescriptor("ICMPv6PacketTooBigMsg", "ICMPv6Message")
 {
 }
 
@@ -833,12 +832,12 @@ void *ICMPv6PacketTooBigMsgDescriptor::getFieldStructPointer(void *object, int f
 
 Register_Class(ICMPv6TimeExceededMsg);
 
-ICMPv6TimeExceededMsg::ICMPv6TimeExceededMsg(const char *name, int kind) : ::inet::ICMPv6Message(name,kind)
+ICMPv6TimeExceededMsg::ICMPv6TimeExceededMsg(const char *name, int kind) : ::ICMPv6Message(name,kind)
 {
     this->code_var = 0;
 }
 
-ICMPv6TimeExceededMsg::ICMPv6TimeExceededMsg(const ICMPv6TimeExceededMsg& other) : ::inet::ICMPv6Message(other)
+ICMPv6TimeExceededMsg::ICMPv6TimeExceededMsg(const ICMPv6TimeExceededMsg& other) : ::ICMPv6Message(other)
 {
     copy(other);
 }
@@ -850,7 +849,7 @@ ICMPv6TimeExceededMsg::~ICMPv6TimeExceededMsg()
 ICMPv6TimeExceededMsg& ICMPv6TimeExceededMsg::operator=(const ICMPv6TimeExceededMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::ICMPv6Message::operator=(other);
+    ::ICMPv6Message::operator=(other);
     copy(other);
     return *this;
 }
@@ -862,13 +861,13 @@ void ICMPv6TimeExceededMsg::copy(const ICMPv6TimeExceededMsg& other)
 
 void ICMPv6TimeExceededMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimPack(b);
+    ::ICMPv6Message::parsimPack(b);
     doPacking(b,this->code_var);
 }
 
 void ICMPv6TimeExceededMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimUnpack(b);
+    ::ICMPv6Message::parsimUnpack(b);
     doUnpacking(b,this->code_var);
 }
 
@@ -907,7 +906,7 @@ class ICMPv6TimeExceededMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(ICMPv6TimeExceededMsgDescriptor);
 
-ICMPv6TimeExceededMsgDescriptor::ICMPv6TimeExceededMsgDescriptor() : cClassDescriptor("inet::ICMPv6TimeExceededMsg", "inet::ICMPv6Message")
+ICMPv6TimeExceededMsgDescriptor::ICMPv6TimeExceededMsgDescriptor() : cClassDescriptor("ICMPv6TimeExceededMsg", "ICMPv6Message")
 {
 }
 
@@ -992,7 +991,7 @@ const char *ICMPv6TimeExceededMsgDescriptor::getFieldProperty(void *object, int 
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ICMPv6_TIME_EX";
+            if (!strcmp(propertyname,"enum")) return "ICMPv6_TIME_EX";
             return NULL;
         default: return NULL;
     }
@@ -1071,12 +1070,12 @@ void *ICMPv6TimeExceededMsgDescriptor::getFieldStructPointer(void *object, int f
 
 Register_Class(ICMPv6ParamProblemMsg);
 
-ICMPv6ParamProblemMsg::ICMPv6ParamProblemMsg(const char *name, int kind) : ::inet::ICMPv6Message(name,kind)
+ICMPv6ParamProblemMsg::ICMPv6ParamProblemMsg(const char *name, int kind) : ::ICMPv6Message(name,kind)
 {
     this->code_var = 0;
 }
 
-ICMPv6ParamProblemMsg::ICMPv6ParamProblemMsg(const ICMPv6ParamProblemMsg& other) : ::inet::ICMPv6Message(other)
+ICMPv6ParamProblemMsg::ICMPv6ParamProblemMsg(const ICMPv6ParamProblemMsg& other) : ::ICMPv6Message(other)
 {
     copy(other);
 }
@@ -1088,7 +1087,7 @@ ICMPv6ParamProblemMsg::~ICMPv6ParamProblemMsg()
 ICMPv6ParamProblemMsg& ICMPv6ParamProblemMsg::operator=(const ICMPv6ParamProblemMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::ICMPv6Message::operator=(other);
+    ::ICMPv6Message::operator=(other);
     copy(other);
     return *this;
 }
@@ -1100,13 +1099,13 @@ void ICMPv6ParamProblemMsg::copy(const ICMPv6ParamProblemMsg& other)
 
 void ICMPv6ParamProblemMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimPack(b);
+    ::ICMPv6Message::parsimPack(b);
     doPacking(b,this->code_var);
 }
 
 void ICMPv6ParamProblemMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimUnpack(b);
+    ::ICMPv6Message::parsimUnpack(b);
     doUnpacking(b,this->code_var);
 }
 
@@ -1145,7 +1144,7 @@ class ICMPv6ParamProblemMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(ICMPv6ParamProblemMsgDescriptor);
 
-ICMPv6ParamProblemMsgDescriptor::ICMPv6ParamProblemMsgDescriptor() : cClassDescriptor("inet::ICMPv6ParamProblemMsg", "inet::ICMPv6Message")
+ICMPv6ParamProblemMsgDescriptor::ICMPv6ParamProblemMsgDescriptor() : cClassDescriptor("ICMPv6ParamProblemMsg", "ICMPv6Message")
 {
 }
 
@@ -1230,7 +1229,7 @@ const char *ICMPv6ParamProblemMsgDescriptor::getFieldProperty(void *object, int 
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ICMPv6_PARAMETER_PROB";
+            if (!strcmp(propertyname,"enum")) return "ICMPv6_PARAMETER_PROB";
             return NULL;
         default: return NULL;
     }
@@ -1309,14 +1308,14 @@ void *ICMPv6ParamProblemMsgDescriptor::getFieldStructPointer(void *object, int f
 
 Register_Class(ICMPv6EchoRequestMsg);
 
-ICMPv6EchoRequestMsg::ICMPv6EchoRequestMsg(const char *name, int kind) : ::inet::ICMPv6Message(name,kind)
+ICMPv6EchoRequestMsg::ICMPv6EchoRequestMsg(const char *name, int kind) : ::ICMPv6Message(name,kind)
 {
     this->code_var = 0;
     this->identifier_var = 0;
     this->seqNumber_var = 0;
 }
 
-ICMPv6EchoRequestMsg::ICMPv6EchoRequestMsg(const ICMPv6EchoRequestMsg& other) : ::inet::ICMPv6Message(other)
+ICMPv6EchoRequestMsg::ICMPv6EchoRequestMsg(const ICMPv6EchoRequestMsg& other) : ::ICMPv6Message(other)
 {
     copy(other);
 }
@@ -1328,7 +1327,7 @@ ICMPv6EchoRequestMsg::~ICMPv6EchoRequestMsg()
 ICMPv6EchoRequestMsg& ICMPv6EchoRequestMsg::operator=(const ICMPv6EchoRequestMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::ICMPv6Message::operator=(other);
+    ::ICMPv6Message::operator=(other);
     copy(other);
     return *this;
 }
@@ -1342,7 +1341,7 @@ void ICMPv6EchoRequestMsg::copy(const ICMPv6EchoRequestMsg& other)
 
 void ICMPv6EchoRequestMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimPack(b);
+    ::ICMPv6Message::parsimPack(b);
     doPacking(b,this->code_var);
     doPacking(b,this->identifier_var);
     doPacking(b,this->seqNumber_var);
@@ -1350,7 +1349,7 @@ void ICMPv6EchoRequestMsg::parsimPack(cCommBuffer *b)
 
 void ICMPv6EchoRequestMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimUnpack(b);
+    ::ICMPv6Message::parsimUnpack(b);
     doUnpacking(b,this->code_var);
     doUnpacking(b,this->identifier_var);
     doUnpacking(b,this->seqNumber_var);
@@ -1411,7 +1410,7 @@ class ICMPv6EchoRequestMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(ICMPv6EchoRequestMsgDescriptor);
 
-ICMPv6EchoRequestMsgDescriptor::ICMPv6EchoRequestMsgDescriptor() : cClassDescriptor("inet::ICMPv6EchoRequestMsg", "inet::ICMPv6Message")
+ICMPv6EchoRequestMsgDescriptor::ICMPv6EchoRequestMsgDescriptor() : cClassDescriptor("ICMPv6EchoRequestMsg", "ICMPv6Message")
 {
 }
 
@@ -1584,14 +1583,14 @@ void *ICMPv6EchoRequestMsgDescriptor::getFieldStructPointer(void *object, int fi
 
 Register_Class(ICMPv6EchoReplyMsg);
 
-ICMPv6EchoReplyMsg::ICMPv6EchoReplyMsg(const char *name, int kind) : ::inet::ICMPv6Message(name,kind)
+ICMPv6EchoReplyMsg::ICMPv6EchoReplyMsg(const char *name, int kind) : ::ICMPv6Message(name,kind)
 {
     this->code_var = 0;
     this->identifier_var = 0;
     this->seqNumber_var = 0;
 }
 
-ICMPv6EchoReplyMsg::ICMPv6EchoReplyMsg(const ICMPv6EchoReplyMsg& other) : ::inet::ICMPv6Message(other)
+ICMPv6EchoReplyMsg::ICMPv6EchoReplyMsg(const ICMPv6EchoReplyMsg& other) : ::ICMPv6Message(other)
 {
     copy(other);
 }
@@ -1603,7 +1602,7 @@ ICMPv6EchoReplyMsg::~ICMPv6EchoReplyMsg()
 ICMPv6EchoReplyMsg& ICMPv6EchoReplyMsg::operator=(const ICMPv6EchoReplyMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::ICMPv6Message::operator=(other);
+    ::ICMPv6Message::operator=(other);
     copy(other);
     return *this;
 }
@@ -1617,7 +1616,7 @@ void ICMPv6EchoReplyMsg::copy(const ICMPv6EchoReplyMsg& other)
 
 void ICMPv6EchoReplyMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimPack(b);
+    ::ICMPv6Message::parsimPack(b);
     doPacking(b,this->code_var);
     doPacking(b,this->identifier_var);
     doPacking(b,this->seqNumber_var);
@@ -1625,7 +1624,7 @@ void ICMPv6EchoReplyMsg::parsimPack(cCommBuffer *b)
 
 void ICMPv6EchoReplyMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimUnpack(b);
+    ::ICMPv6Message::parsimUnpack(b);
     doUnpacking(b,this->code_var);
     doUnpacking(b,this->identifier_var);
     doUnpacking(b,this->seqNumber_var);
@@ -1686,7 +1685,7 @@ class ICMPv6EchoReplyMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(ICMPv6EchoReplyMsgDescriptor);
 
-ICMPv6EchoReplyMsgDescriptor::ICMPv6EchoReplyMsgDescriptor() : cClassDescriptor("inet::ICMPv6EchoReplyMsg", "inet::ICMPv6Message")
+ICMPv6EchoReplyMsgDescriptor::ICMPv6EchoReplyMsgDescriptor() : cClassDescriptor("ICMPv6EchoReplyMsg", "ICMPv6Message")
 {
 }
 
@@ -1857,5 +1856,4 @@ void *ICMPv6EchoReplyMsgDescriptor::getFieldStructPointer(void *object, int fiel
     }
 }
 
-} // namespace inet
 

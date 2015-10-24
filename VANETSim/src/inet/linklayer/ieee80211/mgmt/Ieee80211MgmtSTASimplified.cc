@@ -15,20 +15,19 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtSTASimplified.h"
-#include "inet/linklayer/common/Ieee802Ctrl.h"
 
-namespace inet {
+#include "Ieee80211MgmtSTASimplified.h"
+#include "Ieee802Ctrl_m.h"
 
-namespace ieee80211 {
 
 Define_Module(Ieee80211MgmtSTASimplified);
+
 
 void Ieee80211MgmtSTASimplified::initialize(int stage)
 {
     Ieee80211MgmtBase::initialize(stage);
-
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage==0)
+    {
         accessPointAddress.setAddress(par("accessPointAddress").stringValue());
         receiveSequence = 0;
     }
@@ -41,7 +40,8 @@ void Ieee80211MgmtSTASimplified::handleTimer(cMessage *msg)
 
 void Ieee80211MgmtSTASimplified::handleUpperMessage(cPacket *msg)
 {
-    if (accessPointAddress.isUnspecified()) {
+    if (accessPointAddress.isUnspecified())
+    {
         EV << "STA is not associated with an access point, discarding packet " << msg << "\n";
         delete msg;
         return;
@@ -52,7 +52,7 @@ void Ieee80211MgmtSTASimplified::handleUpperMessage(cPacket *msg)
 
 void Ieee80211MgmtSTASimplified::handleCommand(int msgkind, cObject *ctrl)
 {
-    throw cRuntimeError("handleCommand(): no commands supported");
+    error("handleCommand(): no commands supported");
 }
 
 Ieee80211DataFrame *Ieee80211MgmtSTASimplified::encapsulate(cPacket *msg)
@@ -92,9 +92,10 @@ cPacket *Ieee80211MgmtSTASimplified::decapsulate(Ieee80211DataFrame *frame)
     return payload;
 }
 
-void Ieee80211MgmtSTASimplified::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj)
+void Ieee80211MgmtSTASimplified::receiveChangeNotification(int category, const cObject *details)
 {
     Enter_Method_Silent();
+    printNotificationBanner(category, details);
 }
 
 void Ieee80211MgmtSTASimplified::handleDataFrame(Ieee80211DataFrame *frame)
@@ -152,7 +153,4 @@ void Ieee80211MgmtSTASimplified::handleProbeResponseFrame(Ieee80211ProbeResponse
     dropManagementFrame(frame);
 }
 
-} // namespace ieee80211
-
-} // namespace inet
 

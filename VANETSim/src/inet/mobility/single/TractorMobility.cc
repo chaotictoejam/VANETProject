@@ -16,12 +16,13 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#include "inet/common/INETMath.h"
-#include "inet/mobility/single/TractorMobility.h"
 
-namespace inet {
+#include "FWMath.h"
+#include "TractorMobility.h"
+
 
 Define_Module(TractorMobility);
+
 
 TractorMobility::TractorMobility()
 {
@@ -39,7 +40,8 @@ void TractorMobility::initialize(int stage)
     LineSegmentsMobilityBase::initialize(stage);
 
     EV_TRACE << "initializing TractorMobility stage " << stage << endl;
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         speed = par("speed");
         x1 = par("x1");
         y1 = par("y1");
@@ -64,13 +66,11 @@ void TractorMobility::setTargetPosition()
         case 0:
             positionDelta.x = x2 - x1;
             break;
-
         case 1:
         case 3:
             sign = (step / (2 * rowCount)) % 2 ? -1 : 1;
             positionDelta.y = (y2 - y1) / rowCount * sign;
             break;
-
         case 2:
             positionDelta.x = x1 - x2;
             break;
@@ -79,6 +79,3 @@ void TractorMobility::setTargetPosition()
     targetPosition = lastPosition + positionDelta;
     nextChange = simTime() + positionDelta.length() / speed;
 }
-
-} // namespace inet
-

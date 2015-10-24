@@ -25,7 +25,7 @@ package inet.applications.generic;
 // If the destAddresses parameter contains more than one address, one
 // of them is randomly for each packet. An address may be given in the
 // dotted decimal notation (or, for IPv6, in the usual notation with colons),
-// or with the module name. (The L3AddressResolver class is used to resolve
+// or with the module name. (The IPvXAddressResolver class is used to resolve
 // the address.) To disable the model, set destAddresses to "".
 //
 // The peer can be ~IPvXTrafSink or another ~IPvXTrafGen (it handles received packets
@@ -48,7 +48,9 @@ simple IPvXTrafGen like IIPvXTrafficGenerator
         @statistic[sentPk](title="packets sent"; source=sentPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
         @statistic[endToEndDelay](title="end-to-end delay"; source="messageAge(rcvdPk)"; unit=s; record=histogram,vector; interpolationmode=none);
     gates:
-        input ipIn @labels(IPv4ControlInfo/up,IPv6ControlInfo/up);
-        output ipOut @labels(IPv4ControlInfo/down,IPv6ControlInfo/down);
+        input ipIn @labels(IPv4ControlInfo/up);
+        input ipv6In @labels(IPv6ControlInfo/up);
+        output ipOut @labels(IPv4ControlInfo/down);
+        output ipv6Out @labels(IPv6ControlInfo/down);
 }
 

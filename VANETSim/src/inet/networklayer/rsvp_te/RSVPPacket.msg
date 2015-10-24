@@ -15,7 +15,7 @@
 
 
 cplusplus {{
-#include "inet/networklayer/rsvp_te/IntServ_m.h"
+#include "IntServ_m.h"
 
 #define PATH_MESSAGE   1
 #define RESV_MESSAGE   2
@@ -26,7 +26,6 @@ cplusplus {{
 #define HELLO_MESSAGE   7
 }}
 
-namespace inet;
 
 struct SessionObj_t;
 
@@ -55,7 +54,6 @@ struct EroObj_t;
 //
 packet RSVPMessage
 {
-    @fieldNameSuffix("_var"); //TODO remove when OMNeT++ 4.x compatibility is no longer required
     int rsvpKind;
 }
 

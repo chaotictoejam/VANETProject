@@ -19,7 +19,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#include "inet/applications/trafgen/TrafGenPar.h"
+#include "TrafGenPar.h"
 #include <string>
 
 //Define_Module(TrafGen);
@@ -30,7 +30,6 @@
 /**
  * Initialization routine
  */
-namespace inet {
 
 void TrafGenPar::initialize(int aStage)
 {
@@ -107,8 +106,8 @@ void TrafGenPar::initialize(int aStage)
 
 TrafGenPar::TrafGenPar()
 {
-    mpSendMessage = nullptr;
-    mpOnOffSwitch = nullptr;
+    mpSendMessage = NULL;
+    mpOnOffSwitch = NULL;
 }
 
 /**
@@ -284,7 +283,7 @@ std::string TrafGenPar::calculateDestination()
         std::string s = mDestination;
         int index = s.find_first_of('*');
         s.replace(index, 1, "0");
-        int size = getSimulation()->getModuleByPath(s.c_str())->size();
+        int size = simulation.getModuleByPath(s.c_str())->size();
         s = s.substr(0, index - 1);
         size = intuniform(0, size - 1);
         std::string dest(s);
@@ -296,7 +295,3 @@ std::string TrafGenPar::calculateDestination()
         return dest;
     }
 }
-
-
-} // namespace inet
-

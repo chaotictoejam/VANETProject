@@ -16,20 +16,19 @@
 #ifndef LOCATORMODULE_H_
 #define LOCATORMODULE_H_
 
+#include <csimplemodule.h>
 #include <map>
 #include <set>
-#include "inet/linklayer/ieee80211mesh/locator/ILocator.h"
-#include "inet/networklayer/ipv4/IIPv4RoutingTable.h"
-#include "inet/networklayer/contract/IARP.h"
-#include "inet/networklayer/contract/IInterfaceTable.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
-#include "inet/networklayer/common/L3Address.h"
+#include "ILocator.h"
+#include "IRoutingTable.h"
+#include "ARP.h"
+#include "IInterfaceTable.h"
+#include "INotifiable.h"
+#include "UDPSocket.h"
+#include "ManetAddress.h"
 
-namespace inet {
 
-namespace ieee80211 {
-
-class LocatorModule : public cSimpleModule, public ILocator, protected cListener
+class LocatorModule : public cSimpleModule, public ILocator, protected INotifiable, protected cListener
 {
     protected:
         struct LocEntry
@@ -68,17 +67,12 @@ class LocatorModule : public cSimpleModule, public ILocator, protected cListener
         ApIpSet apIpSet;
         ApSet apSet;
 
-        typedef std::map<MACAddress,L3Address> ReverseList;
-        typedef std::map<L3Address,MACAddress> DirectList;
-
-        static ReverseList reverseList;
-        static DirectList directList;
-
 
         static simsignal_t locatorChangeSignal;
-        IARP *arp;
+        ARP *arp;
         IInterfaceTable *itable;
-        IIPv4RoutingTable *rt;
+        IRoutingTable *rt;
+        NotificationBoard * nb;
         bool isInMacLayer;
 
         enum Action
@@ -91,7 +85,7 @@ class LocatorModule : public cSimpleModule, public ILocator, protected cListener
         virtual void setTables(const MACAddress & APaddr, const MACAddress &STAaddr, const IPv4Address & apIpAddr, const IPv4Address & staIpAddr, const Action &action, InterfaceEntry *ie);
         bool useGlobal;
         unsigned int mySequence;
-        std::map<L3Address,unsigned int> sequenceMap;
+        std::map<ManetAddress,unsigned int> sequenceMap;
 
         virtual void  sendMessage(const MACAddress &,const MACAddress &,const IPv4Address &,const IPv4Address &,const Action &);
         virtual void sendRequest(const MACAddress &);
@@ -100,30 +94,13 @@ class LocatorModule : public cSimpleModule, public ILocator, protected cListener
         virtual void processRequest(cPacket* pkt);
         virtual void processARPPacket(cPacket *arp);
 
-        IPv4Address getReverseAddress(const MACAddress & addr)
-        {
-            L3Address aux;
-            ReverseList::iterator it = reverseList.find(addr);
-            if (it != reverseList.end())
-                aux = it->second;
-            return aux.toIPv4();
-        }
-
-        MACAddress geDirectAddress(const IPv4Address & addr)
-        {
-            MACAddress aux;
-            DirectList::iterator it = directList.find(L3Address(addr));
-            if (it != directList.end())
-                aux = it->second;
-            return aux;
-        }
-
     public:
         friend std::ostream& operator<<(std::ostream& os, const LocatorModule::LocEntry& e);
         LocatorModule();
         virtual ~LocatorModule();
         virtual void initialize(int stage);
-        virtual int numInitStages() const {return NUM_INIT_STAGES;}
+        virtual int numInitStages() const {return 4;}
+        virtual void receiveChangeNotification(int category, const cObject *details);
         virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj);
         virtual void handleMessage(cMessage *);
         virtual const MACAddress  getLocatorMacToMac(const MACAddress &);
@@ -146,9 +123,5 @@ class LocatorModule : public cSimpleModule, public ILocator, protected cListener
         virtual MACAddress getMacAddress() {return myMacAddress;}
 
 };
-
-}
-
-}
 
 #endif /* LOCATORMODULE_H_ */

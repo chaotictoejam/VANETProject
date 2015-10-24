@@ -19,7 +19,7 @@
 
 package inet.mobility.single;
 
-import inet.mobility.base.MovingMobilityBase;
+import inet.mobility.common.MovingMobilityBase;
 
 //
 // Controls all movement related things of a host

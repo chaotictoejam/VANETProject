@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -54,13 +53,13 @@ inline std::ostream& operator<<(std::ostream& out, const std::vector<T,A>& vec)
 template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
-RSVPPathMsg_Base::RSVPPathMsg_Base(const char *name, int kind) : ::inet::RSVPPacket(name,kind)
+RSVPPathMsg_Base::RSVPPathMsg_Base(const char *name, int kind) : ::RSVPPacket(name,kind)
 {
     this->color_var = 0;
     this->rsvpKind_var = PATH_MESSAGE;
 }
 
-RSVPPathMsg_Base::RSVPPathMsg_Base(const RSVPPathMsg_Base& other) : ::inet::RSVPPacket(other)
+RSVPPathMsg_Base::RSVPPathMsg_Base(const RSVPPathMsg_Base& other) : ::RSVPPacket(other)
 {
     copy(other);
 }
@@ -72,7 +71,7 @@ RSVPPathMsg_Base::~RSVPPathMsg_Base()
 RSVPPathMsg_Base& RSVPPathMsg_Base::operator=(const RSVPPathMsg_Base& other)
 {
     if (this==&other) return *this;
-    ::inet::RSVPPacket::operator=(other);
+    ::RSVPPacket::operator=(other);
     copy(other);
     return *this;
 }
@@ -89,7 +88,7 @@ void RSVPPathMsg_Base::copy(const RSVPPathMsg_Base& other)
 
 void RSVPPathMsg_Base::parsimPack(cCommBuffer *b)
 {
-    ::inet::RSVPPacket::parsimPack(b);
+    ::RSVPPacket::parsimPack(b);
     doPacking(b,this->hop_var);
     doPacking(b,this->label_request_var);
     doPacking(b,this->sender_descriptor_var);
@@ -100,7 +99,7 @@ void RSVPPathMsg_Base::parsimPack(cCommBuffer *b)
 
 void RSVPPathMsg_Base::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::RSVPPacket::parsimUnpack(b);
+    ::RSVPPacket::parsimUnpack(b);
     doUnpacking(b,this->hop_var);
     doUnpacking(b,this->label_request_var);
     doUnpacking(b,this->sender_descriptor_var);
@@ -194,7 +193,7 @@ class RSVPPathMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RSVPPathMsgDescriptor);
 
-RSVPPathMsgDescriptor::RSVPPathMsgDescriptor() : cClassDescriptor("inet::RSVPPathMsg", "inet::RSVPPacket")
+RSVPPathMsgDescriptor::RSVPPathMsgDescriptor() : cClassDescriptor("RSVPPathMsg", "RSVPPacket")
 {
 }
 
@@ -388,13 +387,13 @@ void *RSVPPathMsgDescriptor::getFieldStructPointer(void *object, int field, int 
     }
 }
 
-RSVPPathTear_Base::RSVPPathTear_Base(const char *name, int kind) : ::inet::RSVPPacket(name,kind)
+RSVPPathTear_Base::RSVPPathTear_Base(const char *name, int kind) : ::RSVPPacket(name,kind)
 {
     this->force_var = 0;
     this->rsvpKind_var = PTEAR_MESSAGE;
 }
 
-RSVPPathTear_Base::RSVPPathTear_Base(const RSVPPathTear_Base& other) : ::inet::RSVPPacket(other)
+RSVPPathTear_Base::RSVPPathTear_Base(const RSVPPathTear_Base& other) : ::RSVPPacket(other)
 {
     copy(other);
 }
@@ -406,7 +405,7 @@ RSVPPathTear_Base::~RSVPPathTear_Base()
 RSVPPathTear_Base& RSVPPathTear_Base::operator=(const RSVPPathTear_Base& other)
 {
     if (this==&other) return *this;
-    ::inet::RSVPPacket::operator=(other);
+    ::RSVPPacket::operator=(other);
     copy(other);
     return *this;
 }
@@ -421,7 +420,7 @@ void RSVPPathTear_Base::copy(const RSVPPathTear_Base& other)
 
 void RSVPPathTear_Base::parsimPack(cCommBuffer *b)
 {
-    ::inet::RSVPPacket::parsimPack(b);
+    ::RSVPPacket::parsimPack(b);
     doPacking(b,this->hop_var);
     doPacking(b,this->senderTemplate_var);
     doPacking(b,this->force_var);
@@ -430,7 +429,7 @@ void RSVPPathTear_Base::parsimPack(cCommBuffer *b)
 
 void RSVPPathTear_Base::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::RSVPPacket::parsimUnpack(b);
+    ::RSVPPacket::parsimUnpack(b);
     doUnpacking(b,this->hop_var);
     doUnpacking(b,this->senderTemplate_var);
     doUnpacking(b,this->force_var);
@@ -502,7 +501,7 @@ class RSVPPathTearDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RSVPPathTearDescriptor);
 
-RSVPPathTearDescriptor::RSVPPathTearDescriptor() : cClassDescriptor("inet::RSVPPathTear", "inet::RSVPPacket")
+RSVPPathTearDescriptor::RSVPPathTearDescriptor() : cClassDescriptor("RSVPPathTear", "RSVPPacket")
 {
 }
 
@@ -682,13 +681,13 @@ void *RSVPPathTearDescriptor::getFieldStructPointer(void *object, int field, int
     }
 }
 
-RSVPPathError_Base::RSVPPathError_Base(const char *name, int kind) : ::inet::RSVPPacket(name,kind)
+RSVPPathError_Base::RSVPPathError_Base(const char *name, int kind) : ::RSVPPacket(name,kind)
 {
     this->errorCode_var = 0;
     this->rsvpKind_var = PERROR_MESSAGE;
 }
 
-RSVPPathError_Base::RSVPPathError_Base(const RSVPPathError_Base& other) : ::inet::RSVPPacket(other)
+RSVPPathError_Base::RSVPPathError_Base(const RSVPPathError_Base& other) : ::RSVPPacket(other)
 {
     copy(other);
 }
@@ -700,7 +699,7 @@ RSVPPathError_Base::~RSVPPathError_Base()
 RSVPPathError_Base& RSVPPathError_Base::operator=(const RSVPPathError_Base& other)
 {
     if (this==&other) return *this;
-    ::inet::RSVPPacket::operator=(other);
+    ::RSVPPacket::operator=(other);
     copy(other);
     return *this;
 }
@@ -715,7 +714,7 @@ void RSVPPathError_Base::copy(const RSVPPathError_Base& other)
 
 void RSVPPathError_Base::parsimPack(cCommBuffer *b)
 {
-    ::inet::RSVPPacket::parsimPack(b);
+    ::RSVPPacket::parsimPack(b);
     doPacking(b,this->errorNode_var);
     doPacking(b,this->errorCode_var);
     doPacking(b,this->sender_descriptor_var);
@@ -724,7 +723,7 @@ void RSVPPathError_Base::parsimPack(cCommBuffer *b)
 
 void RSVPPathError_Base::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::RSVPPacket::parsimUnpack(b);
+    ::RSVPPacket::parsimUnpack(b);
     doUnpacking(b,this->errorNode_var);
     doUnpacking(b,this->errorCode_var);
     doUnpacking(b,this->sender_descriptor_var);
@@ -796,7 +795,7 @@ class RSVPPathErrorDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RSVPPathErrorDescriptor);
 
-RSVPPathErrorDescriptor::RSVPPathErrorDescriptor() : cClassDescriptor("inet::RSVPPathError", "inet::RSVPPacket")
+RSVPPathErrorDescriptor::RSVPPathErrorDescriptor() : cClassDescriptor("RSVPPathError", "RSVPPacket")
 {
 }
 
@@ -976,5 +975,4 @@ void *RSVPPathErrorDescriptor::getFieldStructPointer(void *object, int field, in
     }
 }
 
-} // namespace inet
 

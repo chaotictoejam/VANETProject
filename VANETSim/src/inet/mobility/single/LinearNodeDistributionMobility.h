@@ -16,14 +16,14 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-#ifndef __INET_LINEARNODEDISTRIBUTIONMOBILITY_H
-#define __INET_LINEARNODEDISTRIBUTIONMOBILITY_H
 
-#include "inet/common/INETDefs.h"
+#ifndef STATIC_GRID_MOBILITY_H
+#define STATIC_GRID_MOBILITY_H
 
-#include "inet/mobility/static/StationaryMobility.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "StationaryMobility.h"
+
 
 /**
  * @brief Mobility model which places all hosts at constant distances
@@ -42,22 +42,19 @@ class INET_API LinearNodeDistributionMobility : public StationaryMobility
     double orientation;
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 3; }
 
     /** @brief Initializes mobility model parameters.*/
-    virtual void initialize(int stage) override;
+    virtual void initialize(int stage);
 
     /** @brief Initializes the position according to the mobility model. */
-    virtual void setInitialPosition() override;
+    virtual void setInitialPosition();
 
     /** @brief Save the host position. */
-    virtual void finish() override;
+    virtual void finish();
 
   public:
     LinearNodeDistributionMobility();
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_LINEARNODEDISTRIBUTIONMOBILITY_H
-
+#endif

@@ -24,7 +24,7 @@ package inet.networklayer.common;
 // ~PPPInterface. In addition to registered interfaces, a loopback interface
 // will also be created. This table only contains protocol-independent
 // properties of interfaces -- IPv4 or IPv6 specific per-interface data
-// (addresses etc) are kept in ~IPv4RoutingTable and ~IPv6RoutingTable.
+// (addresses etc) are kept in ~RoutingTable and ~RoutingTable6.
 // Must be named as "interfaceTable".
 //
 // This module has no gates; all functionality can be accessed via member
@@ -38,19 +38,5 @@ simple InterfaceTable
     parameters:
         bool displayAddresses = default(true);  // whether to display IP addresses on links
         @display("i=block/table");
-        @signal[NF_INTERFACE_CREATED](type=InterfaceEntry);
-        @signal[NF_INTERFACE_DELETED](type=InterfaceEntry);
-        @signal[NF_INTERFACE_STATE_CHANGED](type=InterfaceEntryChangeDetails);
-        @signal[NF_INTERFACE_CONFIG_CHANGED](type=InterfaceEntryChangeDetails);
-        @signal[NF_INTERFACE_IPv4CONFIG_CHANGED](type=InterfaceEntryChangeDetails);
-        @signal[NF_INTERFACE_IPv6CONFIG_CHANGED](type=InterfaceEntryChangeDetails);
-        @signal[NF_INTERFACE_GENERICNETWORKPROTOCOLCONFIG_CHANGED](type=InterfaceEntryChangeDetails);
-        @signal[NF_IPv4_MCAST_JOIN](type=IPv4MulticastGroupInfo);
-        @signal[NF_IPv4_MCAST_LEAVE](type=IPv4MulticastGroupInfo);
-        @signal[NF_IPv4_MCAST_CHANGE](type=IPv4MulticastGroupSourceInfo);
-        @signal[NF_IPv4_MCAST_REGISTERED](type=IPv4MulticastGroupInfo);
-        @signal[NF_IPv4_MCAST_UNREGISTERED](type=IPv4MulticastGroupInfo);
-        @signal[NF_IPv6_MCAST_JOIN](type=IPv6MulticastGroupInfo);
-        @signal[NF_IPv6_MCAST_LEAVE](type=IPv6MulticastGroupInfo);
 }
 

@@ -16,11 +16,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inet/mobility/single/RandomWPMobility.h"
 
-namespace inet {
+#include "RandomWPMobility.h"
+
 
 Define_Module(RandomWPMobility);
+
 
 RandomWPMobility::RandomWPMobility()
 {
@@ -31,18 +32,21 @@ void RandomWPMobility::initialize(int stage)
 {
     LineSegmentsMobilityBase::initialize(stage);
 
-    if (stage == INITSTAGE_LOCAL) {
-        stationary = (par("speed").getType() == 'L' || par("speed").getType() == 'D') && (double)par("speed") == 0;
+    if (stage == 0)
+    {
+        stationary = (par("speed").getType()=='L' || par("speed").getType()=='D') && (double)par("speed") == 0;
     }
 }
 
 void RandomWPMobility::setTargetPosition()
 {
-    if (nextMoveIsWait) {
+    if (nextMoveIsWait)
+    {
         simtime_t waitTime = par("waitTime");
         nextChange = simTime() + waitTime;
     }
-    else {
+    else
+    {
         targetPosition = getRandomPosition();
         double speed = par("speed");
         double distance = lastPosition.distance(targetPosition);
@@ -57,11 +61,3 @@ void RandomWPMobility::move()
     LineSegmentsMobilityBase::move();
     raiseErrorIfOutside();
 }
-
-double RandomWPMobility::getMaxSpeed() const
-{
-    return NaN;
-}
-
-} // namespace inet
-

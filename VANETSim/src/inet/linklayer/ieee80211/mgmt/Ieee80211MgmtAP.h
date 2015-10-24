@@ -15,18 +15,16 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211MGMTAP_H
-#define __INET_IEEE80211MGMTAP_H
+#ifndef IEEE80211_MGMT_AP_H
+#define IEEE80211_MGMT_AP_H
 
 #include <map>
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtAPBase.h"
+#include "Ieee80211MgmtAPBase.h"
+#include "NotificationBoard.h"
 
-namespace inet {
-
-namespace ieee80211 {
 
 /**
  * Used in 802.11 infrastructure mode: handles management frames for
@@ -34,73 +32,73 @@ namespace ieee80211 {
  *
  * @author Andras Varga
  */
-class INET_API Ieee80211MgmtAP : public Ieee80211MgmtAPBase, protected cListener
+class INET_API Ieee80211MgmtAP : public Ieee80211MgmtAPBase
 {
   public:
     /** State of a STA */
-    enum STAStatus { NOT_AUTHENTICATED, AUTHENTICATED, ASSOCIATED };
+    enum STAStatus {NOT_AUTHENTICATED, AUTHENTICATED, ASSOCIATED};
 
     /** Describes a STA */
-    struct STAInfo
-    {
+    struct STAInfo {
         MACAddress address;
         STAStatus status;
-        int authSeqExpected;    // when NOT_AUTHENTICATED: transaction sequence number of next expected auth frame
+        int authSeqExpected;  // when NOT_AUTHENTICATED: transaction sequence number of next expected auth frame
         //int consecFailedTrans;  //XXX
         //double expiry;          //XXX association should expire after a while if STA is silent?
     };
 
     class NotificationInfoSta : public cObject
     {
-        MACAddress apAddress;
-        MACAddress staAddress;
-
-      public:
-        void setApAddress(const MACAddress& a) { apAddress = a; }
-        void setStaAddress(const MACAddress& a) { staAddress = a; }
-        const MACAddress& getApAddress() const { return apAddress; }
-        const MACAddress& getStaAddress() const { return staAddress; }
+          MACAddress apAddress;
+          MACAddress staAddress;
+        public:
+          void setApAddress(const MACAddress & a){apAddress = a;}
+          void setStaAddress(const MACAddress & a){staAddress = a;}
+          const MACAddress & getApAddress() const {return apAddress;}
+          const MACAddress & getStaAddress() const {return staAddress;}
     };
 
-    struct MAC_compare
-    {
-        bool operator()(const MACAddress& u1, const MACAddress& u2) const { return u1.compareTo(u2) < 0; }
+
+    struct MAC_compare {
+        bool operator()(const MACAddress& u1, const MACAddress& u2) const {return u1.compareTo(u2) < 0;}
     };
-    typedef std::map<MACAddress, STAInfo, MAC_compare> STAList;
+    typedef std::map<MACAddress,STAInfo, MAC_compare> STAList;
 
   protected:
+    NotificationBoard *nb;
+
     // configuration
     std::string ssid;
-    int channelNumber = -1;
+    int channelNumber;
     simtime_t beaconInterval;
-    int numAuthSteps = 0;
+    int numAuthSteps;
     Ieee80211SupportedRatesElement supportedRates;
 
     // state
-    STAList staList;    ///< list of STAs
-    cMessage *beaconTimer = nullptr;
+    STAList staList; ///< list of STAs
+    cMessage *beaconTimer;
 
   public:
-    Ieee80211MgmtAP() {}
+    Ieee80211MgmtAP() :  nb(NULL), beaconTimer(NULL) {}
     virtual ~Ieee80211MgmtAP();
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int) override;
+    virtual int numInitStages() const { return 2; }
+    virtual void initialize(int);
 
     /** Implements abstract Ieee80211MgmtBase method */
-    virtual void handleTimer(cMessage *msg) override;
+    virtual void handleTimer(cMessage *msg);
 
     /** Implements abstract Ieee80211MgmtBase method */
-    virtual void handleUpperMessage(cPacket *msg) override;
+    virtual void handleUpperMessage(cPacket *msg);
 
     /** Implements abstract Ieee80211MgmtBase method -- throws an error (no commands supported) */
-    virtual void handleCommand(int msgkind, cObject *ctrl) override;
+    virtual void handleCommand(int msgkind, cObject *ctrl);
 
-    /** Called by the signal handler whenever a change occurs we're interested in */
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, long value) override;
+    /** Called by the NotificationBoard whenever a change occurs we're interested in */
+    virtual void receiveChangeNotification(int category, const cObject *details);
 
-    /** Utility function: return sender STA's entry from our STA list, or nullptr if not in there */
+    /** Utility function: return sender STA's entry from our STA list, or NULL if not in there */
     virtual STAInfo *lookupSenderSTA(Ieee80211ManagementFrame *frame);
 
     /** Utility function: set fields in the given frame and send it out to the address */
@@ -111,35 +109,30 @@ class INET_API Ieee80211MgmtAP : public Ieee80211MgmtAPBase, protected cListener
 
     /** @name Processing of different frame types */
     //@{
-    virtual void handleDataFrame(Ieee80211DataFrame *frame) override;
-    virtual void handleAuthenticationFrame(Ieee80211AuthenticationFrame *frame) override;
-    virtual void handleDeauthenticationFrame(Ieee80211DeauthenticationFrame *frame) override;
-    virtual void handleAssociationRequestFrame(Ieee80211AssociationRequestFrame *frame) override;
-    virtual void handleAssociationResponseFrame(Ieee80211AssociationResponseFrame *frame) override;
-    virtual void handleReassociationRequestFrame(Ieee80211ReassociationRequestFrame *frame) override;
-    virtual void handleReassociationResponseFrame(Ieee80211ReassociationResponseFrame *frame) override;
-    virtual void handleDisassociationFrame(Ieee80211DisassociationFrame *frame) override;
-    virtual void handleBeaconFrame(Ieee80211BeaconFrame *frame) override;
-    virtual void handleProbeRequestFrame(Ieee80211ProbeRequestFrame *frame) override;
-    virtual void handleProbeResponseFrame(Ieee80211ProbeResponseFrame *frame) override;
+    virtual void handleDataFrame(Ieee80211DataFrame *frame);
+    virtual void handleAuthenticationFrame(Ieee80211AuthenticationFrame *frame);
+    virtual void handleDeauthenticationFrame(Ieee80211DeauthenticationFrame *frame);
+    virtual void handleAssociationRequestFrame(Ieee80211AssociationRequestFrame *frame);
+    virtual void handleAssociationResponseFrame(Ieee80211AssociationResponseFrame *frame);
+    virtual void handleReassociationRequestFrame(Ieee80211ReassociationRequestFrame *frame);
+    virtual void handleReassociationResponseFrame(Ieee80211ReassociationResponseFrame *frame);
+    virtual void handleDisassociationFrame(Ieee80211DisassociationFrame *frame);
+    virtual void handleBeaconFrame(Ieee80211BeaconFrame *frame);
+    virtual void handleProbeRequestFrame(Ieee80211ProbeRequestFrame *frame);
+    virtual void handleProbeResponseFrame(Ieee80211ProbeResponseFrame *frame);
     //@}
 
-    void sendAssocNotification(const MACAddress& addr);
+    void sendAssocNotification(const MACAddress &addr);
 
-    void sendDisAssocNotification(const MACAddress& addr);
+    void sendDisAssocNotification(const MACAddress &addr);
 
     /** lifecycle support */
     //@{
-
   protected:
-    virtual void start() override;
-    virtual void stop() override;
+    virtual void start();
+    virtual void stop();
     //@}
 };
 
-} // namespace ieee80211
-
-} // namespace inet
-
-#endif // ifndef __INET_IEEE80211MGMTAP_H
+#endif
 

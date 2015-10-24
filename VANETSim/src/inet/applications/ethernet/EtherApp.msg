@@ -16,13 +16,13 @@
 //
 
 cplusplus {{
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
 #define ETHERAPP_CLI_SAP  0xf0
 #define ETHERAPP_SRV_SAP  0xf1
 }}
 
-namespace inet;
+
 
 //
 // Request packet sent by ~EtherAppCli. Contains the number of bytes to be

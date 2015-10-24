@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/dhcp/DHCPMessage.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from applications/dhcp/DHCPMessage.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:
@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -55,15 +54,15 @@ template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::DHCPOpcode");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::DHCPOpcode"));
+    cEnum *e = cEnum::find("DHCPOpcode");
+    if (!e) enums.getInstance()->add(e = new cEnum("DHCPOpcode"));
     e->insert(BOOTREQUEST, "BOOTREQUEST");
     e->insert(BOOTREPLY, "BOOTREPLY");
 );
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::DHCPMessageType");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::DHCPMessageType"));
+    cEnum *e = cEnum::find("DHCPMessageType");
+    if (!e) enums.getInstance()->add(e = new cEnum("DHCPMessageType"));
     e->insert(DHCPDISCOVER, "DHCPDISCOVER");
     e->insert(DHCPOFFER, "DHCPOFFER");
     e->insert(DHCPREQUEST, "DHCPREQUEST");
@@ -75,8 +74,8 @@ EXECUTE_ON_STARTUP(
 );
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::DHCPOptionCode");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::DHCPOptionCode"));
+    cEnum *e = cEnum::find("DHCPOptionCode");
+    if (!e) enums.getInstance()->add(e = new cEnum("DHCPOptionCode"));
     e->insert(DHCP_MSG_TYPE, "DHCP_MSG_TYPE");
     e->insert(CLIENT_ID, "CLIENT_ID");
     e->insert(HOSTNAME, "HOSTNAME");
@@ -468,7 +467,7 @@ class DHCPOptionsDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(DHCPOptionsDescriptor);
 
-DHCPOptionsDescriptor::DHCPOptionsDescriptor() : cClassDescriptor("inet::DHCPOptions", "cObject")
+DHCPOptionsDescriptor::DHCPOptionsDescriptor() : cClassDescriptor("DHCPOptions", "cObject")
 {
 }
 
@@ -601,7 +600,7 @@ const char *DHCPOptionsDescriptor::getFieldProperty(void *object, int field, con
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::DHCPMessageType";
+            if (!strcmp(propertyname,"enum")) return "DHCPMessageType";
             return NULL;
         default: return NULL;
     }
@@ -966,7 +965,7 @@ class DHCPMessageDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(DHCPMessageDescriptor);
 
-DHCPMessageDescriptor::DHCPMessageDescriptor() : cClassDescriptor("inet::DHCPMessage", "cPacket")
+DHCPMessageDescriptor::DHCPMessageDescriptor() : cClassDescriptor("DHCPMessage", "cPacket")
 {
 }
 
@@ -1103,7 +1102,7 @@ const char *DHCPMessageDescriptor::getFieldProperty(void *object, int field, con
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::DHCPOpcode";
+            if (!strcmp(propertyname,"enum")) return "DHCPOpcode";
             return NULL;
         default: return NULL;
     }
@@ -1211,5 +1210,4 @@ void *DHCPMessageDescriptor::getFieldStructPointer(void *object, int field, int 
     }
 }
 
-} // namespace inet
 

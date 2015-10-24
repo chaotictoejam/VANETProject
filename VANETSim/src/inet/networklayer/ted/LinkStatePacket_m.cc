@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -192,7 +191,7 @@ class LinkStateMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LinkStateMsgDescriptor);
 
-LinkStateMsgDescriptor::LinkStateMsgDescriptor() : cClassDescriptor("inet::LinkStateMsg", "cPacket")
+LinkStateMsgDescriptor::LinkStateMsgDescriptor() : cClassDescriptor("LinkStateMsg", "cPacket")
 {
 }
 
@@ -365,5 +364,4 @@ void *LinkStateMsgDescriptor::getFieldStructPointer(void *object, int field, int
     }
 }
 
-} // namespace inet
 

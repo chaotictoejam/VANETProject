@@ -1,106 +1,3 @@
-====== inet-3.x ======
-
-2015-06-22  ------ inet-3.0.0 released ------
-
-2015-05-13  ------ inet-2.99.1 released ------
-
-2015-03-23  Zoltan Bojthe
-
-    Added getAddressBitLength() and getAddressByteLength() function to
-    IL3AddressType.
-
-2015-01-05  Zoltan Bojthe
-
-	Moved setName calls to InterfaceEntry constructor from all implementations
-	of createInterfaceEntry.
-	Replaced getParentModule calls in the MAC layer with parameters.
-
-2015-01-21  Zoltan Bojthe
-
-	Applied C++ source code modernizer.
-
-2014-12-11  Levente Mészáros
-
-	Moved interfaces from common to contract.
-
-2014-12-10  Levente Mészáros
-
-	Renamed getNetworkInterfaceModule to getInterfaceModule.
-
-2014-12-05  Zoltan Bojthe
-
-	Fixed defects found by static code analyzer (Coverity).
-
-2014-12-05  Zoltan Bojthe
-
-	Implemented info and detailedInfo in GenericNetworkProtocolInterfaceData.
-
-2014-11-12  Levente Mészáros & Zoltan Bojthe
-
-	Fixed memory management problems found by valgrind memcheck.
-
-2014-11-07  ------ inet-2.99.0 released ------
-
-2014-09-18  Andras Varga
-
-	Moved all sources under the src/inet directory, so that all #include
-	statements begin with "inet/". The motivation is to rule out potential
-	filename clashes when multiple model frameworks are used together.
-
-	HINT: You can use the "opp_githist" command in inet/_scripts to find
-	all previous locations of the sources in this directory, and to view
-	the full history in gitk. Normal invocations of gitk can only show
-	file history back to the most recent move operation.
-
-2014-07-30  Andras Varga
-
-	Changes on the inet-3.x branch so far:
-
-	Network layer abstraction (Levente Meszaros, Andras Varga):
-	- Added IRoute, IRoutingTable, IPSocket.h, L3Address, L3AddressResolver,
-	  IL3AddressType, ModuleIdAddress, ModuleIdAddressType, ModulePathAddress,
-	  ModulePathAddressType, NetworkProtocolBase, NetworkDatagramBase
-
-	  - IPvXAddress is replaced by L3Address
-	  - IPvXAddressResolver is L3AddressResolver
-	  - new address types: MACAddress, ModuleIdAddress, ModulePathAddress
-
-	- Motivation: allow uniform access to the IPv4, IPv6 and possibly other
-	  routing tables; e.g. some wireless networks may use MAC address as
-	  network address. Also, in simulation it sometimes makes sense to work
-	  with simple abstract addresses like module names, indices or IDs.
-
-	  Being able to uniformly access routing tables containing different
-	  types of addresses makes it possible to implement routing protocols
-	  in a generic way. I.e. the same DYMO module can work with IPv6, IPv6,
-	  MAC and other addresses without change and recompiling.
-
-	Added SimpleNetworkProtocol (Levente Meszaros)
-	- SimpleNetworkLayer, SimpleNetworkProtocolControlInfo
-
-	Added EchoProtocol (Levente Meszaros)
-	- EchoPacket, EchoProtocol, EchoProtocol, EchoProtocol
-
-	Code formatting (Zoltan Bojthe)
-	- using uncrustify, see _scripts/reformat/*
-	- common style for header guards
-
-	Namespace (Zoltan Bojthe, Zsolt Prontvai)
-	- code has been moved into the inet namespace
-
-	Init stages (Zoltan Bojthe, Andras Varga)
-	- init stages: reorganized by layers
-
-	Signals (Zoltan Bojthe)
-	- replace INotifiable and NotificationBoard by signals for
-	  publish/subscribe communication
-
-	Logging (Zoltan Bojthe, Benjamin Seregi)
-	- EV log statements revised and categorized: EV_ERROR, EV_WARN,
-	  EV_INFO, EV_DETAIL, EV_DEBUG, EV_TRACE
-
-====== inet-2.x ======
-
 2015-03-04  ------ inet-2.6 released ------
 
 2014-11-07  ------ inet-2.5.1 released ------
@@ -110,11 +7,6 @@
 2014-06-12  ------ inet-2.4.0 released ------
 
 2014-03-19  ------ inet-2.3.0 released ------
-
-2014-01-22  Levente Meszaros
-
-	Moved classes shared by implementations from contract to common.
-	Added NetworkProtocolBase.
 
 2014-01-16  Zoltan Bojthe
 
@@ -131,7 +23,7 @@
 2013-08-30  Zoltan Bojthe
 
 	backport: InterfaceEntry: send notification only when the new and old
-	values differ
+	values are differs
 
 2014-01-15  Zoltan Bojthe
 
@@ -141,11 +33,11 @@
 
 	backport: copied IPv4 and ARP codes from integration branch
 
-2013-10-12  Benjamin Seregi (benmartin92)
+2013-10-12  Benmartin92
 
 	InterfaceEntry: IEEE8021DInterfaceData added to InterfaceEntry
 
-2013-09-16  Zsolt Prontvai (prozsolt)
+2013-09-16  ProZsolt
 
 	Added VLANInterfacedata to InterfaceEntry
 

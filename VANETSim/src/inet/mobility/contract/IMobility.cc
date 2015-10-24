@@ -19,11 +19,6 @@
  * part of:     framework implementation developed by tkn
  *************************************************************************/
 
-#include "inet/mobility/contract/IMobility.h"
-
-namespace inet {
+#include "IMobility.h"
 
 simsignal_t IMobility::mobilityStateChangedSignal = cComponent::registerSignal("mobilityStateChanged");
-
-} // namespace inet
-

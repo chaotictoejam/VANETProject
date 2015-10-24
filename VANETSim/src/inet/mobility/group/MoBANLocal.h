@@ -39,15 +39,15 @@
  *
  **************************************************************************/
 
-#ifndef __INET_MOBANLOCAL_H
-#define __INET_MOBANLOCAL_H
 
-#include "inet/common/INETDefs.h"
+#ifndef MO_BAN_LOCAL_H
+#define MO_BAN_LOCAL_H
 
-#include "inet/mobility/base/LineSegmentsMobilityBase.h"
-#include "inet/mobility/group/MoBANCoordinator.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "LineSegmentsMobilityBase.h"
+#include "MoBANCoordinator.h"
+
 
 /**
  * @brief This is the local mobility module of MoBAN. It should be instantiated in each node that belongs to a WBAN.
@@ -75,36 +75,27 @@ class INET_API MoBANLocal : public LineSegmentsMobilityBase
     /** @brief The speed of local mobility of the node in the current posture. */
     double speed;
 
-    /** @brief The possible maximum speed at any future time */
-    double maxSpeed;
-
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 3; }
 
-    virtual void initialize(int) override;
+    virtual void initialize(int);
 
-    virtual void setInitialPosition() override;
+    virtual void setInitialPosition();
 
-    virtual void setTargetPosition() override;
+    virtual void setTargetPosition();
 
-    virtual void updateVisualRepresentation() override;
+    virtual void updateVisualRepresentation();
 
-    virtual void computeMaxSpeed();
   public:
     MoBANLocal();
 
-    virtual Coord getCurrentPosition() override;
+    virtual Coord getCurrentPosition();
 
-    virtual Coord getCurrentSpeed() override;
+    virtual Coord getCurrentSpeed();
 
     void setCoordinator(MoBANCoordinator *coordinator) { this->coordinator = coordinator; }
 
     void setMoBANParameters(Coord referencePoint, double radius, double speed);
-
-    virtual double getMaxSpeed() const override { return maxSpeed; }
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_MOBANLOCAL_H
-
+#endif

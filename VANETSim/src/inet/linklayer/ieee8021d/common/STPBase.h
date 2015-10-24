@@ -15,47 +15,46 @@
 // Author: Zsolt Prontvai
 //
 
-#ifndef __INET_STPBASE_H
-#define __INET_STPBASE_H
+#ifndef __INET_STPBASE_H_
+#define __INET_STPBASE_H_
 
-#include "inet/common/lifecycle/ILifecycle.h"
-#include "inet/linklayer/common/MACAddress.h"
-#include "inet/linklayer/ethernet/switch/IMACAddressTable.h"
-#include "inet/networklayer/common/InterfaceTable.h"
-#include "inet/linklayer/configurator/Ieee8021dInterfaceData.h"
-
-namespace inet {
+#include "ILifecycle.h"
+#include "MACAddress.h"
+#include "IMACAddressTable.h"
+#include "InterfaceTable.h"
+#include "Ieee8021dInterfaceData.h"
+#include "INotifiable.h"
 
 /**
  * Base class for STP and RSTP.
  */
-class INET_API STPBase : public cSimpleModule, public ILifecycle, public cListener
+class INET_API STPBase : public cSimpleModule, public ILifecycle, public INotifiable
 {
-  protected:
-    bool visualize = false;    // if true it visualize the spanning tree
-    bool isOperational = false;    // for lifecycle
-    unsigned int numPorts = 0;    // number of ports
+protected:
+    bool visualize;                  // if true it visualize the spanning tree
+    bool isOperational;              // for lifecycle
+    unsigned int numPorts;           // number of ports
 
-    unsigned int bridgePriority = 0;    // bridge's priority
-    MACAddress bridgeAddress;    // bridge's MAC address
+    unsigned int bridgePriority;     // bridge's priority
+    MACAddress bridgeAddress;        // bridge's MAC address
 
     simtime_t maxAge;
     simtime_t helloTime;
     simtime_t forwardDelay;
 
-    cModule *switchModule = nullptr;
-    IMACAddressTable *macTable = nullptr;
-    IInterfaceTable *ifTable = nullptr;
-    InterfaceEntry *ie = nullptr;
+    cModule *switchModule;
+    NotificationBoard *nb;
+    IMACAddressTable * macTable;
+    IInterfaceTable * ifTable;
+    InterfaceEntry * ie;
 
-  public:
+public:
     STPBase();
-    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) override;
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) override {}
-
-  protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int stage) override;
+    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback);
+    virtual void receiveChangeNotification(int category, const cObject *details) {}
+protected:
+    virtual int numInitStages() const { return 2; }
+    virtual void initialize(int stage);
 
     virtual void start();
     virtual void stop();
@@ -80,23 +79,19 @@ class INET_API STPBase : public cSimpleModule, public ILifecycle, public cListen
 
     /**
      * @brief Gets Ieee8021dInterfaceData for port number.
-     * @return The port's Ieee8021dInterfaceData, or nullptr if it doesn't exist.
+     * @return The port's Ieee8021dInterfaceData, or NULL if it doesn't exist.
      */
     Ieee8021dInterfaceData *getPortInterfaceData(unsigned int portNum);
 
     /**
      * @brief Gets InterfaceEntry for port number.
-     * @return The port's InterfaceEntry, or nullptr if it doesn't exist.
+     * @return The port's InterfaceEntry, or NULL if it doesn't exist.
      */
     InterfaceEntry *getPortInterfaceEntry(unsigned int portNum);
 
     /*
      * Returns the first non-loopback interface.
      */
-    virtual InterfaceEntry *chooseInterface();
+    virtual InterfaceEntry * chooseInterface();
 };
-
-} // namespace inet
-
-#endif // ifndef __INET_STPBASE_H
-
+#endif

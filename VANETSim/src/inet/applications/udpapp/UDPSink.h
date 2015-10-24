@@ -16,15 +16,15 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
+
 #ifndef __INET_UDPSINK_H
 #define __INET_UDPSINK_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/applications/base/ApplicationBase.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
+#include "ApplicationBase.h"
+#include "UDPSocket.h"
 
-namespace inet {
 
 /**
  * Consumes and prints packets received from the UDP module. See NED for more info.
@@ -32,41 +32,23 @@ namespace inet {
 class INET_API UDPSink : public ApplicationBase
 {
   protected:
-    enum SelfMsgKinds { START = 1, STOP };
-
     UDPSocket socket;
-    int localPort = -1;
-    L3Address multicastGroup;
-    simtime_t startTime;
-    simtime_t stopTime;
-    cMessage *selfMsg = nullptr;
-
-    int numReceived = 0;
+    int numReceived;
     static simsignal_t rcvdPkSignal;
-
-  public:
-    UDPSink() {}
-    virtual ~UDPSink();
 
   protected:
     virtual void processPacket(cPacket *msg);
-    virtual void setSocketOptions();
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int stage) override;
-    virtual void handleMessageWhenUp(cMessage *msg) override;
-    virtual void finish() override;
+    virtual int numInitStages() const { return 4; }
+    virtual void initialize(int stage);
+    virtual void handleMessageWhenUp(cMessage *msg);
+    virtual void finish();
 
-    virtual void processStart();
-    virtual void processStop();
-
-    virtual bool handleNodeStart(IDoneCallback *doneCallback) override;
-    virtual bool handleNodeShutdown(IDoneCallback *doneCallback) override;
-    virtual void handleNodeCrash() override;
+    virtual bool handleNodeStart(IDoneCallback *doneCallback);
+    virtual bool handleNodeShutdown(IDoneCallback *doneCallback);
+    virtual void handleNodeCrash();
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_UDPSINK_H
+#endif
 

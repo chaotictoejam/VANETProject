@@ -14,8 +14,8 @@
 //
 
 cplusplus {{
-#include "inet/networklayer/contract/ipv4/IPv4Address.h"
-#include "inet/networklayer/rsvp_te/IntServ.h"
+#include "IPv4Address.h"
+#include "IntServ.h"
 
 #define MSG_PSB_TIMER               1
 #define MSG_PSB_TIMEOUT             2
@@ -36,7 +36,6 @@ cplusplus {{
 #define PATH_RETRY                  5
 }}
 
-namespace inet;
 
 class noncobject IPv4Address;
 

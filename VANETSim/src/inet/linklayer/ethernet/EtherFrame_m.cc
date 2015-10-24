@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -116,7 +115,7 @@ class EtherTrafficDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(EtherTrafficDescriptor);
 
-EtherTrafficDescriptor::EtherTrafficDescriptor() : cClassDescriptor("inet::EtherTraffic", "cPacket")
+EtherTrafficDescriptor::EtherTrafficDescriptor() : cClassDescriptor("EtherTraffic", "cPacket")
 {
 }
 
@@ -262,12 +261,12 @@ void *EtherTrafficDescriptor::getFieldStructPointer(void *object, int field, int
 
 Register_Class(EtherJam);
 
-EtherJam::EtherJam(const char *name, int kind) : ::inet::EtherTraffic(name,kind)
+EtherJam::EtherJam(const char *name, int kind) : ::EtherTraffic(name,kind)
 {
     this->abortedPkTreeID_var = 0;
 }
 
-EtherJam::EtherJam(const EtherJam& other) : ::inet::EtherTraffic(other)
+EtherJam::EtherJam(const EtherJam& other) : ::EtherTraffic(other)
 {
     copy(other);
 }
@@ -279,7 +278,7 @@ EtherJam::~EtherJam()
 EtherJam& EtherJam::operator=(const EtherJam& other)
 {
     if (this==&other) return *this;
-    ::inet::EtherTraffic::operator=(other);
+    ::EtherTraffic::operator=(other);
     copy(other);
     return *this;
 }
@@ -291,13 +290,13 @@ void EtherJam::copy(const EtherJam& other)
 
 void EtherJam::parsimPack(cCommBuffer *b)
 {
-    ::inet::EtherTraffic::parsimPack(b);
+    ::EtherTraffic::parsimPack(b);
     doPacking(b,this->abortedPkTreeID_var);
 }
 
 void EtherJam::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::EtherTraffic::parsimUnpack(b);
+    ::EtherTraffic::parsimUnpack(b);
     doUnpacking(b,this->abortedPkTreeID_var);
 }
 
@@ -336,7 +335,7 @@ class EtherJamDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(EtherJamDescriptor);
 
-EtherJamDescriptor::EtherJamDescriptor() : cClassDescriptor("inet::EtherJam", "inet::EtherTraffic")
+EtherJamDescriptor::EtherJamDescriptor() : cClassDescriptor("EtherJam", "EtherTraffic")
 {
 }
 
@@ -497,12 +496,12 @@ void *EtherJamDescriptor::getFieldStructPointer(void *object, int field, int i) 
 
 Register_Class(EtherIFG);
 
-EtherIFG::EtherIFG(const char *name, int kind) : ::inet::EtherTraffic(name,kind)
+EtherIFG::EtherIFG(const char *name, int kind) : ::EtherTraffic(name,kind)
 {
     this->setBitLength(INTERFRAME_GAP_BITS);
 }
 
-EtherIFG::EtherIFG(const EtherIFG& other) : ::inet::EtherTraffic(other)
+EtherIFG::EtherIFG(const EtherIFG& other) : ::EtherTraffic(other)
 {
     copy(other);
 }
@@ -514,7 +513,7 @@ EtherIFG::~EtherIFG()
 EtherIFG& EtherIFG::operator=(const EtherIFG& other)
 {
     if (this==&other) return *this;
-    ::inet::EtherTraffic::operator=(other);
+    ::EtherTraffic::operator=(other);
     copy(other);
     return *this;
 }
@@ -525,12 +524,12 @@ void EtherIFG::copy(const EtherIFG& other)
 
 void EtherIFG::parsimPack(cCommBuffer *b)
 {
-    ::inet::EtherTraffic::parsimPack(b);
+    ::EtherTraffic::parsimPack(b);
 }
 
 void EtherIFG::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::EtherTraffic::parsimUnpack(b);
+    ::EtherTraffic::parsimUnpack(b);
 }
 
 class EtherIFGDescriptor : public cClassDescriptor
@@ -558,7 +557,7 @@ class EtherIFGDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(EtherIFGDescriptor);
 
-EtherIFGDescriptor::EtherIFGDescriptor() : cClassDescriptor("inet::EtherIFG", "inet::EtherTraffic")
+EtherIFGDescriptor::EtherIFGDescriptor() : cClassDescriptor("EtherIFG", "EtherTraffic")
 {
 }
 
@@ -704,12 +703,12 @@ void *EtherIFGDescriptor::getFieldStructPointer(void *object, int field, int i) 
 
 Register_Class(EtherFrame);
 
-EtherFrame::EtherFrame(const char *name, int kind) : ::inet::EtherTraffic(name,kind)
+EtherFrame::EtherFrame(const char *name, int kind) : ::EtherTraffic(name,kind)
 {
     this->frameByteLength_var = 0;
 }
 
-EtherFrame::EtherFrame(const EtherFrame& other) : ::inet::EtherTraffic(other)
+EtherFrame::EtherFrame(const EtherFrame& other) : ::EtherTraffic(other)
 {
     copy(other);
 }
@@ -721,7 +720,7 @@ EtherFrame::~EtherFrame()
 EtherFrame& EtherFrame::operator=(const EtherFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::EtherTraffic::operator=(other);
+    ::EtherTraffic::operator=(other);
     copy(other);
     return *this;
 }
@@ -735,7 +734,7 @@ void EtherFrame::copy(const EtherFrame& other)
 
 void EtherFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::EtherTraffic::parsimPack(b);
+    ::EtherTraffic::parsimPack(b);
     doPacking(b,this->dest_var);
     doPacking(b,this->src_var);
     doPacking(b,this->frameByteLength_var);
@@ -743,7 +742,7 @@ void EtherFrame::parsimPack(cCommBuffer *b)
 
 void EtherFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::EtherTraffic::parsimUnpack(b);
+    ::EtherTraffic::parsimUnpack(b);
     doUnpacking(b,this->dest_var);
     doUnpacking(b,this->src_var);
     doUnpacking(b,this->frameByteLength_var);
@@ -804,7 +803,7 @@ class EtherFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(EtherFrameDescriptor);
 
-EtherFrameDescriptor::EtherFrameDescriptor() : cClassDescriptor("inet::EtherFrame", "inet::EtherTraffic")
+EtherFrameDescriptor::EtherFrameDescriptor() : cClassDescriptor("EtherFrame", "EtherTraffic")
 {
 }
 
@@ -979,12 +978,13 @@ void *EtherFrameDescriptor::getFieldStructPointer(void *object, int field, int i
 
 Register_Class(EthernetIIFrame);
 
-EthernetIIFrame::EthernetIIFrame(const char *name, int kind) : ::inet::EtherFrame(name,kind)
+EthernetIIFrame::EthernetIIFrame(const char *name, int kind) : ::EtherFrame(name,kind)
 {
     this->etherType_var = 0;
+    this->displayString_var = "b=,,,#00ff00";
 }
 
-EthernetIIFrame::EthernetIIFrame(const EthernetIIFrame& other) : ::inet::EtherFrame(other)
+EthernetIIFrame::EthernetIIFrame(const EthernetIIFrame& other) : ::EtherFrame(other)
 {
     copy(other);
 }
@@ -996,7 +996,7 @@ EthernetIIFrame::~EthernetIIFrame()
 EthernetIIFrame& EthernetIIFrame::operator=(const EthernetIIFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::EtherFrame::operator=(other);
+    ::EtherFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -1004,18 +1004,21 @@ EthernetIIFrame& EthernetIIFrame::operator=(const EthernetIIFrame& other)
 void EthernetIIFrame::copy(const EthernetIIFrame& other)
 {
     this->etherType_var = other.etherType_var;
+    this->displayString_var = other.displayString_var;
 }
 
 void EthernetIIFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::EtherFrame::parsimPack(b);
+    ::EtherFrame::parsimPack(b);
     doPacking(b,this->etherType_var);
+    doPacking(b,this->displayString_var);
 }
 
 void EthernetIIFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::EtherFrame::parsimUnpack(b);
+    ::EtherFrame::parsimUnpack(b);
     doUnpacking(b,this->etherType_var);
+    doUnpacking(b,this->displayString_var);
 }
 
 int EthernetIIFrame::getEtherType() const
@@ -1026,6 +1029,16 @@ int EthernetIIFrame::getEtherType() const
 void EthernetIIFrame::setEtherType(int etherType)
 {
     this->etherType_var = etherType;
+}
+
+const char * EthernetIIFrame::getDisplayString() const
+{
+    return displayString_var.c_str();
+}
+
+void EthernetIIFrame::setDisplayString(const char * displayString)
+{
+    this->displayString_var = displayString;
 }
 
 class EthernetIIFrameDescriptor : public cClassDescriptor
@@ -1053,7 +1066,7 @@ class EthernetIIFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(EthernetIIFrameDescriptor);
 
-EthernetIIFrameDescriptor::EthernetIIFrameDescriptor() : cClassDescriptor("inet::EthernetIIFrame", "inet::EtherFrame")
+EthernetIIFrameDescriptor::EthernetIIFrameDescriptor() : cClassDescriptor("EthernetIIFrame", "EtherFrame")
 {
 }
 
@@ -1075,7 +1088,7 @@ const char *EthernetIIFrameDescriptor::getProperty(const char *propertyname) con
 int EthernetIIFrameDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
 }
 
 unsigned int EthernetIIFrameDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -1088,8 +1101,9 @@ unsigned int EthernetIIFrameDescriptor::getFieldTypeFlags(void *object, int fiel
     }
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
 }
 
 const char *EthernetIIFrameDescriptor::getFieldName(void *object, int field) const
@@ -1102,8 +1116,9 @@ const char *EthernetIIFrameDescriptor::getFieldName(void *object, int field) con
     }
     static const char *fieldNames[] = {
         "etherType",
+        "displayString",
     };
-    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+    return (field>=0 && field<2) ? fieldNames[field] : NULL;
 }
 
 int EthernetIIFrameDescriptor::findField(void *object, const char *fieldName) const
@@ -1111,6 +1126,7 @@ int EthernetIIFrameDescriptor::findField(void *object, const char *fieldName) co
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='e' && strcmp(fieldName, "etherType")==0) return base+0;
+    if (fieldName[0]=='d' && strcmp(fieldName, "displayString")==0) return base+1;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1124,8 +1140,9 @@ const char *EthernetIIFrameDescriptor::getFieldTypeString(void *object, int fiel
     }
     static const char *fieldTypeStrings[] = {
         "int",
+        "string",
     };
-    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *EthernetIIFrameDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -1138,7 +1155,7 @@ const char *EthernetIIFrameDescriptor::getFieldProperty(void *object, int field,
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::EtherType";
+            if (!strcmp(propertyname,"enum")) return "EtherType";
             return NULL;
         default: return NULL;
     }
@@ -1169,6 +1186,7 @@ std::string EthernetIIFrameDescriptor::getFieldAsString(void *object, int field,
     EthernetIIFrame *pp = (EthernetIIFrame *)object; (void)pp;
     switch (field) {
         case 0: return long2string(pp->getEtherType());
+        case 1: return oppstring2string(pp->getDisplayString());
         default: return "";
     }
 }
@@ -1184,6 +1202,7 @@ bool EthernetIIFrameDescriptor::setFieldAsString(void *object, int field, int i,
     EthernetIIFrame *pp = (EthernetIIFrame *)object; (void)pp;
     switch (field) {
         case 0: pp->setEtherType(string2long(value)); return true;
+        case 1: pp->setDisplayString((value)); return true;
         default: return false;
     }
 }
@@ -1217,14 +1236,14 @@ void *EthernetIIFrameDescriptor::getFieldStructPointer(void *object, int field, 
 
 Register_Class(EtherFrameWithLLC);
 
-EtherFrameWithLLC::EtherFrameWithLLC(const char *name, int kind) : ::inet::EtherFrame(name,kind)
+EtherFrameWithLLC::EtherFrameWithLLC(const char *name, int kind) : ::EtherFrame(name,kind)
 {
     this->dsap_var = 0;
     this->ssap_var = 0;
     this->control_var = 0;
 }
 
-EtherFrameWithLLC::EtherFrameWithLLC(const EtherFrameWithLLC& other) : ::inet::EtherFrame(other)
+EtherFrameWithLLC::EtherFrameWithLLC(const EtherFrameWithLLC& other) : ::EtherFrame(other)
 {
     copy(other);
 }
@@ -1236,7 +1255,7 @@ EtherFrameWithLLC::~EtherFrameWithLLC()
 EtherFrameWithLLC& EtherFrameWithLLC::operator=(const EtherFrameWithLLC& other)
 {
     if (this==&other) return *this;
-    ::inet::EtherFrame::operator=(other);
+    ::EtherFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -1250,7 +1269,7 @@ void EtherFrameWithLLC::copy(const EtherFrameWithLLC& other)
 
 void EtherFrameWithLLC::parsimPack(cCommBuffer *b)
 {
-    ::inet::EtherFrame::parsimPack(b);
+    ::EtherFrame::parsimPack(b);
     doPacking(b,this->dsap_var);
     doPacking(b,this->ssap_var);
     doPacking(b,this->control_var);
@@ -1258,7 +1277,7 @@ void EtherFrameWithLLC::parsimPack(cCommBuffer *b)
 
 void EtherFrameWithLLC::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::EtherFrame::parsimUnpack(b);
+    ::EtherFrame::parsimUnpack(b);
     doUnpacking(b,this->dsap_var);
     doUnpacking(b,this->ssap_var);
     doUnpacking(b,this->control_var);
@@ -1319,7 +1338,7 @@ class EtherFrameWithLLCDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(EtherFrameWithLLCDescriptor);
 
-EtherFrameWithLLCDescriptor::EtherFrameWithLLCDescriptor() : cClassDescriptor("inet::EtherFrameWithLLC", "inet::EtherFrame")
+EtherFrameWithLLCDescriptor::EtherFrameWithLLCDescriptor() : cClassDescriptor("EtherFrameWithLLC", "EtherFrame")
 {
 }
 
@@ -1492,7 +1511,7 @@ void *EtherFrameWithLLCDescriptor::getFieldStructPointer(void *object, int field
 
 Register_Class(EtherFrameWithSNAP);
 
-EtherFrameWithSNAP::EtherFrameWithSNAP(const char *name, int kind) : ::inet::EtherFrameWithLLC(name,kind)
+EtherFrameWithSNAP::EtherFrameWithSNAP(const char *name, int kind) : ::EtherFrameWithLLC(name,kind)
 {
     this->setDsap(0xAA);
     this->setSsap(0xAA);
@@ -1502,7 +1521,7 @@ EtherFrameWithSNAP::EtherFrameWithSNAP(const char *name, int kind) : ::inet::Eth
     this->localcode_var = 0;
 }
 
-EtherFrameWithSNAP::EtherFrameWithSNAP(const EtherFrameWithSNAP& other) : ::inet::EtherFrameWithLLC(other)
+EtherFrameWithSNAP::EtherFrameWithSNAP(const EtherFrameWithSNAP& other) : ::EtherFrameWithLLC(other)
 {
     copy(other);
 }
@@ -1514,7 +1533,7 @@ EtherFrameWithSNAP::~EtherFrameWithSNAP()
 EtherFrameWithSNAP& EtherFrameWithSNAP::operator=(const EtherFrameWithSNAP& other)
 {
     if (this==&other) return *this;
-    ::inet::EtherFrameWithLLC::operator=(other);
+    ::EtherFrameWithLLC::operator=(other);
     copy(other);
     return *this;
 }
@@ -1527,14 +1546,14 @@ void EtherFrameWithSNAP::copy(const EtherFrameWithSNAP& other)
 
 void EtherFrameWithSNAP::parsimPack(cCommBuffer *b)
 {
-    ::inet::EtherFrameWithLLC::parsimPack(b);
+    ::EtherFrameWithLLC::parsimPack(b);
     doPacking(b,this->orgCode_var);
     doPacking(b,this->localcode_var);
 }
 
 void EtherFrameWithSNAP::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::EtherFrameWithLLC::parsimUnpack(b);
+    ::EtherFrameWithLLC::parsimUnpack(b);
     doUnpacking(b,this->orgCode_var);
     doUnpacking(b,this->localcode_var);
 }
@@ -1584,7 +1603,7 @@ class EtherFrameWithSNAPDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(EtherFrameWithSNAPDescriptor);
 
-EtherFrameWithSNAPDescriptor::EtherFrameWithSNAPDescriptor() : cClassDescriptor("inet::EtherFrameWithSNAP", "inet::EtherFrameWithLLC")
+EtherFrameWithSNAPDescriptor::EtherFrameWithSNAPDescriptor() : cClassDescriptor("EtherFrameWithSNAP", "EtherFrameWithLLC")
 {
 }
 
@@ -1751,12 +1770,12 @@ void *EtherFrameWithSNAPDescriptor::getFieldStructPointer(void *object, int fiel
 
 Register_Class(EtherPauseFrame);
 
-EtherPauseFrame::EtherPauseFrame(const char *name, int kind) : ::inet::EtherFrame(name,kind)
+EtherPauseFrame::EtherPauseFrame(const char *name, int kind) : ::EtherFrame(name,kind)
 {
     this->pauseTime_var = 0;
 }
 
-EtherPauseFrame::EtherPauseFrame(const EtherPauseFrame& other) : ::inet::EtherFrame(other)
+EtherPauseFrame::EtherPauseFrame(const EtherPauseFrame& other) : ::EtherFrame(other)
 {
     copy(other);
 }
@@ -1768,7 +1787,7 @@ EtherPauseFrame::~EtherPauseFrame()
 EtherPauseFrame& EtherPauseFrame::operator=(const EtherPauseFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::EtherFrame::operator=(other);
+    ::EtherFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -1780,13 +1799,13 @@ void EtherPauseFrame::copy(const EtherPauseFrame& other)
 
 void EtherPauseFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::EtherFrame::parsimPack(b);
+    ::EtherFrame::parsimPack(b);
     doPacking(b,this->pauseTime_var);
 }
 
 void EtherPauseFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::EtherFrame::parsimUnpack(b);
+    ::EtherFrame::parsimUnpack(b);
     doUnpacking(b,this->pauseTime_var);
 }
 
@@ -1825,7 +1844,7 @@ class EtherPauseFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(EtherPauseFrameDescriptor);
 
-EtherPauseFrameDescriptor::EtherPauseFrameDescriptor() : cClassDescriptor("inet::EtherPauseFrame", "inet::EtherFrame")
+EtherPauseFrameDescriptor::EtherPauseFrameDescriptor() : cClassDescriptor("EtherPauseFrame", "EtherFrame")
 {
 }
 
@@ -1991,6 +2010,7 @@ Ethernet1QTag::Ethernet1QTag(const char *name, int kind) : ::cPacket(name,kind)
     this->pcp_var = 0;
     this->de_var = 0;
     this->VID_var = 0;
+    this->displayString_var = "b=,,,#a5ffa5";
 }
 
 Ethernet1QTag::Ethernet1QTag(const Ethernet1QTag& other) : ::cPacket(other)
@@ -2015,6 +2035,7 @@ void Ethernet1QTag::copy(const Ethernet1QTag& other)
     this->pcp_var = other.pcp_var;
     this->de_var = other.de_var;
     this->VID_var = other.VID_var;
+    this->displayString_var = other.displayString_var;
 }
 
 void Ethernet1QTag::parsimPack(cCommBuffer *b)
@@ -2023,6 +2044,7 @@ void Ethernet1QTag::parsimPack(cCommBuffer *b)
     doPacking(b,this->pcp_var);
     doPacking(b,this->de_var);
     doPacking(b,this->VID_var);
+    doPacking(b,this->displayString_var);
 }
 
 void Ethernet1QTag::parsimUnpack(cCommBuffer *b)
@@ -2031,6 +2053,7 @@ void Ethernet1QTag::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->pcp_var);
     doUnpacking(b,this->de_var);
     doUnpacking(b,this->VID_var);
+    doUnpacking(b,this->displayString_var);
 }
 
 uint8_t Ethernet1QTag::getPcp() const
@@ -2063,6 +2086,16 @@ void Ethernet1QTag::setVID(short VID)
     this->VID_var = VID;
 }
 
+const char * Ethernet1QTag::getDisplayString() const
+{
+    return displayString_var.c_str();
+}
+
+void Ethernet1QTag::setDisplayString(const char * displayString)
+{
+    this->displayString_var = displayString;
+}
+
 class Ethernet1QTagDescriptor : public cClassDescriptor
 {
   public:
@@ -2088,7 +2121,7 @@ class Ethernet1QTagDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ethernet1QTagDescriptor);
 
-Ethernet1QTagDescriptor::Ethernet1QTagDescriptor() : cClassDescriptor("inet::Ethernet1QTag", "cPacket")
+Ethernet1QTagDescriptor::Ethernet1QTagDescriptor() : cClassDescriptor("Ethernet1QTag", "cPacket")
 {
 }
 
@@ -2110,7 +2143,7 @@ const char *Ethernet1QTagDescriptor::getProperty(const char *propertyname) const
 int Ethernet1QTagDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
+    return basedesc ? 4+basedesc->getFieldCount(object) : 4;
 }
 
 unsigned int Ethernet1QTagDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -2125,8 +2158,9 @@ unsigned int Ethernet1QTagDescriptor::getFieldTypeFlags(void *object, int field)
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
 }
 
 const char *Ethernet1QTagDescriptor::getFieldName(void *object, int field) const
@@ -2141,8 +2175,9 @@ const char *Ethernet1QTagDescriptor::getFieldName(void *object, int field) const
         "pcp",
         "de",
         "VID",
+        "displayString",
     };
-    return (field>=0 && field<3) ? fieldNames[field] : NULL;
+    return (field>=0 && field<4) ? fieldNames[field] : NULL;
 }
 
 int Ethernet1QTagDescriptor::findField(void *object, const char *fieldName) const
@@ -2152,6 +2187,7 @@ int Ethernet1QTagDescriptor::findField(void *object, const char *fieldName) cons
     if (fieldName[0]=='p' && strcmp(fieldName, "pcp")==0) return base+0;
     if (fieldName[0]=='d' && strcmp(fieldName, "de")==0) return base+1;
     if (fieldName[0]=='V' && strcmp(fieldName, "VID")==0) return base+2;
+    if (fieldName[0]=='d' && strcmp(fieldName, "displayString")==0) return base+3;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -2167,8 +2203,9 @@ const char *Ethernet1QTagDescriptor::getFieldTypeString(void *object, int field)
         "uint8_t",
         "bool",
         "short",
+        "string",
     };
-    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *Ethernet1QTagDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -2211,6 +2248,7 @@ std::string Ethernet1QTagDescriptor::getFieldAsString(void *object, int field, i
         case 0: return ulong2string(pp->getPcp());
         case 1: return bool2string(pp->getDe());
         case 2: return long2string(pp->getVID());
+        case 3: return oppstring2string(pp->getDisplayString());
         default: return "";
     }
 }
@@ -2228,6 +2266,7 @@ bool Ethernet1QTagDescriptor::setFieldAsString(void *object, int field, int i, c
         case 0: pp->setPcp(string2ulong(value)); return true;
         case 1: pp->setDe(string2bool(value)); return true;
         case 2: pp->setVID(string2long(value)); return true;
+        case 3: pp->setDisplayString((value)); return true;
         default: return false;
     }
 }
@@ -2335,7 +2374,7 @@ class Ethernet1ahITagDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ethernet1ahITagDescriptor);
 
-Ethernet1ahITagDescriptor::Ethernet1ahITagDescriptor() : cClassDescriptor("inet::Ethernet1ahITag", "cPacket")
+Ethernet1ahITagDescriptor::Ethernet1ahITagDescriptor() : cClassDescriptor("Ethernet1ahITag", "cPacket")
 {
 }
 
@@ -2494,5 +2533,4 @@ void *Ethernet1ahITagDescriptor::getFieldStructPointer(void *object, int field, 
     }
 }
 
-} // namespace inet
 

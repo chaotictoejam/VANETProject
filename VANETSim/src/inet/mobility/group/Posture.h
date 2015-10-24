@@ -40,16 +40,15 @@
  *
  **************************************************************************/
 
-#ifndef __INET_POSTURE_H
-#define __INET_POSTURE_H
+
+#ifndef POSTURE_H
+#define POSTURE_H
 
 #include <string.h>
 
-#include "inet/common/INETDefs.h"
-#include "inet/common/INETMath.h"
-#include "inet/common/geometry/common/Coord.h"
+#include "INETDefs.h"
+#include "Coord.h"
 
-namespace inet {
 
 /**
  * @brief to store the specification of a posture on the MoBAN mobility model.
@@ -59,47 +58,44 @@ namespace inet {
  * @ingroup MoBAN
  * @author Majid Nabi
  */
-class INET_API Posture
-{
+class INET_API Posture {
   protected:
     /** @brief Number of nodes existing in the WBAN */
-    unsigned int numNodes = 0;
+    unsigned int numNodes;
 
     /** @brief The unique ID of the posture */
-    unsigned int postureID = 0;
+    unsigned int postureID;
 
     /** @brief The relative reference position of each node in this posture */
-    Coord *nodePs = nullptr;
+    Coord* nodePs;
 
     /** @brief A given name to the posture like walking, sitting.
      * It might be used for showing the current posture in the graphical interface during the simulation run */
-    char *posture_name = nullptr;
+    char posture_name[50];
 
     /** @brief Mean value of the normal distribution for the path lost coefficient (alpha)
      * for any pair of nodes (numNodes by numNodes matrix) */
-    double **alphaMean = nullptr;
+    double** alphaMean;
 
     /** @brief Mean value of the normal distribution for the path lost coefficient (alpha)
-     * for any pair of nodes (numNodes by numNodes matrix) */
-    double **alphaSD = nullptr;    // Standard deviation of alpha
+    * for any pair of nodes (numNodes by numNodes matrix) */
+    double** alphaSD;  // Standard deviation of alpha
 
     /** @brief Radious of the sphere around each node for individual mobility */
-    double *nodeRadius = nullptr;
+    double* nodeRadius;
 
     /** @brief Movement speed of the node for individual mobility */
-    double *nodeSpeed = nullptr;
+    double* nodeSpeed;
 
     /** @brief Maximum value of the speed range for the global movement in this posture */
-    double maxSpeed = NaN;
+    double maxSpeed;
 
     /** @brief Minimum value of the speed range for the global movement in this posture */
-    double minSpeed = NaN;
+    double minSpeed;
 
   public:
     /** @brief Construct a posture object with the given ID and number of nodes, respectively */
     Posture(unsigned int, unsigned int);
-
-    ~Posture();
 
     /** @brief Return the number of nodes existing in the WBAN. */
     int getNumNodes() const { return numNodes; }
@@ -132,7 +128,7 @@ class INET_API Posture
     int getPostureID();
 
     /** @brief Returns posture name. */
-    char *getPostureName();
+    char* getPostureName();
 
     /** @brief Returns maximum value of the speed range of this posture. */
     double getMaxSpeed();
@@ -147,7 +143,7 @@ class INET_API Posture
     double getSpeed(unsigned int);
 
     /** @brief Returns the relative position of a node in this posture. */
-    Coord getPs(unsigned int);
+    Coord  getPs(unsigned int);
 
     /** @brief Returns the mean value of a normal distribution for path lost coefficient of wave propagation between two nodes in this posture. */
     double getAlphaMean(unsigned int, unsigned int);
@@ -156,7 +152,4 @@ class INET_API Posture
     double getAlphaSD(unsigned int, unsigned int);
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_POSTURE_H
-
+#endif

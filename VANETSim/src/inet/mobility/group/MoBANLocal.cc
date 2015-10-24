@@ -39,20 +39,18 @@
  *
  **************************************************************************/
 
-#include "inet/common/INETMath.h"
-#include "inet/mobility/group/MoBANLocal.h"
 
-namespace inet {
+#include <FWMath.h>
+#include "MoBANLocal.h"
 
 Define_Module(MoBANLocal);
 
 MoBANLocal::MoBANLocal()
 {
-    coordinator = nullptr;
+    coordinator = NULL;
     referencePosition = Coord::ZERO;
     radius = 0;
     speed = 0;
-    maxSpeed = 0;
 }
 
 void MoBANLocal::initialize(int stage)
@@ -60,17 +58,8 @@ void MoBANLocal::initialize(int stage)
     LineSegmentsMobilityBase::initialize(stage);
 
     EV_TRACE << "initializing MoBANLocal stage " << stage << endl;
-    if (stage == INITSTAGE_LOCAL) {
-        WATCH_PTR(coordinator);
-        WATCH(referencePosition);
-        WATCH(radius);
-        WATCH(speed);
-    }
-    else if (stage == INITSTAGE_PHYSICAL_ENVIRONMENT_2)
-    {
+    if (stage == 2)
         updateVisualRepresentation();
-        computeMaxSpeed();
-    }
 }
 
 void MoBANLocal::setInitialPosition()
@@ -80,12 +69,14 @@ void MoBANLocal::setInitialPosition()
 
 void MoBANLocal::setTargetPosition()
 {
-    if (speed != 0) {
+    if (speed != 0)
+    {
         // find a uniformly random position within a sphere around the reference point
         double x = uniform(-radius, radius);
         double y = uniform(-radius, radius);
         double z = uniform(-radius, radius);
-        while (x * x + y * y + z * z > radius * radius) {
+        while (x * x + y * y + z * z > radius * radius)
+        {
             x = uniform(-radius, radius);
             y = uniform(-radius, radius);
             z = uniform(-radius, radius);
@@ -104,16 +95,12 @@ void MoBANLocal::setTargetPosition()
 
 void MoBANLocal::updateVisualRepresentation()
 {
-    if (hasGUI() && visualRepresentation) {
+    if (ev.isGUI() && visualRepresentation)
+    {
         Coord coordinatorPosition = coordinator->getCurrentPosition();
         visualRepresentation->getDisplayString().setTagArg("p", 0, lastPosition.x + coordinatorPosition.x);
         visualRepresentation->getDisplayString().setTagArg("p", 1, lastPosition.y + coordinatorPosition.y);
     }
-}
-
-void MoBANLocal::computeMaxSpeed()
-{
-    maxSpeed = coordinator->getMaxSpeed();
 }
 
 void MoBANLocal::setMoBANParameters(Coord referencePoint, double radius, double speed)
@@ -136,7 +123,3 @@ Coord MoBANLocal::getCurrentSpeed()
 {
     return LineSegmentsMobilityBase::getCurrentSpeed() + coordinator->getCurrentSpeed();
 }
-
-
-} // namespace inet
-

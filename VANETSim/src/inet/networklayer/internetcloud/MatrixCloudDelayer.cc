@@ -17,28 +17,27 @@
 // @author Zoltan Bojthe
 //
 
-#include "inet/networklayer/internetcloud/MatrixCloudDelayer.h"
+#include "MatrixCloudDelayer.h"
 
-#include "inet/common/ModuleAccess.h"
-#include "inet/common/PatternMatcher.h"
-#include "inet/common/XMLUtils.h"
-#include "inet/networklayer/contract/IInterfaceTable.h"
-
-namespace inet {
+#include "InterfaceTableAccess.h"
+#include "PatternMatcher.h"
+#include "XMLUtils.h"
 
 Define_Module(MatrixCloudDelayer);
 
 namespace {
+
 inline bool isEmpty(const char *s)
 {
     return !s || !s[0];
 }
 
 //TODO suggestion: add to XMLUtils
-bool getBoolAttribute(const cXMLElement& element, const char *name, const bool *defaultValue = nullptr)
+bool getBoolAttribute(const cXMLElement &element, const char *name, const bool *defaultValue = NULL)
 {
-    const char *s = element.getAttribute(name);
-    if (isEmpty(s)) {
+    const char* s = element.getAttribute(name);
+    if (isEmpty(s))
+    {
         if (defaultValue)
             return *defaultValue;
         throw cRuntimeError("Required attribute %s of <%s> missing at %s", name, element.getTagName(),
@@ -50,7 +49,9 @@ bool getBoolAttribute(const cXMLElement& element, const char *name, const bool *
         return false;
     throw cRuntimeError("Invalid boolean attribute %s = '%s' at %s", name, s, element.getSourceLocation());
 }
-} // namespace {
+
+} // namespace
+
 
 //FIXME modified copy of 'Matcher' class from IPv4NetworkConfigurator
 MatrixCloudDelayer::Matcher::Matcher(const char *pattern)
@@ -59,10 +60,12 @@ MatrixCloudDelayer::Matcher::Matcher(const char *pattern)
     if (matchesany)
         return;
     cStringTokenizer tokenizer(pattern);
-    while (tokenizer.hasMoreTokens()) {
+    while (tokenizer.hasMoreTokens())
+    {
         const char *token = tokenizer.nextToken();
         matchers.push_back(new inet::PatternMatcher(token, true, true, true));
-        if (*token != '*') {
+        if (*token != '*')
+        {
             // add "*.token" too
             std::string subtoken("*.");
             subtoken += token;
@@ -73,23 +76,23 @@ MatrixCloudDelayer::Matcher::Matcher(const char *pattern)
 
 MatrixCloudDelayer::Matcher::~Matcher()
 {
-    for (auto & elem : matchers)
-        delete elem;
+    for (int i = 0; i < (int) matchers.size(); i++)
+        delete matchers[i];
 }
 
 bool MatrixCloudDelayer::Matcher::matches(const char *s)
 {
     if (matchesany)
         return true;
-    for (auto & elem : matchers)
-        if (elem->matches(s))
+    for (int i = 0; i < (int) matchers.size(); i++)
+        if (matchers[i]->matches(s))
             return true;
-
     return false;
 }
 
+
 MatrixCloudDelayer::MatrixEntry::MatrixEntry(cXMLElement *trafficEntity, bool defaultSymmetric) :
-    srcMatcher(trafficEntity->getAttribute("src")), destMatcher(trafficEntity->getAttribute("dest"))
+        srcMatcher(trafficEntity->getAttribute("src")), destMatcher(trafficEntity->getAttribute("dest"))
 {
     const char *delayAttr = trafficEntity->getAttribute("delay");
     const char *datarateAttr = trafficEntity->getAttribute("datarate");
@@ -97,22 +100,15 @@ MatrixCloudDelayer::MatrixEntry::MatrixEntry(cXMLElement *trafficEntity, bool de
     symmetric = getBoolAttribute(*trafficEntity, "symmetric", &defaultSymmetric);
     try {
         delayPar.parse(delayAttr);
-    }
-    catch (std::exception& e) {
-        throw cRuntimeError("parser error '%s' in 'delay' attribute of '%s' entity at %s", e.what(), trafficEntity->getTagName(), trafficEntity->getSourceLocation());
-    }
+    } catch (std::exception& e) { throw cRuntimeError("parser error '%s' in 'delay' attribute of '%s' entity at %s", e.what(), trafficEntity->getTagName(), trafficEntity->getSourceLocation()); }
+
     try {
         dataratePar.parse(datarateAttr);
-    }
-    catch (std::exception& e) {
-        throw cRuntimeError("parser error '%s' in 'datarate' attribute of '%s' entity at %s", e.what(), trafficEntity->getTagName(), trafficEntity->getSourceLocation());
-    }
+    } catch (std::exception& e) { throw cRuntimeError("parser error '%s' in 'datarate' attribute of '%s' entity at %s", e.what(), trafficEntity->getTagName(), trafficEntity->getSourceLocation()); }
+
     try {
         dropPar.parse(dropAttr);
-    }
-    catch (std::exception& e) {
-        throw cRuntimeError("parser error '%s' in 'drop' attribute of '%s' entity at %s", e.what(), trafficEntity->getTagName(), trafficEntity->getSourceLocation());
-    }
+    } catch (std::exception& e) { throw cRuntimeError("parser error '%s' in 'drop' attribute of '%s' entity at %s", e.what(), trafficEntity->getTagName(), trafficEntity->getSourceLocation()); }
 }
 
 bool MatrixCloudDelayer::MatrixEntry::matches(const char *src, const char *dest)
@@ -124,32 +120,33 @@ bool MatrixCloudDelayer::MatrixEntry::matches(const char *src, const char *dest)
     return false;
 }
 
+
 MatrixCloudDelayer::~MatrixCloudDelayer()
 {
-    for (auto & elem : matrixEntries)
-        delete elem;
+    for (MatrixEntryPtrVector::iterator i=matrixEntries.begin(); i != matrixEntries.end(); ++i)
+        delete *i;
     matrixEntries.clear();
 }
 
 void MatrixCloudDelayer::initialize(int stage)
 {
-    using namespace xmlutils;
-
     CloudDelayerBase::initialize(stage);
 
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         host = getContainingNode(this);
-        ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
+        ift = InterfaceTableAccess().get(this);
         cXMLElement *configEntity = par("config").xmlValue();
         // parse XML config
         if (strcmp(configEntity->getTagName(), "internetCloud"))
-            throw cRuntimeError("Cannot read internetCloud configuration, unaccepted '%s' entity at %s", configEntity->getTagName(),
+            error("Cannot read internetCloud configuration, unaccepted '%s' entity at %s", configEntity->getTagName(),
                     configEntity->getSourceLocation());
         bool defaultSymmetric = getBoolAttribute(*configEntity, "symmetric");
         const cXMLElement *parameterEntity = getUniqueChild(configEntity, "parameters");
         cXMLElementList trafficEntities = parameterEntity->getChildrenByTagName("traffic");
-        for (auto & trafficEntitie : trafficEntities) {
-            cXMLElement *trafficEntity = trafficEntitie;
+        for (int i = 0; i < (int) trafficEntities.size(); i++)
+        {
+            cXMLElement *trafficEntity = trafficEntities[i];
             MatrixEntry *matrixEntry = new MatrixEntry(trafficEntity, defaultSymmetric);
             matrixEntries.push_back(matrixEntry);
         }
@@ -162,7 +159,8 @@ void MatrixCloudDelayer::calculateDropAndDelay(const cMessage *msg, int srcID, i
     Descriptor *descriptor = getOrCreateDescriptor(srcID, destID);
     outDrop = descriptor->dropPar->boolValue(this);
     outDelay = SIMTIME_ZERO;
-    if (!outDrop) {
+    if (!outDrop)
+    {
         outDelay = descriptor->delayPar->doubleValue(this, "s");
         double datarate = descriptor->dataratePar->doubleValue(this, "bps");
         ASSERT(outDelay >= 0);
@@ -179,10 +177,10 @@ void MatrixCloudDelayer::calculateDropAndDelay(const cMessage *msg, int srcID, i
     }
 }
 
-MatrixCloudDelayer::Descriptor *MatrixCloudDelayer::getOrCreateDescriptor(int srcID, int destID)
+MatrixCloudDelayer::Descriptor* MatrixCloudDelayer::getOrCreateDescriptor(int srcID, int destID)
 {
     IDPair idPair(srcID, destID);
-    auto it = idPairToDescriptorMap.find(idPair);
+    IDPairToDescriptorMap::iterator it = idPairToDescriptorMap.find(idPair);
     if (it != idPairToDescriptorMap.end())
         return &(it->second);
 
@@ -190,16 +188,19 @@ MatrixCloudDelayer::Descriptor *MatrixCloudDelayer::getOrCreateDescriptor(int sr
     std::string dest = getPathOfConnectedNodeOnIfaceID(destID);
 
     // find first matching node in XML
-    MatrixEntry *reverseMatrixEntry = nullptr;
-    for (auto & elem : matrixEntries) {
-        MatrixEntry *matrixEntry = elem;
-        if (matrixEntry->matches(src.c_str(), dest.c_str())) {
+    MatrixEntry *reverseMatrixEntry = NULL;
+    for (unsigned int i = 0; i < matrixEntries.size(); i++)
+    {
+        MatrixEntry *matrixEntry = matrixEntries[i];
+        if (matrixEntry->matches(src.c_str(), dest.c_str()))
+        {
             MatrixCloudDelayer::Descriptor& descriptor = idPairToDescriptorMap[idPair];
             descriptor.delayPar = &matrixEntry->delayPar;
             descriptor.dataratePar = &matrixEntry->dataratePar;
             descriptor.dropPar = &matrixEntry->dropPar;
             descriptor.lastSent = simTime();
-            if (matrixEntry->symmetric) {
+            if (matrixEntry->symmetric)
+            {
                 if (reverseMatrixEntry) // existing previous asymmetric entry which matching to (dest,src)
                     throw cRuntimeError("Inconsistent xml config between '%s' and '%s' nodes (at %s and %s)",
                             src.c_str(), dest.c_str(), matrixEntry->entity->getSourceLocation(),
@@ -210,7 +211,8 @@ MatrixCloudDelayer::Descriptor *MatrixCloudDelayer::getOrCreateDescriptor(int sr
             }
             return &descriptor;
         }
-        else if (!matrixEntry->symmetric && !reverseMatrixEntry && matrixEntry->matches(dest.c_str(), src.c_str())) {
+        else if (!matrixEntry->symmetric && !reverseMatrixEntry && matrixEntry->matches(dest.c_str(), src.c_str()))
+        {
             // store first matched asymmetric reverse entry to reverseMatrixEntry
             reverseMatrixEntry = matrixEntry;
         }
@@ -226,7 +228,7 @@ std::string MatrixCloudDelayer::getPathOfConnectedNodeOnIfaceID(int id)
         throw cRuntimeError("The interface id=%i not found in interfacetable", id);
 
     int gateId;
-    cGate *connectedGate = nullptr;
+    cGate *connectedGate = NULL;
 
     if ((gateId = ie->getNodeOutputGateId()) != -1)
         connectedGate = host->gate(gateId)->getPathEndGate();
@@ -242,6 +244,4 @@ std::string MatrixCloudDelayer::getPathOfConnectedNodeOnIfaceID(int id)
 
     return connNode->getFullPath();
 }
-
-} // namespace inet
 

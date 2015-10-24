@@ -16,15 +16,10 @@
 #ifndef ILOCATOR_H_
 #define ILOCATOR_H_
 
-
+#include "ModuleAccess.h"
 #include <vector>
-#include "inet/common/ModuleAccess.h"
-#include "inet/linklayer/common/MACAddress.h"
-#include "inet/networklayer/contract/ipv4/IPv4Address.h"
-
-namespace inet {
-
-namespace ieee80211 {
+#include "MACAddress.h"
+#include "IPv4Address.h"
 
 class INET_API ILocator
 {
@@ -48,8 +43,9 @@ class INET_API ILocator
 
 };
 
-
-}
-}
-
+class INET_API LocatorModuleAccess : public ModuleAccess<ILocator>
+{
+  public:
+    LocatorModuleAccess() : ModuleAccess<ILocator>("locator") {}
+};
 #endif /* LOCATORMODULE_H_ */

@@ -22,7 +22,6 @@ package inet.linklayer.ieee80211.mgmt;
 simple Ieee80211Etx
 {
     parameters:
-        string interfaceTableModule;
         double ETXInterval @unit(s) = default(1s); //
         double ETTInterval @unit(s) = default(60s); // if 0 disabled
         double ETXMeasureInterval @unit(s) = default(10s);

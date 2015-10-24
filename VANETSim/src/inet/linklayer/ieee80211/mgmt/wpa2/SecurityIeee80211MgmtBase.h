@@ -18,30 +18,23 @@
 #ifndef SECURITYIEEE80211_MGMT_BASE_H
 #define SECURITYIEEE80211_MGMT_BASE_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/linklayer/common/MACAddress.h"
-#include "inet/common/queue/PassiveQueueBase.h"
-#include "inet/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h"
-#include "inet/securityModule/message/securityPkt_m.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtBase.h"
-#include "inet/securityModule/SecurityWPA2.h"
-
+#include "MACAddress.h"
+#include "PassiveQueueBase.h"
+#include "NotificationBoard.h"
+#include "Ieee80211Frame_m.h"
+#include "Ieee80211MgmtFrames_m.h"
+#include "securityPkt_m.h"
+#include "Ieee80211MgmtBase.h"
+#include "SecurityWPA2.h"
 /**
  * Abstract base class for 802.11 infrastructure mode management components.
  * Performs queueing for MAC, and dispatching incoming frames by frame type.
  * Also keeps some simple statistics (frame counts).
  *
  * @author Andras Varga
- *
  */
-
-namespace inet {
-
-namespace ieee80211 {
-
-
 class INET_API SecurityIeee80211MgmtBase : public Ieee80211MgmtBase
 {
   protected:
@@ -58,6 +51,5 @@ class INET_API SecurityIeee80211MgmtBase : public Ieee80211MgmtBase
     virtual void handleCCMPFrame(CCMPFrame *frame);
     //@}
 };
-}
-}
+
 #endif

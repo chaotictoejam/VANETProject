@@ -20,25 +20,22 @@
 #ifndef __INET_RSTP_H
 #define __INET_RSTP_H
 
-#include "inet/common/lifecycle/ILifecycle.h"
-#include "inet/linklayer/ieee8021d/common/Ieee8021dBPDU_m.h"
-#include "inet/linklayer/common/MACAddress.h"
-#include "inet/linklayer/ethernet/EtherFrame.h"
-#include "inet/linklayer/ethernet/switch/MACAddressTable.h"
-#include "inet/networklayer/common/InterfaceTable.h"
-#include "inet/linklayer/configurator/Ieee8021dInterfaceData.h"
-#include "inet/linklayer/ieee8021d/common/STPBase.h"
-
-namespace inet {
+#include "ILifecycle.h"
+#include "Ieee8021dBPDU_m.h"
+#include "MACAddress.h"
+#include "EtherFrame.h"
+#include "MACAddressTable.h"
+#include "InterfaceTable.h"
+#include "Ieee8021dInterfaceData.h"
+#include "STPBase.h"
 
 /**
  * Implements the Rapid Spanning Tree Protocol. See the NED file for details.
  */
-class INET_API RSTP : public STPBase
-{
-  protected:
+class INET_API RSTP : public STPBase {
+protected:
     // kind codes for self messages
-    enum SelfKinds { SELF_HELLOTIME = 1, SELF_UPGRADE };
+    enum SelfKinds {SELF_HELLOTIME = 1, SELF_UPGRADE};
 
     enum CompareResult {
         WORSE_PORT = -4, WORSE_SRC = -3, WORSE_RPC = -2, WORSE_ROOT = -1, SIMILAR = 0,
@@ -48,24 +45,24 @@ class INET_API RSTP : public STPBase
     // Set by management: see the ned file for more info
     simtime_t migrateTime;
     simtime_t tcWhileTime;
-    bool autoEdge = false;
+    bool autoEdge;
 
-    cMessage *helloTimer = nullptr;
-    cMessage *upgradeTimer = nullptr;
+    cMessage* helloTimer;
+    cMessage* upgradeTimer;
 
-  public:
+public:
     RSTP();
     virtual ~RSTP();
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) override;
+    virtual int numInitStages() const { return 3; }
+    virtual void receiveChangeNotification(int category, const cObject *details);
 
-  protected:
-    virtual void initialize(int stage) override;
-    virtual void finish() override {}
+protected:
+    virtual void initialize(int stage);
+    virtual void finish() {}
     virtual void initInterfacedata(unsigned int portNum);
 
-    virtual void start() override;
-    virtual void stop() override;
+    virtual void start();
+    virtual void stop();
 
     /**
      * @brief initialize RSTP dynamic information
@@ -91,7 +88,7 @@ class INET_API RSTP : public STPBase
     /**
      * @brief General processing
      */
-    virtual void handleMessage(cMessage *msg) override;
+    virtual void handleMessage(cMessage *msg);
 
     /**
      * @brief BPDU processing.
@@ -116,7 +113,7 @@ class INET_API RSTP : public STPBase
      * @brief Compares the BPDU frame with the BPDU this module would send through that port
      * @return (<0 if the root BPDU is better than BPDU)
      */
-    virtual CompareResult contestInterfacedata(BPDU *msg, unsigned int portNum);
+    virtual CompareResult contestInterfacedata(BPDU* msg, unsigned int portNum);
 
     /**
      * @brief Compares the port's best BPDU with the BPDU this module would send through that port
@@ -128,7 +125,7 @@ class INET_API RSTP : public STPBase
      * @brief Compares a port's best BPDU with a BPDU frame
      * @return (<0 if vector better than frame)
      */
-    virtual CompareResult compareInterfacedata(unsigned int portNum, BPDU *msg, int linkCost);
+    virtual CompareResult compareInterfacedata(unsigned int portNum, BPDU * msg, int linkCost);
 
     /**
      * @brief Compares two RSTP data
@@ -161,17 +158,17 @@ class INET_API RSTP : public STPBase
      * @brief Checks the frame TC flag.
      * Sets TCWhile if the port was forwarding and the flag is true.
      */
-    virtual void checkTC(BPDU *frame, int arrival);
+    virtual void checkTC(BPDU * frame, int arrival);
 
     /**
      * @brief Handles the switch to backup in one of the ports
      */
-    virtual void handleBackup(BPDU *frame, unsigned int arrival);
+    virtual void handleBackup(BPDU * frame, unsigned int arrival);
 
     /**
      * @brief schedule next upgrade self-message
      */
-    virtual void scheduleNextUpgrade();
+    virtual void scheduleNextUpgrde();
 
     /**
      * @brief flush all port expect one
@@ -179,7 +176,4 @@ class INET_API RSTP : public STPBase
     virtual void flushOtherPorts(unsigned int portNum);
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_RSTP_H
-
+#endif

@@ -20,11 +20,9 @@
 //
 cplusplus
 {{
-#include "inet/linklayer/common/MACAddress.h"
+#include "MACAddress.h"
 }};
 
-namespace inet::ieee80211;
-    
 class noncobject MACAddress;
 
 

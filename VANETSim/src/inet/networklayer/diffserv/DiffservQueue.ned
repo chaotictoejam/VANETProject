@@ -18,11 +18,11 @@
 
 package inet.networklayer.diffserv;
 
-import inet.common.queue.DropTailQueue;
-import inet.common.queue.IOutputQueue;
-import inet.common.queue.PriorityScheduler;
-import inet.common.queue.Sink;
-import inet.common.queue.WRRScheduler;
+import inet.base.Sink;
+import inet.linklayer.IOutputQueue;
+import inet.linklayer.queue.DropTailQueue;
+import inet.linklayer.queue.PriorityScheduler;
+import inet.linklayer.queue.WRRScheduler;
 
 
 //
@@ -52,12 +52,10 @@ import inet.common.queue.WRRScheduler;
 //
 module DiffservQueue like IOutputQueue
 {
-    parameters:
-        string interfaceTableModule;
-        *.interfaceTableModule = default(absPath(interfaceTableModule));
     gates:
         input in;
         output out;
+
     submodules:
         classifier: BehaviorAggregateClassifier {
             dscps = "EF AF11 AF12 AF13 AF21 AF22 AF23 AF31 AF32 AF33 AF41 AF42 AF43";

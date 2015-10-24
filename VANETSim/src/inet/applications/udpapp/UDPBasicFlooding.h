@@ -26,13 +26,11 @@
 #include <vector>
 #include <map>
 
-#include "inet/common/INETDefs.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
-#include "inet/applications/base/AddressModule.h"
-#include "inet/applications/base/ApplicationBase.h"
+#include "INETDefs.h"
+#include "UDPSocket.h"
+#include "AddressModule.h"
+#include "ApplicationBase.h"
 
-
-namespace inet {
 
 /**
  * UDP application. See NED for more info.
@@ -92,7 +90,7 @@ class INET_API UDPBasicFlooding : public ApplicationBase
     virtual void initialize(int stage);
     virtual void handleMessageWhenUp(cMessage *msg);
     virtual void finish();
-    virtual bool sendBroadcast(const L3Address &dest, cPacket *pkt);
+    virtual bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
     virtual void processStart();
 
     //AppBase:
@@ -104,8 +102,6 @@ class INET_API UDPBasicFlooding : public ApplicationBase
     UDPBasicFlooding();
     virtual ~UDPBasicFlooding();
 };
-
-}
 
 #endif
 

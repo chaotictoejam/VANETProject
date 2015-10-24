@@ -18,7 +18,6 @@
 
 #include "RSVPResvMsg_m.h"
 
-namespace inet {
 
 /**
  * RSVP RESV message
@@ -29,14 +28,15 @@ namespace inet {
 class RSVPResvMsg : public RSVPResvMsg_Base
 {
   public:
-    RSVPResvMsg(const char *name = nullptr, int kind = RESV_MESSAGE) : RSVPResvMsg_Base(name, kind) {}
+    RSVPResvMsg(const char *name = NULL, int kind = RESV_MESSAGE) : RSVPResvMsg_Base(name, kind) {}
     RSVPResvMsg(const RSVPResvMsg& other) : RSVPResvMsg_Base(other) {}
-    RSVPResvMsg& operator=(const RSVPResvMsg& other) { RSVPResvMsg_Base::operator=(other); return *this; }
-    virtual RSVPResvMsg *dup() const override { return new RSVPResvMsg(*this); }
+    RSVPResvMsg& operator=(const RSVPResvMsg& other) {RSVPResvMsg_Base::operator=(other); return *this;}
+    virtual RSVPResvMsg *dup() const {return new RSVPResvMsg(*this);}
 
-    inline IPv4Address getNHOP() { return getHop().Next_Hop_Address; }
-    inline IPv4Address getLIH() { return getHop().Logical_Interface_Handle; }
+    inline IPv4Address getNHOP() {return getHop().Next_Hop_Address;}
+    inline IPv4Address getLIH() {return getHop().Logical_Interface_Handle;}
 };
+
 
 /**
  * RESV TEAR message
@@ -47,14 +47,15 @@ class RSVPResvMsg : public RSVPResvMsg_Base
 class RSVPResvTear : public RSVPResvTear_Base
 {
   public:
-    RSVPResvTear(const char *name = nullptr, int kind = RTEAR_MESSAGE) : RSVPResvTear_Base(name, kind) {}
+    RSVPResvTear(const char *name = NULL, int kind = RTEAR_MESSAGE) : RSVPResvTear_Base(name, kind) {}
     RSVPResvTear(const RSVPResvTear& other) : RSVPResvTear_Base(other) {}
-    RSVPResvTear& operator=(const RSVPResvTear& other) { RSVPResvTear_Base::operator=(other); return *this; }
-    virtual RSVPResvTear *dup() const override { return new RSVPResvTear(*this); }
+    RSVPResvTear& operator=(const RSVPResvTear& other) {RSVPResvTear_Base::operator=(other); return *this;}
+    virtual RSVPResvTear *dup() const {return new RSVPResvTear(*this);}
 
-    inline IPv4Address getNHOP() { return getHop().Next_Hop_Address; }
-    inline IPv4Address getLIH() { return getHop().Logical_Interface_Handle; }
+    inline IPv4Address getNHOP() {return getHop().Next_Hop_Address;}
+    inline IPv4Address getLIH() {return getHop().Logical_Interface_Handle;}
 };
+
 
 /**
  * RESV ERROR message
@@ -65,16 +66,16 @@ class RSVPResvTear : public RSVPResvTear_Base
 class RSVPResvError : public RSVPResvError_Base
 {
   public:
-    RSVPResvError(const char *name = nullptr, int kind = RERROR_MESSAGE) : RSVPResvError_Base(name, kind) {}
+    RSVPResvError(const char *name = NULL, int kind = RERROR_MESSAGE) : RSVPResvError_Base(name, kind) {}
     RSVPResvError(const RSVPResvError& other) : RSVPResvError_Base(other) {}
-    RSVPResvError& operator=(const RSVPResvError& other) { RSVPResvError_Base::operator=(other); return *this; }
-    virtual RSVPResvError *dup() const override { return new RSVPResvError(*this); }
+    RSVPResvError& operator=(const RSVPResvError& other) {RSVPResvError_Base::operator=(other); return *this;}
+    virtual RSVPResvError *dup() const {return new RSVPResvError(*this);}
 
-    inline IPv4Address getNHOP() { return getHop().Next_Hop_Address; }
-    inline IPv4Address getLIH() { return getHop().Logical_Interface_Handle; }
+    inline IPv4Address getNHOP() {return getHop().Next_Hop_Address;}
+    inline IPv4Address getLIH() {return getHop().Logical_Interface_Handle;}
 };
 
-} // namespace inet
+#endif
 
-#endif // ifndef __INET_RSVPRESVMSG_H
+
 

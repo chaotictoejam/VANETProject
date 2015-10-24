@@ -19,15 +19,13 @@
 
 package inet.linklayer.ieee80211mesh;
 
-import inet.common.IHook;
-import inet.linklayer.contract.IWirelessNic;
-import inet.linklayer.ieee80211.mac.Ieee80211Mac;
-import inet.linklayer.ieee80211.mgmt.IIeee80211Mgmt;
+import inet.linklayer.ieee80211.radio.Ieee80211Radio;
 import inet.linklayer.ieee80211.mgmt.Ieee80211AgentSTA;
-import inet.physicallayer.contract.packetlevel.IRadio;
-
+import inet.linklayer.ieee80211.mgmt.IIeee80211Mgmt;
+import inet.linklayer.ieee80211.mac.Ieee80211Mac;
 import inet.linklayer.ieee80211mesh.mgmt.Ieee80211Mesh;
-import inet.linklayer.contract.IWirelessNic;
+import inet.linklayer.IWirelessNic;
+import inet.base.IHook;
 import inet.linklayer.ieee80211mesh.locator.ILocator;
 
 
@@ -37,20 +35,14 @@ import inet.linklayer.ieee80211mesh.locator.ILocator;
 module Ieee80211NicMesh like IWirelessNic
 {
     parameters:
-        string interfaceTableModule;
-        string powerSourceModule;
-        
         string mgmtType = default("Ieee80211Mesh"); // name of the management module type (implements IIeee80211Mgmt)
-        string radioType = default("Ieee80211Radio");
         string opMode @enum("b","g","a","p") = default("g");
         int numOutputHooks = default(0);
         int numInputHooks = default(0);
         double bitrate @unit("bps") = default(opMode == "b" ? 11Mbps : opMode == "p" ? 27Mbps : 54Mbps);
         bool _agentNeeded = false;   // internal par. do not use, shows if optional agent module is needed        
         bool hasLocator = default(false);
-        @display("i=block/ifcard;bgb=259,357");    
-        *.interfaceTableModule = default(absPath(interfaceTableModule));
-        *.powerSourceModule = default(absPath(powerSourceModule));           
+        @display("i=block/ifcard;bgb=259,357");
     gates:
         input upperLayerIn; // to upper layers
         output upperLayerOut; // from upper layers
@@ -71,7 +63,6 @@ module Ieee80211NicMesh like IWirelessNic
         mgmt: Ieee80211Mesh {
             parameters:
                 locatorActive = hasLocator;
-                macModule = "^.mac";
                 @display("p=96,136;q=wlanDataQueue;i=block/switch");
              gates:
                 macIn;
@@ -84,9 +75,11 @@ module Ieee80211NicMesh like IWirelessNic
                 bitrate = bitrate;
                 @display("p=96,222");
         }
-        radio: <radioType> like IRadio {
+        radio: Ieee80211Radio {
             parameters:
-                @display("p=157,302");
+                phyOpMode = opMode;
+                bitrate = bitrate;
+                @display("p=96,307");
         }
     connections allowunconnected:
         radioIn --> radio.radioIn;

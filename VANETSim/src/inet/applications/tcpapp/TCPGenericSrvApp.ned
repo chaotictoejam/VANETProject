@@ -19,7 +19,7 @@
 package inet.applications.tcpapp;
 
 
-import inet.applications.contract.ITCPApp;
+import inet.applications.ITCPApp;
 
 
 //

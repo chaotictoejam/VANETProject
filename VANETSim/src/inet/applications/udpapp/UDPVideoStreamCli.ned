@@ -18,7 +18,7 @@
 
 package inet.applications.udpapp;
 
-import inet.applications.contract.IUDPApp;
+import inet.applications.IUDPApp;
 
 
 //

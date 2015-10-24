@@ -24,14 +24,15 @@
 #ifndef __INETMANET_PASERUDPTRAFFICRECEIVER_H_
 #define __INETMANET_PASERUDPTRAFFICRECEIVER_H_
 
-#include "inet/common/INETDefs.h"
+#include <omnetpp.h>
 #include "PaserTrafficDataMsg_m.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
-#include "inet/mobility/single/RandomWPMobility.h"
+#include "csimplemodule.h"
+#include "UDPSocket.h"
+#include "RandomWPMobility.h"
 
 //#define No_init_manetStats
 
-namespace inet{
+
 
 struct mapEntry{
 	std::vector<int> receivedCounterVector;
@@ -99,7 +100,5 @@ class  PASERUdpTrafficReceiver : public cSimpleModule
 
     ~PASERUdpTrafficReceiver();
 };
-
-}
 
 #endif

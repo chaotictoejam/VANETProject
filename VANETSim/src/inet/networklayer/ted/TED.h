@@ -15,17 +15,17 @@
 #ifndef __INET_TED_H
 #define __INET_TED_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/networklayer/ted/TED_m.h"
-#include "inet/networklayer/rsvp_te/IntServ.h"
-#include "inet/common/lifecycle/ILifecycle.h"
+#include "TED_m.h"
+#include "IntServ.h"
+#include "ILifecycle.h"
 
-namespace inet {
-
-class IIPv4RoutingTable;
+class IRoutingTable;
 class IInterfaceTable;
 class InterfaceEntry;
+class NotificationBoard;
+
 
 /**
  * Contains the Traffic Engineering Database and provides public methods
@@ -42,8 +42,8 @@ class TED : public cSimpleModule, public ILifecycle
      */
     struct vertex_t
     {
-        IPv4Address node;    // FIXME *** is this the routerID? ***
-        int parent;    // index into the same vertex_t vector
+        IPv4Address node; // FIXME *** is this the routerID? ***
+        int parent;     // index into the same vertex_t vector
         double dist;    // distance to root (???)
     };
 
@@ -53,9 +53,9 @@ class TED : public cSimpleModule, public ILifecycle
      */
     struct edge_t
     {
-        int src;    // index into the vertex_t[] vector
-        int dest;    // index into the vertex_t[] vector
-        double metric;    // link cost
+        int src;       // index into the vertex_t[] vector
+        int dest;      // index into the vertex_t[] vector
+        double metric; // link cost
     };
 
     /**
@@ -68,14 +68,14 @@ class TED : public cSimpleModule, public ILifecycle
     virtual ~TED();
 
   protected:
-    virtual void initialize(int stage) override;
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void handleMessage(cMessage *msg) override;
+    virtual void initialize(int stage);
+    virtual int numInitStages() const { return 5; }
+    virtual void handleMessage(cMessage *msg);
 
     virtual void initializeTED();
 
     virtual IPAddressVector calculateShortestPath(IPAddressVector dest,
-            const TELinkStateInfoVector& topology, double req_bandwidth, int priority);
+        const TELinkStateInfoVector& topology, double req_bandwidth, int priority);
 
   public:
     /** @name Public interface to the Traffic Engineering Database */
@@ -93,31 +93,31 @@ class TED : public cSimpleModule, public ILifecycle
     virtual void rebuildRoutingTable();
     //@}
 
-    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) override;
+    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback);
 
   protected:
-    IIPv4RoutingTable *rt = nullptr;
-    IInterfaceTable *ift = nullptr;
+    IRoutingTable *rt;
+    IInterfaceTable *ift;
     IPv4Address routerId;
+    NotificationBoard *nb;
 
-    IPAddressVector interfaceAddrs;    // list of local interface addresses
-
-    int maxMessageId = 0;
+    IPAddressVector interfaceAddrs; // list of local interface addresses
 
   protected:
+    int maxMessageId;
+
     virtual int assignIndex(std::vector<vertex_t>& vertices, IPv4Address nodeAddr);
 
     std::vector<vertex_t> calculateShortestPaths(const TELinkStateInfoVector& topology,
-            double req_bandwidth, int priority);
+        double req_bandwidth, int priority);
 
-  public:    //FIXME
-    virtual bool checkLinkValidity(TELinkStateInfo link, TELinkStateInfo *& match);
+  public: //FIXME
+    virtual bool checkLinkValidity(TELinkStateInfo link, TELinkStateInfo *&match);
     virtual void updateTimestamp(TELinkStateInfo *link);
 };
 
-std::ostream& operator<<(std::ostream& os, const TELinkStateInfo& info);
+std::ostream & operator<<(std::ostream & os, const TELinkStateInfo& info);
 
-} // namespace inet
+#endif
 
-#endif // ifndef __INET_TED_H
 

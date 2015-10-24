@@ -1,11 +1,8 @@
-#ifndef __INET_ETHERFRAME_H
-#define __INET_ETHERFRAME_H
+#ifndef __INET_ETHERFRAME_H_
+#define __INET_ETHERFRAME_H_
 
-#include "inet/linklayer/ethernet/EtherFrame_m.h"
 
-namespace inet {
+#include "EtherFrame_m.h"
 
-} // namespace inet
 
-#endif // ifndef __INET_ETHERFRAME_H
-
+#endif // __INET_ETHERFRAME_H_

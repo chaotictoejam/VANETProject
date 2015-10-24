@@ -2,8 +2,8 @@
 // Generated file, do not edit! Created by nedtool 4.6 from applications/udpapp/PaserTrafficDataMsg.msg.
 //
 
-#ifndef _INET_PASERTRAFFICDATAMSG_M_H_
-#define _INET_PASERTRAFFICDATAMSG_M_H_
+#ifndef _PASERTRAFFICDATAMSG_M_H_
+#define _PASERTRAFFICDATAMSG_M_H_
 
 #include <omnetpp.h>
 
@@ -14,11 +14,13 @@
 #endif
 
 
-namespace inet {
 
 /**
- * Class generated from <tt>applications/udpapp/PaserTrafficDataMsg.msg:22</tt> by nedtool.
+ * Class generated from <tt>applications/udpapp/PaserTrafficDataMsg.msg:19</tt> by nedtool.
  * <pre>
+ * //
+ * // TODO generated message class
+ * //
  * packet PaserTrafficDataMsg
  * {
  *     string srcId;
@@ -66,7 +68,6 @@ class PaserTrafficDataMsg : public ::cPacket
 inline void doPacking(cCommBuffer *b, PaserTrafficDataMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, PaserTrafficDataMsg& obj) {obj.parsimUnpack(b);}
 
-} // namespace inet
 
-#endif // ifndef _INET_PASERTRAFFICDATAMSG_M_H_
+#endif // ifndef _PASERTRAFFICDATAMSG_M_H_
 

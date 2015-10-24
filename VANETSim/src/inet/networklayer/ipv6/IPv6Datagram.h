@@ -15,24 +15,22 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV6DATAGRAM_H
-#define __INET_IPV6DATAGRAM_H
+
+#ifndef _IPv6DATAGRAM_H_
+#define _IPv6DATAGRAM_H_
 
 #include <list>
-#include "inet/common/INETDefs.h"
-#include "inet/networklayer/contract/INetworkDatagram.h"
-#include "inet/networklayer/ipv6/IPv6Datagram_m.h"
-
-namespace inet {
+#include "INETDefs.h"
+#include "IPv6Datagram_m.h"
 
 /**
  * Represents an IPv6 datagram. More info in the IPv6Datagram.msg file
  * (and the documentation generated from it).
  */
-class INET_API IPv6Datagram : public IPv6Datagram_Base, public INetworkDatagram
+class INET_API IPv6Datagram : public IPv6Datagram_Base
 {
   protected:
-    typedef std::vector<IPv6ExtensionHeader *> ExtensionHeaders;
+    typedef std::vector<IPv6ExtensionHeader*> ExtensionHeaders;
     ExtensionHeaders extensionHeaders;
 
   private:
@@ -41,57 +39,56 @@ class INET_API IPv6Datagram : public IPv6Datagram_Base, public INetworkDatagram
     int getExtensionHeaderOrder(IPv6ExtensionHeader *eh);
 
   public:
-    IPv6Datagram(const char *name = nullptr, int kind = 0) : IPv6Datagram_Base(name, kind) {}
+    IPv6Datagram(const char *name = NULL, int kind = 0) : IPv6Datagram_Base(name, kind) {}
     IPv6Datagram(const IPv6Datagram& other) : IPv6Datagram_Base(other) { copy(other); }
     IPv6Datagram& operator=(const IPv6Datagram& other);
     ~IPv6Datagram();
 
-    virtual IPv6Datagram *dup() const override { return new IPv6Datagram(*this); }
+    virtual IPv6Datagram *dup() const {return new IPv6Datagram(*this);}
 
     /**
      * Returns bits 0-5 of the Traffic Class field, a value in the 0..63 range
      */
-    virtual int getDiffServCodePoint() const override { return getTrafficClass() & 0x3f; }
+    virtual int getDiffServCodePoint() const { return getTrafficClass() & 0x3f; }
 
     /**
      * Sets bits 0-5 of the Traffic Class field; expects a value in the 0..63 range
      */
-    virtual void setDiffServCodePoint(int dscp) override { setTrafficClass((getTrafficClass() & 0xc0) | (dscp & 0x3f)); }
+    virtual void setDiffServCodePoint(int dscp)  { setTrafficClass( (getTrafficClass() & 0xc0) | (dscp & 0x3f)); }
 
     /**
      * Returns bits 6-7 of the Traffic Class field, a value in the range 0..3
      */
-    virtual int getExplicitCongestionNotification() const override { return (getTrafficClass() >> 6) & 0x03; }
+    virtual int getExplicitCongestionNotification() const  { return (getTrafficClass() >> 6) & 0x03; }
 
     /**
      * Sets bits 6-7 of the Traffic Class field; expects a value in the 0..3 range
      */
-    virtual void setExplicitCongestionNotification(int ecn) override { setTrafficClass((getTrafficClass() & 0x3f) | ((ecn & 0x3) << 6)); }
+    virtual void setExplicitCongestionNotification(int ecn)  { setTrafficClass( (getTrafficClass() & 0x3f) | ((ecn & 0x3) << 6)); }
 
     /** Generated but unused method, should not be called. */
-    virtual void setExtensionHeaderArraySize(unsigned int size) override;
+    virtual void setExtensionHeaderArraySize(unsigned int size);
 
     /** Generated but unused method, should not be called. */
-    virtual void setExtensionHeader(unsigned int k, const IPv6ExtensionHeaderPtr& extensionHeader_var) override;
+    virtual void setExtensionHeader(unsigned int k, const IPv6ExtensionHeaderPtr& extensionHeader_var);
 
     /**
      * Returns the number of extension headers in this datagram
      */
-    virtual unsigned int getExtensionHeaderArraySize() const override;
+    virtual unsigned int getExtensionHeaderArraySize() const;
 
     /**
      * Returns the kth extension header in this datagram
      */
-    virtual IPv6ExtensionHeaderPtr& getExtensionHeader(unsigned int k) override;
-    virtual const IPv6ExtensionHeaderPtr& getExtensionHeader(unsigned int k) const override {return const_cast<IPv6Datagram*>(this)->getExtensionHeader(k);}
+    virtual IPv6ExtensionHeaderPtr& getExtensionHeader(unsigned int k);
 
     /**
      * Returns the extension header of the specified type,
-     * or nullptr. If index is 0, then the first, if 1 then the
+     * or NULL. If index is 0, then the first, if 1 then the
      * second extension is returned. (The datagram might
      * contain two Destination Options extension.)
      */
-    virtual IPv6ExtensionHeader *findExtensionHeaderByType(IPProtocolId extensionType, int index = 0) const;
+    virtual IPv6ExtensionHeader* findExtensionHeaderByType(IPProtocolId extensionType, int index=0) const;
 
     /**
      * Adds an extension header to the datagram.
@@ -121,24 +118,12 @@ class INET_API IPv6Datagram : public IPv6Datagram_Base, public INetworkDatagram
     /**
      * Removes and returns the first extension header of this datagram
      */
-    virtual IPv6ExtensionHeader *removeFirstExtensionHeader();
+    virtual IPv6ExtensionHeader* removeFirstExtensionHeader();
 
     /**
      * Removes and returns the first extension header with the given type.
      */
-    virtual IPv6ExtensionHeader *removeExtensionHeader(IPProtocolId extensionType);
-
-    virtual L3Address getSourceAddress() const override { return L3Address(getSrcAddress()); }
-    virtual void setSourceAddress(const L3Address& address) override { setSrcAddress(address.toIPv6()); }
-    virtual L3Address getDestinationAddress() const override { return L3Address(getDestAddress()); }
-    virtual void setDestinationAddress(const L3Address& address) override { setDestAddress(address.toIPv6()); }
-    virtual int getTransportProtocol() const override { return IPv6Datagram_Base::getTransportProtocol(); }
-    virtual void setTransportProtocol(int protocol) override { IPv6Datagram_Base::setTransportProtocol(protocol); }
+    virtual IPv6ExtensionHeader* removeExtensionHeader(IPProtocolId extensionType);
 };
 
-std::ostream& operator<<(std::ostream& out, const IPv6ExtensionHeader&);
-
-} // namespace inet
-
-#endif // ifndef __INET_IPV6DATAGRAM_H
-
+#endif

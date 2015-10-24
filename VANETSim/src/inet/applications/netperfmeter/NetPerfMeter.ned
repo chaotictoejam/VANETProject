@@ -8,7 +8,7 @@
 // *
 // * --------------------------------------------------------------------------
 // *
-// *   Copyright (C) 2009-2015 by Thomas Dreibholz
+// *   Copyright (C) 2009-2014 by Thomas Dreibholz
 // *
 // *   This program is free software: you can redistribute it and/or modify
 // *   it under the terms of the GNU General Public License as published by
@@ -26,25 +26,8 @@
 // *   Contact: dreibh@iem.uni-due.de
 
 package inet.applications.netperfmeter;
-import inet.applications.contract.INetPerfMeterApp;
+import inet.applications.INetPerfMeterApp;
 
-//
-// Application model for comparing the performance of various transport
-// protocols.
-//
-// The NetPerfMeter model simultaneously transmits bidirectional flows to an
-// endpoint, and measures the resulting flow bandwidths and QoS. Since the
-// application behaviour is the same for all underlying transport layer
-// protocols, it allows for comparing the performance of various transport
-// protocols, e.g. TCP vs. SCTP.
-//
-// The model closely mimics the operation of the real-world NetPerfMeter
-// application (https://www.uni-due.de/~be0001/netperfmeter/), a tool for
-// measuring UDP, TCP, MPTCP, SCTP and DCCP performance over IPv4 and IPv6.
-// Since the parametrisation and features are similar to the real-world
-// application, the model also makes comparisons of simulation results and
-// real-world measurements easy.
-//
 simple NetPerfMeter like INetPerfMeterApp
 {
     parameters:
@@ -62,7 +45,7 @@ simple NetPerfMeter like INetPerfMeterApp
 
         double          onTime          @unit(s) = default(-1s);       // Online time; disconnect when timer expires
         double          offTime         @unit(s) = default(-1s);       // Offline time; reconnect when timer expires
-        int             maxOnOffCycles           = default(0);         // Maximum number of on-off cycles (-1 for unlimited)
+        int             maxReconnects            = default(0);         // Maximum number of reconnects
 
         int             outboundStreams          = default(1);         // Number of outbound streams (SCTP only)
         int             maxInboundStreams        = default(16);        // Maximum number of inbound streams (SCTP only)
@@ -75,7 +58,6 @@ simple NetPerfMeter like INetPerfMeterApp
         volatile double frameSize      @unit(B)  = default(1452 B);    // Outgoing frame size
         string          frameRateString          = default("");        // Outgoing frame rate per stream, separated by ";"
         string          frameSizeString          = default("");        // Outgoing frame size per stream, separated by ";"
-        string          traceFile                = default("");        // Use trace file instead of frame rate/frame size
         double          maxMsgSize     @unit(B)  = default(1000 B);    // Maximum message size
         double          unordered                = default(0.0);       // Fraction of unordered messages (SCTP only)
         double          unreliable               = default(0.0);       // Fraction of unreliable messages (SCTP only)

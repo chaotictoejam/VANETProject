@@ -17,7 +17,7 @@
 
 package inet.mobility.single;
 
-import inet.mobility.base.MovingMobilityBase;
+import inet.mobility.common.MovingMobilityBase;
 
 //
 // Uses the native file format of BonnMotion (http://www.cs.uni-bonn.de/IV/BonnMotion/).

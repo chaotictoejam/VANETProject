@@ -15,14 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_NETWORKINFO_H
-#define __INET_NETWORKINFO_H
+#ifndef __INET_NETWORKINFO_H_
+#define __INET_NETWORKINFO_H_
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/common/scenario/IScriptable.h"
-
-namespace inet {
+#include "IScriptable.h"
 
 /**
  * TODO documentation
@@ -30,17 +28,15 @@ namespace inet {
 class INET_API NetworkInfo : public cSimpleModule, public IScriptable
 {
   protected:
-    virtual void initialize() override;
-    virtual void handleMessage(cMessage *msg) override;
+    virtual void initialize();
+    virtual void handleMessage(cMessage *msg);
 
     // IScriptable implementation
-    virtual void processCommand(const cXMLElement& node) override;
+    virtual void processCommand(const cXMLElement& node);
 
   protected:
     virtual void dumpRoutingInfo(cModule *target, const char *filename, bool append, bool compat);
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_NETWORKINFO_H
+#endif // __INET_NETWORKINFO_H_
 

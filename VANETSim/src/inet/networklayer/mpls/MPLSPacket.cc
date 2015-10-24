@@ -13,29 +13,27 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#include "inet/common/INETDefs.h"
 
-#include "inet/networklayer/mpls/MPLSPacket.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "MPLSPacket.h"
 
 // constructors
 MPLSPacket::MPLSPacket(const char *name) : cPacket(name)
 {
 }
 
-MPLSPacket::MPLSPacket(const MPLSPacket& p)
+MPLSPacket::MPLSPacket(const MPLSPacket & p)
     : cPacket(p)
 {
     copy(p);
 }
 
 // assignment operator
-MPLSPacket& MPLSPacket::operator=(const MPLSPacket& p)
+MPLSPacket & MPLSPacket::operator=(const MPLSPacket & p)
 {
-    if (this == &p)
-        return *this;
-    cPacket::operator=(p);
+    if (this == &p) return *this;
+    cPacket::operator =(p);
     copy(p);
     return *this;
 }
@@ -43,10 +41,8 @@ MPLSPacket& MPLSPacket::operator=(const MPLSPacket& p)
 std::string MPLSPacket::info() const
 {
     std::stringstream out;
-    for (int i = (int)labels.size() - 1; i >= 0; i--)
-        out << labels[i] << (i == 0 ? "" : " ");
+    for (int i = (int)labels.size()-1; i >= 0; i--)
+        out << labels[i] << (i==0?"":" ");
     return out.str();
 }
-
-} // namespace inet
 

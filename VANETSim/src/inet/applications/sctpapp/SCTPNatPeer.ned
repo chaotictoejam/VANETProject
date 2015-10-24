@@ -33,7 +33,7 @@ package inet.applications.sctpapp;
 // app sent a single 100 MB message, it will be echoed only when all
 // 100 megabytes have arrived.
 //
-import inet.applications.contract.ISCTPApp;
+import inet.applications.ISCTPApp;
 
 simple SCTPNatPeer like ISCTPApp
 {

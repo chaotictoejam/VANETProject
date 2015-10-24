@@ -28,7 +28,6 @@ package inet.linklayer.ieee80211.mgmt;
 simple Ieee80211AgentSTA
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module
         bool activeScan = default(true);  // selects between active and passive scanning
         string channelsToScan = default("");  // list of channel numbers to scan (space delimited); empty means all channels
         double probeDelay @unit(s) = default(100ms); // delay before sending a probe request during active scanning
@@ -37,15 +36,12 @@ simple Ieee80211AgentSTA
         double authenticationTimeout @unit(s) = default(5s); // timeout for the authentication procedure
         double associationTimeout @unit(s) = default(5s); // timeout for the association procedure
         double startingTime @unit("s") = default(-1s); // agent starting time.
-        string default_ssid = default("SSID"); // default ssid
+        string default_ssid = default(""); // default ssid
         @display("i=block/control");
         @signal[rcvdPk](type=cPacket);
         @signal[sentRequest](type=long); // ENUM! ~Ieee80211PrimRequestCode
         @signal[acceptConfirm](type=long); // ENUM! ~Ieee80211PrimConfirmCode
         @signal[dropConfirm](type=long); // ENUM! ~Ieee80211PrimConfirmCode
-        @signal[NF_L2_ASSOCIATED_NEWAP](type=inet::InterfaceEntry);
-        @signal[NF_L2_ASSOCIATED_OLDAP](type=inet::InterfaceEntry);
-        @signal[NF_L2_DISASSOCIATED](type=inet::InterfaceEntry);
         @statistic[sentRequest](title="sent requests"; record=count,vector); // ENUM! ~Ieee80211PrimRequestCode
         @statistic[acceptConfirm](title="accepted confirms"; record=count,vector); // ENUM! ~Ieee80211PrimConfirmCode
         @statistic[dropConfirm](title="dropped confirms"; record=count,vector); // ENUM! ~Ieee80211PrimConfirmCode

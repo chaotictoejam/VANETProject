@@ -2,8 +2,8 @@
 // Generated file, do not edit! Created by nedtool 4.6 from applications/voip/SimpleVoIPPacket.msg.
 //
 
-#ifndef _INET_SIMPLEVOIPPACKET_M_H_
-#define _INET_SIMPLEVOIPPACKET_M_H_
+#ifndef _SIMPLEVOIPPACKET_M_H_
+#define _SIMPLEVOIPPACKET_M_H_
 
 #include <omnetpp.h>
 
@@ -14,10 +14,9 @@
 #endif
 
 
-namespace inet {
 
 /**
- * Class generated from <tt>applications/voip/SimpleVoIPPacket.msg:25</tt> by nedtool.
+ * Class generated from <tt>applications/voip/SimpleVoIPPacket.msg:23</tt> by nedtool.
  * <pre>
  * //
  * // Represents a voice packet used by SimpleVoIPSender / SimpleVoIPReceiver 
@@ -73,7 +72,6 @@ class SimpleVoIPPacket : public ::cPacket
 inline void doPacking(cCommBuffer *b, SimpleVoIPPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SimpleVoIPPacket& obj) {obj.parsimUnpack(b);}
 
-} // namespace inet
 
-#endif // ifndef _INET_SIMPLEVOIPPACKET_M_H_
+#endif // ifndef _SIMPLEVOIPPACKET_M_H_
 

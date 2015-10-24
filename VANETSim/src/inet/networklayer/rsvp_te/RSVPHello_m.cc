@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -54,7 +53,7 @@ inline std::ostream& operator<<(std::ostream& out, const std::vector<T,A>& vec)
 template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
-RSVPHelloMsg_Base::RSVPHelloMsg_Base(const char *name, int kind) : ::inet::RSVPMessage(name,kind)
+RSVPHelloMsg_Base::RSVPHelloMsg_Base(const char *name, int kind) : ::RSVPMessage(name,kind)
 {
     this->request_var = 0;
     this->ack_var = 0;
@@ -63,7 +62,7 @@ RSVPHelloMsg_Base::RSVPHelloMsg_Base(const char *name, int kind) : ::inet::RSVPM
     this->rsvpKind_var = HELLO_MESSAGE;
 }
 
-RSVPHelloMsg_Base::RSVPHelloMsg_Base(const RSVPHelloMsg_Base& other) : ::inet::RSVPMessage(other)
+RSVPHelloMsg_Base::RSVPHelloMsg_Base(const RSVPHelloMsg_Base& other) : ::RSVPMessage(other)
 {
     copy(other);
 }
@@ -75,7 +74,7 @@ RSVPHelloMsg_Base::~RSVPHelloMsg_Base()
 RSVPHelloMsg_Base& RSVPHelloMsg_Base::operator=(const RSVPHelloMsg_Base& other)
 {
     if (this==&other) return *this;
-    ::inet::RSVPMessage::operator=(other);
+    ::RSVPMessage::operator=(other);
     copy(other);
     return *this;
 }
@@ -91,7 +90,7 @@ void RSVPHelloMsg_Base::copy(const RSVPHelloMsg_Base& other)
 
 void RSVPHelloMsg_Base::parsimPack(cCommBuffer *b)
 {
-    ::inet::RSVPMessage::parsimPack(b);
+    ::RSVPMessage::parsimPack(b);
     doPacking(b,this->request_var);
     doPacking(b,this->ack_var);
     doPacking(b,this->srcInstance_var);
@@ -101,7 +100,7 @@ void RSVPHelloMsg_Base::parsimPack(cCommBuffer *b)
 
 void RSVPHelloMsg_Base::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::RSVPMessage::parsimUnpack(b);
+    ::RSVPMessage::parsimUnpack(b);
     doUnpacking(b,this->request_var);
     doUnpacking(b,this->ack_var);
     doUnpacking(b,this->srcInstance_var);
@@ -184,7 +183,7 @@ class RSVPHelloMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RSVPHelloMsgDescriptor);
 
-RSVPHelloMsgDescriptor::RSVPHelloMsgDescriptor() : cClassDescriptor("inet::RSVPHelloMsg", "inet::RSVPMessage")
+RSVPHelloMsgDescriptor::RSVPHelloMsgDescriptor() : cClassDescriptor("RSVPHelloMsg", "RSVPMessage")
 {
 }
 
@@ -368,5 +367,4 @@ void *RSVPHelloMsgDescriptor::getFieldStructPointer(void *object, int field, int
     }
 }
 
-} // namespace inet
 

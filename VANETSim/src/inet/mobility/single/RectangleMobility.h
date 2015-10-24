@@ -15,14 +15,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_RECTANGLEMOBILITY_H
-#define __INET_RECTANGLEMOBILITY_H
 
-#include "inet/common/INETDefs.h"
+#ifndef RECTANGLE_MOBILITY_H
+#define RECTANGLE_MOBILITY_H
 
-#include "inet/mobility/base/MovingMobilityBase.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "MovingMobilityBase.h"
+
 
 /**
  * @brief Rectangle movement model. See NED file for more info.
@@ -34,33 +34,29 @@ class INET_API RectangleMobility : public MovingMobilityBase
 {
   protected:
     // configuration
-    double speed;    ///< speed of the host
+    double speed;          ///< speed of the host
 
     // state
-    double d;    ///< distance from (x1,y1), measured clockwise on the perimeter
+    double d;  ///< distance from (x1,y1), measured clockwise on the perimeter
     double corner1, corner2, corner3, corner4;
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 3; }
 
     /** @brief Initializes mobility model parameters.
      *
      * If the host is not stationary it calculates a random position on the rectangle.
      */
-    virtual void initialize(int stage) override;
+    virtual void initialize(int stage);
 
     /** @brief Initializes the position according to the mobility model. */
-    virtual void setInitialPosition() override;
+    virtual void setInitialPosition();
 
     /** @brief Move the host */
-    virtual void move() override;
+    virtual void move();
 
   public:
-    virtual double getMaxSpeed() const override { return speed; }
     RectangleMobility();
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_RECTANGLEMOBILITY_H
-
+#endif

@@ -28,8 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
-namespace ieee80211 {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -56,8 +54,8 @@ template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::LwmplsType");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::LwmplsType"));
+    cEnum *e = cEnum::find("LwmplsType");
+    if (!e) enums.getInstance()->add(e = new cEnum("LwmplsType"));
     e->insert(WMPLS_NORMAL, "WMPLS_NORMAL");
     e->insert(WMPLS_BEGIN, "WMPLS_BEGIN");
     e->insert(WMPLS_REFRES, "WMPLS_REFRES");
@@ -297,7 +295,7 @@ class LWMPLSPacketDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LWMPLSPacketDescriptor);
 
-LWMPLSPacketDescriptor::LWMPLSPacketDescriptor() : cClassDescriptor("inet::ieee80211::LWMPLSPacket", "cPacket")
+LWMPLSPacketDescriptor::LWMPLSPacketDescriptor() : cClassDescriptor("LWMPLSPacket", "cPacket")
 {
 }
 
@@ -414,7 +412,7 @@ const char *LWMPLSPacketDescriptor::getFieldProperty(void *object, int field, co
     }
     switch (field) {
         case 2:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::LwmplsType";
+            if (!strcmp(propertyname,"enum")) return "LwmplsType";
             return NULL;
         default: return NULL;
     }
@@ -513,7 +511,7 @@ void *LWMPLSPacketDescriptor::getFieldStructPointer(void *object, int field, int
 
 Register_Class(LWMPLSControl);
 
-LWMPLSControl::LWMPLSControl(const char *name, int kind) : ::inet::ieee80211::LWMPLSPacket(name,kind)
+LWMPLSControl::LWMPLSControl(const char *name, int kind) : ::LWMPLSPacket(name,kind)
 {
     this->setByteLength(12);
 
@@ -523,7 +521,7 @@ LWMPLSControl::LWMPLSControl(const char *name, int kind) : ::inet::ieee80211::LW
     this->assocAddressPtr_var = 0;
 }
 
-LWMPLSControl::LWMPLSControl(const LWMPLSControl& other) : ::inet::ieee80211::LWMPLSPacket(other)
+LWMPLSControl::LWMPLSControl(const LWMPLSControl& other) : ::LWMPLSPacket(other)
 {
     gateAddressPtr_arraysize = 0;
     this->gateAddressPtr_var = 0;
@@ -541,7 +539,7 @@ LWMPLSControl::~LWMPLSControl()
 LWMPLSControl& LWMPLSControl::operator=(const LWMPLSControl& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::LWMPLSPacket::operator=(other);
+    ::LWMPLSPacket::operator=(other);
     copy(other);
     return *this;
 }
@@ -562,7 +560,7 @@ void LWMPLSControl::copy(const LWMPLSControl& other)
 
 void LWMPLSControl::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::LWMPLSPacket::parsimPack(b);
+    ::LWMPLSPacket::parsimPack(b);
     b->pack(gateAddressPtr_arraysize);
     doPacking(b,this->gateAddressPtr_var,gateAddressPtr_arraysize);
     b->pack(assocAddressPtr_arraysize);
@@ -571,7 +569,7 @@ void LWMPLSControl::parsimPack(cCommBuffer *b)
 
 void LWMPLSControl::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::LWMPLSPacket::parsimUnpack(b);
+    ::LWMPLSPacket::parsimUnpack(b);
     delete [] this->gateAddressPtr_var;
     b->unpack(gateAddressPtr_arraysize);
     if (gateAddressPtr_arraysize==0) {
@@ -675,7 +673,7 @@ class LWMPLSControlDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LWMPLSControlDescriptor);
 
-LWMPLSControlDescriptor::LWMPLSControlDescriptor() : cClassDescriptor("inet::ieee80211::LWMPLSControl", "inet::ieee80211::LWMPLSPacket")
+LWMPLSControlDescriptor::LWMPLSControlDescriptor() : cClassDescriptor("LWMPLSControl", "LWMPLSPacket")
 {
 }
 
@@ -842,6 +840,4 @@ void *LWMPLSControlDescriptor::getFieldStructPointer(void *object, int field, in
     }
 }
 
-} // namespace ieee80211
-} // namespace inet
 

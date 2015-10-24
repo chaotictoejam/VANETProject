@@ -22,10 +22,6 @@ import inet.linklayer.ieee80211mesh.locator.ILocator;
 simple Locator like ILocator
 {
     parameters:
-        string interfaceTableModule;
-        string routingTableModule;
-        string icmpModule = default("^.networkLayer.icmp");
-        string arpModule = default("^.networkLayer.arp");        
         bool useGlobal = default(true);
         string iface = default("");
         @class(LocatorModule);

@@ -1,30 +1,24 @@
 //
-// Copyright (C) 2004 Andras Varga
+// Copyright 2004 Andras Varga
 //
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
+// This library is free software, you can redistribute it and/or modify
+// it under  the terms of the GNU Lesser General Public License
+// as published by the Free Software Foundation;
+// either version 2 of the License, or any later version.
+// The library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with this program; if not, see <http://www.gnu.org/licenses/>.
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// See the GNU Lesser General Public License for more details.
 //
 
 #ifndef __INET_TCPBASICCLIENTAPP_H
 #define __INET_TCPBASICCLIENTAPP_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/applications/tcpapp/TCPAppBase.h"
-#include "inet/common/lifecycle/NodeStatus.h"
-#include "inet/common/lifecycle/ILifecycle.h"
-
-namespace inet {
+#include "TCPAppBase.h"
+#include "NodeStatus.h"
+#include "ILifecycle.h"
 
 /**
  * An example request-reply based client application.
@@ -32,32 +26,48 @@ namespace inet {
 class INET_API TCPBasicClientApp : public TCPAppBase, public ILifecycle
 {
   protected:
-    cMessage *timeoutMsg = nullptr;
-    NodeStatus *nodeStatus = nullptr;
-    bool earlySend = false;    // if true, don't wait with sendRequest() until established()
-    int numRequestsToSend = 0;    // requests to send in this session
+    cMessage *timeoutMsg;
+    NodeStatus *nodeStatus;
+    bool earlySend;  // if true, don't wait with sendRequest() until established()
+    int numRequestsToSend; // requests to send in this session
     simtime_t startTime;
     simtime_t stopTime;
 
+    /** Utility: sends a request to the server */
     virtual void sendRequest();
+
+    /** Utility: cancel msgTimer and if d is smaller than stopTime, then schedule it to d,
+     * otherwise delete msgTimer */
     virtual void rescheduleOrDeleteTimer(simtime_t d, short int msgKind);
 
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int stage) override;
-    virtual void handleTimer(cMessage *msg) override;
-    virtual void socketEstablished(int connId, void *yourPtr) override;
-    virtual void socketDataArrived(int connId, void *yourPtr, cPacket *msg, bool urgent) override;
-    virtual void socketClosed(int connId, void *yourPtr) override;
-    virtual void socketFailure(int connId, void *yourPtr, int code) override;
-    virtual bool isNodeUp();
-    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) override;
-
   public:
-    TCPBasicClientApp() {}
+    TCPBasicClientApp();
     virtual ~TCPBasicClientApp();
+    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback);
+
+  protected:
+    virtual int numInitStages() const { return 4; }
+
+    /** Redefined . */
+    virtual void initialize(int stage);
+
+    /** Redefined. */
+    virtual void handleTimer(cMessage *msg);
+
+    /** Redefined. */
+    virtual void socketEstablished(int connId, void *yourPtr);
+
+    /** Redefined. */
+    virtual void socketDataArrived(int connId, void *yourPtr, cPacket *msg, bool urgent);
+
+    /** Redefined to start another session after a delay. */
+    virtual void socketClosed(int connId, void *yourPtr);
+
+    /** Redefined to reconnect after a delay. */
+    virtual void socketFailure(int connId, void *yourPtr, int code);
+
+    virtual bool isNodeUp();
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_TCPBASICCLIENTAPP_H
+#endif
 

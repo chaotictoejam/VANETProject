@@ -25,12 +25,10 @@
 #include <vector>
 #include <map>
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/applications/base/ApplicationBase.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
-
-namespace inet {
+#include "ApplicationBase.h"
+#include "UDPSocket.h"
 
 
 /**
@@ -39,84 +37,83 @@ namespace inet {
 class INET_API UDPBasicBurst : public ApplicationBase
 {
   public:
-    enum ChooseDestAddrMode {
+    enum ChooseDestAddrMode
+    {
         ONCE = 1, PER_BURST, PER_SEND
     };
 
   protected:
     enum SelfMsgKinds { START = 1, SEND, STOP };
-    typedef std::map<int, int> SourceSequence;
 
-    // parameters
-    std::vector<L3Address> destAddresses;
-    ChooseDestAddrMode chooseDestAddrMode = (ChooseDestAddrMode)0;
+    UDPSocket socket;
+    int localPort, destPort;
+
+    ChooseDestAddrMode chooseDestAddrMode;
+    std::vector<IPvXAddress> destAddresses;
+    IPvXAddress destAddr;
+    int destAddrRNG;
+
+    typedef std::map<int,int> SourceSequence;
+    SourceSequence sourceSequence;
     simtime_t delayLimit;
+    cMessage *timerNext;
     simtime_t startTime;
     simtime_t stopTime;
-    int localPort = -1, destPort = -1;
-    int destAddrRNG = -1;
-
-    // volatile parameters:
-    cPar *messageLengthPar = nullptr;
-    cPar *burstDurationPar = nullptr;
-    cPar *sleepDurationPar = nullptr;
-    cPar *sendIntervalPar = nullptr;
-
-    // state
-    UDPSocket socket;
-    L3Address destAddr;
-    SourceSequence sourceSequence;
-    cMessage *timerNext = nullptr;
     simtime_t nextPkt;
     simtime_t nextBurst;
     simtime_t nextSleep;
-    bool isSource = false;
-    bool activeBurst = false;
-    bool haveSleepDuration = false;
-    int outputInterface = -1;
+    bool activeBurst;
+    bool isSource;
+    bool haveSleepDuration;
+    int outputInterface;
     std::vector<int> outputInterfaceMulticastBroadcast;
 
-    // statistics:
-    static int counter;    // counter for generating a global number for each packet
+    static int counter; // counter for generating a global number for each packet
 
-    int numSent = 0;
-    int numReceived = 0;
-    int numDeleted = 0;
-    int numDuplicated = 0;
+    int numSent;
+    int numReceived;
+    int numDeleted;
+    int numDuplicated;
 
+    // volatile parameters:
+    cPar *messageLengthPar;
+    cPar *burstDurationPar;
+    cPar *sleepDurationPar;
+    cPar *sendIntervalPar;
+
+    //statistics:
     static simsignal_t sentPkSignal;
     static simsignal_t rcvdPkSignal;
     static simsignal_t outOfOrderPkSignal;
     static simsignal_t dropPkSignal;
 
-  protected:
     // chooses random destination address
-    virtual L3Address chooseDestAddr();
+    virtual IPvXAddress chooseDestAddr();
     virtual cPacket *createPacket();
     virtual void processPacket(cPacket *msg);
     virtual void generateBurst();
 
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int stage) override;
-    virtual void handleMessageWhenUp(cMessage *msg) override;
-    virtual void finish() override;
-    virtual bool sendBroadcast(const L3Address &dest, cPacket *pkt);
+  protected:
+    virtual int numInitStages() const { return 4; }
+    virtual void initialize(int stage);
+    virtual void handleMessageWhenUp(cMessage *msg);
+    virtual void finish();
+    virtual bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
+
     virtual void initialConfiguration();
 
     virtual void processStart();
     virtual void processSend();
     virtual void processStop();
 
-    virtual bool handleNodeStart(IDoneCallback *doneCallback) override;
-    virtual bool handleNodeShutdown(IDoneCallback *doneCallback) override;
-    virtual void handleNodeCrash() override;
+    virtual bool handleNodeStart(IDoneCallback *doneCallback);
+    virtual bool handleNodeShutdown(IDoneCallback *doneCallback);
+    virtual void handleNodeCrash();
 
   public:
-    UDPBasicBurst() {}
+    UDPBasicBurst();
     ~UDPBasicBurst();
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_UDPBASICBURST_H
+#endif
 

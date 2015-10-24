@@ -16,14 +16,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
+
 //  Cleanup and rewrite: Andras Varga, 2004
 
-#include "inet/networklayer/ipv4/ErrorHandling.h"
+#include "ErrorHandling.h"
 
-#include "inet/networklayer/ipv4/ICMPMessage.h"
-#include "inet/networklayer/ipv4/IPv4Datagram.h"
+#include "ICMPMessage.h"
+#include "IPv4Datagram.h"
 
-namespace inet {
 
 Define_Module(ErrorHandling);
 
@@ -46,16 +46,17 @@ void ErrorHandling::handleMessage(cMessage *msg)
     // Note: we must NOT use decapsulate() because payload in ICMP is conceptually truncated
     IPv4Datagram *d = check_and_cast<IPv4Datagram *>(icmpMsg->getEncapsulatedPacket());
 
-    EV_WARN << "Error Handler: ICMP message received:\n";
-    EV_WARN << " Type: " << (int)icmpMsg->getType()
-            << " Code: " << (int)icmpMsg->getCode()
-            << " Bytelength: " << d->getByteLength()
-            << " Src: " << d->getSrcAddress()
-            << " Dest: " << d->getDestAddress()
-            << " Time: " << simTime()
-            << "\n";
+    EV << "Error Handler: ICMP message received:\n";
+    EV << " Type: " << (int)icmpMsg->getType()
+       << " Code: " << (int)icmpMsg->getCode()
+       << " Bytelength: " << d->getByteLength()
+       << " Src: " << d->getSrcAddress()
+       << " Dest: " << d->getDestAddress()
+       << " Time: " << simTime()
+       << "\n";
 
-    switch (icmpMsg->getType()) {
+    switch (icmpMsg->getType())
+    {
         case ICMP_DESTINATION_UNREACHABLE:
             numHostUnreachable++;
             break;
@@ -67,12 +68,11 @@ void ErrorHandling::handleMessage(cMessage *msg)
 
     delete icmpMsg;
 
-    if (hasGUI()) {
+    if (ev.isGUI())
+    {
         char buf[80];
         sprintf(buf, "errors: %ld", numReceived);
         getDisplayString().setTagArg("t", 0, buf);
     }
 }
-
-} // namespace inet
 

@@ -12,7 +12,7 @@
 
 
 cplusplus {{
-#include "inet/networklayer/contract/ipv4/IPv4Address.h"
+#include "IPv4Address.h"
 
 // base header: version, length, LSR ID, Label space
 #define LDP_BASEHEADER_BYTES  10
@@ -22,7 +22,6 @@ cplusplus {{
 #define LDP_HEADER_BYTES  (LDP_BASEHEADER_BYTES+20)
 }}
 
-namespace inet;
 
 class noncobject IPv4Address;
 

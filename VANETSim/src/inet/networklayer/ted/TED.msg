@@ -14,12 +14,8 @@
 
 
 cplusplus {{
-#include "inet/networklayer/contract/ipv4/IPv4Address.h"
-}}
+#include "IPv4Address.h"
 
-namespace inet;
-
-cplusplus {{
 #define LINK_STATE_MESSAGE      1
 
 typedef std::vector<struct TELinkStateInfo> TELinkStateInfoVector;
@@ -49,7 +45,7 @@ struct TELinkStateInfo
 
 
 //
-// Data structure supplied with NF_TED_CHANGE signal.
+// Data structure supplied with NF_TED_CHANGE ~NotificationBoard notifications.
 // This triggers the link state protocol to send out up-to-date link state info
 // about the given links.
 //

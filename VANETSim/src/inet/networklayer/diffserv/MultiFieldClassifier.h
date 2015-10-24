@@ -16,12 +16,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
+
 #ifndef __INET_MULTIFIELDCLASSIFIER_H
 #define __INET_MULTIFIELDCLASSIFIER_H
 
-#include "inet/common/INETDefs.h"
-
-namespace inet {
+#include "INETDefs.h"
 
 /**
  * Absolute dropper.
@@ -29,57 +28,56 @@ namespace inet {
 class INET_API MultiFieldClassifier : public cSimpleModule
 {
   protected:
-    struct Filter
-    {
-        int gateIndex = -1;
+        struct Filter
+        {
+            int gateIndex;
 
-        L3Address srcAddr;
-        int srcPrefixLength = 0;
-        L3Address destAddr;
-        int destPrefixLength = 0;
-        int protocol = -1;
-        int tos = 0;
-        int tosMask = 0;
-        int srcPortMin = -1;
-        int srcPortMax = -1;
-        int destPortMin = -1;
-        int destPortMax = -1;
+            IPvXAddress srcAddr;
+            int srcPrefixLength;
+            IPvXAddress destAddr;
+            int destPrefixLength;
+            int protocol;
+            int tos;
+            int tosMask;
+            int srcPortMin;
+            int srcPortMax;
+            int destPortMin;
+            int destPortMax;
 
-        Filter() {}
+            Filter() : gateIndex(-1),
+                       srcPrefixLength(0), destPrefixLength(0), protocol(-1), tos(0), tosMask(0),
+                       srcPortMin(-1), srcPortMax(-1), destPortMin(-1), destPortMax(-1)  {}
     #ifdef WITH_IPv4
-        bool matches(IPv4Datagram *datagram);
-    #endif // ifdef WITH_IPv4
+            bool matches(IPv4Datagram *datagram);
+    #endif
     #ifdef WITH_IPv6
-        bool matches(IPv6Datagram *datagram);
-    #endif // ifdef WITH_IPv6
-    };
+            bool matches(IPv6Datagram *datagram);
+    #endif
+        };
 
   protected:
-    int numOutGates = 0;
+    int numOutGates;
     std::vector<Filter> filters;
 
-    int numRcvd = 0;
+    int numRcvd;
 
     static simsignal_t pkClassSignal;
 
   protected:
-    void addFilter(const Filter& filter);
+    void addFilter(const Filter &filter);
     void configureFilters(cXMLElement *config);
 
   public:
     MultiFieldClassifier() {}
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 4; }
 
-    virtual void initialize(int stage) override;
+    virtual void initialize(int stage);
 
-    virtual void handleMessage(cMessage *msg) override;
+    virtual void handleMessage(cMessage *msg);
 
     virtual int classifyPacket(cPacket *packet);
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_MULTIFIELDCLASSIFIER_H
-
+#endif

@@ -24,30 +24,27 @@
 #define __INET_UDPBASICBURSTNOTIFICATION_H
 
 #include "UDPBasicBurst.h"
-#include "inet/applications/base/AddressModule.h"
+#include "AddressModule.h"
 
-namespace inet {
 
 /**
  * UDP application. See NED for more info.
  */
-class INET_API UDPBasicBurstNotification : public UDPBasicBurst, protected cListener
+class INET_API UDPBasicBurstNotification : public UDPBasicBurst, protected INotifiable
 {
   protected:
     AddressModule * addressModule;
   protected:
     // chooses random destination address
-    virtual L3Address chooseDestAddr();
+    virtual IPvXAddress chooseDestAddr();
     virtual void generateBurst();
     virtual void processStart();
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, long l);
     virtual void initialConfiguration();
+    virtual void receiveChangeNotification(int category, const cObject *details);
   public:
     UDPBasicBurstNotification();
     virtual ~UDPBasicBurstNotification();
 };
-
-}
 
 #endif
 

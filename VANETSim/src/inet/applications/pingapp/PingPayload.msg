@@ -17,10 +17,10 @@
 
 
 cplusplus {{
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 }}
 
-namespace inet;
+
 
 //
 // Represents payload in an ICMP/ICMPv6 Echo Request/Reply.

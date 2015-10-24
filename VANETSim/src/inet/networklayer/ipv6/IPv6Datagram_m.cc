@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -202,7 +201,7 @@ class IPv6DatagramDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6DatagramDescriptor);
 
-IPv6DatagramDescriptor::IPv6DatagramDescriptor() : cClassDescriptor("inet::IPv6Datagram", "cPacket")
+IPv6DatagramDescriptor::IPv6DatagramDescriptor() : cClassDescriptor("IPv6Datagram", "cPacket")
 {
 }
 
@@ -320,7 +319,7 @@ const char *IPv6DatagramDescriptor::getFieldProperty(void *object, int field, co
     }
     switch (field) {
         case 7:
-            if (!strcmp(propertyname,"enum")) return "inet::IPProtocolId";
+            if (!strcmp(propertyname,"enum")) return "IPProtocolId";
             return NULL;
         default: return NULL;
     }
@@ -422,7 +421,7 @@ Register_Class(IPv6ExtensionHeader);
 IPv6ExtensionHeader::IPv6ExtensionHeader() : ::cObject()
 {
     this->extensionType_var = 0;
-    this->byteLength_var = 0;
+    this->byteLength_var = 8;
 }
 
 IPv6ExtensionHeader::IPv6ExtensionHeader(const IPv6ExtensionHeader& other) : ::cObject(other)
@@ -505,7 +504,7 @@ class IPv6ExtensionHeaderDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6ExtensionHeaderDescriptor);
 
-IPv6ExtensionHeaderDescriptor::IPv6ExtensionHeaderDescriptor() : cClassDescriptor("inet::IPv6ExtensionHeader", "cObject")
+IPv6ExtensionHeaderDescriptor::IPv6ExtensionHeaderDescriptor() : cClassDescriptor("IPv6ExtensionHeader", "cObject")
 {
 }
 
@@ -670,5 +669,4 @@ void *IPv6ExtensionHeaderDescriptor::getFieldStructPointer(void *object, int fie
     }
 }
 
-} // namespace inet
 

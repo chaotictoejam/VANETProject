@@ -18,7 +18,7 @@
 
 package inet.applications.udpapp;
 
-import inet.applications.contract.IUDPApp;
+import inet.applications.IUDPApp;
 
 
 //
@@ -29,7 +29,6 @@ import inet.applications.contract.IUDPApp;
 simple UDPEchoApp like IUDPApp
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module
         int localPort;  // local port to listen on
         @display("i=block/app");
         @signal[pk](type=cPacket);

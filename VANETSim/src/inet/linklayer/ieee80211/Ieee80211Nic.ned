@@ -15,14 +15,16 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
+
 package inet.linklayer.ieee80211;
 
-import inet.common.IHook;
-import inet.linklayer.contract.IWirelessNic;
+import inet.base.IHook;
+import inet.linklayer.IWirelessNic;
 import inet.linklayer.ieee80211.mac.Ieee80211Mac;
 import inet.linklayer.ieee80211.mgmt.IIeee80211Mgmt;
 import inet.linklayer.ieee80211.mgmt.Ieee80211AgentSTA;
-import inet.physicallayer.contract.packetlevel.IRadio;
+import inet.linklayer.ieee80211.radio.Ieee80211Radio;
+
 
 //
 // This NIC implements an 802.11 network interface card.
@@ -35,24 +37,17 @@ import inet.physicallayer.contract.packetlevel.IRadio;
 module Ieee80211Nic like IWirelessNic
 {
     parameters:
-        string interfaceTableModule;
-        string energySourceModule = default("");
         string mgmtType = default("Ieee80211MgmtSTA"); // name of the management module type (implements IIeee80211Mgmt)
-        string radioType = default("Ieee80211ScalarRadio");
-        string opMode @enum("a", "b", "g", "n", "p") = default("g");
+        string opMode @enum("b","g","a","p") = default("g");
         double bitrate @unit("bps") = default(opMode == "b" ? 11Mbps : opMode == "p" ? 27Mbps : 54Mbps);
         int numOutputHooks = default(0);
         int numInputHooks = default(0);
         bool _agentNeeded = (mgmtType == "Ieee80211MgmtSTA");   // internal par. do not use, shows if optional agent module is needed
-        **.opMode = opMode;
-        **.bitrate = bitrate;
         @display("i=block/ifcard;bgb=336,357");
-        *.interfaceTableModule = default(absPath(interfaceTableModule));
-        *.energySourceModule = default(absPath(energySourceModule));
     gates:
         input upperLayerIn; // to upper layers
         output upperLayerOut; // from upper layers
-        input radioIn @labels(IRadioFrame); // to receive radio frames
+        input radioIn @labels(AirFrame); // to receive AirFrames
     submodules:
         outputHook[numOutputHooks]: <default("Nop")> like IHook if numOutputHooks>0 {
             @display("p=218,70");
@@ -67,16 +62,19 @@ module Ieee80211Nic like IWirelessNic
         }
         mgmt: <mgmtType> like IIeee80211Mgmt {
             parameters:
-                macModule = "^.mac";
                 @display("p=157,131;q=wlanDataQueue");
         }
         mac: Ieee80211Mac {
             parameters:
-                queueModule = "^.mgmt";
+                opMode = opMode;
+                bitrate = bitrate;
+                queueModule = "mgmt";
                 @display("p=157,217");
         }
-        radio: <radioType> like IRadio {
+        radio: Ieee80211Radio {
             parameters:
+                phyOpMode = opMode;
+                bitrate = bitrate;
                 @display("p=157,302");
         }
     connections:

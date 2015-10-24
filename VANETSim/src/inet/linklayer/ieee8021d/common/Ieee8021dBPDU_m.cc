@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -58,8 +57,6 @@ Register_Class(BPDU);
 
 BPDU::BPDU(const char *name, int kind) : ::cPacket(name,kind)
 {
-    this->setByteLength(35);
-
     this->protocolIdentifier_var = 0;
     this->protocolVersionIdentifier_var = 0;
     this->bpduType_var = 0;
@@ -340,7 +337,7 @@ class BPDUDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(BPDUDescriptor);
 
-BPDUDescriptor::BPDUDescriptor() : cClassDescriptor("inet::BPDU", "cPacket")
+BPDUDescriptor::BPDUDescriptor() : cClassDescriptor("BPDU", "cPacket")
 {
 }
 
@@ -591,5 +588,4 @@ void *BPDUDescriptor::getFieldStructPointer(void *object, int field, int i) cons
     }
 }
 
-} // namespace inet
 

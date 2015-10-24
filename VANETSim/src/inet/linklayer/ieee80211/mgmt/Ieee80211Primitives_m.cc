@@ -28,8 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
-namespace ieee80211 {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -56,8 +54,8 @@ template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::Ieee80211PrimRequestCode");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::Ieee80211PrimRequestCode"));
+    cEnum *e = cEnum::find("Ieee80211PrimRequestCode");
+    if (!e) enums.getInstance()->add(e = new cEnum("Ieee80211PrimRequestCode"));
     e->insert(PR_SCAN_REQUEST, "PR_SCAN_REQUEST");
     e->insert(PR_AUTHENTICATE_REQUEST, "PR_AUTHENTICATE_REQUEST");
     e->insert(PR_DEAUTHENTICATE_REQUEST, "PR_DEAUTHENTICATE_REQUEST");
@@ -67,8 +65,8 @@ EXECUTE_ON_STARTUP(
 );
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::Ieee80211PrimConfirmCode");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::Ieee80211PrimConfirmCode"));
+    cEnum *e = cEnum::find("Ieee80211PrimConfirmCode");
+    if (!e) enums.getInstance()->add(e = new cEnum("Ieee80211PrimConfirmCode"));
     e->insert(PR_SCAN_CONFIRM, "PR_SCAN_CONFIRM");
     e->insert(PR_AUTHENTICATE_CONFIRM, "PR_AUTHENTICATE_CONFIRM");
     e->insert(PR_DEAUTHENTICATE_CONFIRM, "PR_DEAUTHENTICATE_CONFIRM");
@@ -78,16 +76,16 @@ EXECUTE_ON_STARTUP(
 );
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::Ieee80211BSSType");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::Ieee80211BSSType"));
+    cEnum *e = cEnum::find("Ieee80211BSSType");
+    if (!e) enums.getInstance()->add(e = new cEnum("Ieee80211BSSType"));
     e->insert(BSSTYPE_ANY, "BSSTYPE_ANY");
     e->insert(BSSTYPE_INFRASTRUCTURE, "BSSTYPE_INFRASTRUCTURE");
     e->insert(BSSTYPE_INDEPENDENT, "BSSTYPE_INDEPENDENT");
 );
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::Ieee80211PrimResultCode");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::Ieee80211PrimResultCode"));
+    cEnum *e = cEnum::find("Ieee80211PrimResultCode");
+    if (!e) enums.getInstance()->add(e = new cEnum("Ieee80211PrimResultCode"));
     e->insert(PRC_SUCCESS, "PRC_SUCCESS");
     e->insert(PRC_INVALID_PARAMETERS, "PRC_INVALID_PARAMETERS");
     e->insert(PRC_TIMEOUT, "PRC_TIMEOUT");
@@ -155,7 +153,7 @@ class Ieee80211PrimRequestDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211PrimRequestDescriptor);
 
-Ieee80211PrimRequestDescriptor::Ieee80211PrimRequestDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211PrimRequest", "cObject")
+Ieee80211PrimRequestDescriptor::Ieee80211PrimRequestDescriptor() : cClassDescriptor("Ieee80211PrimRequest", "cObject")
 {
 }
 
@@ -373,7 +371,7 @@ class Ieee80211PrimConfirmDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211PrimConfirmDescriptor);
 
-Ieee80211PrimConfirmDescriptor::Ieee80211PrimConfirmDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211PrimConfirm", "cObject")
+Ieee80211PrimConfirmDescriptor::Ieee80211PrimConfirmDescriptor() : cClassDescriptor("Ieee80211PrimConfirm", "cObject")
 {
 }
 
@@ -458,7 +456,7 @@ const char *Ieee80211PrimConfirmDescriptor::getFieldProperty(void *object, int f
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::Ieee80211PrimResultCode";
+            if (!strcmp(propertyname,"enum")) return "Ieee80211PrimResultCode";
             return NULL;
         default: return NULL;
     }
@@ -537,7 +535,7 @@ void *Ieee80211PrimConfirmDescriptor::getFieldStructPointer(void *object, int fi
 
 Register_Class(Ieee80211Prim_ScanRequest);
 
-Ieee80211Prim_ScanRequest::Ieee80211Prim_ScanRequest() : ::inet::ieee80211::Ieee80211PrimRequest()
+Ieee80211Prim_ScanRequest::Ieee80211Prim_ScanRequest() : ::Ieee80211PrimRequest()
 {
     this->BSSType_var = 0;
     this->SSID_var = 0;
@@ -549,7 +547,7 @@ Ieee80211Prim_ScanRequest::Ieee80211Prim_ScanRequest() : ::inet::ieee80211::Ieee
     this->maxChannelTime_var = 0;
 }
 
-Ieee80211Prim_ScanRequest::Ieee80211Prim_ScanRequest(const Ieee80211Prim_ScanRequest& other) : ::inet::ieee80211::Ieee80211PrimRequest(other)
+Ieee80211Prim_ScanRequest::Ieee80211Prim_ScanRequest(const Ieee80211Prim_ScanRequest& other) : ::Ieee80211PrimRequest(other)
 {
     channelList_arraysize = 0;
     this->channelList_var = 0;
@@ -564,7 +562,7 @@ Ieee80211Prim_ScanRequest::~Ieee80211Prim_ScanRequest()
 Ieee80211Prim_ScanRequest& Ieee80211Prim_ScanRequest::operator=(const Ieee80211Prim_ScanRequest& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211PrimRequest::operator=(other);
+    ::Ieee80211PrimRequest::operator=(other);
     copy(other);
     return *this;
 }
@@ -587,7 +585,7 @@ void Ieee80211Prim_ScanRequest::copy(const Ieee80211Prim_ScanRequest& other)
 
 void Ieee80211Prim_ScanRequest::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimRequest::parsimPack(b);
+    ::Ieee80211PrimRequest::parsimPack(b);
     doPacking(b,this->BSSType_var);
     doPacking(b,this->BSSID_var);
     doPacking(b,this->SSID_var);
@@ -601,7 +599,7 @@ void Ieee80211Prim_ScanRequest::parsimPack(cCommBuffer *b)
 
 void Ieee80211Prim_ScanRequest::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimRequest::parsimUnpack(b);
+    ::Ieee80211PrimRequest::parsimUnpack(b);
     doUnpacking(b,this->BSSType_var);
     doUnpacking(b,this->BSSID_var);
     doUnpacking(b,this->SSID_var);
@@ -744,7 +742,7 @@ class Ieee80211Prim_ScanRequestDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211Prim_ScanRequestDescriptor);
 
-Ieee80211Prim_ScanRequestDescriptor::Ieee80211Prim_ScanRequestDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211Prim_ScanRequest", "inet::ieee80211::Ieee80211PrimRequest")
+Ieee80211Prim_ScanRequestDescriptor::Ieee80211Prim_ScanRequestDescriptor() : cClassDescriptor("Ieee80211Prim_ScanRequest", "Ieee80211PrimRequest")
 {
 }
 
@@ -857,7 +855,7 @@ const char *Ieee80211Prim_ScanRequestDescriptor::getFieldProperty(void *object, 
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::Ieee80211BSSType";
+            if (!strcmp(propertyname,"enum")) return "Ieee80211BSSType";
             return NULL;
         default: return NULL;
     }
@@ -1092,7 +1090,7 @@ class Ieee80211Prim_BSSDescriptionDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211Prim_BSSDescriptionDescriptor);
 
-Ieee80211Prim_BSSDescriptionDescriptor::Ieee80211Prim_BSSDescriptionDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211Prim_BSSDescription", "cObject")
+Ieee80211Prim_BSSDescriptionDescriptor::Ieee80211Prim_BSSDescriptionDescriptor() : cClassDescriptor("Ieee80211Prim_BSSDescription", "cObject")
 {
 }
 
@@ -1285,13 +1283,13 @@ void *Ieee80211Prim_BSSDescriptionDescriptor::getFieldStructPointer(void *object
 
 Register_Class(Ieee80211Prim_ScanConfirm);
 
-Ieee80211Prim_ScanConfirm::Ieee80211Prim_ScanConfirm() : ::inet::ieee80211::Ieee80211PrimConfirm()
+Ieee80211Prim_ScanConfirm::Ieee80211Prim_ScanConfirm() : ::Ieee80211PrimConfirm()
 {
     bssList_arraysize = 0;
     this->bssList_var = 0;
 }
 
-Ieee80211Prim_ScanConfirm::Ieee80211Prim_ScanConfirm(const Ieee80211Prim_ScanConfirm& other) : ::inet::ieee80211::Ieee80211PrimConfirm(other)
+Ieee80211Prim_ScanConfirm::Ieee80211Prim_ScanConfirm(const Ieee80211Prim_ScanConfirm& other) : ::Ieee80211PrimConfirm(other)
 {
     bssList_arraysize = 0;
     this->bssList_var = 0;
@@ -1306,7 +1304,7 @@ Ieee80211Prim_ScanConfirm::~Ieee80211Prim_ScanConfirm()
 Ieee80211Prim_ScanConfirm& Ieee80211Prim_ScanConfirm::operator=(const Ieee80211Prim_ScanConfirm& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211PrimConfirm::operator=(other);
+    ::Ieee80211PrimConfirm::operator=(other);
     copy(other);
     return *this;
 }
@@ -1322,14 +1320,14 @@ void Ieee80211Prim_ScanConfirm::copy(const Ieee80211Prim_ScanConfirm& other)
 
 void Ieee80211Prim_ScanConfirm::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimConfirm::parsimPack(b);
+    ::Ieee80211PrimConfirm::parsimPack(b);
     b->pack(bssList_arraysize);
     doPacking(b,this->bssList_var,bssList_arraysize);
 }
 
 void Ieee80211Prim_ScanConfirm::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimConfirm::parsimUnpack(b);
+    ::Ieee80211PrimConfirm::parsimUnpack(b);
     delete [] this->bssList_var;
     b->unpack(bssList_arraysize);
     if (bssList_arraysize==0) {
@@ -1393,7 +1391,7 @@ class Ieee80211Prim_ScanConfirmDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211Prim_ScanConfirmDescriptor);
 
-Ieee80211Prim_ScanConfirmDescriptor::Ieee80211Prim_ScanConfirmDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211Prim_ScanConfirm", "inet::ieee80211::Ieee80211PrimConfirm")
+Ieee80211Prim_ScanConfirmDescriptor::Ieee80211Prim_ScanConfirmDescriptor() : cClassDescriptor("Ieee80211Prim_ScanConfirm", "Ieee80211PrimConfirm")
 {
 }
 
@@ -1556,12 +1554,12 @@ void *Ieee80211Prim_ScanConfirmDescriptor::getFieldStructPointer(void *object, i
 
 Register_Class(Ieee80211Prim_AuthenticateRequest);
 
-Ieee80211Prim_AuthenticateRequest::Ieee80211Prim_AuthenticateRequest() : ::inet::ieee80211::Ieee80211PrimRequest()
+Ieee80211Prim_AuthenticateRequest::Ieee80211Prim_AuthenticateRequest() : ::Ieee80211PrimRequest()
 {
     this->timeout_var = 0;
 }
 
-Ieee80211Prim_AuthenticateRequest::Ieee80211Prim_AuthenticateRequest(const Ieee80211Prim_AuthenticateRequest& other) : ::inet::ieee80211::Ieee80211PrimRequest(other)
+Ieee80211Prim_AuthenticateRequest::Ieee80211Prim_AuthenticateRequest(const Ieee80211Prim_AuthenticateRequest& other) : ::Ieee80211PrimRequest(other)
 {
     copy(other);
 }
@@ -1573,7 +1571,7 @@ Ieee80211Prim_AuthenticateRequest::~Ieee80211Prim_AuthenticateRequest()
 Ieee80211Prim_AuthenticateRequest& Ieee80211Prim_AuthenticateRequest::operator=(const Ieee80211Prim_AuthenticateRequest& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211PrimRequest::operator=(other);
+    ::Ieee80211PrimRequest::operator=(other);
     copy(other);
     return *this;
 }
@@ -1586,14 +1584,14 @@ void Ieee80211Prim_AuthenticateRequest::copy(const Ieee80211Prim_AuthenticateReq
 
 void Ieee80211Prim_AuthenticateRequest::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimRequest::parsimPack(b);
+    ::Ieee80211PrimRequest::parsimPack(b);
     doPacking(b,this->address_var);
     doPacking(b,this->timeout_var);
 }
 
 void Ieee80211Prim_AuthenticateRequest::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimRequest::parsimUnpack(b);
+    ::Ieee80211PrimRequest::parsimUnpack(b);
     doUnpacking(b,this->address_var);
     doUnpacking(b,this->timeout_var);
 }
@@ -1643,7 +1641,7 @@ class Ieee80211Prim_AuthenticateRequestDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211Prim_AuthenticateRequestDescriptor);
 
-Ieee80211Prim_AuthenticateRequestDescriptor::Ieee80211Prim_AuthenticateRequestDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211Prim_AuthenticateRequest", "inet::ieee80211::Ieee80211PrimRequest")
+Ieee80211Prim_AuthenticateRequestDescriptor::Ieee80211Prim_AuthenticateRequestDescriptor() : cClassDescriptor("Ieee80211Prim_AuthenticateRequest", "Ieee80211PrimRequest")
 {
 }
 
@@ -1811,11 +1809,11 @@ void *Ieee80211Prim_AuthenticateRequestDescriptor::getFieldStructPointer(void *o
 
 Register_Class(Ieee80211Prim_AuthenticateConfirm);
 
-Ieee80211Prim_AuthenticateConfirm::Ieee80211Prim_AuthenticateConfirm() : ::inet::ieee80211::Ieee80211PrimConfirm()
+Ieee80211Prim_AuthenticateConfirm::Ieee80211Prim_AuthenticateConfirm() : ::Ieee80211PrimConfirm()
 {
 }
 
-Ieee80211Prim_AuthenticateConfirm::Ieee80211Prim_AuthenticateConfirm(const Ieee80211Prim_AuthenticateConfirm& other) : ::inet::ieee80211::Ieee80211PrimConfirm(other)
+Ieee80211Prim_AuthenticateConfirm::Ieee80211Prim_AuthenticateConfirm(const Ieee80211Prim_AuthenticateConfirm& other) : ::Ieee80211PrimConfirm(other)
 {
     copy(other);
 }
@@ -1827,7 +1825,7 @@ Ieee80211Prim_AuthenticateConfirm::~Ieee80211Prim_AuthenticateConfirm()
 Ieee80211Prim_AuthenticateConfirm& Ieee80211Prim_AuthenticateConfirm::operator=(const Ieee80211Prim_AuthenticateConfirm& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211PrimConfirm::operator=(other);
+    ::Ieee80211PrimConfirm::operator=(other);
     copy(other);
     return *this;
 }
@@ -1839,13 +1837,13 @@ void Ieee80211Prim_AuthenticateConfirm::copy(const Ieee80211Prim_AuthenticateCon
 
 void Ieee80211Prim_AuthenticateConfirm::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimConfirm::parsimPack(b);
+    ::Ieee80211PrimConfirm::parsimPack(b);
     doPacking(b,this->address_var);
 }
 
 void Ieee80211Prim_AuthenticateConfirm::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimConfirm::parsimUnpack(b);
+    ::Ieee80211PrimConfirm::parsimUnpack(b);
     doUnpacking(b,this->address_var);
 }
 
@@ -1884,7 +1882,7 @@ class Ieee80211Prim_AuthenticateConfirmDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211Prim_AuthenticateConfirmDescriptor);
 
-Ieee80211Prim_AuthenticateConfirmDescriptor::Ieee80211Prim_AuthenticateConfirmDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211Prim_AuthenticateConfirm", "inet::ieee80211::Ieee80211PrimConfirm")
+Ieee80211Prim_AuthenticateConfirmDescriptor::Ieee80211Prim_AuthenticateConfirmDescriptor() : cClassDescriptor("Ieee80211Prim_AuthenticateConfirm", "Ieee80211PrimConfirm")
 {
 }
 
@@ -2046,12 +2044,12 @@ void *Ieee80211Prim_AuthenticateConfirmDescriptor::getFieldStructPointer(void *o
 
 Register_Class(Ieee80211Prim_DeauthenticateRequest);
 
-Ieee80211Prim_DeauthenticateRequest::Ieee80211Prim_DeauthenticateRequest() : ::inet::ieee80211::Ieee80211PrimRequest()
+Ieee80211Prim_DeauthenticateRequest::Ieee80211Prim_DeauthenticateRequest() : ::Ieee80211PrimRequest()
 {
     this->reasonCode_var = 0;
 }
 
-Ieee80211Prim_DeauthenticateRequest::Ieee80211Prim_DeauthenticateRequest(const Ieee80211Prim_DeauthenticateRequest& other) : ::inet::ieee80211::Ieee80211PrimRequest(other)
+Ieee80211Prim_DeauthenticateRequest::Ieee80211Prim_DeauthenticateRequest(const Ieee80211Prim_DeauthenticateRequest& other) : ::Ieee80211PrimRequest(other)
 {
     copy(other);
 }
@@ -2063,7 +2061,7 @@ Ieee80211Prim_DeauthenticateRequest::~Ieee80211Prim_DeauthenticateRequest()
 Ieee80211Prim_DeauthenticateRequest& Ieee80211Prim_DeauthenticateRequest::operator=(const Ieee80211Prim_DeauthenticateRequest& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211PrimRequest::operator=(other);
+    ::Ieee80211PrimRequest::operator=(other);
     copy(other);
     return *this;
 }
@@ -2076,14 +2074,14 @@ void Ieee80211Prim_DeauthenticateRequest::copy(const Ieee80211Prim_Deauthenticat
 
 void Ieee80211Prim_DeauthenticateRequest::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimRequest::parsimPack(b);
+    ::Ieee80211PrimRequest::parsimPack(b);
     doPacking(b,this->address_var);
     doPacking(b,this->reasonCode_var);
 }
 
 void Ieee80211Prim_DeauthenticateRequest::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimRequest::parsimUnpack(b);
+    ::Ieee80211PrimRequest::parsimUnpack(b);
     doUnpacking(b,this->address_var);
     doUnpacking(b,this->reasonCode_var);
 }
@@ -2133,7 +2131,7 @@ class Ieee80211Prim_DeauthenticateRequestDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211Prim_DeauthenticateRequestDescriptor);
 
-Ieee80211Prim_DeauthenticateRequestDescriptor::Ieee80211Prim_DeauthenticateRequestDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211Prim_DeauthenticateRequest", "inet::ieee80211::Ieee80211PrimRequest")
+Ieee80211Prim_DeauthenticateRequestDescriptor::Ieee80211Prim_DeauthenticateRequestDescriptor() : cClassDescriptor("Ieee80211Prim_DeauthenticateRequest", "Ieee80211PrimRequest")
 {
 }
 
@@ -2222,7 +2220,7 @@ const char *Ieee80211Prim_DeauthenticateRequestDescriptor::getFieldProperty(void
     }
     switch (field) {
         case 1:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::Ieee80211ReasonCode";
+            if (!strcmp(propertyname,"enum")) return "Ieee80211ReasonCode";
             return NULL;
         default: return NULL;
     }
@@ -2304,12 +2302,12 @@ void *Ieee80211Prim_DeauthenticateRequestDescriptor::getFieldStructPointer(void 
 
 Register_Class(Ieee80211Prim_AssociateRequest);
 
-Ieee80211Prim_AssociateRequest::Ieee80211Prim_AssociateRequest() : ::inet::ieee80211::Ieee80211PrimRequest()
+Ieee80211Prim_AssociateRequest::Ieee80211Prim_AssociateRequest() : ::Ieee80211PrimRequest()
 {
     this->timeout_var = 0;
 }
 
-Ieee80211Prim_AssociateRequest::Ieee80211Prim_AssociateRequest(const Ieee80211Prim_AssociateRequest& other) : ::inet::ieee80211::Ieee80211PrimRequest(other)
+Ieee80211Prim_AssociateRequest::Ieee80211Prim_AssociateRequest(const Ieee80211Prim_AssociateRequest& other) : ::Ieee80211PrimRequest(other)
 {
     copy(other);
 }
@@ -2321,7 +2319,7 @@ Ieee80211Prim_AssociateRequest::~Ieee80211Prim_AssociateRequest()
 Ieee80211Prim_AssociateRequest& Ieee80211Prim_AssociateRequest::operator=(const Ieee80211Prim_AssociateRequest& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211PrimRequest::operator=(other);
+    ::Ieee80211PrimRequest::operator=(other);
     copy(other);
     return *this;
 }
@@ -2334,14 +2332,14 @@ void Ieee80211Prim_AssociateRequest::copy(const Ieee80211Prim_AssociateRequest& 
 
 void Ieee80211Prim_AssociateRequest::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimRequest::parsimPack(b);
+    ::Ieee80211PrimRequest::parsimPack(b);
     doPacking(b,this->address_var);
     doPacking(b,this->timeout_var);
 }
 
 void Ieee80211Prim_AssociateRequest::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimRequest::parsimUnpack(b);
+    ::Ieee80211PrimRequest::parsimUnpack(b);
     doUnpacking(b,this->address_var);
     doUnpacking(b,this->timeout_var);
 }
@@ -2391,7 +2389,7 @@ class Ieee80211Prim_AssociateRequestDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211Prim_AssociateRequestDescriptor);
 
-Ieee80211Prim_AssociateRequestDescriptor::Ieee80211Prim_AssociateRequestDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211Prim_AssociateRequest", "inet::ieee80211::Ieee80211PrimRequest")
+Ieee80211Prim_AssociateRequestDescriptor::Ieee80211Prim_AssociateRequestDescriptor() : cClassDescriptor("Ieee80211Prim_AssociateRequest", "Ieee80211PrimRequest")
 {
 }
 
@@ -2559,11 +2557,11 @@ void *Ieee80211Prim_AssociateRequestDescriptor::getFieldStructPointer(void *obje
 
 Register_Class(Ieee80211Prim_AssociateConfirm);
 
-Ieee80211Prim_AssociateConfirm::Ieee80211Prim_AssociateConfirm() : ::inet::ieee80211::Ieee80211PrimConfirm()
+Ieee80211Prim_AssociateConfirm::Ieee80211Prim_AssociateConfirm() : ::Ieee80211PrimConfirm()
 {
 }
 
-Ieee80211Prim_AssociateConfirm::Ieee80211Prim_AssociateConfirm(const Ieee80211Prim_AssociateConfirm& other) : ::inet::ieee80211::Ieee80211PrimConfirm(other)
+Ieee80211Prim_AssociateConfirm::Ieee80211Prim_AssociateConfirm(const Ieee80211Prim_AssociateConfirm& other) : ::Ieee80211PrimConfirm(other)
 {
     copy(other);
 }
@@ -2575,7 +2573,7 @@ Ieee80211Prim_AssociateConfirm::~Ieee80211Prim_AssociateConfirm()
 Ieee80211Prim_AssociateConfirm& Ieee80211Prim_AssociateConfirm::operator=(const Ieee80211Prim_AssociateConfirm& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211PrimConfirm::operator=(other);
+    ::Ieee80211PrimConfirm::operator=(other);
     copy(other);
     return *this;
 }
@@ -2587,13 +2585,13 @@ void Ieee80211Prim_AssociateConfirm::copy(const Ieee80211Prim_AssociateConfirm& 
 
 void Ieee80211Prim_AssociateConfirm::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimConfirm::parsimPack(b);
+    ::Ieee80211PrimConfirm::parsimPack(b);
     doPacking(b,this->address_var);
 }
 
 void Ieee80211Prim_AssociateConfirm::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimConfirm::parsimUnpack(b);
+    ::Ieee80211PrimConfirm::parsimUnpack(b);
     doUnpacking(b,this->address_var);
 }
 
@@ -2632,7 +2630,7 @@ class Ieee80211Prim_AssociateConfirmDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211Prim_AssociateConfirmDescriptor);
 
-Ieee80211Prim_AssociateConfirmDescriptor::Ieee80211Prim_AssociateConfirmDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211Prim_AssociateConfirm", "inet::ieee80211::Ieee80211PrimConfirm")
+Ieee80211Prim_AssociateConfirmDescriptor::Ieee80211Prim_AssociateConfirmDescriptor() : cClassDescriptor("Ieee80211Prim_AssociateConfirm", "Ieee80211PrimConfirm")
 {
 }
 
@@ -2794,11 +2792,11 @@ void *Ieee80211Prim_AssociateConfirmDescriptor::getFieldStructPointer(void *obje
 
 Register_Class(Ieee80211Prim_ReassociateRequest);
 
-Ieee80211Prim_ReassociateRequest::Ieee80211Prim_ReassociateRequest() : ::inet::ieee80211::Ieee80211Prim_AssociateRequest()
+Ieee80211Prim_ReassociateRequest::Ieee80211Prim_ReassociateRequest() : ::Ieee80211Prim_AssociateRequest()
 {
 }
 
-Ieee80211Prim_ReassociateRequest::Ieee80211Prim_ReassociateRequest(const Ieee80211Prim_ReassociateRequest& other) : ::inet::ieee80211::Ieee80211Prim_AssociateRequest(other)
+Ieee80211Prim_ReassociateRequest::Ieee80211Prim_ReassociateRequest(const Ieee80211Prim_ReassociateRequest& other) : ::Ieee80211Prim_AssociateRequest(other)
 {
     copy(other);
 }
@@ -2810,7 +2808,7 @@ Ieee80211Prim_ReassociateRequest::~Ieee80211Prim_ReassociateRequest()
 Ieee80211Prim_ReassociateRequest& Ieee80211Prim_ReassociateRequest::operator=(const Ieee80211Prim_ReassociateRequest& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211Prim_AssociateRequest::operator=(other);
+    ::Ieee80211Prim_AssociateRequest::operator=(other);
     copy(other);
     return *this;
 }
@@ -2821,12 +2819,12 @@ void Ieee80211Prim_ReassociateRequest::copy(const Ieee80211Prim_ReassociateReque
 
 void Ieee80211Prim_ReassociateRequest::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211Prim_AssociateRequest::parsimPack(b);
+    ::Ieee80211Prim_AssociateRequest::parsimPack(b);
 }
 
 void Ieee80211Prim_ReassociateRequest::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211Prim_AssociateRequest::parsimUnpack(b);
+    ::Ieee80211Prim_AssociateRequest::parsimUnpack(b);
 }
 
 class Ieee80211Prim_ReassociateRequestDescriptor : public cClassDescriptor
@@ -2854,7 +2852,7 @@ class Ieee80211Prim_ReassociateRequestDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211Prim_ReassociateRequestDescriptor);
 
-Ieee80211Prim_ReassociateRequestDescriptor::Ieee80211Prim_ReassociateRequestDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211Prim_ReassociateRequest", "inet::ieee80211::Ieee80211Prim_AssociateRequest")
+Ieee80211Prim_ReassociateRequestDescriptor::Ieee80211Prim_ReassociateRequestDescriptor() : cClassDescriptor("Ieee80211Prim_ReassociateRequest", "Ieee80211Prim_AssociateRequest")
 {
 }
 
@@ -3000,11 +2998,11 @@ void *Ieee80211Prim_ReassociateRequestDescriptor::getFieldStructPointer(void *ob
 
 Register_Class(Ieee80211Prim_ReassociateConfirm);
 
-Ieee80211Prim_ReassociateConfirm::Ieee80211Prim_ReassociateConfirm() : ::inet::ieee80211::Ieee80211Prim_AssociateConfirm()
+Ieee80211Prim_ReassociateConfirm::Ieee80211Prim_ReassociateConfirm() : ::Ieee80211Prim_AssociateConfirm()
 {
 }
 
-Ieee80211Prim_ReassociateConfirm::Ieee80211Prim_ReassociateConfirm(const Ieee80211Prim_ReassociateConfirm& other) : ::inet::ieee80211::Ieee80211Prim_AssociateConfirm(other)
+Ieee80211Prim_ReassociateConfirm::Ieee80211Prim_ReassociateConfirm(const Ieee80211Prim_ReassociateConfirm& other) : ::Ieee80211Prim_AssociateConfirm(other)
 {
     copy(other);
 }
@@ -3016,7 +3014,7 @@ Ieee80211Prim_ReassociateConfirm::~Ieee80211Prim_ReassociateConfirm()
 Ieee80211Prim_ReassociateConfirm& Ieee80211Prim_ReassociateConfirm::operator=(const Ieee80211Prim_ReassociateConfirm& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211Prim_AssociateConfirm::operator=(other);
+    ::Ieee80211Prim_AssociateConfirm::operator=(other);
     copy(other);
     return *this;
 }
@@ -3027,12 +3025,12 @@ void Ieee80211Prim_ReassociateConfirm::copy(const Ieee80211Prim_ReassociateConfi
 
 void Ieee80211Prim_ReassociateConfirm::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211Prim_AssociateConfirm::parsimPack(b);
+    ::Ieee80211Prim_AssociateConfirm::parsimPack(b);
 }
 
 void Ieee80211Prim_ReassociateConfirm::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211Prim_AssociateConfirm::parsimUnpack(b);
+    ::Ieee80211Prim_AssociateConfirm::parsimUnpack(b);
 }
 
 class Ieee80211Prim_ReassociateConfirmDescriptor : public cClassDescriptor
@@ -3060,7 +3058,7 @@ class Ieee80211Prim_ReassociateConfirmDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211Prim_ReassociateConfirmDescriptor);
 
-Ieee80211Prim_ReassociateConfirmDescriptor::Ieee80211Prim_ReassociateConfirmDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211Prim_ReassociateConfirm", "inet::ieee80211::Ieee80211Prim_AssociateConfirm")
+Ieee80211Prim_ReassociateConfirmDescriptor::Ieee80211Prim_ReassociateConfirmDescriptor() : cClassDescriptor("Ieee80211Prim_ReassociateConfirm", "Ieee80211Prim_AssociateConfirm")
 {
 }
 
@@ -3206,12 +3204,12 @@ void *Ieee80211Prim_ReassociateConfirmDescriptor::getFieldStructPointer(void *ob
 
 Register_Class(Ieee80211Prim_DisassociateRequest);
 
-Ieee80211Prim_DisassociateRequest::Ieee80211Prim_DisassociateRequest() : ::inet::ieee80211::Ieee80211PrimRequest()
+Ieee80211Prim_DisassociateRequest::Ieee80211Prim_DisassociateRequest() : ::Ieee80211PrimRequest()
 {
     this->reasonCode_var = 0;
 }
 
-Ieee80211Prim_DisassociateRequest::Ieee80211Prim_DisassociateRequest(const Ieee80211Prim_DisassociateRequest& other) : ::inet::ieee80211::Ieee80211PrimRequest(other)
+Ieee80211Prim_DisassociateRequest::Ieee80211Prim_DisassociateRequest(const Ieee80211Prim_DisassociateRequest& other) : ::Ieee80211PrimRequest(other)
 {
     copy(other);
 }
@@ -3223,7 +3221,7 @@ Ieee80211Prim_DisassociateRequest::~Ieee80211Prim_DisassociateRequest()
 Ieee80211Prim_DisassociateRequest& Ieee80211Prim_DisassociateRequest::operator=(const Ieee80211Prim_DisassociateRequest& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211PrimRequest::operator=(other);
+    ::Ieee80211PrimRequest::operator=(other);
     copy(other);
     return *this;
 }
@@ -3236,14 +3234,14 @@ void Ieee80211Prim_DisassociateRequest::copy(const Ieee80211Prim_DisassociateReq
 
 void Ieee80211Prim_DisassociateRequest::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimRequest::parsimPack(b);
+    ::Ieee80211PrimRequest::parsimPack(b);
     doPacking(b,this->address_var);
     doPacking(b,this->reasonCode_var);
 }
 
 void Ieee80211Prim_DisassociateRequest::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211PrimRequest::parsimUnpack(b);
+    ::Ieee80211PrimRequest::parsimUnpack(b);
     doUnpacking(b,this->address_var);
     doUnpacking(b,this->reasonCode_var);
 }
@@ -3293,7 +3291,7 @@ class Ieee80211Prim_DisassociateRequestDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211Prim_DisassociateRequestDescriptor);
 
-Ieee80211Prim_DisassociateRequestDescriptor::Ieee80211Prim_DisassociateRequestDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211Prim_DisassociateRequest", "inet::ieee80211::Ieee80211PrimRequest")
+Ieee80211Prim_DisassociateRequestDescriptor::Ieee80211Prim_DisassociateRequestDescriptor() : cClassDescriptor("Ieee80211Prim_DisassociateRequest", "Ieee80211PrimRequest")
 {
 }
 
@@ -3382,7 +3380,7 @@ const char *Ieee80211Prim_DisassociateRequestDescriptor::getFieldProperty(void *
     }
     switch (field) {
         case 1:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::Ieee80211ReasonCode";
+            if (!strcmp(propertyname,"enum")) return "Ieee80211ReasonCode";
             return NULL;
         default: return NULL;
     }
@@ -3462,6 +3460,4 @@ void *Ieee80211Prim_DisassociateRequestDescriptor::getFieldStructPointer(void *o
     }
 }
 
-} // namespace ieee80211
-} // namespace inet
 

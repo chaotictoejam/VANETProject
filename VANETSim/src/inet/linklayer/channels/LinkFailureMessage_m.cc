@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -171,7 +170,7 @@ class LinkFailureMessageDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LinkFailureMessageDescriptor);
 
-LinkFailureMessageDescriptor::LinkFailureMessageDescriptor() : cClassDescriptor("inet::LinkFailureMessage", "cMessage")
+LinkFailureMessageDescriptor::LinkFailureMessageDescriptor() : cClassDescriptor("LinkFailureMessage", "cMessage")
 {
 }
 
@@ -349,5 +348,4 @@ void *LinkFailureMessageDescriptor::getFieldStructPointer(void *object, int fiel
     }
 }
 
-} // namespace inet
 

@@ -28,8 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
-namespace ieee80211 {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -56,8 +54,8 @@ template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::LocatorOpcode");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::LocatorOpcode"));
+    cEnum *e = cEnum::find("LocatorOpcode");
+    if (!e) enums.getInstance()->add(e = new cEnum("LocatorOpcode"));
     e->insert(LocatorAssoc, "LocatorAssoc");
     e->insert(LocatorDisAssoc, "LocatorDisAssoc");
     e->insert(LocatorAskAddress, "LocatorAskAddress");
@@ -138,12 +136,12 @@ void LocatorPkt::setOpcode(int opcode)
     this->opcode_var = opcode;
 }
 
-L3Address& LocatorPkt::getOrigin()
+ManetAddress& LocatorPkt::getOrigin()
 {
     return origin_var;
 }
 
-void LocatorPkt::setOrigin(const L3Address& origin)
+void LocatorPkt::setOrigin(const ManetAddress& origin)
 {
     this->origin_var = origin;
 }
@@ -223,7 +221,7 @@ class LocatorPktDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LocatorPktDescriptor);
 
-LocatorPktDescriptor::LocatorPktDescriptor() : cClassDescriptor("inet::ieee80211::LocatorPkt", "cPacket")
+LocatorPktDescriptor::LocatorPktDescriptor() : cClassDescriptor("LocatorPkt", "cPacket")
 {
 }
 
@@ -312,7 +310,7 @@ const char *LocatorPktDescriptor::getFieldTypeString(void *object, int field) co
     }
     static const char *fieldTypeStrings[] = {
         "int",
-        "L3Address",
+        "ManetAddress",
         "unsigned int",
         "MACAddress",
         "MACAddress",
@@ -332,7 +330,7 @@ const char *LocatorPktDescriptor::getFieldProperty(void *object, int field, cons
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::LocatorOpcode";
+            if (!strcmp(propertyname,"enum")) return "LocatorOpcode";
             return NULL;
         default: return NULL;
     }
@@ -398,7 +396,7 @@ const char *LocatorPktDescriptor::getFieldStructName(void *object, int field) co
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
-        case 1: return opp_typename(typeid(L3Address));
+        case 1: return opp_typename(typeid(ManetAddress));
         case 3: return opp_typename(typeid(MACAddress));
         case 4: return opp_typename(typeid(MACAddress));
         case 5: return opp_typename(typeid(IPv4Address));
@@ -426,6 +424,4 @@ void *LocatorPktDescriptor::getFieldStructPointer(void *object, int field, int i
     }
 }
 
-} // namespace ieee80211
-} // namespace inet
 

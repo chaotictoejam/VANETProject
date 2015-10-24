@@ -18,7 +18,7 @@
 
 package inet.mobility.single;
 
-import inet.mobility.base.MovingMobilityBase;
+import inet.mobility.common.MovingMobilityBase;
 
 //
 // Moves a tractor through a field with a certain amount of rows.

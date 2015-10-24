@@ -17,22 +17,14 @@
 //
 
 
-cplusplus {{
-#include "inet/common/TLVOption.h"
-#include "inet/networklayer/contract/ipv4/IPv4Address.h"
-#include "inet/networklayer/common/IPProtocolId_m.h"
-}}
-
-namespace inet;
-
-class noncobject TLVOptionBase;
-class noncobject TLVOptions;
-
 class noncobject IPv4Address;
 
 enum IPProtocolId;
 
 cplusplus {{
+#include "IPv4Address.h"
+#include "IPProtocolId_m.h"
+
 // default IPv4 header length: 20 bytes
 const int IP_HEADER_BYTES = 20;
 
@@ -77,8 +69,6 @@ enum IPOption
     IPOPTION_RECORD_ROUTE = 136;
     IPOPTION_STRICT_SOURCE_ROUTING = 137;
     IPOPTION_ROUTER_ALERT = 148;
-
-    IPOPTION_TLV_GPSR = 47;
 };
 
 //
@@ -91,69 +81,39 @@ enum TimestampFlag
     IP_TIMESTAMP_SENDER_INIT_ADDRESS = 3;
 }
 
-class IPv4Option extends TLVOptionBase
-{
-}
-
-class IPv4OptionNop extends IPv4Option
-{
-    type = IPOPTION_NO_OPTION;
-    length = 1;
-}
-
-class IPv4OptionEnd extends IPv4Option
-{
-    type = IPOPTION_END_OF_OPTIONS;
-    length = 1;
-}
 
 //
 // Option structure: Record Route
 //
-class IPv4OptionRecordRoute extends IPv4Option
+class IPv4RecordRouteOption
 {
-    // type = IPOPTION_RECORD_ROUTE;
-    // type = IPOPTION_LOOSE_SOURCE_ROUTING
-    // type = IPOPTION_STRICT_SOURCE_ROUTING
-    // length = 3 + 4 * getRecordAddressArraySize();
-    short nextAddressIdx;
-    // pointer = 4 + 4 * nextAddressIdx
-    IPv4Address recordAddress[];    // max size is 9
+    IPv4Address recordAddress[MAX_IPADDR_OPTION_ENTRIES];
+    short nextAddressPtr;
 }
 
 //
 // Option structure: Timestamp
 //
-class IPv4OptionTimestamp extends IPv4Option
+class IPv4TimestampOption
 {
-    type = IPOPTION_TIMESTAMP;
-    // length = 4 + 4 * getRecordAddressArraySize() + 4 * getRecordTimestampArraySize();
     int flag @enum(TimestampFlag);
     short overflow;
-    short nextIdx;
-    // pointer = 5 + (flag == IP_TIMESTAMP_TIMESTAMP_ONLY ? 4 : 8) * nextIdx
+    short nextAddressPtr;
 
     // use either up to 4 addresses with timestamps or
     // only up to 9 timestamps, according to the flag
-    IPv4Address recordAddress[];
-    simtime_t recordTimestamp[];
+    IPv4Address recordAddress[MAX_TIMESTAMP_OPTION_ENTRIES];
+    simtime_t recordTimestamp[MAX_IPADDR_OPTION_ENTRIES];
 }
 
 //
-// Option Structure: Stream ID
+// Option Structure: Source Routing
 //
-class IPv4OptionStreamId extends IPv4Option
+class IPv4SourceRoutingOption
 {
-    type = IPOPTION_STREAM_ID;
-    length = 4;
-    short streamId;
-}
-
-class IPv4OptionUnknown extends IPv4Option
-{
-    // type = any
-    // length = 2 + getBytesArraySize()
-    uint8_t bytes[];
+    IPv4Address recordAddress[MAX_IPADDR_OPTION_ENTRIES];
+    short nextAddressPtr;
+    short lastAddressPtr;
 }
 
 
@@ -172,7 +132,6 @@ class IPv4OptionUnknown extends IPv4Option
 packet IPv4Datagram
 {
     @customize(true);
-    @fieldNameSuffix("_var"); //TODO remove when OMNeT++ 4.x compatibility is no longer required
 
     short version = 4;
     short headerLength = IP_HEADER_BYTES;
@@ -186,12 +145,16 @@ packet IPv4Datagram
     bool moreFragments;
     bool dontFragment;
     int fragmentOffset;         // bytes, must be multiple of 8
-    int totalLengthField = -1;       // -1 means: getTotalLengthField() uses getByteLength()
     unsigned char typeOfService;  // ToS byte
     abstract int diffServCodePoint;  // maps to bits 0-5 of ToS
     abstract int explicitCongestionNotification;  // maps to bits 6-7 of ToS
 
-    TLVOptions options; // array of option pointers, option pointers owned by datagram
+    int optionCode @enum(IPOption) = IPOPTION_NO_OPTION;  //#FIXME modify header length when options are present
+                                                         //#FIXME also: the RFC says that more than one IPv4-Option is allowed
+    IPv4RecordRouteOption recordRoute;
+    IPv4TimestampOption timestampOption;
+    IPv4SourceRoutingOption sourceRoutingOption; // optionCode determines if strict or loose source routing
+    
     // Virtual value, used by the new fragment mechanism
     unsigned int totalPayloadLength;
 }

@@ -1,67 +1,3 @@
-====== inet-3.x ======
-
-2015-06-22  ------ inet-3.0.0 released ------
-
-2015-05-13  ------ inet-2.99.1 released ------
-
-2015-03-23  Zoltan Bojthe
-
-    Added getAddressBitLength() and getAddressByteLength() functions to
-    IL3AddressType.
-
-2015-03-18  Levente Mészáros
-
-    Moved IARP interface under contract.
-
-2015-02-10  Zoltan Bojthe
-
-    Fixed packet length in IPv6NeighborDiscovery.
-
-2015-01-21  Zoltan Bojthe
-
-	Applied C++ source code modernizer.
-
-2014-12-16  Zoltan Bojthe
-
-	Fixed defects found by static code analyzer (Coverity).
-
-2014-12-11  Levente Mészáros
-
-	Moved interfaces and module interfaces from common to contract.
-
-2014-11-07  ------ inet-2.99.0 released ------
-
-2014-09-18  Andras Varga
-
-	Moved all sources under the src/inet directory, so that all #include
-	statements begin with "inet/". The motivation is to rule out potential
-	filename clashes when multiple model frameworks are used together.
-
-	HINT: You can use the "opp_githist" command in inet/_scripts to find
-	all previous locations of the sources in this directory, and to view
-	the full history in gitk. Normal invocations of gitk can only show
-	file history back to the most recent move operation.
-
-2014-07-30  Andras Varga
-
-	Changes on the inet-3.x branch so far:
-
-	Network layer abstraction (Levente Meszaros, Andras Varga):
-	- added INetworkDatagram, INetworkLayer, INetworkProtocol,
-	  INetworkProtocolControlInfo, NetworkProtocolCommand
-
-	Directory restructuring:
-	- contents split to ipv4/, ipv6/, generic/
-
-	Code formatting (Zoltan Bojthe)
-	- using uncrustify, see _scripts/reformat/*
-	- common style for header guards
-
-	Namespace (Zoltan Bojthe, Zsolt Prontvai)
-	- code has been moved into the inet namespace
-
-====== inet-2.x ======
-
 2015-03-04  ------ inet-2.6 released ------
 
 2014-11-07  ------ inet-2.5.1 released ------
@@ -71,12 +7,6 @@
 2014-06-12  ------ inet-2.4.0 released ------
 
 2014-03-19  ------ inet-2.3.0 released ------
-
-2014-01-22  Levente Meszaros
-
-	Added a new purely virtual contract that defines the interface of network protocols.
-	Moved classes shared by implementations from contract to common.
-	Moved the IPv4 and IPv6 contracts into separate directories.
 
 2014-01-16  Zoltan Bojthe
 

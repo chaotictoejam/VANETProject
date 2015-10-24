@@ -19,10 +19,10 @@
 
 package inet.linklayer.ppp;
 
-import inet.common.IHook;
-import inet.common.queue.IOutputQueue;
-import inet.linklayer.contract.ITrafficConditioner;
-import inet.linklayer.contract.IWiredNic;
+import inet.base.IHook;
+import inet.linklayer.IOutputQueue;
+import inet.linklayer.ITrafficConditioner;
+import inet.linklayer.IWiredNic;
 
 
 //
@@ -33,13 +33,11 @@ module PPPInterface like IWiredNic
 {
     parameters:
         @display("i=block/ifcard;bgb=214,249;bgl=53");
-        string interfaceTableModule;
         string queueType = default("DropTailQueue"); // DropTailQueue, a Diffserv queue, or empty for use internal queue
         string ingressTCType = default(""); // a module type implementing ~ITrafficConditioner for optional traffic conditioning of incoming traffic
         string egressTCType = default(""); // a module type implementing ~ITrafficConditioner for optional traffic conditioning of outgoing traffic
         int numOutputHooks = default(0);
         int numInputHooks = default(0);
-        *.interfaceTableModule = default(absPath(interfaceTableModule));
     gates:
         input upperLayerIn;
         output upperLayerOut;
@@ -63,7 +61,7 @@ module PPPInterface like IWiredNic
         }
         ppp: PPP {
             parameters:
-                queueModule = (queueType == "" ? "" : "^.queue");
+                queueModule = (queueType == "" ? "" : "queue");
                 txQueueLimit = (queueType == "" ? 10000 : 1); // queue sends one packet at a time
                 @display("p=98,207");
         }

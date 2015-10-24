@@ -15,9 +15,9 @@
 
 package inet.linklayer.ieee80211mesh.nodes;
 
-import inet.networklayer.contract.IManetRouting;
-import inet.node.inet.WirelessHost;
-import inet.networklayer.configurator.ipv4.HostAutoConfigurator2;
+import inet.networklayer.IManetRouting;
+import inet.nodes.inet.WirelessHost;
+import inet.networklayer.autorouting.ipv4.HostAutoConfigurator2;
 
 
 //
@@ -39,7 +39,7 @@ module HostMesh extends WirelessHost
         @display("i=device/cellphone");
         string LinkLayerType = default("Ieee80211NicMesh");
         wlan[*].typename = LinkLayerType;
-        forwarding = default(true);
+        IPForward = default(true);
         networkLayer.configurator.networkConfiguratorModule = default("");
         string routingProtocol @enum("AODVUU","DYMOUM","DYMO","DSRUU","OLSR","OLSR_ETX","DSDV_2","Batman") = default("");  // used mobile routing protocol. see: inet.networklayer.manetrouting
     submodules:

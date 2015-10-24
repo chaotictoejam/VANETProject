@@ -36,7 +36,7 @@ package inet.networklayer.ipv6;
 // etc. of the IPv6 datagram in which the packet arrived.
 //
 // ~IPv6 can serve several higher-layer protocols. The higher layer protocols should
-// send one or more RegisterProtocol message (a simple cMessage with
+// send one or more RegisterProtocol message (a simple ~cMessage with
 // ~IPRegisterProtocolCommand controlinfo and kind=IP_C_REGISTER_PROTOCOL)
 // to IPv4 module, for fill up the protocol-to-gateindex map.
 // When delivering packets to them, the output gate is determined from the Protocol
@@ -44,16 +44,16 @@ package inet.networklayer.ipv6;
 //
 // <b>Routing and interfacing with lower layers</b>
 //
-// The routing table is stored in the module ~IPv6RoutingTable. When a datagram
-// needs to be routed, IPv6 queries ~IPv6RoutingTable for the output interface
+// The routing table is stored in the module ~RoutingTable6. When a datagram
+// needs to be routed, IPv6 queries ~RoutingTable6 for the output interface
 // (or "port") and next hop address of the packet. This is done by directly
-// calling C++ methods of ~IPv6RoutingTable. No message exchange with ~IPv6RoutingTable
+// calling C++ methods of ~RoutingTable6. No message exchange with ~RoutingTable6
 // takes place.
 //
 //#FIXME TBD describe operation
 //
 // Routing protocol implementations can also query and manipulate the route table
-// by calling ~IPv6RoutingTable's methods in C++.
+// by calling ~RoutingTable6's methods in C++.
 //
 // <b>Performance model, QoS</b>
 //
@@ -61,18 +61,13 @@ package inet.networklayer.ipv6;
 // datagrams are processed in order. The processing time is determined by the
 // procDelay module parameter.
 //
-// @see ~IPv6RoutingTable, ~IPv6ControlInfo, ~IPv6NeighbourDiscovery, ~ICMPv6
+// @see ~RoutingTable6, ~IPv6ControlInfo, ~IPv6NeighbourDiscovery, ~ICMPv6
 //
 // @author Andras Varga
 //
 simple IPv6
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module
-        string routingTableModule;
-        string ipv6NeighbourDiscoveryModule;
-        string icmpv6Module;
-        string ipv6TunnelingModule;
         double procDelay @unit("s") = default(0s);
         @display("i=block/network2");
     gates:
@@ -80,6 +75,8 @@ simple IPv6
         output transportOut[] @labels(IPv6ControlInfo/up,TCPSegment,UDPPacket);
         input queueIn[] @labels(IPv6Datagram);
         output queueOut[] @labels(IPv6Datagram);
+        input icmpIn;
+        output icmpOut;
         input ndIn;
         output ndOut;
         // tunneling gates - CB

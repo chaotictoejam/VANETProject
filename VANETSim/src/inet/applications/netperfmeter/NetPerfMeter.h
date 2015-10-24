@@ -8,7 +8,7 @@
 // *
 // * --------------------------------------------------------------------------
 // *
-// *   Copyright (C) 2009-2015 by Thomas Dreibholz
+// *   Copyright (C) 2009-2014 by Thomas Dreibholz
 // *
 // *   This program is free software: you can redistribute it and/or modify
 // *   it under the terms of the GNU General Public License as published by
@@ -25,26 +25,22 @@
 // *
 // *   Contact: dreibh@iem.uni-due.de
 
-#ifndef __INET_NETPERFMETER_H
-#define __INET_NETPERFMETER_H
+#ifndef __NETPERFMETER_H
+#define __NETPERFMETER_H
 
+#include <omnetpp.h>
 #include <assert.h>
-#include <fstream>
-#include "inet/networklayer/common/L3Address.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
-#include "inet/transportlayer/contract/tcp/TCPSocket.h"
-#include "inet/transportlayer/contract/sctp/SCTPSocket.h"
+
+#include "IPvXAddress.h"
+#include "UDPSocket.h"
+#include "TCPSocket.h"
+#include "SCTPSocket.h"
 #include "NetPerfMeter_m.h"
-#include "inet/transportlayer/contract/tcp/TCPCommand_m.h"
-#include "inet/transportlayer/contract/sctp/SCTPCommand_m.h"
-#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
+#include "SCTPAssociation.h"
+#include "TCPCommand_m.h"
+#include "SCTPCommand_m.h"
+#include "UDPControlInfo_m.h"
 
-namespace inet {
-
-
-/**
- * Implementation of NetPerfMeter. See NED file for more details.
- */
 class INET_API NetPerfMeter : public cSimpleModule
 {
    public:
@@ -55,7 +51,7 @@ class INET_API NetPerfMeter : public cSimpleModule
    virtual void handleMessage(cMessage *msg);
 
    inline void setStatusString(const char* status) {
-      if(hasGUI()) {
+      if(ev.isGUI()) {
          getDisplayString().setTagArg("t", 0, status);
       }
    }
@@ -81,76 +77,67 @@ class INET_API NetPerfMeter : public cSimpleModule
       UDP  = 2
    };
    enum TimerType {
-      TIMER_CONNECT  = 1,
-      TIMER_START    = 2,
-      TIMER_RESET    = 3,
-      TIMER_STOP     = 4,
-      TIMER_TRANSMIT = 5,
-      TIMER_OFF      = 6,
-      TIMER_ON       = 7
+      TIMER_CONNECT    = 1,
+      TIMER_START      = 2,
+      TIMER_RESET      = 3,
+      TIMER_STOP       = 4,
+      TIMER_TRANSMIT   = 5,
+      TIMER_DISCONNECT = 6,
+      TIMER_RECONNECT  = 7
    };
 
-   Protocol                TransportProtocol  = (Protocol)-1;
-   bool                    ActiveMode = false;
-   bool                    SendingAllowed = false;
-   bool                    HasFinished = false;
-   unsigned int            MaxMsgSize = 0;
-   unsigned int            QueueSize = 0;
-   double                  UnorderedMode = NAN;
-   double                  UnreliableMode = NAN;
-   bool                    DecoupleSaturatedStreams = false;
-   simtime_t               ConnectTime;
-   simtime_t               StartTime;
-   simtime_t               ResetTime;
-   simtime_t               StopTime;
-   cMessage*               ConnectTimer = nullptr;
-   cMessage*               StartTimer = nullptr;
-   cMessage*               StopTimer = nullptr;
-   cMessage*               ResetTimer = nullptr;
-   cMessage*               OffTimer = nullptr;
-   cMessage*               OnTimer = nullptr;
-   unsigned int            OnOffCycleCounter = 0;
-   int                     MaxOnOffCycles = 0;
+   Protocol              TransportProtocol;
+   bool                  ActiveMode;
+   bool                  SendingAllowed;
+   bool                  HasFinished;
+   unsigned int          MaxMsgSize;
+   unsigned int          QueueSize;
+   double                UnorderedMode;
+   double                UnreliableMode;
+   bool                  DecoupleSaturatedStreams;
+   simtime_t             ConnectTime;
+   simtime_t             StartTime;
+   simtime_t             ResetTime;
+   simtime_t             StopTime;
+   cMessage*             ConnectTimer;
+   cMessage*             StartTimer;
+   cMessage*             StopTimer;
+   cMessage*             ResetTimer;
+   cMessage*             DisconnectTimer;
+   cMessage*             ReconnectTimer;
+   unsigned int          EstablishedConnections;
+   unsigned int          MaxReconnects;
    std::vector<NetPerfMeterTransmitTimer*>
-                           TransmitTimerVector;
+                         TransmitTimerVector;
 
-   unsigned int            RequestedOutboundStreams = 0;
-   unsigned int            MaxInboundStreams = 0;
-   unsigned int            ActualOutboundStreams = 0;
-   unsigned int            ActualInboundStreams = 0;
+   unsigned int          RequestedOutboundStreams;
+   unsigned int          MaxInboundStreams;
+   unsigned int          ActualOutboundStreams;
+   unsigned int          ActualInboundStreams;
    std::vector<cDynamicExpression>
-                           FrameRateExpressionVector;
+                         FrameRateExpressionVector;
    std::vector<cDynamicExpression>
-                           FrameSizeExpressionVector;
+                         FrameSizeExpressionVector;
 
    // ====== Sockets and Connection Information =============================
-   SCTPSocket*             SocketSCTP = nullptr;
-   SCTPSocket*             IncomingSocketSCTP = nullptr;
-   TCPSocket*              SocketTCP = nullptr;
-   TCPSocket*              IncomingSocketTCP = nullptr;
-   UDPSocket*              SocketUDP = nullptr;
-   int                     ConnectionID = 0;
-   L3Address               PrimaryPath;
-
-   // ====== Trace File Handling ============================================
-   struct TraceEntry {
-      double       InterFrameDelay;
-      unsigned int FrameSize;
-      unsigned int StreamID;
-   };
-   std::vector<TraceEntry> TraceVector;                  // Frame trace from file
-   size_t                  TraceIndex = 0;                   // Position in trace file
+   SCTPSocket*           SocketSCTP;
+   SCTPSocket*           IncomingSocketSCTP;
+   TCPSocket*            SocketTCP;
+   TCPSocket*            IncomingSocketTCP;
+   UDPSocket*            SocketUDP;
+   int                   ConnectionID;
+   IPvXAddress           PrimaryPath;
 
    // ====== Timers =========================================================
-   simtime_t               TransmissionStartTime;        // Absolute transmission start time
-   simtime_t               ConnectionEstablishmentTime;  // Absolute connection establishment time
-   simtime_t               StatisticsResetTime;          // Absolute statistics reset time
+   simtime_t             TransmissionStartTime;        // Absolute transmission start time
+   simtime_t             ConnectionEstablishmentTime;  // Absolute connection establishment time
+   simtime_t             StatisticsResetTime;          // Absolute statistics reset time
 
    // ====== Variables ======================================================
-   unsigned int            LastStreamID = 0;                 // Stream number of last message being sent
+   unsigned int          LastStreamID;                 // Stream number of last message being sent
 
    // ====== Statistics =====================================================
-   simtime_t               StatisticsStartTime;          // Absolute start time of statistics recording
+   simtime_t             StatisticsStartTime;          // Absolute start time of statistics recording
 
    private:
    class SenderStatistics {
@@ -181,8 +168,8 @@ class INET_API NetPerfMeter : public cSimpleModule
          ReceivedDelayHistogram.clearResult();
       }
 
-      unsigned long long ReceivedBytes = 0;
-      unsigned long long ReceivedMessages = 0;
+      unsigned long long ReceivedBytes;
+      unsigned long long ReceivedMessages;
       cDoubleHistogram   ReceivedDelayHistogram;
    };
 
@@ -201,9 +188,6 @@ class INET_API NetPerfMeter : public cSimpleModule
    }
    double        getFrameRate(const unsigned int streamID);
    unsigned long getFrameSize(const unsigned int streamID);
-   void startSending();
-   void stopSending();
-   void sendDataOfTraceFile(const unsigned long long bytesAvailableInQueue);
    void sendDataOfSaturatedStreams(const unsigned long long   bytesAvailableInQueue,
                                    const SCTPSendQueueAbated* sendQueueAbatedIndication);
 
@@ -218,7 +202,5 @@ class INET_API NetPerfMeter : public cSimpleModule
    void createAndBindSocket();
    void handleTimer(cMessage* msg);
 };
-
-} // namespace inet
 
 #endif

@@ -19,7 +19,7 @@
 
 package inet.applications.udpapp;
 
-import inet.applications.contract.IUDPApp;
+import inet.applications.IUDPApp;
 
 
 //
@@ -29,7 +29,7 @@ import inet.applications.contract.IUDPApp;
 // The sending interval can be a constant or a random value (e.g. exponential(1)).
 // If the destAddresses parameter contains more than one address, one
 // of them is randomly chosen for each packet. An address may be given in the
-// dotted decimal notation, or with the module name. (The L3AddressResolver
+// dotted decimal notation, or with the module name. (The IPvXAddressResolver
 // class is used to resolve the address.) To disable the model, set
 // destAddresses to "".
 //
@@ -42,10 +42,8 @@ import inet.applications.contract.IUDPApp;
 simple UDPBasicApp like IUDPApp
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module
         int localPort = default(-1);  // local port (-1: use ephemeral port)
         string destAddresses = default(""); // list of IP addresses, separated by spaces ("": don't send)
-        string localAddress = default("");
         int destPort;
         volatile int messageLength @unit(B); // length of messages to generate, in bytes
         double startTime @unit(s) = default(this.sendInterval); // application start time (start of the first packet)

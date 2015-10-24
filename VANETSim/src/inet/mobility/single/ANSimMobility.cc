@@ -15,17 +15,18 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inet/mobility/single/ANSimMobility.h"
-#include "inet/common/INETMath.h"
 
-namespace inet {
+#include "ANSimMobility.h"
+#include "FWMath.h"
+
 
 Define_Module(ANSimMobility);
+
 
 static cXMLElement *firstChildWithTag(cXMLElement *node, const char *tagname)
 {
     cXMLElement *child = node->getFirstChild();
-    while (child && strcmp(child->getTagName(), tagname) != 0)
+    while (child && strcmp(child->getTagName(), tagname)!=0)
         child = child->getNextSibling();
 
     if (!child)
@@ -35,51 +36,10 @@ static cXMLElement *firstChildWithTag(cXMLElement *node, const char *tagname)
     return child;
 }
 
-
-void ANSimMobility::computeMaxSpeed()
-{
-    cXMLElement *rootElem = par("ansimTrace");
-    cXMLElement *curElem = rootElem->getElementByPath("mobility/position_change");
-    if (!curElem)
-        throw cRuntimeError("Element doesn't have <mobility> child or <position_change> grandchild at %s",
-                rootElem->getSourceLocation());
-    cXMLElement *nextElem = findNextPositionChange(curElem);
-    if (!nextElem)
-        throw cRuntimeError("Element doesn't have second <position_change> grandchild at %s",
-                curElem->getSourceLocation());
-    curElem = nextElem;
-    cXMLElement *destElem = firstChildWithTag(curElem, "destination");
-    const char *xStr = firstChildWithTag(destElem, "xpos")->getNodeValue();
-    const char *yStr = firstChildWithTag(destElem, "ypos")->getNodeValue();
-    Coord lastPos(atof(xStr), atof(yStr), 0);
-    // first position is the initial position so we don't take it into account to compute maxSpeed
-    if (curElem)
-        curElem = curElem->getNextSibling();
-    while (curElem)
-    {
-        cXMLElement *destElem = firstChildWithTag(curElem, "destination");
-        const char *xStr = firstChildWithTag(destElem, "xpos")->getNodeValue();
-        const char *yStr = firstChildWithTag(destElem, "ypos")->getNodeValue();
-        const char *startTimeStr = firstChildWithTag(curElem, "start_time")->getNodeValue();
-        const char *endTimeStr = firstChildWithTag(curElem, "end_time")->getNodeValue();
-        double elapsedTime = atof(endTimeStr) - atof(startTimeStr);
-        if (elapsedTime == 0)
-            throw cRuntimeError("Elapsed time is zero: infinite speed");
-        Coord currentPos(atof(xStr), atof(yStr), 0);
-        double distance = currentPos.distance(lastPos);
-        double currentSpeed = distance / elapsedTime;
-        if (currentSpeed > maxSpeed)
-            maxSpeed = currentSpeed;
-        lastPos = currentPos;
-        curElem = findNextPositionChange(curElem->getNextSibling());
-    }
-}
-
 ANSimMobility::ANSimMobility()
 {
-    maxSpeed = 0;
     nodeId = -1;
-    nextPositionChange = nullptr;
+    nextPositionChange = NULL;
 }
 
 void ANSimMobility::initialize(int stage)
@@ -87,21 +47,21 @@ void ANSimMobility::initialize(int stage)
     LineSegmentsMobilityBase::initialize(stage);
 
     EV_TRACE << "initializing ANSimMobility stage " << stage << endl;
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         nodeId = par("nodeId");
         if (nodeId == -1)
             nodeId = getContainingNode(this)->getIndex();
 
         // get script: param should point to <simulation> element
         cXMLElement *rootElem = par("ansimTrace");
-        if (strcmp(rootElem->getTagName(), "simulation") != 0)
+        if (strcmp(rootElem->getTagName(), "simulation")!=0)
             throw cRuntimeError("<simulation> is expected as root element not <%s> at %s",
-                    rootElem->getTagName(), rootElem->getSourceLocation());
+                  rootElem->getTagName(), rootElem->getSourceLocation());
         nextPositionChange = rootElem->getElementByPath("mobility/position_change");
         if (!nextPositionChange)
             throw cRuntimeError("Element doesn't have <mobility> child or <position_change> grandchild at %s",
-                    rootElem->getSourceLocation());
-        computeMaxSpeed();
+                  rootElem->getSourceLocation());
     }
 }
 
@@ -116,9 +76,9 @@ void ANSimMobility::setInitialPosition()
 cXMLElement *ANSimMobility::findNextPositionChange(cXMLElement *positionChange)
 {
     // find next <position_change> element with matching <node_id> tag (current one also OK)
-    while (positionChange) {
+    while(positionChange){
         const char *nodeIdStr = firstChildWithTag(positionChange, "node_id")->getNodeValue();
-        if (nodeIdStr && atoi(nodeIdStr) == nodeId)
+        if(nodeIdStr && atoi(nodeIdStr) == nodeId)
             break;
 
         positionChange = positionChange->getNextSibling();
@@ -129,7 +89,8 @@ cXMLElement *ANSimMobility::findNextPositionChange(cXMLElement *positionChange)
 void ANSimMobility::setTargetPosition()
 {
     nextPositionChange = findNextPositionChange(nextPositionChange);
-    if (!nextPositionChange) {
+    if (!nextPositionChange)
+    {
         nextChange = -1;
         stationary = true;
         targetPosition = lastPosition;
@@ -148,16 +109,13 @@ void ANSimMobility::extractDataFrom(cXMLElement *node)
     // extract data from <position_change> element
     // FIXME start_time has to be taken into account too! as pause from prev element's end_time
     const char *startTimeStr = firstChildWithTag(node, "start_time")->getNodeValue();
-    if (!startTimeStr)
-        throw cRuntimeError("No content in <start_time> element at %s", node->getSourceLocation());
     const char *endTimeStr = firstChildWithTag(node, "end_time")->getNodeValue();
-    if (!endTimeStr)
-        throw cRuntimeError("No content in <end_time> element at %s", node->getSourceLocation());
     cXMLElement *destElem = firstChildWithTag(node, "destination");
     const char *xStr = firstChildWithTag(destElem, "xpos")->getNodeValue();
     const char *yStr = firstChildWithTag(destElem, "ypos")->getNodeValue();
-    if (!xStr || !yStr)
-        throw cRuntimeError("No content in <destination>/<xpos> or <ypos> element at %s", node->getSourceLocation());
+
+    if (!endTimeStr || !xStr || !yStr)
+        throw cRuntimeError("No content in <end_time>, <destination>/<xpos> or <ypos> element at %s", node->getSourceLocation());
 
     nextChange = atof(endTimeStr);
     targetPosition.x = atof(xStr);
@@ -169,6 +127,3 @@ void ANSimMobility::move()
     LineSegmentsMobilityBase::move();
     raiseErrorIfOutside();
 }
-
-} // namespace inet
-

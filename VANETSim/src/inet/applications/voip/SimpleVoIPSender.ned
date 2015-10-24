@@ -18,7 +18,7 @@
 
 package inet.applications.voip;
 
-import inet.applications.contract.IUDPApp;
+import inet.applications.IUDPApp;
 
 //
 // Implements a simple VoIP source. It is a constant bitrate source, with 

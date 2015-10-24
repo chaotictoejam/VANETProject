@@ -21,7 +21,7 @@
 
 package inet.applications.udpapp;
 
-import inet.applications.contract.IUDPApp;
+import inet.applications.IUDPApp;
 
 
 //
@@ -105,7 +105,6 @@ import inet.applications.contract.IUDPApp;
 simple UDPBasicBurstNotification like IUDPApp
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module        
         volatile string destAddresses; // space-separated list of destination IP addresses, can be empty;
                                        // see module description for possibilities
         string chooseDestAddrMode @enum("once","perBurst","perSend"); // when to change the destination address
@@ -122,7 +121,8 @@ simple UDPBasicBurstNotification like IUDPApp
         string outputInterface = default(""); // select the interface in which the packets will be sent
         string outputInterfaceMulticastBroadcast = default(""); // select the interface in which the broadcast packets will be sent
         bool setBroadcast = default(false); // Configure the socket for receive broadcast packets
-        bool chooseNewIfDeleted = default(false); //receive if a node has been deleted and rebuilt destiation table                 
+        bool chooseNewIfDeleted = default(false); //receive if a node has been deleted and rebuilt destiation table
+        bool configureInInit = default(true);
         @signal[sentPk](type=cPacket);
         @signal[rcvdPk](type=cPacket);
         @signal[dropPk](type=cPacket);

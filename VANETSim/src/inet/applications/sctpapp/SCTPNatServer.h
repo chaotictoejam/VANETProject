@@ -11,38 +11,36 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_SCTPNATSERVER_H
-#define __INET_SCTPNATSERVER_H
+#ifndef __SCTPSERVER_H_
+#define __SCTPSERVER_H_
 
 #include <omnetpp.h>
-#include "inet/transportlayer/sctp/SCTPAssociation.h"
-#include "inet/transportlayer/contract/sctp/SCTPCommand_m.h"
-#include "inet/transportlayer/contract/sctp/SCTPSocket.h"
+#include "SCTPAssociation.h"
+#include "SCTPCommand_m.h"
+#include "SCTPSocket.h"
 
-namespace inet {
 
 /**
  * Accepts any number of incoming connections, and sends back whatever
  * arrives on them.
  */
 
-typedef struct natInfo
-{
+typedef struct natInfo {
     bool multi;
     uint32 peer1;
-    L3Address peer1Address1;
-    L3Address peer1Address2;
+    IPvXAddress peer1Address1;
+    IPvXAddress peer1Address2;
     uint32 peer1Assoc;
     uint32 peer1Port;
     int32 peer1Gate;
     uint32 peer2;
-    L3Address peer2Address1;
-    L3Address peer2Address2;
+    IPvXAddress peer2Address1;
+    IPvXAddress peer2Address2;
     uint32 peer2Assoc;
     uint32 peer2Port;
     int32 peer2Gate;
 } NatInfo;
-typedef std::vector<NatInfo *> NatVector;
+typedef std::vector<NatInfo*> NatVector;
 
 class INET_API SCTPNatServer : public cSimpleModule
 {
@@ -55,7 +53,7 @@ class INET_API SCTPNatServer : public cSimpleModule
     int32 packetsSent;
     int32 packetsRcvd;
     int32 numSessions;
-    int32 numRequestsToSend;    // requests to send in this session
+    int32 numRequestsToSend; // requests to send in this session
     bool ordered;
     int32 outboundStreams;
     int32 inboundStreams;
@@ -64,25 +62,22 @@ class INET_API SCTPNatServer : public cSimpleModule
     static NatVector natVector;
 
     int32 ssn;
-
   public:
-    struct pathStatus
-    {
+    struct pathStatus {
         bool active;
         bool primaryPath;
-        L3Address pid;
+        IPvXAddress  pid;
     };
 
-    void initialize() override;
-    void handleMessage(cMessage *msg) override;
-    void finish() override;
+    void initialize();
+    void handleMessage(cMessage *msg);
+    void finish();
     void handleTimer(cMessage *msg);
     void generateAndSend();
-    void sendInfo(NatInfo *info);
+    void sendInfo(NatInfo* info);
     void printNatVector();
 };
 
-} // namespace inet
+#endif
 
-#endif // ifndef __INET_SCTPNATSERVER_H
 

@@ -23,12 +23,11 @@
  // This is constant bit rate APP - Similar to Iperf UDP
 package inet.applications.udpapp;
 
-import inet.applications.contract.IUDPApp;
+import inet.applications.IUDPApp;
 
 simple PASERUdpTrafficReceiver like IUDPApp
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module        
         @display("i=block/arrival");
         int port;
         string fileName;

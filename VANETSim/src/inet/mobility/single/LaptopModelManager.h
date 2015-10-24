@@ -20,10 +20,9 @@
 #include <vector>
 #include <map>
 #include <omnetpp.h>
-#include "inet/common/INETDefs.h"
-#include "inet/common/geometry/common/Coord.h"
+#include "INETDefs.h"
+#include "Coord.h"
 
-namespace inet {
 
 class LaptopModelManager : public cSimpleModule
 {
@@ -65,7 +64,5 @@ class LaptopModelManager : public cSimpleModule
         void newNode(const char *name, const char * nodeId, bool setCoor, const Coord& position, simtime_t, int);
         void deleteNode(const int &, const simtime_t &);
 };
-
-}
 
 #endif /* DINAMICWIRELESSNODEMANAGER_H_ */

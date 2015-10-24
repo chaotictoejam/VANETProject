@@ -99,17 +99,11 @@ package inet.networklayer.rsvp_te;
 simple RSVP
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module
-        string routingTableModule;
-        string libTableModule;
-        string tedModule;
-        string classifierModule; // The path to the module which implements the IClassifier C++ interface
         xml traffic = default(xml("<sessions/>")); // specifies paths to set up
         string peers; // names of the interfaces towards RSVP peers
         double helloInterval @unit(s);
         double helloTimeout @unit(s);
         @display("i=block/control");
-        @signal[NF_TED_CHANGED](type=TEDChangeInfo);
     gates:
         input ipIn @labels(IPv4ControlInfo/up);
         output ipOut @labels(IPv4ControlInfo/down);

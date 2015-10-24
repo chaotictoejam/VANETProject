@@ -18,7 +18,7 @@
 
 package inet.applications.sctpapp;
 
-import inet.applications.contract.ISCTPApp;
+import inet.applications.ISCTPApp;
 
 //
 // Client app for SCTP-based request-reply protocols.

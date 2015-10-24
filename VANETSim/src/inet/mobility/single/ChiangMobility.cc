@@ -17,16 +17,17 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#include "inet/mobility/single/ChiangMobility.h"
 
-namespace inet {
+#include "ChiangMobility.h"
+
 
 Define_Module(ChiangMobility);
 
+
 static const double stateMatrix[3][3] = {
-    { 0.7, 0.3, 0.0 },
-    { 0.5, 0.0, 0.5 },
-    { 0.0, 0.3, 0.7 }
+    {0.7, 0.3, 0.0},
+    {0.5, 0.0, 0.5},
+    {0.0, 0.3, 0.7}
 };
 
 ChiangMobility::ChiangMobility()
@@ -42,7 +43,8 @@ void ChiangMobility::initialize(int stage)
     LineSegmentsMobilityBase::initialize(stage);
 
     EV_TRACE << "initializing ChiangMobility stage " << stage << endl;
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         stateTransitionUpdateInterval = par("stateTransitionUpdateInterval");
         speed = par("speed");
         stationary = (speed == 0);
@@ -56,7 +58,8 @@ int ChiangMobility::getNextStateIndex(int currentState)
     //we assume that the sum in each row is 1
     double sum = 0;
     double randomValue = uniform(0.0, 1.0);
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         sum += stateMatrix[currentState][i];
         if (sum >= randomValue)
             return i;
@@ -86,6 +89,3 @@ void ChiangMobility::move()
     Coord dummyPosition;
     handleIfOutside(REFLECT, dummyPosition, lastSpeed, dummyAngle);
 }
-
-} // namespace inet
-

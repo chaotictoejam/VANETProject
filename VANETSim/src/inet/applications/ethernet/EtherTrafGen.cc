@@ -13,19 +13,17 @@
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
- */
+*/
 
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 
-#include "inet/applications/ethernet/EtherTrafGen.h"
+#include "EtherTrafGen.h"
 
-#include "inet/linklayer/common/Ieee802Ctrl.h"
-#include "inet/common/lifecycle/NodeOperations.h"
-#include "inet/common/ModuleAccess.h"
-
-namespace inet {
+#include "Ieee802Ctrl_m.h"
+#include "NodeOperations.h"
+#include "ModuleAccess.h"
 
 Define_Module(EtherTrafGen);
 
@@ -34,11 +32,11 @@ simsignal_t EtherTrafGen::rcvdPkSignal = registerSignal("rcvdPk");
 
 EtherTrafGen::EtherTrafGen()
 {
-    sendInterval = nullptr;
-    numPacketsPerBurst = nullptr;
-    packetLength = nullptr;
-    timerMsg = nullptr;
-    nodeStatus = nullptr;
+    sendInterval = NULL;
+    numPacketsPerBurst = NULL;
+    packetLength = NULL;
+    timerMsg = NULL;
+    nodeStatus = NULL;
 }
 
 EtherTrafGen::~EtherTrafGen()
@@ -50,7 +48,8 @@ void EtherTrafGen::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
 
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         sendInterval = &par("sendInterval");
         numPacketsPerBurst = &par("numPacketsPerBurst");
         packetLength = &par("packetLength");
@@ -67,9 +66,10 @@ void EtherTrafGen::initialize(int stage)
         startTime = par("startTime");
         stopTime = par("stopTime");
         if (stopTime >= SIMTIME_ZERO && stopTime < startTime)
-            throw cRuntimeError("Invalid startTime/stopTime parameters");
+            error("Invalid startTime/stopTime parameters");
     }
-    else if (stage == INITSTAGE_APPLICATION_LAYER) {
+    else if (stage == 3)
+    {
         if (isGenerator())
             timerMsg = new cMessage("generateNextPacket");
 
@@ -83,8 +83,10 @@ void EtherTrafGen::handleMessage(cMessage *msg)
 {
     if (!isNodeUp())
         throw cRuntimeError("Application is not running");
-    if (msg->isSelfMessage()) {
-        if (msg->getKind() == START) {
+    if (msg->isSelfMessage())
+    {
+        if (msg->getKind() == START)
+        {
             destMACAddress = resolveDestMACAddress();
             // if no dest address given, nothing to do
             if (destMACAddress.isUnspecified())
@@ -94,26 +96,25 @@ void EtherTrafGen::handleMessage(cMessage *msg)
         scheduleNextPacket(simTime());
     }
     else
-        receivePacket(check_and_cast<cPacket *>(msg));
+        receivePacket(check_and_cast<cPacket*>(msg));
 }
 
 bool EtherTrafGen::handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback)
 {
     Enter_Method_Silent();
     if (dynamic_cast<NodeStartOperation *>(operation)) {
-        if ((NodeStartOperation::Stage)stage == NodeStartOperation::STAGE_APPLICATION_LAYER && isGenerator())
+        if (stage == NodeStartOperation::STAGE_APPLICATION_LAYER && isGenerator())
             scheduleNextPacket(-1);
     }
     else if (dynamic_cast<NodeShutdownOperation *>(operation)) {
-        if ((NodeShutdownOperation::Stage)stage == NodeShutdownOperation::STAGE_APPLICATION_LAYER)
+        if (stage == NodeShutdownOperation::STAGE_APPLICATION_LAYER)
             cancelNextPacket();
     }
     else if (dynamic_cast<NodeCrashOperation *>(operation)) {
-        if ((NodeCrashOperation::Stage)stage == NodeCrashOperation::STAGE_CRASH)
+        if (stage == NodeCrashOperation::STAGE_CRASH)
             cancelNextPacket();
     }
-    else
-        throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName());
+    else throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName());
     return true;
 }
 
@@ -130,11 +131,13 @@ bool EtherTrafGen::isGenerator()
 void EtherTrafGen::scheduleNextPacket(simtime_t previous)
 {
     simtime_t next;
-    if (previous == -1) {
+    if (previous == -1)
+    {
         next = simTime() <= startTime ? startTime : simTime();
         timerMsg->setKind(START);
     }
-    else {
+    else
+    {
         next = previous + sendInterval->doubleValue();
         timerMsg->setKind(NEXT);
     }
@@ -151,16 +154,18 @@ MACAddress EtherTrafGen::resolveDestMACAddress()
 {
     MACAddress destMACAddress;
     const char *destAddress = par("destAddress");
-    if (destAddress[0]) {
+    if (destAddress[0])
+    {
         // try as mac address first, then as a module
-        if (!destMACAddress.tryParse(destAddress)) {
-            cModule *destStation = getModuleByPath(destAddress);
+        if (!destMACAddress.tryParse(destAddress))
+        {
+            cModule *destStation = simulation.getModuleByPath(destAddress);
             if (!destStation)
-                throw cRuntimeError("cannot resolve MAC address '%s': not a 12-hex-digit MAC address or a valid module path name", destAddress);
+                error("cannot resolve MAC address '%s': not a 12-hex-digit MAC address or a valid module path name", destAddress);
 
             cModule *destMAC = destStation->getSubmodule("mac");
             if (!destMAC)
-                throw cRuntimeError("module '%s' has no 'mac' submodule", destAddress);
+                error("module '%s' has no 'mac' submodule", destAddress);
 
             destMACAddress.setAddress(destMAC->par("address"));
         }
@@ -171,11 +176,13 @@ MACAddress EtherTrafGen::resolveDestMACAddress()
 void EtherTrafGen::sendBurstPackets()
 {
     int n = numPacketsPerBurst->longValue();
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         seqNum++;
 
         char msgname[40];
         sprintf(msgname, "pk-%d-%ld", getId(), seqNum);
+        EV << "Generating packet `" << msgname << "'\n";
 
         cPacket *datapacket = new cPacket(msgname, IEEE802CTRL_DATA);
 
@@ -187,7 +194,6 @@ void EtherTrafGen::sendBurstPackets()
         etherctrl->setDest(destMACAddress);
         datapacket->setControlInfo(etherctrl);
 
-        EV_INFO << "Send packet `" << msgname << "' dest=" << destMACAddress << " length=" << len << "B type=" << etherType << "\n";
         emit(sentPkSignal, datapacket);
         send(datapacket, "out");
         packetsSent++;
@@ -196,7 +202,7 @@ void EtherTrafGen::sendBurstPackets()
 
 void EtherTrafGen::receivePacket(cPacket *msg)
 {
-    EV_INFO << "Received packet `" << msg->getName() << "' length= " << msg->getByteLength() << "B\n";
+    EV << "Received packet `" << msg->getName() << "'\n";
 
     packetsReceived++;
     emit(rcvdPkSignal, msg);
@@ -206,8 +212,6 @@ void EtherTrafGen::receivePacket(cPacket *msg)
 void EtherTrafGen::finish()
 {
     cancelAndDelete(timerMsg);
-    timerMsg = nullptr;
+    timerMsg = NULL;
 }
-
-} // namespace inet
 

@@ -665,6 +665,21 @@
         extraSourceFolders = ""
         compileFlags = "-DWITH_80211MESH"
         linkerFlags = ""
+        />
+    <feature
+        id="traci"
+        name="TraCI"
+        description = "Integration modules for TraCI, see http://veins.car2x.org"
+        initiallyEnabled = "true"
+        requires = "IPv4 mobility"
+        labels = ""
+        nedPackages = "
+                       inet.applications.traci
+                       inet.world.traci
+                      "
+        extraSourceFolders = ""
+        compileFlags = "-DWITH_TRACI"
+        linkerFlags = ""
         />       
 </features>
 

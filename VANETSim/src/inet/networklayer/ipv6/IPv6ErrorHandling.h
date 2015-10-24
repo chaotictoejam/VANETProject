@@ -17,28 +17,27 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
+
 //  Cleanup and rewrite: Andras Varga, 2004
 //  Implementation of IPv6 version: Wei Yang, Ng, 2005
 
-#ifndef __INET_IPV6ERRORHANDLING_H
-#define __INET_IPV6ERRORHANDLING_H
+#ifndef __IPv6ERRORHANDLING_H__
+#define __IPv6ERRORHANDLING_H__
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/networklayer/contract/ipv6/IPv6ControlInfo.h"
-#include "inet/networklayer/icmpv6/ICMPv6Message_m.h"
-
-namespace inet {
+#include "IPv6ControlInfo.h"
+#include "ICMPv6Message_m.h"
 
 /**
  * Error Handling: print out received error for IPv6
  */
 // FIXME is such thing needed at all???
-class INET_API IPv6ErrorHandling : public cSimpleModule
+class INET_API IPv6ErrorHandling: public cSimpleModule
 {
   protected:
-    virtual void initialize() override;
-    virtual void handleMessage(cMessage *msg) override;
+    virtual void initialize();
+    virtual void handleMessage(cMessage *msg);
 
   protected:
     virtual void displayType1Msg(int code);
@@ -47,7 +46,4 @@ class INET_API IPv6ErrorHandling : public cSimpleModule
     virtual void displayType4Msg(int code);
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_IPV6ERRORHANDLING_H
-
+#endif

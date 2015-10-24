@@ -1,64 +1,3 @@
-====== inet-3.x ======
-
-2015-06-22  ------ inet-3.0.0 released ------
-
-2015-05-13  ------ inet-2.99.1 released ------
-
-2015-01-05  Zoltan Bojthe
-
-	Removed getParentModule calls.
-
-2015-01-14  Zoltan Bojthe
-
-	Applied C++ source code modernizer.
-
-2014-11-26  Zoltan Bojthe
-
-	Fixed defects found by static code analyzer (Coverity).
-
-2014-11-13  Zoltan Bojthe
-
-	Fixed memory managements bugs found by valgrind memcheck.
-
-2014-11-07  ------ inet-2.99.0 released ------
-
-2014-09-18  Andras Varga
-
-	Moved all sources under the src/inet directory, so that all #include
-	statements begin with "inet/". The motivation is to rule out potential
-	filename clashes when multiple model frameworks are used together.
-
-	HINT: You can use the "opp_githist" command in inet/_scripts to find
-	all previous locations of the sources in this directory, and to view
-	the full history in gitk. Normal invocations of gitk can only show
-	file history back to the most recent move operation.
-
-2014-07-30  Andras Varga
-
-	Changes on the inet-3.x branch so far:
-
-	Code formatting (Zoltan Bojthe)
-	- using uncrustify, see _scripts/reformat/*
-	- common style for header guards
-
-	Namespace (Zoltan Bojthe, Zsolt Prontvai)
-	- code has been moved into the inet namespace
-
-	Init stages (Zoltan Bojthe, Andras Varga)
-	- init stages: reorganized by layers
-
-	Signals (Zoltan Bojthe)
-	- replace INotifiable and NotificationBoard by signals for
-	  publish/subscribe communication
-
-	Logging (Zoltan Bojthe, Benjamin Seregi)
-	- EV log statements revised and categorized: EV_ERROR, EV_WARN,
-	  EV_INFO, EV_DETAIL, EV_DEBUG, EV_TRACE
-
-====== inet-2.x ======
-
-2015-03-04  ------ inet-2.6 released ------
-
 2014-11-07  ------ inet-2.5.1 released ------
 
 2014-10-29  ------ inet-2.5.0 released ------
@@ -77,7 +16,7 @@
 	backport: IPv4Route: renamed source to sourceType, getSource to
 	getSourceType, setSource to setSourceType
 
-2013-12-02  Benjamin Seregi (benmartin92)
+2013-12-02  Benmartin92
 
 	DHCP: added startTime to the DHCPServer - startTime handling now works
 	similarly as in UDP apps.
@@ -89,7 +28,7 @@
 	DHCP server: docu, fixes
 	- support interface autoselection
 
-2013-11-28  Benjamin Seregi (benmartin92)
+2013-11-28  Benmartin92
 
 	DHCP: added openSocket() to DHCPClient. FIX: missing msg type in DHCPNAK.
 
@@ -98,7 +37,7 @@
 	DHCP: DHCPMessage: 'flags' changed to 'broadcast', the only bit it
 	contains
 
-2013-11-27  Benjamin Seregi (benmartin92)
+2013-11-27  Benmartin92
 
 	DHCP: - DHCP.msg renamed to DHCPMessage.msg and merged with
 	DHCPOptions.msg. - Logging.

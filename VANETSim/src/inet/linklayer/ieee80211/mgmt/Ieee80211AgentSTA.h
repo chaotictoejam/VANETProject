@@ -15,19 +15,18 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211AGENTSTA_H
-#define __INET_IEEE80211AGENTSTA_H
+#ifndef IEEE80211_AGENT_STA_H
+#define IEEE80211_AGENT_STA_H
 
 #include <vector>
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211Primitives_m.h"
-#include "inet/networklayer/common/InterfaceTable.h"
+#include "Ieee80211Primitives_m.h"
+#include "NotificationBoard.h"
+#include "InterfaceTable.h"
+#include "ILifecycle.h"
 
-namespace inet {
-
-namespace ieee80211 {
 
 /**
  * Used in 802.11 infrastructure mode: in a station (STA), this module
@@ -38,12 +37,14 @@ namespace ieee80211 {
  *
  * @author Andras Varga
  */
-class INET_API Ieee80211AgentSTA : public cSimpleModule, public cListener
+class INET_API Ieee80211AgentSTA : public cSimpleModule, public INotifiable,  public ILifecycle
 {
   protected:
-    InterfaceEntry *myIface = nullptr;
+    bool isOperational;     // for lifecycle
+    InterfaceEntry *myIface;
+    NotificationBoard *nb;
     MACAddress prevAP;
-    bool activeScan = false;
+    bool activeScan;
     std::vector<int> channelsToScan;
     simtime_t probeDelay;
     simtime_t minChannelTime;
@@ -59,14 +60,14 @@ class INET_API Ieee80211AgentSTA : public cSimpleModule, public cListener
     static simsignal_t dropConfirmSignal;
 
   public:
-    Ieee80211AgentSTA() {}
+    Ieee80211AgentSTA() : myIface(NULL) {}
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int) override;
+    virtual int numInitStages() const { return 2; }
+    virtual void initialize(int);
 
     /** Overridden cSimpleModule method */
-    virtual void handleMessage(cMessage *msg) override;
+    virtual void handleMessage(cMessage *msg);
 
     /** Handle timers */
     virtual void handleTimer(cMessage *msg);
@@ -74,8 +75,8 @@ class INET_API Ieee80211AgentSTA : public cSimpleModule, public cListener
     /** Handle responses from mgmgt */
     virtual void handleResponse(cMessage *msg);
 
-    /** Redefined from cListener; called by signal handler */
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) override;
+    /** Redefined from INotifiable; called by NotificationBoard */
+    virtual void receiveChangeNotification(int category, const cObject *details);
 
     // utility method: attaches object to a message as controlInfo, and sends it to mgmt
     virtual void sendRequest(Ieee80211PrimRequest *req);
@@ -103,11 +104,16 @@ class INET_API Ieee80211AgentSTA : public cSimpleModule, public cListener
 
     // utility method, for debugging
     virtual void dumpAPList(Ieee80211Prim_ScanConfirm *resp);
+    /** lifecycle support */
+    //@{
+  protected:
+    virtual void start();
+    virtual void stop();
+  public:
+    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback);
+    //@}
 };
 
-} // namespace ieee80211
+#endif
 
-} // namespace inet
-
-#endif // ifndef __INET_IEEE80211AGENTSTA_H
 

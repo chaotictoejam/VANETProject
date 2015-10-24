@@ -17,19 +17,17 @@
 //
 
 #ifdef WITH_IPv4
-#include "inet/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#include "IPv4Datagram.h"
+#endif
 
 #ifdef WITH_IPv6
-#include "inet/networklayer/ipv6/IPv6Datagram.h"
-#endif // ifdef WITH_IPv6
+#include "IPv6Datagram.h"
+#endif
 
-#include "inet/networklayer/diffserv/DSCP_m.h"
-#include "inet/networklayer/diffserv/DSCPMarker.h"
+#include "DSCP_m.h"
+#include "DSCPMarker.h"
 
-#include "inet/networklayer/diffserv/DiffservUtil.h"
-
-namespace inet {
+#include "DiffservUtil.h"
 
 using namespace DiffservUtil;
 
@@ -53,11 +51,13 @@ void DSCPMarker::initialize()
 
 void DSCPMarker::handleMessage(cMessage *msg)
 {
-    cPacket *packet = dynamic_cast<cPacket *>(msg);
-    if (packet) {
+    cPacket *packet = dynamic_cast<cPacket*>(msg);
+    if (packet)
+    {
         numRcvd++;
         int dscp = dscps.at(msg->getArrivalGate()->getIndex());
-        if (markPacket(packet, dscp)) {
+        if (markPacket(packet, dscp))
+        {
             emit(markPkSignal, packet);
             numMarked++;
         }
@@ -67,39 +67,38 @@ void DSCPMarker::handleMessage(cMessage *msg)
     else
         throw cRuntimeError("DSCPMarker expects cPackets");
 
-    if (hasGUI()) {
+    if (ev.isGUI())
+    {
         char buf[50] = "";
-        if (numRcvd > 0)
-            sprintf(buf + strlen(buf), "rcvd: %d ", numRcvd);
-        if (numMarked > 0)
-            sprintf(buf + strlen(buf), "mark:%d ", numMarked);
+        if (numRcvd>0) sprintf(buf+strlen(buf), "rcvd: %d ", numRcvd);
+        if (numMarked>0) sprintf(buf+strlen(buf), "mark:%d ", numMarked);
         getDisplayString().setTagArg("t", 0, buf);
     }
 }
 
 bool DSCPMarker::markPacket(cPacket *packet, int dscp)
 {
-    EV_DETAIL << "Marking packet with dscp=" << dscpToString(dscp) << "\n";
+    EV << "Marking packet with dscp=" << dscpToString(dscp) << "\n";
 
-    for ( ; packet; packet = packet->getEncapsulatedPacket()) {
+    for ( ; packet; packet = packet->getEncapsulatedPacket())
+    {
 #ifdef WITH_IPv4
         IPv4Datagram *ipv4Datagram = dynamic_cast<IPv4Datagram *>(packet);
-        if (ipv4Datagram) {
+        if (ipv4Datagram)
+        {
             ipv4Datagram->setDiffServCodePoint(dscp);
             return true;
         }
-#endif // ifdef WITH_IPv4
+#endif
 #ifdef WITH_IPv6
         IPv6Datagram *ipv6Datagram = dynamic_cast<IPv6Datagram *>(packet);
-        if (ipv6Datagram) {
+        if (ipv6Datagram)
+        {
             ipv6Datagram->setDiffServCodePoint(dscp);
             return true;
         }
-#endif // ifdef WITH_IPv6
+#endif
     }
 
     return false;
 }
-
-} // namespace inet
-

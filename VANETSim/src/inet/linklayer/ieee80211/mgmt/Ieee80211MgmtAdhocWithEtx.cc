@@ -16,12 +16,8 @@
 //
 
 
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhocWithEtx.h"
-#include "inet/linklayer/common/Ieee802Ctrl_m.h"
-
-namespace inet {
-
-namespace ieee80211 {
+#include "Ieee80211MgmtAdhocWithEtx.h"
+#include "Ieee802Ctrl_m.h"
 
 
 Define_Module(Ieee80211MgmtAdhocWithEtx);
@@ -47,7 +43,7 @@ void Ieee80211MgmtAdhocWithEtx::initialize(int stage)
     Ieee80211MgmtAdhoc::initialize(stage);
     if (stage==1)
     {
-        ETXProcess = nullptr;
+        ETXProcess = NULL;
         if (par("ETXEstimate"))
             startEtx();
     }
@@ -61,7 +57,7 @@ void Ieee80211MgmtAdhocWithEtx::handleMessage(cMessage *msg)
     char gateName [40];
     memset(gateName, 0, 40);
     strcpy(gateName, msggate->getBaseName());
-    if (strstr(gateName, "ETXProcIn")!=nullptr)
+    if (strstr(gateName, "ETXProcIn")!=NULL)
     {
         handleEtxMessage(PK(msg));
     }
@@ -109,5 +105,3 @@ void Ieee80211MgmtAdhocWithEtx::handleEtxMessage(cPacket *pk)
         delete pk;
 }
 
-}
-}

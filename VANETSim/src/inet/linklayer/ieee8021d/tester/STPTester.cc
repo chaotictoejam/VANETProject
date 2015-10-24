@@ -17,16 +17,15 @@
 // Author: Benjamin Martin Seregi
 //
 
-#include "inet/linklayer/ieee8021d/tester/STPTester.h"
-#include "inet/linklayer/configurator/Ieee8021dInterfaceData.h"
-#include "inet/common/lifecycle/NodeStatus.h"
-
-namespace inet {
+#include "STPTester.h"
+#include "Ieee8021dInterfaceData.h"
+#include "NodeStatus.h"
 
 Define_Module(STPTester);
 
 STPTester::STPTester()
 {
+    checkTimer = new cMessage("checktime");
 }
 
 STPTester::~STPTester()
@@ -36,42 +35,43 @@ STPTester::~STPTester()
 
 void STPTester::initialize()
 {
-    checkTimer = new cMessage("checktime");
-    checkTime = par("checkTime");
+    checkTime=par("checkTime");
     scheduleAt(simTime() + checkTime, checkTimer);
 }
 
 void STPTester::handleMessage(cMessage *msg)
 {
-    if (msg->isSelfMessage()) {
+    if(msg->isSelfMessage())
+    {
         depthFirstSearch();
-        if (isLoopFreeGraph())
-            EV_DEBUG << "The netwotrk is loop-free" << endl;
+        if(isLoopFreeGraph())
+            EV_DEBUG<<"The netwotrk is loop-free"<<endl;
         else
-            EV_DEBUG << "The netwotrk is not loop-free" << endl;
-        if (isConnectedGraph())
-            EV_DEBUG << "All nodes are connected with each other" << endl;
+            EV_DEBUG<<"The netwotrk is not loop-free"<<endl;
+        if(isConnectedGraph())
+            EV_DEBUG<<"All nodes are connected with each other"<<endl;
         else
-            EV_DEBUG << "Not all nodes are connected with each other" << endl;
-        if (isTreeGraph())
-            EV_DEBUG << "The network topology is a tree topology" << endl;
+            EV_DEBUG<<"Not all nodes are connected with each other"<<endl;
+        if(isTreeGraph())
+            EV_DEBUG<<"The network topology is a tree topology"<<endl;
         scheduleAt(simTime() + checkTime, msg);
     }
-    else {
-        throw cRuntimeError("This module only handle selfmessages");
+    else
+    {
+        opp_error("This module only handle selfmessages");
     }
 }
-
 void STPTester::depthFirstSearch()
 {
     loop = false;
     numOfVisitedNodes = 0;
-    graph.extractByProperty("networkNode");
+    graph.extractByProperty("node");
     numOfNodes = graph.getNumNodes();
 
-    for (int i = 0; i < graph.getNumNodes(); i++) {
+    for (int i = 0; i < graph.getNumNodes(); i++)
+    {
         color[graph.getNode(i)] = WHITE;
-        parent[graph.getNode(i)] = nullptr;
+        parent[graph.getNode(i)] = NULL;
     }
 
     /* Use this for testing loop-freeness in all connected components.
@@ -88,13 +88,14 @@ void STPTester::depthFirstSearch()
         dfsVisit(graph.getNode(0));
 }
 
-void STPTester::dfsVisit(Topology::Node *node)
+void STPTester::dfsVisit(Topology::Node * node)
 {
     color[node] = GRAY;
 
-    for (int i = 0; i < node->getNumOutLinks(); i++) {
-        Topology::LinkOut *linkOut = node->getLinkOut(i);
-        Topology::Node *neighbor = linkOut->getRemoteNode();
+    for (int i = 0; i < node->getNumOutLinks(); i++)
+    {
+        Topology::LinkOut * linkOut = node->getLinkOut(i);
+        Topology::Node * neighbor = linkOut->getRemoteNode();
 
         // If we found a port which is in state discarding,
         // then we do not expand this link
@@ -109,7 +110,8 @@ void STPTester::dfsVisit(Topology::Node *node)
         if (!isForwarding(neighbor, remotePort))
             continue;
 
-        if (color[neighbor] == WHITE) {
+        if (color[neighbor] == WHITE)
+        {
             parent[neighbor] = node;
             dfsVisit(neighbor);
         }
@@ -146,26 +148,23 @@ int STPTester::getNumOfVisitedNodes()
     return numOfVisitedNodes;
 }
 
-bool STPTester::isForwarding(Topology::Node *node, unsigned int portNum)
+bool STPTester::isForwarding(Topology::Node * node, unsigned int portNum)
 {
-    cModule *tmpIfTable = node->getModule()->getSubmodule("interfaceTable");
-    IInterfaceTable *ifTable = dynamic_cast<IInterfaceTable *>(tmpIfTable);
+    cModule * tmpIfTable = node->getModule()->getSubmodule("interfaceTable");
+    IInterfaceTable * ifTable = dynamic_cast<IInterfaceTable*>(tmpIfTable);
 
     // EtherHost has no InterfaceTable
-    if (ifTable == nullptr)
+    if (ifTable == NULL)
         return true;
 
-    cGate *gate = node->getModule()->gate("ethg$o", portNum);
-    InterfaceEntry *gateIfEntry = ifTable->getInterfaceByNodeOutputGateId(gate->getId());
-    Ieee8021dInterfaceData *portData = gateIfEntry->ieee8021dData();
+    cGate * gate = node->getModule()->gate("ethg$o", portNum);
+    InterfaceEntry * gateIfEntry = ifTable->getInterfaceByNodeOutputGateId(gate->getId());
+    Ieee8021dInterfaceData * portData = gateIfEntry->ieee8021dData();
 
     // If portData does not exist, then it implies that
     // the node is not a switch
-    if (portData == nullptr)
+    if (portData == NULL)
         return true;
 
     return portData->isForwarding();
 }
-
-} // namespace inet
-

@@ -1,54 +1,3 @@
-====== inet-3.x ======
-
-2015-06-22  ------ inet-3.0.0 released ------
-
-2015-05-13  ------ inet-2.99.1 released ------
-
-2015-01-21  Zoltan Bojthe
-
-	Applied C++ source code modernizer.
-
-2014-12-08  Zoltan Bojthe
-
-	Fixed defects found by static code analyzer (Coverity).
-
-2014-11-07  ------ inet-2.99.0 released ------
-
-2014-09-18  Andras Varga
-
-	Moved all sources under the src/inet directory, so that all #include
-	statements begin with "inet/". The motivation is to rule out potential
-	filename clashes when multiple model frameworks are used together.
-
-	HINT: You can use the "opp_githist" command in inet/_scripts to find
-	all previous locations of the sources in this directory, and to view
-	the full history in gitk. Normal invocations of gitk can only show
-	file history back to the most recent move operation.
-
-2014-07-30  Andras Varga
-
-	Changes on the inet-3.x branch so far:
-
-	Code formatting (Zoltan Bojthe)
-	- using uncrustify, see _scripts/reformat/*
-	- common style for header guards
-
-	Namespace (Zoltan Bojthe, Zsolt Prontvai)
-	- code has been moved into the inet namespace
-
-	Init stages (Zoltan Bojthe, Andras Varga)
-	- init stages: reorganized by layers
-
-	Signals (Zoltan Bojthe)
-	- replace INotifiable and NotificationBoard by signals for
-	  publish/subscribe communication
-
-	Logging (Zoltan Bojthe, Benjamin Seregi)
-	- EV log statements revised and categorized: EV_ERROR, EV_WARN,
-	  EV_INFO, EV_DETAIL, EV_DEBUG, EV_TRACE
-
-====== inet-2.x ======
-
 2015-03-04  ------ inet-2.6 released ------
 
 2014-11-07  ------ inet-2.5.1 released ------
@@ -64,45 +13,45 @@
 	MACAddressTable: changed default value of agingTime parameter -
 	fingerprints changed
 
-2013-12-05  Benjamin Seregi (benmartin92)
+2013-12-05  Benmartin92
 
 	Ieee8021DRelay: added interface autoselection.
 
-2013-12-04  Benjamin Seregi (benmartin92)
+2013-12-04  Benmartin92
 
 	STP/RSTP/Relays: MAC table module access changed to work with
 	IMACAddressTable.
 
-2013-11-07  Benjamin Seregi (benmartin92)
+2013-11-07  Benmartin92
 
 	Relay: folder name Relay -> relay - added isStpAware: if the switch is
 	STP/RSTP unaware then all its ports are forwarding (and learning) -
 	IEEE8021DRelay implements IMACRelayUnit interface - added STPGate to each
 	IMACRelayUnit implementations
 
-2013-10-31  Benjamin Seregi (benmartin92)
+2013-10-31  Benmartin92
 
 	IEEE8021DRelay: InterfaceTableAccess replaced with getSubmodule()
 
-2013-10-31  Benjamin Seregi (benmartin92)
+2013-10-31  Benmartin92
 
 	IEEE8021DRelay: EthernetIIFrame --> EtherFrame.
 
-2013-10-28  Benjamin Seregi (benmartin92)
+2013-10-28  Benmartin92
 
 	EtherSwitch, IEEE8021DRelay: changed to work with scenarios without STP.
 
-2013-10-28  Benjamin Seregi (benmartin92)
+2013-10-28  Benmartin92
 
 	IEEE8021DRelay: module added. This relay module is intended to work with
 	both STP and RSTP. IEEE8021DBPDU: BPDU message added for RSTP/STP.
 
-2013-10-11  Benjamin Seregi (benmartin92)
+2013-10-11  Benmartin92
 
 	MACAddressTable: Some (eg.: STP, RSTP) protocols may need to change
 	agingTime
 
-2013-09-18  Benjamin Seregi (benmartin92)
+2013-09-18  Benmartin92
 
 	MACAddressTable:
 
@@ -124,7 +73,7 @@
 
 	MACAddressTableAccess: MACAddressTable access name changed to macTable.
 
-2013-09-12  Benjamin Seregi (benmartin92)
+2013-09-12  Benmartin92
 
 	Switch: MACAddressTable changes:
 

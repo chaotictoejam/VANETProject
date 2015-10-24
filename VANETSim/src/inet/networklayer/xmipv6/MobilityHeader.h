@@ -20,14 +20,14 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#ifndef __INET_MOBILITYHEADER_H
-#define __INET_MOBILITYHEADER_H
 
-#include "inet/common/INETDefs.h"
+#ifndef _IPv6MOBILITYHEADERS_H_
+#define _IPv6MOBILITYHEADERS_H_
 
-#include "inet/networklayer/xmipv6/MobilityHeader_m.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "MobilityHeader_m.h"
+
 
 /**
  * Represents an IPv6 Home Address Option. More info in the IPv6Datagram.msg
@@ -38,12 +38,8 @@ class INET_API HomeAddressOption : public HomeAddressOption_Base
   public:
     HomeAddressOption() : HomeAddressOption_Base() {}
     HomeAddressOption(const HomeAddressOption& other) : HomeAddressOption_Base(other) {}
-    HomeAddressOption& operator=(const HomeAddressOption& other) { HomeAddressOption_Base::operator=(other); return *this; }
+    HomeAddressOption& operator=(const HomeAddressOption& other) {HomeAddressOption_Base::operator=(other); return *this;}
 
-    virtual HomeAddressOption *dup() const override { return new HomeAddressOption(*this); }
+    virtual HomeAddressOption *dup() const {return new HomeAddressOption(*this);}
 };
-
-} // namespace inet
-
-#endif // ifndef __INET_MOBILITYHEADER_H
-
+#endif

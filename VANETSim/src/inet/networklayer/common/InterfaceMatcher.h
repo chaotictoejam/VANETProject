@@ -15,16 +15,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INTERFACEMATCHER_H
-#define __INET_INTERFACEMATCHER_H
+#ifndef INTERFACEMATCHER_H_
+#define INTERFACEMATCHER_H_
 
 #include <omnetpp.h>
-#include "inet/common/INETDefs.h"
-#include "inet/networklayer/common/InterfaceEntry.h"
+#include "INETDefs.h"
+#include "InterfaceEntry.h"
 
-namespace inet {
-
-class PatternMatcher;
+namespace inet { class PatternMatcher; }
 
 /**
  * Utility class for configuring interfaces.
@@ -47,43 +45,37 @@ class PatternMatcher;
  */
 class INET_API InterfaceMatcher
 {
-  private:
-    class Matcher
-    {
-      private:
-        bool matchesany;
-        std::vector<inet::PatternMatcher *> matchers;    // TODO replace with a MatchExpression once it becomes available in OMNeT++
+    private:
+        class Matcher
+        {
+            private:
+                bool matchesany;
+                std::vector<inet::PatternMatcher *> matchers; // TODO replace with a MatchExpression once it becomes available in OMNeT++
+            public:
+                Matcher(const char *pattern);
+                ~Matcher();
+                bool matches(const char *s) const;
+                bool matchesAny() const { return matchesany; }
+        };
+        struct Selector
+        {
+           Matcher hostMatcher;
+           Matcher nameMatcher;
+           Matcher towardsMatcher;
+           const InterfaceMatcher *parent;
+           Selector(const char *hostPattern, const char *namePattern, const char *towardsPattern, const InterfaceMatcher *parent);
+           bool matches(const InterfaceEntry *ie);
+        };
+    private:
+        std::vector<Selector*> selectors;
+    public:
+        InterfaceMatcher(const cXMLElementList &selectors);
+        ~InterfaceMatcher();
+        int findMatchingSelector(const InterfaceEntry *ie);
 
-      public:
-        Matcher(const char *pattern);
-        ~Matcher();
-        bool matches(const char *s) const;
-        bool matchesAny() const { return matchesany; }
-    };
-    struct Selector
-    {
-        Matcher hostMatcher;
-        Matcher nameMatcher;
-        Matcher towardsMatcher;
-        const InterfaceMatcher *parent;
-        Selector(const char *hostPattern, const char *namePattern, const char *towardsPattern, const InterfaceMatcher *parent);
-        bool matches(const InterfaceEntry *ie);
-    };
-
-  private:
-    std::vector<Selector *> selectors;
-
-  public:
-    InterfaceMatcher(const cXMLElementList& selectors);
-    ~InterfaceMatcher();
-    int findMatchingSelector(const InterfaceEntry *ie);
-
-  private:
-    bool linkContainsMatchingHost(const InterfaceEntry *ie, const Matcher& hostMatcher) const;
-    void collectNeighbors(cGate *outGate, std::vector<cModule *>& hostNodes, std::vector<cModule *>& deviceNodes, cModule *exludedNode) const;
+    private:
+        bool linkContainsMatchingHost(const InterfaceEntry *ie, const Matcher &hostMatcher) const;
+        void collectNeighbors(cGate *outGate, std::vector<cModule*> &hostNodes, std::vector<cModule*> &deviceNodes, cModule *exludedNode) const;
 };
 
-} // namespace inet
-
 #endif /* INTERFACEMATCHER_H_ */
-

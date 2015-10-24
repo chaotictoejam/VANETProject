@@ -20,7 +20,7 @@
 
 package inet.applications.udpapp;
 
-import inet.applications.contract.IUDPApp;
+import inet.applications.IUDPApp;
 
 
 //
@@ -104,7 +104,6 @@ import inet.applications.contract.IUDPApp;
 simple UDPBasicFlooding like IUDPApp
 {
     parameters:        
-        string interfaceTableModule;   // The path to the InterfaceTable module
         int localPort = default(-1);  // local UDP port number (-1: use ephemeral port)
         int destPort; // remote UDP port number
         double startTime @unit(s) = default(1s); // application start time (start of the first burst)

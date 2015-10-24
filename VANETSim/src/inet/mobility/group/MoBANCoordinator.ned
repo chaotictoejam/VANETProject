@@ -42,7 +42,7 @@
 
 package inet.mobility.group;
 
-import inet.mobility.base.MovingMobilityBase;
+import inet.mobility.common.MovingMobilityBase;
 
 // This is the coordinator module of the MoBAN mobility model. It should be instantiated in the top level simulation network in MiXiM, once per WBAN.
 // The coordinator module is the main module that provides the group mobility and correlation between nodes in a WBAN.

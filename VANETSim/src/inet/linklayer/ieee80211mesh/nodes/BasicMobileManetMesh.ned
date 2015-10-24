@@ -19,17 +19,21 @@
 
 package inet.linklayer.ieee80211mesh.nodes;
 
+import inet.base.MMapBoard;
+import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211mesh.Ieee80211NicMesh;
 import inet.linklayer.ieee80211mesh.Ieee80211NicMeshMulti;
 import inet.networklayer.common.InterfaceTable;
-import inet.common.queue.Sink;
+import inet.base.Sink;
 
+import inet.networklayer.ipv4.RoutingTable;
 import inet.networklayer.common.InterfaceTable;
 import inet.mobility.contract.IMobility;
-import inet.linklayer.contract.IWirelessNic;
-import inet.linklayer.contract.IWiredNic;
-import inet.linklayer.contract.IExternalNic;
-import inet.networklayer.contract.IRoutingTable;
+import inet.linklayer.IWirelessNic;
+import inet.linklayer.IWiredNic;
+import inet.linklayer.IExternalNic;
+import inet.base.NotificationBoard;
+
 
 module BasicNetLayer
 {
@@ -55,7 +59,7 @@ module BasicNetLayer
 module BasicMobileManetMesh
 {
     parameters:
-        @networkNode();
+        @node();
         @display("i=device/pocketpc_s");
         string mobilityType = default("StationaryMobility");
         int meshChannels = default(1);
@@ -63,6 +67,18 @@ module BasicMobileManetMesh
         input radioIn[meshChannels] @directIn;
 
     submodules:
+        routingTable: RoutingTable {
+            parameters:
+                IPForward = true;
+                routerId = "";
+                routingFile = "";
+                @display("p=38,146");
+        }
+
+        notificationBoard: NotificationBoard {
+            parameters:
+                @display("p=159,146");
+        }
         interfaceTable: InterfaceTable {
             parameters:
                 @display("p=159,62");
@@ -82,6 +98,11 @@ module BasicMobileManetMesh
                 @display("p=30,62");
         }
 
+
+        mmapBoard: MMapBoard {
+            parameters:
+                @display("p=38,294;i=block/blackboard");
+        }
     connections allowunconnected:
 
         // connections to network outside

@@ -39,7 +39,6 @@ simple SingleRateThreeColorMeter
 {
     parameters:
         @display("i=block/timer");
-        string interfaceTableModule;   // The path to the InterfaceTable module
         string cir;       // committed information rate, either absolute bitrate (e.g. "100kbps"), or relative to the link's datarate (e.g. "20%")
         int cbs @unit(B); // committed burst size
         int ebs @unit(B); // excess burst size

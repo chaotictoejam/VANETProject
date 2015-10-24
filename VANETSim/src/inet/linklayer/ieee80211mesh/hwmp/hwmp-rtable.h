@@ -22,17 +22,13 @@
 #define HWMP_RTABLE_H
 
 #include <map>
-#include "inet/linklayer/common/MACAddress.h"
+#include "MACAddress.h"
 
 /**
  * \ingroup dot11s
  *
  * \brief Routing table for HWMP -- 802.11s routing protocol
  */
-
-namespace inet {
-
-namespace ieee80211 {
 
 typedef struct
 {
@@ -164,9 +160,5 @@ class HwmpRtable : public cObject
         /// Path to proactive tree root MP
         ProactiveRoute m_root;
 };
-
-}
-
-}
 
 #endif

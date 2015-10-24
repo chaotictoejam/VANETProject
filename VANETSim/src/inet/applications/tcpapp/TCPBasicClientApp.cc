@@ -15,18 +15,23 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inet/applications/tcpapp/TCPBasicClientApp.h"
 
-#include "inet/common/lifecycle/NodeOperations.h"
-#include "inet/common/ModuleAccess.h"
+#include "TCPBasicClientApp.h"
+
+#include "NodeOperations.h"
+#include "ModuleAccess.h"
 #include "GenericAppMsg_m.h"
 
-namespace inet {
+#define MSGKIND_CONNECT  0
+#define MSGKIND_SEND     1
 
-#define MSGKIND_CONNECT    0
-#define MSGKIND_SEND       1
 
 Define_Module(TCPBasicClientApp);
+
+TCPBasicClientApp::TCPBasicClientApp()
+{
+    timeoutMsg = NULL;
+}
 
 TCPBasicClientApp::~TCPBasicClientApp()
 {
@@ -36,18 +41,20 @@ TCPBasicClientApp::~TCPBasicClientApp()
 void TCPBasicClientApp::initialize(int stage)
 {
     TCPAppBase::initialize(stage);
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         numRequestsToSend = 0;
-        earlySend = false;    // TBD make it parameter
+        earlySend = false;  // TBD make it parameter
         WATCH(numRequestsToSend);
         WATCH(earlySend);
 
         startTime = par("startTime");
         stopTime = par("stopTime");
         if (stopTime >= SIMTIME_ZERO && stopTime < startTime)
-            throw cRuntimeError("Invalid startTime/stopTime parameters");
+            error("Invalid startTime/stopTime parameters");
     }
-    else if (stage == INITSTAGE_APPLICATION_LAYER) {
+    else if (stage == 3)
+    {
         timeoutMsg = new cMessage("timer");
         nodeStatus = dynamic_cast<NodeStatus *>(findContainingNode(this)->getSubmodule("status"));
 
@@ -67,17 +74,18 @@ bool TCPBasicClientApp::handleOperationStage(LifecycleOperation *operation, int 
 {
     Enter_Method_Silent();
     if (dynamic_cast<NodeStartOperation *>(operation)) {
-        if ((NodeStartOperation::Stage)stage == NodeStartOperation::STAGE_APPLICATION_LAYER) {
+        if (stage == NodeStartOperation::STAGE_APPLICATION_LAYER) {
             simtime_t now = simTime();
             simtime_t start = std::max(startTime, now);
-            if (timeoutMsg && ((stopTime < SIMTIME_ZERO) || (start < stopTime) || (start == stopTime && startTime == stopTime))) {
+            if (timeoutMsg && ((stopTime < SIMTIME_ZERO) || (start < stopTime) || (start == stopTime && startTime == stopTime)))
+            {
                 timeoutMsg->setKind(MSGKIND_CONNECT);
                 scheduleAt(start, timeoutMsg);
             }
         }
     }
     else if (dynamic_cast<NodeShutdownOperation *>(operation)) {
-        if ((NodeShutdownOperation::Stage)stage == NodeShutdownOperation::STAGE_APPLICATION_LAYER) {
+        if (stage == NodeShutdownOperation::STAGE_APPLICATION_LAYER) {
             cancelEvent(timeoutMsg);
             if (socket.getState() == TCPSocket::CONNECTED || socket.getState() == TCPSocket::CONNECTING || socket.getState() == TCPSocket::PEER_CLOSED)
                 close();
@@ -85,39 +93,41 @@ bool TCPBasicClientApp::handleOperationStage(LifecycleOperation *operation, int 
         }
     }
     else if (dynamic_cast<NodeCrashOperation *>(operation)) {
-        if ((NodeCrashOperation::Stage)stage == NodeCrashOperation::STAGE_CRASH)
+        if (stage == NodeCrashOperation::STAGE_CRASH)
             cancelEvent(timeoutMsg);
     }
-    else
-        throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName());
+    else throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName());
     return true;
 }
 
 void TCPBasicClientApp::sendRequest()
 {
-    long requestLength = par("requestLength");
-    long replyLength = par("replyLength");
-    if (requestLength < 1)
-        requestLength = 1;
-    if (replyLength < 1)
-        replyLength = 1;
+     EV << "sending request, " << numRequestsToSend-1 << " more to go\n";
 
-    GenericAppMsg *msg = new GenericAppMsg("data");
-    msg->setByteLength(requestLength);
-    msg->setExpectedReplyLength(replyLength);
-    msg->setServerClose(false);
+     long requestLength = par("requestLength");
+     long replyLength = par("replyLength");
+     if (requestLength < 1)
+         requestLength = 1;
+     if (replyLength < 1)
+         replyLength = 1;
 
-    EV_INFO << "sending request with " << requestLength << " bytes, expected reply length " << replyLength << " bytes,"
-            << "remaining " << numRequestsToSend - 1 << " request\n";
+     EV << "sending " << requestLength << " bytes, expecting " << replyLength << endl;
 
-    sendPacket(msg);
+     GenericAppMsg *msg = new GenericAppMsg("data");
+     msg->setByteLength(requestLength);
+     msg->setExpectedReplyLength(replyLength);
+     msg->setServerClose(false);
+
+     sendPacket(msg);
 }
 
 void TCPBasicClientApp::handleTimer(cMessage *msg)
 {
-    switch (msg->getKind()) {
+    switch (msg->getKind())
+    {
         case MSGKIND_CONNECT:
-            connect();    // active OPEN
+            EV << "starting session\n";
+            connect(); // active OPEN
 
             // significance of earlySend: if true, data will be sent already
             // in the ACK of SYN, otherwise only in a separate packet (but still
@@ -127,11 +137,11 @@ void TCPBasicClientApp::handleTimer(cMessage *msg)
             break;
 
         case MSGKIND_SEND:
-            sendRequest();
-            numRequestsToSend--;
-            // no scheduleAt(): next request will be sent when reply to this one
-            // arrives (see socketDataArrived())
-            break;
+           sendRequest();
+           numRequestsToSend--;
+           // no scheduleAt(): next request will be sent when reply to this one
+           // arrives (see socketDataArrived())
+           break;
 
         default:
             throw cRuntimeError("Invalid timer msg: kind=%d", msg->getKind());
@@ -143,7 +153,7 @@ void TCPBasicClientApp::socketEstablished(int connId, void *ptr)
     TCPAppBase::socketEstablished(connId, ptr);
 
     // determine number of requests in this session
-    numRequestsToSend = par("numRequestsPerSession").longValue();
+    numRequestsToSend = (long) par("numRequestsPerSession");
     if (numRequestsToSend < 1)
         numRequestsToSend = 1;
 
@@ -158,13 +168,15 @@ void TCPBasicClientApp::rescheduleOrDeleteTimer(simtime_t d, short int msgKind)
 {
     cancelEvent(timeoutMsg);
 
-    if (stopTime < SIMTIME_ZERO || d < stopTime) {
+    if (stopTime < SIMTIME_ZERO || d < stopTime)
+    {
         timeoutMsg->setKind(msgKind);
         scheduleAt(d, timeoutMsg);
     }
-    else {
+    else
+    {
         delete timeoutMsg;
-        timeoutMsg = nullptr;
+        timeoutMsg = NULL;
     }
 }
 
@@ -172,16 +184,19 @@ void TCPBasicClientApp::socketDataArrived(int connId, void *ptr, cPacket *msg, b
 {
     TCPAppBase::socketDataArrived(connId, ptr, msg, urgent);
 
-    if (numRequestsToSend > 0) {
-        EV_INFO << "reply arrived\n";
+    if (numRequestsToSend > 0)
+    {
+        EV << "reply arrived\n";
 
-        if (timeoutMsg) {
-            simtime_t d = simTime() + (simtime_t)par("thinkTime");
+        if (timeoutMsg)
+        {
+            simtime_t d = simTime() + (simtime_t) par("thinkTime");
             rescheduleOrDeleteTimer(d, MSGKIND_SEND);
         }
     }
-    else if (socket.getState() != TCPSocket::LOCALLY_CLOSED) {
-        EV_INFO << "reply to last request arrived, closing session\n";
+    else if (socket.getState() != TCPSocket::LOCALLY_CLOSED)
+    {
+        EV << "reply to last request arrived, closing session\n";
         close();
     }
 }
@@ -191,8 +206,9 @@ void TCPBasicClientApp::socketClosed(int connId, void *ptr)
     TCPAppBase::socketClosed(connId, ptr);
 
     // start another session after a delay
-    if (timeoutMsg) {
-        simtime_t d = simTime() + (simtime_t)par("idleInterval");
+    if (timeoutMsg)
+    {
+        simtime_t d = simTime() + (simtime_t) par("idleInterval");
         rescheduleOrDeleteTimer(d, MSGKIND_CONNECT);
     }
 }
@@ -202,11 +218,10 @@ void TCPBasicClientApp::socketFailure(int connId, void *ptr, int code)
     TCPAppBase::socketFailure(connId, ptr, code);
 
     // reconnect after a delay
-    if (timeoutMsg) {
-        simtime_t d = simTime() + (simtime_t)par("reconnectInterval");
+    if (timeoutMsg)
+    {
+        simtime_t d = simTime() + (simtime_t) par("reconnectInterval");
         rescheduleOrDeleteTimer(d, MSGKIND_CONNECT);
     }
 }
-
-} // namespace inet
 

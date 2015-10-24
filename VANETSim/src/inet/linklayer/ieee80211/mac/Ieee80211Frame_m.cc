@@ -28,8 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
-namespace ieee80211 {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -56,8 +54,8 @@ template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::Ieee80211FrameType");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::Ieee80211FrameType"));
+    cEnum *e = cEnum::find("Ieee80211FrameType");
+    if (!e) enums.getInstance()->add(e = new cEnum("Ieee80211FrameType"));
     e->insert(ST_ASSOCIATIONREQUEST, "ST_ASSOCIATIONREQUEST");
     e->insert(ST_ASSOCIATIONRESPONSE, "ST_ASSOCIATIONRESPONSE");
     e->insert(ST_REASSOCIATIONREQUEST, "ST_REASSOCIATIONREQUEST");
@@ -78,7 +76,6 @@ EXECUTE_ON_STARTUP(
     e->insert(ST_BLOCKACK_REQ, "ST_BLOCKACK_REQ");
     e->insert(ST_BLOCKACK, "ST_BLOCKACK");
     e->insert(ST_DATA, "ST_DATA");
-    e->insert(ST_DATA_WITH_QOS, "ST_DATA_WITH_QOS");
     e->insert(ST_LBMS_REQUEST, "ST_LBMS_REQUEST");
     e->insert(ST_LBMS_REPORT, "ST_LBMS_REPORT");
 );
@@ -272,7 +269,7 @@ class Ieee80211FrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211FrameDescriptor);
 
-Ieee80211FrameDescriptor::Ieee80211FrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211Frame", "cPacket")
+Ieee80211FrameDescriptor::Ieee80211FrameDescriptor() : cClassDescriptor("Ieee80211Frame", "cPacket")
 {
 }
 
@@ -389,7 +386,7 @@ const char *Ieee80211FrameDescriptor::getFieldProperty(void *object, int field, 
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::Ieee80211FrameType";
+            if (!strcmp(propertyname,"enum")) return "Ieee80211FrameType";
             return NULL;
         default: return NULL;
     }
@@ -485,11 +482,11 @@ void *Ieee80211FrameDescriptor::getFieldStructPointer(void *object, int field, i
 
 Register_Class(Ieee80211OneAddressFrame);
 
-Ieee80211OneAddressFrame::Ieee80211OneAddressFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211Frame(name,kind)
+Ieee80211OneAddressFrame::Ieee80211OneAddressFrame(const char *name, int kind) : ::Ieee80211Frame(name,kind)
 {
 }
 
-Ieee80211OneAddressFrame::Ieee80211OneAddressFrame(const Ieee80211OneAddressFrame& other) : ::inet::ieee80211::Ieee80211Frame(other)
+Ieee80211OneAddressFrame::Ieee80211OneAddressFrame(const Ieee80211OneAddressFrame& other) : ::Ieee80211Frame(other)
 {
     copy(other);
 }
@@ -501,7 +498,7 @@ Ieee80211OneAddressFrame::~Ieee80211OneAddressFrame()
 Ieee80211OneAddressFrame& Ieee80211OneAddressFrame::operator=(const Ieee80211OneAddressFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211Frame::operator=(other);
+    ::Ieee80211Frame::operator=(other);
     copy(other);
     return *this;
 }
@@ -512,12 +509,12 @@ void Ieee80211OneAddressFrame::copy(const Ieee80211OneAddressFrame& other)
 
 void Ieee80211OneAddressFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211Frame::parsimPack(b);
+    ::Ieee80211Frame::parsimPack(b);
 }
 
 void Ieee80211OneAddressFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211Frame::parsimUnpack(b);
+    ::Ieee80211Frame::parsimUnpack(b);
 }
 
 class Ieee80211OneAddressFrameDescriptor : public cClassDescriptor
@@ -545,7 +542,7 @@ class Ieee80211OneAddressFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211OneAddressFrameDescriptor);
 
-Ieee80211OneAddressFrameDescriptor::Ieee80211OneAddressFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211OneAddressFrame", "inet::ieee80211::Ieee80211Frame")
+Ieee80211OneAddressFrameDescriptor::Ieee80211OneAddressFrameDescriptor() : cClassDescriptor("Ieee80211OneAddressFrame", "Ieee80211Frame")
 {
 }
 
@@ -691,13 +688,13 @@ void *Ieee80211OneAddressFrameDescriptor::getFieldStructPointer(void *object, in
 
 Register_Class(Ieee80211ACKFrame);
 
-Ieee80211ACKFrame::Ieee80211ACKFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211OneAddressFrame(name,kind)
+Ieee80211ACKFrame::Ieee80211ACKFrame(const char *name, int kind) : ::Ieee80211OneAddressFrame(name,kind)
 {
     this->setByteLength(LENGTH_ACK / 8);
     this->setType(ST_ACK);
 }
 
-Ieee80211ACKFrame::Ieee80211ACKFrame(const Ieee80211ACKFrame& other) : ::inet::ieee80211::Ieee80211OneAddressFrame(other)
+Ieee80211ACKFrame::Ieee80211ACKFrame(const Ieee80211ACKFrame& other) : ::Ieee80211OneAddressFrame(other)
 {
     copy(other);
 }
@@ -709,7 +706,7 @@ Ieee80211ACKFrame::~Ieee80211ACKFrame()
 Ieee80211ACKFrame& Ieee80211ACKFrame::operator=(const Ieee80211ACKFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211OneAddressFrame::operator=(other);
+    ::Ieee80211OneAddressFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -720,12 +717,12 @@ void Ieee80211ACKFrame::copy(const Ieee80211ACKFrame& other)
 
 void Ieee80211ACKFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211OneAddressFrame::parsimPack(b);
+    ::Ieee80211OneAddressFrame::parsimPack(b);
 }
 
 void Ieee80211ACKFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211OneAddressFrame::parsimUnpack(b);
+    ::Ieee80211OneAddressFrame::parsimUnpack(b);
 }
 
 class Ieee80211ACKFrameDescriptor : public cClassDescriptor
@@ -753,7 +750,7 @@ class Ieee80211ACKFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ACKFrameDescriptor);
 
-Ieee80211ACKFrameDescriptor::Ieee80211ACKFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ACKFrame", "inet::ieee80211::Ieee80211OneAddressFrame")
+Ieee80211ACKFrameDescriptor::Ieee80211ACKFrameDescriptor() : cClassDescriptor("Ieee80211ACKFrame", "Ieee80211OneAddressFrame")
 {
 }
 
@@ -899,13 +896,13 @@ void *Ieee80211ACKFrameDescriptor::getFieldStructPointer(void *object, int field
 
 Register_Class(Ieee80211TwoAddressFrame);
 
-Ieee80211TwoAddressFrame::Ieee80211TwoAddressFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211OneAddressFrame(name,kind)
+Ieee80211TwoAddressFrame::Ieee80211TwoAddressFrame(const char *name, int kind) : ::Ieee80211OneAddressFrame(name,kind)
 {
     this->setByteLength(LENGTH_RTS / 8);
 
 }
 
-Ieee80211TwoAddressFrame::Ieee80211TwoAddressFrame(const Ieee80211TwoAddressFrame& other) : ::inet::ieee80211::Ieee80211OneAddressFrame(other)
+Ieee80211TwoAddressFrame::Ieee80211TwoAddressFrame(const Ieee80211TwoAddressFrame& other) : ::Ieee80211OneAddressFrame(other)
 {
     copy(other);
 }
@@ -917,7 +914,7 @@ Ieee80211TwoAddressFrame::~Ieee80211TwoAddressFrame()
 Ieee80211TwoAddressFrame& Ieee80211TwoAddressFrame::operator=(const Ieee80211TwoAddressFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211OneAddressFrame::operator=(other);
+    ::Ieee80211OneAddressFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -929,13 +926,13 @@ void Ieee80211TwoAddressFrame::copy(const Ieee80211TwoAddressFrame& other)
 
 void Ieee80211TwoAddressFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211OneAddressFrame::parsimPack(b);
+    ::Ieee80211OneAddressFrame::parsimPack(b);
     doPacking(b,this->transmitterAddress_var);
 }
 
 void Ieee80211TwoAddressFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211OneAddressFrame::parsimUnpack(b);
+    ::Ieee80211OneAddressFrame::parsimUnpack(b);
     doUnpacking(b,this->transmitterAddress_var);
 }
 
@@ -974,7 +971,7 @@ class Ieee80211TwoAddressFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211TwoAddressFrameDescriptor);
 
-Ieee80211TwoAddressFrameDescriptor::Ieee80211TwoAddressFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211TwoAddressFrame", "inet::ieee80211::Ieee80211OneAddressFrame")
+Ieee80211TwoAddressFrameDescriptor::Ieee80211TwoAddressFrameDescriptor() : cClassDescriptor("Ieee80211TwoAddressFrame", "Ieee80211OneAddressFrame")
 {
 }
 
@@ -1136,13 +1133,13 @@ void *Ieee80211TwoAddressFrameDescriptor::getFieldStructPointer(void *object, in
 
 Register_Class(Ieee80211RTSFrame);
 
-Ieee80211RTSFrame::Ieee80211RTSFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211TwoAddressFrame(name,kind)
+Ieee80211RTSFrame::Ieee80211RTSFrame(const char *name, int kind) : ::Ieee80211TwoAddressFrame(name,kind)
 {
     this->setByteLength(LENGTH_RTS / 8);
     this->setType(ST_RTS);
 }
 
-Ieee80211RTSFrame::Ieee80211RTSFrame(const Ieee80211RTSFrame& other) : ::inet::ieee80211::Ieee80211TwoAddressFrame(other)
+Ieee80211RTSFrame::Ieee80211RTSFrame(const Ieee80211RTSFrame& other) : ::Ieee80211TwoAddressFrame(other)
 {
     copy(other);
 }
@@ -1154,7 +1151,7 @@ Ieee80211RTSFrame::~Ieee80211RTSFrame()
 Ieee80211RTSFrame& Ieee80211RTSFrame::operator=(const Ieee80211RTSFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211TwoAddressFrame::operator=(other);
+    ::Ieee80211TwoAddressFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -1165,12 +1162,12 @@ void Ieee80211RTSFrame::copy(const Ieee80211RTSFrame& other)
 
 void Ieee80211RTSFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211TwoAddressFrame::parsimPack(b);
+    ::Ieee80211TwoAddressFrame::parsimPack(b);
 }
 
 void Ieee80211RTSFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211TwoAddressFrame::parsimUnpack(b);
+    ::Ieee80211TwoAddressFrame::parsimUnpack(b);
 }
 
 class Ieee80211RTSFrameDescriptor : public cClassDescriptor
@@ -1198,7 +1195,7 @@ class Ieee80211RTSFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211RTSFrameDescriptor);
 
-Ieee80211RTSFrameDescriptor::Ieee80211RTSFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211RTSFrame", "inet::ieee80211::Ieee80211TwoAddressFrame")
+Ieee80211RTSFrameDescriptor::Ieee80211RTSFrameDescriptor() : cClassDescriptor("Ieee80211RTSFrame", "Ieee80211TwoAddressFrame")
 {
 }
 
@@ -1344,13 +1341,13 @@ void *Ieee80211RTSFrameDescriptor::getFieldStructPointer(void *object, int field
 
 Register_Class(Ieee80211CTSFrame);
 
-Ieee80211CTSFrame::Ieee80211CTSFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211OneAddressFrame(name,kind)
+Ieee80211CTSFrame::Ieee80211CTSFrame(const char *name, int kind) : ::Ieee80211OneAddressFrame(name,kind)
 {
     this->setByteLength(LENGTH_CTS / 8);
     this->setType(ST_CTS);
 }
 
-Ieee80211CTSFrame::Ieee80211CTSFrame(const Ieee80211CTSFrame& other) : ::inet::ieee80211::Ieee80211OneAddressFrame(other)
+Ieee80211CTSFrame::Ieee80211CTSFrame(const Ieee80211CTSFrame& other) : ::Ieee80211OneAddressFrame(other)
 {
     copy(other);
 }
@@ -1362,7 +1359,7 @@ Ieee80211CTSFrame::~Ieee80211CTSFrame()
 Ieee80211CTSFrame& Ieee80211CTSFrame::operator=(const Ieee80211CTSFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211OneAddressFrame::operator=(other);
+    ::Ieee80211OneAddressFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -1373,12 +1370,12 @@ void Ieee80211CTSFrame::copy(const Ieee80211CTSFrame& other)
 
 void Ieee80211CTSFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211OneAddressFrame::parsimPack(b);
+    ::Ieee80211OneAddressFrame::parsimPack(b);
 }
 
 void Ieee80211CTSFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211OneAddressFrame::parsimUnpack(b);
+    ::Ieee80211OneAddressFrame::parsimUnpack(b);
 }
 
 class Ieee80211CTSFrameDescriptor : public cClassDescriptor
@@ -1406,7 +1403,7 @@ class Ieee80211CTSFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211CTSFrameDescriptor);
 
-Ieee80211CTSFrameDescriptor::Ieee80211CTSFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211CTSFrame", "inet::ieee80211::Ieee80211OneAddressFrame")
+Ieee80211CTSFrameDescriptor::Ieee80211CTSFrameDescriptor() : cClassDescriptor("Ieee80211CTSFrame", "Ieee80211OneAddressFrame")
 {
 }
 
@@ -1552,7 +1549,7 @@ void *Ieee80211CTSFrameDescriptor::getFieldStructPointer(void *object, int field
 
 Register_Class(Ieee80211DataOrMgmtFrame);
 
-Ieee80211DataOrMgmtFrame::Ieee80211DataOrMgmtFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211TwoAddressFrame(name,kind)
+Ieee80211DataOrMgmtFrame::Ieee80211DataOrMgmtFrame(const char *name, int kind) : ::Ieee80211TwoAddressFrame(name,kind)
 {
     this->setByteLength(LENGTH_MGMT / 8);
 
@@ -1560,7 +1557,7 @@ Ieee80211DataOrMgmtFrame::Ieee80211DataOrMgmtFrame(const char *name, int kind) :
     this->sequenceNumber_var = 0;
 }
 
-Ieee80211DataOrMgmtFrame::Ieee80211DataOrMgmtFrame(const Ieee80211DataOrMgmtFrame& other) : ::inet::ieee80211::Ieee80211TwoAddressFrame(other)
+Ieee80211DataOrMgmtFrame::Ieee80211DataOrMgmtFrame(const Ieee80211DataOrMgmtFrame& other) : ::Ieee80211TwoAddressFrame(other)
 {
     copy(other);
 }
@@ -1572,7 +1569,7 @@ Ieee80211DataOrMgmtFrame::~Ieee80211DataOrMgmtFrame()
 Ieee80211DataOrMgmtFrame& Ieee80211DataOrMgmtFrame::operator=(const Ieee80211DataOrMgmtFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211TwoAddressFrame::operator=(other);
+    ::Ieee80211TwoAddressFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -1586,7 +1583,7 @@ void Ieee80211DataOrMgmtFrame::copy(const Ieee80211DataOrMgmtFrame& other)
 
 void Ieee80211DataOrMgmtFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211TwoAddressFrame::parsimPack(b);
+    ::Ieee80211TwoAddressFrame::parsimPack(b);
     doPacking(b,this->address3_var);
     doPacking(b,this->fragmentNumber_var);
     doPacking(b,this->sequenceNumber_var);
@@ -1594,7 +1591,7 @@ void Ieee80211DataOrMgmtFrame::parsimPack(cCommBuffer *b)
 
 void Ieee80211DataOrMgmtFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211TwoAddressFrame::parsimUnpack(b);
+    ::Ieee80211TwoAddressFrame::parsimUnpack(b);
     doUnpacking(b,this->address3_var);
     doUnpacking(b,this->fragmentNumber_var);
     doUnpacking(b,this->sequenceNumber_var);
@@ -1655,7 +1652,7 @@ class Ieee80211DataOrMgmtFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211DataOrMgmtFrameDescriptor);
 
-Ieee80211DataOrMgmtFrameDescriptor::Ieee80211DataOrMgmtFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211DataOrMgmtFrame", "inet::ieee80211::Ieee80211TwoAddressFrame")
+Ieee80211DataOrMgmtFrameDescriptor::Ieee80211DataOrMgmtFrameDescriptor() : cClassDescriptor("Ieee80211DataOrMgmtFrame", "Ieee80211TwoAddressFrame")
 {
 }
 
@@ -1829,15 +1826,14 @@ void *Ieee80211DataOrMgmtFrameDescriptor::getFieldStructPointer(void *object, in
 
 Register_Class(Ieee80211DataFrame);
 
-Ieee80211DataFrame::Ieee80211DataFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211DataOrMgmtFrame(name,kind)
+Ieee80211DataFrame::Ieee80211DataFrame(const char *name, int kind) : ::Ieee80211DataOrMgmtFrame(name,kind)
 {
-    this->setByteLength(DATAFRAME_HEADER_MINLENGTH / 8);
+    this->setByteLength(LENGTH_DATAHDR / 8);
     this->setType(ST_DATA);
 
-    this->qos_var = 0;
 }
 
-Ieee80211DataFrame::Ieee80211DataFrame(const Ieee80211DataFrame& other) : ::inet::ieee80211::Ieee80211DataOrMgmtFrame(other)
+Ieee80211DataFrame::Ieee80211DataFrame(const Ieee80211DataFrame& other) : ::Ieee80211DataOrMgmtFrame(other)
 {
     copy(other);
 }
@@ -1849,7 +1845,7 @@ Ieee80211DataFrame::~Ieee80211DataFrame()
 Ieee80211DataFrame& Ieee80211DataFrame::operator=(const Ieee80211DataFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211DataOrMgmtFrame::operator=(other);
+    ::Ieee80211DataOrMgmtFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -1857,21 +1853,18 @@ Ieee80211DataFrame& Ieee80211DataFrame::operator=(const Ieee80211DataFrame& othe
 void Ieee80211DataFrame::copy(const Ieee80211DataFrame& other)
 {
     this->address4_var = other.address4_var;
-    this->qos_var = other.qos_var;
 }
 
 void Ieee80211DataFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211DataOrMgmtFrame::parsimPack(b);
+    ::Ieee80211DataOrMgmtFrame::parsimPack(b);
     doPacking(b,this->address4_var);
-    doPacking(b,this->qos_var);
 }
 
 void Ieee80211DataFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211DataOrMgmtFrame::parsimUnpack(b);
+    ::Ieee80211DataOrMgmtFrame::parsimUnpack(b);
     doUnpacking(b,this->address4_var);
-    doUnpacking(b,this->qos_var);
 }
 
 MACAddress& Ieee80211DataFrame::getAddress4()
@@ -1882,16 +1875,6 @@ MACAddress& Ieee80211DataFrame::getAddress4()
 void Ieee80211DataFrame::setAddress4(const MACAddress& address4)
 {
     this->address4_var = address4;
-}
-
-uint16 Ieee80211DataFrame::getQos() const
-{
-    return qos_var;
-}
-
-void Ieee80211DataFrame::setQos(uint16 qos)
-{
-    this->qos_var = qos;
 }
 
 class Ieee80211DataFrameDescriptor : public cClassDescriptor
@@ -1919,7 +1902,7 @@ class Ieee80211DataFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211DataFrameDescriptor);
 
-Ieee80211DataFrameDescriptor::Ieee80211DataFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211DataFrame", "inet::ieee80211::Ieee80211DataOrMgmtFrame")
+Ieee80211DataFrameDescriptor::Ieee80211DataFrameDescriptor() : cClassDescriptor("Ieee80211DataFrame", "Ieee80211DataOrMgmtFrame")
 {
 }
 
@@ -1941,7 +1924,7 @@ const char *Ieee80211DataFrameDescriptor::getProperty(const char *propertyname) 
 int Ieee80211DataFrameDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
+    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
 }
 
 unsigned int Ieee80211DataFrameDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -1954,9 +1937,8 @@ unsigned int Ieee80211DataFrameDescriptor::getFieldTypeFlags(void *object, int f
     }
     static unsigned int fieldTypeFlags[] = {
         FD_ISCOMPOUND,
-        FD_ISEDITABLE,
     };
-    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
 }
 
 const char *Ieee80211DataFrameDescriptor::getFieldName(void *object, int field) const
@@ -1969,9 +1951,8 @@ const char *Ieee80211DataFrameDescriptor::getFieldName(void *object, int field) 
     }
     static const char *fieldNames[] = {
         "address4",
-        "qos",
     };
-    return (field>=0 && field<2) ? fieldNames[field] : NULL;
+    return (field>=0 && field<1) ? fieldNames[field] : NULL;
 }
 
 int Ieee80211DataFrameDescriptor::findField(void *object, const char *fieldName) const
@@ -1979,7 +1960,6 @@ int Ieee80211DataFrameDescriptor::findField(void *object, const char *fieldName)
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='a' && strcmp(fieldName, "address4")==0) return base+0;
-    if (fieldName[0]=='q' && strcmp(fieldName, "qos")==0) return base+1;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1993,9 +1973,8 @@ const char *Ieee80211DataFrameDescriptor::getFieldTypeString(void *object, int f
     }
     static const char *fieldTypeStrings[] = {
         "MACAddress",
-        "uint16",
     };
-    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *Ieee80211DataFrameDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -2036,7 +2015,6 @@ std::string Ieee80211DataFrameDescriptor::getFieldAsString(void *object, int fie
     Ieee80211DataFrame *pp = (Ieee80211DataFrame *)object; (void)pp;
     switch (field) {
         case 0: {std::stringstream out; out << pp->getAddress4(); return out.str();}
-        case 1: return ulong2string(pp->getQos());
         default: return "";
     }
 }
@@ -2051,7 +2029,6 @@ bool Ieee80211DataFrameDescriptor::setFieldAsString(void *object, int field, int
     }
     Ieee80211DataFrame *pp = (Ieee80211DataFrame *)object; (void)pp;
     switch (field) {
-        case 1: pp->setQos(string2ulong(value)); return true;
         default: return false;
     }
 }
@@ -2087,14 +2064,14 @@ void *Ieee80211DataFrameDescriptor::getFieldStructPointer(void *object, int fiel
 
 Register_Class(Ieee80211DataFrameWithSNAP);
 
-Ieee80211DataFrameWithSNAP::Ieee80211DataFrameWithSNAP(const char *name, int kind) : ::inet::ieee80211::Ieee80211DataFrame(name,kind)
+Ieee80211DataFrameWithSNAP::Ieee80211DataFrameWithSNAP(const char *name, int kind) : ::Ieee80211DataFrame(name,kind)
 {
-    this->setByteLength(DATAFRAME_HEADER_MINLENGTH / 8 + SNAP_HEADER_BYTES);
+    this->setByteLength(LENGTH_DATAHDR / 8 + SNAP_HEADER_BYTES);
 
     this->etherType_var = 0;
 }
 
-Ieee80211DataFrameWithSNAP::Ieee80211DataFrameWithSNAP(const Ieee80211DataFrameWithSNAP& other) : ::inet::ieee80211::Ieee80211DataFrame(other)
+Ieee80211DataFrameWithSNAP::Ieee80211DataFrameWithSNAP(const Ieee80211DataFrameWithSNAP& other) : ::Ieee80211DataFrame(other)
 {
     copy(other);
 }
@@ -2106,7 +2083,7 @@ Ieee80211DataFrameWithSNAP::~Ieee80211DataFrameWithSNAP()
 Ieee80211DataFrameWithSNAP& Ieee80211DataFrameWithSNAP::operator=(const Ieee80211DataFrameWithSNAP& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211DataFrame::operator=(other);
+    ::Ieee80211DataFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -2118,13 +2095,13 @@ void Ieee80211DataFrameWithSNAP::copy(const Ieee80211DataFrameWithSNAP& other)
 
 void Ieee80211DataFrameWithSNAP::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211DataFrame::parsimPack(b);
+    ::Ieee80211DataFrame::parsimPack(b);
     doPacking(b,this->etherType_var);
 }
 
 void Ieee80211DataFrameWithSNAP::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211DataFrame::parsimUnpack(b);
+    ::Ieee80211DataFrame::parsimUnpack(b);
     doUnpacking(b,this->etherType_var);
 }
 
@@ -2163,7 +2140,7 @@ class Ieee80211DataFrameWithSNAPDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211DataFrameWithSNAPDescriptor);
 
-Ieee80211DataFrameWithSNAPDescriptor::Ieee80211DataFrameWithSNAPDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211DataFrameWithSNAP", "inet::ieee80211::Ieee80211DataFrame")
+Ieee80211DataFrameWithSNAPDescriptor::Ieee80211DataFrameWithSNAPDescriptor() : cClassDescriptor("Ieee80211DataFrameWithSNAP", "Ieee80211DataFrame")
 {
 }
 
@@ -2327,12 +2304,12 @@ void *Ieee80211DataFrameWithSNAPDescriptor::getFieldStructPointer(void *object, 
 
 Register_Class(Ieee80211ManagementFrame);
 
-Ieee80211ManagementFrame::Ieee80211ManagementFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211DataOrMgmtFrame(name,kind)
+Ieee80211ManagementFrame::Ieee80211ManagementFrame(const char *name, int kind) : ::Ieee80211DataOrMgmtFrame(name,kind)
 {
     this->Category_var = 0;
 }
 
-Ieee80211ManagementFrame::Ieee80211ManagementFrame(const Ieee80211ManagementFrame& other) : ::inet::ieee80211::Ieee80211DataOrMgmtFrame(other)
+Ieee80211ManagementFrame::Ieee80211ManagementFrame(const Ieee80211ManagementFrame& other) : ::Ieee80211DataOrMgmtFrame(other)
 {
     copy(other);
 }
@@ -2344,7 +2321,7 @@ Ieee80211ManagementFrame::~Ieee80211ManagementFrame()
 Ieee80211ManagementFrame& Ieee80211ManagementFrame::operator=(const Ieee80211ManagementFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211DataOrMgmtFrame::operator=(other);
+    ::Ieee80211DataOrMgmtFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -2356,13 +2333,13 @@ void Ieee80211ManagementFrame::copy(const Ieee80211ManagementFrame& other)
 
 void Ieee80211ManagementFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211DataOrMgmtFrame::parsimPack(b);
+    ::Ieee80211DataOrMgmtFrame::parsimPack(b);
     doPacking(b,this->Category_var);
 }
 
 void Ieee80211ManagementFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211DataOrMgmtFrame::parsimUnpack(b);
+    ::Ieee80211DataOrMgmtFrame::parsimUnpack(b);
     doUnpacking(b,this->Category_var);
 }
 
@@ -2401,7 +2378,7 @@ class Ieee80211ManagementFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ManagementFrameDescriptor);
 
-Ieee80211ManagementFrameDescriptor::Ieee80211ManagementFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ManagementFrame", "inet::ieee80211::Ieee80211DataOrMgmtFrame")
+Ieee80211ManagementFrameDescriptor::Ieee80211ManagementFrameDescriptor() : cClassDescriptor("Ieee80211ManagementFrame", "Ieee80211DataOrMgmtFrame")
 {
 }
 
@@ -2561,15 +2538,15 @@ void *Ieee80211ManagementFrameDescriptor::getFieldStructPointer(void *object, in
 }
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::MeshType");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::MeshType"));
+    cEnum *e = cEnum::find("MeshType");
+    if (!e) enums.getInstance()->add(e = new cEnum("MeshType"));
     e->insert(UPPERMESSAGE, "UPPERMESSAGE");
     e->insert(ROUTING, "ROUTING");
 );
 
 Register_Class(Ieee80211MeshFrame);
 
-Ieee80211MeshFrame::Ieee80211MeshFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211DataFrame(name,kind)
+Ieee80211MeshFrame::Ieee80211MeshFrame(const char *name, int kind) : ::Ieee80211DataFrame(name,kind)
 {
     this->setType(ST_DATA);
     this->setByteLength(38);
@@ -2585,7 +2562,7 @@ Ieee80211MeshFrame::Ieee80211MeshFrame(const char *name, int kind) : ::inet::iee
     this->realLength_var = 0;
 }
 
-Ieee80211MeshFrame::Ieee80211MeshFrame(const Ieee80211MeshFrame& other) : ::inet::ieee80211::Ieee80211DataFrame(other)
+Ieee80211MeshFrame::Ieee80211MeshFrame(const Ieee80211MeshFrame& other) : ::Ieee80211DataFrame(other)
 {
     channels_arraysize = 0;
     this->channels_var = 0;
@@ -2600,7 +2577,7 @@ Ieee80211MeshFrame::~Ieee80211MeshFrame()
 Ieee80211MeshFrame& Ieee80211MeshFrame::operator=(const Ieee80211MeshFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211DataFrame::operator=(other);
+    ::Ieee80211DataFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -2624,7 +2601,7 @@ void Ieee80211MeshFrame::copy(const Ieee80211MeshFrame& other)
 
 void Ieee80211MeshFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211DataFrame::parsimPack(b);
+    ::Ieee80211DataFrame::parsimPack(b);
     doPacking(b,this->TTL_var);
     doPacking(b,this->subType_var);
     doPacking(b,this->seqNumber_var);
@@ -2639,7 +2616,7 @@ void Ieee80211MeshFrame::parsimPack(cCommBuffer *b)
 
 void Ieee80211MeshFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211DataFrame::parsimUnpack(b);
+    ::Ieee80211DataFrame::parsimUnpack(b);
     doUnpacking(b,this->TTL_var);
     doUnpacking(b,this->subType_var);
     doUnpacking(b,this->seqNumber_var);
@@ -2793,7 +2770,7 @@ class Ieee80211MeshFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211MeshFrameDescriptor);
 
-Ieee80211MeshFrameDescriptor::Ieee80211MeshFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211MeshFrame", "inet::ieee80211::Ieee80211DataFrame")
+Ieee80211MeshFrameDescriptor::Ieee80211MeshFrameDescriptor() : cClassDescriptor("Ieee80211MeshFrame", "Ieee80211DataFrame")
 {
 }
 
@@ -3002,7 +2979,7 @@ void *Ieee80211MeshFrameDescriptor::getFieldStructPointer(void *object, int fiel
     }
 }
 
-Ieee80211BlockAckFrameReq_Base::Ieee80211BlockAckFrameReq_Base(const char *name, int kind) : ::inet::ieee80211::Ieee80211TwoAddressFrame(name,kind)
+Ieee80211BlockAckFrameReq_Base::Ieee80211BlockAckFrameReq_Base(const char *name, int kind) : ::Ieee80211TwoAddressFrame(name,kind)
 {
     this->setType(ST_BLOCKACK_REQ);
     this->setByteLength(24);
@@ -3015,7 +2992,7 @@ Ieee80211BlockAckFrameReq_Base::Ieee80211BlockAckFrameReq_Base(const char *name,
     this->startingSequence_var = 0;
 }
 
-Ieee80211BlockAckFrameReq_Base::Ieee80211BlockAckFrameReq_Base(const Ieee80211BlockAckFrameReq_Base& other) : ::inet::ieee80211::Ieee80211TwoAddressFrame(other)
+Ieee80211BlockAckFrameReq_Base::Ieee80211BlockAckFrameReq_Base(const Ieee80211BlockAckFrameReq_Base& other) : ::Ieee80211TwoAddressFrame(other)
 {
     copy(other);
 }
@@ -3027,7 +3004,7 @@ Ieee80211BlockAckFrameReq_Base::~Ieee80211BlockAckFrameReq_Base()
 Ieee80211BlockAckFrameReq_Base& Ieee80211BlockAckFrameReq_Base::operator=(const Ieee80211BlockAckFrameReq_Base& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211TwoAddressFrame::operator=(other);
+    ::Ieee80211TwoAddressFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -3044,7 +3021,7 @@ void Ieee80211BlockAckFrameReq_Base::copy(const Ieee80211BlockAckFrameReq_Base& 
 
 void Ieee80211BlockAckFrameReq_Base::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211TwoAddressFrame::parsimPack(b);
+    ::Ieee80211TwoAddressFrame::parsimPack(b);
     doPacking(b,this->barAckPolicy_var);
     doPacking(b,this->multiTid_var);
     doPacking(b,this->compressed_var);
@@ -3055,7 +3032,7 @@ void Ieee80211BlockAckFrameReq_Base::parsimPack(cCommBuffer *b)
 
 void Ieee80211BlockAckFrameReq_Base::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211TwoAddressFrame::parsimUnpack(b);
+    ::Ieee80211TwoAddressFrame::parsimUnpack(b);
     doUnpacking(b,this->barAckPolicy_var);
     doUnpacking(b,this->multiTid_var);
     doUnpacking(b,this->compressed_var);
@@ -3149,7 +3126,7 @@ class Ieee80211BlockAckFrameReqDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211BlockAckFrameReqDescriptor);
 
-Ieee80211BlockAckFrameReqDescriptor::Ieee80211BlockAckFrameReqDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211BlockAckFrameReq", "inet::ieee80211::Ieee80211TwoAddressFrame")
+Ieee80211BlockAckFrameReqDescriptor::Ieee80211BlockAckFrameReqDescriptor() : cClassDescriptor("Ieee80211BlockAckFrameReq", "Ieee80211TwoAddressFrame")
 {
 }
 
@@ -3339,7 +3316,7 @@ void *Ieee80211BlockAckFrameReqDescriptor::getFieldStructPointer(void *object, i
     }
 }
 
-Ieee80211BlockAckFrame_Base::Ieee80211BlockAckFrame_Base(const char *name, int kind) : ::inet::ieee80211::Ieee80211TwoAddressFrame(name,kind)
+Ieee80211BlockAckFrame_Base::Ieee80211BlockAckFrame_Base(const char *name, int kind) : ::Ieee80211TwoAddressFrame(name,kind)
 {
     this->setType(ST_BLOCKACK);
     this->setByteLength(152);
@@ -3351,7 +3328,7 @@ Ieee80211BlockAckFrame_Base::Ieee80211BlockAckFrame_Base(const char *name, int k
     this->startingSequence_var = 0;
 }
 
-Ieee80211BlockAckFrame_Base::Ieee80211BlockAckFrame_Base(const Ieee80211BlockAckFrame_Base& other) : ::inet::ieee80211::Ieee80211TwoAddressFrame(other)
+Ieee80211BlockAckFrame_Base::Ieee80211BlockAckFrame_Base(const Ieee80211BlockAckFrame_Base& other) : ::Ieee80211TwoAddressFrame(other)
 {
     copy(other);
 }
@@ -3363,7 +3340,7 @@ Ieee80211BlockAckFrame_Base::~Ieee80211BlockAckFrame_Base()
 Ieee80211BlockAckFrame_Base& Ieee80211BlockAckFrame_Base::operator=(const Ieee80211BlockAckFrame_Base& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211TwoAddressFrame::operator=(other);
+    ::Ieee80211TwoAddressFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -3379,7 +3356,7 @@ void Ieee80211BlockAckFrame_Base::copy(const Ieee80211BlockAckFrame_Base& other)
 
 void Ieee80211BlockAckFrame_Base::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211TwoAddressFrame::parsimPack(b);
+    ::Ieee80211TwoAddressFrame::parsimPack(b);
     doPacking(b,this->baAckPolicy_var);
     doPacking(b,this->multiTid_var);
     doPacking(b,this->compressed_var);
@@ -3389,7 +3366,7 @@ void Ieee80211BlockAckFrame_Base::parsimPack(cCommBuffer *b)
 
 void Ieee80211BlockAckFrame_Base::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211TwoAddressFrame::parsimUnpack(b);
+    ::Ieee80211TwoAddressFrame::parsimUnpack(b);
     doUnpacking(b,this->baAckPolicy_var);
     doUnpacking(b,this->multiTid_var);
     doUnpacking(b,this->compressed_var);
@@ -3472,7 +3449,7 @@ class Ieee80211BlockAckFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211BlockAckFrameDescriptor);
 
-Ieee80211BlockAckFrameDescriptor::Ieee80211BlockAckFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211BlockAckFrame", "inet::ieee80211::Ieee80211TwoAddressFrame")
+Ieee80211BlockAckFrameDescriptor::Ieee80211BlockAckFrameDescriptor() : cClassDescriptor("Ieee80211BlockAckFrame", "Ieee80211TwoAddressFrame")
 {
 }
 
@@ -3656,6 +3633,4 @@ void *Ieee80211BlockAckFrameDescriptor::getFieldStructPointer(void *object, int 
     }
 }
 
-} // namespace ieee80211
-} // namespace inet
 

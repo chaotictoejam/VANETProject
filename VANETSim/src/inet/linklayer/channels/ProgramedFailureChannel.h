@@ -21,13 +21,12 @@
 
 #include "LinkFailureManager.h"
 
-namespace inet {
 class ProgramedFailureDataRateChannel : public cDatarateChannel
 {
   private:
     LinkFailureManager* lfm;
   public:
-    ProgramedFailureDataRateChannel(const char* name=nullptr);
+    ProgramedFailureDataRateChannel(const char* name=NULL);
     ProgramedFailureDataRateChannel(const ProgramedFailureDataRateChannel& ch);
 
     virtual ~ProgramedFailureDataRateChannel();
@@ -46,7 +45,7 @@ class ProgramedFailureChannel : public cDelayChannel
   private:
     LinkFailureManager* lfm;
   public:
-    ProgramedFailureChannel(const char* name=nullptr);
+    ProgramedFailureChannel(const char* name=NULL);
     ProgramedFailureChannel(const ProgramedFailureChannel& ch);
 
     virtual ~ProgramedFailureChannel();
@@ -59,6 +58,5 @@ class ProgramedFailureChannel : public cDelayChannel
 
 };
 
-}
 
 #endif /* PROGRAMEDFAILURECHANNEL_H_ */

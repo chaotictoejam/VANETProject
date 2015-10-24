@@ -1,6 +1,6 @@
 //
 // Copyright (C) 2005 Andras Varga
-// Copyright (C) 2015 A. Ariza (Malaga University)
+// Copyright (C) 2012 Alfonso Ariza
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public License
@@ -24,14 +24,15 @@
 
 #include <iostream>
 #include <fstream>
-#include "inet/applications/udpapp/UDPVideoStreamSvr2.h"
-#include "inet/networklayer/common/InterfaceTable.h"
+#include "UDPVideoStreamSvr2.h"
+#include "InterfaceTable.h"
+#include "InterfaceTableAccess.h"
 
-#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
-#include "inet/applications/udpapp/VideoPacket_m.h"
-#include "inet/common/ModuleAccess.h"
+#include "UDPControlInfo_m.h"
+#include "UDPVideoData_m.h"
+#include "VideoPacket_m.h"
 
-namespace inet {
+
 
 Define_Module(UDPVideoStreamSvr2);
 
@@ -109,8 +110,8 @@ void UDPVideoStreamSvr2::fileParser(const char *fileName)
 
 UDPVideoStreamSvr2::UDPVideoStreamSvr2()
 {
-    videoBroadcastStream = nullptr;
-    restartVideoBroadcast = nullptr;
+    videoBroadcastStream = NULL;
+    restartVideoBroadcast = NULL;
     outputInterfaceBroadcast = -1;
 }
 
@@ -128,7 +129,7 @@ UDPVideoStreamSvr2::~UDPVideoStreamSvr2()
 void UDPVideoStreamSvr2::initialize(int stage)
 {
     ApplicationBase::initialize(stage);
-    if (stage == INITSTAGE_LOCAL)
+    if (stage == 0)
     {
         sendInterval = &par("sendInterval");
         packetLen = &par("packetLen");
@@ -194,7 +195,7 @@ void UDPVideoStreamSvr2::processStreamRequest(cMessage *msg)
     // register video stream...
     UDPDataIndication *ctrl = check_and_cast<UDPDataIndication *>(msg->getControlInfo());
 
-    for(auto it = streamVector.begin(); it  != streamVector.end(); ++it)
+    for(VideoStreamMap::iterator it = streamVector.begin(); it  != streamVector.end(); ++it)
     {
         if (it->second.clientAddr == ctrl->getSrcAddr() && it->second.clientPort == ctrl->getSrcPort())
         {
@@ -247,7 +248,7 @@ void UDPVideoStreamSvr2::sendStreamData(cMessage *timer)
 {
     bool deleteTimer = false;
 
-    auto it = streamVector.find(timer->getId());
+    VideoStreamMap::iterator it = streamVector.find(timer->getId());
     if (it == streamVector.end())
         throw cRuntimeError("Model error: Stream not found for timer");
 
@@ -264,7 +265,7 @@ void UDPVideoStreamSvr2::sendStreamData(cMessage *timer)
            else
            {
                delete restartVideoBroadcast;
-               restartVideoBroadcast = nullptr;
+               restartVideoBroadcast = NULL;
            }
         }
         streamVector.erase(it);
@@ -272,13 +273,17 @@ void UDPVideoStreamSvr2::sendStreamData(cMessage *timer)
         return;
     }
 
-    cPacket *pkt = new cPacket("VideoStrmPk");
+    UDPVideoDataPacket *pkt = new UDPVideoDataPacket("VideoStrmPk");
     if (!d->fileTrace)
     {
         long pktLen = packetLen->longValue();
 
         if (pktLen > d->bytesLeft)
             pktLen = d->bytesLeft;
+
+        pkt->setVideoSize(d->videoSize);
+        pkt->setBytesLeft(d->bytesLeft);
+        pkt->setNumPkSent(d->numPkSent);
 
         pkt->setByteLength(pktLen);
 
@@ -302,7 +307,7 @@ void UDPVideoStreamSvr2::sendStreamData(cMessage *timer)
         {
             simtime_t tm;
             uint64_t size = 0;
-            VideoPacket *videopk = nullptr;
+            VideoPacket *videopk = NULL;
             std::vector<VideoPacket *> macroPkt;
             do{
                 VideoPacket *videopk = new VideoPacket();
@@ -314,7 +319,7 @@ void UDPVideoStreamSvr2::sendStreamData(cMessage *timer)
                 macroPkt.push_back(videopk);
                 d->traceIndex++;
             } while((size + trace[d->traceIndex].size/8 < maxSizeMacro) && (d->traceIndex < trace.size()));
-            videopk = nullptr;
+            videopk = NULL;
 
             while(!macroPkt.empty())
             {
@@ -324,6 +329,8 @@ void UDPVideoStreamSvr2::sendStreamData(cMessage *timer)
                     videopkaux->encapsulate(videopk);
                 videopk = videopkaux;
             }
+
+            pkt->setVideoSize(videopk->getByteLength());
             pkt->encapsulate(videopk);
         }
         else
@@ -334,6 +341,8 @@ void UDPVideoStreamSvr2::sendStreamData(cMessage *timer)
             videopk->setType(trace[d->traceIndex].type);
             videopk->setSeqNum(trace[d->traceIndex].seqNum);
             videopk->setFrameSize(videopk->getByteLength());
+
+            pkt->setVideoSize(trace[d->traceIndex].size/8);
             pkt->encapsulate(videopk);
             d->traceIndex++;
         }
@@ -399,10 +408,10 @@ int UDPVideoStreamSvr2::broadcastInterface()
         return outputInterfaceBroadcast;
     if (strcmp(par("broadcastInterface").stringValue(), "") != 0)
     {
-        IInterfaceTable *ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
+        IInterfaceTable* ift = InterfaceTableAccess().get();
         const char *ports = par("broadcastInterface");
         InterfaceEntry *ie = ift->getInterfaceByName(ports);
-        if (ie == nullptr)
+        if (ie == NULL)
             throw cRuntimeError(this, "Invalid output interface name : %s", ports);
         outputInterfaceBroadcast = ie->getInterfaceId();
     }
@@ -412,7 +421,7 @@ int UDPVideoStreamSvr2::broadcastInterface()
 
 void UDPVideoStreamSvr2::clearStreams()
 {
-    for(auto it = streamVector.begin(); it  != streamVector.end(); ++it)
+    for(VideoStreamMap::iterator it = streamVector.begin(); it  != streamVector.end(); ++it)
         cancelAndDelete(it->second.timer);
     streamVector.clear();
 }
@@ -435,6 +444,4 @@ bool UDPVideoStreamSvr2::handleNodeShutdown(IDoneCallback *doneCallback)
 void UDPVideoStreamSvr2::handleNodeCrash()
 {
     clearStreams();
-}
-
 }

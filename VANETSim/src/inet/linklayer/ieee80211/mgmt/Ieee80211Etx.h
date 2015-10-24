@@ -19,14 +19,11 @@
 #ifndef IEEE80211_ETX_ADHOC_H
 #define IEEE80211_ETX_ADHOC_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/networklayer/contract/IInterfaceTable.h"
-#include "inet/linklayer/ieee80211/mgmt/ETXPacket_m.h"
-
-namespace inet {
-
-namespace ieee80211 {
+#include "IInterfaceTable.h"
+#include "ETXPacket_m.h"
+#include "NotificationBoard.h"
 
 /**
  *
@@ -127,7 +124,7 @@ class MacEtxNeighbor
 
 typedef std::map<MACAddress,MacEtxNeighbor> NeighborsMap;
 
-class INET_API Ieee80211Etx : public cSimpleModule, public MacEstimateCostProcess, public cListener
+class INET_API Ieee80211Etx : public cSimpleModule, public MacEstimateCostProcess, public INotifiable
 {
     enum CostTypes
     {
@@ -197,7 +194,7 @@ class INET_API Ieee80211Etx : public cSimpleModule, public MacEstimateCostProces
     virtual void handleTimer(cMessage *msg);
     /** Implements abstract Ieee80211MgmtBase method */
     virtual void handleBwMessage(MACBwPacket *);
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj);
+    virtual void receiveChangeNotification(int category, const cObject *details);
   public:
     virtual double getEtx(const MACAddress &add,const int &iface = 0);
     virtual int getEtx(const MACAddress &add, double &val);
@@ -262,10 +259,10 @@ class INET_API Ieee80211Etx : public cSimpleModule, public MacEstimateCostProces
         getNeighbors(add,0);
         return (int)add.size();
     }
+
+
 };
 
-}
-}
 #endif
 
 

@@ -15,18 +15,17 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtAPSimplified.h"
-#include "inet/linklayer/common/Ieee802Ctrl.h"
+
+#include "Ieee80211MgmtAPSimplified.h"
+#include "Ieee802Ctrl_m.h"
 
 #ifdef WITH_ETHERNET
-#include "inet/linklayer/ethernet/EtherFrame.h"
-#endif // ifdef WITH_ETHERNET
+#include "EtherFrame.h"
+#endif
 
-namespace inet {
-
-namespace ieee80211 {
 
 Define_Module(Ieee80211MgmtAPSimplified);
+
 
 // FIXME add sequence number handling
 
@@ -48,18 +47,20 @@ void Ieee80211MgmtAPSimplified::handleUpperMessage(cPacket *msg)
 
 void Ieee80211MgmtAPSimplified::handleCommand(int msgkind, cObject *ctrl)
 {
-    throw cRuntimeError("handleCommand(): no commands supported");
+    error("handleCommand(): no commands supported");
 }
 
-void Ieee80211MgmtAPSimplified::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj)
+void Ieee80211MgmtAPSimplified::receiveChangeNotification(int category, const cObject *details)
 {
     Enter_Method_Silent();
+    printNotificationBanner(category, details);
 }
 
 void Ieee80211MgmtAPSimplified::handleDataFrame(Ieee80211DataFrame *frame)
 {
     // check toDS bit
-    if (!frame->getToDS()) {
+    if (!frame->getToDS())
+    {
         // looks like this is not for us - discard
         delete frame;
         return;
@@ -121,8 +122,4 @@ void Ieee80211MgmtAPSimplified::handleProbeResponseFrame(Ieee80211ProbeResponseF
 {
     dropManagementFrame(frame);
 }
-
-} // namespace ieee80211
-
-} // namespace inet
 

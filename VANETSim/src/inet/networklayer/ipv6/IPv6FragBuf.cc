@@ -15,29 +15,26 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
+
 #include <stdlib.h>
 #include <string.h>
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/networklayer/ipv6/IPv6FragBuf.h"
-#include "inet/networklayer/icmpv6/ICMPv6.h"
-#include "inet/networklayer/icmpv6/ICMPv6Message_m.h"    // for TIME_EXCEEDED
-#include "inet/networklayer/ipv6/IPv6Datagram.h"
-#include "inet/networklayer/ipv6/IPv6ExtensionHeaders.h"
+#include "IPv6FragBuf.h"
+#include "ICMPv6.h"
+#include "ICMPv6Message_m.h"  // for TIME_EXCEEDED
+#include "IPv6Datagram.h"
+#include "IPv6ExtensionHeaders.h"
 
-namespace inet {
 
 IPv6FragBuf::IPv6FragBuf()
 {
-    icmpModule = nullptr;
+    icmpModule = NULL;
 }
 
 IPv6FragBuf::~IPv6FragBuf()
 {
-    for (auto & elem : bufs) {
-        delete elem.second.datagram;
-    }
 }
 
 void IPv6FragBuf::init(ICMPv6 *icmp)
@@ -53,16 +50,18 @@ IPv6Datagram *IPv6FragBuf::addFragment(IPv6Datagram *datagram, IPv6FragmentHeade
     key.src = datagram->getSrcAddress();
     key.dest = datagram->getDestAddress();
 
-    auto i = bufs.find(key);
+    Buffers::iterator i = bufs.find(key);
 
-    DatagramBuffer *buf = nullptr;
-    if (i == bufs.end()) {
+    DatagramBuffer *buf = NULL;
+    if (i==bufs.end())
+    {
         // this is the first fragment of that datagram, create reassembly buffer for it
         buf = &bufs[key];
-        buf->datagram = nullptr;
+        buf->datagram = NULL;
         buf->createdAt = now;
     }
-    else {
+    else
+    {
         // use existing buffer
         buf = &(i->second);
     }
@@ -78,9 +77,10 @@ IPv6Datagram *IPv6FragBuf::addFragment(IPv6Datagram *datagram, IPv6FragmentHeade
     // ICMP Parameter Problem, Code 0, message should be sent to the
     // source of the fragment, pointing to the Payload Length field of
     // the fragment packet.
-    if (moreFragments && (fragmentLength % 8) != 0) {
-        icmpModule->sendErrorMessage(datagram, ICMPv6_PARAMETER_PROBLEM, ERROREOUS_HDR_FIELD);    // TODO set pointer
-        return nullptr;
+    if (moreFragments && (fragmentLength % 8) != 0)
+    {
+        icmpModule->sendErrorMessage(datagram, ICMPv6_PARAMETER_PROBLEM, ERROREOUS_HDR_FIELD); // TODO set pointer
+        return NULL;
     }
 
     // RFC 2460 4.5:
@@ -90,41 +90,45 @@ IPv6Datagram *IPv6FragBuf::addFragment(IPv6Datagram *datagram, IPv6FragmentHeade
     // Parameter Problem, Code 0, message should be sent to the source of
     // the fragment, pointing to the Fragment Offset field of the
     // fragment packet.
-    if (offset + fragmentLength > 65535) {
-        icmpModule->sendErrorMessage(datagram, ICMPv6_PARAMETER_PROBLEM, ERROREOUS_HDR_FIELD);    // TODO set pointer
-        return nullptr;
+    if (offset + fragmentLength > 65535)
+    {
+        icmpModule->sendErrorMessage(datagram, ICMPv6_PARAMETER_PROBLEM, ERROREOUS_HDR_FIELD); // TODO set pointer
+        return NULL;
     }
 
     // add fragment to buffer
     bool isComplete = buf->buf.addFragment(offset,
-                offset + fragmentLength,
-                !moreFragments);
+                                           offset+fragmentLength,
+                                           !moreFragments);
 
     // Store the first fragment. The first fragment contains the whole
     // encapsulated payload, and extension headers of the
     // original datagram.
-    if (offset == 0) {
+    if (offset == 0)
+    {
         delete buf->datagram;
         buf->datagram = datagram;
     }
-    else {
+    else
+    {
         delete datagram;
     }
 
     // do we have the complete datagram?
-    if (isComplete) {
+    if (isComplete)
+    {
         // datagram complete: deallocate buffer and return complete datagram
         IPv6Datagram *ret = buf->datagram;
-        if (!ret)
-            throw cRuntimeError("Model error: completed datagram without datagram pointer.");
+        ASSERT(ret);
         ret->removeExtensionHeader(IP_PROT_IPv6EXT_FRAGMENT);
-        ret->setByteLength(ret->calculateUnfragmentableHeaderByteLength() + buf->buf.getTotalLength());
+        ret->setByteLength(ret->calculateUnfragmentableHeaderByteLength()+buf->buf.getTotalLength());
         bufs.erase(i);
         return ret;
     }
-    else {
+    else
+    {
         // there are still missing fragments
-        return nullptr;
+        return NULL;
     }
 }
 
@@ -146,25 +150,27 @@ void IPv6FragBuf::purgeStaleFragments(simtime_t lastupdate)
 
     ASSERT(icmpModule);
 
-    for (auto i = bufs.begin(); i != bufs.end(); ) {
+    for (Buffers::iterator i=bufs.begin(); i!=bufs.end(); )
+    {
         // if too old, remove it
         DatagramBuffer& buf = i->second;
-        if (buf.createdAt < lastupdate) {
-            if (buf.datagram) {
+        if (buf.createdAt < lastupdate)
+        {
+            if (buf.datagram)
+            {
                 // send ICMP error
-                EV_INFO << "datagram fragment timed out in reassembly buffer, sending ICMP_TIME_EXCEEDED\n";
+                EV << "datagram fragment timed out in reassembly buffer, sending ICMP_TIME_EXCEEDED\n";
                 icmpModule->sendErrorMessage(buf.datagram, ICMPv6_TIME_EXCEEDED, 0);
             }
 
             // delete
-            auto oldi = i++;
+            Buffers::iterator oldi = i++;
             bufs.erase(oldi);
         }
-        else {
+        else
+        {
             ++i;
         }
     }
 }
-
-} // namespace inet
 

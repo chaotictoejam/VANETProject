@@ -15,16 +15,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV6FRAGBUF_H
-#define __INET_IPV6FRAGBUF_H
+#ifndef __IPv6FRAGBUF_H__
+#define __IPv6FRAGBUF_H__
 
 #include <map>
 #include <vector>
-#include "inet/common/INETDefs.h"
-#include "inet/common/ReassemblyBuffer.h"
-#include "inet/networklayer/contract/ipv6/IPv6Address.h"
-
-namespace inet {
+#include "INETDefs.h"
+#include "ReassemblyBuffer.h"
+#include "IPv6Address.h"
 
 class ICMPv6;
 class IPv6Datagram;
@@ -45,9 +43,8 @@ class INET_API IPv6FragBuf
         IPv6Address src;
         IPv6Address dest;
 
-        inline bool operator<(const Key& b) const
-        {
-            return (id != b.id) ? (id < b.id) : (src != b.src) ? (src < b.src) : (dest < b.dest);
+        inline bool operator<(const Key& b) const {
+            return (id!=b.id) ? (id<b.id) : (src!=b.src) ? (src<b.src) : (dest<b.dest);
         }
     };
 
@@ -56,19 +53,19 @@ class INET_API IPv6FragBuf
     //
     struct DatagramBuffer
     {
-        ReassemblyBuffer buf;    // reassembly buffer
-        IPv6Datagram *datagram = nullptr;    // the actual datagram
-        simtime_t createdAt;    // time of the buffer creation (i.e. reception time of first-arriving fragment)
+        ReassemblyBuffer buf;  // reassembly buffer
+        IPv6Datagram *datagram;  // the actual datagram
+        simtime_t createdAt;  // time of the buffer creation (i.e. reception time of first-arriving fragment)
     };
 
     // we use std::map for fast lookup by datagram Id
-    typedef std::map<Key, DatagramBuffer> Buffers;
+    typedef std::map<Key,DatagramBuffer> Buffers;
 
     // the reassembly buffers
     Buffers bufs;
 
     // needed for TIME_EXCEEDED errors
-    ICMPv6 *icmpModule = nullptr;
+    ICMPv6 *icmpModule;
 
   public:
     /**
@@ -90,7 +87,7 @@ class INET_API IPv6FragBuf
     /**
      * Takes a fragment and inserts it into the reassembly buffer.
      * If this fragment completes a datagram, the full reassembled
-     * datagram is returned, otherwise nullptr.
+     * datagram is returned, otherwise NULL.
      */
     IPv6Datagram *addFragment(IPv6Datagram *datagram, IPv6FragmentHeader *fh, simtime_t now);
 
@@ -106,7 +103,5 @@ class INET_API IPv6FragBuf
     void purgeStaleFragments(simtime_t lastupdate);
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_IPV6FRAGBUF_H
+#endif
 

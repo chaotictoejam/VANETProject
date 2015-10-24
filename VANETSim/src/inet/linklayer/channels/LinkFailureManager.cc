@@ -18,8 +18,6 @@
 #include "LinkFailureMessage_m.h"
 #include "ProgramedFailureChannel.h"
 
-namespace inet {
-
 Define_Module(LinkFailureManager);
 
 
@@ -48,20 +46,20 @@ void LinkFailureManager::handleMessage(cMessage *msg)
     {
         EV << "Link Failure Msg Arrived" << endl;
         LinkFailureMessage* event = dynamic_cast<LinkFailureMessage*>(msg);
-        cModule* module = getSimulation()->getModule(event->getModule_id());
-        if (module!=nullptr)
+        cModule* module = simulation.getModule(event->getModule_id());
+        if (module!=NULL)
         {
             cGate* gate = module->gate(event->getPort_id());
-            if (gate!=nullptr)
+            if (gate!=NULL)
             {
                 cChannel * channel = gate->getChannel();
                 ProgramedFailureDataRateChannel* cfr = dynamic_cast<ProgramedFailureDataRateChannel*>(channel);
                 ProgramedFailureChannel* ch = dynamic_cast<ProgramedFailureChannel*>(channel);
-                if (ch!=nullptr)
+                if (ch!=NULL)
                 {
                     ch->setState(event->getState());
                 }
-                else if (cfr!=nullptr)
+                else if (cfr!=NULL)
                 {
                     cfr->setState(event->getState());
                 }
@@ -95,5 +93,4 @@ void LinkFailureManager::scheduleLinkStateChange(cGate* gate, simtime_t when, Li
 
     EV << "Link Change for " << gate->getOwnerModule()->getFullName() << " in port " << gate->getFullName() << " port id " << gate->getId() << " state scheduled at " << when << " state " << state << endl;
     scheduleAt(when,msg);
-}
 }

@@ -19,15 +19,12 @@
 
 package inet.linklayer.ieee80211mesh;
 
-import inet.common.IHook;
-import inet.linklayer.contract.IWirelessNic;
-import inet.linklayer.ieee80211.mac.Ieee80211Mac;
-import inet.linklayer.ieee80211.mgmt.IIeee80211Mgmt;
+import inet.linklayer.ieee80211.radio.Ieee80211Radio;
 import inet.linklayer.ieee80211.mgmt.Ieee80211AgentSTA;
-import inet.physicallayer.contract.packetlevel.IRadio;;
-
+import inet.linklayer.ieee80211.mgmt.IIeee80211Mgmt;
+import inet.linklayer.ieee80211.mac.Ieee80211Mac;
 import inet.linklayer.ieee80211mesh.mgmt.Ieee80211Mesh;
-import inet.linklayer.contract.IWirelessNic;
+import inet.base.IHook;
 import inet.linklayer.ieee80211mesh.locator.ILocator;
 
 
@@ -37,11 +34,7 @@ import inet.linklayer.ieee80211mesh.locator.ILocator;
 module Ieee80211NicMeshMulti
 {
     parameters:
-        string interfaceTableModule;
-        string powerSourceModule;
-        
         string mgmtType = default("Ieee80211Mesh"); // name of the management module type (implements IIeee80211Mgmt)
-        string radioType = default("Ieee80211Radio");
         // string opMode @enum("b","g","a","p") = default("g");
         int numOutputHooks = default(0);
         int numInputHooks = default(0);
@@ -49,8 +42,6 @@ module Ieee80211NicMeshMulti
         int meshChannels = default(1);
         bool hasLocator = default(false);
         @display("i=block/ifcard;bgb=259,357");
-        *.interfaceTableModule = default(absPath(interfaceTableModule));
-        *.powerSourceModule = default(absPath(powerSourceModule));        
     gates:
         input upperLayerIn; // to upper layers
         output upperLayerOut; // from upper layers
@@ -81,7 +72,7 @@ module Ieee80211NicMeshMulti
                 queueModule = "mgmt";
                 @display("p=96,222");
         }
-        radio[meshChannels]: <radioType> like IRadio {
+        radio[meshChannels]: Ieee80211Radio {
             parameters:
                 @display("p=96,307");
         }

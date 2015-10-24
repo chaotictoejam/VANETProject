@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -172,7 +171,7 @@ class PaserTrafficDataMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(PaserTrafficDataMsgDescriptor);
 
-PaserTrafficDataMsgDescriptor::PaserTrafficDataMsgDescriptor() : cClassDescriptor("inet::PaserTrafficDataMsg", "cPacket")
+PaserTrafficDataMsgDescriptor::PaserTrafficDataMsgDescriptor() : cClassDescriptor("PaserTrafficDataMsg", "cPacket")
 {
 }
 
@@ -349,5 +348,4 @@ void *PaserTrafficDataMsgDescriptor::getFieldStructPointer(void *object, int fie
     }
 }
 
-} // namespace inet
 

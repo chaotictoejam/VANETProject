@@ -1,6 +1,5 @@
 //
 // Copyright (C) 2005 Andras Varga
-// Copyright (C) 2015 A. Ariza (Malaga University)
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public License
@@ -27,8 +26,8 @@
 
 #include <vector>
 #include <deque>
-#include "inet/applications/base/ApplicationBase.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
+#include "ApplicationBase.h"
+#include "UDPSocket.h"
 
 /**
  * Stream VBR video streams to clients.
@@ -37,9 +36,6 @@
  * and UDPVideoStreamSvr starts streaming to them. Capable of handling
  * streaming to multiple clients.
  */
-
-namespace inet {
-
 class INET_API UDPVideoStreamSvr2 : public ApplicationBase
 {
   public:
@@ -49,7 +45,7 @@ class INET_API UDPVideoStreamSvr2 : public ApplicationBase
     struct VideoStreamData
     {
         cMessage *timer;          ///< self timer msg
-        L3Address clientAddr;   ///< client address
+        IPvXAddress clientAddr;   ///< client address
         int clientPort;           ///< client UDP port
         long videoSize;           ///< total size of video
         long bytesLeft;           ///< bytes left to transmit
@@ -58,7 +54,7 @@ class INET_API UDPVideoStreamSvr2 : public ApplicationBase
         bool fileTrace;
         unsigned int traceIndex;
         simtime_t timeInit;
-        VideoStreamData() { timer = nullptr; clientPort = 0; videoSize = bytesLeft = 0; numPkSent = 0; }
+        VideoStreamData() { timer = NULL; clientPort = 0; videoSize = bytesLeft = 0; numPkSent = 0; }
     };
 
     struct VideoInfo
@@ -111,10 +107,14 @@ class INET_API UDPVideoStreamSvr2 : public ApplicationBase
     virtual void broadcastVideo();
     virtual int broadcastInterface();
 
+  public:
+    UDPVideoStreamSvr2();
+    virtual ~UDPVideoStreamSvr2();
+
+  protected:
     ///@name Overridden cSimpleModule functions
     //@{
-
-    virtual int numInitStages() const { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 4; }
     virtual void initialize(int stage);
     virtual void finish();
     virtual void handleMessageWhenUp(cMessage* msg);
@@ -125,14 +125,7 @@ class INET_API UDPVideoStreamSvr2 : public ApplicationBase
     virtual bool handleNodeStart(IDoneCallback *doneCallback);
     virtual bool handleNodeShutdown(IDoneCallback *doneCallback);
     virtual void handleNodeCrash();
-
-  public:
-    UDPVideoStreamSvr2();
-    virtual ~UDPVideoStreamSvr2();
-
 };
-
-}
 
 #endif
 

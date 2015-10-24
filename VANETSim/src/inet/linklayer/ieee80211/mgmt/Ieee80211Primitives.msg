@@ -18,13 +18,10 @@
 // Required for MACAddress declarations
 //
 cplusplus {{
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h"
+#include "Ieee80211MgmtFrames_m.h"
 }}
 
 class noncobject MACAddress;
-
-namespace inet::ieee80211;
-
 
 class noncobject Ieee80211SupportedRatesElement;
 
@@ -220,4 +217,3 @@ class Ieee80211Prim_DisassociateRequest extends Ieee80211PrimRequest
     MACAddress address;
     int reasonCode @enum(Ieee80211ReasonCode);
 }
-

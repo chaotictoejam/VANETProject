@@ -21,18 +21,17 @@
  * This work is part of the secure wireless mesh networks framework, which is currently under development by CNI
  ********************************************************************************/
 
-#include "inet/applications/udpapp/PASERUdpTrafficReceiver.h"
-#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
-#include "inet/networklayer/common/L3AddressResolver.h"
-#include "inet/common/ModuleAccess.h"
+#include "PASERUdpTrafficReceiver.h"
+#include "UDPControlInfo_m.h"
+#include "IPvXAddressResolver.h"
+#include "InterfaceTableAccess.h"
+
 
 #include <fstream>
 #include <iostream>
 
-#include "inet/routing/extras/base/compatibility.h"
-
-namespace inet{
-
+#include <ModuleAccess.h>
+#include "compatibility.h"
 Define_Module(PASERUdpTrafficReceiver);
 
 
@@ -133,7 +132,7 @@ void PASERUdpTrafficReceiver::setSocketOptions()
     const char *multicastInterface = par("multicastInterface");
     if (multicastInterface[0])
     {
-        IInterfaceTable *ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
+        IInterfaceTable *ift = InterfaceTableAccess().get(this);
         InterfaceEntry *ie = ift->getInterfaceByName(multicastInterface);
         if (!ie)
             throw cRuntimeError("Wrong multicastInterface setting: no interface named \"%s\"", multicastInterface);
@@ -146,10 +145,7 @@ void PASERUdpTrafficReceiver::setSocketOptions()
 
     bool joinLocalMulticastGroups = par("joinLocalMulticastGroups");
     if (joinLocalMulticastGroups)
-    {
-        MulticastGroupList mgl = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this) -> collectMulticastGroups();
-        socket.joinLocalMulticastGroups(mgl);
-    }
+        socket.joinLocalMulticastGroups();
 }
 
 void PASERUdpTrafficReceiver::handleMessage(cMessage *msg)
@@ -195,11 +191,11 @@ void PASERUdpTrafficReceiver::handleExtMessage(cMessage *extMsg)
 
 	//Check if message is a TrafficMsg
 	PaserTrafficDataMsg *trafficMsg = dynamic_cast<PaserTrafficDataMsg*>(extMsg);
-	if(extMsg!=nullptr){
+	if(extMsg!=NULL){
 		//handle trafficMsg
 		handleTrafficMsg(trafficMsg);
 		numReceived++;
-	    if (hasGUI())
+	    if (ev.isGUI())
 	    {
 	        char buf[40];
 	        sprintf(buf, "rcvdTotal: %d pks", numReceived);
@@ -274,6 +270,9 @@ void PASERUdpTrafficReceiver::updateMapEntry(PaserTrafficDataMsg *trafficMsg)
 {
 	EV << "Method " << this->getFullPath() << ": updateMapEntry() called..." << endl;
 
+	//Initialize iterator
+	std::multimap<std::string,mapEntry>::iterator it;
+
 	//check if map entry exists
 	if(hasMapEntry(trafficMsg->getSrcId())==false){
 		error("Map entry does not exist. Please use addSenderToMap() Method!");
@@ -281,7 +280,7 @@ void PASERUdpTrafficReceiver::updateMapEntry(PaserTrafficDataMsg *trafficMsg)
 	}
 
 	//Get information of trafficMsg and update mapEntry
-	auto it=findMapEntry(trafficMsg->getSrcId());
+	it=findMapEntry(trafficMsg->getSrcId());
 
 	if(it==senderMap.end()){
 		error("Cannot find entry in table!");
@@ -294,7 +293,7 @@ void PASERUdpTrafficReceiver::updateMapEntry(PaserTrafficDataMsg *trafficMsg)
 	currentEntry.expectCounterVector.insert(currentEntry.expectCounterVector.end(),expectedValue);
 	currentEntry.hopVector.insert(currentEntry.hopVector.end(),trafficMsg->getHops());
 	double packetDelay = (simTime().dbl()-trafficMsg->getTimestamp());
-	EV << "packetDelay: " << packetDelay << "\n";
+	ev << "packetDelay: " << packetDelay << "\n";
 	currentEntry.delayVector.insert(currentEntry.delayVector.end(),packetDelay);
 	if(currentEntry.maxDelay < packetDelay){
 	    currentEntry.maxDelay = packetDelay;
@@ -313,7 +312,10 @@ bool PASERUdpTrafficReceiver::hasMapEntry(std::string searchId)
 {
 	EV<< "Method " << this->getFullPath() << ": hasMapEntry() called..." << endl;
 
-	for(auto it=senderMap.begin();it!=senderMap.end();++it){
+	//Initialize iterator
+	std::multimap<std::string,mapEntry>::iterator it;
+
+	for(it=senderMap.begin();it!=senderMap.end();it++){
 		if(strcmp((*it).first.c_str(),searchId.c_str())==0){
 			return true;
 		}
@@ -327,13 +329,16 @@ std::multimap<std::string,mapEntry>::iterator PASERUdpTrafficReceiver::findMapEn
 {
 	EV<< "Method " << this->getFullPath() << ": findMapEntry() called..." << endl;
 
+	//Initialize iterator
+	std::multimap<std::string,mapEntry>::iterator it;
+
 	//Check if map entry exists
 	if(hasMapEntry(searchId)==false){
 		error("Map Entry does not exist!");
 	}
 
 	//find position and return iterator
-	auto it=senderMap.find(searchId);
+	it=senderMap.find(searchId);
 
 	if(it==senderMap.end()){
 		error("Map Entry does not exist! HUGE ERROR!");
@@ -347,12 +352,15 @@ void PASERUdpTrafficReceiver::calculateAverageValues()
     numberOfOKReceivedPackets = 0;
 	EV<< "Method " << this->getFullPath() << ": calculateAverageValues() called..." << endl;
 
+	//Initialize iterator
+	std::multimap<std::string,mapEntry>::iterator it;
+
 	//Go threw senderMap and calculate values for every entry
-	for(auto it=senderMap.begin();it!=senderMap.end();++it){
+	for(it=senderMap.begin();it!=senderMap.end();it++){
 		//Fetch entry
 		std::string currentId = (*it).first;
 		mapEntry currentEntry = (*it).second;
-		EV << "Sender: " << currentId << "\n";
+		ev << "Sender: " << currentId << "\n";
 		//Calculate OK Received Packet
 		numberOfOKReceivedPackets += calculateOkReceivedPackets(currentEntry);
 //		printLostPackets(currentEntry);
@@ -381,10 +389,10 @@ void PASERUdpTrafficReceiver::printLostPackets(mapEntry currentEntry)
 {
 	EV << "Method " << this->getFullPath() << ": printLostPackets() called..." << endl;
 
-	for(uint32_t i=0;i<currentEntry.receivedCounterVector.size();i++){
+	for(u_int32_t i=0;i<currentEntry.receivedCounterVector.size();i++){
 	    int temp = i;
 	    bool found = false;
-	    for(uint32_t j=0; j<currentEntry.receivedCounterVector.size(); j++){
+	    for(u_int32_t j=0; j<currentEntry.receivedCounterVector.size(); j++){
 	        if(currentEntry.receivedCounterVector.at(j) == temp){
 	            found = true;
 	            break;
@@ -403,10 +411,10 @@ double PASERUdpTrafficReceiver::calculateOkReceivedPackets(mapEntry currentEntry
 	//Initialize number-values
 	double numOfOkPackets=0;
 
-	for(uint32_t i=0;i<currentEntry.receivedCounterVector.size();i++){
+	for(u_int32_t i=0;i<currentEntry.receivedCounterVector.size();i++){
 	    int temp = currentEntry.receivedCounterVector.at(i);
 	    bool found = false;
-	    for(uint32_t j=i+1; j<currentEntry.receivedCounterVector.size(); j++){
+	    for(u_int32_t j=i+1; j<currentEntry.receivedCounterVector.size(); j++){
 	        if(currentEntry.receivedCounterVector.at(j) == temp){
 	            found = true;
 	            break;
@@ -426,7 +434,7 @@ double PASERUdpTrafficReceiver::calculateOkReceivedPackets(mapEntry currentEntry
 
 bool PASERUdpTrafficReceiver::isInVector(std::vector<int>vector, int value){
 
-	for(uint32_t i=0;i<vector.size();i++){
+	for(u_int32_t i=0;i<vector.size();i++){
 		if(vector.at(i)==value){
 			return true;
 		}
@@ -489,8 +497,9 @@ void PASERUdpTrafficReceiver::finish()
 	double hopCount=0;
 	double maxDelay=0;
 	double minDelay=0;
+	std::multimap<std::string,mapEntry>::iterator it;
 	calculateAverageValues();
-	for(auto it=senderMap.begin(); it!=senderMap.end(); ++it){
+	for(it=senderMap.begin();it!=senderMap.end();it++){
 		delay = delay+(*it).second.averageDelay;
 		hopCount = hopCount+(*it).second.averageNumberOfHops;
 		maxDelay = maxDelay+(*it).second.maxDelay;
@@ -498,10 +507,10 @@ void PASERUdpTrafficReceiver::finish()
 	}
 
 	//Get Mobility Module for waitTime and speed (mps) (for Filename)
-	RandomWPMobility *mobilityModule = dynamic_cast<RandomWPMobility*>(getContainingNode(this)->getSubmodule("mobility"));
+	RandomWPMobility *mobilityModule = dynamic_cast<RandomWPMobility*>(findModuleWhereverInNode("mobility",this));
 	std::string waitTime="";
 	std::string speed="";
-	if(mobilityModule!=nullptr){
+	if(mobilityModule!=NULL){
 		waitTime=mobilityModule->par("waitTime").str();
 		speed=mobilityModule->par("speed").str();
 	}
@@ -550,9 +559,9 @@ void PASERUdpTrafficReceiver::savePlotParams()
 	double hopCount=0;
 	double maxDelay=0;
 	double minDelay=0;
-
+	std::multimap<std::string,mapEntry>::iterator it;
 	calculateAverageValues();
-	for(auto it=senderMap.begin();it!=senderMap.end(); ++it){
+	for(it=senderMap.begin();it!=senderMap.end();it++){
 		delay = delay+(*it).second.averageDelay;
 		hopCount = hopCount+(*it).second.averageNumberOfHops;
 		maxDelay = maxDelay+(*it).second.maxDelay;
@@ -560,10 +569,10 @@ void PASERUdpTrafficReceiver::savePlotParams()
 	}
 
 	//Get Mobility Module for waitTime and speed (mps) (for Filename)
-	RandomWPMobility *mobilityModule = dynamic_cast<RandomWPMobility*>(getContainingNode(this)->getSubmodule("mobility"));
+	RandomWPMobility *mobilityModule = dynamic_cast<RandomWPMobility*>(findModuleWhereverInNode("mobility",this));
 	std::string waitTime="";
 	std::string speed="";
-	if(mobilityModule!=nullptr){
+	if(mobilityModule!=NULL){
 		waitTime=mobilityModule->par("waitTime").str();
 		speed=mobilityModule->par("speed").str();
 	}
@@ -599,7 +608,4 @@ void PASERUdpTrafficReceiver::savePlotParams()
 //	isStatsInit = false;
 //	senderMap.clear();
 	return;
-}
-
-
 }

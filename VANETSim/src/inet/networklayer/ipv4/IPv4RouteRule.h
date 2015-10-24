@@ -21,12 +21,10 @@
 
 #include <map>
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/networklayer/common/IPProtocolId_m.h"
-#include "inet/networklayer/contract/ipv4/IPv4Address.h"
-
-namespace inet{
+#include "IPProtocolId_m.h"
+#include "IPv4Address.h"
 
 class InterfaceEntry;
 
@@ -125,8 +123,6 @@ class INET_API IPv4RouteRule : public cObject
     /** Route type: Direct or Remote */
     Rule getRule() const {return rule;}
 };
-
-}
 
 #endif // __INET_IPv4ROUTERULE_H
 

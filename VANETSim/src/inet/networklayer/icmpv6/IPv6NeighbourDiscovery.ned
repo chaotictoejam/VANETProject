@@ -24,15 +24,11 @@ package inet.networklayer.icmpv6;
 // An overview of the IPv6 implementation in the INET Framework is
 // provided <a href="ipv6overview.html">here</a>.
 //
-// @see ~IPv6, ~IPv6RoutingTable, ~ICMPv6
+// @see ~IPv6, ~RoutingTable6, ~ICMPv6
 //
 simple IPv6NeighbourDiscovery
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module
-        string icmpv6Module;
-        string xmipv6Module;
-        string routingTableModule;
         double minIntervalBetweenRAs @unit(s) = default(30ms); //minRtrAdvInterval:  0.03 sec for MIPv6 , declared as parameter to facilitate testing without recompiling (Zarrar 15.07.07)
         double maxIntervalBetweenRAs @unit(s) = default(70ms);  //MaxrtrAdvInterval: 0.07 sec for MIPv6, declared as parameter to facilitate testing without recompiling (Zarrar 15.07.07)
         @display("i=block/network");

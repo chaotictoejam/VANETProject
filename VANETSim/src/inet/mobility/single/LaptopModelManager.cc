@@ -16,10 +16,8 @@
 // 
 //
 
-#include "inet/mobility/single/LaptopModelManager.h"
-#include "inet/mobility/base/MobilityBase.h"
-
-namespace inet {
+#include "LaptopModelManager.h"
+#include "MobilityBase.h"
 
 Define_Module(LaptopModelManager);
 
@@ -67,7 +65,7 @@ void LaptopModelManager::Timer::resched(double time)
 {
     removeQueueTimer();
     if (simTime()+time<=simTime())
-        throw cRuntimeError("LaptopModelManager::resched message timer in the past");
+        opp_error("LaptopModelManager::resched message timer in the past");
     module->timerMultimMap.insert(std::pair<simtime_t, Timer *>(simTime()+time, this));
 }
 
@@ -75,7 +73,7 @@ void LaptopModelManager::Timer::resched(simtime_t time)
 {
     removeQueueTimer();
     if (time<=simTime())
-        throw cRuntimeError("LaptopModelManager::resched message timer in the past");
+        opp_error("LaptopModelManager::resched message timer in the past");
     module->timerMultimMap.insert(std::pair<simtime_t, Timer *>(time, this));
 }
 
@@ -111,7 +109,7 @@ void LaptopModelManager::initialize()
     for (unsigned int i = 0; i < numNodes; i++)
     {
         NodeInf info;
-        info.module = nullptr;
+        info.module = NULL;
         info.startLife = par("startLife");
         nodeList.push_back(info);
         LaptopModelManager::Timer *timer = new LaptopModelManager::Timer(i, this);
@@ -137,7 +135,7 @@ void LaptopModelManager::newNode(const char * name, const char * type,bool setCo
 
     if (setCoor)
     {
-        MobilityBase* mm = nullptr;
+        MobilityBase* mm = NULL;
         for (cModule::SubmoduleIterator iter(mod); !iter.end(); iter++) {
             cModule* submod = iter();
             mm = dynamic_cast<MobilityBase*>(submod);
@@ -169,7 +167,7 @@ void LaptopModelManager::deleteNode(const int &index, const simtime_t &startTime
 
     mod->callFinish();
     mod->deleteModule();
-    nodeList[index].module = nullptr;
+    nodeList[index].module = NULL;
     nodeList[index].startLife = startTime;
 }
 
@@ -205,7 +203,7 @@ void LaptopModelManager::scheduleEvent()
             cancelEvent(timerMessagePtr);
             scheduleAt(e->first,timerMessagePtr);
             EV << "timer Queue problem";
-            // throw cRuntimeError("timer Queue problem");
+            // opp_error("timer Queue problem");
         }
     }
     else
@@ -224,8 +222,8 @@ bool LaptopModelManager::checkTimer(cMessage *msg)
     while (it->first <= simTime())
     {
         Timer * timer = it->second;
-        if (timer == nullptr)
-            throw cRuntimeError ("timer owner is bad");
+        if (timer == NULL)
+            opp_error ("timer owner is bad");
         timerMultimMap.erase(it);
         timer->expire();
         if (timerMultimMap.empty())
@@ -244,4 +242,3 @@ void LaptopModelManager::handleMessage(cMessage *msg)
     scheduleEvent();
 }
 
-}

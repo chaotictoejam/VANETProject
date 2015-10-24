@@ -16,7 +16,6 @@
 
 #include "ProgramedFailureChannel.h"
 
-namespace inet {
 Define_Channel(ProgramedFailureDataRateChannel);
 
 ProgramedFailureDataRateChannel::ProgramedFailureDataRateChannel(const char* name) : cDatarateChannel(name)
@@ -35,14 +34,14 @@ bool ProgramedFailureDataRateChannel::initializeChannel(int stage)
 {
     cDatarateChannel::initializeChannel(stage);
 
-    this->lfm = (LinkFailureManager*)(getSimulation()->getContextModule()->getSubmodule("linkFailureManager"));
+    this->lfm = (LinkFailureManager*)(simulation.getContextModule()->getSubmodule("linkFailureManager"));
 
-    if (this->lfm==nullptr)
+    if (this->lfm==NULL)
     {
         // simulation does not have a linkFailureManager, inserting one
 
         cModuleType *moduleType = cModuleType::get("inet.linklayer.channels.LinkFailureManager");
-        this->lfm = (LinkFailureManager*)moduleType->create("linkFailureManager", getSimulation()->getContextModule());
+        this->lfm = (LinkFailureManager*)moduleType->create("linkFailureManager", simulation.getContextModule());
         this->lfm->buildInside();
         this->lfm->scheduleStart( simTime() );
 
@@ -109,14 +108,14 @@ bool ProgramedFailureChannel::initializeChannel(int stage)
 {
     cDelayChannel::initializeChannel(stage);
 
-    this->lfm = (LinkFailureManager*)(getSimulation()->getContextModule()->getSubmodule("linkFailureManager"));
+    this->lfm = (LinkFailureManager*)(simulation.getContextModule()->getSubmodule("linkFailureManager"));
 
-    if (this->lfm==nullptr)
+    if (this->lfm==NULL)
     {
         // simulation does not have a linkFailureManager, inserting one
 
         cModuleType *moduleType = cModuleType::get("inet.linklayer.channels.LinkFailureManager");
-        this->lfm = (LinkFailureManager*)moduleType->create("linkFailureManager", getSimulation()->getContextModule());
+        this->lfm = (LinkFailureManager*)moduleType->create("linkFailureManager", simulation.getContextModule());
         this->lfm->buildInside();
         this->lfm->scheduleStart( simTime() );
 
@@ -164,4 +163,3 @@ void ProgramedFailureChannel::setState(LinkState state)
     }
 }
 
-}

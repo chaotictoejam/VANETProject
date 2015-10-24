@@ -20,7 +20,7 @@
 
 package inet.networklayer.ipv6tunneling;
 
-import inet.networklayer.contract.IIPv6Tunneling;
+import inet.networklayer.IIPv6Tunneling;
 
 
 //
@@ -31,9 +31,6 @@ import inet.networklayer.contract.IIPv6Tunneling;
 simple IPv6Tunneling like IIPv6Tunneling
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module
-        string routingTableModule;
-        string xmipv6Module;
         @display("i=block/tunnel");
     gates:
         input upperLayerIn;

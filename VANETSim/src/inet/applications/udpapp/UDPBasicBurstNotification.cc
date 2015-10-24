@@ -22,18 +22,17 @@
 
 #include "UDPBasicBurstNotification.h"
 
-#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
-#include "inet/networklayer/common/L3AddressResolver.h"
-#include "inet/networklayer/common/InterfaceTable.h"
-#include "inet/common/ModuleAccess.h"
+#include "UDPControlInfo_m.h"
+#include "IPvXAddressResolver.h"
+#include "InterfaceTable.h"
+#include "InterfaceTableAccess.h"
 
-namespace inet {
 
 Define_Module(UDPBasicBurstNotification);
 
 UDPBasicBurstNotification::UDPBasicBurstNotification()
 {
-    addressModule = nullptr;
+    addressModule = NULL;
 }
 
 UDPBasicBurstNotification::~UDPBasicBurstNotification()
@@ -49,11 +48,12 @@ void UDPBasicBurstNotification::initialConfiguration()
 
     if (par("setBroadcast").boolValue())
         socket.setBroadcast(true);
-    IInterfaceTable *ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
+
     if (strcmp(par("outputInterface").stringValue(),"") != 0)
     {
+        IInterfaceTable* ift = InterfaceTableAccess().get();
         InterfaceEntry *ie = ift->getInterfaceByName(par("outputInterface").stringValue());
-        if (ie == nullptr)
+        if (ie == NULL)
             throw cRuntimeError(this, "Invalid output interface name : %s",par("outputInterface").stringValue());
         outputInterface = ie->getInterfaceId();
     }
@@ -61,19 +61,20 @@ void UDPBasicBurstNotification::initialConfiguration()
     outputInterfaceMulticastBroadcast.clear();
     if (strcmp(par("outputInterfaceMulticastBroadcast").stringValue(),"") != 0)
     {
+        IInterfaceTable* ift = InterfaceTableAccess().get();
         const char *ports = par("outputInterfaceMulticastBroadcast");
         cStringTokenizer tokenizer(ports);
         const char *token;
-        while ((token = tokenizer.nextToken()) != nullptr)
+        while ((token = tokenizer.nextToken()) != NULL)
         {
-            if (strstr(token, "ALL") != nullptr)
+            if (strstr(token, "ALL") != NULL)
             {
                 for (int i = 0; i < ift->getNumInterfaces(); i++)
                 {
                     InterfaceEntry *ie = ift->getInterface(i);
                     if (ie->isLoopback())
                         continue;
-                    if (ie == nullptr)
+                    if (ie == NULL)
                         throw cRuntimeError(this, "Invalid output interface name : %s", token);
                     outputInterfaceMulticastBroadcast.push_back(ie->getInterfaceId());
                 }
@@ -81,7 +82,7 @@ void UDPBasicBurstNotification::initialConfiguration()
             else
             {
                 InterfaceEntry *ie = ift->getInterfaceByName(token);
-                if (ie == nullptr)
+                if (ie == NULL)
                     throw cRuntimeError(this, "Invalid output interface name : %s", token);
                 outputInterfaceMulticastBroadcast.push_back(ie->getInterfaceId());
             }
@@ -94,6 +95,13 @@ void UDPBasicBurstNotification::initialConfiguration()
     std::string destAddresses = par("destAddresses").stdstringValue();
     if (strcmp(destAddresses.c_str(),"") != 0)
         isSource = true;
+
+    if (isSource)
+    {
+        if (chooseDestAddrMode == ONCE)
+            destAddr = chooseDestAddr();
+        activeBurst = true;
+    }
 }
 
 
@@ -101,13 +109,6 @@ void UDPBasicBurstNotification::processStart()
 {
     if (!par("configureInInit").boolValue())
         initialConfiguration();
-    if (isSource)
-    {
-        if (chooseDestAddrMode == ONCE)
-            destAddr = chooseDestAddr();
-        activeBurst = true;
-    }
-
     nextSleep = simTime();
     nextBurst = simTime();
     nextPkt = simTime();
@@ -118,7 +119,7 @@ void UDPBasicBurstNotification::processStart()
 }
 
 
-L3Address UDPBasicBurstNotification::chooseDestAddr()
+IPvXAddress UDPBasicBurstNotification::chooseDestAddr()
 {
     if (addressModule->isInit())
         return addressModule->choseNewAddress();
@@ -191,13 +192,11 @@ void UDPBasicBurstNotification::generateBurst()
     scheduleAt(nextPkt, timerNext);
 }
 
-void UDPBasicBurstNotification::receiveSignal(cComponent *source, simsignal_t signalID, long l)
+void UDPBasicBurstNotification::receiveChangeNotification(int category, const cObject *details)
 {
     Enter_Method_Silent();
-    if (signalID == NF_INTERFACE_IPv4CONFIG_CHANGED || signalID == NF_INTERFACE_IPv6CONFIG_CHANGED)
+    if (category == NF_INTERFACE_IPv4CONFIG_CHANGED || category == NF_INTERFACE_IPv6CONFIG_CHANGED)
         addressModule->rebuildAddressList();
-
-}
 
 }
 

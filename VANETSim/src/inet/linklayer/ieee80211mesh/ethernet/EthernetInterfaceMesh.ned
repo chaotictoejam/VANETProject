@@ -19,9 +19,9 @@
 
 package inet.linklayer.ieee80211mesh.ethernet;
 
-import inet.linklayer.contract.IWiredNic;
-import inet.linklayer.contract.IEtherMAC;
-import inet.common.IHook;
+import inet.linklayer.IWiredNic;
+import inet.linklayer.IEtherMAC;
+import inet.base.IHook;
 import inet.linklayer.ethernet.EtherQoSQueue;
 
 //

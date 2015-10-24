@@ -19,7 +19,7 @@
 
 package inet.mobility.single;
 
-import inet.mobility.base.MovingMobilityBase;
+import inet.mobility.common.MovingMobilityBase;
 
 //
 // Uses a Gauss-Markov model to control the randomness in the movement.

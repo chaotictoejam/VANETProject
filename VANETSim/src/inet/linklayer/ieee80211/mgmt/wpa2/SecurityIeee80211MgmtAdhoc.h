@@ -18,10 +18,12 @@
 #ifndef SECURITYIEEE80211_MGMT_ADHOC_H
 #define SECURITYIEEE80211_MGMT_ADHOC_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/linklayer/ieee80211/mgmt/wpa2/SecurityIeee80211MgmtBase.h"
-
+#include "SecurityIeee80211MgmtBase.h"
+#include "NotificationBoard.h"
+#include "securityPkt_m.h"
+#include "SecurityWPA2.h"
 
 /**
  * Used in 802.11 ad-hoc mode. See corresponding NED file for a detailed description.
@@ -29,11 +31,6 @@
  *
  * @author Andras Varga
  */
-namespace inet {
-
-namespace ieee80211 {
-
-
 class INET_API SecurityIeee80211MgmtAdhoc : public SecurityIeee80211MgmtBase
 {
   protected:
@@ -78,8 +75,6 @@ class INET_API SecurityIeee80211MgmtAdhoc : public SecurityIeee80211MgmtBase
     //@}
 };
 
-}
-}
 #endif
 
 

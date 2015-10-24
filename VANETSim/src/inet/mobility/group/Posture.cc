@@ -40,9 +40,9 @@
  *
  **************************************************************************/
 
-#include "inet/mobility/group/Posture.h"
 
-namespace inet {
+
+#include "Posture.h"
 
 Posture::Posture(unsigned int ID, unsigned int num)
 {
@@ -51,37 +51,20 @@ Posture::Posture(unsigned int ID, unsigned int num)
 
     nodePs = new Coord[numNodes];
     nodeRadius = new double[numNodes];
-    nodeSpeed = new double[numNodes];
+    nodeSpeed =  new double[numNodes];
 
-    alphaMean = new double *[numNodes];
-    for (unsigned int i = 0; i < numNodes; ++i)
+    alphaMean = new double*[numNodes];
+    for (unsigned int i=0;i<numNodes;++i)
         alphaMean[i] = new double[numNodes];
 
-    alphaSD = new double *[numNodes];
-    for (unsigned int i = 0; i < numNodes; ++i)
+    alphaSD = new double*[numNodes];
+    for (unsigned int i=0;i<numNodes;++i)
         alphaSD[i] = new double[numNodes];
 }
 
-Posture::~Posture()
+bool Posture::setPs(unsigned int i , Coord ps)
 {
-    delete [] nodePs;
-    delete [] nodeRadius;
-    delete [] nodeSpeed;
-
-    for (unsigned int i = 0; i < numNodes; ++i)
-        delete [] alphaMean[i];
-    delete [] alphaMean;
-
-    for (unsigned int i = 0; i < numNodes; ++i)
-        delete [] alphaSD[i];
-    delete [] alphaSD;
-
-    delete [] posture_name;
-}
-
-bool Posture::setPs(unsigned int i, Coord ps)
-{
-    if (i < numNodes) {
+    if (i<numNodes){
         nodePs[i] = ps;
         return true;
     }
@@ -90,14 +73,14 @@ bool Posture::setPs(unsigned int i, Coord ps)
 
 bool Posture::setPostureName(char *str)
 {
-    delete [] posture_name;
-    posture_name = opp_strdup(str);
+    strcpy(posture_name,str);
     return true;
 }
 
+
 bool Posture::setAlphaMean(unsigned int i, unsigned int j, double alpha_mean)
 {
-    if (i < numNodes && j < numNodes) {
+    if (i<numNodes && j<numNodes){
         alphaMean[i][j] = alpha_mean;
         return true;
     }
@@ -106,7 +89,7 @@ bool Posture::setAlphaMean(unsigned int i, unsigned int j, double alpha_mean)
 
 bool Posture::setAlphaSD(unsigned int i, unsigned int j, double alpha_sd)
 {
-    if (i < numNodes && j < numNodes) {
+    if (i<numNodes && j<numNodes){
         alphaSD[i][j] = alpha_sd;
         return true;
     }
@@ -115,16 +98,16 @@ bool Posture::setAlphaSD(unsigned int i, unsigned int j, double alpha_sd)
 
 bool Posture::setRadius(unsigned int i, double radius)
 {
-    if (i < numNodes) {
+    if (i<numNodes){
         nodeRadius[i] = radius;
         return true;
     }
     return false;
 }
 
-bool Posture::setSpeed(unsigned int i, double speed)
+bool Posture::setSpeed(unsigned int i , double speed)
 {
-    if (i < numNodes) {
+    if (i<numNodes){
         nodeSpeed[i] = speed;
         return true;
     }
@@ -141,17 +124,17 @@ bool Posture::setPostureSpeed(double min, double max)
     return true;
 }
 
-Coord Posture::getPs(unsigned int i)
+Coord  Posture::getPs(unsigned int i)
 {
-    if (i < numNodes)
+    if (i<numNodes)
         return nodePs[i];
 
-    return Coord(-1, -1, -1);
+    return Coord(-1,-1,-1);
 }
 
 double Posture::getAlphaMean(unsigned int i, unsigned int j)
 {
-    if (i < numNodes && j < numNodes)
+    if (i<numNodes && j<numNodes)
         return alphaMean[i][j];
 
     return -1;
@@ -159,7 +142,7 @@ double Posture::getAlphaMean(unsigned int i, unsigned int j)
 
 double Posture::getAlphaSD(unsigned int i, unsigned int j)
 {
-    if (i < numNodes && j < numNodes)
+    if (i<numNodes && j<numNodes)
         return alphaSD[i][j];
 
     return -1;
@@ -167,7 +150,7 @@ double Posture::getAlphaSD(unsigned int i, unsigned int j)
 
 double Posture::getRadius(unsigned int i)
 {
-    if (i < numNodes)
+    if (i<numNodes)
         return nodeRadius[i];
 
     return -1;
@@ -175,13 +158,13 @@ double Posture::getRadius(unsigned int i)
 
 double Posture::getSpeed(unsigned int i)
 {
-    if (i < numNodes)
+    if (i<numNodes)
         return nodeSpeed[i];
 
     return -1;
 }
 
-char *Posture::getPostureName()
+char* Posture::getPostureName()
 {
     return posture_name;
 }
@@ -205,6 +188,3 @@ bool Posture::isMobile()
 {
     return maxSpeed > 0;
 }
-
-} // namespace inet
-

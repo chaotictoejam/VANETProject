@@ -16,29 +16,32 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inet/networklayer/common/InterfaceEntry.h"
-#include "inet/common/INETUtils.h"
+#include "cnedvalue.h"
+
+#include "InterfaceTableAccess.h"
+#include "InterfaceEntry.h"
+#include "opp_utils.h"
 
 #ifdef WITH_IPv4
-#include "inet/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#include "IPv4Datagram.h"
+#endif
 
 #ifdef WITH_IPv6
-#include "inet/networklayer/ipv6/IPv6Datagram.h"
-#endif // ifdef WITH_IPv6
+#include "IPv6Datagram.h"
+#endif
 
-#include "inet/networklayer/diffserv/DiffservUtil.h"
-#include "inet/networklayer/diffserv/DSCP_m.h"
 
-namespace inet {
+#include "DiffservUtil.h"
+#include "DSCP_m.h"
 
-namespace DiffservUtil {
+using namespace OPP_Global;
 
-using namespace utils;
+namespace DiffservUtil
+{
 
 // cached enums
-cEnum *dscpEnum = nullptr;
-cEnum *protocolEnum = nullptr;
+cEnum *dscpEnum = NULL;
+cEnum *protocolEnum = NULL;
 
 const char *getRequiredAttribute(cXMLElement *element, const char *attrName)
 {
@@ -48,13 +51,14 @@ const char *getRequiredAttribute(cXMLElement *element, const char *attrName)
     return attrValue;
 }
 
-double parseInformationRate(const char *attrValue, const char *attrName, IInterfaceTable *ift, cSimpleModule& owner, int defaultValue)
+double parseInformationRate(const char *attrValue, const char *attrName, cSimpleModule &owner, int defaultValue)
 {
     if (isEmpty(attrValue))
         return defaultValue;
 
     const char *percentPtr = strchr(attrValue, '%');
-    if (percentPtr) {
+    if (percentPtr)
+    {
         char *e;
         double percent = strtod(attrValue, &e);
         if (e != percentPtr)
@@ -62,22 +66,25 @@ double parseInformationRate(const char *attrValue, const char *attrName, IInterf
         if (percent < 0.0 || percent > 100.0)
             throw cRuntimeError("%s must be between 0\% and 100\%, found: %s", attrName, attrValue);
 
-        double datarate = getInterfaceDatarate(ift, &owner);
+        double datarate = getInterfaceDatarate(&owner);
         if (datarate < 0.0)
             throw cRuntimeError("cannot determine datarate for module %s, (no interface table in the node?)", owner.getFullPath().c_str());
 
         return (percent / 100.0) * datarate;
     }
-    else {
+    else
+    {
         char *unit;
         double datarate = strtod(attrValue, &unit);
         return cNEDValue::convertUnit(datarate, unit, "bps");
     }
+    return 0;
 }
 
 int parseIntAttribute(const char *attrValue, const char *attrName, bool isOptional)
 {
-    if (isEmpty(attrValue)) {
+    if (isEmpty(attrValue))
+    {
         if (isOptional)
             return -1;
         else
@@ -86,8 +93,8 @@ int parseIntAttribute(const char *attrValue, const char *attrName, bool isOption
 
     unsigned long num;
     char *endp;
-    if (*attrValue == '0' && *(attrValue + 1) == 'b') // 0b prefix for binary
-        num = strtoul(attrValue + 2, &endp, 2);
+    if (*attrValue == '0' && *(attrValue+1) == 'b') // 0b prefix for binary
+        num = strtoul(attrValue+2, &endp, 2);
     else
         num = strtoul(attrValue, &endp, 0); // will handle hex/octal/decimal
 
@@ -107,11 +114,11 @@ int parseProtocol(const char *attrValue, const char *attrName)
     if (isdigit(*attrValue))
         return parseIntAttribute(attrValue, attrName);
     if (!protocolEnum)
-        protocolEnum = cEnum::get("inet::IPProtocolId");
+        protocolEnum = cEnum::get("IPProtocolId");
     char name[20];
     strcpy(name, "IP_PROT_");
     char *dest;
-    for (dest = name + 8; *attrValue; ++dest, ++attrValue)
+    for (dest = name+8; *attrValue; ++dest, ++attrValue)
         *dest = toupper(*attrValue);
     *dest = '\0';
 
@@ -122,19 +129,20 @@ int parseDSCP(const char *attrValue, const char *attrName)
 {
     if (isEmpty(attrValue))
         throw cRuntimeError("missing %s attribute", attrName);
-    if (isdigit(*attrValue)) {
+    if (isdigit(*attrValue))
+    {
         int dscp = parseIntAttribute(attrValue, attrName);
         if (dscp < 0 || dscp >= DSCP_MAX)
             throw cRuntimeError("value of %s attribute is out of range [0,%d)", DSCP_MAX);
         return dscp;
     }
     if (!dscpEnum)
-        dscpEnum = cEnum::get("inet::DSCP");
+        dscpEnum = cEnum::get("DSCP");
     char name[20];
     strcpy(name, "DSCP_");
     const char *src;
     char *dest;
-    for (src = attrValue, dest = name + 5; *src; ++src, ++dest)
+    for (src = attrValue, dest = name+5; *src; ++src, ++dest)
         *dest = toupper(*src);
     *dest = '\0';
 
@@ -144,17 +152,19 @@ int parseDSCP(const char *attrValue, const char *attrName)
     return dscp;
 }
 
-void parseDSCPs(const char *attrValue, const char *attrName, std::vector<int>& result)
+void parseDSCPs(const char *attrValue, const char *attrName, std::vector<int> &result)
 {
     if (isEmpty(attrValue))
         return;
-    if (*attrValue == '*' && *(attrValue + 1) == '\0') {
+    if (*attrValue == '*' && *(attrValue+1) == '\0')
+    {
         for (int dscp = 0; dscp < DSCP_MAX; ++dscp)
             result.push_back(dscp);
     }
-    else {
+    else
+    {
         cStringTokenizer tokens(attrValue);
-        while (tokens.hasMoreTokens())
+        while(tokens.hasMoreTokens())
             result.push_back(parseDSCP(tokens.nextToken(), attrName));
     }
 }
@@ -162,9 +172,10 @@ void parseDSCPs(const char *attrValue, const char *attrName, std::vector<int>& r
 std::string dscpToString(int dscp)
 {
     if (!dscpEnum)
-        dscpEnum = cEnum::get("inet::DSCP");
+        dscpEnum = cEnum::get("DSCP");
     const char *name = dscpEnum->getStringFor(dscp);
-    if (name) {
+    if (name)
+    {
         if (!strncmp(name, "DSCP_", 5))
             name += 5;
         return name;
@@ -175,71 +186,63 @@ std::string dscpToString(int dscp)
 
 std::string colorToString(int color)
 {
-    switch (color) {
-        case GREEN:
-            return "green";
-
-        case YELLOW:
-            return "yellow";
-
-        case RED:
-            return "red";
-
-        default:
-            return ltostr(color);
+    switch(color)
+    {
+        case GREEN: return "green";
+        case YELLOW: return "yellow";
+        case RED: return "red";
+        default: return ltostr(color);
     }
 }
 
-double getInterfaceDatarate(IInterfaceTable *ift, cSimpleModule *interfaceModule)
+double getInterfaceDatarate(cSimpleModule *interfaceModule)
 {
-    InterfaceEntry *ie = ift ? ift->getInterfaceByInterfaceModule(interfaceModule) : nullptr;
+    IInterfaceTable *ift = InterfaceTableAccess().getIfExists(interfaceModule);
+    InterfaceEntry *ie = ift ? ift->getInterfaceByInterfaceModule(interfaceModule) : NULL;
     return ie ? ie->getDatarate() : -1;
 }
 
 cPacket *findIPDatagramInPacket(cPacket *packet)
 {
-    for ( ; packet; packet = packet->getEncapsulatedPacket()) {
+    for (; packet; packet = packet->getEncapsulatedPacket())
+    {
 #ifdef WITH_IPv4
-        if (dynamic_cast<IPv4Datagram *>(packet))
+        if (dynamic_cast<IPv4Datagram*>(packet))
             return packet;
-#endif // ifdef WITH_IPv4
+#endif
 #ifdef WITH_IPv6
         if (dynamic_cast<IPv6Datagram *>(packet))
             return packet;
-#endif // ifdef WITH_IPv6
+#endif
     }
 
-    return nullptr;
+    return NULL;
 }
 
 class ColorAttribute : public cObject
 {
-  public:
-    int color;
-
-  public:
-    ColorAttribute(int color) : color(color) {}
-    virtual const char *getName() const override { return "dscolor"; }
-    virtual std::string info() const override { return colorToString(color); }
-    virtual cObject *dup() const override { return new ColorAttribute(color); }
+    public:
+        int color;
+    public:
+        ColorAttribute(int color) : color(color) {}
+        virtual const char *getName() const  {return "dscolor";}
+        virtual std::string info() const { return colorToString(color); }
+        virtual cObject *dup() const { return new ColorAttribute(color); }
 };
 
 int getColor(cPacket *packet)
 {
-    ColorAttribute *attr = dynamic_cast<ColorAttribute *>(packet->getParList().get("dscolor"));
+    ColorAttribute *attr = dynamic_cast<ColorAttribute*>(packet->getParList().get("dscolor"));
     return attr ? attr->color : -1;
 }
 
 void setColor(cPacket *packet, int color)
 {
-    ColorAttribute *attr = dynamic_cast<ColorAttribute *>(packet->getParList().get("dscolor"));
+    ColorAttribute *attr = dynamic_cast<ColorAttribute*>(packet->getParList().get("dscolor"));
     if (attr)
         attr->color = color;
     else
         packet->addObject(new ColorAttribute(color));
 }
 
-} // namespace DiffservUtil
-
-} // namespace inet
-
+}

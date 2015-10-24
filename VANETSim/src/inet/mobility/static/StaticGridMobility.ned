@@ -19,7 +19,8 @@
 
 package inet.mobility.static;
 
-import inet.mobility.base.MobilityBase;
+import inet.mobility.common.MobilityBase;
+
 
 //
 // Places all hosts in a rectangular grid.

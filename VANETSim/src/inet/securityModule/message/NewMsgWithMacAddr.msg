@@ -1,12 +1,9 @@
 class noncobject MACAddress;
 cplusplus {{
-#include "inet/common/INETDefs.h"
-#include "inet/linklayer/common/MACAddress.h"
-
+    #include "MACAddress.h"
+#include "INETDefs.h"
 }}
 
-namespace inet::ieee80211;
-    
 // For Timeouts
 packet newcMessage extends cMessage
 {

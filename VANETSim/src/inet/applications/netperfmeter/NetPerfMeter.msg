@@ -8,7 +8,7 @@
 // *
 // * --------------------------------------------------------------------------
 // *
-// *   Copyright (C) 2009-2015 by Thomas Dreibholz
+// *   Copyright (C) 2009-2014 by Thomas Dreibholz
 // *
 // *   This program is free software: you can redistribute it and/or modify
 // *   it under the terms of the GNU General Public License as published by
@@ -26,10 +26,9 @@
 // *   Contact: dreibh@iem.uni-due.de
 
 cplusplus {{
-#include "inet/transportlayer/contract/sctp/SCTPCommand_m.h"
+#include "SCTPMessage_m.h"
 }}
 
-namespace inet;
 
 class noncobject SCTPSimpleMessage;
 

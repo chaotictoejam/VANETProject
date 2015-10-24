@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -130,7 +129,7 @@ class NetPerfMeterTransmitTimerDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(NetPerfMeterTransmitTimerDescriptor);
 
-NetPerfMeterTransmitTimerDescriptor::NetPerfMeterTransmitTimerDescriptor() : cClassDescriptor("inet::NetPerfMeterTransmitTimer", "cMessage")
+NetPerfMeterTransmitTimerDescriptor::NetPerfMeterTransmitTimerDescriptor() : cClassDescriptor("NetPerfMeterTransmitTimer", "cMessage")
 {
 }
 
@@ -289,11 +288,11 @@ void *NetPerfMeterTransmitTimerDescriptor::getFieldStructPointer(void *object, i
     }
 }
 
-NetPerfMeterDataMessage::NetPerfMeterDataMessage() : ::inet::SCTPSimpleMessage()
+NetPerfMeterDataMessage::NetPerfMeterDataMessage() : ::SCTPSimpleMessage()
 {
 }
 
-NetPerfMeterDataMessage::NetPerfMeterDataMessage(const NetPerfMeterDataMessage& other) : ::inet::SCTPSimpleMessage(other)
+NetPerfMeterDataMessage::NetPerfMeterDataMessage(const NetPerfMeterDataMessage& other) : ::SCTPSimpleMessage(other)
 {
     copy(other);
 }
@@ -305,7 +304,7 @@ NetPerfMeterDataMessage::~NetPerfMeterDataMessage()
 NetPerfMeterDataMessage& NetPerfMeterDataMessage::operator=(const NetPerfMeterDataMessage& other)
 {
     if (this==&other) return *this;
-    ::inet::SCTPSimpleMessage::operator=(other);
+    ::SCTPSimpleMessage::operator=(other);
     copy(other);
     return *this;
 }
@@ -316,12 +315,12 @@ void NetPerfMeterDataMessage::copy(const NetPerfMeterDataMessage& other)
 
 void NetPerfMeterDataMessage::parsimPack(cCommBuffer *b)
 {
-    doPacking(b,(::inet::SCTPSimpleMessage&)*this);
+    doPacking(b,(::SCTPSimpleMessage&)*this);
 }
 
 void NetPerfMeterDataMessage::parsimUnpack(cCommBuffer *b)
 {
-    doUnpacking(b,(::inet::SCTPSimpleMessage&)*this);
+    doUnpacking(b,(::SCTPSimpleMessage&)*this);
 }
 
 class NetPerfMeterDataMessageDescriptor : public cClassDescriptor
@@ -349,7 +348,7 @@ class NetPerfMeterDataMessageDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(NetPerfMeterDataMessageDescriptor);
 
-NetPerfMeterDataMessageDescriptor::NetPerfMeterDataMessageDescriptor() : cClassDescriptor("inet::NetPerfMeterDataMessage", "inet::SCTPSimpleMessage")
+NetPerfMeterDataMessageDescriptor::NetPerfMeterDataMessageDescriptor() : cClassDescriptor("NetPerfMeterDataMessage", "SCTPSimpleMessage")
 {
 }
 
@@ -493,5 +492,4 @@ void *NetPerfMeterDataMessageDescriptor::getFieldStructPointer(void *object, int
     }
 }
 
-} // namespace inet
 

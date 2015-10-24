@@ -15,14 +15,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_STATIONARYMOBILITY_H
-#define __INET_STATIONARYMOBILITY_H
 
-#include "inet/common/INETDefs.h"
+#ifndef STATIONARY_MOBILITY_H
+#define STATIONARY_MOBILITY_H
 
-#include "inet/mobility/base/MobilityBase.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "MobilityBase.h"
+
 
 /**
  * This mobility module does not move at all; it can be used for standalone stationary nodes.
@@ -34,28 +34,14 @@ class INET_API StationaryMobility : public MobilityBase
 {
   protected:
     /** @brief Never happens. */
-    virtual void handleSelfMessage(cMessage *message) override;
+    virtual void handleSelfMessage(cMessage *message);
 
   public:
-    StationaryMobility()
-    {
-    }
-
-    StationaryMobility(Coord position) { lastPosition = position; }
-
     /** @brief Returns the current position at the current simulation time. */
-    virtual Coord getCurrentPosition() override { return lastPosition; }
+    virtual Coord getCurrentPosition() { return lastPosition; }
 
     /** @brief Returns the current speed at the current simulation time. */
-    virtual Coord getCurrentSpeed() override { return Coord::ZERO; }
-
-    virtual double getMaxSpeed() const override { return 0; }
-
-    virtual Coord getConstraintAreaMax() const override { return lastPosition; }
-    virtual Coord getConstraintAreaMin() const override { return lastPosition; }
+    virtual Coord getCurrentSpeed() { return Coord::ZERO; }
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_STATIONARYMOBILITY_H
-
+#endif

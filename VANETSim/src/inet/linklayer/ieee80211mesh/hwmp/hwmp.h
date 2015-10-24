@@ -24,23 +24,18 @@
 #ifndef HWMP_PROTOCOL_H
 #define HWMP_PROTOCOL_H
 
-#include "inet/linklayer/ieee80211mesh/hwmp/hwmp-rtable.h"
+#include "hwmp-rtable.h"
 #include <vector>
 #include <deque>
 #include <map>
-#include "inet/routing/extras/base/ManetRoutingBase.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h"
+#include "ManetRoutingBase.h"
+#include "Ieee80211MgmtFrames_m.h"
 
-namespace inet {
 /**
  * \ingroup dot11s
  *
  * \brief Hybrid wireless mesh protocol -- a routing protocol of IEEE 802.11s draft.
  */
-
-namespace ieee80211 {
-
-using namespace inetmanet;
 
 class PreqTimeout : public ManetTimer
 {
@@ -110,11 +105,11 @@ class HwmpProtocol : public ManetRoutingBase
         }
         virtual void handleMessage(cMessage *msg);
         // Detect a transmission fault
-        virtual void processLinkBreak(const cObject *details);
-        virtual void processLinkBreakManagement(const cObject *details);
+        virtual void processLinkBreak(const cPolymorphic *details);
+        virtual void processLinkBreakManagement(const cPolymorphic *details);
         virtual void packetFailedMac(Ieee80211TwoAddressFrame *frame);
         // promiscuous frame process.
-        virtual void processFullPromiscuous(const cObject *details);
+        virtual void processFullPromiscuous(const cPolymorphic *details);
         ///\brief This callback is used to obtain active neighbours on a given interface
         ///\param cb is a callback, which returns a list of addresses on given interface (uint32_t)
         ///\name Proactive PREQ mechanism:
@@ -130,14 +125,14 @@ class HwmpProtocol : public ManetRoutingBase
         ;
         virtual bool supportGetRoute() {return false;}
         virtual bool isOurType(cPacket *);
-        virtual bool getDestAddress(cPacket *, L3Address &);
-        virtual uint32_t getRoute(const L3Address &, std::vector<L3Address> &);
-        virtual bool getNextHop(const L3Address &dest, L3Address &add, int &iface, double &cost);
-        virtual bool getNextHopProactive(const L3Address &dest, L3Address &add, int &iface, double &cost);
-        virtual bool getNextHopReactive(const L3Address &dest, L3Address &add, int &iface, double &cost);
-        virtual void setRefreshRoute(const L3Address &destination, const L3Address & nextHop, bool isReverse);
+        virtual bool getDestAddress(cPacket *, ManetAddress &);
+        virtual uint32_t getRoute(const ManetAddress &, std::vector<ManetAddress> &);
+        virtual bool getNextHop(const ManetAddress &dest, ManetAddress &add, int &iface, double &cost);
+        virtual bool getNextHopProactive(const ManetAddress &dest, ManetAddress &add, int &iface, double &cost);
+        virtual bool getNextHopReactive(const ManetAddress &dest, ManetAddress &add, int &iface, double &cost);
+        virtual void setRefreshRoute(const ManetAddress &destination, const ManetAddress & nextHop, bool isReverse);
 
-        virtual bool getBestGan(L3Address &, L3Address &);
+        virtual bool getBestGan(ManetAddress &, ManetAddress &);
         virtual bool handleNodeStart(IDoneCallback *doneCallback);
         virtual bool handleNodeShutdown(IDoneCallback *doneCallback);
         virtual void handleNodeCrash();
@@ -208,7 +203,7 @@ class HwmpProtocol : public ManetRoutingBase
                 uint32_t inInterface; ///< incoming device interface ID. (if packet has come from upper layers, this is Mesh point ID)
                 QueuedPacket()
                 {
-                    pkt = nullptr; ///< the packet
+                    pkt = NULL; ///< the packet
                     src = MACAddress::UNSPECIFIED_ADDRESS; ///< src address
                     dst = MACAddress::UNSPECIFIED_ADDRESS; ///< dst address
                     protocol = 0; ///< protocol number
@@ -402,8 +397,5 @@ class HwmpProtocol : public ManetRoutingBase
         bool m_concurrentReactive;
         ///\}
 };
-
-}
-}
 #endif
 

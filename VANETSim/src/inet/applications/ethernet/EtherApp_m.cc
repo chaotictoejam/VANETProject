@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -144,7 +143,7 @@ class EtherAppReqDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(EtherAppReqDescriptor);
 
-EtherAppReqDescriptor::EtherAppReqDescriptor() : cClassDescriptor("inet::EtherAppReq", "cPacket")
+EtherAppReqDescriptor::EtherAppReqDescriptor() : cClassDescriptor("EtherAppReq", "cPacket")
 {
 }
 
@@ -399,7 +398,7 @@ class EtherAppRespDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(EtherAppRespDescriptor);
 
-EtherAppRespDescriptor::EtherAppRespDescriptor() : cClassDescriptor("inet::EtherAppResp", "cPacket")
+EtherAppRespDescriptor::EtherAppRespDescriptor() : cClassDescriptor("EtherAppResp", "cPacket")
 {
 }
 
@@ -564,5 +563,4 @@ void *EtherAppRespDescriptor::getFieldStructPointer(void *object, int field, int
     }
 }
 
-} // namespace inet
 

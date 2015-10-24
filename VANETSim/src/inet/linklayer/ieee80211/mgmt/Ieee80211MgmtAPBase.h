@@ -15,18 +15,15 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211MGMTAPBASE_H
-#define __INET_IEEE80211MGMTAPBASE_H
+#ifndef IEEE80211_MGMT_AP_BASE_H
+#define IEEE80211_MGMT_AP_BASE_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtBase.h"
-
-namespace inet {
+#include "Ieee80211MgmtBase.h"
+#include "NotificationBoard.h"
 
 class EtherFrame;
-
-namespace ieee80211 {
 
 /**
  * Used in 802.11 infrastructure mode: abstract base class for management frame
@@ -38,15 +35,14 @@ namespace ieee80211 {
 class INET_API Ieee80211MgmtAPBase : public Ieee80211MgmtBase
 {
   public:
-    typedef enum { ENCAP_DECAP_TRUE = 1, ENCAP_DECAP_FALSE, ENCAP_DECAP_ETH } EncapDecap;
-
+    typedef enum { ENCAP_DECAP_TRUE = 1, ENCAP_DECAP_FALSE, ENCAP_DECAP_ETH} EncapDecap;
   protected:
     bool isConnectedToHL;
     EncapDecap encapDecap;
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int) override;
+    virtual int numInitStages() const { return 2; }
+    virtual void initialize(int);
 
     /**
      * Utility function for APs: sends back a data frame we received from a
@@ -82,9 +78,5 @@ class INET_API Ieee80211MgmtAPBase : public Ieee80211MgmtBase
     virtual void sendToUpperLayer(Ieee80211DataFrame *frame);
 };
 
-} // namespace ieee80211
-
-} // namespace inet
-
-#endif // ifndef __INET_IEEE80211MGMTAPBASE_H
+#endif
 

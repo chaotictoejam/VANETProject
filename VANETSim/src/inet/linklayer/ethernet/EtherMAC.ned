@@ -19,7 +19,7 @@
 
 package inet.linklayer.ethernet;
 
-import inet.linklayer.contract.IEtherMAC;
+import inet.linklayer.IEtherMAC;
 
 
 //
@@ -110,7 +110,6 @@ import inet.linklayer.contract.IEtherMAC;
 simple EtherMAC like IEtherMAC
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module
         bool promiscuous = default(false);  // if true, all packets are received, otherwise only the
                                             // ones with matching destination MAC address
         string address = default("auto");   // MAC address as hex string (12 hex digits), or
@@ -139,8 +138,6 @@ simple EtherMAC like IEtherMAC
         @signal[packetReceivedFromUpper](type=EtherFrame);
         @signal[collision](type=long);
         @signal[backoff](type=long);
-        @signal[transmitState](type=long); // enum=MACTransmitState
-        @signal[receiveState](type=long); // enum=MACReceiveState
 
         @statistic[txPk](title="packets transmitted"; source=txPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
         @statistic[rxPkOk](title="packets received OK"; source=rxPkOk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);

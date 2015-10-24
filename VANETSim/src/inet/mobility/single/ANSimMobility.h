@@ -15,14 +15,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ANSIMMOBILITY_H
-#define __INET_ANSIMMOBILITY_H
 
-#include "inet/common/INETDefs.h"
+#ifndef AN_SIM_MOBILITY_H
+#define AN_SIM_MOBILITY_H
 
-#include "inet/mobility/base/LineSegmentsMobilityBase.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "LineSegmentsMobilityBase.h"
+
 
 /**
  * @brief Uses the \<position_change> elements of the ANSim tool's trace file.
@@ -35,37 +35,33 @@ class INET_API ANSimMobility : public LineSegmentsMobilityBase
 {
   protected:
     // config
-    int nodeId;    ///< we'll have to compare this to the \<node_id> elements
+    int nodeId; ///< we'll have to compare this to the \<node_id> elements
     // state
-    cXMLElement *nextPositionChange;    ///< points to the next \<position_change> element
-    double maxSpeed; // the possible maximum speed at any future time
+    cXMLElement *nextPositionChange; ///< points to the next \<position_change> element
+
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 3; }
 
     /** @brief Initializes mobility model parameters. */
-    virtual void initialize(int stage) override;
+    virtual void initialize(int stage);
 
     /** @brief Initializes the position according to the mobility model. */
-    virtual void setInitialPosition() override;
+    virtual void setInitialPosition();
 
     /** @brief Overridden from LineSegmentsMobilityBase. */
-    virtual void setTargetPosition() override;
+    virtual void setTargetPosition();
 
     /** @brief Overridden from LineSegmentsMobilityBase. */
-    virtual void move() override;
+    virtual void move();
 
     /** @brief Finds the next \<position_change> element. */
     virtual cXMLElement *findNextPositionChange(cXMLElement *positionChange);
 
     /** @brief Utility: extract data from given \<position_update> element. */
     virtual void extractDataFrom(cXMLElement *node);
-    virtual void computeMaxSpeed();
+
   public:
-    virtual double getMaxSpeed() const override { return maxSpeed; }
     ANSimMobility();
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_ANSIMMOBILITY_H
-
+#endif

@@ -15,14 +15,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_CHIANGMOBILITY_H
-#define __INET_CHIANGMOBILITY_H
 
-#include "inet/common/INETDefs.h"
+#ifndef CHIANG_MOBILITY_H
+#define CHIANG_MOBILITY_H
 
-#include "inet/mobility/base/LineSegmentsMobilityBase.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "LineSegmentsMobilityBase.h"
+
 
 /**
  * @brief Chiang's random walk movement model. See NED file for more info.
@@ -32,32 +32,28 @@ namespace inet {
 class INET_API ChiangMobility : public LineSegmentsMobilityBase
 {
   protected:
-    double speed;    ///< speed of the host
-    double stateTransitionUpdateInterval;    ///< how often to calculate the new state
-    int xState;    ///< 0 = negative direction, 1 = no move, 2 = positive direction
-    int yState;    ///< 0 = negative direction, 1 = no move, 2 = positive direction
+    double speed;              ///< speed of the host
+    double stateTransitionUpdateInterval; ///< how often to calculate the new state
+    int xState;                ///< 0 = negative direction, 1 = no move, 2 = positive direction
+    int yState;                ///< 0 = negative direction, 1 = no move, 2 = positive direction
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 3; }
 
     /** @brief Initializes mobility model parameters.*/
-    virtual void initialize(int stage) override;
+    virtual void initialize(int stage);
 
     /** @brief Gets the next state based on the current state. */
     int getNextStateIndex(int currentState);
 
     /** @brief Calculate a new target position to move to. */
-    void setTargetPosition() override;
+    void setTargetPosition();
 
     /** @brief Move the host according to the current simulation time. */
-    virtual void move() override;
+    virtual void move();
 
   public:
-    virtual double getMaxSpeed() const override { return speed; }
     ChiangMobility();
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_CHIANGMOBILITY_H
-
+#endif

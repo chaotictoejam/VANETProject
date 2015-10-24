@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/xmipv6/MobilityHeader.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from networklayer/xmipv6/MobilityHeader.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:
@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -55,8 +54,8 @@ template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::MobilityHeaderType");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::MobilityHeaderType"));
+    cEnum *e = cEnum::find("MobilityHeaderType");
+    if (!e) enums.getInstance()->add(e = new cEnum("MobilityHeaderType"));
     e->insert(BINDING_REFRESH_REQUEST, "BINDING_REFRESH_REQUEST");
     e->insert(HOME_TEST_INIT, "HOME_TEST_INIT");
     e->insert(CARE_OF_TEST_INIT, "CARE_OF_TEST_INIT");
@@ -143,7 +142,7 @@ class MobilityHeaderDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(MobilityHeaderDescriptor);
 
-MobilityHeaderDescriptor::MobilityHeaderDescriptor() : cClassDescriptor("inet::MobilityHeader", "cPacket")
+MobilityHeaderDescriptor::MobilityHeaderDescriptor() : cClassDescriptor("MobilityHeader", "cPacket")
 {
 }
 
@@ -228,7 +227,7 @@ const char *MobilityHeaderDescriptor::getFieldProperty(void *object, int field, 
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::MobilityHeaderType";
+            if (!strcmp(propertyname,"enum")) return "MobilityHeaderType";
             return NULL;
         default: return NULL;
     }
@@ -307,7 +306,7 @@ void *MobilityHeaderDescriptor::getFieldStructPointer(void *object, int field, i
 
 Register_Class(BindingUpdate);
 
-BindingUpdate::BindingUpdate(const char *name, int kind) : ::inet::MobilityHeader(name,kind)
+BindingUpdate::BindingUpdate(const char *name, int kind) : ::MobilityHeader(name,kind)
 {
     this->lifetime_var = 0;
     this->sequence_var = 0;
@@ -318,7 +317,7 @@ BindingUpdate::BindingUpdate(const char *name, int kind) : ::inet::MobilityHeade
     this->bindingAuthorizationData_var = 0;
 }
 
-BindingUpdate::BindingUpdate(const BindingUpdate& other) : ::inet::MobilityHeader(other)
+BindingUpdate::BindingUpdate(const BindingUpdate& other) : ::MobilityHeader(other)
 {
     copy(other);
 }
@@ -330,7 +329,7 @@ BindingUpdate::~BindingUpdate()
 BindingUpdate& BindingUpdate::operator=(const BindingUpdate& other)
 {
     if (this==&other) return *this;
-    ::inet::MobilityHeader::operator=(other);
+    ::MobilityHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -349,7 +348,7 @@ void BindingUpdate::copy(const BindingUpdate& other)
 
 void BindingUpdate::parsimPack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimPack(b);
+    ::MobilityHeader::parsimPack(b);
     doPacking(b,this->lifetime_var);
     doPacking(b,this->sequence_var);
     doPacking(b,this->ackFlag_var);
@@ -362,7 +361,7 @@ void BindingUpdate::parsimPack(cCommBuffer *b)
 
 void BindingUpdate::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimUnpack(b);
+    ::MobilityHeader::parsimUnpack(b);
     doUnpacking(b,this->lifetime_var);
     doUnpacking(b,this->sequence_var);
     doUnpacking(b,this->ackFlag_var);
@@ -478,7 +477,7 @@ class BindingUpdateDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(BindingUpdateDescriptor);
 
-BindingUpdateDescriptor::BindingUpdateDescriptor() : cClassDescriptor("inet::BindingUpdate", "inet::MobilityHeader")
+BindingUpdateDescriptor::BindingUpdateDescriptor() : cClassDescriptor("BindingUpdate", "MobilityHeader")
 {
 }
 
@@ -681,8 +680,8 @@ void *BindingUpdateDescriptor::getFieldStructPointer(void *object, int field, in
 }
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::BAStatus");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::BAStatus"));
+    cEnum *e = cEnum::find("BAStatus");
+    if (!e) enums.getInstance()->add(e = new cEnum("BAStatus"));
     e->insert(BINDING_UPDATE_ACCEPTED, "BINDING_UPDATE_ACCEPTED");
     e->insert(BU_ACCEPT_BUT_DISCOVER_PREFIX, "BU_ACCEPT_BUT_DISCOVER_PREFIX");
     e->insert(REASON_UNSPECIFIED, "REASON_UNSPECIFIED");
@@ -701,7 +700,7 @@ EXECUTE_ON_STARTUP(
 
 Register_Class(BindingAcknowledgement);
 
-BindingAcknowledgement::BindingAcknowledgement(const char *name, int kind) : ::inet::MobilityHeader(name,kind)
+BindingAcknowledgement::BindingAcknowledgement(const char *name, int kind) : ::MobilityHeader(name,kind)
 {
     this->status_var = 0;
     this->sequenceNumber_var = 0;
@@ -710,7 +709,7 @@ BindingAcknowledgement::BindingAcknowledgement(const char *name, int kind) : ::i
     this->bindingAuthorizationData_var = 0;
 }
 
-BindingAcknowledgement::BindingAcknowledgement(const BindingAcknowledgement& other) : ::inet::MobilityHeader(other)
+BindingAcknowledgement::BindingAcknowledgement(const BindingAcknowledgement& other) : ::MobilityHeader(other)
 {
     copy(other);
 }
@@ -722,7 +721,7 @@ BindingAcknowledgement::~BindingAcknowledgement()
 BindingAcknowledgement& BindingAcknowledgement::operator=(const BindingAcknowledgement& other)
 {
     if (this==&other) return *this;
-    ::inet::MobilityHeader::operator=(other);
+    ::MobilityHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -738,7 +737,7 @@ void BindingAcknowledgement::copy(const BindingAcknowledgement& other)
 
 void BindingAcknowledgement::parsimPack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimPack(b);
+    ::MobilityHeader::parsimPack(b);
     doPacking(b,this->status_var);
     doPacking(b,this->sequenceNumber_var);
     doPacking(b,this->lifetime_var);
@@ -748,7 +747,7 @@ void BindingAcknowledgement::parsimPack(cCommBuffer *b)
 
 void BindingAcknowledgement::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimUnpack(b);
+    ::MobilityHeader::parsimUnpack(b);
     doUnpacking(b,this->status_var);
     doUnpacking(b,this->sequenceNumber_var);
     doUnpacking(b,this->lifetime_var);
@@ -831,7 +830,7 @@ class BindingAcknowledgementDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(BindingAcknowledgementDescriptor);
 
-BindingAcknowledgementDescriptor::BindingAcknowledgementDescriptor() : cClassDescriptor("inet::BindingAcknowledgement", "inet::MobilityHeader")
+BindingAcknowledgementDescriptor::BindingAcknowledgementDescriptor() : cClassDescriptor("BindingAcknowledgement", "MobilityHeader")
 {
 }
 
@@ -932,7 +931,7 @@ const char *BindingAcknowledgementDescriptor::getFieldProperty(void *object, int
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::BAStatus";
+            if (!strcmp(propertyname,"enum")) return "BAStatus";
             return NULL;
         default: return NULL;
     }
@@ -1018,20 +1017,20 @@ void *BindingAcknowledgementDescriptor::getFieldStructPointer(void *object, int 
 }
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::BEStatus");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::BEStatus"));
+    cEnum *e = cEnum::find("BEStatus");
+    if (!e) enums.getInstance()->add(e = new cEnum("BEStatus"));
     e->insert(UNKNOWN_BINDING_FOR_HOME_ADDRESS_DEST_OPTION, "UNKNOWN_BINDING_FOR_HOME_ADDRESS_DEST_OPTION");
     e->insert(UNKNOWN_MH_TYPE, "UNKNOWN_MH_TYPE");
 );
 
 Register_Class(BindingError);
 
-BindingError::BindingError(const char *name, int kind) : ::inet::MobilityHeader(name,kind)
+BindingError::BindingError(const char *name, int kind) : ::MobilityHeader(name,kind)
 {
     this->status_var = 0;
 }
 
-BindingError::BindingError(const BindingError& other) : ::inet::MobilityHeader(other)
+BindingError::BindingError(const BindingError& other) : ::MobilityHeader(other)
 {
     copy(other);
 }
@@ -1043,7 +1042,7 @@ BindingError::~BindingError()
 BindingError& BindingError::operator=(const BindingError& other)
 {
     if (this==&other) return *this;
-    ::inet::MobilityHeader::operator=(other);
+    ::MobilityHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -1056,14 +1055,14 @@ void BindingError::copy(const BindingError& other)
 
 void BindingError::parsimPack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimPack(b);
+    ::MobilityHeader::parsimPack(b);
     doPacking(b,this->status_var);
     doPacking(b,this->homeAddress_var);
 }
 
 void BindingError::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimUnpack(b);
+    ::MobilityHeader::parsimUnpack(b);
     doUnpacking(b,this->status_var);
     doUnpacking(b,this->homeAddress_var);
 }
@@ -1113,7 +1112,7 @@ class BindingErrorDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(BindingErrorDescriptor);
 
-BindingErrorDescriptor::BindingErrorDescriptor() : cClassDescriptor("inet::BindingError", "inet::MobilityHeader")
+BindingErrorDescriptor::BindingErrorDescriptor() : cClassDescriptor("BindingError", "MobilityHeader")
 {
 }
 
@@ -1202,7 +1201,7 @@ const char *BindingErrorDescriptor::getFieldProperty(void *object, int field, co
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::BEStatus";
+            if (!strcmp(propertyname,"enum")) return "BEStatus";
             return NULL;
         default: return NULL;
     }
@@ -1284,12 +1283,12 @@ void *BindingErrorDescriptor::getFieldStructPointer(void *object, int field, int
 
 Register_Class(HomeTestInit);
 
-HomeTestInit::HomeTestInit(const char *name, int kind) : ::inet::MobilityHeader(name,kind)
+HomeTestInit::HomeTestInit(const char *name, int kind) : ::MobilityHeader(name,kind)
 {
     this->homeInitCookie_var = 0;
 }
 
-HomeTestInit::HomeTestInit(const HomeTestInit& other) : ::inet::MobilityHeader(other)
+HomeTestInit::HomeTestInit(const HomeTestInit& other) : ::MobilityHeader(other)
 {
     copy(other);
 }
@@ -1301,7 +1300,7 @@ HomeTestInit::~HomeTestInit()
 HomeTestInit& HomeTestInit::operator=(const HomeTestInit& other)
 {
     if (this==&other) return *this;
-    ::inet::MobilityHeader::operator=(other);
+    ::MobilityHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -1313,13 +1312,13 @@ void HomeTestInit::copy(const HomeTestInit& other)
 
 void HomeTestInit::parsimPack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimPack(b);
+    ::MobilityHeader::parsimPack(b);
     doPacking(b,this->homeInitCookie_var);
 }
 
 void HomeTestInit::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimUnpack(b);
+    ::MobilityHeader::parsimUnpack(b);
     doUnpacking(b,this->homeInitCookie_var);
 }
 
@@ -1358,7 +1357,7 @@ class HomeTestInitDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(HomeTestInitDescriptor);
 
-HomeTestInitDescriptor::HomeTestInitDescriptor() : cClassDescriptor("inet::HomeTestInit", "inet::MobilityHeader")
+HomeTestInitDescriptor::HomeTestInitDescriptor() : cClassDescriptor("HomeTestInit", "MobilityHeader")
 {
 }
 
@@ -1519,13 +1518,13 @@ void *HomeTestInitDescriptor::getFieldStructPointer(void *object, int field, int
 
 Register_Class(HomeTest);
 
-HomeTest::HomeTest(const char *name, int kind) : ::inet::MobilityHeader(name,kind)
+HomeTest::HomeTest(const char *name, int kind) : ::MobilityHeader(name,kind)
 {
     this->homeInitCookie_var = 0;
     this->homeKeyGenToken_var = 0;
 }
 
-HomeTest::HomeTest(const HomeTest& other) : ::inet::MobilityHeader(other)
+HomeTest::HomeTest(const HomeTest& other) : ::MobilityHeader(other)
 {
     copy(other);
 }
@@ -1537,7 +1536,7 @@ HomeTest::~HomeTest()
 HomeTest& HomeTest::operator=(const HomeTest& other)
 {
     if (this==&other) return *this;
-    ::inet::MobilityHeader::operator=(other);
+    ::MobilityHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -1550,14 +1549,14 @@ void HomeTest::copy(const HomeTest& other)
 
 void HomeTest::parsimPack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimPack(b);
+    ::MobilityHeader::parsimPack(b);
     doPacking(b,this->homeInitCookie_var);
     doPacking(b,this->homeKeyGenToken_var);
 }
 
 void HomeTest::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimUnpack(b);
+    ::MobilityHeader::parsimUnpack(b);
     doUnpacking(b,this->homeInitCookie_var);
     doUnpacking(b,this->homeKeyGenToken_var);
 }
@@ -1607,7 +1606,7 @@ class HomeTestDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(HomeTestDescriptor);
 
-HomeTestDescriptor::HomeTestDescriptor() : cClassDescriptor("inet::HomeTest", "inet::MobilityHeader")
+HomeTestDescriptor::HomeTestDescriptor() : cClassDescriptor("HomeTest", "MobilityHeader")
 {
 }
 
@@ -1774,12 +1773,12 @@ void *HomeTestDescriptor::getFieldStructPointer(void *object, int field, int i) 
 
 Register_Class(CareOfTestInit);
 
-CareOfTestInit::CareOfTestInit(const char *name, int kind) : ::inet::MobilityHeader(name,kind)
+CareOfTestInit::CareOfTestInit(const char *name, int kind) : ::MobilityHeader(name,kind)
 {
     this->careOfInitCookie_var = 0;
 }
 
-CareOfTestInit::CareOfTestInit(const CareOfTestInit& other) : ::inet::MobilityHeader(other)
+CareOfTestInit::CareOfTestInit(const CareOfTestInit& other) : ::MobilityHeader(other)
 {
     copy(other);
 }
@@ -1791,7 +1790,7 @@ CareOfTestInit::~CareOfTestInit()
 CareOfTestInit& CareOfTestInit::operator=(const CareOfTestInit& other)
 {
     if (this==&other) return *this;
-    ::inet::MobilityHeader::operator=(other);
+    ::MobilityHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -1803,13 +1802,13 @@ void CareOfTestInit::copy(const CareOfTestInit& other)
 
 void CareOfTestInit::parsimPack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimPack(b);
+    ::MobilityHeader::parsimPack(b);
     doPacking(b,this->careOfInitCookie_var);
 }
 
 void CareOfTestInit::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimUnpack(b);
+    ::MobilityHeader::parsimUnpack(b);
     doUnpacking(b,this->careOfInitCookie_var);
 }
 
@@ -1848,7 +1847,7 @@ class CareOfTestInitDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(CareOfTestInitDescriptor);
 
-CareOfTestInitDescriptor::CareOfTestInitDescriptor() : cClassDescriptor("inet::CareOfTestInit", "inet::MobilityHeader")
+CareOfTestInitDescriptor::CareOfTestInitDescriptor() : cClassDescriptor("CareOfTestInit", "MobilityHeader")
 {
 }
 
@@ -2009,13 +2008,13 @@ void *CareOfTestInitDescriptor::getFieldStructPointer(void *object, int field, i
 
 Register_Class(CareOfTest);
 
-CareOfTest::CareOfTest(const char *name, int kind) : ::inet::MobilityHeader(name,kind)
+CareOfTest::CareOfTest(const char *name, int kind) : ::MobilityHeader(name,kind)
 {
     this->careOfInitCookie_var = 0;
     this->careOfKeyGenToken_var = 0;
 }
 
-CareOfTest::CareOfTest(const CareOfTest& other) : ::inet::MobilityHeader(other)
+CareOfTest::CareOfTest(const CareOfTest& other) : ::MobilityHeader(other)
 {
     copy(other);
 }
@@ -2027,7 +2026,7 @@ CareOfTest::~CareOfTest()
 CareOfTest& CareOfTest::operator=(const CareOfTest& other)
 {
     if (this==&other) return *this;
-    ::inet::MobilityHeader::operator=(other);
+    ::MobilityHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -2040,14 +2039,14 @@ void CareOfTest::copy(const CareOfTest& other)
 
 void CareOfTest::parsimPack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimPack(b);
+    ::MobilityHeader::parsimPack(b);
     doPacking(b,this->careOfInitCookie_var);
     doPacking(b,this->careOfKeyGenToken_var);
 }
 
 void CareOfTest::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimUnpack(b);
+    ::MobilityHeader::parsimUnpack(b);
     doUnpacking(b,this->careOfInitCookie_var);
     doUnpacking(b,this->careOfKeyGenToken_var);
 }
@@ -2097,7 +2096,7 @@ class CareOfTestDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(CareOfTestDescriptor);
 
-CareOfTestDescriptor::CareOfTestDescriptor() : cClassDescriptor("inet::CareOfTest", "inet::MobilityHeader")
+CareOfTestDescriptor::CareOfTestDescriptor() : cClassDescriptor("CareOfTest", "MobilityHeader")
 {
 }
 
@@ -2264,11 +2263,11 @@ void *CareOfTestDescriptor::getFieldStructPointer(void *object, int field, int i
 
 Register_Class(BindingRefreshRequest);
 
-BindingRefreshRequest::BindingRefreshRequest(const char *name, int kind) : ::inet::MobilityHeader(name,kind)
+BindingRefreshRequest::BindingRefreshRequest(const char *name, int kind) : ::MobilityHeader(name,kind)
 {
 }
 
-BindingRefreshRequest::BindingRefreshRequest(const BindingRefreshRequest& other) : ::inet::MobilityHeader(other)
+BindingRefreshRequest::BindingRefreshRequest(const BindingRefreshRequest& other) : ::MobilityHeader(other)
 {
     copy(other);
 }
@@ -2280,7 +2279,7 @@ BindingRefreshRequest::~BindingRefreshRequest()
 BindingRefreshRequest& BindingRefreshRequest::operator=(const BindingRefreshRequest& other)
 {
     if (this==&other) return *this;
-    ::inet::MobilityHeader::operator=(other);
+    ::MobilityHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -2291,12 +2290,12 @@ void BindingRefreshRequest::copy(const BindingRefreshRequest& other)
 
 void BindingRefreshRequest::parsimPack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimPack(b);
+    ::MobilityHeader::parsimPack(b);
 }
 
 void BindingRefreshRequest::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::MobilityHeader::parsimUnpack(b);
+    ::MobilityHeader::parsimUnpack(b);
 }
 
 class BindingRefreshRequestDescriptor : public cClassDescriptor
@@ -2324,7 +2323,7 @@ class BindingRefreshRequestDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(BindingRefreshRequestDescriptor);
 
-BindingRefreshRequestDescriptor::BindingRefreshRequestDescriptor() : cClassDescriptor("inet::BindingRefreshRequest", "inet::MobilityHeader")
+BindingRefreshRequestDescriptor::BindingRefreshRequestDescriptor() : cClassDescriptor("BindingRefreshRequest", "MobilityHeader")
 {
 }
 
@@ -2468,11 +2467,11 @@ void *BindingRefreshRequestDescriptor::getFieldStructPointer(void *object, int f
     }
 }
 
-HomeAddressOption_Base::HomeAddressOption_Base() : ::inet::IPv6DestinationOptionsHeader()
+HomeAddressOption_Base::HomeAddressOption_Base() : ::IPv6DestinationOptionsHeader()
 {
 }
 
-HomeAddressOption_Base::HomeAddressOption_Base(const HomeAddressOption_Base& other) : ::inet::IPv6DestinationOptionsHeader(other)
+HomeAddressOption_Base::HomeAddressOption_Base(const HomeAddressOption_Base& other) : ::IPv6DestinationOptionsHeader(other)
 {
     copy(other);
 }
@@ -2484,7 +2483,7 @@ HomeAddressOption_Base::~HomeAddressOption_Base()
 HomeAddressOption_Base& HomeAddressOption_Base::operator=(const HomeAddressOption_Base& other)
 {
     if (this==&other) return *this;
-    ::inet::IPv6DestinationOptionsHeader::operator=(other);
+    ::IPv6DestinationOptionsHeader::operator=(other);
     copy(other);
     return *this;
 }
@@ -2496,13 +2495,13 @@ void HomeAddressOption_Base::copy(const HomeAddressOption_Base& other)
 
 void HomeAddressOption_Base::parsimPack(cCommBuffer *b)
 {
-    doPacking(b,(::inet::IPv6DestinationOptionsHeader&)*this);
+    doPacking(b,(::IPv6DestinationOptionsHeader&)*this);
     doPacking(b,this->homeAddress_var);
 }
 
 void HomeAddressOption_Base::parsimUnpack(cCommBuffer *b)
 {
-    doUnpacking(b,(::inet::IPv6DestinationOptionsHeader&)*this);
+    doUnpacking(b,(::IPv6DestinationOptionsHeader&)*this);
     doUnpacking(b,this->homeAddress_var);
 }
 
@@ -2541,7 +2540,7 @@ class HomeAddressOptionDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(HomeAddressOptionDescriptor);
 
-HomeAddressOptionDescriptor::HomeAddressOptionDescriptor() : cClassDescriptor("inet::HomeAddressOption", "inet::IPv6DestinationOptionsHeader")
+HomeAddressOptionDescriptor::HomeAddressOptionDescriptor() : cClassDescriptor("HomeAddressOption", "IPv6DestinationOptionsHeader")
 {
 }
 
@@ -2702,5 +2701,4 @@ void *HomeAddressOptionDescriptor::getFieldStructPointer(void *object, int field
     }
 }
 
-} // namespace inet
 

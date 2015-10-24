@@ -18,11 +18,9 @@
 //
 
 cplusplus {{
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 #define ICMPv6_HEADER_BYTES  8
 }}
-
-namespace inet;
 
 //
 //# TODO consolidate this file's contents with ICMPMessage.msg

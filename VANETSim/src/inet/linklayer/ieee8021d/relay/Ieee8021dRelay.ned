@@ -15,7 +15,7 @@
 
 package inet.linklayer.ieee8021d.relay;
 
-import inet.linklayer.contract.IMACRelayUnit;
+import inet.linklayer.IMACRelayUnit;
 
 
 //

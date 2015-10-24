@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -186,7 +185,7 @@ class SimpleVoIPPacketDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(SimpleVoIPPacketDescriptor);
 
-SimpleVoIPPacketDescriptor::SimpleVoIPPacketDescriptor() : cClassDescriptor("inet::SimpleVoIPPacket", "cPacket")
+SimpleVoIPPacketDescriptor::SimpleVoIPPacketDescriptor() : cClassDescriptor("SimpleVoIPPacket", "cPacket")
 {
 }
 
@@ -369,5 +368,4 @@ void *SimpleVoIPPacketDescriptor::getFieldStructPointer(void *object, int field,
     }
 }
 
-} // namespace inet
 

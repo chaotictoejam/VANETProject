@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -105,7 +104,7 @@ class SessionObj_tDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(SessionObj_tDescriptor);
 
-SessionObj_tDescriptor::SessionObj_tDescriptor() : cClassDescriptor("inet::SessionObj_t", "")
+SessionObj_tDescriptor::SessionObj_tDescriptor() : cClassDescriptor("SessionObj_t", "")
 {
 }
 
@@ -330,7 +329,7 @@ class RsvpHopObj_tDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RsvpHopObj_tDescriptor);
 
-RsvpHopObj_tDescriptor::RsvpHopObj_tDescriptor() : cClassDescriptor("inet::RsvpHopObj_t", "")
+RsvpHopObj_tDescriptor::RsvpHopObj_tDescriptor() : cClassDescriptor("RsvpHopObj_t", "")
 {
 }
 
@@ -539,7 +538,7 @@ class SenderTemplateObj_tDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(SenderTemplateObj_tDescriptor);
 
-SenderTemplateObj_tDescriptor::SenderTemplateObj_tDescriptor() : cClassDescriptor("inet::SenderTemplateObj_t", "")
+SenderTemplateObj_tDescriptor::SenderTemplateObj_tDescriptor() : cClassDescriptor("SenderTemplateObj_t", "")
 {
 }
 
@@ -745,7 +744,7 @@ class SenderTspecObj_tDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(SenderTspecObj_tDescriptor);
 
-SenderTspecObj_tDescriptor::SenderTspecObj_tDescriptor() : cClassDescriptor("inet::SenderTspecObj_t", "")
+SenderTspecObj_tDescriptor::SenderTspecObj_tDescriptor() : cClassDescriptor("SenderTspecObj_t", "")
 {
 }
 
@@ -910,12 +909,12 @@ FlowSpecObj_t::FlowSpecObj_t()
 
 void doPacking(cCommBuffer *b, FlowSpecObj_t& a)
 {
-    doPacking(b,(::inet::SenderTspecObj_t&)a);
+    doPacking(b,(::SenderTspecObj_t&)a);
 }
 
 void doUnpacking(cCommBuffer *b, FlowSpecObj_t& a)
 {
-    doUnpacking(b,(::inet::SenderTspecObj_t&)a);
+    doUnpacking(b,(::SenderTspecObj_t&)a);
 }
 
 class FlowSpecObj_tDescriptor : public cClassDescriptor
@@ -943,7 +942,7 @@ class FlowSpecObj_tDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(FlowSpecObj_tDescriptor);
 
-FlowSpecObj_tDescriptor::FlowSpecObj_tDescriptor() : cClassDescriptor("inet::FlowSpecObj_t", "inet::SenderTspecObj_t")
+FlowSpecObj_tDescriptor::FlowSpecObj_tDescriptor() : cClassDescriptor("FlowSpecObj_t", "SenderTspecObj_t")
 {
 }
 
@@ -1093,12 +1092,12 @@ FilterSpecObj_t::FilterSpecObj_t()
 
 void doPacking(cCommBuffer *b, FilterSpecObj_t& a)
 {
-    doPacking(b,(::inet::SenderTemplateObj_t&)a);
+    doPacking(b,(::SenderTemplateObj_t&)a);
 }
 
 void doUnpacking(cCommBuffer *b, FilterSpecObj_t& a)
 {
-    doUnpacking(b,(::inet::SenderTemplateObj_t&)a);
+    doUnpacking(b,(::SenderTemplateObj_t&)a);
 }
 
 class FilterSpecObj_tDescriptor : public cClassDescriptor
@@ -1126,7 +1125,7 @@ class FilterSpecObj_tDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(FilterSpecObj_tDescriptor);
 
-FilterSpecObj_tDescriptor::FilterSpecObj_tDescriptor() : cClassDescriptor("inet::FilterSpecObj_t", "inet::SenderTemplateObj_t")
+FilterSpecObj_tDescriptor::FilterSpecObj_tDescriptor() : cClassDescriptor("FilterSpecObj_t", "SenderTemplateObj_t")
 {
 }
 
@@ -1310,7 +1309,7 @@ class LabelRequestObj_tDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LabelRequestObj_tDescriptor);
 
-LabelRequestObj_tDescriptor::LabelRequestObj_tDescriptor() : cClassDescriptor("inet::LabelRequestObj_t", "")
+LabelRequestObj_tDescriptor::LabelRequestObj_tDescriptor() : cClassDescriptor("LabelRequestObj_t", "")
 {
 }
 
@@ -1510,7 +1509,7 @@ class SenderDescriptor_tDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(SenderDescriptor_tDescriptor);
 
-SenderDescriptor_tDescriptor::SenderDescriptor_tDescriptor() : cClassDescriptor("inet::SenderDescriptor_t", "")
+SenderDescriptor_tDescriptor::SenderDescriptor_tDescriptor() : cClassDescriptor("SenderDescriptor_t", "")
 {
 }
 
@@ -1719,7 +1718,7 @@ class EroObj_tDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(EroObj_tDescriptor);
 
-EroObj_tDescriptor::EroObj_tDescriptor() : cClassDescriptor("inet::EroObj_t", "")
+EroObj_tDescriptor::EroObj_tDescriptor() : cClassDescriptor("EroObj_t", "")
 {
 }
 
@@ -1931,7 +1930,7 @@ class FlowDescriptor_tDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(FlowDescriptor_tDescriptor);
 
-FlowDescriptor_tDescriptor::FlowDescriptor_tDescriptor() : cClassDescriptor("inet::FlowDescriptor_t", "")
+FlowDescriptor_tDescriptor::FlowDescriptor_tDescriptor() : cClassDescriptor("FlowDescriptor_t", "")
 {
 }
 
@@ -2111,5 +2110,4 @@ void *FlowDescriptor_tDescriptor::getFieldStructPointer(void *object, int field,
     }
 }
 
-} // namespace inet
 

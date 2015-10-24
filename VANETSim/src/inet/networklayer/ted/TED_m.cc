@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -121,7 +120,7 @@ class TELinkStateInfoDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(TELinkStateInfoDescriptor);
 
-TELinkStateInfoDescriptor::TELinkStateInfoDescriptor() : cClassDescriptor("inet::TELinkStateInfo", "")
+TELinkStateInfoDescriptor::TELinkStateInfoDescriptor() : cClassDescriptor("TELinkStateInfo", "")
 {
 }
 
@@ -457,7 +456,7 @@ class TEDChangeInfoDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(TEDChangeInfoDescriptor);
 
-TEDChangeInfoDescriptor::TEDChangeInfoDescriptor() : cClassDescriptor("inet::TEDChangeInfo", "cObject")
+TEDChangeInfoDescriptor::TEDChangeInfoDescriptor() : cClassDescriptor("TEDChangeInfo", "cObject")
 {
 }
 
@@ -617,5 +616,4 @@ void *TEDChangeInfoDescriptor::getFieldStructPointer(void *object, int field, in
     }
 }
 
-} // namespace inet
 

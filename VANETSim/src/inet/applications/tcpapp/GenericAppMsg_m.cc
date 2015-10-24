@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -158,7 +157,7 @@ class GenericAppMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(GenericAppMsgDescriptor);
 
-GenericAppMsgDescriptor::GenericAppMsgDescriptor() : cClassDescriptor("inet::GenericAppMsg", "cPacket")
+GenericAppMsgDescriptor::GenericAppMsgDescriptor() : cClassDescriptor("GenericAppMsg", "cPacket")
 {
 }
 
@@ -329,5 +328,4 @@ void *GenericAppMsgDescriptor::getFieldStructPointer(void *object, int field, in
     }
 }
 
-} // namespace inet
 

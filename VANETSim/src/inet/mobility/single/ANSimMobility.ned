@@ -17,7 +17,7 @@
 
 package inet.mobility.single;
 
-import inet.mobility.base.MovingMobilityBase;
+import inet.mobility.common.MovingMobilityBase;
 
 //
 // Uses the <position_change> elements of the ANSim tool's

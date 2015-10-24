@@ -1,6 +1,6 @@
 //
 // Copyright (C) 2008 Irene Ruengeler
-// Copyright (C) 2009-2015 Thomas Dreibholz
+// Copyright (C) 2009-2012 Thomas Dreibholz
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,95 +16,95 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTPSERVER_H
-#define __INET_SCTPSERVER_H
+#ifndef __SCTPSERVER_H_
+#define __SCTPSERVER_H_
 
-#include "inet/common/INETDefs.h"
-#include "inet/transportlayer/sctp/SCTPAssociation.h"
-#include "inet/transportlayer/contract/sctp/SCTPSocket.h"
-#include "inet/common/lifecycle/ILifecycle.h"
-#include "inet/common/lifecycle/LifecycleOperation.h"
-
-namespace inet {
+#include "INETDefs.h"
+#include "SCTPAssociation.h"
+#include "SCTPSocket.h"
+#include "ILifecycle.h"
+#include "LifecycleOperation.h"
 
 /**
  * Implements the SCTPServer simple module. See the NED file for more info.
  */
 class INET_API SCTPServer : public cSimpleModule, public ILifecycle
 {
-  protected:
-    struct ServerAssocStat
-    {
-        simtime_t start;
-        simtime_t stop;
-        simtime_t lifeTime;
-        unsigned long int rcvdBytes;
-        unsigned long int sentPackets;
-        unsigned long int rcvdPackets;
+    protected:
+        int32 notifications;
+        int32 assocId;
+        SCTPSocket *socket;
+        double delay;
+        double delayFirstRead;
+        bool readInt;
+        bool schedule;
+        bool firstData;
+        bool shutdownReceived;
+        bool echo;
+        bool finishEndsSimulation;
+        bool ordered;
         bool abortSent;
-        bool peerClosed;
-    };
-    typedef std::map<int, ServerAssocStat> ServerAssocStatMap;
-    typedef std::map<int, cOutVector *> BytesPerAssoc;
-    typedef std::map<int, cOutVector *> EndToEndDelay;
+        uint64 bytesSent;
+        uint64 packetsSent;
+        uint64 packetsRcvd;
+        uint64 numRequestsToSend; // requests to send in this session
+        int32 numSessions;
+        int32 queueSize;
+        int32 count;
+        cMessage *timeoutMsg;
+        cMessage *delayTimer;
+        cMessage *delayFirstReadTimer;
+        //cPacket* abort;
+        int32 inboundStreams;
+        int32 outboundStreams;
+        int32 lastStream;
 
-    // parameters
-    int inboundStreams;
-    int outboundStreams;
-    int queueSize;
-    double delay;
-    double delayFirstRead;
-    bool finishEndsSimulation;
-    bool echo;
-    bool ordered;
+        struct ServerAssocStat
+        {
+            simtime_t start;
+            simtime_t stop;
+            uint64 rcvdBytes;
+            uint64 sentPackets;
+            uint64 rcvdPackets;
+            simtime_t lifeTime;
+            bool abortSent;
+            bool peerClosed;
+        };
 
-    // state
-    SCTPSocket *socket;
-    cMessage *timeoutMsg;
-    cMessage *delayTimer;
-    cMessage *delayFirstReadTimer;
-    int lastStream;
-    int assocId;
-    bool readInt;
-    bool schedule;
-    bool firstData;
-    bool shutdownReceived;
-    bool abortSent;
-    EndToEndDelay endToEndDelay;
+        typedef std::map<int32,ServerAssocStat> ServerAssocStatMap;
+        ServerAssocStatMap serverAssocStatMap;
 
-    // statistics
-    int numSessions;
-    int count;
-    int notificationsReceived;
-    unsigned long int bytesSent;
-    unsigned long int packetsSent;
-    unsigned long int packetsRcvd;
-    unsigned long int numRequestsToSend;    // requests to send in this session
-    BytesPerAssoc bytesPerAssoc;
-    ServerAssocStatMap serverAssocStatMap;
+        typedef std::map<int32,cOutVector*> BytesPerAssoc;
+        BytesPerAssoc bytesPerAssoc;
 
-  protected:
-    virtual void initialize(int stage) override;
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void handleMessage(cMessage *msg) override;
-    virtual void finish() override;
-    void handleTimer(cMessage *msg);
-    void sendOrSchedule(cMessage *msg);
+        typedef std::map<int32,cDoubleHistogram*> HistEndToEndDelay;
+        HistEndToEndDelay histEndToEndDelay;
 
-    cMessage *makeAbortNotification(SCTPCommand *msg);
-    cMessage *makeReceiveRequest(cMessage *msg);
-    cMessage *makeDefaultReceive();
-    void generateAndSend();
+        typedef std::map<int32,cOutVector*> EndToEndDelay;
+        EndToEndDelay endToEndDelay;
 
-    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) override
-    { Enter_Method_Silent(); throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName()); return true; }
+    protected:
+        void sendOrSchedule(cPacket *msg);
+        cPacket* makeAbortNotification(SCTPCommand* msg);
+        cPacket* makeReceiveRequest(cPacket* msg);
+        cPacket* makeDefaultReceive();
+        int32 ssn;
 
-  public:
-    virtual ~SCTPServer();
-    SCTPServer();
+    public:
+        virtual ~SCTPServer();
+
+        virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback)
+        { Enter_Method_Silent(); throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName()); return true; }
+
+    protected:
+        virtual void initialize(int stage);
+        virtual int numInitStages() const { return 4; }
+        virtual void handleMessage(cMessage *msg);
+        virtual void finish();
+        void handleTimer(cMessage *msg);
+        void generateAndSend();
 };
 
-} // namespace inet
+#endif
 
-#endif // ifndef __INET_SCTPSERVER_H
 

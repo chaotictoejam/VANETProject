@@ -17,12 +17,11 @@
 //
 
 cplusplus {{
-#include "inet/networklayer/icmpv6/ICMPv6Message_m.h"
-#include "inet/networklayer/contract/ipv6/IPv6Address.h"
-#include "inet/linklayer/common/MACAddress.h"
+#include "ICMPv6Message_m.h"
+#include "IPv6Address.h"
+#include "MACAddress.h"
 }}
 
-namespace inet;
 
 packet ICMPv6Message;
 
@@ -30,22 +29,6 @@ class noncobject IPv6Address;
 
 class noncobject MACAddress;
 
-// TLB options (type, length, bytes), length must be divisible by eight, max value is 8*255
-// Length in bytes:
-enum IPv6NDOptionLength {
-    IPv6ND_LINK_LAYER_ADDRESS_OPTION_LENGTH = 8;    // RFC 2461, Section 4.6.1. Source/Target Link-layer Address
-    IPv6ND_PREFIX_INFORMATION_OPTION_LENGTH = 32;   // RFC 2461, Section 4.6.2. Prefix Information
-    IPv6ND_REDIRECTED_HEADER_OPTION_LENGTH = 8;     // 8 + redirected packet, RFC 2461, Section 4.6.3. Redirected Header.
-                                                    // The original packet truncated to ensure that the size of the redirect message does not exceed 1280 octets.
-    IPv6ND_MTU_OPTION_LENGTH = 8;                   // RFC 2461, Section 4.6.4. MTU
-}
-
-// TLB options (type, length, bytes), length must be divisible by eight, max value is 8*255
-// Type codes:
-enum IPv6NDOptionTypes {
-    IPv6ND_SOURCE_LINK_LAYER_ADDR_OPTION = 1;          // RFC 2461
-    IPv6ND_TARGET_LINK_LAYER_ADDR_OPTION = 2;          // RFC 2461
-}
 //
 // IPv6ND Prefix Information
 // RFC 2461 / RFC 4861 Section 4.6.2
@@ -97,15 +80,11 @@ packet IPv6NDMessage extends ICMPv6Message
 
 //
 // Router Solicitation Message Format
-// RFC 4861 Section 4.1
+// RFC 2461 Section 4.1
 //
 packet IPv6RouterSolicitation extends IPv6NDMessage
 {
     //Possible Options
-
-    // The link-layer address of the sender, if known.
-    // MUST NOT be included if the Source Address is the unspecified address.
-    // Otherwise, it SHOULD be included on link layers that have addresses.
     MACAddress sourceLinkLayerAddress;
 }
 
@@ -135,7 +114,7 @@ packet IPv6RouterAdvertisement extends IPv6NDMessage
 
 //
 // Neighbour Solicitation Message Format
-// RFC 4861 Section 4.3
+// RFC 2461 Section 4.3
 //
 packet IPv6NeighbourSolicitation extends IPv6NDMessage
 {
@@ -143,11 +122,6 @@ packet IPv6NeighbourSolicitation extends IPv6NDMessage
     IPv6Address targetAddress;// MUST NOT be a multicast address.
 
     //Possible Options
-
-    // The link-layer address for the sender.
-    // MUST NOT be included when the source IP address is the unspecified address.
-    // Otherwise, on link layers that have addresses this option MUST be included in multicast
-    // solicitations and SHOULD be included in unicast solicitations.
     MACAddress sourceLinkLayerAddress;
 }
 
@@ -181,11 +155,3 @@ packet IPv6Redirect extends IPv6NDMessage
     MACAddress targetLinkLayerAddress;
         //Redirected Header Encapsulated Msg
 }
-
-class IPv6NDControlInfo
-{
-    IPv6Address nextHop;   // next hop address
-    int interfaceId = -1; // interface on which the datagram should be sent
-    bool fromHL = false;    // packet came from higher layer
-}
-

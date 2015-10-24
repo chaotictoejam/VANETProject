@@ -19,7 +19,8 @@
 
 package inet.applications.sctpapp;
 
-import inet.applications.contract.ISCTPApp;
+import inet.applications.ISCTPApp;
+
 
 simple SCTPServer like ISCTPApp
 {

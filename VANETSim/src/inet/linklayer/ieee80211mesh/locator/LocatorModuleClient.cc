@@ -13,26 +13,22 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#include "inet/linklayer/ieee80211mesh/locator/LocatorModuleClient.h"
-#include "inet/linklayer/ieee80211mesh/locator/locatorPkt_m.h"
-#include "inet/transportlayer/udp/UDP.h"
-#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtSTA.h"
-
-
-
-namespace inet {
-
-namespace ieee80211 {
+#include "LocatorModuleClient.h"
+#include "RoutingTableAccess.h"
+#include "InterfaceTableAccess.h"
+#include "locatorPkt_m.h"
+#include "UDP.h"
+#include "IPv4InterfaceData.h"
+#include "Ieee80211MgmtSTA.h"
 
 
 LocatorModuleClient::LocatorModuleClient()
 {
 
-    rt = nullptr;
-    itable = nullptr;
-    socket = nullptr;
-    iface = nullptr;
+    rt = NULL;
+    itable = NULL;
+    socket = NULL;
+    iface = NULL;
 }
 
 LocatorModuleClient::~LocatorModuleClient()
@@ -46,7 +42,7 @@ void LocatorModuleClient::handleMessage(cMessage *msg)
     LocatorPkt *pkt = dynamic_cast<LocatorPkt*>(msg);
     if (pkt)
     {
-        if (rt->isLocalAddress(pkt->getOrigin().toIPv4()))
+        if (rt->isLocalAddress(pkt->getOrigin().getIPv4()))
         {
             delete pkt;
             return;
@@ -88,15 +84,14 @@ void LocatorModuleClient::initialize(int stage)
 {
     if (stage!=3)
         return;
-    arp =  getModuleFromPar<IARP>(par("arpModule"), this);
-    rt = findModuleFromPar<IIPv4RoutingTable>(par("routingTableModule"), this);
-    itable = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
+    rt = RoutingTableAccess().get();
+    itable = InterfaceTableAccess().get();
+    arp = ArpAccess().get();
 
     InterfaceEntry *ie = itable->getInterfaceByName(this->par("iface"));
     if (ie)
         iface = ie;
-    UDP* udpmodule = dynamic_cast<UDP*>(gate("outGate")->getPathEndGate()->getOwnerModule());
-    if (udpmodule)
+    if (dynamic_cast<UDP*>(gate("outGate")->getPathEndGate()->getOwnerModule()))
     {
         // bind the client to the udp port
         socket = new UDPSocket();
@@ -104,18 +99,16 @@ void LocatorModuleClient::initialize(int stage)
         port = par("locatorPort").longValue();
         socket->bind(port);
         socket->setBroadcast(true);
+
     }
 }
 
 
-void LocatorModuleClient::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj)
+void LocatorModuleClient::receiveChangeNotification(int category, const cObject *details)
 {
     Enter_Method_Silent();
-    if(signalID == NF_L2_ASSOCIATED)
+    if(category == NF_L2_ASSOCIATED)
     {
     }
 }
 
-}
-
-}

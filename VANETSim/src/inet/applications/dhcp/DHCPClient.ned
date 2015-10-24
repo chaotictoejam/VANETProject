@@ -19,7 +19,7 @@
 
 package inet.applications.dhcp;
 
-import inet.applications.contract.IUDPApp;
+import inet.applications.IUDPApp;
 
 //
 // Implements the DHCP client protocol. DHCP (Dynamic Host Configuration Protocol),
@@ -31,9 +31,10 @@ import inet.applications.contract.IUDPApp;
 simple DHCPClient like IUDPApp
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module
-        string routingTableModule;
-        string interface = default("");  // which NIC should be configured (i.e. wlan0, eth1 etc.)
+        string interface = default("");  // which NIC should be configured (i.e. wlan0, eth1 etc.); can be left  empty if there is only one non-loopback interface
+        string routingTablePath = default("^.routingTable");
+        string interfaceTablePath = default("^.interfaceTable");
+        string notificationBoardPath = default("^.notificationBoard");
         double startTime @unit(s) = default(0s); // starting time of DHCP initialization
         @display("i=block/app2");
     gates:

@@ -17,17 +17,22 @@
 ********************************************************************************
 * This work is part of the secure wireless mesh networks framework, which is currently under development by CNI */
 
-#include "inet/securityModule/Security.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtAP.h"
-#include "inet/securityModule/message/securityPkt_m.h"
-#include "inet/transportlayer/udp/UDP.h"
-#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
-#include "inet/linklayer/common/Ieee802Ctrl_m.h"
-#include "inet/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211Primitives_m.h"
-#include "inet/common/NotifierConsts.h"
+#include "Security.h"
+#include "Ieee80211MgmtAP.h"
+#include "RoutingTableAccess.h"
+#include "InterfaceTableAccess.h"
+#include "securityPkt_m.h"
+#include "UDP.h"
+#include "IPv4InterfaceData.h"
+#include "NotificationBoard.h"
+#include "Ieee802Ctrl_m.h"
+#include "Ieee80211Frame_m.h"
+#include "Ieee80211Primitives_m.h"
+#include "NotifierConsts.h"
+#include "InterfaceTableAccess.h"
 
-#include "inet/transportlayer/tcp/queues/TCPByteStreamRcvQueue.h"
+#include "ByteArrayMessage.h"
+#include "TCPByteStreamRcvQueue.h"
 
 #include <sstream>
 #include <iostream>
@@ -37,9 +42,9 @@
 #include <string.h>
 #include <vector>
 
-#include "inet/networklayer/ipv4/IPv4Datagram.h"
-#include "inet/transportlayer/udp/UDPPacket_m.h"
-#include "inet/common/ModuleAccess.h"
+#include "Ieee80211Frame_m.h"
+#include "IPv4Datagram.h"
+#include "UDPPacket_m.h"
 
 using namespace std;
 
@@ -83,9 +88,6 @@ using namespace std;
 
 #define MAX_BEACONS_MISSED 600  // beacon lost timeout, in beacon intervals (doesn't need to be integer)
 
-namespace inet {
-
-namespace ieee80211 {
 
 std::ostream& operator<<(std::ostream& os, const Security::LocEntry& e)
 {
@@ -125,22 +127,22 @@ bool Security::statsAlreadyRecorded;
 Security::Security()
 {
     // TODO Auto-generated constructor stub
-    rt = nullptr;
-    itable = nullptr;
+    rt = NULL;
+    itable = NULL;
 }
 
 Security::~Security()
 {
     /*  if(PMKTimer)
-        PMKTimer =nullptr;
+        PMKTimer =NULL;
     if(GTKTimer)
-        GTKTimer =nullptr;*/
+        GTKTimer =NULL;*/
 }
 
 
 void Security::initialize(int stage)
 {
-    if (stage==INITSTAGE_LOCAL)
+    if (stage==0)
     {
         statsAlreadyRecorded = false;
         totalAuthTimeout = 0;
@@ -157,19 +159,22 @@ void Security::initialize(int stage)
         PSK =par("PSK").stringValue();
 
         numAuthSteps = par("numAuthSteps");
-        cModule *host = getContainingNode(this);
-        host->subscribe(NF_L2_BEACON_LOST,this);
+        nb = NotificationBoardAccess().get();
+        nb->subscribe(this, NF_L2_BEACON_LOST);
 
         activeHandshake = par("activeHandshake");
 
         counter=0;
-        IInterfaceTable *ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
-
-        myIface = nullptr;
+        InterfaceTable *ift = (InterfaceTable*)InterfaceTableAccess().getIfExists();
+        myIface = NULL;
         if (!ift)
         {
             myIface = ift->getInterfaceByName(getParentModule()->getFullName());
         }
+
+        // subscribe for notifications
+        nb = NotificationBoardAccess().get();
+        nb->subscribe(this, NF_RADIO_CHANNEL_CHANGED);
 
 
         EV << "stage \n" << stage << "\n";
@@ -194,7 +199,7 @@ void Security::initialize(int stage)
         this->deletedFramesSignal=   registerSignal("deletedFramesNr");
     }
 
-    if (stage==INITSTAGE_PHYSICAL_ENVIRONMENT)
+    if (stage==1)
     {
         // obtain our address from MAC
         unsigned int numMac=0;
@@ -220,11 +225,11 @@ void Security::initialize(int stage)
 
 
     /** mn */
-    else if (stage!=INITSTAGE_NETWORK_LAYER)
+    else if (stage!=3)
         return;
 
-    rt = findModuleFromPar<IIPv4RoutingTable>(par("routingTableModule"), this);
-    itable = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
+    rt = RoutingTableAccess().getIfExists();
+    itable = InterfaceTableAccess().get();
 }
 
 void Security::handleMessage(cMessage *msg)
@@ -238,13 +243,13 @@ void Security::handleMessage(cMessage *msg)
 void Security::handleResponse(cMessage *msg)
 {
     // EV << "handleResponse() " <<msg->getName() << "\n";
-    if(strstr(msg->getName() ,"Beacon")!=nullptr)
+    if(strstr(msg->getName() ,"Beacon")!=NULL)
     {
         Ieee80211BeaconFrame *frame= (check_and_cast<Ieee80211BeaconFrame *>(msg));
         handleBeaconFrame(frame);
     }
 
-    else if(strstr(msg->getName() ,"Deauth")!=nullptr)
+    else if(strstr(msg->getName() ,"Deauth")!=NULL)
        {
            Ieee80211AuthenticationFrame *frame= (check_and_cast<Ieee80211AuthenticationFrame *>(msg));
            handleDeauthenticationFrame(frame);
@@ -255,22 +260,22 @@ void Security::handleResponse(cMessage *msg)
         handleSAE(frame);
     }
 
-    else if(strstr(msg->getName() , "AMPE msg 1/4")!=nullptr || strstr(msg->getName() ,"AMPE msg 2/4")!=nullptr
-            ||strstr(msg->getName() , "AMPE msg 3/4")!=nullptr || strstr(msg->getName() ,"AMPE msg 4/4")!=nullptr)
+    else if(strstr(msg->getName() , "AMPE msg 1/4")!=NULL || strstr(msg->getName() ,"AMPE msg 2/4")!=NULL
+            ||strstr(msg->getName() , "AMPE msg 3/4")!=NULL || strstr(msg->getName() ,"AMPE msg 4/4")!=NULL)
     {
         Ieee80211ActionFrame *frame= (check_and_cast<Ieee80211ActionFrame *>(msg));
         handleAMPE(frame);
     }
 
     //HWMP
-     else if (dynamic_cast<Ieee80211ActionMeshFrame *>(msg))
+     else if (dynamic_cast<Ieee80211ActionHWMPFrame *>(msg))
     {
          if(!activeHandshake)
                  {
                      send(msg,"mgmtOut");
                      return;
                  }
-       handleIeee80211ActionMeshFrame(msg);
+       handleIeee80211ActionHWMPFrame(msg);
     }
 
 
@@ -395,7 +400,7 @@ void Security::handleTimer(cMessage *msg)
         scheduleAt(simTime()+beaconInterval, beaconTimer);
     }
 
-    else if (dynamic_cast<newcMessage *>(msg) != nullptr)
+    else if (dynamic_cast<newcMessage *>(msg) != NULL)
     {
         newcMessage *newmsg = (check_and_cast<newcMessage *>(msg));
         if(newmsg->getKind())
@@ -499,7 +504,7 @@ void Security::handleBeaconFrame(Ieee80211BeaconFrame *frame)
     if(mesh)
     {
         // just to avoid undefined states
-        if(mesh->authTimeoutMsg_a!=nullptr && mesh->authTimeoutMsg_b!=nullptr)
+        if(mesh->authTimeoutMsg_a!=NULL && mesh->authTimeoutMsg_b!=NULL)
         {
             EV << "Authentication in Progress, ignore Beacon"<<endl;
             counter ++;
@@ -514,16 +519,16 @@ void Security::handleBeaconFrame(Ieee80211BeaconFrame *frame)
         else
         {
             // no Authentication in progress, start negotiation
-            if (mesh->status==NOT_AUTHENTICATED && mesh->authTimeoutMsg_a==nullptr &&mesh->authTimeoutMsg_b==nullptr)
+            if (mesh->status==NOT_AUTHENTICATED && mesh->authTimeoutMsg_a==NULL &&mesh->authTimeoutMsg_b==NULL)
             {
                 checkForAuthenticationStart(mesh);
             }
             // if authenticated Mesh, restart beacon timeout
-            else if (mesh->status==AUTHENTICATED && mesh->authTimeoutMsg_a==nullptr &&mesh->authTimeoutMsg_b==nullptr)
+            else if (mesh->status==AUTHENTICATED && mesh->authTimeoutMsg_a==NULL &&mesh->authTimeoutMsg_b==NULL)
             {
                 EV << "Beacon is from authenticated Mesh, restarting beacon timeout timer"<<endl;
                 EV << "++++++++++++++++++++++++++++++++++++++++++++++++++" <<endl;
-                ASSERT(mesh->beaconTimeoutMsg!=nullptr);
+                ASSERT(mesh->beaconTimeoutMsg!=NULL);
                 cancelEvent(mesh->beaconTimeoutMsg);
                 scheduleAt(simTime()+MAX_BEACONS_MISSED*mesh->beaconInterval, mesh->beaconTimeoutMsg);
 
@@ -548,11 +553,11 @@ void Security::storeMeshInfo(const MACAddress& address, const Ieee80211BeaconFra
            meshList.push_back(MeshInfo());
            mesh = &meshList.back();
            mesh->status = NOT_AUTHENTICATED;
-           mesh->authTimeoutMsg_a=nullptr;
-           mesh->authTimeoutMsg_b=nullptr;
+           mesh->authTimeoutMsg_a=NULL;
+           mesh->authTimeoutMsg_b=NULL;
            mesh->authSeqExpected = 1;
-           mesh->groupAuthTimeoutMsg=nullptr;
-           mesh->PMKTimerMsg=nullptr;
+           mesh->groupAuthTimeoutMsg=NULL;
+           mesh->PMKTimerMsg=NULL;
            mesh->PWE=0;
            mesh->csA=0;
            mesh->ceA=0;
@@ -580,36 +585,36 @@ void Security::clearMeshNode(const MACAddress& address)
 
     if(mesh)
     {
-        if(mesh->beaconTimeoutMsg!=nullptr)
+        if(mesh->beaconTimeoutMsg!=NULL)
         {
             delete cancelEvent(mesh->beaconTimeoutMsg);
-            mesh->beaconTimeoutMsg=nullptr;
+            mesh->beaconTimeoutMsg=NULL;
         }
-        if(mesh->authTimeoutMsg_a!=nullptr)
+        if(mesh->authTimeoutMsg_a!=NULL)
         {
             delete cancelEvent(mesh->authTimeoutMsg_a);
-            mesh->authTimeoutMsg_a=nullptr;
+            mesh->authTimeoutMsg_a=NULL;
         }
-        if(mesh->authTimeoutMsg_b!=nullptr)
+        if(mesh->authTimeoutMsg_b!=NULL)
         {
             delete cancelEvent(mesh->authTimeoutMsg_b);
-            mesh->authTimeoutMsg_b=nullptr;
+            mesh->authTimeoutMsg_b=NULL;
         }
 
-        if(mesh->groupAuthTimeoutMsg!=nullptr)
+        if(mesh->groupAuthTimeoutMsg!=NULL)
         {
             delete cancelEvent(mesh->groupAuthTimeoutMsg);
-            mesh->groupAuthTimeoutMsg=nullptr;
+            mesh->groupAuthTimeoutMsg=NULL;
         }
-        if(mesh->PMKTimerMsg!=nullptr)
+        if(mesh->PMKTimerMsg!=NULL)
         {
             delete cancelEvent(mesh->PMKTimerMsg);
-            mesh->PMKTimerMsg=nullptr;
+            mesh->PMKTimerMsg=NULL;
         }
 
         mesh->status=NOT_AUTHENTICATED;
-        mesh->authTimeoutMsg_a=nullptr;
-        mesh->authTimeoutMsg_b=nullptr;
+        mesh->authTimeoutMsg_a=NULL;
+        mesh->authTimeoutMsg_b=NULL;
 
         clearKey256(mesh->KCK);
         clearKey256(mesh->PMK);
@@ -661,7 +666,7 @@ Security::MeshInfo *Security::lookupMesh(const MACAddress& address)
     for (MeshList::iterator it=meshList.begin(); it!=meshList.end(); ++it)
         if (it->address == address)
             return &(*it);
-    return nullptr;
+    return NULL;
 }
 
 
@@ -717,7 +722,7 @@ void Security::sendDelayedDataOrMgmtFrame(Ieee80211DataOrMgmtFrame *frame, const
 void Security::checkForAuthenticationStart(MeshInfo *mesh)
 {
     if (mesh)
-        if (mesh->authTimeoutMsg_a==nullptr && mesh->authTimeoutMsg_b==nullptr)
+        if (mesh->authTimeoutMsg_a==NULL && mesh->authTimeoutMsg_b==NULL)
         {
             EV <<"Start SAE"<<endl;
             Ieee80211Prim_AuthenticateRequest *ctrl = new  Ieee80211Prim_AuthenticateRequest();
@@ -748,8 +753,8 @@ void Security::startSAE(MeshInfo *mesh, simtime_t timeout)
     EV << "PWE" << mesh->PWE<<endl;
     // msg = csA || ceA
     SAEMsg *msg = new SAEMsg();
-    mesh->csA = (int)getRNG(1)->intRand(1073741823);
-    mesh->ceA = (int)getRNG(1)->intRand(1073741823);
+    mesh->csA = (int)genk_intrand(1,1073741823);
+    mesh->ceA = (int)genk_intrand(1,1073741823);
     msg->setSAE_commitScalar(mesh->csA);
     msg->setSAE_commitElement(mesh->ceA);
 
@@ -767,7 +772,7 @@ void Security::startSAE(MeshInfo *mesh, simtime_t timeout)
     mesh->status= COMMITTED;
 
     // schedule timeout for side A
-    ASSERT(mesh->authTimeoutMsg_a==nullptr);
+    ASSERT(mesh->authTimeoutMsg_a==NULL);
     mesh->authTimeoutMsg_a = new newcMessage("authTimeout", MK_AUTH_TIMEOUT);
     mesh->authTimeoutMsg_a->setMeshMACAddress_AuthTimeout(mesh->address);
     scheduleAt(simTime()+authenticationTimeout_a, mesh->authTimeoutMsg_a);
@@ -791,9 +796,9 @@ void Security::handleSAE(Ieee80211AuthenticationFrame *frame)
             mesh->status = NOT_AUTHENTICATED;
             mesh->authSeqExpected = 1;
             mesh->beaconInterval=beaconInterval;
-            mesh->authTimeoutMsg_a=nullptr;
-            mesh->authTimeoutMsg_b=nullptr;
-            mesh->groupAuthTimeoutMsg=nullptr;
+            mesh->authTimeoutMsg_a=NULL;
+            mesh->authTimeoutMsg_b=NULL;
+            mesh->groupAuthTimeoutMsg=NULL;
             mesh->csA=0;
             mesh->csB=0;
             mesh->ceA=0;
@@ -813,7 +818,7 @@ void Security::handleSAE(Ieee80211AuthenticationFrame *frame)
             return;
         }
 
-        if(mesh->authTimeoutMsg_a!=nullptr && mesh->authTimeoutMsg_b!=nullptr)
+        if(mesh->authTimeoutMsg_a!=NULL && mesh->authTimeoutMsg_b!=NULL)
             {
                 EV << "illegal state!" <<endl;
                 clearMeshNode(mesh->address);
@@ -824,7 +829,7 @@ void Security::handleSAE(Ieee80211AuthenticationFrame *frame)
         if(strstr(frame->getName() ,"SAE-OK msg 4/4") && frameAuthSeq==4)
         {
             EV << "<<<<< 4 >>>>>"<<endl;
-            if (mesh->authTimeoutMsg_a==nullptr)
+            if (mesh->authTimeoutMsg_a==NULL)
             {
                 EV << "No Authentication in progress, ignoring frame\n";
                 EV << mesh->authTimeoutMsg_a <<endl;
@@ -870,19 +875,19 @@ void Security::handleSAE(Ieee80211AuthenticationFrame *frame)
 
             EV << "Initiator: Authentication with Mesh-Peer completed"<<endl;
 
-            ASSERT(mesh->authTimeoutMsg_a!=nullptr);
+            ASSERT(mesh->authTimeoutMsg_a!=NULL);
             delete cancelEvent(mesh->authTimeoutMsg_a);
-            mesh->authTimeoutMsg_a = nullptr;
+            mesh->authTimeoutMsg_a = NULL;
 
 
             AuthTime=  simTime()-AuthTime;
             EV <<".............................. SAE Time: " << AuthTime <<endl;
 
 
-            if (mesh->authTimeoutMsg_b!=nullptr)
+            if (mesh->authTimeoutMsg_b!=NULL)
             {
                 delete cancelEvent(mesh->authTimeoutMsg_b);
-                mesh->authTimeoutMsg_b = nullptr;
+                mesh->authTimeoutMsg_b = NULL;
             }
 
             delete frame;
@@ -892,7 +897,7 @@ void Security::handleSAE(Ieee80211AuthenticationFrame *frame)
 
         if (frameAuthSeq == 1)
         {
-            if (mesh->authTimeoutMsg_b!=nullptr)
+            if (mesh->authTimeoutMsg_b!=NULL)
                        {
                            EV << "Authentication in progress, ignoring frame\n";
                            EV << mesh->authTimeoutMsg_b <<endl;
@@ -911,8 +916,8 @@ void Security::handleSAE(Ieee80211AuthenticationFrame *frame)
 
             mesh->PWE = computePWE(PSK,ssid);
 
-            mesh->csB = (int)getRNG(1)->intRand(1073741823);
-            mesh->ceB = (int)getRNG(1)->intRand(1073741823);
+            mesh->csB = (int)genk_intrand(1,1073741823);
+            mesh->ceB = (int)genk_intrand(1,1073741823);
 
             msg->setSAE_commitScalar(mesh->csB);
             msg->setSAE_commitElement(mesh->ceB);
@@ -925,7 +930,7 @@ void Security::handleSAE(Ieee80211AuthenticationFrame *frame)
 
             mesh->status= COMMITTED;
 
-            ASSERT(mesh->authTimeoutMsg_b==nullptr);
+            ASSERT(mesh->authTimeoutMsg_b==NULL);
             mesh->authTimeoutMsg_b = new newcMessage("authTimeout", MK_AUTH_TIMEOUT);
             mesh->authTimeoutMsg_b->setMeshMACAddress_AuthTimeout(mesh->address);
             scheduleAt(simTime()+authenticationTimeout_b, mesh->authTimeoutMsg_b);
@@ -935,7 +940,7 @@ void Security::handleSAE(Ieee80211AuthenticationFrame *frame)
 
         if (frameAuthSeq == 2)
         {
-            if (mesh->authTimeoutMsg_a==nullptr)
+            if (mesh->authTimeoutMsg_a==NULL)
             {
                 EV << "No Authentication in progress, ignoring frame\n";
                 EV << mesh->authTimeoutMsg_a <<endl;
@@ -972,7 +977,7 @@ void Security::handleSAE(Ieee80211AuthenticationFrame *frame)
 
         if (frameAuthSeq == 3)
         {
-            if (mesh->authTimeoutMsg_b==nullptr)
+            if (mesh->authTimeoutMsg_b==NULL)
             {
                 EV << "No Authentication in progress, ignoring frame\n";
                 EV << mesh->authTimeoutMsg_b <<endl;
@@ -1061,8 +1066,8 @@ void Security::handleSAE(Ieee80211AuthenticationFrame *frame)
             mesh->authSeqExpected = 1;
 
             //wait for Ack
-            cModule *host = getContainingNode(this);
-            host->subscribe(NF_TX_ACKED,this);
+            nb = NotificationBoardAccess().get();
+            nb->subscribe(this, NF_TX_ACKED);
             mesh->status=CONFIRMED;
             mesh->WaitingForAck=1;
             delete frame;
@@ -1102,7 +1107,7 @@ void Security::startAMPE(const MACAddress& address, int side)
                 delay = (double) enc + mic_add + 2*rand_gen ;
 
 
-                ASSERT(mesh->authTimeoutMsg_a==nullptr);
+                ASSERT(mesh->authTimeoutMsg_a==NULL);
                 mesh->authTimeoutMsg_a = new newcMessage("authTimeout", MK_AUTH_TIMEOUT);
                 mesh->authTimeoutMsg_a->setMeshMACAddress_AuthTimeout(mesh->address);
                 scheduleAt(simTime()+authenticationTimeout_a, mesh->authTimeoutMsg_a);
@@ -1124,8 +1129,8 @@ void Security::startAMPE(const MACAddress& address, int side)
             if(MGTK_self.buf.empty())
             {
                 EV <<"Pick Random MGTK(128)"<<endl;
-                MGTK.buf.push_back(getRNG(1)->intRand(1073741823));
-                MGTK.buf.push_back(getRNG(1)->intRand(1073741823));
+                MGTK.buf.push_back(genk_intrand(1,1073741823));
+                MGTK.buf.push_back(genk_intrand(1,1073741823));
                 MGTK.len=128;
                 MGTK_self=MGTK;
             }
@@ -1181,11 +1186,10 @@ void Security::handleAMPE(Ieee80211ActionFrame *frame)
             mesh->status=AUTHENTICATED;
             mesh->WaitingForAck=1;
             //Wait for ack than start AMPE side B, msg3
-            cModule *host = getContainingNode(this);
-            host->subscribe(NF_TX_ACKED,this);
+            nb->subscribe(this, NF_TX_ACKED);
             delete msg;
 
-            ASSERT(mesh->authTimeoutMsg_b==nullptr);
+            ASSERT(mesh->authTimeoutMsg_b==NULL);
             mesh->authTimeoutMsg_b = new newcMessage("authTimeout", MK_AUTH_TIMEOUT);
             mesh->authTimeoutMsg_b->setMeshMACAddress_AuthTimeout(mesh->address);
             scheduleAt(simTime()+authenticationTimeout_b, mesh->authTimeoutMsg_b);
@@ -1232,9 +1236,9 @@ void Security::handleAMPE(Ieee80211ActionFrame *frame)
             sendDelayedManagementFrame(frame,  mesh->address,delay);
 
             //AMPE over
-            ASSERT(mesh->authTimeoutMsg_a!=nullptr);
+            ASSERT(mesh->authTimeoutMsg_a!=NULL);
             delete cancelEvent(mesh->authTimeoutMsg_a);
-            mesh->authTimeoutMsg_a = nullptr;
+            mesh->authTimeoutMsg_a = NULL;
 
             // schedule beacon timeout
             mesh->beaconTimeoutMsg = new newcMessage("beaconTimeout");
@@ -1251,9 +1255,9 @@ void Security::handleAMPE(Ieee80211ActionFrame *frame)
             scheduleAt(simTime()+GTKTimeout, GTKTimer);
 
             //AMPE over
-            ASSERT(mesh->authTimeoutMsg_b!=nullptr);
+            ASSERT(mesh->authTimeoutMsg_b!=NULL);
             delete cancelEvent(mesh->authTimeoutMsg_b);
-            mesh->authTimeoutMsg_b = nullptr;
+            mesh->authTimeoutMsg_b = NULL;
 
             // schedule beacon timeout
             mesh->beaconTimeoutMsg = new newcMessage("beaconTimeout");
@@ -1283,7 +1287,7 @@ void Security::updateGroupKey()
                 {
                     Ieee80211Prim_AuthenticateRequest *ctrl = new  Ieee80211Prim_AuthenticateRequest();
                     ctrl->setTimeout(groupAuthenticationTimeout);
-                    if(mesh->groupAuthTimeoutMsg==nullptr)
+                    if(mesh->groupAuthTimeoutMsg==NULL)
                         sendGroupHandshakeMsg(mesh,ctrl->getTimeout());
                 }
             }
@@ -1310,8 +1314,8 @@ void Security::sendGroupHandshakeMsg(MeshInfo *mesh,  simtime_t timeout)
                if(MGTK_self.buf.empty())
                {
                    EV <<"Pick Random MGTK(128)"<<endl;
-                   MGTK.buf.push_back(getRNG(1)->intRand(1073741823));
-                   MGTK.buf.push_back(getRNG(1)->intRand(1073741823));
+                   MGTK.buf.push_back(genk_intrand(1,1073741823));
+                   MGTK.buf.push_back(genk_intrand(1,1073741823));
                    MGTK.len=128;
                    MGTK_self=MGTK;
                }
@@ -1429,7 +1433,7 @@ IPv4Datagram*  Security::handleIPv4Datagram(IPv4Datagram* IP, MeshInfo *mesh)
             //IP->setDontFragment(IP->getDontFragment()^mesh->KEK.buf.at(0));
             //IP->setFragmentOffset(IP->getFragmentOffset()^mesh->KEK.buf.at(0));
             IP->setTypeOfService(IP->getTypeOfService()^mesh->MTK.buf.at(0));
-            //IP->setOptionCode(IP->getOptionCode()^mesh->MTK.buf.at(0));
+            IP->setOptionCode(IP->getOptionCode()^mesh->MTK.buf.at(0));
             IP->setTotalPayloadLength(IP->getTotalPayloadLength()^mesh->MTK.buf.at(0));
 
             /*     IPv4RecordRouteOption recordRoute_var;
@@ -1457,7 +1461,7 @@ IPv4Datagram*  Security::handleIPv4Datagram(IPv4Datagram* IP, MeshInfo *mesh)
     return IP;
 }
 
-Ieee80211ActionMeshFrame *  Security::encryptActionHWMPFrame(Ieee80211ActionMeshFrame* frame, const MACAddress& address)
+Ieee80211ActionHWMPFrame *  Security::encryptActionHWMPFrame(Ieee80211ActionHWMPFrame* frame, const MACAddress& address)
 {
     EV << "Entering encryptActionHWMPFrame"<<endl;
   //  MeshInfo *mesh = lookupMesh(address);
@@ -1487,7 +1491,7 @@ Ieee80211ActionMeshFrame *  Security::encryptActionHWMPFrame(Ieee80211ActionMesh
      *      unsigned int originatorSeqNumber;
      */
 
-    if(strstr(frame->getClassName() ,"Ieee80211ActionPREQFrame")!=nullptr)
+    if(strstr(frame->getClassName() ,"Ieee80211ActionPREQFrame")!=NULL)
     {
 
         Ieee80211ActionPREQFrame *preq = (check_and_cast<Ieee80211ActionPREQFrame *>(frame));
@@ -1530,7 +1534,7 @@ Ieee80211ActionMeshFrame *  Security::encryptActionHWMPFrame(Ieee80211ActionMesh
     }
 
 
-    else if(strstr(frame->getClassName() ,"Ieee80211ActionPREPFrame")!=nullptr){
+    else if(strstr(frame->getClassName() ,"Ieee80211ActionPREPFrame")!=NULL){
         Ieee80211ActionPREPFrame *prep = (check_and_cast<Ieee80211ActionPREPFrame *>(frame));
         if(prep)
         {
@@ -1577,7 +1581,7 @@ void Security::handleIeee80211MeshFrame(cMessage *msg)
 {
     double delay=0;
     //Decryption
-    if(strstr(msg->getName() ,"CCMPFrame")!=nullptr)
+    if(strstr(msg->getName() ,"CCMPFrame")!=NULL)
     {
         Ieee80211MeshFrame *frame = (check_and_cast<Ieee80211MeshFrame *>(msg));
         MeshInfo *mesh = lookupMesh(frame->getTransmitterAddress());
@@ -1643,7 +1647,7 @@ void Security::handleIeee80211MeshFrame(cMessage *msg)
                             ccmpFrame2->setCCMP_Mic(1);
 
 
-                            if (frame2==nullptr)
+                            if (frame2==NULL)
                             {
                                 frame2 = new Ieee80211MeshFrame(frame->getName());
                                 frame2->setTimestamp(frame->getCreationTime());
@@ -1659,7 +1663,7 @@ void Security::handleIeee80211MeshFrame(cMessage *msg)
                             {
                                 char name[50];
                                 strcpy(name,frame->getName());
-                                throw cRuntimeError ("Ieee80211Mesh::encapsulate Bad Address");
+                                opp_error ("Ieee80211Mesh::encapsulate Bad Address");
                             }
                             if (frame2->getReceiverAddress().isBroadcast())
                                 frame2->setTTL(1);
@@ -1716,7 +1720,7 @@ void Security::handleIeee80211MeshFrame(cMessage *msg)
             ccmpFrame->setCCMP_Mic(1);
 
 
-            if (frame==nullptr)
+            if (frame==NULL)
             {
                 frame = new Ieee80211MeshFrame(msg->getName());
                 frame->setTimestamp(msg->getCreationTime());
@@ -1732,7 +1736,7 @@ void Security::handleIeee80211MeshFrame(cMessage *msg)
             {
                 char name[50];
                 strcpy(name,msg->getName());
-                throw cRuntimeError ("Ieee80211Mesh::encapsulate Bad Address");
+                opp_error ("Ieee80211Mesh::encapsulate Bad Address");
             }
             if (frame->getReceiverAddress().isBroadcast())
                 frame->setTTL(1);
@@ -1749,22 +1753,22 @@ void Security::handleIeee80211MeshFrame(cMessage *msg)
 }
 
 
-void Security::handleIeee80211ActionMeshFrame(cMessage *msg)
+void Security::handleIeee80211ActionHWMPFrame(cMessage *msg)
 {
     //Decryption
-    if(strstr(msg->getName() ,"CCMPFrame")!=nullptr)
+    if(strstr(msg->getName() ,"CCMPFrame")!=NULL)
     {
-        Ieee80211ActionMeshFrame *hwmpFrame = dynamic_cast<Ieee80211ActionMeshFrame *>(msg);
+        Ieee80211ActionHWMPFrame *hwmpFrame = dynamic_cast<Ieee80211ActionHWMPFrame *>(msg);
         MeshInfo *mesh = lookupMesh(hwmpFrame->getTransmitterAddress());
         EV <<hwmpFrame->getTransmitterAddress()<<endl;
-        EV << "Encrypted Ieee80211ActionMeshFrame from Mac >>> decrypt frame ...."<< endl;
+        EV << "Encrypted Ieee80211ActionHWMPFrame from Mac >>> decrypt frame ...."<< endl;
 
         if(mesh)
         {
             if(mesh->status==AUTHENTICATED)
             {
-                Ieee80211ActionMeshFrame *hwmpFrame = dynamic_cast<Ieee80211ActionMeshFrame *>(msg);
-                //Ieee80211ActionMeshFrame *hwmpFrame2 = encryptActionHWMPFrame(hwmpFrame,hwmpFrame->getTransmitterAddress() );
+                Ieee80211ActionHWMPFrame *hwmpFrame = dynamic_cast<Ieee80211ActionHWMPFrame *>(msg);
+                //Ieee80211ActionHWMPFrame *hwmpFrame2 = encryptActionHWMPFrame(hwmpFrame,hwmpFrame->getTransmitterAddress() );
                 // hwmpFrame2->setName("DecCCMP");
                 // send(hwmpFrame2,"mgmtOut");
                 hwmpFrame->setByteLength(hwmpFrame->getByteLength()-16);
@@ -1783,17 +1787,17 @@ void Security::handleIeee80211ActionMeshFrame(cMessage *msg)
     //Encryption
     else
     {
-        Ieee80211ActionMeshFrame *hwmpFrame = dynamic_cast<Ieee80211ActionMeshFrame *>(msg);
+        Ieee80211ActionHWMPFrame *hwmpFrame = dynamic_cast<Ieee80211ActionHWMPFrame *>(msg);
         // MeshInfo *mesh = lookupMesh(hwmpFrame->getTransmitterAddress());//self address
         EV <<hwmpFrame->getTransmitterAddress()<<endl;
-        EV << "Ieee80211ActionMeshFrame from Mgmt >>> encrypt frame ...."<< endl;
+        EV << "Ieee80211ActionHWMPFrame from Mgmt >>> encrypt frame ...."<< endl;
 
 
         EV << "Send out " <<endl;
 
             hwmpFrame->setByteLength(hwmpFrame->getByteLength()+16);
 
-       // Ieee80211ActionMeshFrame *hwmpFrame2 = encryptActionHWMPFrame(hwmpFrame, hwmpFrame->getReceiverAddress() );
+       // Ieee80211ActionHWMPFrame *hwmpFrame2 = encryptActionHWMPFrame(hwmpFrame, hwmpFrame->getReceiverAddress() );
         // hwmpFrame2->setName("CCMPFrame");
         //  send(hwmpFrame2,"mgmtOut")
         msg->setName("CCMPFrame");
@@ -1811,10 +1815,10 @@ void Security::handleIeee80211DataFrameWithSNAP(cMessage *msg)
     EV << "Entering handleIeee80211DataFrameWithSNAP " << endl;
     double delay=0;
     //Decryption
-    if(strstr(msg->getName() ,"CCMPFrame")!=nullptr)
+    if(strstr(msg->getName() ,"CCMPFrame")!=NULL)
     {
         EV << "msg from Mac >>> decrypt msg ...." <<endl;
-        //  cPacket* payloadMsg=nullptr;
+        //  cPacket* payloadMsg=NULL;
         Ieee80211DataFrameWithSNAP *frame = (check_and_cast<Ieee80211DataFrameWithSNAP *>(msg));
         MeshInfo *mesh = lookupMesh(frame->getTransmitterAddress());
         //  EV << "transmitter address before lookup"<< frame->getTransmitterAddress()<<endl;
@@ -1863,7 +1867,7 @@ void Security::handleIeee80211DataFrameWithSNAP(cMessage *msg)
     {
         // New Frame = Old MAC Header | CCMP Header | ENC (Encapsulated Old MSG)
         EV << "encrypt msg ...."<<msg->getClassName() <<" " << msg->getName() <<endl;
-        //  cPacket* payloadMsg=nullptr;
+        //  cPacket* payloadMsg=NULL;
         Ieee80211DataFrameWithSNAP *frame = (check_and_cast<Ieee80211DataFrameWithSNAP *>(msg));
         // EV << "receiver address before lookup"<<frame->getReceiverAddress()<<endl;
 
@@ -1918,7 +1922,7 @@ void Security::handleIeee80211DataFrameWithSNAP(cMessage *msg)
             }
             else
             {
-                if (frame==nullptr)
+                if (frame==NULL)
                 {
                     frame = new Ieee80211DataFrameWithSNAP(msg->getName());
                     frame->setTimestamp(msg->getCreationTime());
@@ -1934,7 +1938,7 @@ void Security::handleIeee80211DataFrameWithSNAP(cMessage *msg)
                 {
                     char name[50];
                     strcpy(name,msg->getName());
-                    throw cRuntimeError ("Ieee80211Mesh::encapsulate Bad Address");
+                    opp_error ("Ieee80211Mesh::encapsulate Bad Address");
                 }
                 if (frame->getReceiverAddress().isBroadcast())
 
@@ -1969,30 +1973,30 @@ void Security::handleDeauthenticationFrame(Ieee80211AuthenticationFrame *frame)
     delete frame;
     if(mesh){
         sendDeauthentication(mesh->address);
-        if(mesh->beaconTimeoutMsg!=nullptr)
+        if(mesh->beaconTimeoutMsg!=NULL)
         {
             delete cancelEvent(mesh->beaconTimeoutMsg);
-            //  mesh->beaconTimeoutMsg=nullptr;
+            //  mesh->beaconTimeoutMsg=NULL;
         }
-        if(mesh->authTimeoutMsg_a!=nullptr)
+        if(mesh->authTimeoutMsg_a!=NULL)
         {
             delete cancelEvent(mesh->authTimeoutMsg_a);
-            mesh->authTimeoutMsg_a=nullptr;
+            mesh->authTimeoutMsg_a=NULL;
         }
-        if(mesh->authTimeoutMsg_b!=nullptr)
+        if(mesh->authTimeoutMsg_b!=NULL)
         {
             delete cancelEvent(mesh->authTimeoutMsg_b);
-            mesh->authTimeoutMsg_b=nullptr;
+            mesh->authTimeoutMsg_b=NULL;
         }
-        if(mesh->groupAuthTimeoutMsg!=nullptr)
+        if(mesh->groupAuthTimeoutMsg!=NULL)
         {
             delete cancelEvent(mesh->groupAuthTimeoutMsg);
-            mesh->groupAuthTimeoutMsg=nullptr;
+            mesh->groupAuthTimeoutMsg=NULL;
         }
-        if(mesh->PMKTimerMsg!=nullptr)
+        if(mesh->PMKTimerMsg!=NULL)
         {
             delete cancelEvent(mesh->PMKTimerMsg);
-            mesh->PMKTimerMsg=nullptr;
+            mesh->PMKTimerMsg=NULL;
         }
         /*   for(MeshList::iterator it=meshList.begin(); it != meshList.end();)
             {
@@ -2021,7 +2025,7 @@ void Security::handleAck()
             MeshInfo *mesh = lookupMesh(it->address);
             if(mesh)
             {
-                if (mesh->authTimeoutMsg_b==nullptr)
+                if (mesh->authTimeoutMsg_b==NULL)
                 {
                     EV << "No Authentication in progress, ignoring frame\n";
                     EV << mesh->authTimeoutMsg_b <<endl;
@@ -2056,9 +2060,9 @@ void Security::handleAck()
                 scheduleAt(simTime()+PMKTimeout, mesh->PMKTimerMsg);
 
                 //start Authentication with other party
-                ASSERT(mesh->authTimeoutMsg_b!=nullptr);
+                ASSERT(mesh->authTimeoutMsg_b!=NULL);
                 delete cancelEvent(mesh->authTimeoutMsg_b);
-                mesh->authTimeoutMsg_b = nullptr;
+                mesh->authTimeoutMsg_b = NULL;
                 startAMPE(mesh->address, 0);
             }
         }
@@ -2151,10 +2155,10 @@ Security::nonce Security::generateNonce() {
 
     nonce Nonce;
     Nonce.len=256;
-    Nonce.buf.push_back( getRNG(1)->intRand(1073741823));
-    Nonce.buf.push_back( getRNG(1)->intRand(1073741823));
-    Nonce.buf.push_back( getRNG(1)->intRand(1073741823));
-    Nonce.buf.push_back( getRNG(1)->intRand(1073741823));
+    Nonce.buf.push_back( genk_intrand(1,1073741823));
+    Nonce.buf.push_back( genk_intrand(1,1073741823));
+    Nonce.buf.push_back( genk_intrand(1,1073741823));
+    Nonce.buf.push_back( genk_intrand(1,1073741823));
 
     Nonce.len=256;
     return Nonce;
@@ -2340,8 +2344,8 @@ int Security::computeSmallHash( int arg1, int arg2, int arg3, int arg4, int arg5
     unsigned int payloadlen;
     static unsigned int iplen = 20; // we don't generate IP options
     static unsigned int udplen = 8;
-    cPacket* payloadMsg = nullptr;
-    char* buf = nullptr, *payload = nullptr;
+    cPacket* payloadMsg = NULL;
+    char* buf = NULL, *payload = NULL;
     uint32_t saddr, daddr;
     volatile iphdr* ip_buf;
     struct newiphdr {
@@ -2409,12 +2413,12 @@ int Security::computeSmallHash( int arg1, int arg2, int arg3, int arg4, int arg5
 
 }*/
 
-void Security::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj)
+void Security::receiveChangeNotification(int category, const cObject *details)
 {
     EV << "receiveChangeNotification()" <<endl;
     Enter_Method_Silent();
 
-    if (signalID == NF_TX_ACKED)
+    if (category == NF_TX_ACKED)
     {
         handleAck();
     }
@@ -2428,8 +2432,3 @@ void Security::finish()
         statsAlreadyRecorded = true;
      }
  }
-
-}
-
-}
-

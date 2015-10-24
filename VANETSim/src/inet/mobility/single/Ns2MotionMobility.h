@@ -17,14 +17,14 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_NS2MOTIONMOBILITY_H
-#define __INET_NS2MOTIONMOBILITY_H
 
-#include "inet/common/INETDefs.h"
+#ifndef NS2_MOTION_MOBILITY_H
+#define NS2_MOTION_MOBILITY_H
 
-#include "inet/mobility/base/LineSegmentsMobilityBase.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "LineSegmentsMobilityBase.h"
+
 
 /**
  * @brief Uses the ns2 motion native file format. See NED file for more info.
@@ -43,7 +43,6 @@ class INET_API Ns2MotionFile
   public:
     typedef std::vector<double> Line;
     double initial[3];
-
   protected:
     friend class Ns2MotionMobility;
     typedef std::vector<Line> LineList;
@@ -59,33 +58,28 @@ class INET_API Ns2MotionMobility : public LineSegmentsMobilityBase
     int nodeId;
     double scrollX;
     double scrollY;
-    double maxSpeed;
 
   protected:
     void parseFile(const char *filename);
 
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 3; }
 
     /** @brief Initializes mobility model parameters.*/
-    virtual void initialize(int stage) override;
+    virtual void initialize(int stage);
 
     /** @brief Initializes the position according to the mobility model. */
-    virtual void setInitialPosition() override;
+    virtual void setInitialPosition();
 
     /** @brief Overridden from LineSegmentsMobilityBase.*/
-    virtual void setTargetPosition() override;
+    virtual void setTargetPosition();
 
     /** @brief Overridden from LineSegmentsMobilityBase.*/
-    virtual void move() override;
+    virtual void move();
 
-    virtual void computeMaxSpeed();
   public:
     Ns2MotionMobility();
+
     virtual ~Ns2MotionMobility();
-    virtual double getMaxSpeed() const override { return maxSpeed; }
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_NS2MOTIONMOBILITY_H
-
+#endif

@@ -16,17 +16,16 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
+
 #ifndef __INET_ICMP_H
 #define __INET_ICMP_H
 
 //  Cleanup and rewrite: Andras Varga, 2004
 
-#include "inet/common/INETDefs.h"
-#include "inet/networklayer/ipv4/IIPv4RoutingTable.h"
+#include "INETDefs.h"
 
-#include "inet/networklayer/ipv4/ICMPMessage.h"
-
-namespace inet {
+#include "ICMPMessage.h"
+#include "RoutingTableAccess.h"
 
 class IPv4Datagram;
 class IPv4ControlInfo;
@@ -35,12 +34,11 @@ class PingPayload;
 /**
  * ICMP module.
  */
-// TODO: the word ping should not occur in ICMP code
-// TODO: move identifier, sequence number from PingPayload into ICMPControlInfo
 class INET_API ICMP : public cSimpleModule
 {
   protected:
-    typedef std::map<long, int> PingMap;
+    RoutingTableAccess routingTableAccess;
+    typedef std::map<long,int> PingMap;
     PingMap pingMap;
 
   protected:
@@ -74,12 +72,9 @@ class INET_API ICMP : public cSimpleModule
     virtual void sendErrorMessage(cPacket *transportPacket, IPv4ControlInfo *ctrl, ICMPType type, ICMPCode code);
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int stage) override;
-    virtual void handleMessage(cMessage *msg) override;
+    virtual void initialize();
+    virtual void handleMessage(cMessage *msg);
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_ICMP_H
+#endif
 

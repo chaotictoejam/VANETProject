@@ -13,32 +13,25 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#include "inet/linklayer/ieee80211mesh/locator/LocatorModule.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtAP.h"
-#include "inet/linklayer/ieee80211mesh/locator/locatorPkt_m.h"
-#include "inet/transportlayer/udp/UDP.h"
-#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
-#include "inet/routing/extras/base/LocatorNotificationInfo_m.h"
-#include "inet/linklayer/common/Ieee802Ctrl.h"
-#include "inet/networklayer/arp/ipv4/ARPPacket_m.h"
-#include "inet/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
-#include "inet/common/GlobalWirelessLinkInspector.h"
-#include "inet/networklayer/ipv4/IPv4Route.h"
-
-namespace inet {
-
-namespace ieee80211 {
-
+#include "LocatorModule.h"
+#include "Ieee80211MgmtAP.h"
+#include "RoutingTableAccess.h"
+#include "InterfaceTableAccess.h"
+#include "locatorPkt_m.h"
+#include "UDP.h"
+#include "IPv4InterfaceData.h"
+#include "NotificationBoard.h"
+#include "LocatorNotificationInfo_m.h"
+#include "Ieee802Ctrl_m.h"
+#include "ARPPacket_m.h"
+#include "Ieee80211Frame_m.h"
+#include "GlobalWirelessLinkInspector.h"
 
 simsignal_t LocatorModule::locatorChangeSignal = SIMSIGNAL_NULL;
 LocatorModule::LocatorMapIp LocatorModule::globalLocatorMapIp;
 LocatorModule::LocatorMapMac LocatorModule::globalLocatorMapMac;
 LocatorModule::ApIpSet LocatorModule::globalApIpSet;
 LocatorModule::ApSet LocatorModule::globalApSet;
-
-LocatorModule::ReverseList LocatorModule::reverseList;
-LocatorModule::DirectList LocatorModule::directList;
-
 
 std::ostream& operator<<(std::ostream& os, const LocatorModule::LocEntry& e)
 {
@@ -54,11 +47,11 @@ Define_Module(LocatorModule);
 LocatorModule::LocatorModule()
 {
     // TODO Auto-generated constructor stub
-    arp = nullptr;
-    rt = nullptr;
-    itable = nullptr;
+    arp = NULL;
+    rt = NULL;
+    itable = NULL;
     isInMacLayer = true;
-    socket = nullptr;
+    socket = NULL;
     useGlobal = false;
     mySequence = 0;
 }
@@ -72,10 +65,7 @@ LocatorModule::~LocatorModule()
    if (socket)
        delete socket;
    sequenceMap.clear();
-   reverseList.clear();
-   directList.clear();
 }
-
 
 void LocatorModule::handleMessage(cMessage *msg)
 {
@@ -106,13 +96,13 @@ void LocatorModule::handleMessage(cMessage *msg)
 
     if (pkt)
     {
-        if ((pkt->getOrigin().getType() == L3Address::IPv4 && pkt->getOrigin().toIPv4() == myIpAddress)
-                || (pkt->getOrigin().getType() == L3Address::MAC && pkt->getOrigin().toMAC() == myMacAddress))
+        if ((pkt->getOrigin().getType() == ManetAddress::IPv4_ADDRESS && pkt->getOrigin().getIPv4() == myIpAddress)
+                || (pkt->getOrigin().getType() == ManetAddress::MAC_ADDRESS && pkt->getOrigin().getMAC() == myMacAddress))
         {
             delete pkt;
             return;
         }
-        auto it = sequenceMap.find(pkt->getOrigin());
+        std::map<ManetAddress,unsigned int>::iterator it = sequenceMap.find(pkt->getOrigin());
         if (it!=sequenceMap.end())
         {
             if (it->second >= pkt->getSequence())
@@ -148,30 +138,32 @@ void LocatorModule::handleMessage(cMessage *msg)
         }
 
         if (staIpaddr.isUnspecified() && staAddr.isUnspecified())
-            throw cRuntimeError("error in tables sta mac and sta ip address unknown ");
+            opp_error("error in tables sta mac and sta ip address unknown ");
         if (apAddr.isUnspecified() && apIpaddr.isUnspecified())
-            throw cRuntimeError("error in tables ap mac and ap ip address unknown ");
+            opp_error("error in tables ap mac and ap ip address unknown ");
 
+        if (arp)
+        {
+            if (staIpaddr.isUnspecified())
+                staIpaddr = arp->getIPv4AddressFor(staAddr);
+            if (staAddr.isUnspecified())
+                staAddr = arp->getMACAddressFor(staIpaddr);
+            if (apIpaddr.isUnspecified())
+                apIpaddr = arp->getIPv4AddressFor(apAddr);
+            if (apAddr.isUnspecified())
+                apAddr = arp->getMACAddressFor(apIpaddr);
 
-        if (staIpaddr.isUnspecified())
-            staIpaddr = getReverseAddress(staAddr);
-        if (staAddr.isUnspecified())
-            staAddr = geDirectAddress(staIpaddr);
-        if (apIpaddr.isUnspecified())
-            apIpaddr = getReverseAddress(apAddr);
-        if (apAddr.isUnspecified())
-            apAddr = geDirectAddress(apIpaddr);
+            if (staIpaddr.isUnspecified())
+                sendRequest(staAddr);
 
-        if (staIpaddr.isUnspecified())
-            sendRequest(staAddr);
-
-        if (apIpaddr.isUnspecified())
-            sendRequest(apAddr);
+            if (apIpaddr.isUnspecified())
+                sendRequest(apAddr);
+        }
 
         if ( pkt->getOpcode() == LocatorAssoc)
-            setTables(apAddr,staAddr,apIpaddr,staIpaddr,ASSOCIATION,nullptr);
+            setTables(apAddr,staAddr,apIpaddr,staIpaddr,ASSOCIATION,NULL);
         else if (pkt->getOpcode() == LocatorDisAssoc)
-            setTables(apAddr,staAddr,apIpaddr,staIpaddr,DISASSOCIATION,nullptr);
+            setTables(apAddr,staAddr,apIpaddr,staIpaddr,DISASSOCIATION,NULL);
     }
     if (socket)
     {
@@ -199,7 +191,7 @@ void LocatorModule::processReply(cPacket* msg)
         // is ap?
         ApSetIterator it = globalApSet.find(destAddr);
         if (it == globalApSet.end())
-            throw cRuntimeError("error in tables \n");
+            opp_error("error in tables \n");
 
         for (MapMacIterator itMac = globalLocatorMapMac.begin(); itMac != globalLocatorMapMac.end(); itMac++)
         {
@@ -236,7 +228,7 @@ void LocatorModule::processReply(cPacket* msg)
         // is ap?
         ApSetIterator it = globalApSet.find(destAddr);
         if (it == globalApSet.end())
-            throw cRuntimeError("error in tables \n");
+            opp_error("error in tables \n");
 
         for (MapMacIterator itMac = globalLocatorMapMac.begin(); itMac != globalLocatorMapMac.end(); itMac++)
             if (itMac->second.apMacAddr == destAddr)
@@ -267,8 +259,8 @@ void LocatorModule::processRequest(cPacket* msg)
 {
     LocatorPkt *pkt = dynamic_cast<LocatorPkt*> (msg);
 
-    if ((pkt->getOrigin().getType() == L3Address::IPv4 && pkt->getOrigin().toIPv4() == myIpAddress)
-                  || (pkt->getOrigin().getType() == L3Address::MAC && pkt->getOrigin().toMAC() == myMacAddress))
+    if ((pkt->getOrigin().getType() == ManetAddress::IPv4_ADDRESS && pkt->getOrigin().getIPv4() == myIpAddress)
+                  || (pkt->getOrigin().getType() == ManetAddress::MAC_ADDRESS && pkt->getOrigin().getMAC() == myMacAddress))
     {
         delete pkt;
         return;
@@ -303,18 +295,13 @@ void LocatorModule::processRequest(cPacket* msg)
 
 void LocatorModule::initialize(int stage)
 {
-    if (stage!=INITSTAGE_NETWORK_LAYER_3)
+    if (stage!=3)
         return;
 
-    arp =  getModuleFromPar<IARP>(par("arpModule"), this);
-
-    rt = findModuleFromPar<IIPv4RoutingTable>(par("routingTableModule"), this);
-    itable = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
-
-
-
-
-    InterfaceEntry *ie = nullptr;
+    arp = ArpAccess().getIfExists();
+    rt = RoutingTableAccess().getIfExists();
+    itable = InterfaceTableAccess().get();
+    InterfaceEntry *ie = NULL;
     if (dynamic_cast<UDP*>(gate("outGate")->getPathEndGate()->getOwnerModule()))
     {
         // bind the client to the udp port
@@ -350,24 +337,17 @@ void LocatorModule::initialize(int stage)
     }
     else
     {
-        throw cRuntimeError("iface not found");
-    }
-
-    for (int i = 0; i < itable->getNumInterfaces(); i++)
-    {
-        InterfaceEntry *ie = itable->getInterface(i);
-        IPv4InterfaceData * ipData = ie->ipv4Data();
-        reverseList.insert(std::make_pair(ie->getMacAddress(),L3Address(ipData->getIPAddress())));
-        directList.insert(std::make_pair(L3Address(ipData->getIPAddress()),ie->getMacAddress()));
+        opp_error("iface not found");
     }
 
     WATCH_MAP(globalLocatorMapIp);
     WATCH_MAP(globalLocatorMapMac);
     WATCH_MAP(locatorMapIp);
     WATCH_MAP(locatorMapMac);
-    cModule *host = getContainingNode(this);
-    host->subscribe(NF_L2_AP_DISASSOCIATED,this);
-    host->subscribe(NF_L2_AP_ASSOCIATED,this);
+
+    nb = NotificationBoardAccess().get();
+    nb->subscribe(this,NF_L2_AP_DISASSOCIATED);
+    nb->subscribe(this,NF_L2_AP_ASSOCIATED);
     // nb->subscribe(this,NF_LINK_FULL_PROMISCUOUS); // if not global ARP
 }
 
@@ -390,9 +370,9 @@ void  LocatorModule::sendMessage(const MACAddress &apMac,const MACAddress &staMa
     {
         pkt->setByteLength(pkt->getByteLength()+8);
         if (inMacLayer)
-            pkt->setOrigin(L3Address(myMacAddress));
+            pkt->setOrigin(ManetAddress(myMacAddress));
         else
-            pkt->setOrigin(L3Address(myIpAddress));
+            pkt->setOrigin(ManetAddress(myIpAddress));
         pkt->setSequence(mySequence);
         mySequence++;
         UDPSocket::SendOptions options;
@@ -408,7 +388,7 @@ void  LocatorModule::sendMessage(const MACAddress &apMac,const MACAddress &staMa
     }
 }
 
-void LocatorModule::receiveSignal(cComponent *source, simsignal_t category, cObject *details)
+void LocatorModule::receiveChangeNotification(int category, const cObject *details)
 {
     Enter_Method_Silent();
     if(category == NF_L2_AP_DISASSOCIATED || category == NF_L2_AP_ASSOCIATED)
@@ -419,12 +399,12 @@ void LocatorModule::receiveSignal(cComponent *source, simsignal_t category, cObj
             IPv4Address staIpAdd;
             if (arp)
             {
-                const IPv4Address add = getReverseAddress(infoSta->getStaAddress());
+                const IPv4Address add = arp->getIPv4AddressFor(infoSta->getStaAddress());
                 staIpAdd = add;
                 if (add.isUnspecified())
                     sendRequest(infoSta->getStaAddress());
             }
-            InterfaceEntry * ie = nullptr;
+            InterfaceEntry * ie = NULL;
             for (int i =0 ; i < itable->getNumInterfaces();i++)
             {
                 if (itable->getInterface(i)->getMacAddress() == infoSta->getApAddress())
@@ -470,6 +450,11 @@ void LocatorModule::receiveSignal(cComponent *source, simsignal_t category, cObj
             processARPPacket(frame->getEncapsulatedPacket());
         }
     }
+}
+
+void LocatorModule::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj)
+{
+
 }
 
 const MACAddress  LocatorModule::getLocatorMacToMac(const MACAddress & add)
@@ -544,9 +529,9 @@ const MACAddress  LocatorModule::getLocatorIpToMac(const IPv4Address &add)
 
 void LocatorModule::modifyInformationMac(const MACAddress &APaddr, const MACAddress &STAaddr, const Action &action)
 {
-    const IPv4Address staIpadd = getReverseAddress(STAaddr);
-    const IPv4Address apIpAddr = getReverseAddress(APaddr);
-    InterfaceEntry * ie = nullptr;
+    const IPv4Address staIpadd = arp->getIPv4AddressFor(STAaddr);
+    const IPv4Address apIpAddr = arp->getIPv4AddressFor(APaddr);
+    InterfaceEntry * ie = NULL;
     for (int i =0 ; i < itable->getNumInterfaces();i++)
     {
         if (itable->getInterface(i)->getMacAddress() == APaddr)
@@ -560,9 +545,9 @@ void LocatorModule::modifyInformationMac(const MACAddress &APaddr, const MACAddr
 
 void LocatorModule::modifyInformationIp(const IPv4Address &apIpAddr, const IPv4Address &staIpAddr, const Action &action)
 {
-    const MACAddress STAaddr = geDirectAddress(staIpAddr);
-    const MACAddress APaddr = geDirectAddress(apIpAddr);
-    InterfaceEntry * ie = nullptr;
+    const MACAddress STAaddr = arp->getMACAddressFor(staIpAddr);
+    const MACAddress APaddr = arp->getMACAddressFor(apIpAddr);
+    InterfaceEntry * ie = NULL;
     for (int i =0 ; i < itable->getNumInterfaces();i++)
     {
         if (itable->getInterface(i)->getMacAddress() == APaddr)
@@ -593,7 +578,7 @@ void LocatorModule::setTables(const MACAddress & APaddr, const MACAddress &staAd
             locatorMapIp[staIpAddr] = locEntry;
             globalLocatorMapIp[staIpAddr] = locEntry;
         }
-        GlobalWirelessLinkInspector::setLocatorInfo(L3Address(staAddr), L3Address(APaddr));
+        GlobalWirelessLinkInspector::setLocatorInfo(ManetAddress(staAddr), ManetAddress(APaddr));
         if (!staIpAddr.isUnspecified())
         {
             if (rt)
@@ -620,10 +605,10 @@ void LocatorModule::setTables(const MACAddress & APaddr, const MACAddress &staAd
                 }
             }
         }
-        inetmanet::LocatorNotificationInfo infoLoc;
+        LocatorNotificationInfo infoLoc;
         infoLoc.setMacAddr(staAddr);
         infoLoc.setIpAddr(staIpAddr);
-        emit(NF_LOCATOR_ASSOC,&infoLoc);
+        nb->fireChangeNotification(NF_LOCATOR_ASSOC,&infoLoc);
     }
     else if (action == DISASSOCIATION)
     {
@@ -650,7 +635,7 @@ void LocatorModule::setTables(const MACAddress & APaddr, const MACAddress &staAd
             }
 
         }
-        GlobalWirelessLinkInspector::setLocatorInfo(L3Address(staAddr), L3Address());
+        GlobalWirelessLinkInspector::setLocatorInfo(ManetAddress(staAddr), ManetAddress::ZERO);
         if (!staIpAddr.isUnspecified())
         {
             itIp = globalLocatorMapIp.find(staIpAddr);
@@ -682,10 +667,10 @@ void LocatorModule::setTables(const MACAddress & APaddr, const MACAddress &staAd
             }
         }
 
-        inetmanet::LocatorNotificationInfo infoLoc;
+        LocatorNotificationInfo infoLoc;
         infoLoc.setMacAddr(staAddr);
         infoLoc.setIpAddr(staIpAddr);
-        emit(NF_LOCATOR_DISASSOC,&infoLoc);
+        nb->fireChangeNotification(NF_LOCATOR_DISASSOC,&infoLoc);
     }
 }
 
@@ -767,9 +752,9 @@ void LocatorModule::sendRequest(const MACAddress &destination)
     LocatorPkt *pkt = new LocatorPkt();
     pkt->setOpcode(RequestAddress);
     if (inMacLayer)
-        pkt->setOrigin(L3Address(myMacAddress));
+        pkt->setOrigin(ManetAddress(myMacAddress));
     else
-        pkt->setOrigin(L3Address(myIpAddress));
+        pkt->setOrigin(ManetAddress(myIpAddress));
     pkt->setStaMACAddress(destination);
     UDPSocket::SendOptions options;
     options.outInterfaceId = interfaceId;
@@ -855,7 +840,7 @@ void LocatorModule::processARPPacket(cPacket *pkt)
             if (entry->getDestination() == srcIPAddress)
                 return;
         }
-        InterfaceEntry * ie = nullptr;
+        InterfaceEntry * ie = NULL;
         for (int i = 0; i < itable->getNumInterfaces(); i++)
         {
             if (itable->getInterface(i)->getMacAddress() == locEntry.apMacAddr)
@@ -886,6 +871,3 @@ bool LocatorModule::isThisApIp()
     return isApIp(myIpAddress);
 }
 
-}
-
-}

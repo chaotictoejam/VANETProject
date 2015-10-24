@@ -15,16 +15,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211MGMTAPSIMPLIFIED_H
-#define __INET_IEEE80211MGMTAPSIMPLIFIED_H
+#ifndef IEEE80211_MGMT_SIMPLIFIEDAP_H
+#define IEEE80211_MGMT_SIMPLIFIEDAP_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtAPBase.h"
+#include "Ieee80211MgmtAPBase.h"
+#include "NotificationBoard.h"
 
-namespace inet {
-
-namespace ieee80211 {
 
 /**
  * Used in 802.11 infrastructure mode: handles management frames for
@@ -36,40 +34,35 @@ namespace ieee80211 {
 class INET_API Ieee80211MgmtAPSimplified : public Ieee80211MgmtAPBase
 {
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int) override;
+    virtual int numInitStages() const { return 2; }
+    virtual void initialize(int);
 
     /** Implements abstract Ieee80211MgmtBase method */
-    virtual void handleTimer(cMessage *msg) override;
+    virtual void handleTimer(cMessage *msg);
 
     /** Implements abstract Ieee80211MgmtBase method */
-    virtual void handleUpperMessage(cPacket *msg) override;
+    virtual void handleUpperMessage(cPacket *msg);
 
     /** Implements abstract Ieee80211MgmtBase method -- throws an error (no commands supported) */
-    virtual void handleCommand(int msgkind, cObject *ctrl) override;
+    virtual void handleCommand(int msgkind, cObject *ctrl);
 
-    /** Called by the signal handler whenever a change occurs we're interested in */
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj);
+    /** Called by the NotificationBoard whenever a change occurs we're interested in */
+    virtual void receiveChangeNotification(int category, const cObject *details);
 
     /** @name Processing of different frame types */
     //@{
-    virtual void handleDataFrame(Ieee80211DataFrame *frame) override;
-    virtual void handleAuthenticationFrame(Ieee80211AuthenticationFrame *frame) override;
-    virtual void handleDeauthenticationFrame(Ieee80211DeauthenticationFrame *frame) override;
-    virtual void handleAssociationRequestFrame(Ieee80211AssociationRequestFrame *frame) override;
-    virtual void handleAssociationResponseFrame(Ieee80211AssociationResponseFrame *frame) override;
-    virtual void handleReassociationRequestFrame(Ieee80211ReassociationRequestFrame *frame) override;
-    virtual void handleReassociationResponseFrame(Ieee80211ReassociationResponseFrame *frame) override;
-    virtual void handleDisassociationFrame(Ieee80211DisassociationFrame *frame) override;
-    virtual void handleBeaconFrame(Ieee80211BeaconFrame *frame) override;
-    virtual void handleProbeRequestFrame(Ieee80211ProbeRequestFrame *frame) override;
-    virtual void handleProbeResponseFrame(Ieee80211ProbeResponseFrame *frame) override;
+    virtual void handleDataFrame(Ieee80211DataFrame *frame);
+    virtual void handleAuthenticationFrame(Ieee80211AuthenticationFrame *frame);
+    virtual void handleDeauthenticationFrame(Ieee80211DeauthenticationFrame *frame);
+    virtual void handleAssociationRequestFrame(Ieee80211AssociationRequestFrame *frame);
+    virtual void handleAssociationResponseFrame(Ieee80211AssociationResponseFrame *frame);
+    virtual void handleReassociationRequestFrame(Ieee80211ReassociationRequestFrame *frame);
+    virtual void handleReassociationResponseFrame(Ieee80211ReassociationResponseFrame *frame);
+    virtual void handleDisassociationFrame(Ieee80211DisassociationFrame *frame);
+    virtual void handleBeaconFrame(Ieee80211BeaconFrame *frame);
+    virtual void handleProbeRequestFrame(Ieee80211ProbeRequestFrame *frame);
+    virtual void handleProbeResponseFrame(Ieee80211ProbeResponseFrame *frame);
     //@}
 };
 
-} // namespace ieee80211
-
-} // namespace inet
-
-#endif // ifndef __INET_IEEE80211MGMTAPSIMPLIFIED_H
-
+#endif

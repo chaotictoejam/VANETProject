@@ -2,8 +2,8 @@
 // Generated file, do not edit! Created by nedtool 4.6 from applications/udpapp/VideoPacket.msg.
 //
 
-#ifndef _INET_VIDEOPACKET_M_H_
-#define _INET_VIDEOPACKET_M_H_
+#ifndef _VIDEOPACKET_M_H_
+#define _VIDEOPACKET_M_H_
 
 #include <omnetpp.h>
 
@@ -14,11 +14,13 @@
 #endif
 
 
-namespace inet {
 
 /**
- * Class generated from <tt>applications/udpapp/VideoPacket.msg:24</tt> by nedtool.
+ * Class generated from <tt>applications/udpapp/VideoPacket.msg:19</tt> by nedtool.
  * <pre>
+ * //
+ * // TODO generated message class
+ * //
  * packet VideoPacket
  * {
  *     unsigned int seqNum;
@@ -62,7 +64,6 @@ class VideoPacket : public ::cPacket
 inline void doPacking(cCommBuffer *b, VideoPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, VideoPacket& obj) {obj.parsimUnpack(b);}
 
-} // namespace inet
 
-#endif // ifndef _INET_VIDEOPACKET_M_H_
+#endif // ifndef _VIDEOPACKET_M_H_
 

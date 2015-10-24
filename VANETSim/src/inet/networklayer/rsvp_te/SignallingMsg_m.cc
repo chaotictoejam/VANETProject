@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -130,7 +129,7 @@ class SignallingMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(SignallingMsgDescriptor);
 
-SignallingMsgDescriptor::SignallingMsgDescriptor() : cClassDescriptor("inet::SignallingMsg", "cMessage")
+SignallingMsgDescriptor::SignallingMsgDescriptor() : cClassDescriptor("SignallingMsg", "cMessage")
 {
 }
 
@@ -291,13 +290,13 @@ void *SignallingMsgDescriptor::getFieldStructPointer(void *object, int field, in
 
 Register_Class(PsbTimerMsg);
 
-PsbTimerMsg::PsbTimerMsg(const char *name, int kind) : ::inet::SignallingMsg(name,kind)
+PsbTimerMsg::PsbTimerMsg(const char *name, int kind) : ::SignallingMsg(name,kind)
 {
     this->id_var = 0;
     this->command_var = MSG_PSB_TIMER;
 }
 
-PsbTimerMsg::PsbTimerMsg(const PsbTimerMsg& other) : ::inet::SignallingMsg(other)
+PsbTimerMsg::PsbTimerMsg(const PsbTimerMsg& other) : ::SignallingMsg(other)
 {
     copy(other);
 }
@@ -309,7 +308,7 @@ PsbTimerMsg::~PsbTimerMsg()
 PsbTimerMsg& PsbTimerMsg::operator=(const PsbTimerMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::SignallingMsg::operator=(other);
+    ::SignallingMsg::operator=(other);
     copy(other);
     return *this;
 }
@@ -322,14 +321,14 @@ void PsbTimerMsg::copy(const PsbTimerMsg& other)
 
 void PsbTimerMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimPack(b);
+    ::SignallingMsg::parsimPack(b);
     doPacking(b,this->id_var);
     doPacking(b,this->command_var);
 }
 
 void PsbTimerMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimUnpack(b);
+    ::SignallingMsg::parsimUnpack(b);
     doUnpacking(b,this->id_var);
     doUnpacking(b,this->command_var);
 }
@@ -379,7 +378,7 @@ class PsbTimerMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(PsbTimerMsgDescriptor);
 
-PsbTimerMsgDescriptor::PsbTimerMsgDescriptor() : cClassDescriptor("inet::PsbTimerMsg", "inet::SignallingMsg")
+PsbTimerMsgDescriptor::PsbTimerMsgDescriptor() : cClassDescriptor("PsbTimerMsg", "SignallingMsg")
 {
 }
 
@@ -546,13 +545,13 @@ void *PsbTimerMsgDescriptor::getFieldStructPointer(void *object, int field, int 
 
 Register_Class(PsbTimeoutMsg);
 
-PsbTimeoutMsg::PsbTimeoutMsg(const char *name, int kind) : ::inet::SignallingMsg(name,kind)
+PsbTimeoutMsg::PsbTimeoutMsg(const char *name, int kind) : ::SignallingMsg(name,kind)
 {
     this->id_var = 0;
     this->command_var = MSG_PSB_TIMEOUT;
 }
 
-PsbTimeoutMsg::PsbTimeoutMsg(const PsbTimeoutMsg& other) : ::inet::SignallingMsg(other)
+PsbTimeoutMsg::PsbTimeoutMsg(const PsbTimeoutMsg& other) : ::SignallingMsg(other)
 {
     copy(other);
 }
@@ -564,7 +563,7 @@ PsbTimeoutMsg::~PsbTimeoutMsg()
 PsbTimeoutMsg& PsbTimeoutMsg::operator=(const PsbTimeoutMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::SignallingMsg::operator=(other);
+    ::SignallingMsg::operator=(other);
     copy(other);
     return *this;
 }
@@ -577,14 +576,14 @@ void PsbTimeoutMsg::copy(const PsbTimeoutMsg& other)
 
 void PsbTimeoutMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimPack(b);
+    ::SignallingMsg::parsimPack(b);
     doPacking(b,this->id_var);
     doPacking(b,this->command_var);
 }
 
 void PsbTimeoutMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimUnpack(b);
+    ::SignallingMsg::parsimUnpack(b);
     doUnpacking(b,this->id_var);
     doUnpacking(b,this->command_var);
 }
@@ -634,7 +633,7 @@ class PsbTimeoutMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(PsbTimeoutMsgDescriptor);
 
-PsbTimeoutMsgDescriptor::PsbTimeoutMsgDescriptor() : cClassDescriptor("inet::PsbTimeoutMsg", "inet::SignallingMsg")
+PsbTimeoutMsgDescriptor::PsbTimeoutMsgDescriptor() : cClassDescriptor("PsbTimeoutMsg", "SignallingMsg")
 {
 }
 
@@ -801,13 +800,13 @@ void *PsbTimeoutMsgDescriptor::getFieldStructPointer(void *object, int field, in
 
 Register_Class(RsbRefreshTimerMsg);
 
-RsbRefreshTimerMsg::RsbRefreshTimerMsg(const char *name, int kind) : ::inet::SignallingMsg(name,kind)
+RsbRefreshTimerMsg::RsbRefreshTimerMsg(const char *name, int kind) : ::SignallingMsg(name,kind)
 {
     this->id_var = 0;
     this->command_var = MSG_RSB_REFRESH_TIMER;
 }
 
-RsbRefreshTimerMsg::RsbRefreshTimerMsg(const RsbRefreshTimerMsg& other) : ::inet::SignallingMsg(other)
+RsbRefreshTimerMsg::RsbRefreshTimerMsg(const RsbRefreshTimerMsg& other) : ::SignallingMsg(other)
 {
     copy(other);
 }
@@ -819,7 +818,7 @@ RsbRefreshTimerMsg::~RsbRefreshTimerMsg()
 RsbRefreshTimerMsg& RsbRefreshTimerMsg::operator=(const RsbRefreshTimerMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::SignallingMsg::operator=(other);
+    ::SignallingMsg::operator=(other);
     copy(other);
     return *this;
 }
@@ -832,14 +831,14 @@ void RsbRefreshTimerMsg::copy(const RsbRefreshTimerMsg& other)
 
 void RsbRefreshTimerMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimPack(b);
+    ::SignallingMsg::parsimPack(b);
     doPacking(b,this->id_var);
     doPacking(b,this->command_var);
 }
 
 void RsbRefreshTimerMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimUnpack(b);
+    ::SignallingMsg::parsimUnpack(b);
     doUnpacking(b,this->id_var);
     doUnpacking(b,this->command_var);
 }
@@ -889,7 +888,7 @@ class RsbRefreshTimerMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RsbRefreshTimerMsgDescriptor);
 
-RsbRefreshTimerMsgDescriptor::RsbRefreshTimerMsgDescriptor() : cClassDescriptor("inet::RsbRefreshTimerMsg", "inet::SignallingMsg")
+RsbRefreshTimerMsgDescriptor::RsbRefreshTimerMsgDescriptor() : cClassDescriptor("RsbRefreshTimerMsg", "SignallingMsg")
 {
 }
 
@@ -1056,13 +1055,13 @@ void *RsbRefreshTimerMsgDescriptor::getFieldStructPointer(void *object, int fiel
 
 Register_Class(RsbCommitTimerMsg);
 
-RsbCommitTimerMsg::RsbCommitTimerMsg(const char *name, int kind) : ::inet::SignallingMsg(name,kind)
+RsbCommitTimerMsg::RsbCommitTimerMsg(const char *name, int kind) : ::SignallingMsg(name,kind)
 {
     this->id_var = 0;
     this->command_var = MSG_RSB_COMMIT_TIMER;
 }
 
-RsbCommitTimerMsg::RsbCommitTimerMsg(const RsbCommitTimerMsg& other) : ::inet::SignallingMsg(other)
+RsbCommitTimerMsg::RsbCommitTimerMsg(const RsbCommitTimerMsg& other) : ::SignallingMsg(other)
 {
     copy(other);
 }
@@ -1074,7 +1073,7 @@ RsbCommitTimerMsg::~RsbCommitTimerMsg()
 RsbCommitTimerMsg& RsbCommitTimerMsg::operator=(const RsbCommitTimerMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::SignallingMsg::operator=(other);
+    ::SignallingMsg::operator=(other);
     copy(other);
     return *this;
 }
@@ -1087,14 +1086,14 @@ void RsbCommitTimerMsg::copy(const RsbCommitTimerMsg& other)
 
 void RsbCommitTimerMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimPack(b);
+    ::SignallingMsg::parsimPack(b);
     doPacking(b,this->id_var);
     doPacking(b,this->command_var);
 }
 
 void RsbCommitTimerMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimUnpack(b);
+    ::SignallingMsg::parsimUnpack(b);
     doUnpacking(b,this->id_var);
     doUnpacking(b,this->command_var);
 }
@@ -1144,7 +1143,7 @@ class RsbCommitTimerMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RsbCommitTimerMsgDescriptor);
 
-RsbCommitTimerMsgDescriptor::RsbCommitTimerMsgDescriptor() : cClassDescriptor("inet::RsbCommitTimerMsg", "inet::SignallingMsg")
+RsbCommitTimerMsgDescriptor::RsbCommitTimerMsgDescriptor() : cClassDescriptor("RsbCommitTimerMsg", "SignallingMsg")
 {
 }
 
@@ -1311,13 +1310,13 @@ void *RsbCommitTimerMsgDescriptor::getFieldStructPointer(void *object, int field
 
 Register_Class(RsbTimeoutMsg);
 
-RsbTimeoutMsg::RsbTimeoutMsg(const char *name, int kind) : ::inet::SignallingMsg(name,kind)
+RsbTimeoutMsg::RsbTimeoutMsg(const char *name, int kind) : ::SignallingMsg(name,kind)
 {
     this->id_var = 0;
     this->command_var = MSG_RSB_TIMEOUT;
 }
 
-RsbTimeoutMsg::RsbTimeoutMsg(const RsbTimeoutMsg& other) : ::inet::SignallingMsg(other)
+RsbTimeoutMsg::RsbTimeoutMsg(const RsbTimeoutMsg& other) : ::SignallingMsg(other)
 {
     copy(other);
 }
@@ -1329,7 +1328,7 @@ RsbTimeoutMsg::~RsbTimeoutMsg()
 RsbTimeoutMsg& RsbTimeoutMsg::operator=(const RsbTimeoutMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::SignallingMsg::operator=(other);
+    ::SignallingMsg::operator=(other);
     copy(other);
     return *this;
 }
@@ -1342,14 +1341,14 @@ void RsbTimeoutMsg::copy(const RsbTimeoutMsg& other)
 
 void RsbTimeoutMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimPack(b);
+    ::SignallingMsg::parsimPack(b);
     doPacking(b,this->id_var);
     doPacking(b,this->command_var);
 }
 
 void RsbTimeoutMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimUnpack(b);
+    ::SignallingMsg::parsimUnpack(b);
     doUnpacking(b,this->id_var);
     doUnpacking(b,this->command_var);
 }
@@ -1399,7 +1398,7 @@ class RsbTimeoutMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RsbTimeoutMsgDescriptor);
 
-RsbTimeoutMsgDescriptor::RsbTimeoutMsgDescriptor() : cClassDescriptor("inet::RsbTimeoutMsg", "inet::SignallingMsg")
+RsbTimeoutMsgDescriptor::RsbTimeoutMsgDescriptor() : cClassDescriptor("RsbTimeoutMsg", "SignallingMsg")
 {
 }
 
@@ -1566,12 +1565,12 @@ void *RsbTimeoutMsgDescriptor::getFieldStructPointer(void *object, int field, in
 
 Register_Class(HelloTimerMsg);
 
-HelloTimerMsg::HelloTimerMsg(const char *name, int kind) : ::inet::SignallingMsg(name,kind)
+HelloTimerMsg::HelloTimerMsg(const char *name, int kind) : ::SignallingMsg(name,kind)
 {
     this->command_var = MSG_HELLO_TIMER;
 }
 
-HelloTimerMsg::HelloTimerMsg(const HelloTimerMsg& other) : ::inet::SignallingMsg(other)
+HelloTimerMsg::HelloTimerMsg(const HelloTimerMsg& other) : ::SignallingMsg(other)
 {
     copy(other);
 }
@@ -1583,7 +1582,7 @@ HelloTimerMsg::~HelloTimerMsg()
 HelloTimerMsg& HelloTimerMsg::operator=(const HelloTimerMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::SignallingMsg::operator=(other);
+    ::SignallingMsg::operator=(other);
     copy(other);
     return *this;
 }
@@ -1596,14 +1595,14 @@ void HelloTimerMsg::copy(const HelloTimerMsg& other)
 
 void HelloTimerMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimPack(b);
+    ::SignallingMsg::parsimPack(b);
     doPacking(b,this->peer_var);
     doPacking(b,this->command_var);
 }
 
 void HelloTimerMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimUnpack(b);
+    ::SignallingMsg::parsimUnpack(b);
     doUnpacking(b,this->peer_var);
     doUnpacking(b,this->command_var);
 }
@@ -1653,7 +1652,7 @@ class HelloTimerMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(HelloTimerMsgDescriptor);
 
-HelloTimerMsgDescriptor::HelloTimerMsgDescriptor() : cClassDescriptor("inet::HelloTimerMsg", "inet::SignallingMsg")
+HelloTimerMsgDescriptor::HelloTimerMsgDescriptor() : cClassDescriptor("HelloTimerMsg", "SignallingMsg")
 {
 }
 
@@ -1821,12 +1820,12 @@ void *HelloTimerMsgDescriptor::getFieldStructPointer(void *object, int field, in
 
 Register_Class(HelloTimeoutMsg);
 
-HelloTimeoutMsg::HelloTimeoutMsg(const char *name, int kind) : ::inet::SignallingMsg(name,kind)
+HelloTimeoutMsg::HelloTimeoutMsg(const char *name, int kind) : ::SignallingMsg(name,kind)
 {
     this->command_var = MSG_HELLO_TIMEOUT;
 }
 
-HelloTimeoutMsg::HelloTimeoutMsg(const HelloTimeoutMsg& other) : ::inet::SignallingMsg(other)
+HelloTimeoutMsg::HelloTimeoutMsg(const HelloTimeoutMsg& other) : ::SignallingMsg(other)
 {
     copy(other);
 }
@@ -1838,7 +1837,7 @@ HelloTimeoutMsg::~HelloTimeoutMsg()
 HelloTimeoutMsg& HelloTimeoutMsg::operator=(const HelloTimeoutMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::SignallingMsg::operator=(other);
+    ::SignallingMsg::operator=(other);
     copy(other);
     return *this;
 }
@@ -1851,14 +1850,14 @@ void HelloTimeoutMsg::copy(const HelloTimeoutMsg& other)
 
 void HelloTimeoutMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimPack(b);
+    ::SignallingMsg::parsimPack(b);
     doPacking(b,this->peer_var);
     doPacking(b,this->command_var);
 }
 
 void HelloTimeoutMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimUnpack(b);
+    ::SignallingMsg::parsimUnpack(b);
     doUnpacking(b,this->peer_var);
     doUnpacking(b,this->command_var);
 }
@@ -1908,7 +1907,7 @@ class HelloTimeoutMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(HelloTimeoutMsgDescriptor);
 
-HelloTimeoutMsgDescriptor::HelloTimeoutMsgDescriptor() : cClassDescriptor("inet::HelloTimeoutMsg", "inet::SignallingMsg")
+HelloTimeoutMsgDescriptor::HelloTimeoutMsgDescriptor() : cClassDescriptor("HelloTimeoutMsg", "SignallingMsg")
 {
 }
 
@@ -2076,13 +2075,13 @@ void *HelloTimeoutMsgDescriptor::getFieldStructPointer(void *object, int field, 
 
 Register_Class(PathNotifyMsg);
 
-PathNotifyMsg::PathNotifyMsg(const char *name, int kind) : ::inet::SignallingMsg(name,kind)
+PathNotifyMsg::PathNotifyMsg(const char *name, int kind) : ::SignallingMsg(name,kind)
 {
     this->status_var = 0;
     this->command_var = MSG_PATH_NOTIFY;
 }
 
-PathNotifyMsg::PathNotifyMsg(const PathNotifyMsg& other) : ::inet::SignallingMsg(other)
+PathNotifyMsg::PathNotifyMsg(const PathNotifyMsg& other) : ::SignallingMsg(other)
 {
     copy(other);
 }
@@ -2094,7 +2093,7 @@ PathNotifyMsg::~PathNotifyMsg()
 PathNotifyMsg& PathNotifyMsg::operator=(const PathNotifyMsg& other)
 {
     if (this==&other) return *this;
-    ::inet::SignallingMsg::operator=(other);
+    ::SignallingMsg::operator=(other);
     copy(other);
     return *this;
 }
@@ -2109,7 +2108,7 @@ void PathNotifyMsg::copy(const PathNotifyMsg& other)
 
 void PathNotifyMsg::parsimPack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimPack(b);
+    ::SignallingMsg::parsimPack(b);
     doPacking(b,this->session_var);
     doPacking(b,this->sender_var);
     doPacking(b,this->status_var);
@@ -2118,7 +2117,7 @@ void PathNotifyMsg::parsimPack(cCommBuffer *b)
 
 void PathNotifyMsg::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::SignallingMsg::parsimUnpack(b);
+    ::SignallingMsg::parsimUnpack(b);
     doUnpacking(b,this->session_var);
     doUnpacking(b,this->sender_var);
     doUnpacking(b,this->status_var);
@@ -2190,7 +2189,7 @@ class PathNotifyMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(PathNotifyMsgDescriptor);
 
-PathNotifyMsgDescriptor::PathNotifyMsgDescriptor() : cClassDescriptor("inet::PathNotifyMsg", "inet::SignallingMsg")
+PathNotifyMsgDescriptor::PathNotifyMsgDescriptor() : cClassDescriptor("PathNotifyMsg", "SignallingMsg")
 {
 }
 
@@ -2369,5 +2368,4 @@ void *PathNotifyMsgDescriptor::getFieldStructPointer(void *object, int field, in
     }
 }
 
-} // namespace inet
 

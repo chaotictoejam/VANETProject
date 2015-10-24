@@ -16,13 +16,10 @@
 //
 
 
-#include "inet/linklayer/common/Ieee802Ctrl.h"
 #include "Ieee80211MgmtAdhocWithRouting.h"
-#include "inet/routing/extras/base/ControlManetRouting_m.h"
+#include "Ieee802Ctrl_m.h"
+#include "ControlManetRouting_m.h"
 
-namespace inet {
-
-namespace ieee80211 {
 
 Define_Module(Ieee80211MgmtAdhocWithRouting);
 
@@ -32,10 +29,10 @@ void Ieee80211MgmtAdhocWithRouting::startRouting()
     cModuleType *moduleType;
     cModule *module;
     moduleType = cModuleType::find(par("routingProtocol").stringValue());
-    if (moduleType == nullptr)
-        throw cRuntimeError("Ieee80211MgmtAdhocWithRouting:: Routing protocol not found %s",par("routingProtocol").stringValue());
+    if (moduleType == NULL)
+        opp_error("Ieee80211MgmtAdhocWithRouting:: Routing protocol not found %s",par("routingProtocol").stringValue());
     module = moduleType->create("ManetRoutingProtocol", this);
-    routingModule = dynamic_cast <inetmanet::ManetRoutingBase*> (module);
+    routingModule = dynamic_cast <ManetRoutingBase*> (module);
     routingModule->gate("to_ip")->connectTo(gate("routingIn"));
     gate("routingOut")->connectTo(routingModule->gate("from_ip"));
     routingModule->buildInside();
@@ -46,9 +43,9 @@ void Ieee80211MgmtAdhocWithRouting::startRouting()
 void Ieee80211MgmtAdhocWithRouting::initialize(int stage)
 {
     Ieee80211MgmtBase::initialize(stage);
-    if (stage == INITSTAGE_LINK_LAYER)
+    if (stage == 4)
     {
-        routingModule = nullptr;
+        routingModule = NULL;
         maxTTL = par("maxTtl").longValue();
         if (strcmp(par("routingProtocol").stringValue(),"") != 0)
             startRouting();
@@ -69,6 +66,13 @@ void Ieee80211MgmtAdhocWithRouting::handleUpperMessage(cPacket *msg)
 void Ieee80211MgmtAdhocWithRouting::handleCommand(int msgkind, cObject *ctrl)
 {
     error("handleCommand(): no commands supported");
+}
+
+
+void Ieee80211MgmtAdhocWithRouting::receiveChangeNotification(int category, const cObject *details)
+{
+    Enter_Method_Silent();
+    printNotificationBanner(category, details);
 }
 
 void Ieee80211MgmtAdhocWithRouting::handleAuthenticationFrame(Ieee80211AuthenticationFrame *frame)
@@ -124,8 +128,8 @@ void Ieee80211MgmtAdhocWithRouting::handleProbeResponseFrame(Ieee80211ProbeRespo
 
 void Ieee80211MgmtAdhocWithRouting::actualizeReactive(cPacket *pkt,bool out)
 {
-    L3Address dest,next;
-    if (routingModule == nullptr || (routingModule != nullptr && routingModule->isProactive()))
+    ManetAddress dest,next;
+    if (routingModule == NULL || (routingModule != NULL && routingModule->isProactive()))
         return;
 
     Ieee80211DataFrame * frame = dynamic_cast<Ieee80211DataFrame*>(pkt);
@@ -137,11 +141,11 @@ void Ieee80211MgmtAdhocWithRouting::actualizeReactive(cPacket *pkt,bool out)
     if (out)
     {
         if (!frame->getAddress4().isUnspecified() && !frame->getAddress4().isBroadcast())
-            dest= L3Address(frame->getAddress4());
+            dest= ManetAddress(frame->getAddress4());
         else
             return;
         if (!frame->getReceiverAddress().isUnspecified() && !frame->getReceiverAddress().isBroadcast())
-            next = L3Address(frame->getReceiverAddress());
+            next = ManetAddress(frame->getReceiverAddress());
         else
             return;
 
@@ -149,11 +153,11 @@ void Ieee80211MgmtAdhocWithRouting::actualizeReactive(cPacket *pkt,bool out)
     else
     {
         if (!frame->getAddress3().isUnspecified() && !frame->getAddress3().isBroadcast() )
-            dest = L3Address(frame->getAddress3());
+            dest = ManetAddress(frame->getAddress3());
         else
             return;
         if (!frame->getTransmitterAddress().isUnspecified() && !frame->getTransmitterAddress().isBroadcast())
-            next = L3Address(frame->getTransmitterAddress());
+            next = ManetAddress(frame->getTransmitterAddress());
         else
             return;
         isReverse=true;
@@ -194,7 +198,7 @@ void Ieee80211MgmtAdhocWithRouting::handleMessage(cMessage *msg)
     memset(gateName,0,40);
     strcpy(gateName,msggate->getBaseName());
     //if (msg->arrivedOn("macIn"))
-    if (strstr(gateName,"macIn")!=nullptr)
+    if (strstr(gateName,"macIn")!=NULL)
     {
         // process incoming frame
         EV << "Frame arrived from MAC: " << msg << "\n";
@@ -206,17 +210,17 @@ void Ieee80211MgmtAdhocWithRouting::handleMessage(cMessage *msg)
         processFrame(frame);
     }
     //else if (msg->arrivedOn("agentIn"))
-    else if (strstr(gateName,"agentIn")!=nullptr)
+    else if (strstr(gateName,"agentIn")!=NULL)
     {
         // process command from agent
         EV << "Command arrived from agent: " << msg << "\n";
         int msgkind = msg->getKind();
-        cObject *ctrl = msg->removeControlInfo();
+        cPolymorphic *ctrl = msg->removeControlInfo();
         delete msg;
         handleCommand(msgkind, ctrl);
     }
     //else if (msg->arrivedOn("routingIn"))
-    else if (strstr(gateName,"routingIn")!=nullptr)
+    else if (strstr(gateName,"routingIn")!=NULL)
     {
         handleRoutingMessage(PK(msg));
     }
@@ -256,7 +260,7 @@ void Ieee80211MgmtAdhocWithRouting::handleDataFrame(Ieee80211DataFrame *frame)
     //int baseId = gateBaseId("macIn");
     //int index = baseId - msggate->getId();
     msg->setKind(0);
-    if ((routingModule != nullptr) && (routingModule->isOurType(msg)))
+    if ((routingModule != NULL) && (routingModule->isOurType(msg)))
     {
         //sendDirect(msg,0, routingModule, "from_ip");
         send(msg,"routingOut");
@@ -280,7 +284,7 @@ bool Ieee80211MgmtAdhocWithRouting::forwardMessage (Ieee80211DataFrame *frame)
 {
 
     cPacket *msg = frame->getEncapsulatedPacket();
-    if ((routingModule != nullptr) && (routingModule->isOurType(msg)))
+    if ((routingModule != NULL) && (routingModule->isOurType(msg)))
         return false;
     else // Normal frame test if use the mac label address method
         return macLabelBasedSend(frame);
@@ -307,9 +311,9 @@ bool Ieee80211MgmtAdhocWithRouting::macLabelBasedSend(Ieee80211DataFrame *frame)
         if (!frameMesh)
             return false;
         if (frame->getAddress3().isUnspecified())
-            throw cRuntimeError("frame Address3 Unspecified");
+            opp_error("frame Address3 Unspecified");
 
-        auto it = mySeqNumberInfo.find(frame->getAddress3().getInt());
+        SeqNumberInfo::iterator it = mySeqNumberInfo.find(frame->getAddress3().getInt());
         if (it == mySeqNumberInfo.end())
         {
             mySeqNumberInfo[frame->getAddress3().getInt()].push_back(frameMesh->getSequenceNumber());
@@ -334,8 +338,8 @@ bool Ieee80211MgmtAdhocWithRouting::macLabelBasedSend(Ieee80211DataFrame *frame)
         return true;
     }
 
-    L3Address dest = L3Address(frame->getAddress4());
-    L3Address src = L3Address(frame->getAddress3());
+    ManetAddress dest = ManetAddress(frame->getAddress4());
+    ManetAddress src = ManetAddress(frame->getAddress3());
     Ieee80211MeshFrame *frame2  = dynamic_cast<Ieee80211MeshFrame *>(frame);
 
     if ((frame2 && frame2->getTTL()<=0))
@@ -344,10 +348,10 @@ bool Ieee80211MgmtAdhocWithRouting::macLabelBasedSend(Ieee80211DataFrame *frame)
         return true;
     }
 
-    std::vector<L3Address> add;
+    std::vector<ManetAddress> add;
     int iface;
     double cost;
-    L3Address next;
+    ManetAddress next;
 
     if (!routingModule)
     {
@@ -358,20 +362,20 @@ bool Ieee80211MgmtAdhocWithRouting::macLabelBasedSend(Ieee80211DataFrame *frame)
 
     if (routingModule->getNextHop(dest,next,iface,cost))
     {
-        frame->setReceiverAddress(next.toMAC());
+        frame->setReceiverAddress(next.getMAC());
     }
     else
     {
         // Destination unreachable
         if (!routingModule->isProactive())
         {
-            inetmanet::ControlManetRouting *ctrlmanet = new inetmanet::ControlManetRouting();
-            ctrlmanet->setOptionCode(inetmanet::MANET_ROUTE_NOROUTE);
+            ControlManetRouting *ctrlmanet = new ControlManetRouting();
+            ctrlmanet->setOptionCode(MANET_ROUTE_NOROUTE);
             ctrlmanet->setDestAddress(dest);
             //  ctrlmanet->setSrcAddress(myAddress);
             ctrlmanet->setSrcAddress(src);
             ctrlmanet->encapsulate(frame);
-            frame = nullptr;
+            frame = NULL;
             send(ctrlmanet,"routingOut");
         }
     }
@@ -396,7 +400,7 @@ void Ieee80211MgmtAdhocWithRouting::handleRoutingMessage(cPacket *msg)
         strcpy(name,msg->getName());
         error ("Message error, the routing message %s doesn't have Ieee802Ctrl control info",name);
     }
-    if (dynamic_cast<Ieee80211ActionMeshFrame *>(msg))
+    if (dynamic_cast<Ieee80211ActionHWMPFrame *>(msg))
     {
         msg->setKind(ctrl->getInterfaceId());
         delete ctrl;
@@ -464,28 +468,28 @@ Ieee80211DataFrame *Ieee80211MgmtAdhocWithRouting::encapsulate(cPacket *msg)
     //
     // Search in the data base
     //
-    L3Address nextHop;
+    ManetAddress nextHop;
     int iface;
     double cost;
-    if (!routingModule->getNextHop(L3Address(dest),nextHop,iface,cost)) //send the packet to the routingMo
+    if (!routingModule->getNextHop(ManetAddress(dest),nextHop,iface,cost)) //send the packet to the routingMo
     {
         if (!routingModule->isProactive())
         {
-            inetmanet::ControlManetRouting *ctrlmanet = new inetmanet::ControlManetRouting();
-            ctrlmanet->setOptionCode(inetmanet::MANET_ROUTE_NOROUTE);
-            ctrlmanet->setDestAddress(L3Address(dest));
-            ctrlmanet->setSrcAddress(L3Address(myAddress));
+            ControlManetRouting *ctrlmanet = new ControlManetRouting();
+            ctrlmanet->setOptionCode(MANET_ROUTE_NOROUTE);
+            ctrlmanet->setDestAddress(ManetAddress(dest));
+            ctrlmanet->setSrcAddress(ManetAddress(myAddress));
             ctrlmanet->encapsulate(frame);
             send(ctrlmanet,"routingOut");
-            return nullptr;
+            return NULL;
         }
         else
         {
             delete frame;
-            return nullptr;
+            return NULL;
         }
     }
-    next = nextHop.toMAC();
+    next = nextHop.getMAC();
     frame->setReceiverAddress(next);
 
     if (frame->getReceiverAddress().isUnspecified())
@@ -496,7 +500,7 @@ Ieee80211DataFrame *Ieee80211MgmtAdhocWithRouting::encapsulate(cPacket *msg)
 Ieee80211DataFrame *Ieee80211MgmtAdhocWithRouting::encapsulate(cPacket *msg,MACAddress dest)
 {
     Ieee80211MeshFrame *frame = dynamic_cast<Ieee80211MeshFrame*>(msg);
-    if (frame==nullptr)
+    if (frame==NULL)
     {
         frame = new Ieee80211MeshFrame(msg->getName());
         frame->setTimestamp(msg->getCreationTime());
@@ -514,12 +518,10 @@ Ieee80211DataFrame *Ieee80211MgmtAdhocWithRouting::encapsulate(cPacket *msg,MACA
     {
         char name[50];
         strcpy(name,msg->getName());
-        throw cRuntimeError ("Ieee80211Mesh::encapsulate Bad Address");
+        opp_error ("Ieee80211Mesh::encapsulate Bad Address");
     }
     if (frame->getReceiverAddress().isBroadcast())
         frame->setTTL(1);
     return frame;
 }
 
-}
-}

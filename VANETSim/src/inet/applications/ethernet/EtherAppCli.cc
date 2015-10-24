@@ -13,25 +13,32 @@
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
- */
+*/
 
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 
-#include "inet/applications/ethernet/EtherAppCli.h"
+#include "EtherAppCli.h"
 
-#include "inet/applications/ethernet/EtherApp_m.h"
-#include "inet/linklayer/common/Ieee802Ctrl.h"
-#include "inet/common/lifecycle/NodeOperations.h"
-#include "inet/common/ModuleAccess.h"
-
-namespace inet {
+#include "EtherApp_m.h"
+#include "Ieee802Ctrl_m.h"
+#include "NodeOperations.h"
+#include "ModuleAccess.h"
 
 Define_Module(EtherAppCli);
 
 simsignal_t EtherAppCli::sentPkSignal = registerSignal("sentPk");
 simsignal_t EtherAppCli::rcvdPkSignal = registerSignal("rcvdPk");
+
+EtherAppCli::EtherAppCli()
+{
+    reqLength = NULL;
+    respLength = NULL;
+    sendInterval = NULL;
+    timerMsg = NULL;
+    nodeStatus = NULL;
+}
 
 EtherAppCli::~EtherAppCli()
 {
@@ -42,7 +49,8 @@ void EtherAppCli::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
 
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         reqLength = &par("reqLength");
         respLength = &par("respLength");
         sendInterval = &par("sendInterval");
@@ -61,9 +69,10 @@ void EtherAppCli::initialize(int stage)
         startTime = par("startTime");
         stopTime = par("stopTime");
         if (stopTime >= SIMTIME_ZERO && stopTime < startTime)
-            throw cRuntimeError("Invalid startTime/stopTime parameters");
+            error("Invalid startTime/stopTime parameters");
     }
-    else if (stage == INITSTAGE_APPLICATION_LAYER) {
+    else if (stage == 3)
+    {
         if (isGenerator())
             timerMsg = new cMessage("generateNextPacket");
 
@@ -78,8 +87,10 @@ void EtherAppCli::handleMessage(cMessage *msg)
 {
     if (!isNodeUp())
         throw cRuntimeError("Application is not running");
-    if (msg->isSelfMessage()) {
-        if (msg->getKind() == START) {
+    if (msg->isSelfMessage())
+    {
+        if (msg->getKind() == START)
+        {
             bool registerSAP = par("registerSAP");
             if (registerSAP)
                 registerDSAP(localSAP);
@@ -93,26 +104,25 @@ void EtherAppCli::handleMessage(cMessage *msg)
         scheduleNextPacket(false);
     }
     else
-        receivePacket(check_and_cast<cPacket *>(msg));
+        receivePacket(check_and_cast<cPacket*>(msg));
 }
 
 bool EtherAppCli::handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback)
 {
     Enter_Method_Silent();
     if (dynamic_cast<NodeStartOperation *>(operation)) {
-        if ((NodeStartOperation::Stage)stage == NodeStartOperation::STAGE_APPLICATION_LAYER && isGenerator())
+        if (stage == NodeStartOperation::STAGE_APPLICATION_LAYER && isGenerator())
             scheduleNextPacket(true);
     }
     else if (dynamic_cast<NodeShutdownOperation *>(operation)) {
-        if ((NodeShutdownOperation::Stage)stage == NodeShutdownOperation::STAGE_APPLICATION_LAYER)
+        if (stage == NodeShutdownOperation::STAGE_APPLICATION_LAYER)
             cancelNextPacket();
     }
     else if (dynamic_cast<NodeCrashOperation *>(operation)) {
-        if ((NodeCrashOperation::Stage)stage == NodeCrashOperation::STAGE_CRASH)
+        if (stage == NodeCrashOperation::STAGE_CRASH)
             cancelNextPacket();
     }
-    else
-        throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName());
+    else throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName());
     return true;
 }
 
@@ -130,11 +140,13 @@ void EtherAppCli::scheduleNextPacket(bool start)
 {
     simtime_t cur = simTime();
     simtime_t next;
-    if (start) {
+    if (start)
+    {
         next = cur <= startTime ? startTime : cur;
         timerMsg->setKind(START);
     }
-    else {
+    else
+    {
         next = cur + sendInterval->doubleValue();
         timerMsg->setKind(NEXT);
     }
@@ -152,16 +164,18 @@ MACAddress EtherAppCli::resolveDestMACAddress()
 {
     MACAddress destMACAddress;
     const char *destAddress = par("destAddress");
-    if (destAddress[0]) {
+    if (destAddress[0])
+    {
         // try as mac address first, then as a module
-        if (!destMACAddress.tryParse(destAddress)) {
-            cModule *destStation = getModuleByPath(destAddress);
+        if (!destMACAddress.tryParse(destAddress))
+        {
+            cModule *destStation = simulation.getModuleByPath(destAddress);
             if (!destStation)
-                throw cRuntimeError("cannot resolve MAC address '%s': not a 12-hex-digit MAC address or a valid module path name", destAddress);
+                error("cannot resolve MAC address '%s': not a 12-hex-digit MAC address or a valid module path name", destAddress);
 
             cModule *destMAC = destStation->getSubmodule("mac");
             if (!destMAC)
-                throw cRuntimeError("module '%s' has no 'mac' submodule", destAddress);
+                error("module '%s' has no 'mac' submodule", destAddress);
 
             destMACAddress.setAddress(destMAC->par("address"));
         }
@@ -171,7 +185,7 @@ MACAddress EtherAppCli::resolveDestMACAddress()
 
 void EtherAppCli::registerDSAP(int dsap)
 {
-    EV_DEBUG << getFullPath() << " registering DSAP " << dsap << "\n";
+    EV << getFullPath() << " registering DSAP " << dsap << "\n";
 
     Ieee802Ctrl *etherctrl = new Ieee802Ctrl();
     etherctrl->setDsap(dsap);
@@ -187,7 +201,7 @@ void EtherAppCli::sendPacket()
 
     char msgname[30];
     sprintf(msgname, "req-%d-%ld", getId(), seqNum);
-    EV_INFO << "Generating packet `" << msgname << "'\n";
+    EV << "Generating packet `" << msgname << "'\n";
 
     EtherAppReq *datapacket = new EtherAppReq(msgname, IEEE802CTRL_DATA);
 
@@ -212,7 +226,7 @@ void EtherAppCli::sendPacket()
 
 void EtherAppCli::receivePacket(cPacket *msg)
 {
-    EV_INFO << "Received packet `" << msg->getName() << "'\n";
+    EV << "Received packet `" << msg->getName() << "'\n";
 
     packetsReceived++;
     emit(rcvdPkSignal, msg);
@@ -222,8 +236,6 @@ void EtherAppCli::receivePacket(cPacket *msg)
 void EtherAppCli::finish()
 {
     cancelAndDelete(timerMsg);
-    timerMsg = nullptr;
+    timerMsg = NULL;
 }
-
-} // namespace inet
 

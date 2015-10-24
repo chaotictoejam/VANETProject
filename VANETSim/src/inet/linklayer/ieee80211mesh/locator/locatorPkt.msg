@@ -16,22 +16,18 @@
 //
 // TODO generated message class
 //
+class noncobject IPv4Address;
 
+class noncobject MACAddress;
+
+class noncobject ManetAddress;
 
 cplusplus {{
-#include "inet/networklayer/contract/ipv4/IPv4Address.h"
-#include "inet/linklayer/common/MACAddress.h"
-#include "inet/networklayer/common/L3Address.h"
+#include "IPv4Address.h"
+#include "MACAddress.h"
+#include "ManetAddress.h"
 }}
 
-namespace inet::ieee80211;
-
-class noncobject inet::IPv4Address;
-
-class noncobject inet::MACAddress;
-
-class noncobject inet::L3Address;
-    
 enum LocatorOpcode
 {
     LocatorAssoc = 1;
@@ -46,7 +42,7 @@ packet LocatorPkt
 {
     byteLength = 22;//6+6+4+4+2
     int opcode enum(LocatorOpcode);
-    L3Address origin;
+    ManetAddress origin;
     unsigned int sequence;
     MACAddress apMACAddress;
     MACAddress staMACAddress;

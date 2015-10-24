@@ -16,17 +16,15 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SIMPLEVOIPSENDER_H
-#define __INET_SIMPLEVOIPSENDER_H
+#ifndef VOIPSENDER_H_
+#define VOIPSENDER_H_
 
 #include <string.h>
-#include "inet/common/INETDefs.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
-#include "inet/networklayer/common/L3AddressResolver.h"
-#include "inet/common/lifecycle/ILifecycle.h"
-#include "inet/common/lifecycle/LifecycleOperation.h"
-
-namespace inet {
+#include "INETDefs.h"
+#include "UDPSocket.h"
+#include "IPvXAddressResolver.h"
+#include "ILifecycle.h"
+#include "LifecycleOperation.h"
 
 /**
  * Implements a simple VoIP source. See the NED file for more information.
@@ -36,41 +34,45 @@ class SimpleVoIPSender : public cSimpleModule, public ILifecycle
   private:
     UDPSocket socket;
 
-    // parameters
-    simtime_t stopTime;
-    simtime_t packetizationInterval;
-    int localPort = -1;
-    int destPort = -1;
-    int talkPacketSize = 0;
-    L3Address destAddress;
-
-    // state
-    cMessage *selfSender = nullptr;    // timer for sending packets
-    cMessage *selfSource = nullptr;    // timer for changing talkspurt/silence periods - FIXME: be more specific with the name of this self message
-    simtime_t silenceDuration;
+    // source
     simtime_t talkspurtDuration;
-    int packetID = -1;
-    int talkspurtID = -1;
-    int talkspurtNumPackets = 0;
-    bool isTalk = false;
+    simtime_t silenceDuration;
+    bool      isTalk;
 
-  protected:
+    // FIXME: be more specific with the name of this self message
+    cMessage* selfSource;   // timer for changing talkspurt/silence periods
+
+    int talkspurtID;
+    int talkspurtNumPackets;
+    int packetID;
+    int talkPacketSize;
+    simtime_t packetizationInterval;
+
+    // ----------------------------
+    cMessage *selfSender;   // timer for sending packets
+
+    simtime_t timestamp;
+    int localPort;
+    int destPort;
+    IPvXAddress destAddress;
+    simtime_t stopTime;
+
     void talkspurt(simtime_t dur);
     void selectPeriodTime();
     void sendVoIPPacket();
 
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int stage) override;
-    virtual void handleMessage(cMessage *msg) override;
-    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) override
-    { Enter_Method_Silent(); throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName()); return true; }
-
   public:
     virtual ~SimpleVoIPSender();
     SimpleVoIPSender();
+
+    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback)
+    { Enter_Method_Silent(); throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName()); return true; }
+
+  protected:
+    virtual int numInitStages() const { return 4; }
+    virtual void initialize(int stage);
+    virtual void handleMessage(cMessage *msg);
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_SIMPLEVOIPSENDER_H
+#endif /* VOIPSENDER_H_ */
 

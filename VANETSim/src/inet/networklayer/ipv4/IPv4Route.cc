@@ -19,63 +19,64 @@
 #include <stdio.h>
 #include <sstream>
 
-#include "inet/networklayer/ipv4/IPv4Route.h"
-#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
-#include "inet/networklayer/ipv4/IPv4RoutingTable.h"
+#include "IPv4Route.h"
+#include "IPv4InterfaceData.h"
 
-#include "inet/networklayer/common/InterfaceEntry.h"
-#include "inet/networklayer/ipv4/IIPv4RoutingTable.h"
+#include "InterfaceEntry.h"
+#include "IRoutingTable.h"
+
 #ifdef WITH_AODV
-#include "inet/routing/aodv/AODVRouteData.h"
-#endif // ifdef WITH_AODV
-
-namespace inet {
+#include "AODVRouteData.h"
+#endif
 
 Register_Class(IPv4Route);
 Register_Class(IPv4MulticastRoute);
 
+
+const char *IPv4Route::sourceTypeName(SourceType sourceType)
+{
+    switch (sourceType)
+    {
+        case MANUAL:               return "MANUAL";
+        case IFACENETMASK:         return "IFACENETMASK";
+        case RIP:                  return "RIP";
+        case OSPF:                 return "OSPF";
+        case BGP:                  return "BGP";
+        case ZEBRA:                return "ZEBRA";
+        case MANET:                return "MANET";
+        case MANET2:               return "MANET2";
+        case DYMO:                 return "DYMO";
+        case AODV:                 return "AODV";
+        default:                   return "???";
+    }
+}
+
 IPv4Route::~IPv4Route()
 {
-    delete protocolData;
 }
 
 std::string IPv4Route::info() const
 {
     std::stringstream out;
 
-    out << "dest:";
-    if (dest.isUnspecified())
-        out << "*  ";
-    else
-        out << dest << "  ";
-    out << "gw:";
-    if (gateway.isUnspecified())
-        out << "*  ";
-    else
-        out << gateway << "  ";
-    out << "mask:";
-    if (netmask.isUnspecified())
-        out << "*  ";
-    else
-        out << netmask << "  ";
+    out << "dest:"; if (dest.isUnspecified()) out << "*  "; else out << dest << "  ";
+    out << "gw:"; if (gateway.isUnspecified()) out << "*  "; else out << gateway << "  ";
+    out << "mask:"; if (netmask.isUnspecified()) out << "*  "; else out << netmask << "  ";
     out << "metric:" << metric << " ";
-    out << "if:";
-    if (!interfacePtr)
-        out << "*";
-    else
-        out << interfacePtr->getName();
+    out << "if:"; if (!interfacePtr) out << "*"; else out << interfacePtr->getName();
     if (interfacePtr && interfacePtr->ipv4Data())
         out << "(" << interfacePtr->ipv4Data()->getIPAddress() << ")";
     out << "  ";
     out << (gateway.isUnspecified() ? "DIRECT" : "REMOTE");
-    out << " " << IRoute::sourceTypeName(sourceType);
+    out << " " << sourceTypeName(sourceType);
 
 #ifdef WITH_AODV
-    if (dynamic_cast<AODVRouteData *>(protocolData)) {
-        AODVRouteData *data = (AODVRouteData *)protocolData;
+    if (dynamic_cast<AODVRouteData*>(protocolData))
+    {
+        AODVRouteData * data = (AODVRouteData*) protocolData;
         out << data;
     }
-#endif // ifdef WITH_AODV
+#endif
     return out.str();
 }
 
@@ -101,16 +102,11 @@ void IPv4Route::changed(int fieldCode)
         rt->routeChanged(this, fieldCode);
 }
 
-IRoutingTable *IPv4Route::getRoutingTableAsGeneric() const
-{
-    return getRoutingTable();
-}
-
 IPv4MulticastRoute::~IPv4MulticastRoute()
 {
     delete inInterface;
-    for (auto & elem : outInterfaces)
-        delete elem;
+    for (OutInterfaceVector::iterator it = outInterfaces.begin(); it != outInterfaces.end(); ++it)
+        delete *it;
     outInterfaces.clear();
 }
 
@@ -118,39 +114,26 @@ std::string IPv4MulticastRoute::info() const
 {
     std::stringstream out;
 
-    out << "origin:";
-    if (origin.isUnspecified())
-        out << "*  ";
-    else
-        out << origin << "  ";
-    out << "mask:";
-    if (originNetmask.isUnspecified())
-        out << "*  ";
-    else
-        out << originNetmask << "  ";
-    out << "group:";
-    if (group.isUnspecified())
-        out << "*  ";
-    else
-        out << group << "  ";
+    out << "origin:"; if (origin.isUnspecified()) out << "*  "; else out << origin << "  ";
+    out << "mask:"; if (originNetmask.isUnspecified()) out << "*  "; else out << originNetmask << "  ";
+    out << "group:"; if (group.isUnspecified()) out << "*  "; else out << group << "  ";
     out << "metric:" << metric << " ";
-    out << "in:";
-    if (!inInterface)
-        out << "*  ";
-    else
-        out << inInterface->getInterface()->getName() << "  ";
+    out << "in:"; if (!inInterface) out << "*  "; else out << inInterface->getInterface()->getName() << "  ";
     out << "out:";
-    bool first = true;
-    for (auto & elem : outInterfaces) {
-        if (!first)
+    for (unsigned int i = 0; i < outInterfaces.size(); ++i)
+    {
+        if (i > 0)
             out << ",";
-        if (elem->isEnabled()) {
-            out << elem->getInterface()->getName();
-            first = false;
-        }
+        out << outInterfaces[i]->getInterface()->getName();
     }
 
-    out << " " << IMulticastRoute::sourceTypeName(sourceType);
+    switch (sourceType)
+    {
+        case MANUAL:       out << " MANUAL"; break;
+        case DVMRP:        out << " DVRMP"; break;
+        case PIM_SM:       out << " PIM-SM"; break;
+        default:           out << " ???"; break;
+    }
 
     return out.str();
 }
@@ -171,41 +154,45 @@ void IPv4MulticastRoute::setInInterface(InInterface *_inInterface)
 
 void IPv4MulticastRoute::clearOutInterfaces()
 {
-    if (!outInterfaces.empty()) {
-        for (auto & elem : outInterfaces)
-            delete elem;
+    if (!outInterfaces.empty())
+    {
+        for (OutInterfaceVector::iterator it = outInterfaces.begin(); it != outInterfaces.end(); ++it)
+            delete *it;
         outInterfaces.clear();
         changed(F_OUT);
     }
-}
-
-IRoutingTable *IPv4MulticastRoute::getRoutingTableAsGeneric() const
-{
-    return getRoutingTable();
 }
 
 void IPv4MulticastRoute::addOutInterface(OutInterface *outInterface)
 {
     ASSERT(outInterface);
 
-    auto it = outInterfaces.begin();
-    for ( ; it != outInterfaces.end(); ++it) {
-        if ((*it)->getInterface() == outInterface->getInterface()) {
-            delete *it;
-            *it = outInterface;
-            changed(F_OUT);
-            return;
-        }
+    OutInterfaceVector::iterator it;
+    for (it = outInterfaces.begin(); it != outInterfaces.end(); ++it)
+    {
+        if ((*it)->getInterface() == outInterface->getInterface())
+            break;
     }
 
-    outInterfaces.push_back(outInterface);
-    changed(F_OUT);
+    if (it != outInterfaces.end())
+    {
+        delete *it;
+        *it = outInterface;
+        changed(F_OUT);
+    }
+    else
+    {
+        outInterfaces.push_back(outInterface);
+        changed(F_OUT);
+    }
 }
 
 bool IPv4MulticastRoute::removeOutInterface(const InterfaceEntry *ie)
 {
-    for (auto it = outInterfaces.begin(); it != outInterfaces.end(); ++it) {
-        if ((*it)->getInterface() == ie) {
+    for (OutInterfaceVector::iterator it = outInterfaces.begin(); it != outInterfaces.end(); ++it)
+    {
+        if ((*it)->getInterface() == ie)
+        {
             delete *it;
             outInterfaces.erase(it);
             changed(F_OUT);
@@ -219,7 +206,7 @@ void IPv4MulticastRoute::removeOutInterface(unsigned int i)
 {
     OutInterface *outInterface = outInterfaces.at(i);
     delete outInterface;
-    outInterfaces.erase(outInterfaces.begin() + i);
+    outInterfaces.erase(outInterfaces.begin()+i);
     changed(F_OUT);
 }
 
@@ -228,6 +215,3 @@ void IPv4MulticastRoute::changed(int fieldCode)
     if (rt)
         rt->multicastRouteChanged(this, fieldCode);
 }
-
-} // namespace inet
-

@@ -15,39 +15,42 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inet/applications/udpapp/UDPEchoApp.h"
 
-#include "inet/common/ModuleAccess.h"
-#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
+#include "UDPEchoApp.h"
+#include "UDPControlInfo_m.h"
 
-namespace inet {
 
 Define_Module(UDPEchoApp);
 
 simsignal_t UDPEchoApp::pkSignal = registerSignal("pk");
 
+
 void UDPEchoApp::initialize(int stage)
 {
     ApplicationBase::initialize(stage);
 
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         // init statistics
         numEchoed = 0;
         WATCH(numEchoed);
     }
-    else if (stage == INITSTAGE_LAST) {
-        if (hasGUI())
+    else if (stage == 3)
+    {
+        if (ev.isGUI())
             updateDisplay();
     }
 }
 
 void UDPEchoApp::handleMessageWhenUp(cMessage *msg)
 {
-    if (msg->getKind() == UDP_I_ERROR) {
+    if (msg->getKind() == UDP_I_ERROR)
+    {
         // ICMP error report -- discard it
         delete msg;
     }
-    else if (msg->getKind() == UDP_I_DATA) {
+    else if (msg->getKind() == UDP_I_DATA)
+    {
         cPacket *pk = PK(msg);
         // statistics
         numEchoed++;
@@ -55,17 +58,18 @@ void UDPEchoApp::handleMessageWhenUp(cMessage *msg)
 
         // determine its source address/port
         UDPDataIndication *ctrl = check_and_cast<UDPDataIndication *>(pk->removeControlInfo());
-        L3Address srcAddress = ctrl->getSrcAddr();
+        IPvXAddress srcAddress = ctrl->getSrcAddr();
         int srcPort = ctrl->getSrcPort();
         delete ctrl;
 
         // send back
         socket.sendTo(pk, srcAddress, srcPort);
 
-        if (hasGUI())
+        if (ev.isGUI())
             updateDisplay();
     }
-    else {
+    else
+    {
         throw cRuntimeError("Message received with unexpected message kind = %d", msg->getKind());
     }
 }
@@ -87,8 +91,7 @@ bool UDPEchoApp::handleNodeStart(IDoneCallback *doneCallback)
     socket.setOutputGate(gate("udpOut"));
     int localPort = par("localPort");
     socket.bind(localPort);
-    MulticastGroupList mgl = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this)->collectMulticastGroups();
-    socket.joinLocalMulticastGroups(mgl);
+    socket.joinLocalMulticastGroups();
     return true;
 }
 
@@ -101,6 +104,4 @@ bool UDPEchoApp::handleNodeShutdown(IDoneCallback *doneCallback)
 void UDPEchoApp::handleNodeCrash()
 {
 }
-
-} // namespace inet
 

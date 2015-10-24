@@ -17,17 +17,16 @@
 // @author Zoltan Bojthe
 //
 
-#ifndef __INET_MATRIXCLOUDDELAYER_H
-#define __INET_MATRIXCLOUDDELAYER_H
+#ifndef __INET_INTERNETCLOUD_MATRIXCLOUDDELAYER_H
+#define __INET_INTERNETCLOUD_MATRIXCLOUDDELAYER_H
 
-#include "inet/common/INETDefs.h"
 
-#include "inet/networklayer/internetcloud/CloudDelayerBase.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "CloudDelayerBase.h"
 
 class IInterfaceTable;
-class PatternMatcher;
+namespace inet { class PatternMatcher; }
 
 /**
  * Implementation of MatrixCloudDelayer. See NED file for details.
@@ -40,8 +39,7 @@ class INET_API MatrixCloudDelayer : public CloudDelayerBase
     {
       private:
         bool matchesany;
-        std::vector<inet::PatternMatcher *> matchers;    // TODO replace with a MatchExpression once it becomes available in OMNeT++
-
+        std::vector<inet::PatternMatcher *> matchers; // TODO replace with a MatchExpression once it becomes available in OMNeT++
       public:
         Matcher(const char *pattern);
         ~Matcher();
@@ -54,12 +52,11 @@ class INET_API MatrixCloudDelayer : public CloudDelayerBase
       public:
         Matcher srcMatcher;
         Matcher destMatcher;
-        bool symmetric = false;
+        bool symmetric;
         cDynamicExpression delayPar;
         cDynamicExpression dataratePar;
         cDynamicExpression dropPar;
-        cXMLElement *entity = nullptr;
-
+        cXMLElement *entity;
       public:
         MatrixEntry(cXMLElement *trafficEntity, bool defaultSymmetric);
         ~MatrixEntry() {}
@@ -69,42 +66,40 @@ class INET_API MatrixCloudDelayer : public CloudDelayerBase
     class Descriptor
     {
       public:
-        cDynamicExpression *delayPar = nullptr;
-        cDynamicExpression *dataratePar = nullptr;
-        cDynamicExpression *dropPar = nullptr;
+        cDynamicExpression *delayPar;
+        cDynamicExpression *dataratePar;
+        cDynamicExpression *dropPar;
         simtime_t lastSent;
-
       public:
-        Descriptor() {}
+        Descriptor() : delayPar(NULL), dataratePar(NULL), dropPar(NULL), lastSent(SIMTIME_ZERO) {}
     };
 
-    typedef std::pair<int, int> IDPair;
-    typedef std::map<IDPair, Descriptor> IDPairToDescriptorMap;
-    typedef std::vector<MatrixEntry *> MatrixEntryPtrVector;
+    typedef std::pair<int,int> IDPair;
+    typedef std::map<IDPair,Descriptor> IDPairToDescriptorMap;
+    typedef std::vector<MatrixEntry*> MatrixEntryPtrVector;
 
     MatrixEntryPtrVector matrixEntries;
     IDPairToDescriptorMap idPairToDescriptorMap;
 
-    IInterfaceTable *ift = nullptr;
-    cModule *host = nullptr;
+    IInterfaceTable *ift;
+    cModule *host;
 
   protected:
     virtual ~MatrixCloudDelayer();
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int stage) override;
+    virtual int numInitStages() const { return 2; }
+    virtual void initialize(int stage);
 
     /**
      * returns isDrop and delay for this msg
      */
-    virtual void calculateDropAndDelay(const cMessage *msg, int srcID, int destID, bool& outDrop, simtime_t& outDelay) override;
+    virtual void calculateDropAndDelay(const cMessage *msg, int srcID, int destID, bool& outDrop, simtime_t& outDelay);
 
-    MatrixCloudDelayer::Descriptor *getOrCreateDescriptor(int srcID, int destID);
+    MatrixCloudDelayer::Descriptor* getOrCreateDescriptor(int srcID, int destID);
 
     /// returns path of connected node for the interface specified by 'id'
     std::string getPathOfConnectedNodeOnIfaceID(int id);
 };
 
-} // namespace inet
 
-#endif // ifndef __INET_MATRIXCLOUDDELAYER_H
+#endif  // __INET_INTERNETCLOUD_MATRIXCLOUDDELAYER_H
 

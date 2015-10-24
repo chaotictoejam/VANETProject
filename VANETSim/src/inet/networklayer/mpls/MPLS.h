@@ -13,57 +13,54 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_MPLS_H
-#define __INET_MPLS_H
+#ifndef __INET_MPLSMODULE_H
+#define __INET_MPLSMODULE_H
 
 #include <vector>
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/networklayer/mpls/MPLSPacket.h"
-#include "inet/networklayer/ipv4/IPv4Datagram.h"
-#include "inet/networklayer/mpls/ConstType.h"
+#include "MPLSPacket.h"
+#include "IPv4Datagram.h"
+#include "ConstType.h"
 
-#include "inet/networklayer/mpls/LIBTable.h"
-#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "LIBTable.h"
+#include "IInterfaceTable.h"
 
-#include "inet/networklayer/mpls/IClassifier.h"
+#include "IClassifier.h"
 
-namespace inet {
 
 /**
  * Implements the MPLS protocol; see the NED file for more info.
  */
 class INET_API MPLS : public cSimpleModule
 {
-  protected:
-    simtime_t delay1;
+    protected:
+        simtime_t delay1;
 
-    //no longer used, see comment in intialize
-    //std::vector<bool> labelIf;
+        //no longer used, see comment in intialize
+        //std::vector<bool> labelIf;
 
-    LIBTable *lt;
-    IInterfaceTable *ift;
-    IClassifier *pct;
+        LIBTable *lt;
+        IInterfaceTable *ift;
+        IClassifier *pct;
 
-  protected:
-    virtual void initialize(int stage) override;
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void handleMessage(cMessage *msg) override;
+    protected:
+        virtual void initialize(int stage);
+        virtual int numInitStages() const { return 5; }
+        virtual void handleMessage(cMessage *msg);
 
-  protected:
-    virtual void processPacketFromL3(cMessage *msg);
-    virtual void processPacketFromL2(cMessage *msg);
-    virtual void processMPLSPacketFromL2(MPLSPacket *mplsPacket);
+    protected:
+        virtual void processPacketFromL3(cMessage *msg);
+        virtual void processPacketFromL2(cMessage *msg);
+        virtual void processMPLSPacketFromL2(MPLSPacket *mplsPacket);
 
-    virtual bool tryLabelAndForwardIPv4Datagram(IPv4Datagram *ipdatagram);
-    virtual void labelAndForwardIPv4Datagram(IPv4Datagram *ipdatagram);
+        virtual bool tryLabelAndForwardIPv4Datagram(IPv4Datagram *ipdatagram);
+        virtual void labelAndForwardIPv4Datagram(IPv4Datagram *ipdatagram);
 
-    virtual void sendToL2(cMessage *msg, int gateIndex);
-    virtual void doStackOps(MPLSPacket *mplsPacket, const LabelOpVector& outLabel);
+        virtual void sendToL2(cMessage *msg, int gateIndex);
+        virtual void doStackOps(MPLSPacket *mplsPacket, const LabelOpVector& outLabel);
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_MPLS_H
+#endif
 

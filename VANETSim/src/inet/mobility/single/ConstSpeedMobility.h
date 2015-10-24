@@ -17,14 +17,14 @@
  * part of:     framework implementation developed by tkn
  **************************************************************************/
 
-#ifndef __INET_CONSTSPEEDMOBILITY_H
-#define __INET_CONSTSPEEDMOBILITY_H
 
-#include "inet/common/INETDefs.h"
+#ifndef CONST_SPEED_MOBILITY_H
+#define CONST_SPEED_MOBILITY_H
 
-#include "inet/mobility/base/LineSegmentsMobilityBase.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "LineSegmentsMobilityBase.h"
+
 
 /**
  * @brief Moves along a line with constant speed to a randomly chosen target.
@@ -40,20 +40,16 @@ class INET_API ConstSpeedMobility : public LineSegmentsMobilityBase
     double speed;
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 3; }
 
     /** @brief Initializes mobility model parameters. */
-    virtual void initialize(int stage) override;
+    virtual void initialize(int stage);
 
     /** @brief Calculate a new target position to move to. */
-    virtual void setTargetPosition() override;
+    virtual void setTargetPosition();
 
   public:
-    virtual double getMaxSpeed() const override { return speed; }
     ConstSpeedMobility();
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_CONSTSPEEDMOBILITY_H
-
+#endif

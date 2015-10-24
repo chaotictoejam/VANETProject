@@ -15,7 +15,7 @@
 
 package inet.linklayer.ethernet.switch;
 
-import inet.linklayer.contract.IMACRelayUnit;
+import inet.linklayer.IMACRelayUnit;
 
 simple MACRelayUnit like IMACRelayUnit
 {

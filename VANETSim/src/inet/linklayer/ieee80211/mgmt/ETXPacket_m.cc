@@ -28,8 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
-namespace ieee80211 {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -143,7 +141,7 @@ class ETXBasePacketDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(ETXBasePacketDescriptor);
 
-ETXBasePacketDescriptor::ETXBasePacketDescriptor() : cClassDescriptor("inet::ieee80211::ETXBasePacket", "cPacket")
+ETXBasePacketDescriptor::ETXBasePacketDescriptor() : cClassDescriptor("ETXBasePacket", "cPacket")
 {
 }
 
@@ -312,7 +310,7 @@ void *ETXBasePacketDescriptor::getFieldStructPointer(void *object, int field, in
 
 Register_Class(MACETXPacket);
 
-MACETXPacket::MACETXPacket(const char *name, int kind) : ::inet::ieee80211::ETXBasePacket(name,kind)
+MACETXPacket::MACETXPacket(const char *name, int kind) : ::ETXBasePacket(name,kind)
 {
     this->setByteLength(100);
 
@@ -322,7 +320,7 @@ MACETXPacket::MACETXPacket(const char *name, int kind) : ::inet::ieee80211::ETXB
     this->recPackets_var = 0;
 }
 
-MACETXPacket::MACETXPacket(const MACETXPacket& other) : ::inet::ieee80211::ETXBasePacket(other)
+MACETXPacket::MACETXPacket(const MACETXPacket& other) : ::ETXBasePacket(other)
 {
     neighbors_arraysize = 0;
     this->neighbors_var = 0;
@@ -340,7 +338,7 @@ MACETXPacket::~MACETXPacket()
 MACETXPacket& MACETXPacket::operator=(const MACETXPacket& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::ETXBasePacket::operator=(other);
+    ::ETXBasePacket::operator=(other);
     copy(other);
     return *this;
 }
@@ -361,7 +359,7 @@ void MACETXPacket::copy(const MACETXPacket& other)
 
 void MACETXPacket::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::ETXBasePacket::parsimPack(b);
+    ::ETXBasePacket::parsimPack(b);
     b->pack(neighbors_arraysize);
     doPacking(b,this->neighbors_var,neighbors_arraysize);
     b->pack(recPackets_arraysize);
@@ -370,7 +368,7 @@ void MACETXPacket::parsimPack(cCommBuffer *b)
 
 void MACETXPacket::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::ETXBasePacket::parsimUnpack(b);
+    ::ETXBasePacket::parsimUnpack(b);
     delete [] this->neighbors_var;
     b->unpack(neighbors_arraysize);
     if (neighbors_arraysize==0) {
@@ -472,7 +470,7 @@ class MACETXPacketDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(MACETXPacketDescriptor);
 
-MACETXPacketDescriptor::MACETXPacketDescriptor() : cClassDescriptor("inet::ieee80211::MACETXPacket", "inet::ieee80211::ETXBasePacket")
+MACETXPacketDescriptor::MACETXPacketDescriptor() : cClassDescriptor("MACETXPacket", "ETXBasePacket")
 {
 }
 
@@ -642,14 +640,14 @@ void *MACETXPacketDescriptor::getFieldStructPointer(void *object, int field, int
 
 Register_Class(MACBwPacket);
 
-MACBwPacket::MACBwPacket(const char *name, int kind) : ::inet::ieee80211::ETXBasePacket(name,kind)
+MACBwPacket::MACBwPacket(const char *name, int kind) : ::ETXBasePacket(name,kind)
 {
     this->type_var = 0;
     this->time_var = 0;
     this->index_var = 0;
 }
 
-MACBwPacket::MACBwPacket(const MACBwPacket& other) : ::inet::ieee80211::ETXBasePacket(other)
+MACBwPacket::MACBwPacket(const MACBwPacket& other) : ::ETXBasePacket(other)
 {
     copy(other);
 }
@@ -661,7 +659,7 @@ MACBwPacket::~MACBwPacket()
 MACBwPacket& MACBwPacket::operator=(const MACBwPacket& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::ETXBasePacket::operator=(other);
+    ::ETXBasePacket::operator=(other);
     copy(other);
     return *this;
 }
@@ -675,7 +673,7 @@ void MACBwPacket::copy(const MACBwPacket& other)
 
 void MACBwPacket::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::ETXBasePacket::parsimPack(b);
+    ::ETXBasePacket::parsimPack(b);
     doPacking(b,this->type_var);
     doPacking(b,this->time_var);
     doPacking(b,this->index_var);
@@ -683,7 +681,7 @@ void MACBwPacket::parsimPack(cCommBuffer *b)
 
 void MACBwPacket::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::ETXBasePacket::parsimUnpack(b);
+    ::ETXBasePacket::parsimUnpack(b);
     doUnpacking(b,this->type_var);
     doUnpacking(b,this->time_var);
     doUnpacking(b,this->index_var);
@@ -744,7 +742,7 @@ class MACBwPacketDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(MACBwPacketDescriptor);
 
-MACBwPacketDescriptor::MACBwPacketDescriptor() : cClassDescriptor("inet::ieee80211::MACBwPacket", "inet::ieee80211::ETXBasePacket")
+MACBwPacketDescriptor::MACBwPacketDescriptor() : cClassDescriptor("MACBwPacket", "ETXBasePacket")
 {
 }
 
@@ -915,6 +913,4 @@ void *MACBwPacketDescriptor::getFieldStructPointer(void *object, int field, int 
     }
 }
 
-} // namespace ieee80211
-} // namespace inet
 

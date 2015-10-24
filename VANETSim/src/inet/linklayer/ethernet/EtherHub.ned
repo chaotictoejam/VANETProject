@@ -37,7 +37,7 @@ package inet.linklayer.ethernet;
 simple EtherHub
 {
     parameters:
-        @networkNode();
+        @node();
         @labels(node,ethernet-node);
         @display("i=device/hub");
         @signal[pk](type=cMessage);

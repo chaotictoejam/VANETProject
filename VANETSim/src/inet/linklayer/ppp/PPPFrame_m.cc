@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -116,7 +115,7 @@ class PPPFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(PPPFrameDescriptor);
 
-PPPFrameDescriptor::PPPFrameDescriptor() : cClassDescriptor("inet::PPPFrame", "cPacket")
+PPPFrameDescriptor::PPPFrameDescriptor() : cClassDescriptor("PPPFrame", "cPacket")
 {
 }
 
@@ -260,5 +259,4 @@ void *PPPFrameDescriptor::getFieldStructPointer(void *object, int field, int i) 
     }
 }
 
-} // namespace inet
 

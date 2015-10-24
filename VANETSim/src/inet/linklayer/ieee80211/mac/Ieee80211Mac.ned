@@ -17,11 +17,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
+
 package inet.linklayer.ieee80211.mac;
-
-import inet.linklayer.base.MACProtocolBase;
-import inet.linklayer.contract.IMACProtocol;
-
 
 //
 // Implementation of the 802.11 MAC protocol. This module is intended
@@ -56,7 +53,7 @@ import inet.linklayer.contract.IMACProtocol;
 // listen interval which is related to power management, capability information
 // which is related to PCF and other non-modelled features).
 //
-simple Ieee80211Mac extends MACProtocolBase like IMACProtocol
+simple Ieee80211Mac
 {
     parameters:
         string address = default("auto"); // MAC address as hex string (12 hex digits), or
@@ -64,10 +61,16 @@ simple Ieee80211Mac extends MACProtocolBase like IMACProtocol
                                           // a generated MAC address in init stage 0.
         string queueModule = default(""); // name of optional external queue module
         int maxQueueSize = default(50);   // max queue length in frames; only used if queueModule==""
+        
+        int saveSize0 = default(0);   // minum size save for categorie 0, only used if queueModule==""
+        int saveSize1 = default(0);   // minum size save for categorie 0, only used if queueModule==""
+        int saveSize2 = default(0);   // minum size save for categorie 0, only used if queueModule==""
+        int saveSize3 = default(0);   // minum size save for categorie 0, only used if queueModule==""
 
         bool EDCA = default(false); // enable Enhanced Distributed Channel Access (802.11e)
         // parameters for EDCA = true
         string classifier = default("Ieee80211eClassifier");
+        int maxCategorieQueueSize = default(50); // Max queue length in frames per categorie; only used if queueModule==""
         int defaultAC = default(0); // the default AC category for frames that cannot be classified
         int AIFSN0 = default(7); // AIFSN for background
         int AIFSN1 = default(3); // AIFSN for best effort
@@ -80,14 +83,13 @@ simple Ieee80211Mac extends MACProtocolBase like IMACProtocol
         // parameters for EDCA = false
         int AIFSN = default(2); // if there is only one AC (EDCA = false) it is used to compute Difs value always
 
-        bool useModulationParameters = default(false); // if true, slot time, DIFS, and ACK timeout (aPHY-RX-START-Delay) are function of modulation time (2007 standard)
+        bool useModulationParameters = default(true); // if true, slot time, DIFS, and ACK timeout (aPHY-RX-START-Delay) are function of modulation time (2007 standard)
         bool prioritizeMulticast = default(false); // if true, prioritize multicast frames (9.3.2.1 Fundamental access)
 
         double bitrate @unit("bps");
-        string opMode @enum("a", "b", "g", "n", "p") = default("g");
+        string opMode @enum("b","g","a","p","n") = default("g");
+        string wifiPreambleMode @enum("LONG","SHORT") = default("LONG"); // preamble mode; see IEEE 2007, 19.3.2
 
-		// TODO: These bitrates are not a real degrees of freedom
-		// with OFDM modulation the basic bitrate is 6Mbps
         double basicBitrate @unit("bps") = default(1e6bps); // used for broadcast frames
         double controlBitrate @unit("bps") = default(1e6bps); // used for control frames
 
@@ -117,15 +119,10 @@ simple Ieee80211Mac extends MACProtocolBase like IMACProtocol
         // statistics
         double throughputTimePeriod @unit("s") = default(0); // period of time used by throughput measurement statistic
         bool multiMac = default(false); // allows multiples mac interfaces in the same link layer
-
-        @class(Ieee80211Mac);
         @display("i=block/layer");
 
-        @signal[NF_LINK_FULL_PROMISCUOUS](type=cPacket);
-        @signal[NF_LINK_PROMISCUOUS](type=cPacket);
-        @signal[NF_LINK_BREAK](type=Ieee80211DataOrMgmtFrame);
-        @signal[packetSentToLower](type=Ieee80211Frame);
-        @signal[packetReceivedFromLower](type=cPacket);     // expected type=Ieee80211Frame
+        @signal[packetSentToLower](type=IdealWirelessFrame);
+        @signal[packetReceivedFromLower](type=IdealWirelessFrame);
         @signal[packetSentToUpper](type=cPacket);   // cPacket with Ieee802Ctrl ctrlinfo
         @signal[packetReceivedFromUpper](type=cPacket);   // cPacket with Ieee802Ctrl ctrlinfo
 
@@ -135,8 +132,8 @@ simple Ieee80211Mac extends MACProtocolBase like IMACProtocol
         @statistic[rcvdPkFromLL](title="packets received from lower layer"; source=packetReceivedFromLower; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
 
     gates:
-        upperLayerIn @labels(Ieee80211Frame);
-        upperLayerOut @labels(Ieee80211Frame);
-        lowerLayerIn @labels(Ieee80211Frame);
-        lowerLayerOut @labels(Ieee80211Frame);
+        input upperLayerIn @labels(Ieee80211Frame);
+        output upperLayerOut @labels(Ieee80211Frame);
+        input lowerLayerIn @labels(Ieee80211Frame);
+        output lowerLayerOut @labels(Ieee80211Frame);
 }

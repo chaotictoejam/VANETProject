@@ -15,14 +15,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
+
 #ifndef __INET_IQOSCLASSIFIER_H
 #define __INET_IQOSCLASSIFIER_H
 
-#include "inet/common/INETDefs.h"
-
-namespace inet {
-
-namespace ieee80211 {
+#include "INETDefs.h"
 
 /**
  * Abstract interface for QoS classifiers, used in QoS queues.
@@ -46,9 +43,5 @@ class INET_API IQoSClassifier : public cObject
     virtual int classifyPacket(cMessage *msg) = 0;
 };
 
-} // namespace ieee80211
-
-} // namespace inet
-
-#endif // ifndef __INET_IQOSCLASSIFIER_H
+#endif
 

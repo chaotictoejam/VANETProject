@@ -37,16 +37,18 @@
 //  - <a href="../inet-manual-draft.pdf">INET Framework Manual (draft) (pdf)</a>
 //
 // A few useful starting points for browsing the documentation:
+//  - example networks: ~BulkTransfer, ~MulticastNetwork,
+//    ~MixedLAN, etc.
 //  - hosts, routers, switches and other network level modules:
 //    ~StandardHost, ~Router, ~EtherSwitch, ~EtherHub, ~InternetCloud etc.
 //  - network interfaces: ~EthernetInterface, ~PPPInterface, ~Ieee80211Nic
 //  - <a href="ieee80211.html">IEEE 802.11 models</a>, both ad-hoc and infrastructure
 //    mode are supported
-//  - IPv4 layer: ~IPv4, ~ARP and ~ICMP; ~IPv4RoutingTable
-//  - IPv6 support: ~IPv6, ~IPv6NeighbourDiscovery, ~ICMPv6, ~IPv6RoutingTable;
+//  - IPv4 layer: ~IPv4, ~ARP and ~ICMP; ~RoutingTable
+//  - IPv6 support: ~IPv6, ~IPv6NeighbourDiscovery, ~ICMPv6, ~RoutingTable6;
 //    see <a href="ipv6overview.html">IPv6 model overview</a>
 //  - transport layer: ~TCP, ~UDP, ~SCTP
-//  - ~InterfaceTable and ~IPv4RoutingTable can be found in every
+//  - ~InterfaceTable and ~NotificationBoard are there in every
 //    host and router model
 //  - queues in router network interfaces: ~DropTailQueue, ~DiffservQueue.
 //  - ~IPv4NetworkConfigurator automatically assigns IPv4 addresses and
@@ -61,8 +63,8 @@
 //    ~TCPSessionApp, ~TCPBasicClientApp, ~TCPGenericSrvApp, ~TCPSinkApp,
 //    ~TCPSrvHostApp, ~EtherAppCli, ~EtherAppSrv, ~PingApp, ~SimpleVoIPSender,
 //    ~SimpleVoIPReceiver etc.
-//  - wireless support: ~IRadioMedium, ~Ieee80211Nic
-//  - Mobility models: ~TurtleMobility,
+//  - wireless support: ~ChannelControl, ~Ieee80211Nic
+//  - mobility: ~MobileHost; mobility models such as ~TurtleMobility,
 //    ~BonnMotionMobility, ~ANSimMobility, ~RandomWPMobility, ~MassMobility
 //  - MPLS models: the core modules are ~MPLS, ~LIBTable, ~LDP, ~RSVP, ~TED,
 //    ~LinkStateRouting; MPLS-enabled routers are ~LDP_LSR, ~RSVP_LSR;

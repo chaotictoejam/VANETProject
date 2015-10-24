@@ -16,14 +16,13 @@
 */
 
 #include <stdio.h>
-#include "inet/linklayer/ieee80211mesh/ethernet/EtherEncapMesh.h"
-#include "inet/networklayer/contract/IInterfaceTable.h"
-#include "inet/linklayer/common/Ieee802Ctrl.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h"
-
-namespace inet {
-
-using namespace ieee80211;
+#include "EtherEncapMesh.h"
+#include "EtherFrame_m.h"
+#include "Ieee802Ctrl_m.h"
+#include "IInterfaceTable.h"
+#include "InterfaceTableAccess.h"
+#include "EtherMAC.h"
+#include "Ieee80211MgmtFrames_m.h"
 
 
 Define_Module(EtherEncapMesh);
@@ -65,7 +64,7 @@ void EtherEncapMesh::handleMessage(cMessage *msg)
         }
     }
 
-    if (hasGUI())
+    if (ev.isGUI())
         updateDisplayString();
 }
 
@@ -96,7 +95,7 @@ void EtherEncapMesh::processFrameFromMAC(EtherFrame *frame)
        }
     }
 
-    Ieee80211ActionMeshFrame *frameAction = dynamic_cast<Ieee80211ActionMeshFrame *>(higherlayermsg);
+    Ieee80211ActionHWMPFrame *frameAction = dynamic_cast<Ieee80211ActionHWMPFrame *>(higherlayermsg);
     if (frameAction)
     {
        if (frameAction->getRealLength()>0) // fragmented frame
@@ -183,7 +182,7 @@ void EtherEncapMesh::processFrameFromWifiMesh(Ieee80211Frame *msg)
                frameAux->setByteLength(MAX_ETHERNET_DATA_BYTES);
                frameAux->setIsFragment(true);
                remain -= MAX_ETHERNET_DATA_BYTES;
-               EtherFrame *frame = nullptr;
+               EtherFrame *frame = NULL;
                if (useSNAP)
                {
                    EtherFrameWithSNAP *snapFrame = new EtherFrameWithSNAP(msg->getName());
@@ -213,7 +212,7 @@ void EtherEncapMesh::processFrameFromWifiMesh(Ieee80211Frame *msg)
 
            if (remain>0 && remain<=MAX_ETHERNET_DATA_BYTES)
            {
-               EtherFrame *frame = nullptr;
+               EtherFrame *frame = NULL;
                if (useSNAP)
                {
                    EtherFrameWithSNAP *snapFrame = new EtherFrameWithSNAP(msg->getName());
@@ -244,22 +243,22 @@ void EtherEncapMesh::processFrameFromWifiMesh(Ieee80211Frame *msg)
            else
                error("""Error in fragmentation");
         }
-        else if (dynamic_cast<Ieee80211ActionMeshFrame *>(msg) )
+        else if (dynamic_cast<Ieee80211ActionHWMPFrame *>(msg) )
         {
      // check if fragment
            EV << "Fragment wifi frame over ethernet" << endl;
-           Ieee80211ActionMeshFrame *frameMesh=dynamic_cast<Ieee80211ActionMeshFrame *>(msg);
+           Ieee80211ActionHWMPFrame *frameMesh=dynamic_cast<Ieee80211ActionHWMPFrame *>(msg);
            frameMesh->setRealLength(msg->getByteLength());
            int numFrames = ceil((double)msg->getByteLength()/(double)MAX_ETHERNET_DATA_BYTES);
            uint64_t remain = msg->getByteLength();
            Ieee802Ctrl *etherctrl = check_and_cast<Ieee802Ctrl*>(msg->removeControlInfo());
            for (int i = 0; i < numFrames - 1; i++)
            {
-               Ieee80211ActionMeshFrame *frameAux = frameMesh->dup();
+               Ieee80211ActionHWMPFrame *frameAux = frameMesh->dup();
                frameAux->setByteLength(MAX_ETHERNET_DATA_BYTES);
                frameAux->setIsFragment(true);
                remain -= MAX_ETHERNET_DATA_BYTES;
-               EtherFrame *frame = nullptr;
+               EtherFrame *frame = NULL;
                if (useSNAP)
                {
                    EtherFrameWithSNAP *snapFrame = new EtherFrameWithSNAP(msg->getName());
@@ -289,7 +288,7 @@ void EtherEncapMesh::processFrameFromWifiMesh(Ieee80211Frame *msg)
 
            if (remain>0 && remain<=MAX_ETHERNET_DATA_BYTES)
            {
-               EtherFrame *frame = nullptr;
+               EtherFrame *frame = NULL;
                if (useSNAP)
                {
                    EtherFrameWithSNAP *snapFrame = new EtherFrameWithSNAP(msg->getName());
@@ -346,5 +345,5 @@ void EtherEncapMesh::processFrameFromWifiMesh(Ieee80211Frame *msg)
     send(frame, "lowerLayerOut");
 }
 
-}
+
 

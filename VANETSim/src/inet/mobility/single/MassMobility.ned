@@ -19,7 +19,7 @@
 
 package inet.mobility.single;
 
-import inet.mobility.base.MovingMobilityBase;
+import inet.mobility.common.MovingMobilityBase;
 
 //
 // This is a random mobility model for a mobile host with a mass. It is the

@@ -21,11 +21,9 @@
  ********************************************************************************/
 
 #include "PASERUdpTrafficSender.h"
-#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
-#include "inet/networklayer/common/L3AddressResolver.h"
-#include "inet/common/ModuleAccess.h"
-
-namespace inet{
+#include "UDPControlInfo_m.h"
+#include "IPvXAddressResolver.h"
+#include "InterfaceTableAccess.h"
 
 Define_Module(PASERUdpTrafficSender);
 
@@ -33,7 +31,7 @@ void PASERUdpTrafficSender::initialize()
 {
     numSent = 0;
 	//Initialize InterfaceTable
-    ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
+	ift = InterfaceTableAccess().get();
 
 	//Initialize my Parameters
 	bitRate = par("bitRate");
@@ -83,7 +81,7 @@ void PASERUdpTrafficSender::setSocketOptions()
     const char *multicastInterface = par("multicastInterface");
     if (multicastInterface[0])
     {
-        IInterfaceTable *ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
+        IInterfaceTable *ift = InterfaceTableAccess().get(this);
         InterfaceEntry *ie = ift->getInterfaceByName(multicastInterface);
         if (!ie)
             throw cRuntimeError("Wrong multicastInterface setting: no interface named \"%s\"", multicastInterface);
@@ -96,10 +94,7 @@ void PASERUdpTrafficSender::setSocketOptions()
 
     bool joinLocalMulticastGroups = par("joinLocalMulticastGroups");
     if (joinLocalMulticastGroups)
-    {
-        MulticastGroupList mgl = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this) -> collectMulticastGroups();
-        socket.joinLocalMulticastGroups(mgl);
-    }
+        socket.joinLocalMulticastGroups();
 }
 
 void PASERUdpTrafficSender::handleMessage(cMessage *msg)
@@ -130,7 +125,7 @@ void PASERUdpTrafficSender::handleSelfMessage(cMessage *selfMsg)
         // on first call we need to initialize
         if (destAddr.isUnspecified())
         {
-            destAddr = L3AddressResolver().resolve(par("destAddr"));
+            destAddr = IPvXAddressResolver().resolve(par("destAddr"));
             ASSERT(!destAddr.isUnspecified());
         }
 		startDataMessage();
@@ -192,7 +187,7 @@ InterfaceEntry* PASERUdpTrafficSender::getInterface()
 		ie = ift->getInterface(i);
 	    name = ie->getName();
 	    EV << "Interface Name: " << name << endl;
-	    if (strstr (name,"wlan")!=nullptr)
+	    if (strstr (name,"wlan")!=NULL)
 	    {
 	    	i_face = ie;
 	        num_80211++;
@@ -206,7 +201,7 @@ InterfaceEntry* PASERUdpTrafficSender::getInterface()
 		return i_face;
 	}
 	else
-		return nullptr;
+		return NULL;
 }
 
 PaserTrafficDataMsg* PASERUdpTrafficSender::createDataMessage(){
@@ -236,7 +231,7 @@ void PASERUdpTrafficSender::sendDataMessage(PaserTrafficDataMsg *dataMsg, std::s
 //	sendToUDP(dataMsg,myPort,IPv4Address(destId.c_str()),destPort);
 
 	numSent++;
-    if (hasGUI())
+    if (ev.isGUI())
     {
         char buf[40];
         sprintf(buf, "sent: %d pks", numSent);
@@ -262,6 +257,3 @@ double PASERUdpTrafficSender::getDataRate(){
 
 	return bitRate;
 }
-
-}
-

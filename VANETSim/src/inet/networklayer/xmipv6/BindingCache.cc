@@ -20,11 +20,12 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#include "inet/networklayer/xmipv6/BindingCache.h"
 
-namespace inet {
+#include "BindingCache.h"
+
 
 Define_Module(BindingCache);
+
 
 std::ostream& operator<<(std::ostream& os, const BindingCache::BindingCacheEntry& bce)
 {
@@ -47,18 +48,18 @@ BindingCache::~BindingCache()
 
 void BindingCache::initialize()
 {
-    WATCH_MAP(bindingCache);    //added by Zarrar Yousaf
+    WATCH_MAP(bindingCache); //added by Zarrar Yousaf
 }
 
 void BindingCache::handleMessage(cMessage *msg)
 {
-    throw cRuntimeError("This module doesn't process messages");
+    opp_error("This module doesn't process messages");
 }
 
 void BindingCache::addOrUpdateBC(const IPv6Address& hoa, const IPv6Address& coa,
-        const uint lifetime, const uint seq, bool homeReg)
+                                 const uint lifetime, const uint seq, bool homeReg)
 {
-    EV_INFO << "\n++++++++++++++++++++Binding Cache Being Updated in Routing Table6 ++++++++++++++\n";
+    EV << "\n++++++++++++++++++++Binding Cache Being Updated in Routing Table6 ++++++++++++++\n";
     bindingCache[hoa].careOfAddress = coa;
     bindingCache[hoa].bindingLifetime = lifetime;
     bindingCache[hoa].sequenceNumber = seq;
@@ -69,8 +70,8 @@ uint BindingCache::readBCSequenceNumber(const IPv6Address& HoA) const
 {
     //Reads the sequence number of the last received BU Message
     /*IPv6Address HoA = bu->getHomeAddressMN();
-       uint seqNumber = bindingCache[HoA].sequenceNumber;
-       return seqNumber;*/
+    uint seqNumber = bindingCache[HoA].sequenceNumber;
+    return seqNumber;*/
 
     // update 10.09.07 - CB
     // the code from above creates a new (empty) entry if
@@ -90,7 +91,7 @@ bool BindingCache::isInBindingCache(const IPv6Address& HoA, IPv6Address& CoA) co
     if (pos == bindingCache.end())
         return false; // if HoA is not registered then there's obviously no valid entry in the BC
 
-    return pos->second.careOfAddress == CoA;    // if CoA corresponds to HoA, everything is fine
+    return (pos->second.careOfAddress == CoA); // if CoA corresponds to HoA, everything is fine
 }
 
 bool BindingCache::isInBindingCache(const IPv6Address& HoA) const
@@ -100,7 +101,7 @@ bool BindingCache::isInBindingCache(const IPv6Address& HoA) const
 
 void BindingCache::deleteEntry(IPv6Address& HoA)
 {
-    auto pos = bindingCache.find(HoA);
+    BindingCache6::iterator pos = bindingCache.find(HoA);
 
     if (pos != bindingCache.end()) // update 11.9.07 - CB
         bindingCache.erase(pos);
@@ -141,6 +142,4 @@ int BindingCache::generateKey(int homeToken, int careOfToken, const IPv6Address&
     // use a dummy value
     return homeToken + careOfToken;
 }
-
-} // namespace inet
 

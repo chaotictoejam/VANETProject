@@ -24,26 +24,19 @@
 #ifndef IEEE80211_MESH_ADHOC_H
 #define IEEE80211_MESH_ADHOC_H
 #include <deque>
-#include "inet/common/INETDefs.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtBase.h"
-#include "inet/networklayer/contract/IInterfaceTable.h"
-#include "inet/linklayer/ieee80211mesh/mgmt/lwmpls_data.h"
-#include "inet/linklayer/ieee80211mesh/mgmt/LWMPLSPacket_m.h"
-#include "inet/networklayer/common/L3Address.h"
-#include "inet/routing/extras/base/ManetRoutingBase.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211Etx.h"
-#include "inet/common/WirelessNumHops.h"
-#include "inet/linklayer/ieee80211/mac/Ieee80211Mac.h"
-//#include "Radio.h"
-#include "inet/securityModule/message/securityPkt_m.h"
-
-namespace inet{
-
-namespace ieee80211 {
-
-using namespace physicallayer;
-
-using namespace inetmanet;
+#include "INETDefs.h"
+#include "Ieee80211MgmtBase.h"
+#include "NotificationBoard.h"
+#include "IInterfaceTable.h"
+#include "lwmpls_data.h"
+#include "LWMPLSPacket_m.h"
+#include "ManetAddress.h"
+#include "ManetRoutingBase.h"
+#include "Ieee80211Etx.h"
+#include "WirelessNumHops.h"
+#include "Ieee80211Mac.h"
+#include "Radio.h"
+#include "securityPkt_m.h"
 
 /**
  * Used in 802.11 ligh wireless mpls  mode. See corresponding NED file for a detailed description.
@@ -54,7 +47,7 @@ using namespace inetmanet;
 
 #define CHEAT_IEEE80211MESH
 
-class INET_API Ieee80211Mesh : public Ieee80211MgmtBase, public cListener
+class INET_API Ieee80211Mesh : public Ieee80211MgmtBase
 {
     public:
         enum SelectionCriteria
@@ -99,9 +92,9 @@ class INET_API Ieee80211Mesh : public Ieee80211MgmtBase, public cListener
         std::vector<LastTimeReception> timeReceptionInterface;
 
         std::vector<Ieee80211Mac*> macInterfaces;
-        //std::vector<Radio*> radioInterfaces;
+        std::vector<Radio*> radioInterfaces;
         typedef std::deque<SeqNumberData> SeqNumberVector;
-        typedef std::map<L3Address, SeqNumberVector> SeqNumberInfo;
+        typedef std::map<ManetAddress, SeqNumberVector> SeqNumberInfo;
         SeqNumberInfo seqNumberInfo;
 
         uint64_t numRoutingBytes;
@@ -117,6 +110,7 @@ class INET_API Ieee80211Mesh : public Ieee80211MgmtBase, public cListener
         cMessage *gateWayTimeOut;
 
         double limitDelay;
+        NotificationBoard *nb;
         bool proactiveFeedback;
         int maxHopProactiveFeedback; // Maximun number of hops for to use the proactive feedback
         int maxHopProactive; // Maximun number of hops in the fix part of the network with the proactive feedback
@@ -133,9 +127,9 @@ class INET_API Ieee80211Mesh : public Ieee80211MgmtBase, public cListener
         };
         std::vector<ConfirmationInfo> confirmationFrames;
 
-        inetmanet::ManetRoutingBase *routingModuleProactive;
-        inetmanet::ManetRoutingBase *routingModuleReactive;
-        inetmanet::ManetRoutingBase *routingModuleHwmp;
+        ManetRoutingBase *routingModuleProactive;
+        ManetRoutingBase *routingModuleReactive;
+        ManetRoutingBase *routingModuleHwmp;
         Ieee80211Etx * ETXProcess;
 
         IInterfaceTable *ift;
@@ -194,7 +188,7 @@ class INET_API Ieee80211Mesh : public Ieee80211MgmtBase, public cListener
                 ManetRoutingBase *reactive;
                 AssociatedAddress *associatedAddress;
         };
-        typedef std::map<L3Address, GateWayData> GateWayDataMap;
+        typedef std::map<ManetAddress, GateWayData> GateWayDataMap;
 #ifdef CHEAT_IEEE80211MESH
         // cheat, we suppose that the information between gateway is interchanged with the wired
         static GateWayDataMap *gateWayDataMap;
@@ -212,9 +206,9 @@ class INET_API Ieee80211Mesh : public Ieee80211MgmtBase, public cListener
         {
             if (isGateWay)
                 return gateWayDataMap;
-            return nullptr;
+            return NULL;
         }
-        virtual bool selectGateWay(const L3Address &, MACAddress &);
+        virtual bool selectGateWay(const ManetAddress &, MACAddress &);
 
         bool hasLocator;
         bool isMultiMac;
@@ -228,19 +222,19 @@ class INET_API Ieee80211Mesh : public Ieee80211MgmtBase, public cListener
         bool getCostNode(const MACAddress &, unsigned int &);
     protected:
         // methos for efficient distribution of packets
-        bool setSeqNum(const L3Address &addr, const uint64_t &sqnum, const int &numTimes);
-        int findSeqNum(const L3Address &addr, const uint64_t &sqnum);
-        int getNumVisit(const std::vector<L3Address> &path);
-        int getNumVisit(const L3Address &addr, const std::vector<L3Address> &path);
-        bool getNextInPath(const L3Address &addr, const std::vector<L3Address> &path, std::vector<L3Address> &next);
-        bool getNextInPath(const std::vector<L3Address> &path, std::vector<L3Address> &next);
+        bool setSeqNum(const ManetAddress &addr, const uint64_t &sqnum, const int &numTimes);
+        int findSeqNum(const ManetAddress &addr, const uint64_t &sqnum);
+        int getNumVisit(const std::vector<ManetAddress> &path);
+        int getNumVisit(const ManetAddress &addr, const std::vector<ManetAddress> &path);
+        bool getNextInPath(const ManetAddress &addr, const std::vector<ManetAddress> &path, std::vector<ManetAddress> &next);
+        bool getNextInPath(const std::vector<ManetAddress> &path, std::vector<ManetAddress> &next);
         void processDistributionPacket(Ieee80211MeshFrame *frame);
 
     protected:
         virtual void finish();
         virtual int numInitStages() const
         {
-            return NUM_INIT_STAGES;
+            return 6;
         }
         virtual void initialize(int);
 
@@ -265,13 +259,13 @@ class INET_API Ieee80211Mesh : public Ieee80211MgmtBase, public cListener
         virtual void handleUpperMessage(cPacket *msg);
 
         /** Implements abstract Ieee80211MgmtBase method -- throws an error (no commands supported) */
-        virtual void handleCommand(int msgkind, cObject *ctrl);
+        virtual void handleCommand(int msgkind, cPolymorphic *ctrl);
 
         /** Utility function for handleUpperMessage() */
         virtual Ieee80211DataFrame *encapsulate(cPacket *msg);
 
         /** Called by the NotificationBoard whenever a change occurs we're interested in */
-        virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj);
+        virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 
         /** @name Processing of different frame types */
         //@{
@@ -297,10 +291,6 @@ class INET_API Ieee80211Mesh : public Ieee80211MgmtBase, public cListener
 
         virtual bool isAddressForUs(const MACAddress &add);
 };
-
-}
-
-}
 
 #endif
 

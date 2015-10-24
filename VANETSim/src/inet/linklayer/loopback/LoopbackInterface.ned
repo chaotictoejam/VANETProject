@@ -20,8 +20,9 @@
 
 package inet.linklayer.loopback;
 
-import inet.common.IHook;
-import inet.linklayer.contract.INic;
+import inet.base.IHook;
+import inet.linklayer.INic;
+import inet.linklayer.ITrafficConditioner;
 
 
 //
@@ -31,10 +32,8 @@ module LoopbackInterface like INic
 {
     parameters:
         @display("i=block/ifcard;bgb=214,249;bgl=53");
-        string interfaceTableModule;
         int numOutputHooks = default(0);
         int numInputHooks = default(0);
-        *.interfaceTableModule = default(absPath(interfaceTableModule));
     gates:
         input upperLayerIn;
         output upperLayerOut;

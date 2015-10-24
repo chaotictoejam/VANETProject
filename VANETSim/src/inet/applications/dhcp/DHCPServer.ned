@@ -19,7 +19,7 @@
 
 package inet.applications.dhcp;
 
-import inet.applications.contract.IUDPApp;
+import inet.applications.IUDPApp;
 
 //
 // Implements the DHCP server protocol. DHCP (Dynamic Host Configuration Protocol),
@@ -31,7 +31,6 @@ import inet.applications.contract.IUDPApp;
 simple DHCPServer like IUDPApp
 {
     parameters:
-        string interfaceTableModule;   // The path to the InterfaceTable module
         string interface = default(""); // interface to listen on; can be left empty if there is only one non-loopback interface
         string subnetMask; // subnet mask to assign
         string ipAddressStart; // IP pool 1st address
@@ -40,6 +39,8 @@ simple DHCPServer like IUDPApp
         string dns; // DNS server to assign
         int leaseTime @unit(s); // lease time in seconds
         double startTime @unit(s) = default(0s); // application start time
+        string interfaceTablePath = default("^.interfaceTable");
+        string notificationBoardPath = default("^.notificationBoard");
         @display("i=block/app2");
     gates:
         input udpIn @labels(UDPControlInfo/up);

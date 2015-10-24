@@ -24,22 +24,23 @@
 #define __INETMANET_PASERUDPTRAFFICSENDER_H_
 
 #include <omnetpp.h>
-#include "inet/common/INETDefs.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
+#include "csimplemodule.h"
+#include "UDPSocket.h"
 #include "PaserTrafficDataMsg_m.h"
-#include "inet/networklayer/contract/IInterfaceTable.h"
-#include "inet/networklayer/common/InterfaceEntry.h"
-#include "inet/networklayer/ipv4/IPv4InterfaceData.h"
-#include "inet/networklayer/common/L3Address.h"
+#include "IInterfaceTable.h"
+#include "InterfaceTableAccess.h"
+#include "InterfaceEntry.h"
+#include "IPv4InterfaceData.h"
+#include "IPvXAddress.h"
 
 //#define No_init_manetStats
 
-namespace inet{
+
 
 class PASERUdpTrafficSender : public cSimpleModule
 {
 private:
-    L3Address destAddr;
+    IPvXAddress destAddr;
 
 	double bitRate;
 	double messageFreq;
@@ -74,7 +75,5 @@ private:
     double getDataRate();
     std::string getMyId();
 };
-
-}
 
 #endif

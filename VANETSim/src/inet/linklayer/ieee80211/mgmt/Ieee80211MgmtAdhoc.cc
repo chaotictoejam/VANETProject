@@ -15,14 +15,13 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhoc.h"
-#include "inet/linklayer/common/Ieee802Ctrl.h"
 
-namespace inet {
+#include "Ieee80211MgmtAdhoc.h"
+#include "Ieee802Ctrl_m.h"
 
-namespace ieee80211 {
 
 Define_Module(Ieee80211MgmtAdhoc);
+
 
 void Ieee80211MgmtAdhoc::initialize(int stage)
 {
@@ -42,7 +41,7 @@ void Ieee80211MgmtAdhoc::handleUpperMessage(cPacket *msg)
 
 void Ieee80211MgmtAdhoc::handleCommand(int msgkind, cObject *ctrl)
 {
-    throw cRuntimeError("handleCommand(): no commands supported");
+    error("handleCommand(): no commands supported");
 }
 
 Ieee80211DataFrame *Ieee80211MgmtAdhoc::encapsulate(cPacket *msg)
@@ -75,9 +74,10 @@ cPacket *Ieee80211MgmtAdhoc::decapsulate(Ieee80211DataFrame *frame)
     return payload;
 }
 
-void Ieee80211MgmtAdhoc::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj)
+void Ieee80211MgmtAdhoc::receiveChangeNotification(int category, const cObject *details)
 {
     Enter_Method_Silent();
+    printNotificationBanner(category, details);
 }
 
 void Ieee80211MgmtAdhoc::handleDataFrame(Ieee80211DataFrame *frame)
@@ -134,8 +134,4 @@ void Ieee80211MgmtAdhoc::handleProbeResponseFrame(Ieee80211ProbeResponseFrame *f
 {
     dropManagementFrame(frame);
 }
-
-} // namespace ieee80211
-
-} // namespace inet
 

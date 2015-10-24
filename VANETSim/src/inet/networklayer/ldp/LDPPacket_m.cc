@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -55,8 +54,8 @@ template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::LDP_MESSAGE_TYPES");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::LDP_MESSAGE_TYPES"));
+    cEnum *e = cEnum::find("LDP_MESSAGE_TYPES");
+    if (!e) enums.getInstance()->add(e = new cEnum("LDP_MESSAGE_TYPES"));
     e->insert(NOTIFICATION, "NOTIFICATION");
     e->insert(HELLO, "HELLO");
     e->insert(INITIALIZATION, "INITIALIZATION");
@@ -71,8 +70,8 @@ EXECUTE_ON_STARTUP(
 );
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::LDP_STATUS_TYPES");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::LDP_STATUS_TYPES"));
+    cEnum *e = cEnum::find("LDP_STATUS_TYPES");
+    if (!e) enums.getInstance()->add(e = new cEnum("LDP_STATUS_TYPES"));
     e->insert(NO_ROUTE, "NO_ROUTE");
 );
 
@@ -118,7 +117,7 @@ class FEC_TLVDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(FEC_TLVDescriptor);
 
-FEC_TLVDescriptor::FEC_TLVDescriptor() : cClassDescriptor("inet::FEC_TLV", "")
+FEC_TLVDescriptor::FEC_TLVDescriptor() : cClassDescriptor("FEC_TLV", "")
 {
 }
 
@@ -386,7 +385,7 @@ class LDPPacketDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LDPPacketDescriptor);
 
-LDPPacketDescriptor::LDPPacketDescriptor() : cClassDescriptor("inet::LDPPacket", "cPacket")
+LDPPacketDescriptor::LDPPacketDescriptor() : cClassDescriptor("LDPPacket", "cPacket")
 {
 }
 
@@ -561,12 +560,12 @@ void *LDPPacketDescriptor::getFieldStructPointer(void *object, int field, int i)
 
 Register_Class(LDPLabelMapping);
 
-LDPLabelMapping::LDPLabelMapping(const char *name, int kind) : ::inet::LDPPacket(name,kind)
+LDPLabelMapping::LDPLabelMapping(const char *name, int kind) : ::LDPPacket(name,kind)
 {
     this->label_var = 0;
 }
 
-LDPLabelMapping::LDPLabelMapping(const LDPLabelMapping& other) : ::inet::LDPPacket(other)
+LDPLabelMapping::LDPLabelMapping(const LDPLabelMapping& other) : ::LDPPacket(other)
 {
     copy(other);
 }
@@ -578,7 +577,7 @@ LDPLabelMapping::~LDPLabelMapping()
 LDPLabelMapping& LDPLabelMapping::operator=(const LDPLabelMapping& other)
 {
     if (this==&other) return *this;
-    ::inet::LDPPacket::operator=(other);
+    ::LDPPacket::operator=(other);
     copy(other);
     return *this;
 }
@@ -591,14 +590,14 @@ void LDPLabelMapping::copy(const LDPLabelMapping& other)
 
 void LDPLabelMapping::parsimPack(cCommBuffer *b)
 {
-    ::inet::LDPPacket::parsimPack(b);
+    ::LDPPacket::parsimPack(b);
     doPacking(b,this->fec_var);
     doPacking(b,this->label_var);
 }
 
 void LDPLabelMapping::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::LDPPacket::parsimUnpack(b);
+    ::LDPPacket::parsimUnpack(b);
     doUnpacking(b,this->fec_var);
     doUnpacking(b,this->label_var);
 }
@@ -648,7 +647,7 @@ class LDPLabelMappingDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LDPLabelMappingDescriptor);
 
-LDPLabelMappingDescriptor::LDPLabelMappingDescriptor() : cClassDescriptor("inet::LDPLabelMapping", "inet::LDPPacket")
+LDPLabelMappingDescriptor::LDPLabelMappingDescriptor() : cClassDescriptor("LDPLabelMapping", "LDPPacket")
 {
 }
 
@@ -816,11 +815,11 @@ void *LDPLabelMappingDescriptor::getFieldStructPointer(void *object, int field, 
 
 Register_Class(LDPLabelRequest);
 
-LDPLabelRequest::LDPLabelRequest(const char *name, int kind) : ::inet::LDPPacket(name,kind)
+LDPLabelRequest::LDPLabelRequest(const char *name, int kind) : ::LDPPacket(name,kind)
 {
 }
 
-LDPLabelRequest::LDPLabelRequest(const LDPLabelRequest& other) : ::inet::LDPPacket(other)
+LDPLabelRequest::LDPLabelRequest(const LDPLabelRequest& other) : ::LDPPacket(other)
 {
     copy(other);
 }
@@ -832,7 +831,7 @@ LDPLabelRequest::~LDPLabelRequest()
 LDPLabelRequest& LDPLabelRequest::operator=(const LDPLabelRequest& other)
 {
     if (this==&other) return *this;
-    ::inet::LDPPacket::operator=(other);
+    ::LDPPacket::operator=(other);
     copy(other);
     return *this;
 }
@@ -844,13 +843,13 @@ void LDPLabelRequest::copy(const LDPLabelRequest& other)
 
 void LDPLabelRequest::parsimPack(cCommBuffer *b)
 {
-    ::inet::LDPPacket::parsimPack(b);
+    ::LDPPacket::parsimPack(b);
     doPacking(b,this->fec_var);
 }
 
 void LDPLabelRequest::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::LDPPacket::parsimUnpack(b);
+    ::LDPPacket::parsimUnpack(b);
     doUnpacking(b,this->fec_var);
 }
 
@@ -889,7 +888,7 @@ class LDPLabelRequestDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LDPLabelRequestDescriptor);
 
-LDPLabelRequestDescriptor::LDPLabelRequestDescriptor() : cClassDescriptor("inet::LDPLabelRequest", "inet::LDPPacket")
+LDPLabelRequestDescriptor::LDPLabelRequestDescriptor() : cClassDescriptor("LDPLabelRequest", "LDPPacket")
 {
 }
 
@@ -1051,14 +1050,14 @@ void *LDPLabelRequestDescriptor::getFieldStructPointer(void *object, int field, 
 
 Register_Class(LDPHello);
 
-LDPHello::LDPHello(const char *name, int kind) : ::inet::LDPPacket(name,kind)
+LDPHello::LDPHello(const char *name, int kind) : ::LDPPacket(name,kind)
 {
     this->holdTime_var = 0;
     this->tbit_var = 0;
     this->rbit_var = 0;
 }
 
-LDPHello::LDPHello(const LDPHello& other) : ::inet::LDPPacket(other)
+LDPHello::LDPHello(const LDPHello& other) : ::LDPPacket(other)
 {
     copy(other);
 }
@@ -1070,7 +1069,7 @@ LDPHello::~LDPHello()
 LDPHello& LDPHello::operator=(const LDPHello& other)
 {
     if (this==&other) return *this;
-    ::inet::LDPPacket::operator=(other);
+    ::LDPPacket::operator=(other);
     copy(other);
     return *this;
 }
@@ -1084,7 +1083,7 @@ void LDPHello::copy(const LDPHello& other)
 
 void LDPHello::parsimPack(cCommBuffer *b)
 {
-    ::inet::LDPPacket::parsimPack(b);
+    ::LDPPacket::parsimPack(b);
     doPacking(b,this->holdTime_var);
     doPacking(b,this->tbit_var);
     doPacking(b,this->rbit_var);
@@ -1092,7 +1091,7 @@ void LDPHello::parsimPack(cCommBuffer *b)
 
 void LDPHello::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::LDPPacket::parsimUnpack(b);
+    ::LDPPacket::parsimUnpack(b);
     doUnpacking(b,this->holdTime_var);
     doUnpacking(b,this->tbit_var);
     doUnpacking(b,this->rbit_var);
@@ -1153,7 +1152,7 @@ class LDPHelloDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LDPHelloDescriptor);
 
-LDPHelloDescriptor::LDPHelloDescriptor() : cClassDescriptor("inet::LDPHello", "inet::LDPPacket")
+LDPHelloDescriptor::LDPHelloDescriptor() : cClassDescriptor("LDPHello", "LDPPacket")
 {
 }
 
@@ -1326,12 +1325,12 @@ void *LDPHelloDescriptor::getFieldStructPointer(void *object, int field, int i) 
 
 Register_Class(LDPNotify);
 
-LDPNotify::LDPNotify(const char *name, int kind) : ::inet::LDPPacket(name,kind)
+LDPNotify::LDPNotify(const char *name, int kind) : ::LDPPacket(name,kind)
 {
     this->status_var = 0;
 }
 
-LDPNotify::LDPNotify(const LDPNotify& other) : ::inet::LDPPacket(other)
+LDPNotify::LDPNotify(const LDPNotify& other) : ::LDPPacket(other)
 {
     copy(other);
 }
@@ -1343,7 +1342,7 @@ LDPNotify::~LDPNotify()
 LDPNotify& LDPNotify::operator=(const LDPNotify& other)
 {
     if (this==&other) return *this;
-    ::inet::LDPPacket::operator=(other);
+    ::LDPPacket::operator=(other);
     copy(other);
     return *this;
 }
@@ -1356,14 +1355,14 @@ void LDPNotify::copy(const LDPNotify& other)
 
 void LDPNotify::parsimPack(cCommBuffer *b)
 {
-    ::inet::LDPPacket::parsimPack(b);
+    ::LDPPacket::parsimPack(b);
     doPacking(b,this->status_var);
     doPacking(b,this->fec_var);
 }
 
 void LDPNotify::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::LDPPacket::parsimUnpack(b);
+    ::LDPPacket::parsimUnpack(b);
     doUnpacking(b,this->status_var);
     doUnpacking(b,this->fec_var);
 }
@@ -1413,7 +1412,7 @@ class LDPNotifyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LDPNotifyDescriptor);
 
-LDPNotifyDescriptor::LDPNotifyDescriptor() : cClassDescriptor("inet::LDPNotify", "inet::LDPPacket")
+LDPNotifyDescriptor::LDPNotifyDescriptor() : cClassDescriptor("LDPNotify", "LDPPacket")
 {
 }
 
@@ -1581,7 +1580,7 @@ void *LDPNotifyDescriptor::getFieldStructPointer(void *object, int field, int i)
 
 Register_Class(LDPIni);
 
-LDPIni::LDPIni(const char *name, int kind) : ::inet::LDPPacket(name,kind)
+LDPIni::LDPIni(const char *name, int kind) : ::LDPPacket(name,kind)
 {
     this->keepAliveTime_var = 0;
     this->abit_var = 0;
@@ -1590,7 +1589,7 @@ LDPIni::LDPIni(const char *name, int kind) : ::inet::LDPPacket(name,kind)
     this->receiverLDPIdentifier_var = 0;
 }
 
-LDPIni::LDPIni(const LDPIni& other) : ::inet::LDPPacket(other)
+LDPIni::LDPIni(const LDPIni& other) : ::LDPPacket(other)
 {
     copy(other);
 }
@@ -1602,7 +1601,7 @@ LDPIni::~LDPIni()
 LDPIni& LDPIni::operator=(const LDPIni& other)
 {
     if (this==&other) return *this;
-    ::inet::LDPPacket::operator=(other);
+    ::LDPPacket::operator=(other);
     copy(other);
     return *this;
 }
@@ -1618,7 +1617,7 @@ void LDPIni::copy(const LDPIni& other)
 
 void LDPIni::parsimPack(cCommBuffer *b)
 {
-    ::inet::LDPPacket::parsimPack(b);
+    ::LDPPacket::parsimPack(b);
     doPacking(b,this->keepAliveTime_var);
     doPacking(b,this->abit_var);
     doPacking(b,this->dbit_var);
@@ -1628,7 +1627,7 @@ void LDPIni::parsimPack(cCommBuffer *b)
 
 void LDPIni::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::LDPPacket::parsimUnpack(b);
+    ::LDPPacket::parsimUnpack(b);
     doUnpacking(b,this->keepAliveTime_var);
     doUnpacking(b,this->abit_var);
     doUnpacking(b,this->dbit_var);
@@ -1711,7 +1710,7 @@ class LDPIniDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LDPIniDescriptor);
 
-LDPIniDescriptor::LDPIniDescriptor() : cClassDescriptor("inet::LDPIni", "inet::LDPPacket")
+LDPIniDescriptor::LDPIniDescriptor() : cClassDescriptor("LDPIni", "LDPPacket")
 {
 }
 
@@ -1896,7 +1895,7 @@ void *LDPIniDescriptor::getFieldStructPointer(void *object, int field, int i) co
 
 Register_Class(LDPAddress);
 
-LDPAddress::LDPAddress(const char *name, int kind) : ::inet::LDPPacket(name,kind)
+LDPAddress::LDPAddress(const char *name, int kind) : ::LDPPacket(name,kind)
 {
     this->isWithdraw_var = 0;
     this->family_var = 0;
@@ -1904,7 +1903,7 @@ LDPAddress::LDPAddress(const char *name, int kind) : ::inet::LDPPacket(name,kind
     this->addresses_var = 0;
 }
 
-LDPAddress::LDPAddress(const LDPAddress& other) : ::inet::LDPPacket(other)
+LDPAddress::LDPAddress(const LDPAddress& other) : ::LDPPacket(other)
 {
     addresses_arraysize = 0;
     this->addresses_var = 0;
@@ -1919,7 +1918,7 @@ LDPAddress::~LDPAddress()
 LDPAddress& LDPAddress::operator=(const LDPAddress& other)
 {
     if (this==&other) return *this;
-    ::inet::LDPPacket::operator=(other);
+    ::LDPPacket::operator=(other);
     copy(other);
     return *this;
 }
@@ -1937,7 +1936,7 @@ void LDPAddress::copy(const LDPAddress& other)
 
 void LDPAddress::parsimPack(cCommBuffer *b)
 {
-    ::inet::LDPPacket::parsimPack(b);
+    ::LDPPacket::parsimPack(b);
     doPacking(b,this->isWithdraw_var);
     doPacking(b,this->family_var);
     b->pack(addresses_arraysize);
@@ -1946,7 +1945,7 @@ void LDPAddress::parsimPack(cCommBuffer *b)
 
 void LDPAddress::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::LDPPacket::parsimUnpack(b);
+    ::LDPPacket::parsimUnpack(b);
     doUnpacking(b,this->isWithdraw_var);
     doUnpacking(b,this->family_var);
     delete [] this->addresses_var;
@@ -2034,7 +2033,7 @@ class LDPAddressDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(LDPAddressDescriptor);
 
-LDPAddressDescriptor::LDPAddressDescriptor() : cClassDescriptor("inet::LDPAddress", "inet::LDPPacket")
+LDPAddressDescriptor::LDPAddressDescriptor() : cClassDescriptor("LDPAddress", "LDPPacket")
 {
 }
 
@@ -2206,5 +2205,4 @@ void *LDPAddressDescriptor::getFieldStructPointer(void *object, int field, int i
     }
 }
 
-} // namespace inet
 

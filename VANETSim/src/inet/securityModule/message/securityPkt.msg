@@ -1,21 +1,20 @@
 class noncobject MACAddress;
 
 cplusplus {{
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 }}
 
 cplusplus {{
-#include "inet/linklayer/common/MACAddress.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h"
-#include "inet/securityModule/Security.h"
-#include "inet/securityModule/SecurityKeys.h"
+
+#include "MACAddress.h"
+#include "Ieee80211MgmtFrames_m.h"
+#include "Security.h"
+#include "SecurityKeys.h"
 #include <iostream>
 #include <vector>
 
 }}
 
-namespace inet::ieee80211;
-    
 class noncobject Security;
 
 cplusplus {{

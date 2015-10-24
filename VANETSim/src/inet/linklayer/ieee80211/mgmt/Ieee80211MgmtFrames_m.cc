@@ -28,8 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
-namespace ieee80211 {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -113,7 +111,7 @@ class Ieee80211CapabilityInformationDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211CapabilityInformationDescriptor);
 
-Ieee80211CapabilityInformationDescriptor::Ieee80211CapabilityInformationDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211CapabilityInformation", "")
+Ieee80211CapabilityInformationDescriptor::Ieee80211CapabilityInformationDescriptor() : cClassDescriptor("Ieee80211CapabilityInformation", "")
 {
 }
 
@@ -357,7 +355,7 @@ class Ieee80211HandoverParametersDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211HandoverParametersDescriptor);
 
-Ieee80211HandoverParametersDescriptor::Ieee80211HandoverParametersDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211HandoverParameters", "")
+Ieee80211HandoverParametersDescriptor::Ieee80211HandoverParametersDescriptor() : cClassDescriptor("Ieee80211HandoverParameters", "")
 {
 }
 
@@ -535,8 +533,8 @@ void *Ieee80211HandoverParametersDescriptor::getFieldStructPointer(void *object,
 }
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::Ieee80211ReasonCode");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::Ieee80211ReasonCode"));
+    cEnum *e = cEnum::find("Ieee80211ReasonCode");
+    if (!e) enums.getInstance()->add(e = new cEnum("Ieee80211ReasonCode"));
     e->insert(RC_UNSPECIFIED, "RC_UNSPECIFIED");
     e->insert(RC_PREV_AUTH_EXPIRED, "RC_PREV_AUTH_EXPIRED");
     e->insert(RC_DEAUTH_MS_LEAVING, "RC_DEAUTH_MS_LEAVING");
@@ -564,23 +562,8 @@ EXECUTE_ON_STARTUP(
 );
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::Ieee80211ActionCode");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::Ieee80211ActionCode"));
-    e->insert(AC_BLOCKACK, "AC_BLOCKACK");
-    e->insert(AC_MESH, "AC_MESH");
-);
-
-EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::Ieee80211BlockAckCode");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::Ieee80211BlockAckCode"));
-    e->insert(ADDBArequest, "ADDBArequest");
-    e->insert(ADDBAReponse, "ADDBAReponse");
-    e->insert(DELBA, "DELBA");
-);
-
-EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::Ieee80211StatusCode");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::Ieee80211StatusCode"));
+    cEnum *e = cEnum::find("Ieee80211StatusCode");
+    if (!e) enums.getInstance()->add(e = new cEnum("Ieee80211StatusCode"));
     e->insert(SC_SUCCESSFUL, "SC_SUCCESSFUL");
     e->insert(SC_UNSPECIFIED, "SC_UNSPECIFIED");
     e->insert(SC_UNSUP_CAP, "SC_UNSUP_CAP");
@@ -598,8 +581,8 @@ EXECUTE_ON_STARTUP(
 );
 
 EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::ieee80211::Ieee80211HWMPCode");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::ieee80211::Ieee80211HWMPCode"));
+    cEnum *e = cEnum::find("Ieee80211HWMPCode");
+    if (!e) enums.getInstance()->add(e = new cEnum("Ieee80211HWMPCode"));
     e->insert(IE11S_GANN, "IE11S_GANN");
     e->insert(IE11S_RANN, "IE11S_RANN");
     e->insert(IE11S_PREQ, "IE11S_PREQ");
@@ -651,7 +634,7 @@ class Ieee80211SupportedRatesElementDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211SupportedRatesElementDescriptor);
 
-Ieee80211SupportedRatesElementDescriptor::Ieee80211SupportedRatesElementDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211SupportedRatesElement", "")
+Ieee80211SupportedRatesElementDescriptor::Ieee80211SupportedRatesElementDescriptor() : cClassDescriptor("Ieee80211SupportedRatesElement", "")
 {
 }
 
@@ -893,7 +876,7 @@ class Ieee80211FrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211FrameBodyDescriptor);
 
-Ieee80211FrameBodyDescriptor::Ieee80211FrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211FrameBody", "cObject")
+Ieee80211FrameBodyDescriptor::Ieee80211FrameBodyDescriptor() : cClassDescriptor("Ieee80211FrameBody", "cObject")
 {
 }
 
@@ -1054,7 +1037,7 @@ void *Ieee80211FrameBodyDescriptor::getFieldStructPointer(void *object, int fiel
 
 Register_Class(Ieee80211AuthenticationFrameBody);
 
-Ieee80211AuthenticationFrameBody::Ieee80211AuthenticationFrameBody() : ::inet::ieee80211::Ieee80211FrameBody()
+Ieee80211AuthenticationFrameBody::Ieee80211AuthenticationFrameBody() : ::Ieee80211FrameBody()
 {
     this->setBodyLength(6);
 
@@ -1063,7 +1046,7 @@ Ieee80211AuthenticationFrameBody::Ieee80211AuthenticationFrameBody() : ::inet::i
     this->isLast_var = 0;
 }
 
-Ieee80211AuthenticationFrameBody::Ieee80211AuthenticationFrameBody(const Ieee80211AuthenticationFrameBody& other) : ::inet::ieee80211::Ieee80211FrameBody(other)
+Ieee80211AuthenticationFrameBody::Ieee80211AuthenticationFrameBody(const Ieee80211AuthenticationFrameBody& other) : ::Ieee80211FrameBody(other)
 {
     copy(other);
 }
@@ -1075,7 +1058,7 @@ Ieee80211AuthenticationFrameBody::~Ieee80211AuthenticationFrameBody()
 Ieee80211AuthenticationFrameBody& Ieee80211AuthenticationFrameBody::operator=(const Ieee80211AuthenticationFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211FrameBody::operator=(other);
+    ::Ieee80211FrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -1089,7 +1072,7 @@ void Ieee80211AuthenticationFrameBody::copy(const Ieee80211AuthenticationFrameBo
 
 void Ieee80211AuthenticationFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimPack(b);
+    ::Ieee80211FrameBody::parsimPack(b);
     doPacking(b,this->sequenceNumber_var);
     doPacking(b,this->statusCode_var);
     doPacking(b,this->isLast_var);
@@ -1097,7 +1080,7 @@ void Ieee80211AuthenticationFrameBody::parsimPack(cCommBuffer *b)
 
 void Ieee80211AuthenticationFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimUnpack(b);
+    ::Ieee80211FrameBody::parsimUnpack(b);
     doUnpacking(b,this->sequenceNumber_var);
     doUnpacking(b,this->statusCode_var);
     doUnpacking(b,this->isLast_var);
@@ -1158,7 +1141,7 @@ class Ieee80211AuthenticationFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211AuthenticationFrameBodyDescriptor);
 
-Ieee80211AuthenticationFrameBodyDescriptor::Ieee80211AuthenticationFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211AuthenticationFrameBody", "inet::ieee80211::Ieee80211FrameBody")
+Ieee80211AuthenticationFrameBodyDescriptor::Ieee80211AuthenticationFrameBodyDescriptor() : cClassDescriptor("Ieee80211AuthenticationFrameBody", "Ieee80211FrameBody")
 {
 }
 
@@ -1251,7 +1234,7 @@ const char *Ieee80211AuthenticationFrameBodyDescriptor::getFieldProperty(void *o
     }
     switch (field) {
         case 1:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::Ieee80211StatusCode";
+            if (!strcmp(propertyname,"enum")) return "Ieee80211StatusCode";
             return NULL;
         default: return NULL;
     }
@@ -1334,14 +1317,14 @@ void *Ieee80211AuthenticationFrameBodyDescriptor::getFieldStructPointer(void *ob
 
 Register_Class(Ieee80211DeauthenticationFrameBody);
 
-Ieee80211DeauthenticationFrameBody::Ieee80211DeauthenticationFrameBody() : ::inet::ieee80211::Ieee80211FrameBody()
+Ieee80211DeauthenticationFrameBody::Ieee80211DeauthenticationFrameBody() : ::Ieee80211FrameBody()
 {
     this->setBodyLength(2);
 
     this->reasonCode_var = 0;
 }
 
-Ieee80211DeauthenticationFrameBody::Ieee80211DeauthenticationFrameBody(const Ieee80211DeauthenticationFrameBody& other) : ::inet::ieee80211::Ieee80211FrameBody(other)
+Ieee80211DeauthenticationFrameBody::Ieee80211DeauthenticationFrameBody(const Ieee80211DeauthenticationFrameBody& other) : ::Ieee80211FrameBody(other)
 {
     copy(other);
 }
@@ -1353,7 +1336,7 @@ Ieee80211DeauthenticationFrameBody::~Ieee80211DeauthenticationFrameBody()
 Ieee80211DeauthenticationFrameBody& Ieee80211DeauthenticationFrameBody::operator=(const Ieee80211DeauthenticationFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211FrameBody::operator=(other);
+    ::Ieee80211FrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -1365,13 +1348,13 @@ void Ieee80211DeauthenticationFrameBody::copy(const Ieee80211DeauthenticationFra
 
 void Ieee80211DeauthenticationFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimPack(b);
+    ::Ieee80211FrameBody::parsimPack(b);
     doPacking(b,this->reasonCode_var);
 }
 
 void Ieee80211DeauthenticationFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimUnpack(b);
+    ::Ieee80211FrameBody::parsimUnpack(b);
     doUnpacking(b,this->reasonCode_var);
 }
 
@@ -1410,7 +1393,7 @@ class Ieee80211DeauthenticationFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211DeauthenticationFrameBodyDescriptor);
 
-Ieee80211DeauthenticationFrameBodyDescriptor::Ieee80211DeauthenticationFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211DeauthenticationFrameBody", "inet::ieee80211::Ieee80211FrameBody")
+Ieee80211DeauthenticationFrameBodyDescriptor::Ieee80211DeauthenticationFrameBodyDescriptor() : cClassDescriptor("Ieee80211DeauthenticationFrameBody", "Ieee80211FrameBody")
 {
 }
 
@@ -1495,7 +1478,7 @@ const char *Ieee80211DeauthenticationFrameBodyDescriptor::getFieldProperty(void 
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::Ieee80211ReasonCode";
+            if (!strcmp(propertyname,"enum")) return "Ieee80211ReasonCode";
             return NULL;
         default: return NULL;
     }
@@ -1574,14 +1557,14 @@ void *Ieee80211DeauthenticationFrameBodyDescriptor::getFieldStructPointer(void *
 
 Register_Class(Ieee80211DisassociationFrameBody);
 
-Ieee80211DisassociationFrameBody::Ieee80211DisassociationFrameBody() : ::inet::ieee80211::Ieee80211FrameBody()
+Ieee80211DisassociationFrameBody::Ieee80211DisassociationFrameBody() : ::Ieee80211FrameBody()
 {
     this->setBodyLength(2);
 
     this->reasonCode_var = 0;
 }
 
-Ieee80211DisassociationFrameBody::Ieee80211DisassociationFrameBody(const Ieee80211DisassociationFrameBody& other) : ::inet::ieee80211::Ieee80211FrameBody(other)
+Ieee80211DisassociationFrameBody::Ieee80211DisassociationFrameBody(const Ieee80211DisassociationFrameBody& other) : ::Ieee80211FrameBody(other)
 {
     copy(other);
 }
@@ -1593,7 +1576,7 @@ Ieee80211DisassociationFrameBody::~Ieee80211DisassociationFrameBody()
 Ieee80211DisassociationFrameBody& Ieee80211DisassociationFrameBody::operator=(const Ieee80211DisassociationFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211FrameBody::operator=(other);
+    ::Ieee80211FrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -1605,13 +1588,13 @@ void Ieee80211DisassociationFrameBody::copy(const Ieee80211DisassociationFrameBo
 
 void Ieee80211DisassociationFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimPack(b);
+    ::Ieee80211FrameBody::parsimPack(b);
     doPacking(b,this->reasonCode_var);
 }
 
 void Ieee80211DisassociationFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimUnpack(b);
+    ::Ieee80211FrameBody::parsimUnpack(b);
     doUnpacking(b,this->reasonCode_var);
 }
 
@@ -1650,7 +1633,7 @@ class Ieee80211DisassociationFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211DisassociationFrameBodyDescriptor);
 
-Ieee80211DisassociationFrameBodyDescriptor::Ieee80211DisassociationFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211DisassociationFrameBody", "inet::ieee80211::Ieee80211FrameBody")
+Ieee80211DisassociationFrameBodyDescriptor::Ieee80211DisassociationFrameBodyDescriptor() : cClassDescriptor("Ieee80211DisassociationFrameBody", "Ieee80211FrameBody")
 {
 }
 
@@ -1735,7 +1718,7 @@ const char *Ieee80211DisassociationFrameBodyDescriptor::getFieldProperty(void *o
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::Ieee80211ReasonCode";
+            if (!strcmp(propertyname,"enum")) return "Ieee80211ReasonCode";
             return NULL;
         default: return NULL;
     }
@@ -1814,14 +1797,14 @@ void *Ieee80211DisassociationFrameBodyDescriptor::getFieldStructPointer(void *ob
 
 Register_Class(Ieee80211ProbeRequestFrameBody);
 
-Ieee80211ProbeRequestFrameBody::Ieee80211ProbeRequestFrameBody() : ::inet::ieee80211::Ieee80211FrameBody()
+Ieee80211ProbeRequestFrameBody::Ieee80211ProbeRequestFrameBody() : ::Ieee80211FrameBody()
 {
     this->setBodyLength(12);
 
     this->SSID_var = 0;
 }
 
-Ieee80211ProbeRequestFrameBody::Ieee80211ProbeRequestFrameBody(const Ieee80211ProbeRequestFrameBody& other) : ::inet::ieee80211::Ieee80211FrameBody(other)
+Ieee80211ProbeRequestFrameBody::Ieee80211ProbeRequestFrameBody(const Ieee80211ProbeRequestFrameBody& other) : ::Ieee80211FrameBody(other)
 {
     copy(other);
 }
@@ -1833,7 +1816,7 @@ Ieee80211ProbeRequestFrameBody::~Ieee80211ProbeRequestFrameBody()
 Ieee80211ProbeRequestFrameBody& Ieee80211ProbeRequestFrameBody::operator=(const Ieee80211ProbeRequestFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211FrameBody::operator=(other);
+    ::Ieee80211FrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -1846,14 +1829,14 @@ void Ieee80211ProbeRequestFrameBody::copy(const Ieee80211ProbeRequestFrameBody& 
 
 void Ieee80211ProbeRequestFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimPack(b);
+    ::Ieee80211FrameBody::parsimPack(b);
     doPacking(b,this->SSID_var);
     doPacking(b,this->supportedRates_var);
 }
 
 void Ieee80211ProbeRequestFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimUnpack(b);
+    ::Ieee80211FrameBody::parsimUnpack(b);
     doUnpacking(b,this->SSID_var);
     doUnpacking(b,this->supportedRates_var);
 }
@@ -1903,7 +1886,7 @@ class Ieee80211ProbeRequestFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ProbeRequestFrameBodyDescriptor);
 
-Ieee80211ProbeRequestFrameBodyDescriptor::Ieee80211ProbeRequestFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ProbeRequestFrameBody", "inet::ieee80211::Ieee80211FrameBody")
+Ieee80211ProbeRequestFrameBodyDescriptor::Ieee80211ProbeRequestFrameBodyDescriptor() : cClassDescriptor("Ieee80211ProbeRequestFrameBody", "Ieee80211FrameBody")
 {
 }
 
@@ -2071,14 +2054,14 @@ void *Ieee80211ProbeRequestFrameBodyDescriptor::getFieldStructPointer(void *obje
 
 Register_Class(Ieee80211AssociationRequestFrameBody);
 
-Ieee80211AssociationRequestFrameBody::Ieee80211AssociationRequestFrameBody() : ::inet::ieee80211::Ieee80211FrameBody()
+Ieee80211AssociationRequestFrameBody::Ieee80211AssociationRequestFrameBody() : ::Ieee80211FrameBody()
 {
     this->setBodyLength(16);
 
     this->SSID_var = 0;
 }
 
-Ieee80211AssociationRequestFrameBody::Ieee80211AssociationRequestFrameBody(const Ieee80211AssociationRequestFrameBody& other) : ::inet::ieee80211::Ieee80211FrameBody(other)
+Ieee80211AssociationRequestFrameBody::Ieee80211AssociationRequestFrameBody(const Ieee80211AssociationRequestFrameBody& other) : ::Ieee80211FrameBody(other)
 {
     copy(other);
 }
@@ -2090,7 +2073,7 @@ Ieee80211AssociationRequestFrameBody::~Ieee80211AssociationRequestFrameBody()
 Ieee80211AssociationRequestFrameBody& Ieee80211AssociationRequestFrameBody::operator=(const Ieee80211AssociationRequestFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211FrameBody::operator=(other);
+    ::Ieee80211FrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -2103,14 +2086,14 @@ void Ieee80211AssociationRequestFrameBody::copy(const Ieee80211AssociationReques
 
 void Ieee80211AssociationRequestFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimPack(b);
+    ::Ieee80211FrameBody::parsimPack(b);
     doPacking(b,this->SSID_var);
     doPacking(b,this->supportedRates_var);
 }
 
 void Ieee80211AssociationRequestFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimUnpack(b);
+    ::Ieee80211FrameBody::parsimUnpack(b);
     doUnpacking(b,this->SSID_var);
     doUnpacking(b,this->supportedRates_var);
 }
@@ -2160,7 +2143,7 @@ class Ieee80211AssociationRequestFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211AssociationRequestFrameBodyDescriptor);
 
-Ieee80211AssociationRequestFrameBodyDescriptor::Ieee80211AssociationRequestFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211AssociationRequestFrameBody", "inet::ieee80211::Ieee80211FrameBody")
+Ieee80211AssociationRequestFrameBodyDescriptor::Ieee80211AssociationRequestFrameBodyDescriptor() : cClassDescriptor("Ieee80211AssociationRequestFrameBody", "Ieee80211FrameBody")
 {
 }
 
@@ -2328,13 +2311,13 @@ void *Ieee80211AssociationRequestFrameBodyDescriptor::getFieldStructPointer(void
 
 Register_Class(Ieee80211ReassociationRequestFrameBody);
 
-Ieee80211ReassociationRequestFrameBody::Ieee80211ReassociationRequestFrameBody() : ::inet::ieee80211::Ieee80211AssociationRequestFrameBody()
+Ieee80211ReassociationRequestFrameBody::Ieee80211ReassociationRequestFrameBody() : ::Ieee80211AssociationRequestFrameBody()
 {
     this->setBodyLength(26);
 
 }
 
-Ieee80211ReassociationRequestFrameBody::Ieee80211ReassociationRequestFrameBody(const Ieee80211ReassociationRequestFrameBody& other) : ::inet::ieee80211::Ieee80211AssociationRequestFrameBody(other)
+Ieee80211ReassociationRequestFrameBody::Ieee80211ReassociationRequestFrameBody(const Ieee80211ReassociationRequestFrameBody& other) : ::Ieee80211AssociationRequestFrameBody(other)
 {
     copy(other);
 }
@@ -2346,7 +2329,7 @@ Ieee80211ReassociationRequestFrameBody::~Ieee80211ReassociationRequestFrameBody(
 Ieee80211ReassociationRequestFrameBody& Ieee80211ReassociationRequestFrameBody::operator=(const Ieee80211ReassociationRequestFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211AssociationRequestFrameBody::operator=(other);
+    ::Ieee80211AssociationRequestFrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -2358,13 +2341,13 @@ void Ieee80211ReassociationRequestFrameBody::copy(const Ieee80211ReassociationRe
 
 void Ieee80211ReassociationRequestFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211AssociationRequestFrameBody::parsimPack(b);
+    ::Ieee80211AssociationRequestFrameBody::parsimPack(b);
     doPacking(b,this->currentAP_var);
 }
 
 void Ieee80211ReassociationRequestFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211AssociationRequestFrameBody::parsimUnpack(b);
+    ::Ieee80211AssociationRequestFrameBody::parsimUnpack(b);
     doUnpacking(b,this->currentAP_var);
 }
 
@@ -2403,7 +2386,7 @@ class Ieee80211ReassociationRequestFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ReassociationRequestFrameBodyDescriptor);
 
-Ieee80211ReassociationRequestFrameBodyDescriptor::Ieee80211ReassociationRequestFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ReassociationRequestFrameBody", "inet::ieee80211::Ieee80211AssociationRequestFrameBody")
+Ieee80211ReassociationRequestFrameBodyDescriptor::Ieee80211ReassociationRequestFrameBodyDescriptor() : cClassDescriptor("Ieee80211ReassociationRequestFrameBody", "Ieee80211AssociationRequestFrameBody")
 {
 }
 
@@ -2565,7 +2548,7 @@ void *Ieee80211ReassociationRequestFrameBodyDescriptor::getFieldStructPointer(vo
 
 Register_Class(Ieee80211AssociationResponseFrameBody);
 
-Ieee80211AssociationResponseFrameBody::Ieee80211AssociationResponseFrameBody() : ::inet::ieee80211::Ieee80211FrameBody()
+Ieee80211AssociationResponseFrameBody::Ieee80211AssociationResponseFrameBody() : ::Ieee80211FrameBody()
 {
     this->setBodyLength(26);
 
@@ -2573,7 +2556,7 @@ Ieee80211AssociationResponseFrameBody::Ieee80211AssociationResponseFrameBody() :
     this->aid_var = 0;
 }
 
-Ieee80211AssociationResponseFrameBody::Ieee80211AssociationResponseFrameBody(const Ieee80211AssociationResponseFrameBody& other) : ::inet::ieee80211::Ieee80211FrameBody(other)
+Ieee80211AssociationResponseFrameBody::Ieee80211AssociationResponseFrameBody(const Ieee80211AssociationResponseFrameBody& other) : ::Ieee80211FrameBody(other)
 {
     copy(other);
 }
@@ -2585,7 +2568,7 @@ Ieee80211AssociationResponseFrameBody::~Ieee80211AssociationResponseFrameBody()
 Ieee80211AssociationResponseFrameBody& Ieee80211AssociationResponseFrameBody::operator=(const Ieee80211AssociationResponseFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211FrameBody::operator=(other);
+    ::Ieee80211FrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -2599,7 +2582,7 @@ void Ieee80211AssociationResponseFrameBody::copy(const Ieee80211AssociationRespo
 
 void Ieee80211AssociationResponseFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimPack(b);
+    ::Ieee80211FrameBody::parsimPack(b);
     doPacking(b,this->statusCode_var);
     doPacking(b,this->aid_var);
     doPacking(b,this->supportedRates_var);
@@ -2607,7 +2590,7 @@ void Ieee80211AssociationResponseFrameBody::parsimPack(cCommBuffer *b)
 
 void Ieee80211AssociationResponseFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimUnpack(b);
+    ::Ieee80211FrameBody::parsimUnpack(b);
     doUnpacking(b,this->statusCode_var);
     doUnpacking(b,this->aid_var);
     doUnpacking(b,this->supportedRates_var);
@@ -2668,7 +2651,7 @@ class Ieee80211AssociationResponseFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211AssociationResponseFrameBodyDescriptor);
 
-Ieee80211AssociationResponseFrameBodyDescriptor::Ieee80211AssociationResponseFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211AssociationResponseFrameBody", "inet::ieee80211::Ieee80211FrameBody")
+Ieee80211AssociationResponseFrameBodyDescriptor::Ieee80211AssociationResponseFrameBodyDescriptor() : cClassDescriptor("Ieee80211AssociationResponseFrameBody", "Ieee80211FrameBody")
 {
 }
 
@@ -2761,7 +2744,7 @@ const char *Ieee80211AssociationResponseFrameBodyDescriptor::getFieldProperty(vo
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::Ieee80211StatusCode";
+            if (!strcmp(propertyname,"enum")) return "Ieee80211StatusCode";
             return NULL;
         default: return NULL;
     }
@@ -2845,11 +2828,11 @@ void *Ieee80211AssociationResponseFrameBodyDescriptor::getFieldStructPointer(voi
 
 Register_Class(Ieee80211ReassociationResponseFrameBody);
 
-Ieee80211ReassociationResponseFrameBody::Ieee80211ReassociationResponseFrameBody() : ::inet::ieee80211::Ieee80211AssociationResponseFrameBody()
+Ieee80211ReassociationResponseFrameBody::Ieee80211ReassociationResponseFrameBody() : ::Ieee80211AssociationResponseFrameBody()
 {
 }
 
-Ieee80211ReassociationResponseFrameBody::Ieee80211ReassociationResponseFrameBody(const Ieee80211ReassociationResponseFrameBody& other) : ::inet::ieee80211::Ieee80211AssociationResponseFrameBody(other)
+Ieee80211ReassociationResponseFrameBody::Ieee80211ReassociationResponseFrameBody(const Ieee80211ReassociationResponseFrameBody& other) : ::Ieee80211AssociationResponseFrameBody(other)
 {
     copy(other);
 }
@@ -2861,7 +2844,7 @@ Ieee80211ReassociationResponseFrameBody::~Ieee80211ReassociationResponseFrameBod
 Ieee80211ReassociationResponseFrameBody& Ieee80211ReassociationResponseFrameBody::operator=(const Ieee80211ReassociationResponseFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211AssociationResponseFrameBody::operator=(other);
+    ::Ieee80211AssociationResponseFrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -2872,12 +2855,12 @@ void Ieee80211ReassociationResponseFrameBody::copy(const Ieee80211ReassociationR
 
 void Ieee80211ReassociationResponseFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211AssociationResponseFrameBody::parsimPack(b);
+    ::Ieee80211AssociationResponseFrameBody::parsimPack(b);
 }
 
 void Ieee80211ReassociationResponseFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211AssociationResponseFrameBody::parsimUnpack(b);
+    ::Ieee80211AssociationResponseFrameBody::parsimUnpack(b);
 }
 
 class Ieee80211ReassociationResponseFrameBodyDescriptor : public cClassDescriptor
@@ -2905,7 +2888,7 @@ class Ieee80211ReassociationResponseFrameBodyDescriptor : public cClassDescripto
 
 Register_ClassDescriptor(Ieee80211ReassociationResponseFrameBodyDescriptor);
 
-Ieee80211ReassociationResponseFrameBodyDescriptor::Ieee80211ReassociationResponseFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ReassociationResponseFrameBody", "inet::ieee80211::Ieee80211AssociationResponseFrameBody")
+Ieee80211ReassociationResponseFrameBodyDescriptor::Ieee80211ReassociationResponseFrameBodyDescriptor() : cClassDescriptor("Ieee80211ReassociationResponseFrameBody", "Ieee80211AssociationResponseFrameBody")
 {
 }
 
@@ -3051,7 +3034,7 @@ void *Ieee80211ReassociationResponseFrameBodyDescriptor::getFieldStructPointer(v
 
 Register_Class(Ieee80211BeaconFrameBody);
 
-Ieee80211BeaconFrameBody::Ieee80211BeaconFrameBody() : ::inet::ieee80211::Ieee80211FrameBody()
+Ieee80211BeaconFrameBody::Ieee80211BeaconFrameBody() : ::Ieee80211FrameBody()
 {
     this->setBodyLength(50);
 
@@ -3060,7 +3043,7 @@ Ieee80211BeaconFrameBody::Ieee80211BeaconFrameBody() : ::inet::ieee80211::Ieee80
     this->channelNumber_var = 0;
 }
 
-Ieee80211BeaconFrameBody::Ieee80211BeaconFrameBody(const Ieee80211BeaconFrameBody& other) : ::inet::ieee80211::Ieee80211FrameBody(other)
+Ieee80211BeaconFrameBody::Ieee80211BeaconFrameBody(const Ieee80211BeaconFrameBody& other) : ::Ieee80211FrameBody(other)
 {
     copy(other);
 }
@@ -3072,7 +3055,7 @@ Ieee80211BeaconFrameBody::~Ieee80211BeaconFrameBody()
 Ieee80211BeaconFrameBody& Ieee80211BeaconFrameBody::operator=(const Ieee80211BeaconFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211FrameBody::operator=(other);
+    ::Ieee80211FrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -3088,7 +3071,7 @@ void Ieee80211BeaconFrameBody::copy(const Ieee80211BeaconFrameBody& other)
 
 void Ieee80211BeaconFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimPack(b);
+    ::Ieee80211FrameBody::parsimPack(b);
     doPacking(b,this->SSID_var);
     doPacking(b,this->supportedRates_var);
     doPacking(b,this->beaconInterval_var);
@@ -3098,7 +3081,7 @@ void Ieee80211BeaconFrameBody::parsimPack(cCommBuffer *b)
 
 void Ieee80211BeaconFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimUnpack(b);
+    ::Ieee80211FrameBody::parsimUnpack(b);
     doUnpacking(b,this->SSID_var);
     doUnpacking(b,this->supportedRates_var);
     doUnpacking(b,this->beaconInterval_var);
@@ -3181,7 +3164,7 @@ class Ieee80211BeaconFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211BeaconFrameBodyDescriptor);
 
-Ieee80211BeaconFrameBodyDescriptor::Ieee80211BeaconFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211BeaconFrameBody", "inet::ieee80211::Ieee80211FrameBody")
+Ieee80211BeaconFrameBodyDescriptor::Ieee80211BeaconFrameBodyDescriptor() : cClassDescriptor("Ieee80211BeaconFrameBody", "Ieee80211FrameBody")
 {
 }
 
@@ -3368,11 +3351,11 @@ void *Ieee80211BeaconFrameBodyDescriptor::getFieldStructPointer(void *object, in
 
 Register_Class(Ieee80211ProbeResponseFrameBody);
 
-Ieee80211ProbeResponseFrameBody::Ieee80211ProbeResponseFrameBody() : ::inet::ieee80211::Ieee80211BeaconFrameBody()
+Ieee80211ProbeResponseFrameBody::Ieee80211ProbeResponseFrameBody() : ::Ieee80211BeaconFrameBody()
 {
 }
 
-Ieee80211ProbeResponseFrameBody::Ieee80211ProbeResponseFrameBody(const Ieee80211ProbeResponseFrameBody& other) : ::inet::ieee80211::Ieee80211BeaconFrameBody(other)
+Ieee80211ProbeResponseFrameBody::Ieee80211ProbeResponseFrameBody(const Ieee80211ProbeResponseFrameBody& other) : ::Ieee80211BeaconFrameBody(other)
 {
     copy(other);
 }
@@ -3384,7 +3367,7 @@ Ieee80211ProbeResponseFrameBody::~Ieee80211ProbeResponseFrameBody()
 Ieee80211ProbeResponseFrameBody& Ieee80211ProbeResponseFrameBody::operator=(const Ieee80211ProbeResponseFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211BeaconFrameBody::operator=(other);
+    ::Ieee80211BeaconFrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -3395,12 +3378,12 @@ void Ieee80211ProbeResponseFrameBody::copy(const Ieee80211ProbeResponseFrameBody
 
 void Ieee80211ProbeResponseFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211BeaconFrameBody::parsimPack(b);
+    ::Ieee80211BeaconFrameBody::parsimPack(b);
 }
 
 void Ieee80211ProbeResponseFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211BeaconFrameBody::parsimUnpack(b);
+    ::Ieee80211BeaconFrameBody::parsimUnpack(b);
 }
 
 class Ieee80211ProbeResponseFrameBodyDescriptor : public cClassDescriptor
@@ -3428,7 +3411,7 @@ class Ieee80211ProbeResponseFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ProbeResponseFrameBodyDescriptor);
 
-Ieee80211ProbeResponseFrameBodyDescriptor::Ieee80211ProbeResponseFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ProbeResponseFrameBody", "inet::ieee80211::Ieee80211BeaconFrameBody")
+Ieee80211ProbeResponseFrameBodyDescriptor::Ieee80211ProbeResponseFrameBodyDescriptor() : cClassDescriptor("Ieee80211ProbeResponseFrameBody", "Ieee80211BeaconFrameBody")
 {
 }
 
@@ -3574,12 +3557,11 @@ void *Ieee80211ProbeResponseFrameBodyDescriptor::getFieldStructPointer(void *obj
 
 Register_Class(Ieee80211ActionFrameBody);
 
-Ieee80211ActionFrameBody::Ieee80211ActionFrameBody() : ::inet::ieee80211::Ieee80211FrameBody()
+Ieee80211ActionFrameBody::Ieee80211ActionFrameBody() : ::Ieee80211FrameBody()
 {
-    this->setBodyLength(1);
 }
 
-Ieee80211ActionFrameBody::Ieee80211ActionFrameBody(const Ieee80211ActionFrameBody& other) : ::inet::ieee80211::Ieee80211FrameBody(other)
+Ieee80211ActionFrameBody::Ieee80211ActionFrameBody(const Ieee80211ActionFrameBody& other) : ::Ieee80211FrameBody(other)
 {
     copy(other);
 }
@@ -3591,7 +3573,7 @@ Ieee80211ActionFrameBody::~Ieee80211ActionFrameBody()
 Ieee80211ActionFrameBody& Ieee80211ActionFrameBody::operator=(const Ieee80211ActionFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211FrameBody::operator=(other);
+    ::Ieee80211FrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -3602,12 +3584,12 @@ void Ieee80211ActionFrameBody::copy(const Ieee80211ActionFrameBody& other)
 
 void Ieee80211ActionFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimPack(b);
+    ::Ieee80211FrameBody::parsimPack(b);
 }
 
 void Ieee80211ActionFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211FrameBody::parsimUnpack(b);
+    ::Ieee80211FrameBody::parsimUnpack(b);
 }
 
 class Ieee80211ActionFrameBodyDescriptor : public cClassDescriptor
@@ -3635,7 +3617,7 @@ class Ieee80211ActionFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ActionFrameBodyDescriptor);
 
-Ieee80211ActionFrameBodyDescriptor::Ieee80211ActionFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionFrameBody", "inet::ieee80211::Ieee80211FrameBody")
+Ieee80211ActionFrameBodyDescriptor::Ieee80211ActionFrameBodyDescriptor() : cClassDescriptor("Ieee80211ActionFrameBody", "Ieee80211FrameBody")
 {
 }
 
@@ -3779,9 +3761,9 @@ void *Ieee80211ActionFrameBodyDescriptor::getFieldStructPointer(void *object, in
     }
 }
 
-Register_Class(Ieee80211ActionMeshFrameBody);
+Register_Class(Ieee80211ActionHWMPFrameBody);
 
-Ieee80211ActionMeshFrameBody::Ieee80211ActionMeshFrameBody() : ::inet::ieee80211::Ieee80211ActionFrameBody()
+Ieee80211ActionHWMPFrameBody::Ieee80211ActionHWMPFrameBody() : ::Ieee80211ActionFrameBody()
 {
     this->id_var = 0;
     this->flags_var = 0;
@@ -3789,24 +3771,24 @@ Ieee80211ActionMeshFrameBody::Ieee80211ActionMeshFrameBody() : ::inet::ieee80211
     this->TTL_var = 32;
 }
 
-Ieee80211ActionMeshFrameBody::Ieee80211ActionMeshFrameBody(const Ieee80211ActionMeshFrameBody& other) : ::inet::ieee80211::Ieee80211ActionFrameBody(other)
+Ieee80211ActionHWMPFrameBody::Ieee80211ActionHWMPFrameBody(const Ieee80211ActionHWMPFrameBody& other) : ::Ieee80211ActionFrameBody(other)
 {
     copy(other);
 }
 
-Ieee80211ActionMeshFrameBody::~Ieee80211ActionMeshFrameBody()
+Ieee80211ActionHWMPFrameBody::~Ieee80211ActionHWMPFrameBody()
 {
 }
 
-Ieee80211ActionMeshFrameBody& Ieee80211ActionMeshFrameBody::operator=(const Ieee80211ActionMeshFrameBody& other)
+Ieee80211ActionHWMPFrameBody& Ieee80211ActionHWMPFrameBody::operator=(const Ieee80211ActionHWMPFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionFrameBody::operator=(other);
+    ::Ieee80211ActionFrameBody::operator=(other);
     copy(other);
     return *this;
 }
 
-void Ieee80211ActionMeshFrameBody::copy(const Ieee80211ActionMeshFrameBody& other)
+void Ieee80211ActionHWMPFrameBody::copy(const Ieee80211ActionHWMPFrameBody& other)
 {
     this->id_var = other.id_var;
     this->flags_var = other.flags_var;
@@ -3814,69 +3796,69 @@ void Ieee80211ActionMeshFrameBody::copy(const Ieee80211ActionMeshFrameBody& othe
     this->TTL_var = other.TTL_var;
 }
 
-void Ieee80211ActionMeshFrameBody::parsimPack(cCommBuffer *b)
+void Ieee80211ActionHWMPFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionFrameBody::parsimPack(b);
+    ::Ieee80211ActionFrameBody::parsimPack(b);
     doPacking(b,this->id_var);
     doPacking(b,this->flags_var);
     doPacking(b,this->hopsCount_var);
     doPacking(b,this->TTL_var);
 }
 
-void Ieee80211ActionMeshFrameBody::parsimUnpack(cCommBuffer *b)
+void Ieee80211ActionHWMPFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionFrameBody::parsimUnpack(b);
+    ::Ieee80211ActionFrameBody::parsimUnpack(b);
     doUnpacking(b,this->id_var);
     doUnpacking(b,this->flags_var);
     doUnpacking(b,this->hopsCount_var);
     doUnpacking(b,this->TTL_var);
 }
 
-int Ieee80211ActionMeshFrameBody::getId() const
+int Ieee80211ActionHWMPFrameBody::getId() const
 {
     return id_var;
 }
 
-void Ieee80211ActionMeshFrameBody::setId(int id)
+void Ieee80211ActionHWMPFrameBody::setId(int id)
 {
     this->id_var = id;
 }
 
-unsigned char Ieee80211ActionMeshFrameBody::getFlags() const
+unsigned char Ieee80211ActionHWMPFrameBody::getFlags() const
 {
     return flags_var;
 }
 
-void Ieee80211ActionMeshFrameBody::setFlags(unsigned char flags)
+void Ieee80211ActionHWMPFrameBody::setFlags(unsigned char flags)
 {
     this->flags_var = flags;
 }
 
-unsigned char Ieee80211ActionMeshFrameBody::getHopsCount() const
+unsigned char Ieee80211ActionHWMPFrameBody::getHopsCount() const
 {
     return hopsCount_var;
 }
 
-void Ieee80211ActionMeshFrameBody::setHopsCount(unsigned char hopsCount)
+void Ieee80211ActionHWMPFrameBody::setHopsCount(unsigned char hopsCount)
 {
     this->hopsCount_var = hopsCount;
 }
 
-unsigned char Ieee80211ActionMeshFrameBody::getTTL() const
+unsigned char Ieee80211ActionHWMPFrameBody::getTTL() const
 {
     return TTL_var;
 }
 
-void Ieee80211ActionMeshFrameBody::setTTL(unsigned char TTL)
+void Ieee80211ActionHWMPFrameBody::setTTL(unsigned char TTL)
 {
     this->TTL_var = TTL;
 }
 
-class Ieee80211ActionMeshFrameBodyDescriptor : public cClassDescriptor
+class Ieee80211ActionHWMPFrameBodyDescriptor : public cClassDescriptor
 {
   public:
-    Ieee80211ActionMeshFrameBodyDescriptor();
-    virtual ~Ieee80211ActionMeshFrameBodyDescriptor();
+    Ieee80211ActionHWMPFrameBodyDescriptor();
+    virtual ~Ieee80211ActionHWMPFrameBodyDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -3895,34 +3877,34 @@ class Ieee80211ActionMeshFrameBodyDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(Ieee80211ActionMeshFrameBodyDescriptor);
+Register_ClassDescriptor(Ieee80211ActionHWMPFrameBodyDescriptor);
 
-Ieee80211ActionMeshFrameBodyDescriptor::Ieee80211ActionMeshFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionMeshFrameBody", "inet::ieee80211::Ieee80211ActionFrameBody")
+Ieee80211ActionHWMPFrameBodyDescriptor::Ieee80211ActionHWMPFrameBodyDescriptor() : cClassDescriptor("Ieee80211ActionHWMPFrameBody", "Ieee80211ActionFrameBody")
 {
 }
 
-Ieee80211ActionMeshFrameBodyDescriptor::~Ieee80211ActionMeshFrameBodyDescriptor()
+Ieee80211ActionHWMPFrameBodyDescriptor::~Ieee80211ActionHWMPFrameBodyDescriptor()
 {
 }
 
-bool Ieee80211ActionMeshFrameBodyDescriptor::doesSupport(cObject *obj) const
+bool Ieee80211ActionHWMPFrameBodyDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<Ieee80211ActionMeshFrameBody *>(obj)!=NULL;
+    return dynamic_cast<Ieee80211ActionHWMPFrameBody *>(obj)!=NULL;
 }
 
-const char *Ieee80211ActionMeshFrameBodyDescriptor::getProperty(const char *propertyname) const
+const char *Ieee80211ActionHWMPFrameBodyDescriptor::getProperty(const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int Ieee80211ActionMeshFrameBodyDescriptor::getFieldCount(void *object) const
+int Ieee80211ActionHWMPFrameBodyDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? 4+basedesc->getFieldCount(object) : 4;
 }
 
-unsigned int Ieee80211ActionMeshFrameBodyDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int Ieee80211ActionHWMPFrameBodyDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3939,7 +3921,7 @@ unsigned int Ieee80211ActionMeshFrameBodyDescriptor::getFieldTypeFlags(void *obj
     return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
 }
 
-const char *Ieee80211ActionMeshFrameBodyDescriptor::getFieldName(void *object, int field) const
+const char *Ieee80211ActionHWMPFrameBodyDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3956,7 +3938,7 @@ const char *Ieee80211ActionMeshFrameBodyDescriptor::getFieldName(void *object, i
     return (field>=0 && field<4) ? fieldNames[field] : NULL;
 }
 
-int Ieee80211ActionMeshFrameBodyDescriptor::findField(void *object, const char *fieldName) const
+int Ieee80211ActionHWMPFrameBodyDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
@@ -3967,7 +3949,7 @@ int Ieee80211ActionMeshFrameBodyDescriptor::findField(void *object, const char *
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *Ieee80211ActionMeshFrameBodyDescriptor::getFieldTypeString(void *object, int field) const
+const char *Ieee80211ActionHWMPFrameBodyDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3984,7 +3966,7 @@ const char *Ieee80211ActionMeshFrameBodyDescriptor::getFieldTypeString(void *obj
     return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *Ieee80211ActionMeshFrameBodyDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *Ieee80211ActionHWMPFrameBodyDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3994,13 +3976,13 @@ const char *Ieee80211ActionMeshFrameBodyDescriptor::getFieldProperty(void *objec
     }
     switch (field) {
         case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::Ieee80211HWMPCode";
+            if (!strcmp(propertyname,"enum")) return "Ieee80211HWMPCode";
             return NULL;
         default: return NULL;
     }
 }
 
-int Ieee80211ActionMeshFrameBodyDescriptor::getArraySize(void *object, int field) const
+int Ieee80211ActionHWMPFrameBodyDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -4008,13 +3990,13 @@ int Ieee80211ActionMeshFrameBodyDescriptor::getArraySize(void *object, int field
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    Ieee80211ActionMeshFrameBody *pp = (Ieee80211ActionMeshFrameBody *)object; (void)pp;
+    Ieee80211ActionHWMPFrameBody *pp = (Ieee80211ActionHWMPFrameBody *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string Ieee80211ActionMeshFrameBodyDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string Ieee80211ActionHWMPFrameBodyDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -4022,7 +4004,7 @@ std::string Ieee80211ActionMeshFrameBodyDescriptor::getFieldAsString(void *objec
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    Ieee80211ActionMeshFrameBody *pp = (Ieee80211ActionMeshFrameBody *)object; (void)pp;
+    Ieee80211ActionHWMPFrameBody *pp = (Ieee80211ActionHWMPFrameBody *)object; (void)pp;
     switch (field) {
         case 0: return long2string(pp->getId());
         case 1: return ulong2string(pp->getFlags());
@@ -4032,7 +4014,7 @@ std::string Ieee80211ActionMeshFrameBodyDescriptor::getFieldAsString(void *objec
     }
 }
 
-bool Ieee80211ActionMeshFrameBodyDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool Ieee80211ActionHWMPFrameBodyDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -4040,7 +4022,7 @@ bool Ieee80211ActionMeshFrameBodyDescriptor::setFieldAsString(void *object, int 
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    Ieee80211ActionMeshFrameBody *pp = (Ieee80211ActionMeshFrameBody *)object; (void)pp;
+    Ieee80211ActionHWMPFrameBody *pp = (Ieee80211ActionHWMPFrameBody *)object; (void)pp;
     switch (field) {
         case 0: pp->setId(string2long(value)); return true;
         case 1: pp->setFlags(string2ulong(value)); return true;
@@ -4050,7 +4032,7 @@ bool Ieee80211ActionMeshFrameBodyDescriptor::setFieldAsString(void *object, int 
     }
 }
 
-const char *Ieee80211ActionMeshFrameBodyDescriptor::getFieldStructName(void *object, int field) const
+const char *Ieee80211ActionHWMPFrameBodyDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -4063,7 +4045,7 @@ const char *Ieee80211ActionMeshFrameBodyDescriptor::getFieldStructName(void *obj
     };
 }
 
-void *Ieee80211ActionMeshFrameBodyDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *Ieee80211ActionHWMPFrameBodyDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -4071,7 +4053,7 @@ void *Ieee80211ActionMeshFrameBodyDescriptor::getFieldStructPointer(void *object
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    Ieee80211ActionMeshFrameBody *pp = (Ieee80211ActionMeshFrameBody *)object; (void)pp;
+    Ieee80211ActionHWMPFrameBody *pp = (Ieee80211ActionHWMPFrameBody *)object; (void)pp;
     switch (field) {
         default: return NULL;
     }
@@ -4125,7 +4107,7 @@ class PREQElemDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(PREQElemDescriptor);
 
-PREQElemDescriptor::PREQElemDescriptor() : cClassDescriptor("inet::ieee80211::PREQElem", "")
+PREQElemDescriptor::PREQElemDescriptor() : cClassDescriptor("PREQElem", "")
 {
 }
 
@@ -4357,7 +4339,7 @@ class PERRElemDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(PERRElemDescriptor);
 
-PERRElemDescriptor::PERRElemDescriptor() : cClassDescriptor("inet::ieee80211::PERRElem", "")
+PERRElemDescriptor::PERRElemDescriptor() : cClassDescriptor("PERRElem", "")
 {
 }
 
@@ -4549,9 +4531,9 @@ void *PERRElemDescriptor::getFieldStructPointer(void *object, int field, int i) 
 
 Register_Class(Ieee80211ActionRANNFrameBody);
 
-Ieee80211ActionRANNFrameBody::Ieee80211ActionRANNFrameBody() : ::inet::ieee80211::Ieee80211ActionMeshFrameBody()
+Ieee80211ActionRANNFrameBody::Ieee80211ActionRANNFrameBody() : ::Ieee80211ActionHWMPFrameBody()
 {
-    this->setBodyLength(23 + 1);
+    this->setBodyLength(23);
     this->setId(IE11S_RANN);
 
     this->seqNumber_var = 0;
@@ -4559,7 +4541,7 @@ Ieee80211ActionRANNFrameBody::Ieee80211ActionRANNFrameBody() : ::inet::ieee80211
     this->metric_var = 0;
 }
 
-Ieee80211ActionRANNFrameBody::Ieee80211ActionRANNFrameBody(const Ieee80211ActionRANNFrameBody& other) : ::inet::ieee80211::Ieee80211ActionMeshFrameBody(other)
+Ieee80211ActionRANNFrameBody::Ieee80211ActionRANNFrameBody(const Ieee80211ActionRANNFrameBody& other) : ::Ieee80211ActionHWMPFrameBody(other)
 {
     copy(other);
 }
@@ -4571,7 +4553,7 @@ Ieee80211ActionRANNFrameBody::~Ieee80211ActionRANNFrameBody()
 Ieee80211ActionRANNFrameBody& Ieee80211ActionRANNFrameBody::operator=(const Ieee80211ActionRANNFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::operator=(other);
+    ::Ieee80211ActionHWMPFrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -4586,7 +4568,7 @@ void Ieee80211ActionRANNFrameBody::copy(const Ieee80211ActionRANNFrameBody& othe
 
 void Ieee80211ActionRANNFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::parsimPack(b);
+    ::Ieee80211ActionHWMPFrameBody::parsimPack(b);
     doPacking(b,this->root_var);
     doPacking(b,this->seqNumber_var);
     doPacking(b,this->interval_var);
@@ -4595,7 +4577,7 @@ void Ieee80211ActionRANNFrameBody::parsimPack(cCommBuffer *b)
 
 void Ieee80211ActionRANNFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::parsimUnpack(b);
+    ::Ieee80211ActionHWMPFrameBody::parsimUnpack(b);
     doUnpacking(b,this->root_var);
     doUnpacking(b,this->seqNumber_var);
     doUnpacking(b,this->interval_var);
@@ -4667,7 +4649,7 @@ class Ieee80211ActionRANNFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ActionRANNFrameBodyDescriptor);
 
-Ieee80211ActionRANNFrameBodyDescriptor::Ieee80211ActionRANNFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionRANNFrameBody", "inet::ieee80211::Ieee80211ActionMeshFrameBody")
+Ieee80211ActionRANNFrameBodyDescriptor::Ieee80211ActionRANNFrameBodyDescriptor() : cClassDescriptor("Ieee80211ActionRANNFrameBody", "Ieee80211ActionHWMPFrameBody")
 {
 }
 
@@ -4847,9 +4829,9 @@ void *Ieee80211ActionRANNFrameBodyDescriptor::getFieldStructPointer(void *object
 
 Register_Class(Ieee80211ActionPREQFrameBody);
 
-Ieee80211ActionPREQFrameBody::Ieee80211ActionPREQFrameBody() : ::inet::ieee80211::Ieee80211ActionMeshFrameBody()
+Ieee80211ActionPREQFrameBody::Ieee80211ActionPREQFrameBody() : ::Ieee80211ActionHWMPFrameBody()
 {
-    this->setBodyLength(26 + 1);
+    this->setBodyLength(26);
     this->setId(IE11S_PREQ);
 
     this->pathDiscoveryId_var = 0;
@@ -4861,7 +4843,7 @@ Ieee80211ActionPREQFrameBody::Ieee80211ActionPREQFrameBody() : ::inet::ieee80211
     this->preqElem_var = 0;
 }
 
-Ieee80211ActionPREQFrameBody::Ieee80211ActionPREQFrameBody(const Ieee80211ActionPREQFrameBody& other) : ::inet::ieee80211::Ieee80211ActionMeshFrameBody(other)
+Ieee80211ActionPREQFrameBody::Ieee80211ActionPREQFrameBody(const Ieee80211ActionPREQFrameBody& other) : ::Ieee80211ActionHWMPFrameBody(other)
 {
     preqElem_arraysize = 0;
     this->preqElem_var = 0;
@@ -4876,7 +4858,7 @@ Ieee80211ActionPREQFrameBody::~Ieee80211ActionPREQFrameBody()
 Ieee80211ActionPREQFrameBody& Ieee80211ActionPREQFrameBody::operator=(const Ieee80211ActionPREQFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::operator=(other);
+    ::Ieee80211ActionHWMPFrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -4899,7 +4881,7 @@ void Ieee80211ActionPREQFrameBody::copy(const Ieee80211ActionPREQFrameBody& othe
 
 void Ieee80211ActionPREQFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::parsimPack(b);
+    ::Ieee80211ActionHWMPFrameBody::parsimPack(b);
     doPacking(b,this->pathDiscoveryId_var);
     doPacking(b,this->originator_var);
     doPacking(b,this->originatorSeqNumber_var);
@@ -4913,7 +4895,7 @@ void Ieee80211ActionPREQFrameBody::parsimPack(cCommBuffer *b)
 
 void Ieee80211ActionPREQFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::parsimUnpack(b);
+    ::Ieee80211ActionHWMPFrameBody::parsimUnpack(b);
     doUnpacking(b,this->pathDiscoveryId_var);
     doUnpacking(b,this->originator_var);
     doUnpacking(b,this->originatorSeqNumber_var);
@@ -5054,7 +5036,7 @@ class Ieee80211ActionPREQFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ActionPREQFrameBodyDescriptor);
 
-Ieee80211ActionPREQFrameBodyDescriptor::Ieee80211ActionPREQFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionPREQFrameBody", "inet::ieee80211::Ieee80211ActionMeshFrameBody")
+Ieee80211ActionPREQFrameBodyDescriptor::Ieee80211ActionPREQFrameBodyDescriptor() : cClassDescriptor("Ieee80211ActionPREQFrameBody", "Ieee80211ActionHWMPFrameBody")
 {
 }
 
@@ -5261,9 +5243,9 @@ void *Ieee80211ActionPREQFrameBodyDescriptor::getFieldStructPointer(void *object
 
 Register_Class(Ieee80211ActionPREPFrameBody);
 
-Ieee80211ActionPREPFrameBody::Ieee80211ActionPREPFrameBody() : ::inet::ieee80211::Ieee80211ActionMeshFrameBody()
+Ieee80211ActionPREPFrameBody::Ieee80211ActionPREPFrameBody() : ::Ieee80211ActionHWMPFrameBody()
 {
-    this->setBodyLength(37 + 1);
+    this->setBodyLength(37);
     this->setId(IE11S_PREP);
 
     this->targetSeqNumber_var = 0;
@@ -5272,7 +5254,7 @@ Ieee80211ActionPREPFrameBody::Ieee80211ActionPREPFrameBody() : ::inet::ieee80211
     this->originatorSeqNumber_var = 0;
 }
 
-Ieee80211ActionPREPFrameBody::Ieee80211ActionPREPFrameBody(const Ieee80211ActionPREPFrameBody& other) : ::inet::ieee80211::Ieee80211ActionMeshFrameBody(other)
+Ieee80211ActionPREPFrameBody::Ieee80211ActionPREPFrameBody(const Ieee80211ActionPREPFrameBody& other) : ::Ieee80211ActionHWMPFrameBody(other)
 {
     copy(other);
 }
@@ -5284,7 +5266,7 @@ Ieee80211ActionPREPFrameBody::~Ieee80211ActionPREPFrameBody()
 Ieee80211ActionPREPFrameBody& Ieee80211ActionPREPFrameBody::operator=(const Ieee80211ActionPREPFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::operator=(other);
+    ::Ieee80211ActionHWMPFrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -5302,7 +5284,7 @@ void Ieee80211ActionPREPFrameBody::copy(const Ieee80211ActionPREPFrameBody& othe
 
 void Ieee80211ActionPREPFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::parsimPack(b);
+    ::Ieee80211ActionHWMPFrameBody::parsimPack(b);
     doPacking(b,this->target_var);
     doPacking(b,this->targetSeqNumber_var);
     doPacking(b,this->tagetExternalAddr_var);
@@ -5314,7 +5296,7 @@ void Ieee80211ActionPREPFrameBody::parsimPack(cCommBuffer *b)
 
 void Ieee80211ActionPREPFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::parsimUnpack(b);
+    ::Ieee80211ActionHWMPFrameBody::parsimUnpack(b);
     doUnpacking(b,this->target_var);
     doUnpacking(b,this->targetSeqNumber_var);
     doUnpacking(b,this->tagetExternalAddr_var);
@@ -5419,7 +5401,7 @@ class Ieee80211ActionPREPFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ActionPREPFrameBodyDescriptor);
 
-Ieee80211ActionPREPFrameBodyDescriptor::Ieee80211ActionPREPFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionPREPFrameBody", "inet::ieee80211::Ieee80211ActionMeshFrameBody")
+Ieee80211ActionPREPFrameBodyDescriptor::Ieee80211ActionPREPFrameBodyDescriptor() : cClassDescriptor("Ieee80211ActionPREPFrameBody", "Ieee80211ActionHWMPFrameBody")
 {
 }
 
@@ -5619,9 +5601,9 @@ void *Ieee80211ActionPREPFrameBodyDescriptor::getFieldStructPointer(void *object
 
 Register_Class(Ieee80211ActionPERRFrameBody);
 
-Ieee80211ActionPERRFrameBody::Ieee80211ActionPERRFrameBody() : ::inet::ieee80211::Ieee80211ActionMeshFrameBody()
+Ieee80211ActionPERRFrameBody::Ieee80211ActionPERRFrameBody() : ::Ieee80211ActionHWMPFrameBody()
 {
-    this->setBodyLength(2 + 1);
+    this->setBodyLength(2);
     this->setId(IE11S_PERR);
 
     this->numDestination_var = 0;
@@ -5629,7 +5611,7 @@ Ieee80211ActionPERRFrameBody::Ieee80211ActionPERRFrameBody() : ::inet::ieee80211
     this->perrElem_var = 0;
 }
 
-Ieee80211ActionPERRFrameBody::Ieee80211ActionPERRFrameBody(const Ieee80211ActionPERRFrameBody& other) : ::inet::ieee80211::Ieee80211ActionMeshFrameBody(other)
+Ieee80211ActionPERRFrameBody::Ieee80211ActionPERRFrameBody(const Ieee80211ActionPERRFrameBody& other) : ::Ieee80211ActionHWMPFrameBody(other)
 {
     perrElem_arraysize = 0;
     this->perrElem_var = 0;
@@ -5644,7 +5626,7 @@ Ieee80211ActionPERRFrameBody::~Ieee80211ActionPERRFrameBody()
 Ieee80211ActionPERRFrameBody& Ieee80211ActionPERRFrameBody::operator=(const Ieee80211ActionPERRFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::operator=(other);
+    ::Ieee80211ActionHWMPFrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -5661,7 +5643,7 @@ void Ieee80211ActionPERRFrameBody::copy(const Ieee80211ActionPERRFrameBody& othe
 
 void Ieee80211ActionPERRFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::parsimPack(b);
+    ::Ieee80211ActionHWMPFrameBody::parsimPack(b);
     doPacking(b,this->numDestination_var);
     b->pack(perrElem_arraysize);
     doPacking(b,this->perrElem_var,perrElem_arraysize);
@@ -5669,7 +5651,7 @@ void Ieee80211ActionPERRFrameBody::parsimPack(cCommBuffer *b)
 
 void Ieee80211ActionPERRFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::parsimUnpack(b);
+    ::Ieee80211ActionHWMPFrameBody::parsimUnpack(b);
     doUnpacking(b,this->numDestination_var);
     delete [] this->perrElem_var;
     b->unpack(perrElem_arraysize);
@@ -5744,7 +5726,7 @@ class Ieee80211ActionPERRFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ActionPERRFrameBodyDescriptor);
 
-Ieee80211ActionPERRFrameBodyDescriptor::Ieee80211ActionPERRFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionPERRFrameBody", "inet::ieee80211::Ieee80211ActionMeshFrameBody")
+Ieee80211ActionPERRFrameBodyDescriptor::Ieee80211ActionPERRFrameBodyDescriptor() : cClassDescriptor("Ieee80211ActionPERRFrameBody", "Ieee80211ActionHWMPFrameBody")
 {
 }
 
@@ -5913,15 +5895,15 @@ void *Ieee80211ActionPERRFrameBodyDescriptor::getFieldStructPointer(void *object
 
 Register_Class(Ieee80211ActionGANNFrameBody);
 
-Ieee80211ActionGANNFrameBody::Ieee80211ActionGANNFrameBody() : ::inet::ieee80211::Ieee80211ActionMeshFrameBody()
+Ieee80211ActionGANNFrameBody::Ieee80211ActionGANNFrameBody() : ::Ieee80211ActionHWMPFrameBody()
 {
-    this->setBodyLength(15 +1);
+    this->setBodyLength(15);
     this->setId(IE11S_GANN);
 
     this->meshGateSeqNumber_var = 0;
 }
 
-Ieee80211ActionGANNFrameBody::Ieee80211ActionGANNFrameBody(const Ieee80211ActionGANNFrameBody& other) : ::inet::ieee80211::Ieee80211ActionMeshFrameBody(other)
+Ieee80211ActionGANNFrameBody::Ieee80211ActionGANNFrameBody(const Ieee80211ActionGANNFrameBody& other) : ::Ieee80211ActionHWMPFrameBody(other)
 {
     copy(other);
 }
@@ -5933,7 +5915,7 @@ Ieee80211ActionGANNFrameBody::~Ieee80211ActionGANNFrameBody()
 Ieee80211ActionGANNFrameBody& Ieee80211ActionGANNFrameBody::operator=(const Ieee80211ActionGANNFrameBody& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::operator=(other);
+    ::Ieee80211ActionHWMPFrameBody::operator=(other);
     copy(other);
     return *this;
 }
@@ -5946,14 +5928,14 @@ void Ieee80211ActionGANNFrameBody::copy(const Ieee80211ActionGANNFrameBody& othe
 
 void Ieee80211ActionGANNFrameBody::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::parsimPack(b);
+    ::Ieee80211ActionHWMPFrameBody::parsimPack(b);
     doPacking(b,this->meshGateAddress_var);
     doPacking(b,this->meshGateSeqNumber_var);
 }
 
 void Ieee80211ActionGANNFrameBody::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrameBody::parsimUnpack(b);
+    ::Ieee80211ActionHWMPFrameBody::parsimUnpack(b);
     doUnpacking(b,this->meshGateAddress_var);
     doUnpacking(b,this->meshGateSeqNumber_var);
 }
@@ -6003,7 +5985,7 @@ class Ieee80211ActionGANNFrameBodyDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ActionGANNFrameBodyDescriptor);
 
-Ieee80211ActionGANNFrameBodyDescriptor::Ieee80211ActionGANNFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionGANNFrameBody", "inet::ieee80211::Ieee80211ActionMeshFrameBody")
+Ieee80211ActionGANNFrameBodyDescriptor::Ieee80211ActionGANNFrameBodyDescriptor() : cClassDescriptor("Ieee80211ActionGANNFrameBody", "Ieee80211ActionHWMPFrameBody")
 {
 }
 
@@ -6171,14 +6153,14 @@ void *Ieee80211ActionGANNFrameBodyDescriptor::getFieldStructPointer(void *object
 
 Register_Class(Ieee80211AuthenticationFrame);
 
-Ieee80211AuthenticationFrame::Ieee80211AuthenticationFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
+Ieee80211AuthenticationFrame::Ieee80211AuthenticationFrame(const char *name, int kind) : ::Ieee80211ManagementFrame(name,kind)
 {
     this->setType(ST_AUTHENTICATION);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211AuthenticationFrame::Ieee80211AuthenticationFrame(const Ieee80211AuthenticationFrame& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
+Ieee80211AuthenticationFrame::Ieee80211AuthenticationFrame(const Ieee80211AuthenticationFrame& other) : ::Ieee80211ManagementFrame(other)
 {
     copy(other);
 }
@@ -6190,7 +6172,7 @@ Ieee80211AuthenticationFrame::~Ieee80211AuthenticationFrame()
 Ieee80211AuthenticationFrame& Ieee80211AuthenticationFrame::operator=(const Ieee80211AuthenticationFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
+    ::Ieee80211ManagementFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -6202,13 +6184,13 @@ void Ieee80211AuthenticationFrame::copy(const Ieee80211AuthenticationFrame& othe
 
 void Ieee80211AuthenticationFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
+    ::Ieee80211ManagementFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211AuthenticationFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
+    ::Ieee80211ManagementFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -6247,7 +6229,7 @@ class Ieee80211AuthenticationFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211AuthenticationFrameDescriptor);
 
-Ieee80211AuthenticationFrameDescriptor::Ieee80211AuthenticationFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211AuthenticationFrame", "inet::ieee80211::Ieee80211ManagementFrame")
+Ieee80211AuthenticationFrameDescriptor::Ieee80211AuthenticationFrameDescriptor() : cClassDescriptor("Ieee80211AuthenticationFrame", "Ieee80211ManagementFrame")
 {
 }
 
@@ -6409,14 +6391,14 @@ void *Ieee80211AuthenticationFrameDescriptor::getFieldStructPointer(void *object
 
 Register_Class(Ieee80211DeauthenticationFrame);
 
-Ieee80211DeauthenticationFrame::Ieee80211DeauthenticationFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
+Ieee80211DeauthenticationFrame::Ieee80211DeauthenticationFrame(const char *name, int kind) : ::Ieee80211ManagementFrame(name,kind)
 {
     this->setType(ST_DEAUTHENTICATION);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211DeauthenticationFrame::Ieee80211DeauthenticationFrame(const Ieee80211DeauthenticationFrame& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
+Ieee80211DeauthenticationFrame::Ieee80211DeauthenticationFrame(const Ieee80211DeauthenticationFrame& other) : ::Ieee80211ManagementFrame(other)
 {
     copy(other);
 }
@@ -6428,7 +6410,7 @@ Ieee80211DeauthenticationFrame::~Ieee80211DeauthenticationFrame()
 Ieee80211DeauthenticationFrame& Ieee80211DeauthenticationFrame::operator=(const Ieee80211DeauthenticationFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
+    ::Ieee80211ManagementFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -6440,13 +6422,13 @@ void Ieee80211DeauthenticationFrame::copy(const Ieee80211DeauthenticationFrame& 
 
 void Ieee80211DeauthenticationFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
+    ::Ieee80211ManagementFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211DeauthenticationFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
+    ::Ieee80211ManagementFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -6485,7 +6467,7 @@ class Ieee80211DeauthenticationFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211DeauthenticationFrameDescriptor);
 
-Ieee80211DeauthenticationFrameDescriptor::Ieee80211DeauthenticationFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211DeauthenticationFrame", "inet::ieee80211::Ieee80211ManagementFrame")
+Ieee80211DeauthenticationFrameDescriptor::Ieee80211DeauthenticationFrameDescriptor() : cClassDescriptor("Ieee80211DeauthenticationFrame", "Ieee80211ManagementFrame")
 {
 }
 
@@ -6647,14 +6629,14 @@ void *Ieee80211DeauthenticationFrameDescriptor::getFieldStructPointer(void *obje
 
 Register_Class(Ieee80211DisassociationFrame);
 
-Ieee80211DisassociationFrame::Ieee80211DisassociationFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
+Ieee80211DisassociationFrame::Ieee80211DisassociationFrame(const char *name, int kind) : ::Ieee80211ManagementFrame(name,kind)
 {
     this->setType(ST_DISASSOCIATION);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211DisassociationFrame::Ieee80211DisassociationFrame(const Ieee80211DisassociationFrame& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
+Ieee80211DisassociationFrame::Ieee80211DisassociationFrame(const Ieee80211DisassociationFrame& other) : ::Ieee80211ManagementFrame(other)
 {
     copy(other);
 }
@@ -6666,7 +6648,7 @@ Ieee80211DisassociationFrame::~Ieee80211DisassociationFrame()
 Ieee80211DisassociationFrame& Ieee80211DisassociationFrame::operator=(const Ieee80211DisassociationFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
+    ::Ieee80211ManagementFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -6678,13 +6660,13 @@ void Ieee80211DisassociationFrame::copy(const Ieee80211DisassociationFrame& othe
 
 void Ieee80211DisassociationFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
+    ::Ieee80211ManagementFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211DisassociationFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
+    ::Ieee80211ManagementFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -6723,7 +6705,7 @@ class Ieee80211DisassociationFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211DisassociationFrameDescriptor);
 
-Ieee80211DisassociationFrameDescriptor::Ieee80211DisassociationFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211DisassociationFrame", "inet::ieee80211::Ieee80211ManagementFrame")
+Ieee80211DisassociationFrameDescriptor::Ieee80211DisassociationFrameDescriptor() : cClassDescriptor("Ieee80211DisassociationFrame", "Ieee80211ManagementFrame")
 {
 }
 
@@ -6885,14 +6867,14 @@ void *Ieee80211DisassociationFrameDescriptor::getFieldStructPointer(void *object
 
 Register_Class(Ieee80211ProbeRequestFrame);
 
-Ieee80211ProbeRequestFrame::Ieee80211ProbeRequestFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
+Ieee80211ProbeRequestFrame::Ieee80211ProbeRequestFrame(const char *name, int kind) : ::Ieee80211ManagementFrame(name,kind)
 {
     this->setType(ST_PROBEREQUEST);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211ProbeRequestFrame::Ieee80211ProbeRequestFrame(const Ieee80211ProbeRequestFrame& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
+Ieee80211ProbeRequestFrame::Ieee80211ProbeRequestFrame(const Ieee80211ProbeRequestFrame& other) : ::Ieee80211ManagementFrame(other)
 {
     copy(other);
 }
@@ -6904,7 +6886,7 @@ Ieee80211ProbeRequestFrame::~Ieee80211ProbeRequestFrame()
 Ieee80211ProbeRequestFrame& Ieee80211ProbeRequestFrame::operator=(const Ieee80211ProbeRequestFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
+    ::Ieee80211ManagementFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -6916,13 +6898,13 @@ void Ieee80211ProbeRequestFrame::copy(const Ieee80211ProbeRequestFrame& other)
 
 void Ieee80211ProbeRequestFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
+    ::Ieee80211ManagementFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211ProbeRequestFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
+    ::Ieee80211ManagementFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -6961,7 +6943,7 @@ class Ieee80211ProbeRequestFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ProbeRequestFrameDescriptor);
 
-Ieee80211ProbeRequestFrameDescriptor::Ieee80211ProbeRequestFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ProbeRequestFrame", "inet::ieee80211::Ieee80211ManagementFrame")
+Ieee80211ProbeRequestFrameDescriptor::Ieee80211ProbeRequestFrameDescriptor() : cClassDescriptor("Ieee80211ProbeRequestFrame", "Ieee80211ManagementFrame")
 {
 }
 
@@ -7123,14 +7105,14 @@ void *Ieee80211ProbeRequestFrameDescriptor::getFieldStructPointer(void *object, 
 
 Register_Class(Ieee80211AssociationRequestFrame);
 
-Ieee80211AssociationRequestFrame::Ieee80211AssociationRequestFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
+Ieee80211AssociationRequestFrame::Ieee80211AssociationRequestFrame(const char *name, int kind) : ::Ieee80211ManagementFrame(name,kind)
 {
     this->setType(ST_ASSOCIATIONREQUEST);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211AssociationRequestFrame::Ieee80211AssociationRequestFrame(const Ieee80211AssociationRequestFrame& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
+Ieee80211AssociationRequestFrame::Ieee80211AssociationRequestFrame(const Ieee80211AssociationRequestFrame& other) : ::Ieee80211ManagementFrame(other)
 {
     copy(other);
 }
@@ -7142,7 +7124,7 @@ Ieee80211AssociationRequestFrame::~Ieee80211AssociationRequestFrame()
 Ieee80211AssociationRequestFrame& Ieee80211AssociationRequestFrame::operator=(const Ieee80211AssociationRequestFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
+    ::Ieee80211ManagementFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -7154,13 +7136,13 @@ void Ieee80211AssociationRequestFrame::copy(const Ieee80211AssociationRequestFra
 
 void Ieee80211AssociationRequestFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
+    ::Ieee80211ManagementFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211AssociationRequestFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
+    ::Ieee80211ManagementFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -7199,7 +7181,7 @@ class Ieee80211AssociationRequestFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211AssociationRequestFrameDescriptor);
 
-Ieee80211AssociationRequestFrameDescriptor::Ieee80211AssociationRequestFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211AssociationRequestFrame", "inet::ieee80211::Ieee80211ManagementFrame")
+Ieee80211AssociationRequestFrameDescriptor::Ieee80211AssociationRequestFrameDescriptor() : cClassDescriptor("Ieee80211AssociationRequestFrame", "Ieee80211ManagementFrame")
 {
 }
 
@@ -7361,14 +7343,14 @@ void *Ieee80211AssociationRequestFrameDescriptor::getFieldStructPointer(void *ob
 
 Register_Class(Ieee80211ReassociationRequestFrame);
 
-Ieee80211ReassociationRequestFrame::Ieee80211ReassociationRequestFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
+Ieee80211ReassociationRequestFrame::Ieee80211ReassociationRequestFrame(const char *name, int kind) : ::Ieee80211ManagementFrame(name,kind)
 {
     this->setType(ST_REASSOCIATIONREQUEST);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211ReassociationRequestFrame::Ieee80211ReassociationRequestFrame(const Ieee80211ReassociationRequestFrame& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
+Ieee80211ReassociationRequestFrame::Ieee80211ReassociationRequestFrame(const Ieee80211ReassociationRequestFrame& other) : ::Ieee80211ManagementFrame(other)
 {
     copy(other);
 }
@@ -7380,7 +7362,7 @@ Ieee80211ReassociationRequestFrame::~Ieee80211ReassociationRequestFrame()
 Ieee80211ReassociationRequestFrame& Ieee80211ReassociationRequestFrame::operator=(const Ieee80211ReassociationRequestFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
+    ::Ieee80211ManagementFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -7392,13 +7374,13 @@ void Ieee80211ReassociationRequestFrame::copy(const Ieee80211ReassociationReques
 
 void Ieee80211ReassociationRequestFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
+    ::Ieee80211ManagementFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211ReassociationRequestFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
+    ::Ieee80211ManagementFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -7437,7 +7419,7 @@ class Ieee80211ReassociationRequestFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ReassociationRequestFrameDescriptor);
 
-Ieee80211ReassociationRequestFrameDescriptor::Ieee80211ReassociationRequestFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ReassociationRequestFrame", "inet::ieee80211::Ieee80211ManagementFrame")
+Ieee80211ReassociationRequestFrameDescriptor::Ieee80211ReassociationRequestFrameDescriptor() : cClassDescriptor("Ieee80211ReassociationRequestFrame", "Ieee80211ManagementFrame")
 {
 }
 
@@ -7599,14 +7581,14 @@ void *Ieee80211ReassociationRequestFrameDescriptor::getFieldStructPointer(void *
 
 Register_Class(Ieee80211AssociationResponseFrame);
 
-Ieee80211AssociationResponseFrame::Ieee80211AssociationResponseFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
+Ieee80211AssociationResponseFrame::Ieee80211AssociationResponseFrame(const char *name, int kind) : ::Ieee80211ManagementFrame(name,kind)
 {
     this->setType(ST_ASSOCIATIONRESPONSE);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211AssociationResponseFrame::Ieee80211AssociationResponseFrame(const Ieee80211AssociationResponseFrame& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
+Ieee80211AssociationResponseFrame::Ieee80211AssociationResponseFrame(const Ieee80211AssociationResponseFrame& other) : ::Ieee80211ManagementFrame(other)
 {
     copy(other);
 }
@@ -7618,7 +7600,7 @@ Ieee80211AssociationResponseFrame::~Ieee80211AssociationResponseFrame()
 Ieee80211AssociationResponseFrame& Ieee80211AssociationResponseFrame::operator=(const Ieee80211AssociationResponseFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
+    ::Ieee80211ManagementFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -7630,13 +7612,13 @@ void Ieee80211AssociationResponseFrame::copy(const Ieee80211AssociationResponseF
 
 void Ieee80211AssociationResponseFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
+    ::Ieee80211ManagementFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211AssociationResponseFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
+    ::Ieee80211ManagementFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -7675,7 +7657,7 @@ class Ieee80211AssociationResponseFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211AssociationResponseFrameDescriptor);
 
-Ieee80211AssociationResponseFrameDescriptor::Ieee80211AssociationResponseFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211AssociationResponseFrame", "inet::ieee80211::Ieee80211ManagementFrame")
+Ieee80211AssociationResponseFrameDescriptor::Ieee80211AssociationResponseFrameDescriptor() : cClassDescriptor("Ieee80211AssociationResponseFrame", "Ieee80211ManagementFrame")
 {
 }
 
@@ -7837,14 +7819,14 @@ void *Ieee80211AssociationResponseFrameDescriptor::getFieldStructPointer(void *o
 
 Register_Class(Ieee80211ReassociationResponseFrame);
 
-Ieee80211ReassociationResponseFrame::Ieee80211ReassociationResponseFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
+Ieee80211ReassociationResponseFrame::Ieee80211ReassociationResponseFrame(const char *name, int kind) : ::Ieee80211ManagementFrame(name,kind)
 {
     this->setType(ST_REASSOCIATIONRESPONSE);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211ReassociationResponseFrame::Ieee80211ReassociationResponseFrame(const Ieee80211ReassociationResponseFrame& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
+Ieee80211ReassociationResponseFrame::Ieee80211ReassociationResponseFrame(const Ieee80211ReassociationResponseFrame& other) : ::Ieee80211ManagementFrame(other)
 {
     copy(other);
 }
@@ -7856,7 +7838,7 @@ Ieee80211ReassociationResponseFrame::~Ieee80211ReassociationResponseFrame()
 Ieee80211ReassociationResponseFrame& Ieee80211ReassociationResponseFrame::operator=(const Ieee80211ReassociationResponseFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
+    ::Ieee80211ManagementFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -7868,13 +7850,13 @@ void Ieee80211ReassociationResponseFrame::copy(const Ieee80211ReassociationRespo
 
 void Ieee80211ReassociationResponseFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
+    ::Ieee80211ManagementFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211ReassociationResponseFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
+    ::Ieee80211ManagementFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -7913,7 +7895,7 @@ class Ieee80211ReassociationResponseFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ReassociationResponseFrameDescriptor);
 
-Ieee80211ReassociationResponseFrameDescriptor::Ieee80211ReassociationResponseFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ReassociationResponseFrame", "inet::ieee80211::Ieee80211ManagementFrame")
+Ieee80211ReassociationResponseFrameDescriptor::Ieee80211ReassociationResponseFrameDescriptor() : cClassDescriptor("Ieee80211ReassociationResponseFrame", "Ieee80211ManagementFrame")
 {
 }
 
@@ -8075,14 +8057,14 @@ void *Ieee80211ReassociationResponseFrameDescriptor::getFieldStructPointer(void 
 
 Register_Class(Ieee80211BeaconFrame);
 
-Ieee80211BeaconFrame::Ieee80211BeaconFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
+Ieee80211BeaconFrame::Ieee80211BeaconFrame(const char *name, int kind) : ::Ieee80211ManagementFrame(name,kind)
 {
     this->setType(ST_BEACON);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211BeaconFrame::Ieee80211BeaconFrame(const Ieee80211BeaconFrame& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
+Ieee80211BeaconFrame::Ieee80211BeaconFrame(const Ieee80211BeaconFrame& other) : ::Ieee80211ManagementFrame(other)
 {
     copy(other);
 }
@@ -8094,7 +8076,7 @@ Ieee80211BeaconFrame::~Ieee80211BeaconFrame()
 Ieee80211BeaconFrame& Ieee80211BeaconFrame::operator=(const Ieee80211BeaconFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
+    ::Ieee80211ManagementFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -8106,13 +8088,13 @@ void Ieee80211BeaconFrame::copy(const Ieee80211BeaconFrame& other)
 
 void Ieee80211BeaconFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
+    ::Ieee80211ManagementFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211BeaconFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
+    ::Ieee80211ManagementFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -8151,7 +8133,7 @@ class Ieee80211BeaconFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211BeaconFrameDescriptor);
 
-Ieee80211BeaconFrameDescriptor::Ieee80211BeaconFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211BeaconFrame", "inet::ieee80211::Ieee80211ManagementFrame")
+Ieee80211BeaconFrameDescriptor::Ieee80211BeaconFrameDescriptor() : cClassDescriptor("Ieee80211BeaconFrame", "Ieee80211ManagementFrame")
 {
 }
 
@@ -8313,14 +8295,14 @@ void *Ieee80211BeaconFrameDescriptor::getFieldStructPointer(void *object, int fi
 
 Register_Class(Ieee80211ProbeResponseFrame);
 
-Ieee80211ProbeResponseFrame::Ieee80211ProbeResponseFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
+Ieee80211ProbeResponseFrame::Ieee80211ProbeResponseFrame(const char *name, int kind) : ::Ieee80211ManagementFrame(name,kind)
 {
     this->setType(ST_PROBERESPONSE);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211ProbeResponseFrame::Ieee80211ProbeResponseFrame(const Ieee80211ProbeResponseFrame& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
+Ieee80211ProbeResponseFrame::Ieee80211ProbeResponseFrame(const Ieee80211ProbeResponseFrame& other) : ::Ieee80211ManagementFrame(other)
 {
     copy(other);
 }
@@ -8332,7 +8314,7 @@ Ieee80211ProbeResponseFrame::~Ieee80211ProbeResponseFrame()
 Ieee80211ProbeResponseFrame& Ieee80211ProbeResponseFrame::operator=(const Ieee80211ProbeResponseFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
+    ::Ieee80211ManagementFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -8344,13 +8326,13 @@ void Ieee80211ProbeResponseFrame::copy(const Ieee80211ProbeResponseFrame& other)
 
 void Ieee80211ProbeResponseFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
+    ::Ieee80211ManagementFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211ProbeResponseFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
+    ::Ieee80211ManagementFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -8389,7 +8371,7 @@ class Ieee80211ProbeResponseFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ProbeResponseFrameDescriptor);
 
-Ieee80211ProbeResponseFrameDescriptor::Ieee80211ProbeResponseFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ProbeResponseFrame", "inet::ieee80211::Ieee80211ManagementFrame")
+Ieee80211ProbeResponseFrameDescriptor::Ieee80211ProbeResponseFrameDescriptor() : cClassDescriptor("Ieee80211ProbeResponseFrame", "Ieee80211ManagementFrame")
 {
 }
 
@@ -8551,15 +8533,14 @@ void *Ieee80211ProbeResponseFrameDescriptor::getFieldStructPointer(void *object,
 
 Register_Class(Ieee80211ActionFrame);
 
-Ieee80211ActionFrame::Ieee80211ActionFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
+Ieee80211ActionFrame::Ieee80211ActionFrame(const char *name, int kind) : ::Ieee80211ManagementFrame(name,kind)
 {
     this->setType(ST_ACTION);
-    this->setCategory(AC_MESH);
-    this->setByteLength(28 + getBody().getBodyLength());
+    this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211ActionFrame::Ieee80211ActionFrame(const Ieee80211ActionFrame& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
+Ieee80211ActionFrame::Ieee80211ActionFrame(const Ieee80211ActionFrame& other) : ::Ieee80211ManagementFrame(other)
 {
     copy(other);
 }
@@ -8571,7 +8552,7 @@ Ieee80211ActionFrame::~Ieee80211ActionFrame()
 Ieee80211ActionFrame& Ieee80211ActionFrame::operator=(const Ieee80211ActionFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
+    ::Ieee80211ManagementFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -8583,13 +8564,13 @@ void Ieee80211ActionFrame::copy(const Ieee80211ActionFrame& other)
 
 void Ieee80211ActionFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
+    ::Ieee80211ManagementFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211ActionFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
+    ::Ieee80211ManagementFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -8628,7 +8609,7 @@ class Ieee80211ActionFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ActionFrameDescriptor);
 
-Ieee80211ActionFrameDescriptor::Ieee80211ActionFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionFrame", "inet::ieee80211::Ieee80211ManagementFrame")
+Ieee80211ActionFrameDescriptor::Ieee80211ActionFrameDescriptor() : cClassDescriptor("Ieee80211ActionFrame", "Ieee80211ManagementFrame")
 {
 }
 
@@ -8788,93 +8769,92 @@ void *Ieee80211ActionFrameDescriptor::getFieldStructPointer(void *object, int fi
     }
 }
 
-Register_Class(Ieee80211ActionMeshFrame);
+Register_Class(Ieee80211ActionHWMPFrame);
 
-Ieee80211ActionMeshFrame::Ieee80211ActionMeshFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ActionFrame(name,kind)
+Ieee80211ActionHWMPFrame::Ieee80211ActionHWMPFrame(const char *name, int kind) : ::Ieee80211ActionFrame(name,kind)
 {
     this->setType(ST_ACTION);
-    this->setCategory(AC_MESH);
     this->setByteLength(28+getBody().getBodyLength());
 
     this->isFragment_var = false;
     this->realLength_var = 0;
 }
 
-Ieee80211ActionMeshFrame::Ieee80211ActionMeshFrame(const Ieee80211ActionMeshFrame& other) : ::inet::ieee80211::Ieee80211ActionFrame(other)
+Ieee80211ActionHWMPFrame::Ieee80211ActionHWMPFrame(const Ieee80211ActionHWMPFrame& other) : ::Ieee80211ActionFrame(other)
 {
     copy(other);
 }
 
-Ieee80211ActionMeshFrame::~Ieee80211ActionMeshFrame()
+Ieee80211ActionHWMPFrame::~Ieee80211ActionHWMPFrame()
 {
 }
 
-Ieee80211ActionMeshFrame& Ieee80211ActionMeshFrame::operator=(const Ieee80211ActionMeshFrame& other)
+Ieee80211ActionHWMPFrame& Ieee80211ActionHWMPFrame::operator=(const Ieee80211ActionHWMPFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionFrame::operator=(other);
+    ::Ieee80211ActionFrame::operator=(other);
     copy(other);
     return *this;
 }
 
-void Ieee80211ActionMeshFrame::copy(const Ieee80211ActionMeshFrame& other)
+void Ieee80211ActionHWMPFrame::copy(const Ieee80211ActionHWMPFrame& other)
 {
     this->isFragment_var = other.isFragment_var;
     this->realLength_var = other.realLength_var;
     this->body_var = other.body_var;
 }
 
-void Ieee80211ActionMeshFrame::parsimPack(cCommBuffer *b)
+void Ieee80211ActionHWMPFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionFrame::parsimPack(b);
+    ::Ieee80211ActionFrame::parsimPack(b);
     doPacking(b,this->isFragment_var);
     doPacking(b,this->realLength_var);
     doPacking(b,this->body_var);
 }
 
-void Ieee80211ActionMeshFrame::parsimUnpack(cCommBuffer *b)
+void Ieee80211ActionHWMPFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionFrame::parsimUnpack(b);
+    ::Ieee80211ActionFrame::parsimUnpack(b);
     doUnpacking(b,this->isFragment_var);
     doUnpacking(b,this->realLength_var);
     doUnpacking(b,this->body_var);
 }
 
-bool Ieee80211ActionMeshFrame::getIsFragment() const
+bool Ieee80211ActionHWMPFrame::getIsFragment() const
 {
     return isFragment_var;
 }
 
-void Ieee80211ActionMeshFrame::setIsFragment(bool isFragment)
+void Ieee80211ActionHWMPFrame::setIsFragment(bool isFragment)
 {
     this->isFragment_var = isFragment;
 }
 
-unsigned long Ieee80211ActionMeshFrame::getRealLength() const
+unsigned long Ieee80211ActionHWMPFrame::getRealLength() const
 {
     return realLength_var;
 }
 
-void Ieee80211ActionMeshFrame::setRealLength(unsigned long realLength)
+void Ieee80211ActionHWMPFrame::setRealLength(unsigned long realLength)
 {
     this->realLength_var = realLength;
 }
 
-Ieee80211ActionMeshFrameBody& Ieee80211ActionMeshFrame::getBody()
+Ieee80211ActionHWMPFrameBody& Ieee80211ActionHWMPFrame::getBody()
 {
     return body_var;
 }
 
-void Ieee80211ActionMeshFrame::setBody(const Ieee80211ActionMeshFrameBody& body)
+void Ieee80211ActionHWMPFrame::setBody(const Ieee80211ActionHWMPFrameBody& body)
 {
     this->body_var = body;
 }
 
-class Ieee80211ActionMeshFrameDescriptor : public cClassDescriptor
+class Ieee80211ActionHWMPFrameDescriptor : public cClassDescriptor
 {
   public:
-    Ieee80211ActionMeshFrameDescriptor();
-    virtual ~Ieee80211ActionMeshFrameDescriptor();
+    Ieee80211ActionHWMPFrameDescriptor();
+    virtual ~Ieee80211ActionHWMPFrameDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -8893,34 +8873,34 @@ class Ieee80211ActionMeshFrameDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(Ieee80211ActionMeshFrameDescriptor);
+Register_ClassDescriptor(Ieee80211ActionHWMPFrameDescriptor);
 
-Ieee80211ActionMeshFrameDescriptor::Ieee80211ActionMeshFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionMeshFrame", "inet::ieee80211::Ieee80211ActionFrame")
+Ieee80211ActionHWMPFrameDescriptor::Ieee80211ActionHWMPFrameDescriptor() : cClassDescriptor("Ieee80211ActionHWMPFrame", "Ieee80211ActionFrame")
 {
 }
 
-Ieee80211ActionMeshFrameDescriptor::~Ieee80211ActionMeshFrameDescriptor()
+Ieee80211ActionHWMPFrameDescriptor::~Ieee80211ActionHWMPFrameDescriptor()
 {
 }
 
-bool Ieee80211ActionMeshFrameDescriptor::doesSupport(cObject *obj) const
+bool Ieee80211ActionHWMPFrameDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<Ieee80211ActionMeshFrame *>(obj)!=NULL;
+    return dynamic_cast<Ieee80211ActionHWMPFrame *>(obj)!=NULL;
 }
 
-const char *Ieee80211ActionMeshFrameDescriptor::getProperty(const char *propertyname) const
+const char *Ieee80211ActionHWMPFrameDescriptor::getProperty(const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int Ieee80211ActionMeshFrameDescriptor::getFieldCount(void *object) const
+int Ieee80211ActionHWMPFrameDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? 3+basedesc->getFieldCount(object) : 3;
 }
 
-unsigned int Ieee80211ActionMeshFrameDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int Ieee80211ActionHWMPFrameDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -8936,7 +8916,7 @@ unsigned int Ieee80211ActionMeshFrameDescriptor::getFieldTypeFlags(void *object,
     return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
 }
 
-const char *Ieee80211ActionMeshFrameDescriptor::getFieldName(void *object, int field) const
+const char *Ieee80211ActionHWMPFrameDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -8952,7 +8932,7 @@ const char *Ieee80211ActionMeshFrameDescriptor::getFieldName(void *object, int f
     return (field>=0 && field<3) ? fieldNames[field] : NULL;
 }
 
-int Ieee80211ActionMeshFrameDescriptor::findField(void *object, const char *fieldName) const
+int Ieee80211ActionHWMPFrameDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
@@ -8962,7 +8942,7 @@ int Ieee80211ActionMeshFrameDescriptor::findField(void *object, const char *fiel
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *Ieee80211ActionMeshFrameDescriptor::getFieldTypeString(void *object, int field) const
+const char *Ieee80211ActionHWMPFrameDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -8973,12 +8953,12 @@ const char *Ieee80211ActionMeshFrameDescriptor::getFieldTypeString(void *object,
     static const char *fieldTypeStrings[] = {
         "bool",
         "unsigned long",
-        "Ieee80211ActionMeshFrameBody",
+        "Ieee80211ActionHWMPFrameBody",
     };
     return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *Ieee80211ActionMeshFrameDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *Ieee80211ActionHWMPFrameDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -8991,7 +8971,7 @@ const char *Ieee80211ActionMeshFrameDescriptor::getFieldProperty(void *object, i
     }
 }
 
-int Ieee80211ActionMeshFrameDescriptor::getArraySize(void *object, int field) const
+int Ieee80211ActionHWMPFrameDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -8999,13 +8979,13 @@ int Ieee80211ActionMeshFrameDescriptor::getArraySize(void *object, int field) co
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    Ieee80211ActionMeshFrame *pp = (Ieee80211ActionMeshFrame *)object; (void)pp;
+    Ieee80211ActionHWMPFrame *pp = (Ieee80211ActionHWMPFrame *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string Ieee80211ActionMeshFrameDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string Ieee80211ActionHWMPFrameDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -9013,7 +8993,7 @@ std::string Ieee80211ActionMeshFrameDescriptor::getFieldAsString(void *object, i
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    Ieee80211ActionMeshFrame *pp = (Ieee80211ActionMeshFrame *)object; (void)pp;
+    Ieee80211ActionHWMPFrame *pp = (Ieee80211ActionHWMPFrame *)object; (void)pp;
     switch (field) {
         case 0: return bool2string(pp->getIsFragment());
         case 1: return ulong2string(pp->getRealLength());
@@ -9022,7 +9002,7 @@ std::string Ieee80211ActionMeshFrameDescriptor::getFieldAsString(void *object, i
     }
 }
 
-bool Ieee80211ActionMeshFrameDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool Ieee80211ActionHWMPFrameDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -9030,7 +9010,7 @@ bool Ieee80211ActionMeshFrameDescriptor::setFieldAsString(void *object, int fiel
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    Ieee80211ActionMeshFrame *pp = (Ieee80211ActionMeshFrame *)object; (void)pp;
+    Ieee80211ActionHWMPFrame *pp = (Ieee80211ActionHWMPFrame *)object; (void)pp;
     switch (field) {
         case 0: pp->setIsFragment(string2bool(value)); return true;
         case 1: pp->setRealLength(string2ulong(value)); return true;
@@ -9038,7 +9018,7 @@ bool Ieee80211ActionMeshFrameDescriptor::setFieldAsString(void *object, int fiel
     }
 }
 
-const char *Ieee80211ActionMeshFrameDescriptor::getFieldStructName(void *object, int field) const
+const char *Ieee80211ActionHWMPFrameDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -9047,12 +9027,12 @@ const char *Ieee80211ActionMeshFrameDescriptor::getFieldStructName(void *object,
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
-        case 2: return opp_typename(typeid(Ieee80211ActionMeshFrameBody));
+        case 2: return opp_typename(typeid(Ieee80211ActionHWMPFrameBody));
         default: return NULL;
     };
 }
 
-void *Ieee80211ActionMeshFrameDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *Ieee80211ActionHWMPFrameDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -9060,7 +9040,7 @@ void *Ieee80211ActionMeshFrameDescriptor::getFieldStructPointer(void *object, in
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    Ieee80211ActionMeshFrame *pp = (Ieee80211ActionMeshFrame *)object; (void)pp;
+    Ieee80211ActionHWMPFrame *pp = (Ieee80211ActionHWMPFrame *)object; (void)pp;
     switch (field) {
         case 2: return (void *)static_cast<cObject *>(&pp->getBody()); break;
         default: return NULL;
@@ -9069,15 +9049,14 @@ void *Ieee80211ActionMeshFrameDescriptor::getFieldStructPointer(void *object, in
 
 Register_Class(Ieee80211ActionRANNFrame);
 
-Ieee80211ActionRANNFrame::Ieee80211ActionRANNFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ActionMeshFrame(name,kind)
+Ieee80211ActionRANNFrame::Ieee80211ActionRANNFrame(const char *name, int kind) : ::Ieee80211ActionHWMPFrame(name,kind)
 {
     this->setType(ST_ACTION);
-    this->setCategory(AC_MESH);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211ActionRANNFrame::Ieee80211ActionRANNFrame(const Ieee80211ActionRANNFrame& other) : ::inet::ieee80211::Ieee80211ActionMeshFrame(other)
+Ieee80211ActionRANNFrame::Ieee80211ActionRANNFrame(const Ieee80211ActionRANNFrame& other) : ::Ieee80211ActionHWMPFrame(other)
 {
     copy(other);
 }
@@ -9089,7 +9068,7 @@ Ieee80211ActionRANNFrame::~Ieee80211ActionRANNFrame()
 Ieee80211ActionRANNFrame& Ieee80211ActionRANNFrame::operator=(const Ieee80211ActionRANNFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::operator=(other);
+    ::Ieee80211ActionHWMPFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -9101,13 +9080,13 @@ void Ieee80211ActionRANNFrame::copy(const Ieee80211ActionRANNFrame& other)
 
 void Ieee80211ActionRANNFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::parsimPack(b);
+    ::Ieee80211ActionHWMPFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211ActionRANNFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::parsimUnpack(b);
+    ::Ieee80211ActionHWMPFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -9146,7 +9125,7 @@ class Ieee80211ActionRANNFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ActionRANNFrameDescriptor);
 
-Ieee80211ActionRANNFrameDescriptor::Ieee80211ActionRANNFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionRANNFrame", "inet::ieee80211::Ieee80211ActionMeshFrame")
+Ieee80211ActionRANNFrameDescriptor::Ieee80211ActionRANNFrameDescriptor() : cClassDescriptor("Ieee80211ActionRANNFrame", "Ieee80211ActionHWMPFrame")
 {
 }
 
@@ -9308,15 +9287,14 @@ void *Ieee80211ActionRANNFrameDescriptor::getFieldStructPointer(void *object, in
 
 Register_Class(Ieee80211ActionPREQFrame);
 
-Ieee80211ActionPREQFrame::Ieee80211ActionPREQFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ActionMeshFrame(name,kind)
+Ieee80211ActionPREQFrame::Ieee80211ActionPREQFrame(const char *name, int kind) : ::Ieee80211ActionHWMPFrame(name,kind)
 {
     this->setType(ST_ACTION);
-    this->setCategory(AC_MESH);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211ActionPREQFrame::Ieee80211ActionPREQFrame(const Ieee80211ActionPREQFrame& other) : ::inet::ieee80211::Ieee80211ActionMeshFrame(other)
+Ieee80211ActionPREQFrame::Ieee80211ActionPREQFrame(const Ieee80211ActionPREQFrame& other) : ::Ieee80211ActionHWMPFrame(other)
 {
     copy(other);
 }
@@ -9328,7 +9306,7 @@ Ieee80211ActionPREQFrame::~Ieee80211ActionPREQFrame()
 Ieee80211ActionPREQFrame& Ieee80211ActionPREQFrame::operator=(const Ieee80211ActionPREQFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::operator=(other);
+    ::Ieee80211ActionHWMPFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -9340,13 +9318,13 @@ void Ieee80211ActionPREQFrame::copy(const Ieee80211ActionPREQFrame& other)
 
 void Ieee80211ActionPREQFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::parsimPack(b);
+    ::Ieee80211ActionHWMPFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211ActionPREQFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::parsimUnpack(b);
+    ::Ieee80211ActionHWMPFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -9385,7 +9363,7 @@ class Ieee80211ActionPREQFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ActionPREQFrameDescriptor);
 
-Ieee80211ActionPREQFrameDescriptor::Ieee80211ActionPREQFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionPREQFrame", "inet::ieee80211::Ieee80211ActionMeshFrame")
+Ieee80211ActionPREQFrameDescriptor::Ieee80211ActionPREQFrameDescriptor() : cClassDescriptor("Ieee80211ActionPREQFrame", "Ieee80211ActionHWMPFrame")
 {
 }
 
@@ -9547,15 +9525,14 @@ void *Ieee80211ActionPREQFrameDescriptor::getFieldStructPointer(void *object, in
 
 Register_Class(Ieee80211ActionPREPFrame);
 
-Ieee80211ActionPREPFrame::Ieee80211ActionPREPFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ActionMeshFrame(name,kind)
+Ieee80211ActionPREPFrame::Ieee80211ActionPREPFrame(const char *name, int kind) : ::Ieee80211ActionHWMPFrame(name,kind)
 {
     this->setType(ST_ACTION);
-    this->setCategory(AC_MESH);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211ActionPREPFrame::Ieee80211ActionPREPFrame(const Ieee80211ActionPREPFrame& other) : ::inet::ieee80211::Ieee80211ActionMeshFrame(other)
+Ieee80211ActionPREPFrame::Ieee80211ActionPREPFrame(const Ieee80211ActionPREPFrame& other) : ::Ieee80211ActionHWMPFrame(other)
 {
     copy(other);
 }
@@ -9567,7 +9544,7 @@ Ieee80211ActionPREPFrame::~Ieee80211ActionPREPFrame()
 Ieee80211ActionPREPFrame& Ieee80211ActionPREPFrame::operator=(const Ieee80211ActionPREPFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::operator=(other);
+    ::Ieee80211ActionHWMPFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -9579,13 +9556,13 @@ void Ieee80211ActionPREPFrame::copy(const Ieee80211ActionPREPFrame& other)
 
 void Ieee80211ActionPREPFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::parsimPack(b);
+    ::Ieee80211ActionHWMPFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211ActionPREPFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::parsimUnpack(b);
+    ::Ieee80211ActionHWMPFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -9624,7 +9601,7 @@ class Ieee80211ActionPREPFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ActionPREPFrameDescriptor);
 
-Ieee80211ActionPREPFrameDescriptor::Ieee80211ActionPREPFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionPREPFrame", "inet::ieee80211::Ieee80211ActionMeshFrame")
+Ieee80211ActionPREPFrameDescriptor::Ieee80211ActionPREPFrameDescriptor() : cClassDescriptor("Ieee80211ActionPREPFrame", "Ieee80211ActionHWMPFrame")
 {
 }
 
@@ -9786,15 +9763,14 @@ void *Ieee80211ActionPREPFrameDescriptor::getFieldStructPointer(void *object, in
 
 Register_Class(Ieee80211ActionPERRFrame);
 
-Ieee80211ActionPERRFrame::Ieee80211ActionPERRFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ActionMeshFrame(name,kind)
+Ieee80211ActionPERRFrame::Ieee80211ActionPERRFrame(const char *name, int kind) : ::Ieee80211ActionHWMPFrame(name,kind)
 {
     this->setType(ST_ACTION);
-    this->setCategory(AC_MESH);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211ActionPERRFrame::Ieee80211ActionPERRFrame(const Ieee80211ActionPERRFrame& other) : ::inet::ieee80211::Ieee80211ActionMeshFrame(other)
+Ieee80211ActionPERRFrame::Ieee80211ActionPERRFrame(const Ieee80211ActionPERRFrame& other) : ::Ieee80211ActionHWMPFrame(other)
 {
     copy(other);
 }
@@ -9806,7 +9782,7 @@ Ieee80211ActionPERRFrame::~Ieee80211ActionPERRFrame()
 Ieee80211ActionPERRFrame& Ieee80211ActionPERRFrame::operator=(const Ieee80211ActionPERRFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::operator=(other);
+    ::Ieee80211ActionHWMPFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -9818,13 +9794,13 @@ void Ieee80211ActionPERRFrame::copy(const Ieee80211ActionPERRFrame& other)
 
 void Ieee80211ActionPERRFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::parsimPack(b);
+    ::Ieee80211ActionHWMPFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211ActionPERRFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::parsimUnpack(b);
+    ::Ieee80211ActionHWMPFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -9863,7 +9839,7 @@ class Ieee80211ActionPERRFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ActionPERRFrameDescriptor);
 
-Ieee80211ActionPERRFrameDescriptor::Ieee80211ActionPERRFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionPERRFrame", "inet::ieee80211::Ieee80211ActionMeshFrame")
+Ieee80211ActionPERRFrameDescriptor::Ieee80211ActionPERRFrameDescriptor() : cClassDescriptor("Ieee80211ActionPERRFrame", "Ieee80211ActionHWMPFrame")
 {
 }
 
@@ -10025,15 +10001,14 @@ void *Ieee80211ActionPERRFrameDescriptor::getFieldStructPointer(void *object, in
 
 Register_Class(Ieee80211ActionGANNFrame);
 
-Ieee80211ActionGANNFrame::Ieee80211ActionGANNFrame(const char *name, int kind) : ::inet::ieee80211::Ieee80211ActionMeshFrame(name,kind)
+Ieee80211ActionGANNFrame::Ieee80211ActionGANNFrame(const char *name, int kind) : ::Ieee80211ActionHWMPFrame(name,kind)
 {
     this->setType(ST_ACTION);
-    this->setCategory(AC_MESH);
     this->setByteLength(28+getBody().getBodyLength());
 
 }
 
-Ieee80211ActionGANNFrame::Ieee80211ActionGANNFrame(const Ieee80211ActionGANNFrame& other) : ::inet::ieee80211::Ieee80211ActionMeshFrame(other)
+Ieee80211ActionGANNFrame::Ieee80211ActionGANNFrame(const Ieee80211ActionGANNFrame& other) : ::Ieee80211ActionHWMPFrame(other)
 {
     copy(other);
 }
@@ -10045,7 +10020,7 @@ Ieee80211ActionGANNFrame::~Ieee80211ActionGANNFrame()
 Ieee80211ActionGANNFrame& Ieee80211ActionGANNFrame::operator=(const Ieee80211ActionGANNFrame& other)
 {
     if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::operator=(other);
+    ::Ieee80211ActionHWMPFrame::operator=(other);
     copy(other);
     return *this;
 }
@@ -10057,13 +10032,13 @@ void Ieee80211ActionGANNFrame::copy(const Ieee80211ActionGANNFrame& other)
 
 void Ieee80211ActionGANNFrame::parsimPack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::parsimPack(b);
+    ::Ieee80211ActionHWMPFrame::parsimPack(b);
     doPacking(b,this->body_var);
 }
 
 void Ieee80211ActionGANNFrame::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ieee80211::Ieee80211ActionMeshFrame::parsimUnpack(b);
+    ::Ieee80211ActionHWMPFrame::parsimUnpack(b);
     doUnpacking(b,this->body_var);
 }
 
@@ -10102,7 +10077,7 @@ class Ieee80211ActionGANNFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(Ieee80211ActionGANNFrameDescriptor);
 
-Ieee80211ActionGANNFrameDescriptor::Ieee80211ActionGANNFrameDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionGANNFrame", "inet::ieee80211::Ieee80211ActionMeshFrame")
+Ieee80211ActionGANNFrameDescriptor::Ieee80211ActionGANNFrameDescriptor() : cClassDescriptor("Ieee80211ActionGANNFrame", "Ieee80211ActionHWMPFrame")
 {
 }
 
@@ -10262,1282 +10237,4 @@ void *Ieee80211ActionGANNFrameDescriptor::getFieldStructPointer(void *object, in
     }
 }
 
-Register_Class(Ieee80211BlockFrameBody);
-
-Ieee80211BlockFrameBody::Ieee80211BlockFrameBody() : ::inet::ieee80211::Ieee80211ActionFrameBody()
-{
-    this->setBodyLength(2);
-
-    this->action_var = 0;
-}
-
-Ieee80211BlockFrameBody::Ieee80211BlockFrameBody(const Ieee80211BlockFrameBody& other) : ::inet::ieee80211::Ieee80211ActionFrameBody(other)
-{
-    copy(other);
-}
-
-Ieee80211BlockFrameBody::~Ieee80211BlockFrameBody()
-{
-}
-
-Ieee80211BlockFrameBody& Ieee80211BlockFrameBody::operator=(const Ieee80211BlockFrameBody& other)
-{
-    if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ActionFrameBody::operator=(other);
-    copy(other);
-    return *this;
-}
-
-void Ieee80211BlockFrameBody::copy(const Ieee80211BlockFrameBody& other)
-{
-    this->action_var = other.action_var;
-}
-
-void Ieee80211BlockFrameBody::parsimPack(cCommBuffer *b)
-{
-    ::inet::ieee80211::Ieee80211ActionFrameBody::parsimPack(b);
-    doPacking(b,this->action_var);
-}
-
-void Ieee80211BlockFrameBody::parsimUnpack(cCommBuffer *b)
-{
-    ::inet::ieee80211::Ieee80211ActionFrameBody::parsimUnpack(b);
-    doUnpacking(b,this->action_var);
-}
-
-unsigned int Ieee80211BlockFrameBody::getAction() const
-{
-    return action_var;
-}
-
-void Ieee80211BlockFrameBody::setAction(unsigned int action)
-{
-    this->action_var = action;
-}
-
-class Ieee80211BlockFrameBodyDescriptor : public cClassDescriptor
-{
-  public:
-    Ieee80211BlockFrameBodyDescriptor();
-    virtual ~Ieee80211BlockFrameBodyDescriptor();
-
-    virtual bool doesSupport(cObject *obj) const;
-    virtual const char *getProperty(const char *propertyname) const;
-    virtual int getFieldCount(void *object) const;
-    virtual const char *getFieldName(void *object, int field) const;
-    virtual int findField(void *object, const char *fieldName) const;
-    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
-    virtual const char *getFieldTypeString(void *object, int field) const;
-    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
-    virtual int getArraySize(void *object, int field) const;
-
-    virtual std::string getFieldAsString(void *object, int field, int i) const;
-    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
-
-    virtual const char *getFieldStructName(void *object, int field) const;
-    virtual void *getFieldStructPointer(void *object, int field, int i) const;
-};
-
-Register_ClassDescriptor(Ieee80211BlockFrameBodyDescriptor);
-
-Ieee80211BlockFrameBodyDescriptor::Ieee80211BlockFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211BlockFrameBody", "inet::ieee80211::Ieee80211ActionFrameBody")
-{
-}
-
-Ieee80211BlockFrameBodyDescriptor::~Ieee80211BlockFrameBodyDescriptor()
-{
-}
-
-bool Ieee80211BlockFrameBodyDescriptor::doesSupport(cObject *obj) const
-{
-    return dynamic_cast<Ieee80211BlockFrameBody *>(obj)!=NULL;
-}
-
-const char *Ieee80211BlockFrameBodyDescriptor::getProperty(const char *propertyname) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? basedesc->getProperty(propertyname) : NULL;
-}
-
-int Ieee80211BlockFrameBodyDescriptor::getFieldCount(void *object) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
-}
-
-unsigned int Ieee80211BlockFrameBodyDescriptor::getFieldTypeFlags(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldTypeFlags(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static unsigned int fieldTypeFlags[] = {
-        FD_ISEDITABLE,
-    };
-    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
-}
-
-const char *Ieee80211BlockFrameBodyDescriptor::getFieldName(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldName(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static const char *fieldNames[] = {
-        "action",
-    };
-    return (field>=0 && field<1) ? fieldNames[field] : NULL;
-}
-
-int Ieee80211BlockFrameBodyDescriptor::findField(void *object, const char *fieldName) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='a' && strcmp(fieldName, "action")==0) return base+0;
-    return basedesc ? basedesc->findField(object, fieldName) : -1;
-}
-
-const char *Ieee80211BlockFrameBodyDescriptor::getFieldTypeString(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldTypeString(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static const char *fieldTypeStrings[] = {
-        "unsigned int",
-    };
-    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
-}
-
-const char *Ieee80211BlockFrameBodyDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldProperty(object, field, propertyname);
-        field -= basedesc->getFieldCount(object);
-    }
-    switch (field) {
-        case 0:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::Ieee80211BlockAckCode";
-            return NULL;
-        default: return NULL;
-    }
-}
-
-int Ieee80211BlockFrameBodyDescriptor::getArraySize(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getArraySize(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211BlockFrameBody *pp = (Ieee80211BlockFrameBody *)object; (void)pp;
-    switch (field) {
-        default: return 0;
-    }
-}
-
-std::string Ieee80211BlockFrameBodyDescriptor::getFieldAsString(void *object, int field, int i) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldAsString(object,field,i);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211BlockFrameBody *pp = (Ieee80211BlockFrameBody *)object; (void)pp;
-    switch (field) {
-        case 0: return ulong2string(pp->getAction());
-        default: return "";
-    }
-}
-
-bool Ieee80211BlockFrameBodyDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->setFieldAsString(object,field,i,value);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211BlockFrameBody *pp = (Ieee80211BlockFrameBody *)object; (void)pp;
-    switch (field) {
-        case 0: pp->setAction(string2ulong(value)); return true;
-        default: return false;
-    }
-}
-
-const char *Ieee80211BlockFrameBodyDescriptor::getFieldStructName(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldStructName(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    switch (field) {
-        default: return NULL;
-    };
-}
-
-void *Ieee80211BlockFrameBodyDescriptor::getFieldStructPointer(void *object, int field, int i) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldStructPointer(object, field, i);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211BlockFrameBody *pp = (Ieee80211BlockFrameBody *)object; (void)pp;
-    switch (field) {
-        default: return NULL;
-    }
-}
-
-Register_Class(Ieee80211ADDBAFrameBody);
-
-Ieee80211ADDBAFrameBody::Ieee80211ADDBAFrameBody() : ::inet::ieee80211::Ieee80211BlockFrameBody()
-{
-    this->setBodyLength(8);
-
-    this->token_var = 0;
-    this->parameterSet_var = 0;
-    this->timeOut_var = 0;
-    this->startingSeq_var = 0;
-}
-
-Ieee80211ADDBAFrameBody::Ieee80211ADDBAFrameBody(const Ieee80211ADDBAFrameBody& other) : ::inet::ieee80211::Ieee80211BlockFrameBody(other)
-{
-    copy(other);
-}
-
-Ieee80211ADDBAFrameBody::~Ieee80211ADDBAFrameBody()
-{
-}
-
-Ieee80211ADDBAFrameBody& Ieee80211ADDBAFrameBody::operator=(const Ieee80211ADDBAFrameBody& other)
-{
-    if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211BlockFrameBody::operator=(other);
-    copy(other);
-    return *this;
-}
-
-void Ieee80211ADDBAFrameBody::copy(const Ieee80211ADDBAFrameBody& other)
-{
-    this->token_var = other.token_var;
-    this->parameterSet_var = other.parameterSet_var;
-    this->timeOut_var = other.timeOut_var;
-    this->startingSeq_var = other.startingSeq_var;
-}
-
-void Ieee80211ADDBAFrameBody::parsimPack(cCommBuffer *b)
-{
-    ::inet::ieee80211::Ieee80211BlockFrameBody::parsimPack(b);
-    doPacking(b,this->token_var);
-    doPacking(b,this->parameterSet_var);
-    doPacking(b,this->timeOut_var);
-    doPacking(b,this->startingSeq_var);
-}
-
-void Ieee80211ADDBAFrameBody::parsimUnpack(cCommBuffer *b)
-{
-    ::inet::ieee80211::Ieee80211BlockFrameBody::parsimUnpack(b);
-    doUnpacking(b,this->token_var);
-    doUnpacking(b,this->parameterSet_var);
-    doUnpacking(b,this->timeOut_var);
-    doUnpacking(b,this->startingSeq_var);
-}
-
-unsigned char Ieee80211ADDBAFrameBody::getToken() const
-{
-    return token_var;
-}
-
-void Ieee80211ADDBAFrameBody::setToken(unsigned char token)
-{
-    this->token_var = token;
-}
-
-unsigned char Ieee80211ADDBAFrameBody::getParameterSet() const
-{
-    return parameterSet_var;
-}
-
-void Ieee80211ADDBAFrameBody::setParameterSet(unsigned char parameterSet)
-{
-    this->parameterSet_var = parameterSet;
-}
-
-int Ieee80211ADDBAFrameBody::getTimeOut() const
-{
-    return timeOut_var;
-}
-
-void Ieee80211ADDBAFrameBody::setTimeOut(int timeOut)
-{
-    this->timeOut_var = timeOut;
-}
-
-int Ieee80211ADDBAFrameBody::getStartingSeq() const
-{
-    return startingSeq_var;
-}
-
-void Ieee80211ADDBAFrameBody::setStartingSeq(int startingSeq)
-{
-    this->startingSeq_var = startingSeq;
-}
-
-class Ieee80211ADDBAFrameBodyDescriptor : public cClassDescriptor
-{
-  public:
-    Ieee80211ADDBAFrameBodyDescriptor();
-    virtual ~Ieee80211ADDBAFrameBodyDescriptor();
-
-    virtual bool doesSupport(cObject *obj) const;
-    virtual const char *getProperty(const char *propertyname) const;
-    virtual int getFieldCount(void *object) const;
-    virtual const char *getFieldName(void *object, int field) const;
-    virtual int findField(void *object, const char *fieldName) const;
-    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
-    virtual const char *getFieldTypeString(void *object, int field) const;
-    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
-    virtual int getArraySize(void *object, int field) const;
-
-    virtual std::string getFieldAsString(void *object, int field, int i) const;
-    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
-
-    virtual const char *getFieldStructName(void *object, int field) const;
-    virtual void *getFieldStructPointer(void *object, int field, int i) const;
-};
-
-Register_ClassDescriptor(Ieee80211ADDBAFrameBodyDescriptor);
-
-Ieee80211ADDBAFrameBodyDescriptor::Ieee80211ADDBAFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ADDBAFrameBody", "inet::ieee80211::Ieee80211BlockFrameBody")
-{
-}
-
-Ieee80211ADDBAFrameBodyDescriptor::~Ieee80211ADDBAFrameBodyDescriptor()
-{
-}
-
-bool Ieee80211ADDBAFrameBodyDescriptor::doesSupport(cObject *obj) const
-{
-    return dynamic_cast<Ieee80211ADDBAFrameBody *>(obj)!=NULL;
-}
-
-const char *Ieee80211ADDBAFrameBodyDescriptor::getProperty(const char *propertyname) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? basedesc->getProperty(propertyname) : NULL;
-}
-
-int Ieee80211ADDBAFrameBodyDescriptor::getFieldCount(void *object) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 4+basedesc->getFieldCount(object) : 4;
-}
-
-unsigned int Ieee80211ADDBAFrameBodyDescriptor::getFieldTypeFlags(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldTypeFlags(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static unsigned int fieldTypeFlags[] = {
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
-    };
-    return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
-}
-
-const char *Ieee80211ADDBAFrameBodyDescriptor::getFieldName(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldName(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static const char *fieldNames[] = {
-        "token",
-        "parameterSet",
-        "timeOut",
-        "startingSeq",
-    };
-    return (field>=0 && field<4) ? fieldNames[field] : NULL;
-}
-
-int Ieee80211ADDBAFrameBodyDescriptor::findField(void *object, const char *fieldName) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='t' && strcmp(fieldName, "token")==0) return base+0;
-    if (fieldName[0]=='p' && strcmp(fieldName, "parameterSet")==0) return base+1;
-    if (fieldName[0]=='t' && strcmp(fieldName, "timeOut")==0) return base+2;
-    if (fieldName[0]=='s' && strcmp(fieldName, "startingSeq")==0) return base+3;
-    return basedesc ? basedesc->findField(object, fieldName) : -1;
-}
-
-const char *Ieee80211ADDBAFrameBodyDescriptor::getFieldTypeString(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldTypeString(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static const char *fieldTypeStrings[] = {
-        "unsigned char",
-        "unsigned char",
-        "int",
-        "int",
-    };
-    return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
-}
-
-const char *Ieee80211ADDBAFrameBodyDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldProperty(object, field, propertyname);
-        field -= basedesc->getFieldCount(object);
-    }
-    switch (field) {
-        default: return NULL;
-    }
-}
-
-int Ieee80211ADDBAFrameBodyDescriptor::getArraySize(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getArraySize(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211ADDBAFrameBody *pp = (Ieee80211ADDBAFrameBody *)object; (void)pp;
-    switch (field) {
-        default: return 0;
-    }
-}
-
-std::string Ieee80211ADDBAFrameBodyDescriptor::getFieldAsString(void *object, int field, int i) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldAsString(object,field,i);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211ADDBAFrameBody *pp = (Ieee80211ADDBAFrameBody *)object; (void)pp;
-    switch (field) {
-        case 0: return ulong2string(pp->getToken());
-        case 1: return ulong2string(pp->getParameterSet());
-        case 2: return long2string(pp->getTimeOut());
-        case 3: return long2string(pp->getStartingSeq());
-        default: return "";
-    }
-}
-
-bool Ieee80211ADDBAFrameBodyDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->setFieldAsString(object,field,i,value);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211ADDBAFrameBody *pp = (Ieee80211ADDBAFrameBody *)object; (void)pp;
-    switch (field) {
-        case 0: pp->setToken(string2ulong(value)); return true;
-        case 1: pp->setParameterSet(string2ulong(value)); return true;
-        case 2: pp->setTimeOut(string2long(value)); return true;
-        case 3: pp->setStartingSeq(string2long(value)); return true;
-        default: return false;
-    }
-}
-
-const char *Ieee80211ADDBAFrameBodyDescriptor::getFieldStructName(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldStructName(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    switch (field) {
-        default: return NULL;
-    };
-}
-
-void *Ieee80211ADDBAFrameBodyDescriptor::getFieldStructPointer(void *object, int field, int i) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldStructPointer(object, field, i);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211ADDBAFrameBody *pp = (Ieee80211ADDBAFrameBody *)object; (void)pp;
-    switch (field) {
-        default: return NULL;
-    }
-}
-
-Register_Class(Ieee80211DELBAFrameBody);
-
-Ieee80211DELBAFrameBody::Ieee80211DELBAFrameBody() : ::inet::ieee80211::Ieee80211BlockFrameBody()
-{
-    this->setBodyLength(8);
-    this->setAction(DELBA);
-
-    this->parameterSet_var = 0;
-    this->reason_var = 0;
-}
-
-Ieee80211DELBAFrameBody::Ieee80211DELBAFrameBody(const Ieee80211DELBAFrameBody& other) : ::inet::ieee80211::Ieee80211BlockFrameBody(other)
-{
-    copy(other);
-}
-
-Ieee80211DELBAFrameBody::~Ieee80211DELBAFrameBody()
-{
-}
-
-Ieee80211DELBAFrameBody& Ieee80211DELBAFrameBody::operator=(const Ieee80211DELBAFrameBody& other)
-{
-    if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211BlockFrameBody::operator=(other);
-    copy(other);
-    return *this;
-}
-
-void Ieee80211DELBAFrameBody::copy(const Ieee80211DELBAFrameBody& other)
-{
-    this->parameterSet_var = other.parameterSet_var;
-    this->reason_var = other.reason_var;
-}
-
-void Ieee80211DELBAFrameBody::parsimPack(cCommBuffer *b)
-{
-    ::inet::ieee80211::Ieee80211BlockFrameBody::parsimPack(b);
-    doPacking(b,this->parameterSet_var);
-    doPacking(b,this->reason_var);
-}
-
-void Ieee80211DELBAFrameBody::parsimUnpack(cCommBuffer *b)
-{
-    ::inet::ieee80211::Ieee80211BlockFrameBody::parsimUnpack(b);
-    doUnpacking(b,this->parameterSet_var);
-    doUnpacking(b,this->reason_var);
-}
-
-unsigned char Ieee80211DELBAFrameBody::getParameterSet() const
-{
-    return parameterSet_var;
-}
-
-void Ieee80211DELBAFrameBody::setParameterSet(unsigned char parameterSet)
-{
-    this->parameterSet_var = parameterSet;
-}
-
-unsigned char Ieee80211DELBAFrameBody::getReason() const
-{
-    return reason_var;
-}
-
-void Ieee80211DELBAFrameBody::setReason(unsigned char reason)
-{
-    this->reason_var = reason;
-}
-
-class Ieee80211DELBAFrameBodyDescriptor : public cClassDescriptor
-{
-  public:
-    Ieee80211DELBAFrameBodyDescriptor();
-    virtual ~Ieee80211DELBAFrameBodyDescriptor();
-
-    virtual bool doesSupport(cObject *obj) const;
-    virtual const char *getProperty(const char *propertyname) const;
-    virtual int getFieldCount(void *object) const;
-    virtual const char *getFieldName(void *object, int field) const;
-    virtual int findField(void *object, const char *fieldName) const;
-    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
-    virtual const char *getFieldTypeString(void *object, int field) const;
-    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
-    virtual int getArraySize(void *object, int field) const;
-
-    virtual std::string getFieldAsString(void *object, int field, int i) const;
-    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
-
-    virtual const char *getFieldStructName(void *object, int field) const;
-    virtual void *getFieldStructPointer(void *object, int field, int i) const;
-};
-
-Register_ClassDescriptor(Ieee80211DELBAFrameBodyDescriptor);
-
-Ieee80211DELBAFrameBodyDescriptor::Ieee80211DELBAFrameBodyDescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211DELBAFrameBody", "inet::ieee80211::Ieee80211BlockFrameBody")
-{
-}
-
-Ieee80211DELBAFrameBodyDescriptor::~Ieee80211DELBAFrameBodyDescriptor()
-{
-}
-
-bool Ieee80211DELBAFrameBodyDescriptor::doesSupport(cObject *obj) const
-{
-    return dynamic_cast<Ieee80211DELBAFrameBody *>(obj)!=NULL;
-}
-
-const char *Ieee80211DELBAFrameBodyDescriptor::getProperty(const char *propertyname) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? basedesc->getProperty(propertyname) : NULL;
-}
-
-int Ieee80211DELBAFrameBodyDescriptor::getFieldCount(void *object) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
-}
-
-unsigned int Ieee80211DELBAFrameBodyDescriptor::getFieldTypeFlags(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldTypeFlags(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static unsigned int fieldTypeFlags[] = {
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
-    };
-    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
-}
-
-const char *Ieee80211DELBAFrameBodyDescriptor::getFieldName(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldName(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static const char *fieldNames[] = {
-        "parameterSet",
-        "reason",
-    };
-    return (field>=0 && field<2) ? fieldNames[field] : NULL;
-}
-
-int Ieee80211DELBAFrameBodyDescriptor::findField(void *object, const char *fieldName) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='p' && strcmp(fieldName, "parameterSet")==0) return base+0;
-    if (fieldName[0]=='r' && strcmp(fieldName, "reason")==0) return base+1;
-    return basedesc ? basedesc->findField(object, fieldName) : -1;
-}
-
-const char *Ieee80211DELBAFrameBodyDescriptor::getFieldTypeString(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldTypeString(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static const char *fieldTypeStrings[] = {
-        "unsigned char",
-        "unsigned char",
-    };
-    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
-}
-
-const char *Ieee80211DELBAFrameBodyDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldProperty(object, field, propertyname);
-        field -= basedesc->getFieldCount(object);
-    }
-    switch (field) {
-        case 1:
-            if (!strcmp(propertyname,"enum")) return "inet::ieee80211::Ieee80211ReasonCode";
-            return NULL;
-        default: return NULL;
-    }
-}
-
-int Ieee80211DELBAFrameBodyDescriptor::getArraySize(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getArraySize(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211DELBAFrameBody *pp = (Ieee80211DELBAFrameBody *)object; (void)pp;
-    switch (field) {
-        default: return 0;
-    }
-}
-
-std::string Ieee80211DELBAFrameBodyDescriptor::getFieldAsString(void *object, int field, int i) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldAsString(object,field,i);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211DELBAFrameBody *pp = (Ieee80211DELBAFrameBody *)object; (void)pp;
-    switch (field) {
-        case 0: return ulong2string(pp->getParameterSet());
-        case 1: return ulong2string(pp->getReason());
-        default: return "";
-    }
-}
-
-bool Ieee80211DELBAFrameBodyDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->setFieldAsString(object,field,i,value);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211DELBAFrameBody *pp = (Ieee80211DELBAFrameBody *)object; (void)pp;
-    switch (field) {
-        case 0: pp->setParameterSet(string2ulong(value)); return true;
-        case 1: pp->setReason(string2ulong(value)); return true;
-        default: return false;
-    }
-}
-
-const char *Ieee80211DELBAFrameBodyDescriptor::getFieldStructName(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldStructName(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    switch (field) {
-        default: return NULL;
-    };
-}
-
-void *Ieee80211DELBAFrameBodyDescriptor::getFieldStructPointer(void *object, int field, int i) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldStructPointer(object, field, i);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211DELBAFrameBody *pp = (Ieee80211DELBAFrameBody *)object; (void)pp;
-    switch (field) {
-        default: return NULL;
-    }
-}
-
-Register_Class(Ieee80211ActionBlockAckADDBA);
-
-Ieee80211ActionBlockAckADDBA::Ieee80211ActionBlockAckADDBA(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
-{
-    this->setType(ST_ACTION);
-    this->setCategory(AC_BLOCKACK);
-    this->setByteLength(28+getBody().getBodyLength());
-
-}
-
-Ieee80211ActionBlockAckADDBA::Ieee80211ActionBlockAckADDBA(const Ieee80211ActionBlockAckADDBA& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
-{
-    copy(other);
-}
-
-Ieee80211ActionBlockAckADDBA::~Ieee80211ActionBlockAckADDBA()
-{
-}
-
-Ieee80211ActionBlockAckADDBA& Ieee80211ActionBlockAckADDBA::operator=(const Ieee80211ActionBlockAckADDBA& other)
-{
-    if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
-    copy(other);
-    return *this;
-}
-
-void Ieee80211ActionBlockAckADDBA::copy(const Ieee80211ActionBlockAckADDBA& other)
-{
-    this->body_var = other.body_var;
-}
-
-void Ieee80211ActionBlockAckADDBA::parsimPack(cCommBuffer *b)
-{
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
-    doPacking(b,this->body_var);
-}
-
-void Ieee80211ActionBlockAckADDBA::parsimUnpack(cCommBuffer *b)
-{
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
-    doUnpacking(b,this->body_var);
-}
-
-Ieee80211ADDBAFrameBody& Ieee80211ActionBlockAckADDBA::getBody()
-{
-    return body_var;
-}
-
-void Ieee80211ActionBlockAckADDBA::setBody(const Ieee80211ADDBAFrameBody& body)
-{
-    this->body_var = body;
-}
-
-class Ieee80211ActionBlockAckADDBADescriptor : public cClassDescriptor
-{
-  public:
-    Ieee80211ActionBlockAckADDBADescriptor();
-    virtual ~Ieee80211ActionBlockAckADDBADescriptor();
-
-    virtual bool doesSupport(cObject *obj) const;
-    virtual const char *getProperty(const char *propertyname) const;
-    virtual int getFieldCount(void *object) const;
-    virtual const char *getFieldName(void *object, int field) const;
-    virtual int findField(void *object, const char *fieldName) const;
-    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
-    virtual const char *getFieldTypeString(void *object, int field) const;
-    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
-    virtual int getArraySize(void *object, int field) const;
-
-    virtual std::string getFieldAsString(void *object, int field, int i) const;
-    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
-
-    virtual const char *getFieldStructName(void *object, int field) const;
-    virtual void *getFieldStructPointer(void *object, int field, int i) const;
-};
-
-Register_ClassDescriptor(Ieee80211ActionBlockAckADDBADescriptor);
-
-Ieee80211ActionBlockAckADDBADescriptor::Ieee80211ActionBlockAckADDBADescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionBlockAckADDBA", "inet::ieee80211::Ieee80211ManagementFrame")
-{
-}
-
-Ieee80211ActionBlockAckADDBADescriptor::~Ieee80211ActionBlockAckADDBADescriptor()
-{
-}
-
-bool Ieee80211ActionBlockAckADDBADescriptor::doesSupport(cObject *obj) const
-{
-    return dynamic_cast<Ieee80211ActionBlockAckADDBA *>(obj)!=NULL;
-}
-
-const char *Ieee80211ActionBlockAckADDBADescriptor::getProperty(const char *propertyname) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? basedesc->getProperty(propertyname) : NULL;
-}
-
-int Ieee80211ActionBlockAckADDBADescriptor::getFieldCount(void *object) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
-}
-
-unsigned int Ieee80211ActionBlockAckADDBADescriptor::getFieldTypeFlags(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldTypeFlags(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static unsigned int fieldTypeFlags[] = {
-        FD_ISCOMPOUND | FD_ISCOBJECT,
-    };
-    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
-}
-
-const char *Ieee80211ActionBlockAckADDBADescriptor::getFieldName(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldName(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static const char *fieldNames[] = {
-        "body",
-    };
-    return (field>=0 && field<1) ? fieldNames[field] : NULL;
-}
-
-int Ieee80211ActionBlockAckADDBADescriptor::findField(void *object, const char *fieldName) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='b' && strcmp(fieldName, "body")==0) return base+0;
-    return basedesc ? basedesc->findField(object, fieldName) : -1;
-}
-
-const char *Ieee80211ActionBlockAckADDBADescriptor::getFieldTypeString(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldTypeString(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static const char *fieldTypeStrings[] = {
-        "Ieee80211ADDBAFrameBody",
-    };
-    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
-}
-
-const char *Ieee80211ActionBlockAckADDBADescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldProperty(object, field, propertyname);
-        field -= basedesc->getFieldCount(object);
-    }
-    switch (field) {
-        default: return NULL;
-    }
-}
-
-int Ieee80211ActionBlockAckADDBADescriptor::getArraySize(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getArraySize(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211ActionBlockAckADDBA *pp = (Ieee80211ActionBlockAckADDBA *)object; (void)pp;
-    switch (field) {
-        default: return 0;
-    }
-}
-
-std::string Ieee80211ActionBlockAckADDBADescriptor::getFieldAsString(void *object, int field, int i) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldAsString(object,field,i);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211ActionBlockAckADDBA *pp = (Ieee80211ActionBlockAckADDBA *)object; (void)pp;
-    switch (field) {
-        case 0: {std::stringstream out; out << pp->getBody(); return out.str();}
-        default: return "";
-    }
-}
-
-bool Ieee80211ActionBlockAckADDBADescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->setFieldAsString(object,field,i,value);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211ActionBlockAckADDBA *pp = (Ieee80211ActionBlockAckADDBA *)object; (void)pp;
-    switch (field) {
-        default: return false;
-    }
-}
-
-const char *Ieee80211ActionBlockAckADDBADescriptor::getFieldStructName(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldStructName(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    switch (field) {
-        case 0: return opp_typename(typeid(Ieee80211ADDBAFrameBody));
-        default: return NULL;
-    };
-}
-
-void *Ieee80211ActionBlockAckADDBADescriptor::getFieldStructPointer(void *object, int field, int i) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldStructPointer(object, field, i);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211ActionBlockAckADDBA *pp = (Ieee80211ActionBlockAckADDBA *)object; (void)pp;
-    switch (field) {
-        case 0: return (void *)static_cast<cObject *>(&pp->getBody()); break;
-        default: return NULL;
-    }
-}
-
-Register_Class(Ieee80211ActionBlockAckDELBA);
-
-Ieee80211ActionBlockAckDELBA::Ieee80211ActionBlockAckDELBA(const char *name, int kind) : ::inet::ieee80211::Ieee80211ManagementFrame(name,kind)
-{
-    this->setType(ST_ACTION);
-    this->setCategory(AC_BLOCKACK);
-    this->setByteLength(28+getBody().getBodyLength());
-
-}
-
-Ieee80211ActionBlockAckDELBA::Ieee80211ActionBlockAckDELBA(const Ieee80211ActionBlockAckDELBA& other) : ::inet::ieee80211::Ieee80211ManagementFrame(other)
-{
-    copy(other);
-}
-
-Ieee80211ActionBlockAckDELBA::~Ieee80211ActionBlockAckDELBA()
-{
-}
-
-Ieee80211ActionBlockAckDELBA& Ieee80211ActionBlockAckDELBA::operator=(const Ieee80211ActionBlockAckDELBA& other)
-{
-    if (this==&other) return *this;
-    ::inet::ieee80211::Ieee80211ManagementFrame::operator=(other);
-    copy(other);
-    return *this;
-}
-
-void Ieee80211ActionBlockAckDELBA::copy(const Ieee80211ActionBlockAckDELBA& other)
-{
-    this->body_var = other.body_var;
-}
-
-void Ieee80211ActionBlockAckDELBA::parsimPack(cCommBuffer *b)
-{
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimPack(b);
-    doPacking(b,this->body_var);
-}
-
-void Ieee80211ActionBlockAckDELBA::parsimUnpack(cCommBuffer *b)
-{
-    ::inet::ieee80211::Ieee80211ManagementFrame::parsimUnpack(b);
-    doUnpacking(b,this->body_var);
-}
-
-Ieee80211DELBAFrameBody& Ieee80211ActionBlockAckDELBA::getBody()
-{
-    return body_var;
-}
-
-void Ieee80211ActionBlockAckDELBA::setBody(const Ieee80211DELBAFrameBody& body)
-{
-    this->body_var = body;
-}
-
-class Ieee80211ActionBlockAckDELBADescriptor : public cClassDescriptor
-{
-  public:
-    Ieee80211ActionBlockAckDELBADescriptor();
-    virtual ~Ieee80211ActionBlockAckDELBADescriptor();
-
-    virtual bool doesSupport(cObject *obj) const;
-    virtual const char *getProperty(const char *propertyname) const;
-    virtual int getFieldCount(void *object) const;
-    virtual const char *getFieldName(void *object, int field) const;
-    virtual int findField(void *object, const char *fieldName) const;
-    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
-    virtual const char *getFieldTypeString(void *object, int field) const;
-    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
-    virtual int getArraySize(void *object, int field) const;
-
-    virtual std::string getFieldAsString(void *object, int field, int i) const;
-    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
-
-    virtual const char *getFieldStructName(void *object, int field) const;
-    virtual void *getFieldStructPointer(void *object, int field, int i) const;
-};
-
-Register_ClassDescriptor(Ieee80211ActionBlockAckDELBADescriptor);
-
-Ieee80211ActionBlockAckDELBADescriptor::Ieee80211ActionBlockAckDELBADescriptor() : cClassDescriptor("inet::ieee80211::Ieee80211ActionBlockAckDELBA", "inet::ieee80211::Ieee80211ManagementFrame")
-{
-}
-
-Ieee80211ActionBlockAckDELBADescriptor::~Ieee80211ActionBlockAckDELBADescriptor()
-{
-}
-
-bool Ieee80211ActionBlockAckDELBADescriptor::doesSupport(cObject *obj) const
-{
-    return dynamic_cast<Ieee80211ActionBlockAckDELBA *>(obj)!=NULL;
-}
-
-const char *Ieee80211ActionBlockAckDELBADescriptor::getProperty(const char *propertyname) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? basedesc->getProperty(propertyname) : NULL;
-}
-
-int Ieee80211ActionBlockAckDELBADescriptor::getFieldCount(void *object) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
-}
-
-unsigned int Ieee80211ActionBlockAckDELBADescriptor::getFieldTypeFlags(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldTypeFlags(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static unsigned int fieldTypeFlags[] = {
-        FD_ISCOMPOUND | FD_ISCOBJECT,
-    };
-    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
-}
-
-const char *Ieee80211ActionBlockAckDELBADescriptor::getFieldName(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldName(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static const char *fieldNames[] = {
-        "body",
-    };
-    return (field>=0 && field<1) ? fieldNames[field] : NULL;
-}
-
-int Ieee80211ActionBlockAckDELBADescriptor::findField(void *object, const char *fieldName) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='b' && strcmp(fieldName, "body")==0) return base+0;
-    return basedesc ? basedesc->findField(object, fieldName) : -1;
-}
-
-const char *Ieee80211ActionBlockAckDELBADescriptor::getFieldTypeString(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldTypeString(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static const char *fieldTypeStrings[] = {
-        "Ieee80211DELBAFrameBody",
-    };
-    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
-}
-
-const char *Ieee80211ActionBlockAckDELBADescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldProperty(object, field, propertyname);
-        field -= basedesc->getFieldCount(object);
-    }
-    switch (field) {
-        default: return NULL;
-    }
-}
-
-int Ieee80211ActionBlockAckDELBADescriptor::getArraySize(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getArraySize(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211ActionBlockAckDELBA *pp = (Ieee80211ActionBlockAckDELBA *)object; (void)pp;
-    switch (field) {
-        default: return 0;
-    }
-}
-
-std::string Ieee80211ActionBlockAckDELBADescriptor::getFieldAsString(void *object, int field, int i) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldAsString(object,field,i);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211ActionBlockAckDELBA *pp = (Ieee80211ActionBlockAckDELBA *)object; (void)pp;
-    switch (field) {
-        case 0: {std::stringstream out; out << pp->getBody(); return out.str();}
-        default: return "";
-    }
-}
-
-bool Ieee80211ActionBlockAckDELBADescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->setFieldAsString(object,field,i,value);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211ActionBlockAckDELBA *pp = (Ieee80211ActionBlockAckDELBA *)object; (void)pp;
-    switch (field) {
-        default: return false;
-    }
-}
-
-const char *Ieee80211ActionBlockAckDELBADescriptor::getFieldStructName(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldStructName(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    switch (field) {
-        case 0: return opp_typename(typeid(Ieee80211DELBAFrameBody));
-        default: return NULL;
-    };
-}
-
-void *Ieee80211ActionBlockAckDELBADescriptor::getFieldStructPointer(void *object, int field, int i) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldStructPointer(object, field, i);
-        field -= basedesc->getFieldCount(object);
-    }
-    Ieee80211ActionBlockAckDELBA *pp = (Ieee80211ActionBlockAckDELBA *)object; (void)pp;
-    switch (field) {
-        case 0: return (void *)static_cast<cObject *>(&pp->getBody()); break;
-        default: return NULL;
-    }
-}
-
-} // namespace ieee80211
-} // namespace inet
 

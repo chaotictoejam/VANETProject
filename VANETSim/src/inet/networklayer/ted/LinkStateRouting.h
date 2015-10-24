@@ -15,19 +15,21 @@
 #ifndef __INET_LINKSTATEROUTING_H
 #define __INET_LINKSTATEROUTING_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/networklayer/ted/LinkStatePacket_m.h"
-#include "inet/networklayer/rsvp_te/IntServ.h"
+#include "NotificationBoard.h"
+#include "LinkStatePacket_m.h"
+#include "IntServ.h"
 
-namespace inet {
 
-#define TED_TRAFFIC    1
+#define TED_TRAFFIC         1
 
 class TED;
-class IIPv4RoutingTable;
+class IRoutingTable;
 class IInterfaceTable;
 class InterfaceEntry;
+class NotificationBoard;
+
 
 /**
  * Implements a minimalistic link state routing protocol that employs flooding.
@@ -52,35 +54,35 @@ class InterfaceEntry;
  *
  * See NED file for more info.
  */
-class LinkStateRouting : public cSimpleModule, public cListener
+class LinkStateRouting : public cSimpleModule, public INotifiable
 {
   protected:
-    TED *tedmod = nullptr;
-    cMessage *announceMsg = nullptr;
+    TED *tedmod;
+    cMessage *announceMsg;
     IPv4Address routerId;
 
-    IPAddressVector peerIfAddrs;    // addresses of interfaces towards neighbouring routers
+    IPAddressVector peerIfAddrs; // addresses of interfaces towards neighbouring routers
 
   public:
     LinkStateRouting();
     virtual ~LinkStateRouting();
 
   protected:
-    virtual void initialize(int stage) override;
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void handleMessage(cMessage *msg) override;
+    virtual void initialize(int stage);
+    virtual int numInitStages() const { return 5; }
+    virtual void handleMessage(cMessage *msg);
 
-    virtual void processLINK_STATE_MESSAGE(LinkStateMsg *msg, IPv4Address sender);
+    virtual void processLINK_STATE_MESSAGE(LinkStateMsg* msg, IPv4Address sender);
 
-    // cListener method
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) override;
+    // INotifiable method
+    virtual void receiveChangeNotification(int category, const cObject *details);
 
     virtual void sendToPeers(const std::vector<TELinkStateInfo>& list, bool req, IPv4Address exceptPeer);
-    virtual void sendToPeer(IPv4Address peer, const std::vector<TELinkStateInfo>& list, bool req);
+    virtual void sendToPeer(IPv4Address peer, const std::vector<TELinkStateInfo> & list, bool req);
     virtual void sendToIP(LinkStateMsg *msg, IPv4Address destAddr);
+
 };
 
-} // namespace inet
+#endif
 
-#endif // ifndef __INET_LINKSTATEROUTING_H
 

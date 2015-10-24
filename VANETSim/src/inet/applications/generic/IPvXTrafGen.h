@@ -16,19 +16,18 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPVXTRAFGEN_H
-#define __INET_IPVXTRAFGEN_H
+
+#ifndef __INET_IPTRAFGEN_H
+#define __INET_IPTRAFGEN_H
 
 #include <vector>
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/networklayer/common/L3Address.h"
-#include "inet/applications/generic/IPvXTrafSink.h"
-#include "inet/common/lifecycle/ILifecycle.h"
-#include "inet/common/lifecycle/NodeStatus.h"
-
-namespace inet {
+#include "IPvXAddress.h"
+#include "IPvXTrafSink.h"
+#include "ILifecycle.h"
+#include "NodeStatus.h"
 
 /**
  * IP traffic generator application. See NED for more info.
@@ -36,27 +35,27 @@ namespace inet {
 class INET_API IPvXTrafGen : public cSimpleModule, public ILifecycle
 {
   protected:
-    enum Kinds { START = 100, NEXT };
-
-    // parameters: see the NED files for more info
+    enum Kinds {START=100, NEXT};
+    cMessage *timer;
+    int protocol;
+    int numPackets;
+    int numReceived;
+    bool isOperational;
     simtime_t startTime;
     simtime_t stopTime;
-    cPar *sendIntervalPar = nullptr;
-    cPar *packetLengthPar = nullptr;
-    int protocol = -1;
-    std::vector<L3Address> destAddresses;
-    int numPackets = 0;
+    std::vector<IPvXAddress> destAddresses;
+    cPar *sendIntervalPar;
+    cPar *packetLengthPar;
+    NodeStatus *nodeStatus;
 
-    // state
-    NodeStatus *nodeStatus = nullptr;
-    cMessage *timer = nullptr;
-    bool isOperational = false;
-
-    // statistic
-    int numSent = 0;
-    int numReceived = 0;
+    int numSent;
     static simsignal_t sentPkSignal;
     static simsignal_t rcvdPkSignal;
+
+  public:
+    IPvXTrafGen();
+    virtual ~IPvXTrafGen();
+    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback);
 
   protected:
     virtual void scheduleNextPacket(simtime_t previous);
@@ -64,25 +63,19 @@ class INET_API IPvXTrafGen : public cSimpleModule, public ILifecycle
     virtual bool isNodeUp();
     virtual bool isEnabled();
 
-    virtual L3Address chooseDestAddr();
+    // chooses random destination address
+    virtual IPvXAddress chooseDestAddr();
     virtual void sendPacket();
 
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int stage) override;
-    virtual void handleMessage(cMessage *msg) override;
+    virtual int numInitStages() const { return 4; }
+    virtual void initialize(int stage);
+    virtual void handleMessage(cMessage *msg);
 
     virtual void startApp();
 
     virtual void printPacket(cPacket *msg);
     virtual void processPacket(cPacket *msg);
-    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) override;
-
-  public:
-    IPvXTrafGen();
-    virtual ~IPvXTrafGen();
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_IPVXTRAFGEN_H
+#endif
 

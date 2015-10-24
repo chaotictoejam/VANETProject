@@ -19,19 +19,13 @@
 // Required for MACAddress declarations
 //
 cplusplus {{
-#include "inet/linklayer/common/MACAddress.h"
-#include "inet/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
-}}
-class noncobject MACAddress;
-
-namespace inet::ieee80211;
-
-cplusplus {{
+#include "MACAddress.h"
+#include "Ieee80211Frame_m.h"
 #define PREQElemLen 11
 #define PERRElemLen 13
 }}
 
-
+class noncobject MACAddress;
 
 packet Ieee80211ManagementFrame;
 
@@ -96,19 +90,6 @@ enum Ieee80211ReasonCode
     RC_MAC_ADDRESS_ALREADY_EXISTS_IN_MBSS = 64;
     RC_MESH_CHANNEL_SWITCH_REGULATORY_REQUIREMENTS = 65;
     RC_MESH_CHANNEL_SWITCH_UNSPECIFIED = 66;
-}
-
-enum Ieee80211ActionCode
-{
-    AC_BLOCKACK = 3;
-    AC_MESH = 13;
-}
-
-enum Ieee80211BlockAckCode
-{
-    ADDBArequest = 0;
-    ADDBAReponse = 1;
-    DELBA = 2;
 }
 
 //
@@ -200,7 +181,7 @@ class Ieee80211DisassociationFrameBody extends Ieee80211FrameBody
 //
 class Ieee80211ProbeRequestFrameBody extends Ieee80211FrameBody
 {
-    bodyLength = 12; // assuming a 8-character SSID     //FIXME bodyLength = 2 + length(SSID) + 2 + supportedRates.numRates
+    bodyLength = 12; // assuming a 8-character SSID
     string SSID;
     Ieee80211SupportedRatesElement supportedRates;
 }
@@ -210,7 +191,7 @@ class Ieee80211ProbeRequestFrameBody extends Ieee80211FrameBody
 //
 class Ieee80211AssociationRequestFrameBody extends Ieee80211FrameBody
 {
-    bodyLength = 16; // assuming a 8-character SSID     //FIXME bodyLength = 2 + length(SSID) + 2 + supportedRates.numRates
+    bodyLength = 16; // assuming a 8-character SSID
     string SSID;
     Ieee80211SupportedRatesElement supportedRates;
 }
@@ -220,7 +201,7 @@ class Ieee80211AssociationRequestFrameBody extends Ieee80211FrameBody
 //
 class Ieee80211ReassociationRequestFrameBody extends Ieee80211AssociationRequestFrameBody
 {
-    bodyLength = 26; // assuming a 8-character SSID and 4 supported datarates     //FIXME bodyLength = 2 + length(SSID) + 2 + supportedRates.numRates + 2 + 6
+    bodyLength = 26; // assuming a 8-character SSID and 4 supported datarates
     MACAddress currentAP;
 }
 
@@ -229,7 +210,7 @@ class Ieee80211ReassociationRequestFrameBody extends Ieee80211AssociationRequest
 //
 class Ieee80211AssociationResponseFrameBody extends Ieee80211FrameBody
 {
-    bodyLength = 26; // assuming a 8-character SSID and 4 supported datarates       //FIXME not a static value
+    bodyLength = 26; // assuming a 8-character SSID and 4 supported datarates
     int statusCode @enum(Ieee80211StatusCode);
     short aid;
     Ieee80211SupportedRatesElement supportedRates;
@@ -247,12 +228,12 @@ class Ieee80211ReassociationResponseFrameBody extends Ieee80211AssociationRespon
 //
 class Ieee80211BeaconFrameBody extends Ieee80211FrameBody
 {
-    bodyLength = 50; // assuming a 8-character SSID, 4 supported datarate plus TIM     //FIXME bodyLength = 8 + 2 + 2 + (2 + length(SSID)) + (2 + supportedRates.numRates) + ???
+    bodyLength = 50; // assuming a 8-character SSID, 4 supported datarate plus TIM
     string SSID;
     Ieee80211SupportedRatesElement supportedRates;
     simtime_t beaconInterval;
     int channelNumber;
-    Ieee80211HandoverParameters handoverParameters;     //TODO is it a vendor-specific parameter in serializer?
+    Ieee80211HandoverParameters handoverParameters;
 }
 
 //
@@ -264,17 +245,15 @@ class Ieee80211ProbeResponseFrameBody extends Ieee80211BeaconFrameBody
 
 class Ieee80211ActionFrameBody extends Ieee80211FrameBody
 {
-    // unsigned char category @enum(Ieee80211ActionCode); in the Management Frame
-    bodyLength = 1;
 }
 
-class Ieee80211ActionMeshFrameBody extends Ieee80211ActionFrameBody
+class Ieee80211ActionHWMPFrameBody extends Ieee80211ActionFrameBody
 {
-    int id @enum(Ieee80211HWMPCode);
-    //unsigned char length;
-    unsigned char flags = 0;
-    unsigned char hopsCount = 0;
-    unsigned char TTL = 32;
+     int id @enum(Ieee80211HWMPCode);
+     //unsigned char length;
+     unsigned char flags = 0;
+     unsigned char hopsCount = 0;
+     unsigned char TTL = 32;
  }
 
 
@@ -297,9 +276,9 @@ struct PERRElem
 }
 
 
-class Ieee80211ActionRANNFrameBody extends Ieee80211ActionMeshFrameBody
+class Ieee80211ActionRANNFrameBody extends Ieee80211ActionHWMPFrameBody
 {
-     bodyLength = 23 + 1;//  specific size
+     bodyLength = 23;
      id = IE11S_RANN;
      MACAddress root;
      unsigned int seqNumber;
@@ -307,9 +286,9 @@ class Ieee80211ActionRANNFrameBody extends Ieee80211ActionMeshFrameBody
      unsigned int metric = 0;
 }
 
-class  Ieee80211ActionPREQFrameBody extends Ieee80211ActionMeshFrameBody
+class  Ieee80211ActionPREQFrameBody extends Ieee80211ActionHWMPFrameBody
 {
-     bodyLength = 26 + 1;// specific size
+     bodyLength = 26;
      id = IE11S_PREQ;
      unsigned int pathDiscoveryId;
      MACAddress originator;
@@ -321,9 +300,9 @@ class  Ieee80211ActionPREQFrameBody extends Ieee80211ActionMeshFrameBody
      PREQElem preqElem[];
 }
 
-class  Ieee80211ActionPREPFrameBody extends Ieee80211ActionMeshFrameBody
+class  Ieee80211ActionPREPFrameBody extends Ieee80211ActionHWMPFrameBody
 {
-     bodyLength = 37 + 1;//  specific size
+     bodyLength = 37;
      id = IE11S_PREP;
      MACAddress target;
      unsigned int targetSeqNumber;
@@ -334,17 +313,17 @@ class  Ieee80211ActionPREPFrameBody extends Ieee80211ActionMeshFrameBody
      unsigned int originatorSeqNumber;
 }
 
-class  Ieee80211ActionPERRFrameBody extends Ieee80211ActionMeshFrameBody
+class  Ieee80211ActionPERRFrameBody extends Ieee80211ActionHWMPFrameBody
 {
-     bodyLength = 2 + 1; //  specific size
+     bodyLength = 2;
      id = IE11S_PERR;
      unsigned char numDestination;
      PERRElem perrElem[];
 }
 
-class  Ieee80211ActionGANNFrameBody extends Ieee80211ActionMeshFrameBody
+class  Ieee80211ActionGANNFrameBody extends Ieee80211ActionHWMPFrameBody
 {
-    bodyLength = 15 +1;// specific size
+    bodyLength = 15;
     id = IE11S_GANN;
     MACAddress meshGateAddress;
     unsigned int meshGateSeqNumber;
@@ -459,110 +438,60 @@ packet Ieee80211ProbeResponseFrame extends Ieee80211ManagementFrame
 packet Ieee80211ActionFrame extends Ieee80211ManagementFrame
 {
     type = ST_ACTION;
-    Category = AC_MESH;
-    byteLength = 28 + getBody().getBodyLength();
+    byteLength = 28+getBody().getBodyLength();
     Ieee80211ActionFrameBody body;
 }
 
-
 //
-// HWMP action frames
+//  HWMP action frames
 //
-packet Ieee80211ActionMeshFrame extends Ieee80211ActionFrame
+packet Ieee80211ActionHWMPFrame extends Ieee80211ActionFrame
 {
     type = ST_ACTION;
-    Category = AC_MESH;    
     byteLength = 28+getBody().getBodyLength();
-        // this fiels are used by fragmentation over ethernet, not necesasry, it's possible to use the fields un the Ieee80211 frame
+        // this fiels are used by fragmentation over ethernet, not necesasry, it's possible to use the fields un the Ieee80211 frame 
     bool isFragment=false;
-    unsigned long realLength=0;    
-    Ieee80211ActionMeshFrameBody body;
+    unsigned long realLength=0;
+    
+    Ieee80211ActionHWMPFrameBody body;
 }
 
 
-packet Ieee80211ActionRANNFrame extends Ieee80211ActionMeshFrame
+packet Ieee80211ActionRANNFrame extends Ieee80211ActionHWMPFrame
 {
     type = ST_ACTION;
-    Category = AC_MESH;    
     byteLength = 28+getBody().getBodyLength();
     Ieee80211ActionRANNFrameBody body;
 }
 
-packet Ieee80211ActionPREQFrame extends Ieee80211ActionMeshFrame
+packet Ieee80211ActionPREQFrame extends Ieee80211ActionHWMPFrame
 {
     type = ST_ACTION;
-    Category = AC_MESH;    
     byteLength = 28+getBody().getBodyLength();
     Ieee80211ActionPREQFrameBody body;
 }
 
 
-packet Ieee80211ActionPREPFrame extends Ieee80211ActionMeshFrame
+packet Ieee80211ActionPREPFrame extends Ieee80211ActionHWMPFrame
 {
     type = ST_ACTION;
-    Category = AC_MESH;    
     byteLength = 28+getBody().getBodyLength();
     Ieee80211ActionPREPFrameBody body;
 }
 
-packet Ieee80211ActionPERRFrame extends Ieee80211ActionMeshFrame
+packet Ieee80211ActionPERRFrame extends Ieee80211ActionHWMPFrame
 {
     type = ST_ACTION;
-    Category = AC_MESH;    
     byteLength = 28+getBody().getBodyLength();
     Ieee80211ActionPERRFrameBody body;
 }
 
 
-packet Ieee80211ActionGANNFrame extends Ieee80211ActionMeshFrame
+packet Ieee80211ActionGANNFrame extends Ieee80211ActionHWMPFrame
 {
     type = ST_ACTION;
-    Category = AC_MESH;    
     byteLength = 28+getBody().getBodyLength();
     Ieee80211ActionGANNFrameBody body;
 }
 
-
-//
-// BLOCK action frames
-//
-class Ieee80211BlockFrameBody extends Ieee80211ActionFrameBody
-{
-    bodyLength = 2;
-    unsigned int action @enum(Ieee80211BlockAckCode);
-}
-
-class Ieee80211ADDBAFrameBody extends Ieee80211BlockFrameBody
-{
-    bodyLength = 8; // 1+1+1+2+2;
-    unsigned char token; // 1
-    unsigned char parameterSet;
-    int timeOut; // 2 bytes
-    int startingSeq;// 2
-}
-
-class Ieee80211DELBAFrameBody extends Ieee80211BlockFrameBody
-{
-    bodyLength = 8; // 1+1+1+1+2+2;
-    action = DELBA;
-    unsigned char parameterSet;
-    unsigned char reason @enum(Ieee80211ReasonCode); // 1
-}
-
-packet Ieee80211ActionBlockAckADDBA extends Ieee80211ManagementFrame
-{
-    type = ST_ACTION;
-    Category = AC_BLOCKACK;
-    byteLength = 28+getBody().getBodyLength();
-    Ieee80211ADDBAFrameBody body;
-}
-
-
-packet Ieee80211ActionBlockAckDELBA extends Ieee80211ManagementFrame
-{
-    type = ST_ACTION;
-    Category = AC_BLOCKACK;
-    byteLength = 28+getBody().getBodyLength();
-    Ieee80211DELBAFrameBody body;
-}
 

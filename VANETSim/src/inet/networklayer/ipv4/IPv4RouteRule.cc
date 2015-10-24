@@ -20,24 +20,22 @@
 #include <stdio.h>
 #include <sstream>
 
-#include "inet/networklayer/ipv4/IPv4RouteRule.h"
+#include "IPv4RouteRule.h"
 
-#include "inet/networklayer/common/InterfaceEntry.h"
-
-namespace inet {
+#include "InterfaceEntry.h"
 
 
 void IPv4RouteRule::setRule(Rule rule)
 {
     if (DROP != rule && NONE != rule)
-        throw cRuntimeError("Rule not supported yet");
+        opp_error("Rule not supported yet");
 
     this->rule = rule;
 }
 
 IPv4RouteRule::IPv4RouteRule()
 {
-    interfacePtr = nullptr;
+    interfacePtr = NULL;
     rule = NONE;
     sPort = dPort = -1;
     srcAddress = IPv4Address::UNSPECIFIED_ADDRESS;
@@ -94,4 +92,3 @@ IPv4RouteRule::Nat::~Nat()
     }
 }
 
-}

@@ -15,7 +15,7 @@
 #include <map>
 #include <vector>
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
 
 #define LWMPLS_OUTPUT_LABEL 0
@@ -38,9 +38,8 @@
 #define LWMPLS_STATUS_PROC  2
 #define LWMPLS_STATUS_NOT_INIT 3
 
-namespace inet {
 
-namespace ieee80211 {
+
 
 typedef struct LWMPLSKey
 {
@@ -319,9 +318,5 @@ typedef struct Lwmpls_label_struct : public cOwnedObject
 } Lwmpls_label_struct;
 /*-------------------------------------------------------------------*/
 /* End if for protection against multiple includes. */
-}
-
-}
-
 #endif /* _LWMPLS_DATA_H_INCLUDED_ */
 

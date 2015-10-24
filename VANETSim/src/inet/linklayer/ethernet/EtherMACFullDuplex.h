@@ -15,14 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ETHERMACFULLDUPLEX_H
-#define __INET_ETHERMACFULLDUPLEX_H
+#ifndef __INET_ETHER_DUPLEX_MAC_H
+#define __INET_ETHER_DUPLEX_MAC_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/linklayer/ethernet/EtherMACBase.h"
-
-namespace inet {
+#include "EtherMACBase.h"
 
 /**
  * A simplified version of EtherMAC. Since modern Ethernets typically
@@ -36,14 +34,13 @@ class INET_API EtherMACFullDuplex : public EtherMACBase
     EtherMACFullDuplex();
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int stage) override;
-    virtual void initializeStatistics() override;
-    virtual void initializeFlags() override;
-    virtual void handleMessage(cMessage *msg) override;
+    virtual void initialize(int stage);
+    virtual void initializeStatistics();
+    virtual void initializeFlags();
+    virtual void handleMessage(cMessage *msg);
 
     // finish
-    virtual void finish() override;
+    virtual void finish();
 
     // event handlers
     virtual void handleEndIFGPeriod();
@@ -54,18 +51,17 @@ class INET_API EtherMACFullDuplex : public EtherMACBase
     // helpers
     virtual void startFrameTransmission();
     virtual void processFrameFromUpperLayer(EtherFrame *frame);
-    virtual void processMsgFromNetwork(cPacket *pk);
+    virtual void processMsgFromNetwork(EtherTraffic *msg);
     virtual void processReceivedDataFrame(EtherFrame *frame);
     virtual void processPauseCommand(int pauseUnits);
     virtual void scheduleEndIFGPeriod();
     virtual void scheduleEndPausePeriod(int pauseUnits);
     virtual void beginSendFrames();
 
+
     // statistics
-    simtime_t totalSuccessfulRxTime;    // total duration of successful transmissions on channel
+    simtime_t totalSuccessfulRxTime; // total duration of successful transmissions on channel
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_ETHERMACFULLDUPLEX_H
+#endif
 

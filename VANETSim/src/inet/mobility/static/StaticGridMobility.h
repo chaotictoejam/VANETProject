@@ -16,14 +16,14 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-#ifndef __INET_STATICGRIDMOBILITY_H
-#define __INET_STATICGRIDMOBILITY_H
 
-#include "inet/common/INETDefs.h"
+#ifndef STATIC_GRID_MOBILITY_H
+#define STATIC_GRID_MOBILITY_H
 
-#include "inet/mobility/static/StationaryMobility.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "StationaryMobility.h"
+
 
 /**
  * @brief Mobility model which places all hosts at constant distances
@@ -36,13 +36,10 @@ class INET_API StaticGridMobility : public StationaryMobility
 {
   protected:
     /** @brief Initializes the position according to the mobility model. */
-    virtual void setInitialPosition() override;
+    virtual void setInitialPosition();
 
   public:
     StaticGridMobility() {};
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_STATICGRIDMOBILITY_H
-
+#endif

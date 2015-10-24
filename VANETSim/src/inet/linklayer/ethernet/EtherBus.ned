@@ -38,7 +38,7 @@ package inet.linklayer.ethernet;
 simple EtherBus
 {
     parameters:
-        @networkNode();
+        @node();
         @labels(node,ethernet-node);
         @display("b=200,5,,,,1");
         string positions;  // positions of taps on the cable in meters, as a sequence

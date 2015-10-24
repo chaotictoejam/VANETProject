@@ -15,20 +15,21 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV4FRAGBUF_H
-#define __INET_IPV4FRAGBUF_H
+#ifndef __INET_IPv4FRAGBUF_H
+#define __INET_IPv4FRAGBUF_H
+
 
 #include <map>
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/networklayer/contract/ipv4/IPv4Address.h"
-#include "inet/common/ReassemblyBuffer.h"
+#include "IPv4Address.h"
+#include "ReassemblyBuffer.h"
 
-namespace inet {
 
 class ICMP;
 class IPv4Datagram;
+
 
 /**
  * Reassembly buffer for fragmented IPv4 datagrams.
@@ -45,9 +46,8 @@ class INET_API IPv4FragBuf
         IPv4Address src;
         IPv4Address dest;
 
-        inline bool operator<(const Key& b) const
-        {
-            return (id != b.id) ? (id < b.id) : (src != b.src) ? (src < b.src) : (dest < b.dest);
+        inline bool operator<(const Key& b) const {
+            return (id!=b.id) ? (id<b.id) : (src!=b.src) ? (src<b.src) : (dest<b.dest);
         }
     };
 
@@ -56,13 +56,13 @@ class INET_API IPv4FragBuf
     //
     struct DatagramBuffer
     {
-        ReassemblyBuffer buf;    // reassembly buffer
-        IPv4Datagram *datagram;    // the actual datagram
-        simtime_t lastupdate;    // last time a new fragment arrived
+        ReassemblyBuffer buf;  // reassembly buffer
+        IPv4Datagram *datagram;  // the actual datagram
+        simtime_t lastupdate;  // last time a new fragment arrived
     };
 
     // we use std::map for fast lookup by datagram Id
-    typedef std::map<Key, DatagramBuffer> Buffers;
+    typedef std::map<Key,DatagramBuffer> Buffers;
 
     // the reassembly buffers
     Buffers bufs;
@@ -90,7 +90,7 @@ class INET_API IPv4FragBuf
     /**
      * Takes a fragment and inserts it into the reassembly buffer.
      * If this fragment completes a datagram, the full reassembled
-     * datagram is returned, otherwise nullptr.
+     * datagram is returned, otherwise NULL.
      */
     IPv4Datagram *addFragment(IPv4Datagram *datagram, simtime_t now);
 
@@ -106,7 +106,5 @@ class INET_API IPv4FragBuf
     void purgeStaleFragments(simtime_t lastupdate);
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_IPV4FRAGBUF_H
+#endif
 

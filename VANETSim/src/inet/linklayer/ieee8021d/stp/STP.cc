@@ -18,18 +18,17 @@
 // Authors: ANSA Team, Benjamin Martin Seregi
 //
 
-#include "inet/linklayer/ethernet/EtherFrame.h"
-#include "inet/linklayer/ieee8021d/stp/STP.h"
-#include "inet/linklayer/common/Ieee802Ctrl.h"
-#include "inet/networklayer/common/InterfaceEntry.h"
-
-namespace inet {
+#include "EtherFrame.h"
+#include "STP.h"
+#include "Ieee802Ctrl_m.h"
+#include "InterfaceEntry.h"
 
 Define_Module(STP);
 
 const double STP::tickInterval = 1;
 
-STP::STP()
+STP::STP() :
+    tick(NULL)
 {
 }
 
@@ -37,11 +36,31 @@ void STP::initialize(int stage)
 {
     STPBase::initialize(stage);
 
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         tick = new cMessage("STP_TICK", 0);
         WATCH(bridgeAddress);
     }
-    else if (stage == INITSTAGE_LINK_LAYER_2) {
+    else if (stage == 1)
+    {
+        initPortTable();
+
+        isRoot = true;
+        topologyChangeNotification = false;
+        topologyChangeRecvd = true;
+
+        rootPriority = bridgePriority;
+        rootAddress = bridgeAddress;
+        rootPathCost = 0;
+        rootPort = 0;
+        currentHelloTime = helloTime;
+        currentMaxAge = maxAge;
+        currentFwdDelay = forwardDelay;
+        currentBridgePriority = bridgePriority;
+
+        helloTime = 0;
+        setAllDesignated();
+        scheduleAt(simTime() + tickInterval, tick);
         updateDisplay();
     }
 }
@@ -53,36 +72,42 @@ STP::~STP()
 
 void STP::initPortTable()
 {
-    EV_DEBUG << "IEE8021D Interface Data initialization. Setting port infos to the protocol defaults." << endl;
-    for (unsigned int i = 0; i < numPorts; i++) {
+    EV_DEBUG<< "IEE8021D Interface Data initialization. Setting port infos to the protocol defaults." << endl;
+    for (unsigned int i = 0; i < numPorts; i++)
+    {
         initInterfacedata(i);
     }
 }
 
-void STP::handleMessage(cMessage *msg)
+void STP::handleMessage(cMessage * msg)
 {
-    if (!isOperational) {
-        EV << "Message '" << msg << "' arrived when module status is down, dropped it\n";
+    if (!isOperational)
+    {
+        EV<< "Message '" << msg << "' arrived when module status is down, dropped it\n";
         delete msg;
         return;
     }
 
-    cMessage *tmp = msg;
+    cMessage * tmp = msg;
 
-    if (!msg->isSelfMessage()) {
-        if (dynamic_cast<BPDU *>(tmp)) {
-            BPDU *bpdu = (BPDU *)tmp;
+    if (!msg->isSelfMessage())
+    {
+        if (dynamic_cast<BPDU *>(tmp))
+        {
+            BPDU * bpdu = (BPDU *) tmp;
 
-            if (bpdu->getBpduType() == CONFIG_BDPU)
+            if(bpdu->getBpduType() == CONFIG_BDPU)
                 handleBPDU(bpdu);
-            else if (bpdu->getBpduType() == TCN_BPDU)
+            else if(bpdu->getBpduType() == TCN_BPDU)
                 handleTCN(bpdu);
         }
         else
             throw cRuntimeError("Non-BPDU packet received");
     }
-    else {
-        if (msg == tick) {
+    else
+    {
+        if(msg == tick)
+        {
             handleTick();
             updateDisplay();
             scheduleAt(simTime() + 1, tick);
@@ -92,44 +117,51 @@ void STP::handleMessage(cMessage *msg)
     }
 }
 
-void STP::handleBPDU(BPDU *bpdu)
+void STP::handleBPDU(BPDU * bpdu)
 {
-    Ieee802Ctrl *controlInfo = check_and_cast<Ieee802Ctrl *>(bpdu->getControlInfo());
+    Ieee802Ctrl * controlInfo = check_and_cast<Ieee802Ctrl *>(bpdu->getControlInfo());
     int arrivalGate = controlInfo->getSwitchPort();
-    Ieee8021dInterfaceData *port = getPortInterfaceData(arrivalGate);
+    Ieee8021dInterfaceData * port = getPortInterfaceData(arrivalGate);
 
-    if (bpdu->getTcaFlag()) {
+    if (bpdu->getTcaFlag())
+    {
         topologyChangeRecvd = true;
         topologyChangeNotification = false;
     }
 
     // get inferior BPDU, reply with superior
-    if (!isSuperiorBPDU(arrivalGate, bpdu)) {
-        if (port->getRole() == Ieee8021dInterfaceData::DESIGNATED) {
-            EV_DETAIL << "Inferior Configuration BPDU " << bpdu << " arrived on port=" << arrivalGate << " responding to it with a superior BPDU." << endl;
+    if (!isSuperiorBPDU(arrivalGate, bpdu))
+    {
+        if (port->getRole() == Ieee8021dInterfaceData::DESIGNATED)
+        {
+            EV_DETAIL<< "Inferior Configuration BPDU " << bpdu << " arrived on port=" << arrivalGate << " responding to it with a superior BPDU." << endl;
             generateBPDU(arrivalGate);
         }
     }
+
     // BPDU from root
-    else if (port->getRole() == Ieee8021dInterfaceData::ROOT) {
+    else if (port->getRole() == Ieee8021dInterfaceData::ROOT)
+    {
         EV_INFO << "Configuration BPDU " << bpdu << " arrived from Root Switch." << endl;
 
-        if (bpdu->getTcFlag()) {
+        if(bpdu->getTcFlag())
+        {
             EV_DEBUG << "MACAddressTable aging time set to " << currentFwdDelay << "." << endl;
             macTable->setAgingTime(currentFwdDelay);
 
             // config BPDU with TC flag
-            for (auto & elem : desPorts)
-                generateBPDU(elem, MACAddress::STP_MULTICAST_ADDRESS, true, false);
+            for (unsigned int i = 0; i < desPorts.size(); i++)
+                generateBPDU(desPorts.at(i), MACAddress::STP_MULTICAST_ADDRESS,true,false);
         }
-        else {
+        else
+        {
             macTable->resetDefaultAging();
 
             EV_INFO << "Sending BPDUs on all designated ports." << endl;
 
             // BPDUs are sent on all designated ports
-            for (auto & elem : desPorts)
-                generateBPDU(elem);
+            for (unsigned int i = 0; i < desPorts.size(); i++)
+                generateBPDU(desPorts.at(i));
         }
     }
 
@@ -137,20 +169,20 @@ void STP::handleBPDU(BPDU *bpdu)
     delete bpdu;
 }
 
-void STP::handleTCN(BPDU *tcn)
+void STP::handleTCN(BPDU * tcn)
 {
-    EV_INFO << "Topology Change Notification BDPU " << tcn << " arrived." << endl;
+    EV_INFO<< "Topology Change Notification BDPU " << tcn << " arrived." << endl;
     topologyChangeNotification = true;
 
-    Ieee802Ctrl *controlInfo = check_and_cast<Ieee802Ctrl *>(tcn->getControlInfo());
+    Ieee802Ctrl * controlInfo = check_and_cast<Ieee802Ctrl *>(tcn->getControlInfo());
     int arrivalGate = controlInfo->getSwitchPort();
     MACAddress address = controlInfo->getSrc();
 
     // send ACK to the sender
     EV_INFO << "Sending Topology Change Notification ACK." << endl;
-    generateBPDU(arrivalGate, address, false, true);
+    generateBPDU(arrivalGate,address,false,true);
 
-    controlInfo->setSwitchPort(rootPort);    // send TCN to the Root Switch
+    controlInfo->setSwitchPort(rootPort);// send TCN to the Root Switch
 
     if (!isRoot)
         send(tcn, "relayOut");
@@ -160,15 +192,15 @@ void STP::handleTCN(BPDU *tcn)
 
 void STP::generateBPDU(int port, const MACAddress& address, bool tcFlag, bool tcaFlag)
 {
-    BPDU *bpdu = new BPDU();
-    Ieee802Ctrl *controlInfo = new Ieee802Ctrl();
+    BPDU * bpdu = new BPDU();
+    Ieee802Ctrl * controlInfo = new Ieee802Ctrl();
     controlInfo->setDest(address);
     controlInfo->setSwitchPort(port);
 
     bpdu->setName("BPDU");
     bpdu->setProtocolIdentifier(0);
     bpdu->setProtocolVersionIdentifier(0);
-    bpdu->setBpduType(0);    // 0 if configuration BPDU
+    bpdu->setBpduType(0); // 0 if configuration BPDU
 
     bpdu->setBridgeAddress(bridgeAddress);
     bpdu->setBridgePriority(bridgePriority);
@@ -182,12 +214,15 @@ void STP::generateBPDU(int port, const MACAddress& address, bool tcFlag, bool tc
     bpdu->setHelloTime(currentHelloTime);
     bpdu->setForwardDelay(currentFwdDelay);
 
-    if (topologyChangeNotification) {
-        if (isRoot || tcFlag) {
+    if (topologyChangeNotification)
+    {
+        if (isRoot || tcFlag)
+        {
             bpdu->setTcFlag(true);
             bpdu->setTcaFlag(false);
         }
-        else if (tcaFlag) {
+        else if (tcaFlag)
+        {
             bpdu->setTcFlag(false);
             bpdu->setTcaFlag(true);
         }
@@ -201,11 +236,13 @@ void STP::generateBPDU(int port, const MACAddress& address, bool tcFlag, bool tc
 void STP::generateTCN()
 {
     // there is something to notify
-    if (topologyChangeNotification || !topologyChangeRecvd) {
-        if (getPortInterfaceData(rootPort)->getRole() == Ieee8021dInterfaceData::ROOT) {
+    if (topologyChangeNotification || !topologyChangeRecvd)
+    {
+        if (getPortInterfaceData(rootPort)->getRole() == Ieee8021dInterfaceData::ROOT)
+        {
             // exist root port to notifying
             topologyChangeNotification = false;
-            BPDU *tcn = new BPDU();
+            BPDU * tcn = new BPDU();
             tcn->setProtocolIdentifier(0);
             tcn->setProtocolVersionIdentifier(0);
             tcn->setName("BPDU");
@@ -213,21 +250,21 @@ void STP::generateTCN()
             // 1 if Topology Change Notification BPDU
             tcn->setBpduType(1);
 
-            Ieee802Ctrl *controlInfo = new Ieee802Ctrl();
+            Ieee802Ctrl * controlInfo = new Ieee802Ctrl();
             controlInfo->setDest(MACAddress::STP_MULTICAST_ADDRESS);
             controlInfo->setSwitchPort(rootPort);
             tcn->setControlInfo(controlInfo);
 
-            EV_INFO << "The topology has changed. Sending Topology Change Notification BPDU " << tcn << " to the Root Switch." << endl;
+            EV_INFO<< "The topology has changed. Sending Topology Change Notification BPDU " << tcn << " to the Root Switch." << endl;
             send(tcn, "relayOut");
         }
     }
 }
 
-bool STP::isSuperiorBPDU(int portNum, BPDU *bpdu)
+bool STP::isSuperiorBPDU(int portNum, BPDU * bpdu)
 {
-    Ieee8021dInterfaceData *port = getPortInterfaceData(portNum);
-    Ieee8021dInterfaceData *xBpdu = new Ieee8021dInterfaceData();
+    Ieee8021dInterfaceData * port = getPortInterfaceData(portNum);
+    Ieee8021dInterfaceData * xBpdu = new Ieee8021dInterfaceData();
 
     int result;
 
@@ -242,32 +279,34 @@ bool STP::isSuperiorBPDU(int portNum, BPDU *bpdu)
     result = comparePorts(port, xBpdu);
 
     // port is superior
-    if (result > 0) {
+    if (result > 0)
+    {
         delete xBpdu;
         return false;
     }
 
-    if (result < 0) {
+    if (result < 0)
+    {
         // BPDU is superior
-        port->setFdWhile(0);    // renew info
+        port->setFdWhile(0); // renew info
         port->setState(Ieee8021dInterfaceData::DISCARDING);
-        setSuperiorBPDU(portNum, bpdu);    // renew information
+        setSuperiorBPDU(portNum, bpdu); // renew information
         delete xBpdu;
         return true;
     }
 
-    setSuperiorBPDU(portNum, bpdu);    // renew information
+    setSuperiorBPDU(portNum, bpdu); // renew information
     delete xBpdu;
     return true;
 }
 
-void STP::setSuperiorBPDU(int portNum, BPDU *bpdu)
+void STP::setSuperiorBPDU(int portNum, BPDU * bpdu)
 {
     // BDPU is out-of-date
     if (bpdu->getMessageAge() >= bpdu->getMaxAge())
         return;
 
-    Ieee8021dInterfaceData *portData = getPortInterfaceData(portNum);
+    Ieee8021dInterfaceData * portData = getPortInterfaceData(portNum);
 
     portData->setRootPriority(bpdu->getRootPriority());
     portData->setRootAddress(bpdu->getRootAddress());
@@ -282,11 +321,12 @@ void STP::setSuperiorBPDU(int portNum, BPDU *bpdu)
 
     // we just set new port info so reset the age timer
     portData->setAge(0);
+
 }
 
 void STP::generateHelloBDPUs()
 {
-    EV_INFO << "It is hello time. Root switch sending hello BDPUs on all its ports." << endl;
+    EV_INFO<< "It is hello time. Root switch sending hello BDPUs on all its ports." << endl;
 
     // send hello BDPUs on all ports
     for (unsigned int i = 0; i < numPorts; i++)
@@ -301,22 +341,26 @@ void STP::handleTick()
     else
         helloTime = 0;
 
-    for (unsigned int i = 0; i < numPorts; i++) {
-        Ieee8021dInterfaceData *port = getPortInterfaceData(i);
+    for (unsigned int i = 0; i < numPorts; i++)
+    {
+        Ieee8021dInterfaceData * port = getPortInterfaceData(i);
 
         // disabled ports don't count
         if (port->getRole() == Ieee8021dInterfaceData::DISABLED)
             continue;
 
         // increment the MessageAge and FdWhile timers
-        if (port->getRole() != Ieee8021dInterfaceData::DESIGNATED) {
-            EV_DEBUG << "Message Age timer incremented on port=" << i << endl;
+        if (port->getRole() != Ieee8021dInterfaceData::DESIGNATED)
+        {
+            EV_DEBUG<< "Message Age timer incremented on port=" << i << endl;
             port->setAge(port->getAge() + tickInterval);
         }
-        if (port->getRole() == Ieee8021dInterfaceData::ROOT || port->getRole() == Ieee8021dInterfaceData::DESIGNATED) {
-            EV_DEBUG << "Forward While timer incremented on port=" << i << endl;
+        if (port->getRole() == Ieee8021dInterfaceData::ROOT || port->getRole() == Ieee8021dInterfaceData::DESIGNATED)
+        {
+            EV_DEBUG<< "Forward While timer incremented on port=" << i << endl;
             port->setFdWhile(port->getFdWhile() + tickInterval);
         }
+
     }
     checkTimers();
     checkParametersChange();
@@ -325,10 +369,11 @@ void STP::handleTick()
 
 void STP::checkTimers()
 {
-    Ieee8021dInterfaceData *port;
+    Ieee8021dInterfaceData * port;
 
     // hello timer check
-    if (helloTime >= currentHelloTime) {
+    if (helloTime >= currentHelloTime)
+    {
         // only the root switch can generate Hello BPDUs
         if (isRoot)
             generateHelloBDPUs();
@@ -337,16 +382,20 @@ void STP::checkTimers()
     }
 
     // information age check
-    for (unsigned int i = 0; i < numPorts; i++) {
+    for (unsigned int i = 0; i < numPorts; i++)
+    {
         port = getPortInterfaceData(i);
 
-        if (port->getAge() >= currentMaxAge) {
-            EV_DETAIL << "Port=" << i << " reached its maximum age. Setting it to the default port info." << endl;
-            if (port->getRole() == Ieee8021dInterfaceData::ROOT) {
+        if (port->getAge() >= currentMaxAge)
+        {
+            EV_DETAIL<< "Port=" << i << " reached its maximum age. Setting it to the default port info." << endl;
+            if (port->getRole() == Ieee8021dInterfaceData::ROOT)
+            {
                 initInterfacedata(i);
                 lostRoot();
             }
-            else {
+            else
+            {
                 initInterfacedata(i);
                 lostAlternate(i);
             }
@@ -354,32 +403,36 @@ void STP::checkTimers()
     }
 
     // fdWhile timer
-    for (unsigned int i = 0; i < numPorts; i++) {
+    for (unsigned int i = 0; i < numPorts; i++)
+    {
         port = getPortInterfaceData(i);
 
         // ROOT / DESIGNATED, can transition
-        if (port->getRole() == Ieee8021dInterfaceData::ROOT || port->getRole() == Ieee8021dInterfaceData::DESIGNATED) {
-            if (port->getFdWhile() >= currentFwdDelay) {
-                switch (port->getState()) {
-                    case Ieee8021dInterfaceData::DISCARDING:
-                        EV_DETAIL << "Port=" << i << " goes into learning state." << endl;
-                        port->setState(Ieee8021dInterfaceData::LEARNING);
-                        port->setFdWhile(0);
-                        break;
-
-                    case Ieee8021dInterfaceData::LEARNING:
-                        EV_DETAIL << "Port=" << i << " goes into forwarding state." << endl;
-                        port->setState(Ieee8021dInterfaceData::FORWARDING);
-                        port->setFdWhile(0);
-                        break;
-
-                    default:
-                        port->setFdWhile(0);
-                        break;
+        if (port->getRole() == Ieee8021dInterfaceData::ROOT || port->getRole() == Ieee8021dInterfaceData::DESIGNATED)
+        {
+            if (port->getFdWhile() >= currentFwdDelay)
+            {
+                switch (port->getState())
+                {
+                case Ieee8021dInterfaceData::DISCARDING:
+                    EV_DETAIL<< "Port=" << i << " goes into learning state." << endl;
+                    port->setState(Ieee8021dInterfaceData::LEARNING);
+                    port->setFdWhile(0);
+                    break;
+                case Ieee8021dInterfaceData::LEARNING:
+                    EV_DETAIL << "Port=" << i << " goes into forwarding state." << endl;
+                    port->setState(Ieee8021dInterfaceData::FORWARDING);
+                    port->setFdWhile(0);
+                    break;
+                default:
+                    port->setFdWhile(0);
+                    break;
                 }
+
             }
         }
-        else {
+        else
+        {
             EV_DETAIL << "Port=" << i << " goes into discarding state." << endl;
             port->setFdWhile(0);
             port->setState(Ieee8021dInterfaceData::DISCARDING);
@@ -389,12 +442,14 @@ void STP::checkTimers()
 
 void STP::checkParametersChange()
 {
-    if (isRoot) {
+    if (isRoot)
+    {
         currentHelloTime = helloTime;
         currentMaxAge = maxAge;
         currentFwdDelay = forwardDelay;
     }
-    if (currentBridgePriority != bridgePriority) {
+    if (currentBridgePriority != bridgePriority)
+    {
         currentBridgePriority = bridgePriority;
         reset();
     }
@@ -402,13 +457,15 @@ void STP::checkParametersChange()
 
 bool STP::checkRootEligibility()
 {
-    Ieee8021dInterfaceData *port;
+    Ieee8021dInterfaceData * port;
 
-    for (unsigned int i = 0; i < numPorts; i++) {
+    for (unsigned int i = 0; i < numPorts; i++)
+    {
         port = getPortInterfaceData(i);
 
         if (compareBridgeIDs(port->getRootPriority(), port->getRootAddress(), bridgePriority, bridgeAddress) > 0)
             return false;
+
     }
 
     return true;
@@ -416,8 +473,9 @@ bool STP::checkRootEligibility()
 
 void STP::tryRoot()
 {
-    if (checkRootEligibility()) {
-        EV_DETAIL << "Switch is elected as root switch." << endl;
+    if (checkRootEligibility())
+    {
+        EV_DETAIL<< "Switch is elected as root switch." << endl;
         isRoot = true;
         setAllDesignated();
         rootPriority = bridgePriority;
@@ -427,11 +485,13 @@ void STP::tryRoot()
         currentMaxAge = maxAge;
         currentFwdDelay = forwardDelay;
     }
-    else {
+    else
+    {
         isRoot = false;
         selectRootPort();
         selectDesignatedPorts();
     }
+
 }
 
 int STP::compareBridgeIDs(unsigned int aPriority, MACAddress aAddress, unsigned int bPriority, MACAddress bAddress)
@@ -472,12 +532,12 @@ int STP::comparePortIDs(unsigned int aPriority, unsigned int aNum, unsigned int 
     return 0;
 }
 
-int STP::comparePorts(Ieee8021dInterfaceData *portA, Ieee8021dInterfaceData *portB)
+int STP::comparePorts(Ieee8021dInterfaceData * portA, Ieee8021dInterfaceData * portB)
 {
     int result;
 
     result = compareBridgeIDs(portA->getRootPriority(), portA->getRootAddress(), portB->getRootPriority(),
-                portB->getRootAddress());
+            portB->getRootAddress());
 
     // not same, so pass result
     if (result != 0)
@@ -491,7 +551,7 @@ int STP::comparePorts(Ieee8021dInterfaceData *portA, Ieee8021dInterfaceData *por
 
     // designated bridge
     result = compareBridgeIDs(portA->getBridgePriority(), portA->getBridgeAddress(), portB->getBridgePriority(),
-                portB->getBridgeAddress());
+            portB->getBridgeAddress());
 
     // not same, so pass result
     if (result != 0)
@@ -504,7 +564,7 @@ int STP::comparePorts(Ieee8021dInterfaceData *portA, Ieee8021dInterfaceData *por
     if (result != 0)
         return result;
 
-    return 0;    // same
+    return 0; // same
 }
 
 void STP::selectRootPort()
@@ -512,22 +572,26 @@ void STP::selectRootPort()
     desPorts.clear();
     unsigned int xRootPort = 0;
     int result;
-    Ieee8021dInterfaceData *best = getPortInterfaceData(0);
-    Ieee8021dInterfaceData *currentPort;
+    Ieee8021dInterfaceData * best = getPortInterfaceData(0);
+    Ieee8021dInterfaceData * currentPort;
 
-    for (unsigned int i = 0; i < numPorts; i++) {
+    for (unsigned int i = 0; i < numPorts; i++)
+    {
         currentPort = getPortInterfaceData(i);
         currentPort->setRole(Ieee8021dInterfaceData::NOTASSIGNED);
         result = comparePorts(currentPort, best);
-        if (result > 0) {
+        if (result > 0)
+        {
             xRootPort = i;
             best = currentPort;
             continue;
         }
-        if (result < 0) {
+        if (result < 0)
+        {
             continue;
         }
-        if (currentPort->getPriority() < best->getPriority()) {
+        if (currentPort->getPriority() < best->getPriority())
+        {
             xRootPort = i;
             best = currentPort;
             continue;
@@ -536,8 +600,9 @@ void STP::selectRootPort()
             continue;
     }
 
-    if (rootPort != xRootPort) {
-        EV_DETAIL << "Port=" << xRootPort << " selected as root port." << endl;
+    if (rootPort != xRootPort)
+    {
+        EV_DETAIL<< "Port=" << xRootPort << " selected as root port." << endl;
         topologyChangeNotification = true;
     }
     rootPort = xRootPort;
@@ -549,14 +614,15 @@ void STP::selectRootPort()
     currentMaxAge = best->getMaxAge();
     currentFwdDelay = best->getFwdDelay();
     currentHelloTime = best->getHelloTime();
+
 }
 
 void STP::selectDesignatedPorts()
 {
     // select designated ports
     desPorts.clear();
-    Ieee8021dInterfaceData *port;
-    Ieee8021dInterfaceData *bridgeGlobal = new Ieee8021dInterfaceData();
+    Ieee8021dInterfaceData * port;
+    Ieee8021dInterfaceData * bridgeGlobal = new Ieee8021dInterfaceData();
     int result;
 
     bridgeGlobal->setBridgePriority(bridgePriority);
@@ -564,7 +630,8 @@ void STP::selectDesignatedPorts()
     bridgeGlobal->setRootAddress(rootAddress);
     bridgeGlobal->setRootPriority(rootPriority);
 
-    for (unsigned int i = 0; i < numPorts; i++) {
+    for (unsigned int i = 0; i < numPorts; i++)
+    {
         port = getPortInterfaceData(i);
 
         if (port->getRole() == Ieee8021dInterfaceData::ROOT || port->getRole() == Ieee8021dInterfaceData::DISABLED)
@@ -577,14 +644,16 @@ void STP::selectDesignatedPorts()
 
         result = comparePorts(bridgeGlobal, port);
 
-        if (result > 0) {
-            EV_DETAIL << "Port=" << i << " is elected as designated port." << endl;
+        if (result > 0)
+        {
+            EV_DETAIL<< "Port=" << i << " is elected as designated port." << endl;
             desPorts.push_back(i);
             port->setRole(Ieee8021dInterfaceData::DESIGNATED);
             continue;
         }
-        if (result < 0) {
-            EV_DETAIL << "Port=" << i << " goes into alternate role." << endl;
+        if (result < 0)
+        {
+            EV_DETAIL<< "Port=" << i << " goes into alternate role." << endl;
             port->setRole(Ieee8021dInterfaceData::ALTERNATE);
             continue;
         }
@@ -595,11 +664,12 @@ void STP::selectDesignatedPorts()
 void STP::setAllDesignated()
 {
     // all ports of the root switch are designated ports
-    EV_DETAIL << "All ports become designated." << endl;    // todo
+    EV_DETAIL<< "All ports become designated." << endl; // todo
 
-    Ieee8021dInterfaceData *port;
+    Ieee8021dInterfaceData * port;
     desPorts.clear();
-    for (unsigned int i = 0; i < numPorts; i++) {
+    for (unsigned int i = 0; i < numPorts; i++)
+    {
         port = getPortInterfaceData(i);
         if (port->getRole() == Ieee8021dInterfaceData::DISABLED)
             continue;
@@ -653,7 +723,7 @@ void STP::start()
     helloTime = 0;
     setAllDesignated();
 
-    scheduleAt(simTime() + tickInterval, tick);
+    scheduleAt(simTime() + 1, tick);
 }
 
 void STP::stop()
@@ -666,7 +736,7 @@ void STP::stop()
 
 void STP::initInterfacedata(unsigned int portNum)
 {
-    Ieee8021dInterfaceData *ifd = getPortInterfaceData(portNum);
+    Ieee8021dInterfaceData * ifd = getPortInterfaceData(portNum);
     ifd->setRole(Ieee8021dInterfaceData::NOTASSIGNED);
     ifd->setState(Ieee8021dInterfaceData::DISCARDING);
     ifd->setRootPriority(bridgePriority);
@@ -679,6 +749,3 @@ void STP::initInterfacedata(unsigned int portNum)
     ifd->setPortNum(-1);
     ifd->setLostBPDU(0);
 }
-
-} // namespace inet
-

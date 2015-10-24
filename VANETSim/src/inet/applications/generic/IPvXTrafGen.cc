@@ -16,16 +16,16 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inet/applications/generic/IPvXTrafGen.h"
 
-#include "inet/common/ModuleAccess.h"
-#include "inet/common/lifecycle/NodeOperations.h"
-#include "inet/networklayer/common/L3AddressResolver.h"
-#include "inet/networklayer/common/IPSocket.h"
-#include "inet/networklayer/contract/IL3AddressType.h"
-#include "inet/networklayer/contract/INetworkProtocolControlInfo.h"
+#include "IPvXTrafGen.h"
 
-namespace inet {
+#include "ModuleAccess.h"
+#include "NodeOperations.h"
+#include "IPvXAddressResolver.h"
+#include "IPSocket.h"
+#include "IPv4ControlInfo.h"
+#include "IPv6ControlInfo.h"
+
 
 Define_Module(IPvXTrafGen);
 
@@ -34,6 +34,10 @@ simsignal_t IPvXTrafGen::sentPkSignal = registerSignal("sentPk");
 
 IPvXTrafGen::IPvXTrafGen()
 {
+    timer = NULL;
+    nodeStatus = NULL;
+    packetLengthPar = NULL;
+    sendIntervalPar = NULL;
 }
 
 IPvXTrafGen::~IPvXTrafGen()
@@ -47,13 +51,14 @@ void IPvXTrafGen::initialize(int stage)
 
     // because of IPvXAddressResolver, we need to wait until interfaces are registered,
     // address auto-assignment takes place etc.
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         protocol = par("protocol");
         numPackets = par("numPackets");
         startTime = par("startTime");
         stopTime = par("stopTime");
         if (stopTime >= SIMTIME_ZERO && stopTime < startTime)
-            throw cRuntimeError("Invalid startTime/stopTime parameters");
+            error("Invalid startTime/stopTime parameters");
 
         packetLengthPar = &par("packetLength");
         sendIntervalPar = &par("sendInterval");
@@ -63,8 +68,11 @@ void IPvXTrafGen::initialize(int stage)
         WATCH(numSent);
         WATCH(numReceived);
     }
-    else if (stage == INITSTAGE_APPLICATION_LAYER) {
+    else if (stage == 3)
+    {
         IPSocket ipSocket(gate("ipOut"));
+        ipSocket.registerProtocol(protocol);
+        ipSocket.setOutputGate(gate("ipv6Out"));
         ipSocket.registerProtocol(protocol);
 
         timer = new cMessage("sendTimer");
@@ -86,22 +94,26 @@ void IPvXTrafGen::handleMessage(cMessage *msg)
 {
     if (!isNodeUp())
         throw cRuntimeError("Application is not running");
-    if (msg == timer) {
-        if (msg->getKind() == START) {
+    if (msg == timer)
+    {
+        if (msg->getKind() == START)
+        {
             destAddresses.clear();
             const char *destAddrs = par("destAddresses");
             cStringTokenizer tokenizer(destAddrs);
             const char *token;
-            while ((token = tokenizer.nextToken()) != nullptr) {
-                L3Address result;
-                L3AddressResolver().tryResolve(token, result);
+            while ((token = tokenizer.nextToken()) != NULL)
+            {
+                IPvXAddress result;
+                IPvXAddressResolver().tryResolve(token, result);
                 if (result.isUnspecified())
-                    EV_ERROR << "cannot resolve destination address: " << token << endl;
+                    EV << "cannot resolve destination address: " << token << endl;
                 else
                     destAddresses.push_back(result);
             }
         }
-        if (!destAddresses.empty()) {
+        if (!destAddresses.empty())
+        {
             sendPacket();
             if (isEnabled())
                 scheduleNextPacket(simTime());
@@ -110,7 +122,8 @@ void IPvXTrafGen::handleMessage(cMessage *msg)
     else
         processPacket(PK(msg));
 
-    if (hasGUI()) {
+    if (ev.isGUI())
+    {
         char buf[40];
         sprintf(buf, "rcvd: %d pks\nsent: %d pks", numReceived, numSent);
         getDisplayString().setTagArg("t", 0, buf);
@@ -121,30 +134,31 @@ bool IPvXTrafGen::handleOperationStage(LifecycleOperation *operation, int stage,
 {
     Enter_Method_Silent();
     if (dynamic_cast<NodeStartOperation *>(operation)) {
-        if ((NodeStartOperation::Stage)stage == NodeStartOperation::STAGE_APPLICATION_LAYER)
+        if (stage == NodeStartOperation::STAGE_APPLICATION_LAYER)
             startApp();
     }
     else if (dynamic_cast<NodeShutdownOperation *>(operation)) {
-        if ((NodeShutdownOperation::Stage)stage == NodeShutdownOperation::STAGE_APPLICATION_LAYER)
+        if (stage == NodeShutdownOperation::STAGE_APPLICATION_LAYER)
             cancelNextPacket();
     }
     else if (dynamic_cast<NodeCrashOperation *>(operation)) {
-        if ((NodeCrashOperation::Stage)stage == NodeCrashOperation::STAGE_CRASH)
+        if (stage == NodeCrashOperation::STAGE_CRASH)
             cancelNextPacket();
     }
-    else
-        throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName());
+    else throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName());
     return true;
 }
 
 void IPvXTrafGen::scheduleNextPacket(simtime_t previous)
 {
     simtime_t next;
-    if (previous == -1) {
+    if (previous == -1)
+    {
         next = simTime() <= startTime ? startTime : simTime();
         timer->setKind(START);
     }
-    else {
+    else
+    {
         next = previous + sendIntervalPar->doubleValue();
         timer->setKind(NEXT);
     }
@@ -164,10 +178,10 @@ bool IPvXTrafGen::isNodeUp()
 
 bool IPvXTrafGen::isEnabled()
 {
-    return numPackets == -1 || numSent < numPackets;
+    return (numPackets == -1 || numSent < numPackets);
 }
 
-L3Address IPvXTrafGen::chooseDestAddr()
+IPvXAddress IPvXTrafGen::chooseDestAddr()
 {
     int k = intrand(destAddresses.size());
     return destAddresses[k];
@@ -181,49 +195,67 @@ void IPvXTrafGen::sendPacket()
     cPacket *payload = new cPacket(msgName);
     payload->setByteLength(packetLengthPar->longValue());
 
-    L3Address destAddr = chooseDestAddr();
+    IPvXAddress destAddr = chooseDestAddr();
+    const char *gate;
 
-    IL3AddressType *addressType = destAddr.getAddressType();
-    INetworkProtocolControlInfo *controlInfo = addressType->createNetworkProtocolControlInfo();
-    //controlInfo->setSourceAddress();
-    controlInfo->setDestinationAddress(destAddr);
-    controlInfo->setTransportProtocol(protocol);
-    payload->setControlInfo(check_and_cast<cObject *>(controlInfo));
-
-    EV_INFO << "Sending packet: ";
+    if (!destAddr.isIPv6())
+    {
+        // send to IPv4
+        IPv4ControlInfo *controlInfo = new IPv4ControlInfo();
+        controlInfo->setDestAddr(destAddr.get4());
+        controlInfo->setProtocol(protocol);
+        payload->setControlInfo(controlInfo);
+        gate = "ipOut";
+    }
+    else
+    {
+        // send to IPv6
+        IPv6ControlInfo *controlInfo = new IPv6ControlInfo();
+        controlInfo->setDestAddr(destAddr.get6());
+        controlInfo->setProtocol(protocol);
+        payload->setControlInfo(controlInfo);
+        gate = "ipv6Out";
+    }
+    EV << "Sending packet: ";
     printPacket(payload);
     emit(sentPkSignal, payload);
-    send(payload, "ipOut");
+    send(payload, gate);
     numSent++;
 }
 
 void IPvXTrafGen::printPacket(cPacket *msg)
 {
-    L3Address src, dest;
+    IPvXAddress src, dest;
     int protocol = -1;
 
-    INetworkProtocolControlInfo *ctrl = dynamic_cast<INetworkProtocolControlInfo *>(msg->getControlInfo());
-    if (ctrl != nullptr) {
-        src = ctrl->getSourceAddress();
-        dest = ctrl->getDestinationAddress();
-        protocol = ctrl->getTransportProtocol();
+    if (dynamic_cast<IPv4ControlInfo *>(msg->getControlInfo()) != NULL)
+    {
+        IPv4ControlInfo *ctrl = (IPv4ControlInfo *)msg->getControlInfo();
+        src = ctrl->getSrcAddr();
+        dest = ctrl->getDestAddr();
+        protocol = ctrl->getProtocol();
+    }
+    else if (dynamic_cast<IPv6ControlInfo *>(msg->getControlInfo()) != NULL)
+    {
+        IPv6ControlInfo *ctrl = (IPv6ControlInfo *)msg->getControlInfo();
+        src = ctrl->getSrcAddr();
+        dest = ctrl->getDestAddr();
+        protocol = ctrl->getProtocol();
     }
 
-    EV_INFO << msg << endl;
-    EV_INFO << "Payload length: " << msg->getByteLength() << " bytes" << endl;
+    EV << msg << endl;
+    EV << "Payload length: " << msg->getByteLength() << " bytes" << endl;
 
     if (protocol != -1)
-        EV_INFO << "src: " << src << "  dest: " << dest << "  protocol=" << protocol << "\n";
+        EV << "src: " << src << "  dest: " << dest << "  protocol=" << protocol << "\n";
 }
 
 void IPvXTrafGen::processPacket(cPacket *msg)
 {
     emit(rcvdPkSignal, msg);
-    EV_INFO << "Received packet: ";
+    EV << "Received packet: ";
     printPacket(msg);
     delete msg;
     numReceived++;
 }
-
-} // namespace inet
 

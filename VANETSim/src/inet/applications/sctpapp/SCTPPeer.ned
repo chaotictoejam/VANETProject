@@ -17,7 +17,7 @@
 
 package inet.applications.sctpapp;
 
-import inet.applications.contract.ISCTPApp;
+import inet.applications.ISCTPApp;
 
 
 simple SCTPPeer like ISCTPApp
@@ -35,7 +35,6 @@ simple SCTPPeer like ISCTPApp
         double waitToClose @unit(s) = default(0s); //time to wait between last message sent and abort
         bool ordered = default(true);
         int outboundStreams = default(1);
-        int inboundStreams = default(17);
         int queueSize = default(0);
         int prMethod = default(0);  //0=NONE, 1=PR_TTL, 2=PR_RTX, 3=PR_PRIO, 4=PR_STRRST
         double prValue = default(0); //for PR-SCTP

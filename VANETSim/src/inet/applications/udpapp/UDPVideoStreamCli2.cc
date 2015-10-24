@@ -1,6 +1,5 @@
 //
 // Copyright (C) 2005 Andras Varga
-// Copyright (C) 2015 A. Ariza (Malaga University)
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public License
@@ -21,13 +20,12 @@
 // based on the video streaming app of the similar name by Johnny Lai
 //
 
-#include "inet/applications/udpapp/UDPVideoStreamCli2.h"
+#include "UDPVideoStreamCli2.h"
 
-#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
-#include "inet/networklayer/common/L3AddressResolver.h"
-#include "inet/applications/udpapp/VideoPacket_m.h"
+#include "UDPControlInfo_m.h"
+#include "IPvXAddressResolver.h"
+#include "VideoPacket_m.h"
 
-namespace inet {
 
 Define_Module(UDPVideoStreamCli2);
 
@@ -59,7 +57,7 @@ void UDPVideoStreamCli2::initialize(int stage)
 {
     ApplicationBase::initialize(stage);
 
-    if (stage == INITSTAGE_LOCAL)
+    if (stage == 0)
     {
         // statistics
         timeOut  = par("timeOut");
@@ -116,7 +114,7 @@ void UDPVideoStreamCli2::requestStream()
     int svrPort = par("serverPort");
     int localPort = par("localPort");
     const char *address = par("serverAddress");
-    L3Address svrAddr = L3AddressResolver().resolve(address);
+    IPvXAddress svrAddr = IPvXAddressResolver().resolve(address);
 
     if (svrAddr.isUnspecified())
     {
@@ -147,12 +145,10 @@ void UDPVideoStreamCli2::receiveStream(cPacket *pk)
         cancelEvent(reintentTimer);
     if (timeOutMsg->isScheduled())
         cancelEvent(timeOutMsg);
+    if (timeOut > 0)
+        scheduleAt(simTime()+timeOut,timeOutMsg);
 
     recieved = true;
-
-    if (timeOut > 0 && par("multipleRequest").boolValue())
-        scheduleAt(simTime()+timeOut,timeOutMsg); // only if multiple request is active
-
 
     if (simTime() - pk->getCreationTime() > limitDelay)
     {
@@ -231,5 +227,4 @@ void UDPVideoStreamCli2::handleNodeCrash()
     cancelEvent(timeOutMsg);
 }
 
-}
 

@@ -15,12 +15,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
+
 #ifndef __INET_DSCPMARKER_H
 #define __INET_DSCPMARKER_H
 
-#include "inet/common/INETDefs.h"
-
-namespace inet {
+#include "INETDefs.h"
 
 /**
  * DSCP Marker.
@@ -30,8 +29,8 @@ class INET_API DSCPMarker : public cSimpleModule
   protected:
     std::vector<int> dscps;
 
-    int numRcvd = 0;
-    int numMarked = 0;
+    int numRcvd;
+    int numMarked;
 
     static simsignal_t markPkSignal;
 
@@ -39,14 +38,11 @@ class INET_API DSCPMarker : public cSimpleModule
     DSCPMarker() {}
 
   protected:
-    virtual void initialize() override;
+    virtual void initialize();
 
-    virtual void handleMessage(cMessage *msg) override;
+    virtual void handleMessage(cMessage *msg);
 
     virtual bool markPacket(cPacket *msg, int dscp);
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_DSCPMARKER_H
-
+#endif

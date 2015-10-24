@@ -65,10 +65,8 @@
 #define TRAFFIC_GENERATOR_H
 
 // SYSTEM INCLUDES
+#include <omnetpp.h>
 #include <string>
-#include "inet/common/INETDefs.h"
-
-namespace inet {
 
 class TrafGenPar : public cSimpleModule
 {
@@ -116,8 +114,5 @@ class TrafGenPar : public cSimpleModule
         cMessage *mpSendMessage;
         cMessage *mpOnOffSwitch;
 };
-
-} // namespace inet
-
 
 #endif

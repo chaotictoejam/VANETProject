@@ -19,21 +19,20 @@
  * part of:     framework implementation developed by tkn
  *************************************************************************/
 
-#ifndef __INET_IMOBILITY_H
-#define __INET_IMOBILITY_H
 
-#include "inet/common/INETDefs.h"
+#ifndef IMOBILITY_H
+#define IMOBILITY_H
 
-#include "inet/common/geometry/common/Coord.h"
-#include "inet/common/geometry/common/EulerAngles.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "Coord.h"
+
 
 /**
  * @brief Abstract base class defining the public interface that must be provided by all mobility modules.
  *
  * @ingroup mobility
- * @author Levente Meszaros
+ * @author Levente M�sz�ros
  */
 class INET_API IMobility
 {
@@ -43,9 +42,6 @@ class INET_API IMobility
 
   public:
     virtual ~IMobility() {}
-
-    /** @brief Returns the maximum possible speed at any future time. */
-    virtual double getMaxSpeed() const = 0;
 
     /** @brief Returns the current position at the current simulation time. */
     virtual Coord getCurrentPosition() = 0;
@@ -57,19 +53,13 @@ class INET_API IMobility
     // virtual Coord getCurrentAcceleration() = 0;
 
     /** @brief Returns the current angular position at the current simulation time. */
-    virtual EulerAngles getCurrentAngularPosition() = 0;
+    // virtual Coord getCurrentAngularPosition() = 0;
 
     /** @brief Returns the current angular speed at the current simulation time. */
-    virtual EulerAngles getCurrentAngularSpeed() = 0;
+    // virtual Coord getCurrentAngularSpeed() = 0;
 
     /** @brief Returns the current angular acceleration at the current simulation time. */
-    // virtual Orientation getCurrentAngularAcceleration() = 0;
-
-    virtual Coord getConstraintAreaMax() const = 0;
-    virtual Coord getConstraintAreaMin() const = 0;
+    // virtual Coord getCurrentAngularAcceleration() = 0;
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_IMOBILITY_H
-
+#endif

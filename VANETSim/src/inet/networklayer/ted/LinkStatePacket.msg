@@ -14,10 +14,9 @@
 
 
 cplusplus {{
-#include "inet/networklayer/ted/TED_m.h"
+#include "TED_m.h"
 }}
 
-namespace inet;
 
 // Represents a link in the ~TED and in ~LinkStateMsg packets; from TED.msg.
 struct TELinkStateInfo;

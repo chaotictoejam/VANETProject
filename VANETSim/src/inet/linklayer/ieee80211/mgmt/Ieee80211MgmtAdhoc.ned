@@ -34,11 +34,7 @@ package inet.linklayer.ieee80211.mgmt;
 simple Ieee80211MgmtAdhoc like IIeee80211Mgmt
 {
     parameters:
-        bool EDCA = default(false); // enable Enhanced Distributed Channel Access (802.11e)
-        // parameters for EDCA = true
-        string classifier = default("Ieee80211eClassifier");
         int frameCapacity = default(100);
-        string macModule;               // The path to the MAC module
         @display("i=block/cogwheel");
         @signal[rcvdPk](type=cPacket);
         @signal[enqueuePk](type=cPacket);

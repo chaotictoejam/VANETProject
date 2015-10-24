@@ -1,39 +1,36 @@
 //
-// Copyright (C) 2004 Andras Varga
+// Copyright 2004 Andras Varga
 //
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
+// This library is free software, you can redistribute it and/or modify
+// it under  the terms of the GNU Lesser General Public License
+// as published by the Free Software Foundation;
+// either version 2 of the License, or any later version.
+// The library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with this program; if not, see <http://www.gnu.org/licenses/>.
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// See the GNU Lesser General Public License for more details.
 //
 
-#include "inet/applications/tcpapp/TCPEchoApp.h"
 
-#include "inet/common/RawPacket.h"
-#include "inet/transportlayer/contract/tcp/TCPCommand_m.h"
-#include "inet/common/ModuleAccess.h"
-#include "inet/common/lifecycle/NodeOperations.h"
+#include "TCPEchoApp.h"
 
-namespace inet {
+#include "ByteArrayMessage.h"
+#include "TCPCommand_m.h"
+#include "ModuleAccess.h"
+#include "NodeOperations.h"
 
 Define_Module(TCPEchoApp);
 
 simsignal_t TCPEchoApp::rcvdPkSignal = registerSignal("rcvdPk");
 simsignal_t TCPEchoApp::sentPkSignal = registerSignal("sentPk");
 
+
 void TCPEchoApp::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
 
-    if (stage == INITSTAGE_LOCAL) {
+    if (stage == 0)
+    {
         delay = par("echoDelay");
         echoFactor = par("echoFactor");
 
@@ -46,7 +43,8 @@ void TCPEchoApp::initialize(int stage)
 
         nodeStatus = dynamic_cast<NodeStatus *>(findContainingNode(this)->getSubmodule("status"));
     }
-    else if (stage == INITSTAGE_APPLICATION_LAYER) {
+    else if (stage == 3)
+    {
         if (isNodeUp())
             startListening();
     }
@@ -62,7 +60,7 @@ void TCPEchoApp::startListening()
     const char *localAddress = par("localAddress");
     int localPort = par("localPort");
     socket.renewSocket();
-    socket.bind(localAddress[0] ? L3Address(localAddress) : L3Address(), localPort);
+    socket.bind(localAddress[0] ? IPvXAddress(localAddress) : IPvXAddress(), localPort);
     socket.listen();
 }
 
@@ -73,7 +71,8 @@ void TCPEchoApp::stopListening()
 
 void TCPEchoApp::sendDown(cMessage *msg)
 {
-    if (msg->isPacket()) {
+    if (msg->isPacket())
+    {
         bytesSent += ((cPacket *)msg)->getByteLength();
         emit(sentPkSignal, (cPacket *)msg);
     }
@@ -85,10 +84,12 @@ void TCPEchoApp::handleMessage(cMessage *msg)
 {
     if (!isNodeUp())
         throw cRuntimeError("Application is not running");
-    if (msg->isSelfMessage()) {
+    if (msg->isSelfMessage())
+    {
         sendDown(msg);
     }
-    else if (msg->getKind() == TCP_I_PEER_CLOSED) {
+    else if (msg->getKind() == TCP_I_PEER_CLOSED)
+    {
         // we'll close too
         msg->setName("close");
         msg->setKind(TCP_C_CLOSE);
@@ -98,15 +99,18 @@ void TCPEchoApp::handleMessage(cMessage *msg)
         else
             scheduleAt(simTime() + delay, msg); // send after a delay
     }
-    else if (msg->getKind() == TCP_I_DATA || msg->getKind() == TCP_I_URGENT_DATA) {
+    else if (msg->getKind() == TCP_I_DATA || msg->getKind() == TCP_I_URGENT_DATA)
+    {
         cPacket *pkt = check_and_cast<cPacket *>(msg);
         emit(rcvdPkSignal, pkt);
         bytesRcvd += pkt->getByteLength();
 
-        if (echoFactor == 0) {
+        if (echoFactor == 0)
+        {
             delete pkt;
         }
-        else {
+        else
+        {
             // reverse direction, modify length, and send it back
             pkt->setKind(TCP_C_SEND);
             TCPCommand *ind = check_and_cast<TCPCommand *>(pkt->removeControlInfo());
@@ -122,10 +126,11 @@ void TCPEchoApp::handleMessage(cMessage *msg)
 
             pkt->setByteLength(byteLen);
 
-            RawPacket *baMsg = dynamic_cast<RawPacket *>(pkt);
+            ByteArrayMessage *baMsg = dynamic_cast<ByteArrayMessage *>(pkt);
 
             // if (dataTransferMode == TCP_TRANSFER_BYTESTREAM)
-            if (baMsg) {
+            if (baMsg)
+            {
                 ByteArray& outdata = baMsg->getByteArray();
                 ByteArray indata = outdata;
                 outdata.setDataArraySize(byteLen);
@@ -140,12 +145,14 @@ void TCPEchoApp::handleMessage(cMessage *msg)
                 scheduleAt(simTime() + delay, pkt); // send after a delay
         }
     }
-    else {
+    else
+    {
         // some indication -- ignore
         delete msg;
     }
 
-    if (hasGUI()) {
+    if (ev.isGUI())
+    {
         char buf[80];
         sprintf(buf, "rcvd: %ld bytes\nsent: %ld bytes", bytesRcvd, bytesSent);
         getDisplayString().setTagArg("t", 0, buf);
@@ -156,18 +163,16 @@ bool TCPEchoApp::handleOperationStage(LifecycleOperation *operation, int stage, 
 {
     Enter_Method_Silent();
     if (dynamic_cast<NodeStartOperation *>(operation)) {
-        if ((NodeStartOperation::Stage)stage == NodeStartOperation::STAGE_APPLICATION_LAYER)
+        if (stage == NodeStartOperation::STAGE_APPLICATION_LAYER)
             startListening();
     }
     else if (dynamic_cast<NodeShutdownOperation *>(operation)) {
-        if ((NodeShutdownOperation::Stage)stage == NodeShutdownOperation::STAGE_APPLICATION_LAYER)
+        if (stage == NodeShutdownOperation::STAGE_APPLICATION_LAYER)
             // TODO: wait until socket is closed
             stopListening();
     }
-    else if (dynamic_cast<NodeCrashOperation *>(operation))
-        ;
-    else
-        throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName());
+    else if (dynamic_cast<NodeCrashOperation *>(operation)) ;
+    else throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName());
     return true;
 }
 
@@ -176,6 +181,4 @@ void TCPEchoApp::finish()
     recordScalar("bytesRcvd", bytesRcvd);
     recordScalar("bytesSent", bytesSent);
 }
-
-} // namespace inet
 

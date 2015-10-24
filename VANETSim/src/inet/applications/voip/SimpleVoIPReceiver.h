@@ -16,21 +16,16 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SIMPLEVOIPRECEIVER_H
-#define __INET_SIMPLEVOIPRECEIVER_H
+#ifndef VOIPRECEIVER_H_
+#define VOIPRECEIVER_H_
 
 #include <string.h>
 #include <list>
-
-
-#include "inet/common/INETDefs.h"
-#include "inet/common/INETMath.h"
-#include "inet/networklayer/common/L3AddressResolver.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
-#include "inet/common/lifecycle/ILifecycle.h"
-#include "inet/common/lifecycle/LifecycleOperation.h"
-
-namespace inet {
+#include "INETDefs.h"
+#include "IPvXAddressResolver.h"
+#include "UDPSocket.h"
+#include "ILifecycle.h"
+#include "LifecycleOperation.h"
 
 class SimpleVoIPPacket;
 
@@ -43,13 +38,13 @@ class SimpleVoIPReceiver : public cSimpleModule, public ILifecycle
     class VoIPPacketInfo
     {
       public:
-        unsigned int packetID = 0;
+        unsigned int packetID;
         simtime_t creationTime;
         simtime_t arrivalTime;
         simtime_t playoutTime;
     };
 
-    typedef std::list<VoIPPacketInfo *> PacketsList;
+    typedef std::list<VoIPPacketInfo*> PacketsList;
     typedef std::vector<VoIPPacketInfo> PacketsVector;
 
     class TalkspurtInfo
@@ -60,34 +55,33 @@ class SimpleVoIPReceiver : public cSimpleModule, public ILifecycle
             ACTIVE,
             FINISHED
         };
-        Status status = EMPTY;
-        unsigned int talkspurtID = -1;
-        unsigned int talkspurtNumPackets = 0;
+        Status  status;
+        unsigned int talkspurtID;
+        unsigned int talkspurtNumPackets;
         simtime_t voiceDuration;
-        PacketsVector packets;
-
+        PacketsVector  packets;
       public:
-        TalkspurtInfo() {}
+        TalkspurtInfo() : status(EMPTY), talkspurtID(-1) {}
         void startTalkspurt(SimpleVoIPPacket *pk);
         void finishTalkspurt() { status = FINISHED; packets.clear(); }
         bool checkPacket(SimpleVoIPPacket *pk);
         void addPacket(SimpleVoIPPacket *pk);
-        bool isActive() { return status == ACTIVE; }
+        bool isActive() { return (status == ACTIVE); }
     };
 
-    // parameters
-    double emodelRo = NaN;
-    unsigned int bufferSpace = 0;
-    int emodelIe = -1;
-    int emodelBpl = -1;
-    int emodelA = -1;
-    simtime_t playoutDelay;
-    simtime_t mosSpareTime;    // spare time before calculating MOS (after calculated playout time of last packet)
-
-    // state
     UDPSocket socket;
-    cMessage *selfTalkspurtFinished = nullptr;
+
+    int emodel_Ie;
+    int emodel_Bpl;
+    int emodel_A;
+    double emodel_Ro;
+
+    cMessage* selfTalkspurtFinished;
+
     TalkspurtInfo currentTalkspurt;
+    unsigned int bufferSpace;
+    simtime_t playoutDelay;
+    simtime_t mosSpareTime; // spare time before calculating MOS (after calculated playout time of last packet)
 
     static simsignal_t packetLossRateSignal;
     static simsignal_t packetDelaySignal;
@@ -98,23 +92,21 @@ class SimpleVoIPReceiver : public cSimpleModule, public ILifecycle
 
     double eModel(double delay, double loss);
     void evaluateTalkspurt(bool finish);
-    void startTalkspurt(SimpleVoIPPacket *packet);
-
-  protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    void initialize(int stage) override;
-    void handleMessage(cMessage *msg) override;
-    virtual void finish() override;
-
-    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) override
-    { Enter_Method_Silent(); throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName()); return true; }
+    void startTalkspurt(SimpleVoIPPacket* packet);
 
   public:
     SimpleVoIPReceiver();
     ~SimpleVoIPReceiver();
+
+    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback)
+    { Enter_Method_Silent(); throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName()); return true; }
+
+  protected:
+    virtual int numInitStages() const { return 4; }
+    void initialize(int stage);
+    void handleMessage(cMessage *msg);
+    virtual void finish();
 };
 
-} // namespace inet
 
-#endif // ifndef __INET_SIMPLEVOIPRECEIVER_H
-
+#endif /* VOIPRECEIVER_H_ */

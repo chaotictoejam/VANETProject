@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -130,7 +129,7 @@ class RSVPMessageDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RSVPMessageDescriptor);
 
-RSVPMessageDescriptor::RSVPMessageDescriptor() : cClassDescriptor("inet::RSVPMessage", "cPacket")
+RSVPMessageDescriptor::RSVPMessageDescriptor() : cClassDescriptor("RSVPMessage", "cPacket")
 {
 }
 
@@ -145,7 +144,6 @@ bool RSVPMessageDescriptor::doesSupport(cObject *obj) const
 
 const char *RSVPMessageDescriptor::getProperty(const char *propertyname) const
 {
-    if (!strcmp(propertyname,"fieldNameSuffix")) return "_var";
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
@@ -290,12 +288,12 @@ void *RSVPMessageDescriptor::getFieldStructPointer(void *object, int field, int 
     }
 }
 
-RSVPPacket_Base::RSVPPacket_Base(const char *name, int kind) : ::inet::RSVPMessage(name,kind)
+RSVPPacket_Base::RSVPPacket_Base(const char *name, int kind) : ::RSVPMessage(name,kind)
 {
     this->checksumValid_var = true;
 }
 
-RSVPPacket_Base::RSVPPacket_Base(const RSVPPacket_Base& other) : ::inet::RSVPMessage(other)
+RSVPPacket_Base::RSVPPacket_Base(const RSVPPacket_Base& other) : ::RSVPMessage(other)
 {
     copy(other);
 }
@@ -307,7 +305,7 @@ RSVPPacket_Base::~RSVPPacket_Base()
 RSVPPacket_Base& RSVPPacket_Base::operator=(const RSVPPacket_Base& other)
 {
     if (this==&other) return *this;
-    ::inet::RSVPMessage::operator=(other);
+    ::RSVPMessage::operator=(other);
     copy(other);
     return *this;
 }
@@ -320,14 +318,14 @@ void RSVPPacket_Base::copy(const RSVPPacket_Base& other)
 
 void RSVPPacket_Base::parsimPack(cCommBuffer *b)
 {
-    ::inet::RSVPMessage::parsimPack(b);
+    ::RSVPMessage::parsimPack(b);
     doPacking(b,this->session_var);
     doPacking(b,this->checksumValid_var);
 }
 
 void RSVPPacket_Base::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::RSVPMessage::parsimUnpack(b);
+    ::RSVPMessage::parsimUnpack(b);
     doUnpacking(b,this->session_var);
     doUnpacking(b,this->checksumValid_var);
 }
@@ -377,7 +375,7 @@ class RSVPPacketDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(RSVPPacketDescriptor);
 
-RSVPPacketDescriptor::RSVPPacketDescriptor() : cClassDescriptor("inet::RSVPPacket", "inet::RSVPMessage")
+RSVPPacketDescriptor::RSVPPacketDescriptor() : cClassDescriptor("RSVPPacket", "RSVPMessage")
 {
 }
 
@@ -544,5 +542,4 @@ void *RSVPPacketDescriptor::getFieldStructPointer(void *object, int field, int i
     }
 }
 
-} // namespace inet
 

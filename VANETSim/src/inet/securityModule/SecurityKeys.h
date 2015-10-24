@@ -16,11 +16,6 @@
 #ifndef SECURITYKEYS_H_
 #define SECURITYKEYS_H_
 
-namespace inet {
-
-namespace ieee80211 {
-
-
 class SecurityKeys
 {
     public:
@@ -32,10 +27,5 @@ class SecurityKeys
         typedef struct { std::vector<uint64_t> buf; int len;} key64;
         typedef uint64_t  unit64_t_;
 };
-
-}
-
-}
-
 
 #endif /* SECURITYKEYS_H_ */

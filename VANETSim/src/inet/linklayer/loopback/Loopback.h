@@ -20,15 +20,15 @@
 #ifndef __INET_LOOPBACK_H
 #define __INET_LOOPBACK_H
 
-#include "inet/common/INETDefs.h"
 
-#include "inet/linklayer/base/MACBase.h"
-#include "inet/linklayer/common/TxNotifDetails.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "MACBase.h"
+#include "TxNotifDetails.h"
 
 class InterfaceEntry;
 class IPassiveQueue;
+class NotificationBoard;
 
 /**
  * Loopback interface implementation.
@@ -37,30 +37,27 @@ class INET_API Loopback : public MACBase
 {
   protected:
     // statistics
-    long numSent = 0;
-    long numRcvdOK = 0;
+    long numSent;
+    long numRcvdOK;
 
     static simsignal_t packetSentToUpperSignal;
     static simsignal_t packetReceivedFromUpperSignal;
 
   protected:
-    virtual InterfaceEntry *createInterfaceEntry() override;
-    virtual void flushQueue() override;
-    virtual void clearQueue() override;
-    virtual bool isUpperMsg(cMessage *msg) override;
+    virtual InterfaceEntry *createInterfaceEntry();
+    virtual void flushQueue();
+    virtual void clearQueue();
+    virtual bool isUpperMsg(cMessage *msg);
 
   public:
-    Loopback() {}
+    Loopback();
     virtual ~Loopback();
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initialize(int stage) override;
-    virtual void handleMessage(cMessage *msg) override;
+    virtual int numInitStages() const { return 4; }
+    virtual void initialize(int stage);
+    virtual void handleMessage(cMessage *msg);
     virtual void updateDisplayString();
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_LOOPBACK_H
-
+#endif

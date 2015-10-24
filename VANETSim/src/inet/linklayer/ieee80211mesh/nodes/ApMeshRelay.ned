@@ -18,18 +18,21 @@
 
 
 package inet.linklayer.ieee80211mesh.nodes;
+import inet.nodes.inet.WirelessHost;
 
-import inet.linklayer.contract.IMACRelayUnit;
+import inet.linklayer.IMACRelayUnit;
 import inet.networklayer.common.InterfaceTable;
 import inet.mobility.contract.IMobility;
 import inet.linklayer.ieee80211mesh.ethernet.EthernetInterfaceMesh;
-import inet.linklayer.contract.IWirelessNic;
-import inet.linklayer.contract.IWiredNic;
-import inet.linklayer.contract.IExternalNic;
+import inet.linklayer.IWirelessNic;
+import inet.linklayer.IWiredNic;
+import inet.linklayer.IExternalNic;
+import inet.base.NotificationBoard;
+import inet.nodes.inet.NetworkLayer;
 import inet.linklayer.ieee80211mesh.Ieee80211NicMesh;
 import inet.linklayer.ieee80211mesh.Ieee80211NicMeshMulti;
-import inet.networklayer.configurator.ipv4.HostAutoConfigurator2;
-import inet.linklayer.contract.IMACAddressTable;
+import inet.networklayer.autorouting.ipv4.HostAutoConfigurator2;
+import inet.linklayer.IMACAddressTable;
 
 //
 // BaseHost contains the common lower layers (linklayer and networklayer)
@@ -74,7 +77,7 @@ module ApMeshRelay
 {
     parameters:
         @display("bgb=611,448");
-        @networkNode;
+        @node;
         @labels(node,ethernet-node,wireless-node);
         int numExtInterfaces = default(0);
         int numRadios = default(1);               // the number of radios in the router. by default no wireless     
@@ -85,6 +88,10 @@ module ApMeshRelay
     gates:
         input radioIn[numRadios+1] @directIn;
     submodules:
+        notificationBoard: NotificationBoard {
+            parameters:
+                @display("p=53,259");
+        }
         // linklayer
         interfaceTable: InterfaceTable {
             parameters:

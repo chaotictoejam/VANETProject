@@ -22,12 +22,10 @@
 
 #include "UDPBasicFlooding.h"
 
-#include "inet/transportlayer/contract/udp/UDPControlInfo_m.h"
-#include "inet/networklayer/common/L3AddressResolver.h"
-#include "inet/networklayer/common/InterfaceTable.h"
-#include "inet/common/ModuleAccess.h"
-
-namespace inet {
+#include "UDPControlInfo_m.h"
+#include "IPvXAddressResolver.h"
+#include "InterfaceTable.h"
+#include "InterfaceTableAccess.h"
 
 Define_Module(UDPBasicFlooding);
 
@@ -42,12 +40,12 @@ simsignal_t UDPBasicFlooding::floodPkSignal = registerSignal("floodPk");
 
 UDPBasicFlooding::UDPBasicFlooding()
 {
-    messageLengthPar = nullptr;
-    burstDurationPar = nullptr;
-    sleepDurationPar = nullptr;
-    sendIntervalPar = nullptr;
-    timerNext = nullptr;
-    addressModule = nullptr;
+    messageLengthPar = NULL;
+    burstDurationPar = NULL;
+    sleepDurationPar = NULL;
+    sendIntervalPar = NULL;
+    timerNext = NULL;
+    addressModule = NULL;
     outputInterfaceMulticastBroadcast.clear();
 }
 
@@ -58,7 +56,7 @@ UDPBasicFlooding::~UDPBasicFlooding()
 
 void UDPBasicFlooding::initialize(int stage)
 {
-    // because of AddressResolver, we need to wait until interfaces are registered,
+    // because of IPvXAddressResolver, we need to wait until interfaces are registered,
     // address auto-assignment takes place etc.
     ApplicationBase::initialize(stage);
     if (stage == 0)
@@ -105,20 +103,20 @@ void UDPBasicFlooding::processStart()
     outputInterfaceMulticastBroadcast.clear();
     if (strcmp(par("outputInterfaceMulticastBroadcast").stringValue(),"") != 0)
     {
-        IInterfaceTable *ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
+        IInterfaceTable* ift = InterfaceTableAccess().get();
         const char *ports = par("outputInterfaceMulticastBroadcast");
         cStringTokenizer tokenizer(ports);
         const char *token;
-        while ((token = tokenizer.nextToken()) != nullptr)
+        while ((token = tokenizer.nextToken()) != NULL)
         {
-            if (strstr(token, "ALL") != nullptr)
+            if (strstr(token, "ALL") != NULL)
             {
                 for (int i = 0; i < ift->getNumInterfaces(); i++)
                 {
                     InterfaceEntry *ie = ift->getInterface(i);
                     if (ie->isLoopback())
                         continue;
-                    if (ie == nullptr)
+                    if (ie == NULL)
                         throw cRuntimeError(this, "Invalid output interface name : %s", token);
                     outputInterfaceMulticastBroadcast.push_back(ie->getInterfaceId());
                 }
@@ -126,12 +124,13 @@ void UDPBasicFlooding::processStart()
             else
             {
                 InterfaceEntry *ie = ift->getInterfaceByName(token);
-                if (ie == nullptr)
+                if (ie == NULL)
                     throw cRuntimeError(this, "Invalid output interface name : %s", token);
                 outputInterfaceMulticastBroadcast.push_back(ie->getInterfaceId());
             }
         }
     }
+    IPvXAddress myAddr = IPvXAddressResolver().resolve(this->getParentModule()->getFullPath().c_str());
     myId = this->getParentModule()->getId();
 }
 
@@ -158,7 +157,7 @@ void UDPBasicFlooding::handleMessageWhenUp(cMessage *msg)
     {
         if (dynamic_cast<cPacket*>(msg))
         {
-            L3Address destAddr(IPv4Address::ALLONES_ADDRESS);
+            IPvXAddress destAddr(IPv4Address::ALLONES_ADDRESS);
             sendBroadcast(destAddr, PK(msg));
         }
         else
@@ -186,7 +185,7 @@ void UDPBasicFlooding::handleMessageWhenUp(cMessage *msg)
         error("Unrecognized message (%s)%s", msg->getClassName(), msg->getName());
     }
 
-    if (hasGUI())
+    if (ev.isGUI())
     {
         char buf[40];
         sprintf(buf, "rcvd: %d pks\nsent: %d pks", numReceived, numSent);
@@ -214,7 +213,7 @@ void UDPBasicFlooding::processPacket(cPacket *pk)
             delete pk;
             return;
         }
-        auto it = sourceSequence.find(moduleId);
+        SourceSequence::iterator it = sourceSequence.find(moduleId);
         if (it != sourceSequence.end())
         {
             if (it->second >= msgId)
@@ -264,7 +263,7 @@ void UDPBasicFlooding::processPacket(cPacket *pk)
     }
 
     UDPDataIndication *ctrl = check_and_cast<UDPDataIndication *>(pk->removeControlInfo());
-    if (ctrl->getDestAddr().toIPv4() == IPv4Address::ALLONES_ADDRESS && par("flooding").boolValue())
+    if (ctrl->getDestAddr().get4() == IPv4Address::ALLONES_ADDRESS && par("flooding").boolValue())
     {
         numFlood++;
         emit(floodPkSignal, pk);
@@ -306,7 +305,7 @@ void UDPBasicFlooding::generateBurst()
         }
     }
 
-    L3Address destAddr(IPv4Address::ALLONES_ADDRESS);
+    IPvXAddress destAddr(IPv4Address::ALLONES_ADDRESS);
 
     cPacket *payload = createPacket();
     payload->setTimestamp();
@@ -331,9 +330,9 @@ void UDPBasicFlooding::finish()
     recordScalar("Total deleted", numDeleted);
 }
 
-bool UDPBasicFlooding::sendBroadcast(const L3Address &dest, cPacket *pkt)
+bool UDPBasicFlooding::sendBroadcast(const IPvXAddress &dest, cPacket *pkt)
 {
-    if (!outputInterfaceMulticastBroadcast.empty() && (dest.isMulticast() || (dest.getType() != L3Address::IPv6 && dest.toIPv4() == IPv4Address::ALLONES_ADDRESS)))
+    if (!outputInterfaceMulticastBroadcast.empty() && (dest.isMulticast() || (!dest.isIPv6() && dest.get4() == IPv4Address::ALLONES_ADDRESS)))
     {
         for (unsigned int i = 0; i < outputInterfaceMulticastBroadcast.size(); i++)
         {
@@ -365,7 +364,7 @@ bool UDPBasicFlooding::handleNodeStart(IDoneCallback *doneCallback)
 
         if (strcmp(par("destAddresses").stringValue(),"") != 0)
         {
-            if (addressModule == nullptr)
+            if (addressModule == NULL)
             {
                 addressModule = new AddressModule();
                 addressModule->initModule(true);
@@ -391,6 +390,3 @@ void UDPBasicFlooding::handleNodeCrash()
         cancelEvent(timerNext);
     activeBurst = false;
 }
-
-}
-

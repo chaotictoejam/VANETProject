@@ -16,14 +16,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_RANDOMWPMOBILITY_H
-#define __INET_RANDOMWPMOBILITY_H
 
-#include "inet/common/INETDefs.h"
+#ifndef RANDOM_WP_MOBILITY_H
+#define RANDOM_WP_MOBILITY_H
 
-#include "inet/mobility/base/LineSegmentsMobilityBase.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "LineSegmentsMobilityBase.h"
+
 
 /**
  * Random Waypoint mobility model. See NED file for more info.
@@ -38,23 +38,19 @@ class INET_API RandomWPMobility : public LineSegmentsMobilityBase
     bool nextMoveIsWait;
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 3; }
 
     /** @brief Initializes mobility model parameters.*/
-    virtual void initialize(int stage) override;
+    virtual void initialize(int stage);
 
     /** @brief Overridden from LineSegmentsMobilityBase.*/
-    virtual void setTargetPosition() override;
+    virtual void setTargetPosition();
 
     /** @brief Overridden from LineSegmentsMobilityBase.*/
-    virtual void move() override;
+    virtual void move();
 
   public:
     RandomWPMobility();
-    virtual double getMaxSpeed() const override;
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_RANDOMWPMOBILITY_H
-
+#endif

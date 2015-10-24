@@ -19,31 +19,25 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_IEEE80211MAC_H
-#define __INET_IEEE80211MAC_H
+#ifndef IEEE_80211_MAC_H
+#define IEEE_80211_MAC_H
 
 // un-comment this if you do not want to log state machine transitions
 //#define FSM_DEBUG
+//#define USEMULTIQUEUE
 
-#include "inet/common/INETDefs.h"
-#include "inet/common/FSMA.h"
-#include "inet/common/INETMath.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211PassiveQueue.h"
-#include "inet/common/lifecycle/ILifecycle.h"
-#include "inet/physicallayer/contract/packetlevel/IRadio.h"
-#include "inet/physicallayer/ieee80211/mode/IIeee80211Mode.h"
-#include "inet/physicallayer/ieee80211/mode/Ieee80211ModeSet.h"
-#include "inet/linklayer/base/MACProtocolBase.h"
-
-#include "inet/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
-#include "inet/linklayer/ieee80211/mac/Ieee80211Consts.h"
-
-
-namespace inet {
-
-namespace ieee80211 {
-
-using namespace physicallayer;
+#include "WifiMode.h"
+#include "WirelessMacBase.h"
+#include "IPassiveQueue.h"
+#include "Ieee80211Frame_m.h"
+#include "Ieee80211Consts.h"
+#include "NotificationBoard.h"
+#include "RadioState.h"
+#include "FSMA.h"
+#include "IQoSClassifier.h"
+#ifdef  USEMULTIQUEUE
+#include "MultiQueue.h"
+#endif
 
 /**
  * IEEE 802.11g with e Media Access Control Layer.
@@ -67,12 +61,13 @@ using namespace physicallayer;
  *
  * @ingroup macLayer
  */
-
-
-class INET_API Ieee80211Mac : public MACProtocolBase
+class INET_API Ieee80211Mac : public WirelessMacBase, public cListener
 {
-    typedef std::list<Ieee80211DataOrMgmtFrame *> Ieee80211DataOrMgmtFrameList;
-
+#ifdef  USEMULTIQUEUE
+    typedef MultiQueue Ieee80211DataOrMgmtFrameList;
+#else
+    typedef std::list<Ieee80211DataOrMgmtFrame*> Ieee80211DataOrMgmtFrameList;
+#endif
     /**
      * This is used to populate fragments and identify duplicated messages. See spec 9.2.9.
      */
@@ -83,7 +78,7 @@ class INET_API Ieee80211Mac : public MACProtocolBase
         simtime_t receivedTime;
         Ieee80211ASFTuple& operator=(const Ieee80211ASFTuple& other)
         {
-            if (this == &other) return *this;
+            if (this==&other) return *this;
             this->sequenceNumber = other.sequenceNumber;
             this->fragmentNumber = other.fragmentNumber;
             this->receivedTime = other.receivedTime;
@@ -113,23 +108,25 @@ class INET_API Ieee80211Mac : public MACProtocolBase
     typedef std::map<MACAddress, std::vector<Ieee80211PacketErrorInfo> > Ieee80211ErrorInfo;
     Ieee80211ErrorInfo errorInfo;
 
-    enum RateControlMode
+    enum
     {
         RATE_ARF,   // Auto Rate Fallback
         RATE_AARF,  // Adaptatice ARF
         RATE_CR,    // Constant Rate
-    };
+    } rateControlMode;
 
-    RateControlMode rateControlMode = (RateControlMode)-1;
-
-    const IIeee80211Mode *recFrameModulation = nullptr;
-    bool validRecMode = false;
-    bool useModulationParameters = false;
-    bool prioritizeMulticast = false;
+    WifiPreamble wifiPreambleType;
+    ModulationType recFrameModulationType;
+    bool validRecMode;
+    bool useModulationParameters;
+    bool prioritizeMulticast;
+    // used by 11n
+    double carrierFrequency;
+    ModulationType controlFrameModulationType;
+    ModulationType transmisionMode;
+    ModulationType basicTransmisionMode;
 
   protected:
-    bool isInHandleWithFSM = false;
-    IRadio::TransmissionState transmissionState = IRadio::TRANSMISSION_STATE_UNDEFINED;
     /**
      * @name Configuration parameters
      * These are filled in during the initialization phase and not supposed to change afterwards.
@@ -137,56 +134,54 @@ class INET_API Ieee80211Mac : public MACProtocolBase
     //@{
     /** MAC address */
     MACAddress address;
-    const Ieee80211ModeSet *modeSet = nullptr;
+    char opMode;
     /** The bitrate is used to send unicast data and mgmt frames; be sure to use a valid 802.11 bitrate */
-    const IIeee80211Mode *dataFrameMode = nullptr;
-
+    double bitrate;
 
     /** The basic bitrate (1 or 2 Mbps) is used to transmit control frames and multicast/broadcast frames */
-    const IIeee80211Mode *basicFrameMode = nullptr;
-    const IIeee80211Mode *controlFrameMode = nullptr;
+    double basicBitrate;
+    double controlBitRate;
 
     // Variables used by the auto bit rate
-    bool forceBitRate = false;    //if true the
-    unsigned int intrateIndex = 0;
-    int contI = 0;
-    int contJ = 0;
-    int samplingCoeff = 0;
-    double recvdThroughput = NaN;
-    int autoBitrate = 0;
-    int rateIndex = 0;
-    int successCounter = 0;
-    int failedCounter = 0;
-    bool recovery = false;
-    int timer = 0;
-    int successThreshold = 0;
-    int maxSuccessThreshold = 0;
-    int timerTimeout = 0;
-    int minSuccessThreshold = 0;
-    int minTimerTimeout = 0;
-    double successCoeff = NaN;
-    double timerCoeff = NaN;
-    double _snr = NaN;
-    double snr = NaN;
-    double lossRate = NaN;
+    bool forceBitRate; //if true the
+    unsigned int intrateIndex;
+    int contI;
+    int contJ;
+    int samplingCoeff;
+    double recvdThroughput;
+    int autoBitrate;
+    int rateIndex;
+    int successCounter;
+    int failedCounter;
+    bool recovery;
+    int timer;
+    int successThreshold;
+    int maxSuccessThreshold;
+    int timerTimeout;
+    int minSuccessThreshold;
+    int minTimerTimeout;
+    double successCoeff;
+    double timerCoeff;
+    double _snr;
+    double snr;
+    double lossRate;
     simtime_t timeStampLastMessageReceived;
     // used to measure the throughput over a period
-    uint64_t recBytesOverPeriod = 0;
-    simtime_t throughputTimePeriod = 0;
-    cMessage *throughputTimer = nullptr;
-    double throughputLastPeriod = NaN;
+    uint64_t recBytesOverPeriod;
+    simtime_t throughputTimePeriod;
+    cMessage * throughputTimer;
+    double  throughputLastPeriod;
+
 
     /** Maximum number of frames in the queue; should be set in the omnetpp.ini */
-    int maxQueueSize = 0;
-    int maxCategorieQueueSize = 0;
+    int maxQueueSize;
+    int maxCategorieQueueSize;
 
     /**
      * The minimum length of MPDU to use RTS/CTS mechanism. 0 means always, extremely
      * large value means never. See spec 9.2.6 and 361.
      */
-    int rtsThreshold = 0;
-
-    bool useRtsMpduA = false;
+    int rtsThreshold;
 
     /**
      * Maximum number of transmissions for a message.
@@ -199,25 +194,26 @@ class INET_API Ieee80211Mac : public MACProtocolBase
      *    failure condition is indicated. The default value of this
      *    attribute shall be 7'
      */
-    int transmissionLimit = 0;
+    int transmissionLimit;
+
 
     /** Default access catagory */
-    int defaultAC = 0;
+    int defaultAC;
 
     /** Slot time 9us(fast slot time 802.11g only) 20us(802.11b / 802.11g backward compatible)*/
     simtime_t ST;
 
-    double PHY_HEADER_LENGTH = NaN;
+    double PHY_HEADER_LENGTH;
     /** Minimum contention window. */
-    int cwMinData = 0;
+    int cwMinData;
     //int cwMin[4];
 
     /** Maximum contention window. */
-    int cwMaxData = 0;
+    int cwMaxData;
     // int cwMax[4];
 
     /** Contention window size for multicast messages. */
-    int cwMinMulticast = 0;
+    int cwMinMulticast;
 
     /** Messages longer than this threshold will be sent in multiple fragments. see spec 361 */
     static const int fragmentationThreshold = 2346;
@@ -231,7 +227,8 @@ class INET_API Ieee80211Mac : public MACProtocolBase
     //@{
     // don't forget to keep synchronized the C++ enum and the runtime enum definition
     /** the 80211 MAC state machine */
-    enum State {
+    enum State
+    {
         IDLE,
         DEFER,
         WAITAIFS,
@@ -241,18 +238,16 @@ class INET_API Ieee80211Mac : public MACProtocolBase
         WAITCTS,
         WAITSIFS,
         RECEIVE,
-        WAITBLOCKACK,
     };
   protected:
     cFSM fsm;
 
-    struct Edca
-    {
+    struct Edca {
         simtime_t TXOP;
         bool backoff;
         simtime_t backoffPeriod;
         int retryCounter;
-        int AIFSN;    // Arbitration interframe space number. The duration edcCAF[AC].AIFSis a duration derived from the value AIFSN[AC] by the relation
+        int AIFSN; // Arbitration interframe space number. The duration edcCAF[AC].AIFSis a duration derived from the value AIFSN[AC] by the relation
         int cwMax;
         int cwMin;
         // queue
@@ -273,8 +268,7 @@ class INET_API Ieee80211Mac : public MACProtocolBase
         unsigned int saveSize;
     };
 
-    struct EdcaOutVector
-    {
+    struct EdcaOutVector {
         cOutVector *jitter;
         cOutVector *macDelay;
         cOutVector *throughput;
@@ -289,33 +283,33 @@ class INET_API Ieee80211Mac : public MACProtocolBase
     // methods for access to the current AC data
     //
     // methods for access to specific AC data
-    virtual bool& backoff(int i = -1);
-    virtual simtime_t& TXOP(int i = -1);
-    virtual simtime_t& backoffPeriod(int i = -1);
-    virtual int& retryCounter(int i = -1);
-    virtual int& AIFSN(int i = -1);
-    virtual int& cwMax(int i = -1);
-    virtual int& cwMin(int i = -1);
-    virtual cMessage *endAIFS(int i = -1);
-    virtual cMessage *endBackoff(int i = -1);
-    virtual Ieee80211DataOrMgmtFrameList *transmissionQueue(int i = -1);
-    virtual void setEndAIFS(int i, cMessage *msg) { edcCAF[i].endAIFS = msg; }
-    virtual void setEndBackoff(int i, cMessage *msg) { edcCAF[i].endBackoff = msg; }
+    virtual bool & backoff(int i = -1);
+    virtual simtime_t & TXOP(int i = -1);
+    virtual simtime_t & backoffPeriod(int i = -1);
+    virtual int & retryCounter(int i = -1);
+    virtual int & AIFSN(int i = -1);
+    virtual int & cwMax(int i = -1);
+    virtual int & cwMin(int i = -1);
+    virtual cMessage * endAIFS(int i = -1);
+    virtual cMessage * endBackoff(int i = -1);
+    virtual Ieee80211DataOrMgmtFrameList * transmissionQueue(int i = -1);
+    virtual void setEndAIFS(int i, cMessage *msg){edcCAF[i].endAIFS = msg;}
+    virtual void setEndBackoff(int i, cMessage *msg){edcCAF[i].endBackoff = msg;}
 
     // Statistics
-    virtual long& numRetry(int i = -1);
-    virtual long& numSentWithoutRetry(int i = -1);
-    virtual long& numGivenUp(int i = -1);
-    virtual long& numSent(int i = -1);
-    virtual long& numDropped(int i = -1);
-    virtual long& bits(int i = -1);
-    virtual simtime_t& minJitter(int i = -1);
-    virtual simtime_t& maxJitter(int i = -1);
+    virtual long & numRetry(int i = -1);
+    virtual long & numSentWithoutRetry(int i = -1);
+    virtual long & numGivenUp(int i = -1);
+    virtual long & numSent(int i = -1);
+    virtual long & numDropped(int i = -1);
+    virtual long & bits(int i = -1);
+    virtual simtime_t & minJitter(int i = -1);
+    virtual simtime_t & maxJitter(int i = -1);
 // out vectors
-    virtual cOutVector *jitter(int i = -1);
-    virtual cOutVector *macDelay(int i = -1);
-    virtual cOutVector *throughput(int i = -1);
-    inline int numCategories() const { return edcCAF.size(); }
+    virtual cOutVector * jitter(int i = -1);
+    virtual cOutVector * macDelay(int i = -1);
+    virtual cOutVector * throughput(int i = -1);
+    inline int numCategories() const {return edcCAF.size();}
     virtual const bool isBackoffMsg(cMessage *msg);
 
     const char *modeName(int mode);
@@ -341,94 +335,104 @@ class INET_API Ieee80211Mac : public MACProtocolBase
      * SLRC and SSRC, see 9.2.4 in the spec
      */
     //int retryCounter[4];
+
+    IQoSClassifier *classifier;
   public:
     /** 80211 MAC operation modes */
-    enum Mode {
-        DCF,    ///< Distributed Coordination Function
-        PCF,    ///< Point Coordination Function
+    enum Mode
+    {
+        DCF,  ///< Distributed Coordination Function
+        PCF,  ///< Point Coordination Function
         EDCA,
     };
   protected:
     // if true MAC sublayer store the frames instead of the management sublayer
-    bool queueMode = false;
+    bool queueMode;
 
-    Mode mode = (Mode)-1;
+    Mode mode;
 
     /** Sequence number to be assigned to the next frame */
-    int sequenceNumber = 0;
+    int sequenceNumber;
 
     /**
      * Indicates that the last frame received had bit errors in it or there was a
      * collision during receiving the frame. If this flag is set, then the MAC
      * will wait EIFS - DIFS + AIFS  instead of AIFS period of time in WAITAIFS state.
      */
-    bool lastReceiveFailed = false;
+    bool lastReceiveFailed;
+
+
 
     /** True during network allocation period. This flag is present to be able to watch this state. */
-    bool nav = false;
+    bool nav;
 
     /** True if we are in txop bursting packets. */
-    bool txop = false;
+    bool txop;
 
     /** Indicates which queue is acite. Depends on access category. */
-    int currentAC = 0;
+    int currentAC;
 
-    /** Remember currentAC. We need this to figure out internal colision. */
-    int oldcurrentAC = 0;
+    /** Remember currentAC. We need this to figure out internal collision. */
+    int oldcurrentAC;
 
     /** XXX Remember for which AC we wait for ACK. */
     //int ACKcurrentAC;
 
-    IRadio *radio = nullptr;
+    /** Physical radio (medium) state copied from physical layer */
+    RadioState::State radioState;
+    // Use to distinguish the radio module that send the event
+    int radioModule;
 
-    Ieee80211DataOrMgmtFrame *fr = nullptr;
+    int getRadioModuleId() {return radioModule;}
+
+    Ieee80211DataOrMgmtFrame *fr;
 
     /**
-     * A list of last sender, sequence and fragment number tuples to identify
-     * duplicates, see spec 9.2.9.
-     */
-    bool duplicateDetect = false;
-    bool purgeOldTuples = false;
+    * A list of last sender, sequence and fragment number tuples to identify
+    * duplicates, see spec 9.2.9.
+    */
+    bool duplicateDetect;
+    bool purgeOldTuples;
     simtime_t duplicateTimeOut;
     simtime_t lastTimeDelete;
     Ieee80211ASFTupleList asfTuplesList;
 
     /** Passive queue module to request messages from */
-    Ieee80211PassiveQueue *queueModule = nullptr;
+    IPassiveQueue *queueModule;
 
     /**
-     * The last change channel message received and not yet sent to the physical layer, or nullptr.
+     * The last change channel message received and not yet sent to the physical layer, or NULL.
      * The message will be sent down when the state goes to IDLE or DEFER next time.
      */
-    cMessage *pendingRadioConfigMsg = nullptr;
+    cMessage *pendingRadioConfigMsg;
     //@}
 
   protected:
     /** @name Timer messages */
     //@{
     /** End of the Short Inter-Frame Time period */
-    cMessage *endSIFS = nullptr;
+    cMessage *endSIFS;
 
     /** End of the Data Inter-Frame Time period */
-    cMessage *endDIFS = nullptr;
+    cMessage *endDIFS;
 
     /** End of the Arbitration Inter-Frame Time period */
 //    cMessage *endAIFS[4];
 
     /** End of the TXOP time limit period */
-    cMessage *endTXOP = nullptr;
+    cMessage *endTXOP;
 
     /** End of the backoff period */
     //cMessage *endBackoff[4];
 
     /** Timeout after the transmission of an RTS, a CTS, or a DATA frame */
-    cMessage *endTimeout = nullptr;
+    cMessage *endTimeout;
 
     /** End of medium reserve period (NAV) when two other nodes were communicating on the channel */
-    cMessage *endReserve = nullptr;
+    cMessage *endReserve;
 
     /** Radio state change self message. Currently this is optimized away and sent directly */
-    cMessage *mediumStateChange = nullptr;
+    cMessage *mediumStateChange;
     //@}
 
   protected:
@@ -437,24 +441,25 @@ class INET_API Ieee80211Mac : public MACProtocolBase
     // long numRetry[4];
     // long numSentWithoutRetry[4];
     // long numGivenUp[4];
-    long numCollision = 0;
-    long numInternalCollision = 0;
+    long numCollision;
+    long numInternalCollision;
     // long numSent[4];
-    long numBits = 0;
-    long numSentTXOP = 0;
-    long numReceived = 0;
-    long numSentMulticast = 0;
-    long numReceivedMulticast = 0;
+    long numBits;
+    long numSentTXOP;
+    long numReceived;
+    long numSentMulticast;
+    long numReceivedMulticast;
     // long numDropped[4];
-    long numReceivedOther = 0;
-    long numAckSend = 0;
+    long numReceivedOther;
+    long numAckSend;
     cOutVector stateVector;
-    simtime_t last;
+    simtime_t  last;
     // long bits[4];
     // simtime_t minjitter[4];
     // simtime_t maxjitter[4];
     // cOutVector jitter[4];
     // cOutVector macDelay[4];
+    cOutVector radioStateVector;
     // cOutVector throughput[4];
     //@}
 
@@ -473,12 +478,11 @@ class INET_API Ieee80211Mac : public MACProtocolBase
      */
     //@{
     /** @brief Initialization of the module and its variables */
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void initializeCategories();
-    virtual void initialize(int) override;
-    virtual InterfaceEntry *createInterfaceEntry() override;
+    virtual int numInitStages() const {return 2;}
+    virtual void initialize(int);
+    virtual InterfaceEntry *createInterfaceEntry();
     virtual void initializeQueueModule();
-    virtual void finish() override;
+    virtual void finish();
     virtual void configureAutoBitRate();
     virtual void initWatches();
     virtual const MACAddress& isInterfaceRegistered();
@@ -490,26 +494,25 @@ class INET_API Ieee80211Mac : public MACProtocolBase
      * @brief Functions called from other classes to notify about state changes and to handle messages.
      */
     //@{
-    /** @brief Called by the signal handler whenever a change occurs we're interested in */
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, long value) override;
+    /** @brief Called by the NotificationBoard whenever a change occurs we're interested in */
+    virtual void receiveChangeNotification(int category, const cObject * details);
 
     /** @brief Handle commands (msg kind+control info) coming from upper layers */
-    virtual void handleUpperCommand(cMessage *msg) override;
+    virtual void handleCommand(cMessage *msg);
 
     /** @brief Handle timer self messages */
-    virtual void handleSelfMessage(cMessage *msg) override;
+    virtual void handleSelfMsg(cMessage *msg);
 
     /** @brief Handle messages from upper layer */
-    virtual void handleUpperPacket(cPacket *msg) override;
+    virtual void handleUpperMsg(cPacket *msg);
 
     /** @brief Handle messages from lower (physical) layer */
-    virtual void handleLowerPacket(cPacket *msg) override;
+    virtual void handleLowerMsg(cPacket *msg);
 
     /** @brief Handle all kinds of messages and notifications with the state machine */
     virtual void handleWithFSM(cMessage *msg);
     //@}
-    virtual bool  initFsm(cMessage *msg, bool &, Ieee80211Frame *&);
-    virtual void  endFsm(cMessage *msg);
+
   protected:
     /**
      * @name Timing functions
@@ -574,10 +577,6 @@ class INET_API Ieee80211Mac : public MACProtocolBase
     virtual void sendDataFrameOnEndSIFS(Ieee80211DataOrMgmtFrame *frameToSend);
     virtual void sendDataFrame(Ieee80211DataOrMgmtFrame *frameToSend);
     virtual void sendMulticastFrame(Ieee80211DataOrMgmtFrame *frameToSend);
-
-    virtual void processMpduA(Ieee80211Frame *frame);
-    virtual bool isMpduA(Ieee80211Frame *frame);
-
     //@}
 
   protected:
@@ -612,8 +611,10 @@ class INET_API Ieee80211Mac : public MACProtocolBase
     virtual void flushQueue();
     virtual void clearQueue();
 
+    bool transmissionQueueWithReserveFull(int categorie);
+
     /** @brief Mapping to access categories. */
-    virtual int mappingAccessCategory(Ieee80211DataOrMgmtFrame *frame);     // FIXME rename it, change return type, change 'return 200'
+    virtual int mappingAccessCategory(Ieee80211DataOrMgmtFrame *frame);
 
     /** @brief Send down the change channel message to the physical layer if there is any. */
     virtual void sendDownPendingRadioConfigMsg();
@@ -630,9 +631,6 @@ class INET_API Ieee80211Mac : public MACProtocolBase
     /** @brief Used by the state machine to identify medium state change events.
         This message is currently optimized away and not sent through the kernel. */
     virtual bool isMediumStateChange(cMessage *msg);
-
-    /** @brief Tells if the medium is receiving something. */
-    virtual bool isMediumRecv();
 
     /** @brief Tells if the medium is free according to the physical and virtual carrier sense algorithm. */
     virtual bool isMediumFree();
@@ -702,10 +700,10 @@ class INET_API Ieee80211Mac : public MACProtocolBase
 
     virtual bool isBackoffPending();
 
-    const IIeee80211Mode *getControlAnswerMode(const IIeee80211Mode *reqMode);
+    ModulationType getControlAnswerMode(ModulationType reqMode);
     //@}
 
-    virtual void sendUp(cMessage *msg) override;
+    virtual void sendUp(cMessage *msg);
 
     virtual void removeOldTuplesFromDuplicateMap();
 
@@ -713,27 +711,19 @@ class INET_API Ieee80211Mac : public MACProtocolBase
 
     virtual bool isDuplicated(cMessage *msg);
 
-    virtual bool handleNodeStart(IDoneCallback *doneCallback) override;
-
-    virtual bool handleNodeShutdown(IDoneCallback *doneCallback) override;
-
-    virtual void handleNodeCrash() override;
-
-    virtual void sendNotification(simsignal_t category, cMessage *pkt = nullptr)
+    virtual void sendNotification(int category, cMessage *pkt)
     {
-        if (pkt)
-        {
-            int tempKind = pkt->getKind();
-            pkt->setKind(this->getIndex());
-            emit(category, pkt);
-            pkt->setKind(tempKind);
-        }
-        else
-            emit(category, (cObject *)nullptr);
+        if (!nb)
+            return;
+        int tempKind = pkt->getKind();
+        pkt->setKind(this->getIndex());
+        nb->fireChangeNotification(category, pkt);
+        pkt->setKind(tempKind);
     }
-
-    virtual void configureRadioMode(IRadio::RadioMode radioMode);
-
+    static simsignal_t endTransmissionSignal; //enum
+    cSimpleModule *radioModulePtr;
+    //cListener:
+    virtual void receiveSignal(cComponent *src, simsignal_t id, long x);
   public:
     virtual void setQueueModeTrue() {queueMode = true;}
     virtual void setQueueModeFalse() {queueMode = false;}
@@ -742,9 +732,5 @@ class INET_API Ieee80211Mac : public MACProtocolBase
     virtual int getQueueSizeAddress(const MACAddress &addr);
 };
 
-} // namespace ieee80211
-
-} // namespace inet
-
-#endif // ifndef __INET_IEEE80211MAC_H
+#endif
 

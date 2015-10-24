@@ -28,8 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
-namespace ieee80211 {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -288,7 +286,7 @@ class SecurityPktDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(SecurityPktDescriptor);
 
-SecurityPktDescriptor::SecurityPktDescriptor() : cClassDescriptor("inet::ieee80211::SecurityPkt", "cPacket")
+SecurityPktDescriptor::SecurityPktDescriptor() : cClassDescriptor("SecurityPkt", "cPacket")
 {
 }
 
@@ -610,7 +608,7 @@ class CCMPFrameDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(CCMPFrameDescriptor);
 
-CCMPFrameDescriptor::CCMPFrameDescriptor() : cClassDescriptor("inet::ieee80211::CCMPFrame", "cPacket")
+CCMPFrameDescriptor::CCMPFrameDescriptor() : cClassDescriptor("CCMPFrame", "cPacket")
 {
 }
 
@@ -909,7 +907,7 @@ class SAEMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(SAEMsgDescriptor);
 
-SAEMsgDescriptor::SAEMsgDescriptor() : cClassDescriptor("inet::ieee80211::SAEMsg", "cPacket")
+SAEMsgDescriptor::SAEMsgDescriptor() : cClassDescriptor("SAEMsg", "cPacket")
 {
 }
 
@@ -1181,7 +1179,7 @@ class AMPEMsgDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(AMPEMsgDescriptor);
 
-AMPEMsgDescriptor::AMPEMsgDescriptor() : cClassDescriptor("inet::ieee80211::AMPEMsg", "cPacket")
+AMPEMsgDescriptor::AMPEMsgDescriptor() : cClassDescriptor("AMPEMsg", "cPacket")
 {
 }
 
@@ -1347,6 +1345,4 @@ void *AMPEMsgDescriptor::getFieldStructPointer(void *object, int field, int i) c
     }
 }
 
-} // namespace ieee80211
-} // namespace inet
 

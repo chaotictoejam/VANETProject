@@ -28,7 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -53,22 +52,6 @@ inline std::ostream& operator<<(std::ostream& out, const std::vector<T,A>& vec)
 // Template rule which fires if a struct or class doesn't have operator<<
 template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
-
-EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::IPv6NDOptionLength");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::IPv6NDOptionLength"));
-    e->insert(IPv6ND_LINK_LAYER_ADDRESS_OPTION_LENGTH, "IPv6ND_LINK_LAYER_ADDRESS_OPTION_LENGTH");
-    e->insert(IPv6ND_PREFIX_INFORMATION_OPTION_LENGTH, "IPv6ND_PREFIX_INFORMATION_OPTION_LENGTH");
-    e->insert(IPv6ND_REDIRECTED_HEADER_OPTION_LENGTH, "IPv6ND_REDIRECTED_HEADER_OPTION_LENGTH");
-    e->insert(IPv6ND_MTU_OPTION_LENGTH, "IPv6ND_MTU_OPTION_LENGTH");
-);
-
-EXECUTE_ON_STARTUP(
-    cEnum *e = cEnum::find("inet::IPv6NDOptionTypes");
-    if (!e) enums.getInstance()->add(e = new cEnum("inet::IPv6NDOptionTypes"));
-    e->insert(IPv6ND_SOURCE_LINK_LAYER_ADDR_OPTION, "IPv6ND_SOURCE_LINK_LAYER_ADDR_OPTION");
-    e->insert(IPv6ND_TARGET_LINK_LAYER_ADDR_OPTION, "IPv6ND_TARGET_LINK_LAYER_ADDR_OPTION");
-);
 
 Register_Class(IPv6NDPrefixInformation);
 
@@ -227,7 +210,7 @@ class IPv6NDPrefixInformationDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6NDPrefixInformationDescriptor);
 
-IPv6NDPrefixInformationDescriptor::IPv6NDPrefixInformationDescriptor() : cClassDescriptor("inet::IPv6NDPrefixInformation", "cObject")
+IPv6NDPrefixInformationDescriptor::IPv6NDPrefixInformationDescriptor() : cClassDescriptor("IPv6NDPrefixInformation", "cObject")
 {
 }
 
@@ -497,7 +480,7 @@ class MIPv6NDAdvertisementIntervalDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(MIPv6NDAdvertisementIntervalDescriptor);
 
-MIPv6NDAdvertisementIntervalDescriptor::MIPv6NDAdvertisementIntervalDescriptor() : cClassDescriptor("inet::MIPv6NDAdvertisementInterval", "cObject")
+MIPv6NDAdvertisementIntervalDescriptor::MIPv6NDAdvertisementIntervalDescriptor() : cClassDescriptor("MIPv6NDAdvertisementInterval", "cObject")
 {
 }
 
@@ -744,7 +727,7 @@ class MIPv6HAInformationDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(MIPv6HAInformationDescriptor);
 
-MIPv6HAInformationDescriptor::MIPv6HAInformationDescriptor() : cClassDescriptor("inet::MIPv6HAInformation", "cObject")
+MIPv6HAInformationDescriptor::MIPv6HAInformationDescriptor() : cClassDescriptor("MIPv6HAInformation", "cObject")
 {
 }
 
@@ -911,12 +894,12 @@ void *MIPv6HAInformationDescriptor::getFieldStructPointer(void *object, int fiel
 
 Register_Class(IPv6NDMessage);
 
-IPv6NDMessage::IPv6NDMessage(const char *name, int kind) : ::inet::ICMPv6Message(name,kind)
+IPv6NDMessage::IPv6NDMessage(const char *name, int kind) : ::ICMPv6Message(name,kind)
 {
     this->code_var = 0;
 }
 
-IPv6NDMessage::IPv6NDMessage(const IPv6NDMessage& other) : ::inet::ICMPv6Message(other)
+IPv6NDMessage::IPv6NDMessage(const IPv6NDMessage& other) : ::ICMPv6Message(other)
 {
     copy(other);
 }
@@ -928,7 +911,7 @@ IPv6NDMessage::~IPv6NDMessage()
 IPv6NDMessage& IPv6NDMessage::operator=(const IPv6NDMessage& other)
 {
     if (this==&other) return *this;
-    ::inet::ICMPv6Message::operator=(other);
+    ::ICMPv6Message::operator=(other);
     copy(other);
     return *this;
 }
@@ -940,13 +923,13 @@ void IPv6NDMessage::copy(const IPv6NDMessage& other)
 
 void IPv6NDMessage::parsimPack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimPack(b);
+    ::ICMPv6Message::parsimPack(b);
     doPacking(b,this->code_var);
 }
 
 void IPv6NDMessage::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::ICMPv6Message::parsimUnpack(b);
+    ::ICMPv6Message::parsimUnpack(b);
     doUnpacking(b,this->code_var);
 }
 
@@ -985,7 +968,7 @@ class IPv6NDMessageDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6NDMessageDescriptor);
 
-IPv6NDMessageDescriptor::IPv6NDMessageDescriptor() : cClassDescriptor("inet::IPv6NDMessage", "inet::ICMPv6Message")
+IPv6NDMessageDescriptor::IPv6NDMessageDescriptor() : cClassDescriptor("IPv6NDMessage", "ICMPv6Message")
 {
 }
 
@@ -1146,11 +1129,11 @@ void *IPv6NDMessageDescriptor::getFieldStructPointer(void *object, int field, in
 
 Register_Class(IPv6RouterSolicitation);
 
-IPv6RouterSolicitation::IPv6RouterSolicitation(const char *name, int kind) : ::inet::IPv6NDMessage(name,kind)
+IPv6RouterSolicitation::IPv6RouterSolicitation(const char *name, int kind) : ::IPv6NDMessage(name,kind)
 {
 }
 
-IPv6RouterSolicitation::IPv6RouterSolicitation(const IPv6RouterSolicitation& other) : ::inet::IPv6NDMessage(other)
+IPv6RouterSolicitation::IPv6RouterSolicitation(const IPv6RouterSolicitation& other) : ::IPv6NDMessage(other)
 {
     copy(other);
 }
@@ -1162,7 +1145,7 @@ IPv6RouterSolicitation::~IPv6RouterSolicitation()
 IPv6RouterSolicitation& IPv6RouterSolicitation::operator=(const IPv6RouterSolicitation& other)
 {
     if (this==&other) return *this;
-    ::inet::IPv6NDMessage::operator=(other);
+    ::IPv6NDMessage::operator=(other);
     copy(other);
     return *this;
 }
@@ -1174,13 +1157,13 @@ void IPv6RouterSolicitation::copy(const IPv6RouterSolicitation& other)
 
 void IPv6RouterSolicitation::parsimPack(cCommBuffer *b)
 {
-    ::inet::IPv6NDMessage::parsimPack(b);
+    ::IPv6NDMessage::parsimPack(b);
     doPacking(b,this->sourceLinkLayerAddress_var);
 }
 
 void IPv6RouterSolicitation::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::IPv6NDMessage::parsimUnpack(b);
+    ::IPv6NDMessage::parsimUnpack(b);
     doUnpacking(b,this->sourceLinkLayerAddress_var);
 }
 
@@ -1219,7 +1202,7 @@ class IPv6RouterSolicitationDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6RouterSolicitationDescriptor);
 
-IPv6RouterSolicitationDescriptor::IPv6RouterSolicitationDescriptor() : cClassDescriptor("inet::IPv6RouterSolicitation", "inet::IPv6NDMessage")
+IPv6RouterSolicitationDescriptor::IPv6RouterSolicitationDescriptor() : cClassDescriptor("IPv6RouterSolicitation", "IPv6NDMessage")
 {
 }
 
@@ -1381,7 +1364,7 @@ void *IPv6RouterSolicitationDescriptor::getFieldStructPointer(void *object, int 
 
 Register_Class(IPv6RouterAdvertisement);
 
-IPv6RouterAdvertisement::IPv6RouterAdvertisement(const char *name, int kind) : ::inet::IPv6NDMessage(name,kind)
+IPv6RouterAdvertisement::IPv6RouterAdvertisement(const char *name, int kind) : ::IPv6NDMessage(name,kind)
 {
     this->curHopLimit_var = 0;
     this->managedAddrConfFlag_var = 0;
@@ -1395,7 +1378,7 @@ IPv6RouterAdvertisement::IPv6RouterAdvertisement(const char *name, int kind) : :
     this->prefixInformation_var = 0;
 }
 
-IPv6RouterAdvertisement::IPv6RouterAdvertisement(const IPv6RouterAdvertisement& other) : ::inet::IPv6NDMessage(other)
+IPv6RouterAdvertisement::IPv6RouterAdvertisement(const IPv6RouterAdvertisement& other) : ::IPv6NDMessage(other)
 {
     prefixInformation_arraysize = 0;
     this->prefixInformation_var = 0;
@@ -1410,7 +1393,7 @@ IPv6RouterAdvertisement::~IPv6RouterAdvertisement()
 IPv6RouterAdvertisement& IPv6RouterAdvertisement::operator=(const IPv6RouterAdvertisement& other)
 {
     if (this==&other) return *this;
-    ::inet::IPv6NDMessage::operator=(other);
+    ::IPv6NDMessage::operator=(other);
     copy(other);
     return *this;
 }
@@ -1437,7 +1420,7 @@ void IPv6RouterAdvertisement::copy(const IPv6RouterAdvertisement& other)
 
 void IPv6RouterAdvertisement::parsimPack(cCommBuffer *b)
 {
-    ::inet::IPv6NDMessage::parsimPack(b);
+    ::IPv6NDMessage::parsimPack(b);
     doPacking(b,this->curHopLimit_var);
     doPacking(b,this->managedAddrConfFlag_var);
     doPacking(b,this->otherStatefulConfFlag_var);
@@ -1455,7 +1438,7 @@ void IPv6RouterAdvertisement::parsimPack(cCommBuffer *b)
 
 void IPv6RouterAdvertisement::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::IPv6NDMessage::parsimUnpack(b);
+    ::IPv6NDMessage::parsimUnpack(b);
     doUnpacking(b,this->curHopLimit_var);
     doUnpacking(b,this->managedAddrConfFlag_var);
     doUnpacking(b,this->otherStatefulConfFlag_var);
@@ -1640,7 +1623,7 @@ class IPv6RouterAdvertisementDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6RouterAdvertisementDescriptor);
 
-IPv6RouterAdvertisementDescriptor::IPv6RouterAdvertisementDescriptor() : cClassDescriptor("inet::IPv6RouterAdvertisement", "inet::IPv6NDMessage")
+IPv6RouterAdvertisementDescriptor::IPv6RouterAdvertisementDescriptor() : cClassDescriptor("IPv6RouterAdvertisement", "IPv6NDMessage")
 {
 }
 
@@ -1872,11 +1855,11 @@ void *IPv6RouterAdvertisementDescriptor::getFieldStructPointer(void *object, int
 
 Register_Class(IPv6NeighbourSolicitation);
 
-IPv6NeighbourSolicitation::IPv6NeighbourSolicitation(const char *name, int kind) : ::inet::IPv6NDMessage(name,kind)
+IPv6NeighbourSolicitation::IPv6NeighbourSolicitation(const char *name, int kind) : ::IPv6NDMessage(name,kind)
 {
 }
 
-IPv6NeighbourSolicitation::IPv6NeighbourSolicitation(const IPv6NeighbourSolicitation& other) : ::inet::IPv6NDMessage(other)
+IPv6NeighbourSolicitation::IPv6NeighbourSolicitation(const IPv6NeighbourSolicitation& other) : ::IPv6NDMessage(other)
 {
     copy(other);
 }
@@ -1888,7 +1871,7 @@ IPv6NeighbourSolicitation::~IPv6NeighbourSolicitation()
 IPv6NeighbourSolicitation& IPv6NeighbourSolicitation::operator=(const IPv6NeighbourSolicitation& other)
 {
     if (this==&other) return *this;
-    ::inet::IPv6NDMessage::operator=(other);
+    ::IPv6NDMessage::operator=(other);
     copy(other);
     return *this;
 }
@@ -1901,14 +1884,14 @@ void IPv6NeighbourSolicitation::copy(const IPv6NeighbourSolicitation& other)
 
 void IPv6NeighbourSolicitation::parsimPack(cCommBuffer *b)
 {
-    ::inet::IPv6NDMessage::parsimPack(b);
+    ::IPv6NDMessage::parsimPack(b);
     doPacking(b,this->targetAddress_var);
     doPacking(b,this->sourceLinkLayerAddress_var);
 }
 
 void IPv6NeighbourSolicitation::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::IPv6NDMessage::parsimUnpack(b);
+    ::IPv6NDMessage::parsimUnpack(b);
     doUnpacking(b,this->targetAddress_var);
     doUnpacking(b,this->sourceLinkLayerAddress_var);
 }
@@ -1958,7 +1941,7 @@ class IPv6NeighbourSolicitationDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6NeighbourSolicitationDescriptor);
 
-IPv6NeighbourSolicitationDescriptor::IPv6NeighbourSolicitationDescriptor() : cClassDescriptor("inet::IPv6NeighbourSolicitation", "inet::IPv6NDMessage")
+IPv6NeighbourSolicitationDescriptor::IPv6NeighbourSolicitationDescriptor() : cClassDescriptor("IPv6NeighbourSolicitation", "IPv6NDMessage")
 {
 }
 
@@ -2127,14 +2110,14 @@ void *IPv6NeighbourSolicitationDescriptor::getFieldStructPointer(void *object, i
 
 Register_Class(IPv6NeighbourAdvertisement);
 
-IPv6NeighbourAdvertisement::IPv6NeighbourAdvertisement(const char *name, int kind) : ::inet::IPv6NDMessage(name,kind)
+IPv6NeighbourAdvertisement::IPv6NeighbourAdvertisement(const char *name, int kind) : ::IPv6NDMessage(name,kind)
 {
     this->routerFlag_var = 0;
     this->solicitedFlag_var = 0;
     this->overrideFlag_var = 0;
 }
 
-IPv6NeighbourAdvertisement::IPv6NeighbourAdvertisement(const IPv6NeighbourAdvertisement& other) : ::inet::IPv6NDMessage(other)
+IPv6NeighbourAdvertisement::IPv6NeighbourAdvertisement(const IPv6NeighbourAdvertisement& other) : ::IPv6NDMessage(other)
 {
     copy(other);
 }
@@ -2146,7 +2129,7 @@ IPv6NeighbourAdvertisement::~IPv6NeighbourAdvertisement()
 IPv6NeighbourAdvertisement& IPv6NeighbourAdvertisement::operator=(const IPv6NeighbourAdvertisement& other)
 {
     if (this==&other) return *this;
-    ::inet::IPv6NDMessage::operator=(other);
+    ::IPv6NDMessage::operator=(other);
     copy(other);
     return *this;
 }
@@ -2162,7 +2145,7 @@ void IPv6NeighbourAdvertisement::copy(const IPv6NeighbourAdvertisement& other)
 
 void IPv6NeighbourAdvertisement::parsimPack(cCommBuffer *b)
 {
-    ::inet::IPv6NDMessage::parsimPack(b);
+    ::IPv6NDMessage::parsimPack(b);
     doPacking(b,this->routerFlag_var);
     doPacking(b,this->solicitedFlag_var);
     doPacking(b,this->overrideFlag_var);
@@ -2172,7 +2155,7 @@ void IPv6NeighbourAdvertisement::parsimPack(cCommBuffer *b)
 
 void IPv6NeighbourAdvertisement::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::IPv6NDMessage::parsimUnpack(b);
+    ::IPv6NDMessage::parsimUnpack(b);
     doUnpacking(b,this->routerFlag_var);
     doUnpacking(b,this->solicitedFlag_var);
     doUnpacking(b,this->overrideFlag_var);
@@ -2255,7 +2238,7 @@ class IPv6NeighbourAdvertisementDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6NeighbourAdvertisementDescriptor);
 
-IPv6NeighbourAdvertisementDescriptor::IPv6NeighbourAdvertisementDescriptor() : cClassDescriptor("inet::IPv6NeighbourAdvertisement", "inet::IPv6NDMessage")
+IPv6NeighbourAdvertisementDescriptor::IPv6NeighbourAdvertisementDescriptor() : cClassDescriptor("IPv6NeighbourAdvertisement", "IPv6NDMessage")
 {
 }
 
@@ -2442,11 +2425,11 @@ void *IPv6NeighbourAdvertisementDescriptor::getFieldStructPointer(void *object, 
 
 Register_Class(IPv6Redirect);
 
-IPv6Redirect::IPv6Redirect(const char *name, int kind) : ::inet::IPv6NDMessage(name,kind)
+IPv6Redirect::IPv6Redirect(const char *name, int kind) : ::IPv6NDMessage(name,kind)
 {
 }
 
-IPv6Redirect::IPv6Redirect(const IPv6Redirect& other) : ::inet::IPv6NDMessage(other)
+IPv6Redirect::IPv6Redirect(const IPv6Redirect& other) : ::IPv6NDMessage(other)
 {
     copy(other);
 }
@@ -2458,7 +2441,7 @@ IPv6Redirect::~IPv6Redirect()
 IPv6Redirect& IPv6Redirect::operator=(const IPv6Redirect& other)
 {
     if (this==&other) return *this;
-    ::inet::IPv6NDMessage::operator=(other);
+    ::IPv6NDMessage::operator=(other);
     copy(other);
     return *this;
 }
@@ -2472,7 +2455,7 @@ void IPv6Redirect::copy(const IPv6Redirect& other)
 
 void IPv6Redirect::parsimPack(cCommBuffer *b)
 {
-    ::inet::IPv6NDMessage::parsimPack(b);
+    ::IPv6NDMessage::parsimPack(b);
     doPacking(b,this->targetAddress_var);
     doPacking(b,this->destinationAddress_var);
     doPacking(b,this->targetLinkLayerAddress_var);
@@ -2480,7 +2463,7 @@ void IPv6Redirect::parsimPack(cCommBuffer *b)
 
 void IPv6Redirect::parsimUnpack(cCommBuffer *b)
 {
-    ::inet::IPv6NDMessage::parsimUnpack(b);
+    ::IPv6NDMessage::parsimUnpack(b);
     doUnpacking(b,this->targetAddress_var);
     doUnpacking(b,this->destinationAddress_var);
     doUnpacking(b,this->targetLinkLayerAddress_var);
@@ -2541,7 +2524,7 @@ class IPv6RedirectDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(IPv6RedirectDescriptor);
 
-IPv6RedirectDescriptor::IPv6RedirectDescriptor() : cClassDescriptor("inet::IPv6Redirect", "inet::IPv6NDMessage")
+IPv6RedirectDescriptor::IPv6RedirectDescriptor() : cClassDescriptor("IPv6Redirect", "IPv6NDMessage")
 {
 }
 
@@ -2715,278 +2698,4 @@ void *IPv6RedirectDescriptor::getFieldStructPointer(void *object, int field, int
     }
 }
 
-Register_Class(IPv6NDControlInfo);
-
-IPv6NDControlInfo::IPv6NDControlInfo() : ::cObject()
-{
-    this->interfaceId_var = -1;
-    this->fromHL_var = false;
-}
-
-IPv6NDControlInfo::IPv6NDControlInfo(const IPv6NDControlInfo& other) : ::cObject(other)
-{
-    copy(other);
-}
-
-IPv6NDControlInfo::~IPv6NDControlInfo()
-{
-}
-
-IPv6NDControlInfo& IPv6NDControlInfo::operator=(const IPv6NDControlInfo& other)
-{
-    if (this==&other) return *this;
-    ::cObject::operator=(other);
-    copy(other);
-    return *this;
-}
-
-void IPv6NDControlInfo::copy(const IPv6NDControlInfo& other)
-{
-    this->nextHop_var = other.nextHop_var;
-    this->interfaceId_var = other.interfaceId_var;
-    this->fromHL_var = other.fromHL_var;
-}
-
-void IPv6NDControlInfo::parsimPack(cCommBuffer *b)
-{
-    doPacking(b,this->nextHop_var);
-    doPacking(b,this->interfaceId_var);
-    doPacking(b,this->fromHL_var);
-}
-
-void IPv6NDControlInfo::parsimUnpack(cCommBuffer *b)
-{
-    doUnpacking(b,this->nextHop_var);
-    doUnpacking(b,this->interfaceId_var);
-    doUnpacking(b,this->fromHL_var);
-}
-
-IPv6Address& IPv6NDControlInfo::getNextHop()
-{
-    return nextHop_var;
-}
-
-void IPv6NDControlInfo::setNextHop(const IPv6Address& nextHop)
-{
-    this->nextHop_var = nextHop;
-}
-
-int IPv6NDControlInfo::getInterfaceId() const
-{
-    return interfaceId_var;
-}
-
-void IPv6NDControlInfo::setInterfaceId(int interfaceId)
-{
-    this->interfaceId_var = interfaceId;
-}
-
-bool IPv6NDControlInfo::getFromHL() const
-{
-    return fromHL_var;
-}
-
-void IPv6NDControlInfo::setFromHL(bool fromHL)
-{
-    this->fromHL_var = fromHL;
-}
-
-class IPv6NDControlInfoDescriptor : public cClassDescriptor
-{
-  public:
-    IPv6NDControlInfoDescriptor();
-    virtual ~IPv6NDControlInfoDescriptor();
-
-    virtual bool doesSupport(cObject *obj) const;
-    virtual const char *getProperty(const char *propertyname) const;
-    virtual int getFieldCount(void *object) const;
-    virtual const char *getFieldName(void *object, int field) const;
-    virtual int findField(void *object, const char *fieldName) const;
-    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
-    virtual const char *getFieldTypeString(void *object, int field) const;
-    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
-    virtual int getArraySize(void *object, int field) const;
-
-    virtual std::string getFieldAsString(void *object, int field, int i) const;
-    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
-
-    virtual const char *getFieldStructName(void *object, int field) const;
-    virtual void *getFieldStructPointer(void *object, int field, int i) const;
-};
-
-Register_ClassDescriptor(IPv6NDControlInfoDescriptor);
-
-IPv6NDControlInfoDescriptor::IPv6NDControlInfoDescriptor() : cClassDescriptor("inet::IPv6NDControlInfo", "cObject")
-{
-}
-
-IPv6NDControlInfoDescriptor::~IPv6NDControlInfoDescriptor()
-{
-}
-
-bool IPv6NDControlInfoDescriptor::doesSupport(cObject *obj) const
-{
-    return dynamic_cast<IPv6NDControlInfo *>(obj)!=NULL;
-}
-
-const char *IPv6NDControlInfoDescriptor::getProperty(const char *propertyname) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? basedesc->getProperty(propertyname) : NULL;
-}
-
-int IPv6NDControlInfoDescriptor::getFieldCount(void *object) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
-}
-
-unsigned int IPv6NDControlInfoDescriptor::getFieldTypeFlags(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldTypeFlags(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static unsigned int fieldTypeFlags[] = {
-        FD_ISCOMPOUND,
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
-    };
-    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
-}
-
-const char *IPv6NDControlInfoDescriptor::getFieldName(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldName(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static const char *fieldNames[] = {
-        "nextHop",
-        "interfaceId",
-        "fromHL",
-    };
-    return (field>=0 && field<3) ? fieldNames[field] : NULL;
-}
-
-int IPv6NDControlInfoDescriptor::findField(void *object, const char *fieldName) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='n' && strcmp(fieldName, "nextHop")==0) return base+0;
-    if (fieldName[0]=='i' && strcmp(fieldName, "interfaceId")==0) return base+1;
-    if (fieldName[0]=='f' && strcmp(fieldName, "fromHL")==0) return base+2;
-    return basedesc ? basedesc->findField(object, fieldName) : -1;
-}
-
-const char *IPv6NDControlInfoDescriptor::getFieldTypeString(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldTypeString(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    static const char *fieldTypeStrings[] = {
-        "IPv6Address",
-        "int",
-        "bool",
-    };
-    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
-}
-
-const char *IPv6NDControlInfoDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldProperty(object, field, propertyname);
-        field -= basedesc->getFieldCount(object);
-    }
-    switch (field) {
-        default: return NULL;
-    }
-}
-
-int IPv6NDControlInfoDescriptor::getArraySize(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getArraySize(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    IPv6NDControlInfo *pp = (IPv6NDControlInfo *)object; (void)pp;
-    switch (field) {
-        default: return 0;
-    }
-}
-
-std::string IPv6NDControlInfoDescriptor::getFieldAsString(void *object, int field, int i) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldAsString(object,field,i);
-        field -= basedesc->getFieldCount(object);
-    }
-    IPv6NDControlInfo *pp = (IPv6NDControlInfo *)object; (void)pp;
-    switch (field) {
-        case 0: {std::stringstream out; out << pp->getNextHop(); return out.str();}
-        case 1: return long2string(pp->getInterfaceId());
-        case 2: return bool2string(pp->getFromHL());
-        default: return "";
-    }
-}
-
-bool IPv6NDControlInfoDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->setFieldAsString(object,field,i,value);
-        field -= basedesc->getFieldCount(object);
-    }
-    IPv6NDControlInfo *pp = (IPv6NDControlInfo *)object; (void)pp;
-    switch (field) {
-        case 1: pp->setInterfaceId(string2long(value)); return true;
-        case 2: pp->setFromHL(string2bool(value)); return true;
-        default: return false;
-    }
-}
-
-const char *IPv6NDControlInfoDescriptor::getFieldStructName(void *object, int field) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldStructName(object, field);
-        field -= basedesc->getFieldCount(object);
-    }
-    switch (field) {
-        case 0: return opp_typename(typeid(IPv6Address));
-        default: return NULL;
-    };
-}
-
-void *IPv6NDControlInfoDescriptor::getFieldStructPointer(void *object, int field, int i) const
-{
-    cClassDescriptor *basedesc = getBaseClassDescriptor();
-    if (basedesc) {
-        if (field < basedesc->getFieldCount(object))
-            return basedesc->getFieldStructPointer(object, field, i);
-        field -= basedesc->getFieldCount(object);
-    }
-    IPv6NDControlInfo *pp = (IPv6NDControlInfo *)object; (void)pp;
-    switch (field) {
-        case 0: return (void *)(&pp->getNextHop()); break;
-        default: return NULL;
-    }
-}
-
-} // namespace inet
 

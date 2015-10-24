@@ -18,19 +18,21 @@
 
 
 package inet.linklayer.ieee80211mesh.nodes;
+import inet.nodes.inet.WirelessHost;
 
-import inet.common.packet.PcapRecorder;
-import inet.networklayer.contract.IRoutingTable;
+import inet.util.PcapRecorder;
+import inet.networklayer.ipv4.RoutingTable;
 import inet.networklayer.common.InterfaceTable;
 import inet.mobility.contract.IMobility;
 import inet.linklayer.ieee80211mesh.ethernet.EthernetInterfaceMesh;
-import inet.linklayer.contract.IWirelessNic;
-import inet.linklayer.contract.IWiredNic;
-import inet.linklayer.contract.IExternalNic;
-import inet.networklayer.contract.INetworkLayer;
+import inet.linklayer.IWirelessNic;
+import inet.linklayer.IWiredNic;
+import inet.linklayer.IExternalNic;
+import inet.base.NotificationBoard;
+import inet.nodes.inet.NetworkLayer;
 import inet.linklayer.ieee80211mesh.Ieee80211NicMesh;
 import inet.linklayer.ieee80211mesh.Ieee80211NicMeshMulti;
-import inet.networklayer.configurator.ipv4.HostAutoConfigurator2;
+import inet.networklayer.autorouting.ipv4.HostAutoConfigurator2;
 import inet.linklayer.loopback.LoopbackInterface;
 
 //
@@ -45,7 +47,7 @@ module ApMeshNode
 {
     parameters:
         @display("bgb=611,448");
-        @networkNode;
+        @node;
         @labels(node,ethernet-node,wireless-node);
         int numExtInterfaces = default(0);
         int numRadios = default(1);               // the number of radios in the router. by default no wireless
@@ -53,26 +55,18 @@ module ApMeshNode
         int numPcapRecorders = default(0); // no of PcapRecorders.
         string mobilityType = default("StationaryMobility");
         string routingFile = default("");
-        bool forwarding = default(true);
-        bool multicastForwarding = default(false);
-        
+        bool IPForward = default(true);
         wlan[*].mgmtType = default("Ieee80211MgmtAP");
-        
-        string networkLayerType = default("IPv4NetworkLayer");
-        string routingTableType = default("IPv4RoutingTable");
-        string powerSourceType = default("");
-        routingTable.forwarding = forwarding;
-        routingTable.multicastForwarding = multicastForwarding;   // for IPv4, IPv6, Generic
-        
-        *.interfaceTableModule = default(absPath(".interfaceTable"));
-        *.routingTableModule = default(routingTableType != "" ? absPath(".routingTable") : "");
-        *.powerSourceModule = default(powerSourceType != "" ? absPath(".powerSource") : "");
-        *.mobilityModule = default(mobilityType != "" ? absPath(".mobility") : "");        
     gates:
         input radioIn[numRadios+meshChannels] @directIn;
         inout pppg[] @labels(PPPFrame-conn);
         inout ethg[] @labels(EtherFrame-conn);
     submodules:
+        notificationBoard: NotificationBoard {
+            parameters:
+                @display("p=53,194");
+        }
+
         // optional mobility module. Required only if wireless cards are present
         mobility: <mobilityType> like IMobility if numRadios>0 {
             parameters:
@@ -80,15 +74,16 @@ module ApMeshNode
         }
 
         // network layer
-        networkLayer: <networkLayerType> like INetworkLayer {
+        networkLayer: NetworkLayer {
             parameters:
-                @display("p=329,287;q=queue");
+                @display("p=356,265;q=queue");
         }
 
-		// routing table
-        routingTable: <routingTableType> like IRoutingTable if routingTableType != "" {
+        routingTable: RoutingTable {
             parameters:
-                @display("p=53,225;is=s");
+                @display("p=53,287");
+                IPForward = IPForward;
+                routingFile = routingFile;
         }
 
         // linklayer

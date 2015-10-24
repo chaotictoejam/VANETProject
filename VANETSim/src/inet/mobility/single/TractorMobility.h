@@ -17,13 +17,12 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_TRACTORMOBILITY_H
-#define __INET_TRACTORMOBILITY_H
+#ifndef RECTANGLE_MOBILITY_H
+#define RECTANGLE_MOBILITY_H
 
-#include "inet/common/INETDefs.h"
-#include "inet/mobility/base/LineSegmentsMobilityBase.h"
+#include "INETDefs.h"
+#include "LineSegmentsMobilityBase.h"
 
-namespace inet {
 
 /**
  * @brief Tractor movement model. See NED file for more info.
@@ -35,29 +34,25 @@ namespace inet {
 class INET_API TractorMobility : public LineSegmentsMobilityBase
 {
   protected:
-    double speed;    //< speed along the trajectory
-    double x1, y1, x2, y2;    ///< rectangle bounds of the field
-    int rowCount;    ///< the number of rows that the tractor must take
+    double speed; //< speed along the trajectory
+    double x1, y1, x2, y2; ///< rectangle bounds of the field
+    int rowCount; ///< the number of rows that the tractor must take
     int step;
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 3; }
 
     /** @brief Initializes mobility model parameters. */
-    virtual void initialize(int) override;
+    virtual void initialize(int);
 
     /** @brief Initializes the position according to the mobility model. */
-    virtual void setInitialPosition() override;
+    virtual void setInitialPosition();
 
     /** @brief Calculate a new target position to move to. */
-    void setTargetPosition() override;
+    void setTargetPosition();
 
   public:
     TractorMobility();
-    virtual double getMaxSpeed() const override { return speed; }
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_TRACTORMOBILITY_H
-
+#endif

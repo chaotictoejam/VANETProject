@@ -28,8 +28,6 @@ void doUnpacking(cCommBuffer *, T& t) {
 
 
 
-namespace inet {
-namespace ieee80211 {
 
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
@@ -143,7 +141,7 @@ class newcMessageDescriptor : public cClassDescriptor
 
 Register_ClassDescriptor(newcMessageDescriptor);
 
-newcMessageDescriptor::newcMessageDescriptor() : cClassDescriptor("inet::ieee80211::newcMessage", "cMessage")
+newcMessageDescriptor::newcMessageDescriptor() : cClassDescriptor("newcMessage", "cMessage")
 {
 }
 
@@ -310,6 +308,4 @@ void *newcMessageDescriptor::getFieldStructPointer(void *object, int field, int 
     }
 }
 
-} // namespace ieee80211
-} // namespace inet
 

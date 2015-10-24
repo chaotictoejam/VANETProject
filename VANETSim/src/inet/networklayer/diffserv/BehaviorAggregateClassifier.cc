@@ -16,30 +16,28 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inet/common/INETDefs.h"
-#include "inet/networklayer/common/L3Address.h"
-#include "inet/networklayer/common/L3AddressResolver.h"
+#include "INETDefs.h"
+#include "IPvXAddress.h"
+#include "IPvXAddressResolver.h"
 
 #ifdef WITH_IPv4
-#include "inet/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#include "IPv4Datagram.h"
+#endif
 
 #ifdef WITH_IPv6
-#include "inet/networklayer/ipv6/IPv6Datagram.h"
-#endif // ifdef WITH_IPv6
+#include "IPv6Datagram.h"
+#endif
 
 #ifdef WITH_UDP
-#include "inet/transportlayer/udp/UDPPacket.h"
-#endif // ifdef WITH_UDP
+#include "UDPPacket.h"
+#endif
 
 #ifdef WITH_TCP_COMMON
-#include "inet/transportlayer/tcp_common/TCPSegment.h"
-#endif // ifdef WITH_TCP_COMMON
+#include "TCPSegment.h"
+#endif
 
-#include "inet/networklayer/diffserv/BehaviorAggregateClassifier.h"
-#include "inet/networklayer/diffserv/DiffservUtil.h"
-
-namespace inet {
+#include "BehaviorAggregateClassifier.h"
+#include "DiffservUtil.h"
 
 using namespace DiffservUtil;
 
@@ -55,7 +53,7 @@ void BehaviorAggregateClassifier::initialize()
     int numDscps = (int)dscps.size();
     if (numDscps > numOutGates)
         throw cRuntimeError("%s dscp values are given, but the module has only %d out gates",
-                numDscps, numOutGates);
+                                numDscps, numOutGates);
     for (int i = 0; i < numDscps; ++i)
         dscpToGateIndexMap[dscps[i]] = i;
 
@@ -65,7 +63,7 @@ void BehaviorAggregateClassifier::initialize()
 
 void BehaviorAggregateClassifier::handleMessage(cMessage *msg)
 {
-    cPacket *packet = check_and_cast<cPacket *>(msg);
+    cPacket *packet = check_and_cast<cPacket*>(msg);
     numRcvd++;
     int clazz = classifyPacket(packet);
     emit(pkClassSignal, clazz);
@@ -75,10 +73,10 @@ void BehaviorAggregateClassifier::handleMessage(cMessage *msg)
     else
         send(packet, "defaultOut");
 
-    if (hasGUI()) {
+    if (ev.isGUI())
+    {
         char buf[20] = "";
-        if (numRcvd > 0)
-            sprintf(buf + strlen(buf), "rcvd:%d ", numRcvd);
+        if (numRcvd>0) sprintf(buf+strlen(buf), "rcvd:%d ", numRcvd);
         getDisplayString().setTagArg("t", 0, buf);
     }
 }
@@ -86,8 +84,9 @@ void BehaviorAggregateClassifier::handleMessage(cMessage *msg)
 int BehaviorAggregateClassifier::classifyPacket(cPacket *packet)
 {
     int dscp = getDscpFromPacket(packet);
-    if (dscp >= 0) {
-        auto it = dscpToGateIndexMap.find(dscp);
+    if (dscp >= 0)
+    {
+        std::map<int,int>::iterator it = dscpToGateIndexMap.find(dscp);
         if (it != dscpToGateIndexMap.end())
             return it->second;
     }
@@ -96,20 +95,18 @@ int BehaviorAggregateClassifier::classifyPacket(cPacket *packet)
 
 int BehaviorAggregateClassifier::getDscpFromPacket(cPacket *packet)
 {
-    for ( ; packet; packet = packet->getEncapsulatedPacket()) {
+    for (; packet; packet = packet->getEncapsulatedPacket())
+    {
 #ifdef WITH_IPv4
         IPv4Datagram *ipv4Datagram = dynamic_cast<IPv4Datagram *>(packet);
         if (ipv4Datagram)
             return ipv4Datagram->getDiffServCodePoint();
-#endif // ifdef WITH_IPv4
+#endif
 #ifdef WITH_IPv6
         IPv6Datagram *ipv6Datagram = dynamic_cast<IPv6Datagram *>(packet);
         if (ipv6Datagram)
             return ipv6Datagram->getDiffServCodePoint();
-#endif // ifdef WITH_IPv6
+#endif
     }
     return -1;
 }
-
-} // namespace inet
-

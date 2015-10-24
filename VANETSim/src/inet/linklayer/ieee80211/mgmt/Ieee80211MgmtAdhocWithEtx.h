@@ -18,14 +18,12 @@
 #ifndef IEEE80211_MGMT_ADHOC_ETX_H
 #define IEEE80211_MGMT_ADHOC_ETX_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhoc.h"
-#include "inet/linklayer/ieee80211/mgmt/Ieee80211Etx.h"
+#include "Ieee80211MgmtAdhoc.h"
+#include "Ieee80211Etx.h"
 
-namespace inet {
 
-namespace ieee80211 {
 /**
  * Used in 802.11 ad-hoc mode. See corresponding NED file for a detailed description.
  * This implementation ignores many details.
@@ -44,10 +42,6 @@ class INET_API Ieee80211MgmtAdhocWithEtx : public Ieee80211MgmtAdhoc
     void handleEtxMessage(cPacket *);
     void handleDataFrame(Ieee80211DataFrame *frame);
 };
-
-}
-
-}
 
 #endif
 

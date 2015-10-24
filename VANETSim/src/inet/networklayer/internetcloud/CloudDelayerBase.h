@@ -17,29 +17,28 @@
 // @author Zoltan Bojthe
 //
 
-#ifndef __INET_CLOUDDELAYERBASE_H
-#define __INET_CLOUDDELAYERBASE_H
+#ifndef __INET_INTERNETCLOUD_CLOUDDELAYERBASE_H
+#define __INET_INTERNETCLOUD_CLOUDDELAYERBASE_H
 
-#include "inet/common/INETDefs.h"
 
-#include "inet/networklayer/contract/INetfilter.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "INetfilter.h"
 
 //forward declarations:
 class IPv4;
+
 
 class INET_API CloudDelayerBase : public cSimpleModule, public INetfilter::IHook
 {
   public:
     CloudDelayerBase();
     ~CloudDelayerBase();
-
   protected:
-    virtual void initialize(int stage) override;
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    virtual void finish() override;
-    virtual void handleMessage(cMessage *msg) override;
+    virtual void initialize(int stage);
+    virtual int numInitStages() const { return 2; }
+    virtual void finish();
+    virtual void handleMessage(cMessage *msg);
 
     /**
      * Returns true in outDrop if the msg is dropped in cloud,
@@ -47,17 +46,14 @@ class INET_API CloudDelayerBase : public cSimpleModule, public INetfilter::IHook
      */
     virtual void calculateDropAndDelay(const cMessage *msg, int srcID, int destID, bool& outDrop, simtime_t& outDelay);
 
-    virtual INetfilter::IHook::Result datagramPreRoutingHook(INetworkDatagram *datagram, const InterfaceEntry *inputInterfaceEntry, const InterfaceEntry *& outputInterfaceEntry, L3Address& nextHopAddress) override;
-    virtual INetfilter::IHook::Result datagramForwardHook(INetworkDatagram *datagram, const InterfaceEntry *inputInterfaceEntry, const InterfaceEntry *& outputInterfaceEntry, L3Address& nextHopAddress) override;
-    virtual INetfilter::IHook::Result datagramPostRoutingHook(INetworkDatagram *datagram, const InterfaceEntry *inputInterfaceEntry, const InterfaceEntry *& outputInterfaceEntry, L3Address& nextHopAddress) override;
-    virtual INetfilter::IHook::Result datagramLocalInHook(INetworkDatagram *datagram, const InterfaceEntry *inputInterfaceEntry) override;
-    virtual INetfilter::IHook::Result datagramLocalOutHook(INetworkDatagram *datagram, const InterfaceEntry *& outputInterfaceEntry, L3Address& nextHopAddress) override;
-
+    virtual INetfilter::IHook::Result datagramPreRoutingHook(IPv4Datagram * datagram, const InterfaceEntry * inputInterfaceEntry, const InterfaceEntry *& outputInterfaceEntry, IPv4Address & nextHopAddress);
+    virtual INetfilter::IHook::Result datagramForwardHook(IPv4Datagram * datagram, const InterfaceEntry * inputInterfaceEntry, const InterfaceEntry *& outputInterfaceEntry, IPv4Address & nextHopAddress);
+    virtual INetfilter::IHook::Result datagramPostRoutingHook(IPv4Datagram * datagram, const InterfaceEntry * inputInterfaceEntry, const InterfaceEntry *& outputInterfaceEntry, IPv4Address & nextHopAddress);
+    virtual INetfilter::IHook::Result datagramLocalInHook(IPv4Datagram * datagram, const InterfaceEntry * inputInterfaceEntry);
+    virtual INetfilter::IHook::Result datagramLocalOutHook(IPv4Datagram * datagram, const InterfaceEntry *& outputInterfaceEntry, IPv4Address & nextHopAddress);
   protected:
     IPv4 *ipv4Layer;
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_CLOUDDELAYERBASE_H
+#endif  // __INET_INTERNETCLOUD_CLOUDDELAYERBASE_H
 

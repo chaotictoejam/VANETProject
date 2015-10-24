@@ -16,15 +16,15 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ICMPV6_H
-#define __INET_ICMPV6_H
 
-#include "inet/common/INETDefs.h"
+#ifndef __ICMPv6_H__
+#define __ICMPv6_H__
 
-#include "inet/networklayer/icmpv6/ICMPv6Message_m.h"
-#include "inet/common/lifecycle/ILifecycle.h"
+#include "INETDefs.h"
 
-namespace inet {
+#include "ICMPv6Message_m.h"
+#include "ILifecycle.h"
+
 
 //foreign declarations:
 class IPv6Address;
@@ -65,28 +65,28 @@ class INET_API ICMPv6 : public cSimpleModule, public ILifecycle
   protected:
     // internal helper functions
     virtual void sendToIP(ICMPv6Message *msg, const IPv6Address& dest);
-    virtual void sendToIP(ICMPv6Message *msg);    // FIXME check if really needed
+    virtual void sendToIP(ICMPv6Message *msg); // FIXME check if really needed
 
     virtual ICMPv6Message *createDestUnreachableMsg(int code);
     virtual ICMPv6Message *createPacketTooBigMsg(int mtu);
     virtual ICMPv6Message *createTimeExceededMsg(int code);
-    virtual ICMPv6Message *createParamProblemMsg(int code);    //TODO:Section 3.4 describes a pointer. What is it?
+    virtual ICMPv6Message *createParamProblemMsg(int code); //TODO:Section 3.4 describes a pointer. What is it?
 
   protected:
     /**
      * Initialization
      */
-    virtual void initialize(int stage) override;
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
+    virtual void initialize(int stage);
+    virtual int numInitStages() const { return 2; }
 
     /**
      *  Processing of messages that arrive in this module. Messages arrived here
      *  could be for ICMP ping requests or ICMPv6 messages that require processing.
      */
-    virtual void handleMessage(cMessage *msg) override;
+    virtual void handleMessage(cMessage *msg);
     virtual void processICMPv6Message(ICMPv6Message *);
 
-    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) override;
+    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback);
 
     /**
      *  Respond to the machine that tried to ping us.
@@ -112,11 +112,11 @@ class INET_API ICMPv6 : public cSimpleModule, public ILifecycle
     virtual void errorOut(ICMPv6Message *);
 
   protected:
-    typedef std::map<long, int> PingMap;
+    typedef std::map<long,int> PingMap;
     PingMap pingMap;
 };
 
-} // namespace inet
 
-#endif // ifndef __INET_ICMPV6_H
+#endif
+
 

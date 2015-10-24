@@ -21,8 +21,6 @@ simple SecurityWPA2
 {
     parameters:
          // mn
-        string interfaceTableModule;
-        string routingTableModule;         
         string ssid = default("SSID");
         double beaconInterval @unit("s") = default(100ms);
         int numAuthSteps = default(4); // use 2 for Open System auth, 4 for WEP, 4 for SAE   

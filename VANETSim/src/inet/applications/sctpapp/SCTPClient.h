@@ -1,6 +1,6 @@
 //
 // Copyright (C) 2008 Irene Ruengeler
-// Copyright (C) 2009-2015 Thomas Dreibholz
+// Copyright (C) 2009-2012 Thomas Dreibholz
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,110 +16,154 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTPCLIENT_H
-#define __INET_SCTPCLIENT_H
+#ifndef __SCTPCLIENT_H_
+#define __SCTPCLIENT_H_
 
-#include "inet/common/INETDefs.h"
-#include "inet/transportlayer/contract/sctp/SCTPSocket.h"
-#include "inet/common/lifecycle/ILifecycle.h"
-#include "inet/common/lifecycle/LifecycleOperation.h"
-
-namespace inet {
-
-namespace sctp {
+#include "INETDefs.h"
+#include "SCTPSocket.h"
+#include "ILifecycle.h"
+#include "LifecycleOperation.h"
 
 class SCTPAssociation;
-
-} // namespace sctp
 
 /**
  * Implements the SCTPClient simple module. See the NED file for more info.
  */
 class INET_API SCTPClient : public cSimpleModule, public SCTPSocket::CallbackInterface, public ILifecycle
 {
-  protected:
-    struct PathStatus
-    {
-        L3Address pid;
-        bool active;
-        bool primaryPath;
-    };
-    typedef std::map<L3Address, PathStatus> SCTPPathStatus;
+    protected:
+        SCTPSocket socket;
+        SCTPAssociation* assoc;
+        // statistics
+        int32 numSessions;
+        int32 numBroken;
+        uint64 packetsSent;
+        uint64 packetsRcvd;
+        uint64 bytesSent;
+        uint64 echoedBytesSent;
+        uint64 bytesRcvd;
+        uint64 numRequestsToSend; // requests to send in this session
+        uint64 numPacketsToReceive;
+        uint32 numBytes;
+        int64 bufferSize;
+        int32 queueSize;
+        uint32 inStreams;
+        uint32 outStreams;
 
-    // parameters: see the corresponding NED variables
-    std::map<unsigned int, unsigned int> streamRequestLengthMap;
-    std::map<unsigned int, unsigned int> streamRequestRatioMap;
-    std::map<unsigned int, unsigned int> streamRequestRatioSendMap;
-    int queueSize;
-    unsigned int outStreams;
-    unsigned int inStreams;
-    bool echo;
-    bool ordered;
-    bool finishEndsSimulation;
+        static simsignal_t sentPkSignal;
+        static simsignal_t rcvdPkSignal;
+        static simsignal_t echoedPkSignal;
 
-    // state
-    SCTPSocket socket;
-    SCTPPathStatus sctpPathStatus;
-    cMessage *timeMsg;
-    cMessage *stopTimer;
-    cMessage *primaryChangeTimer;
-    int64 bufferSize;
-    bool timer;
-    bool sendAllowed;
+        bool ordered;
+        bool sendAllowed;
+        bool timer;
+        bool finishEndsSimulation;
+        bool echo;
+        cMessage* timeMsg;
+        cMessage* stopTimer;
+        cMessage* primaryChangeTimer;
 
-    // statistics
-    unsigned long int packetsSent;
-    unsigned long int packetsRcvd;
-    unsigned long int bytesSent;
-    unsigned long int echoedBytesSent;
-    unsigned long int bytesRcvd;
-    unsigned long int numRequestsToSend;    // requests to send in this session
-    unsigned long int numPacketsToReceive;
-    int numSessions;
-    int numBroken;
-    int chunksAbandoned;
-    static simsignal_t sentPkSignal;
-    static simsignal_t rcvdPkSignal;
-    static simsignal_t echoedPkSignal;
+        int32 chunksAbandoned;
+        std::map<uint32,uint32> streamRequestLengthMap;
+        std::map<uint32,uint32> streamRequestRatioMap;
+        std::map<uint32,uint32> streamRequestRatioSendMap;
 
-  protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
-    void initialize(int stage) override;
-    void handleMessage(cMessage *msg) override;
-    void finish() override;
+        /** Utility: sends a request to the server */
+        void sendRequest(bool last = true);
 
-    void connect();
-    void close();
-    void setStatusString(const char *s);
-    void handleTimer(cMessage *msg);
+    public:
+        SCTPClient();
+        virtual ~SCTPClient();
+        struct pathStatus
+        {
+            bool active;
+            bool primaryPath;
+            IPvXAddress  pid;
+        };
 
-    /* SCTPSocket::CallbackInterface callback methods */
-    void socketEstablished(int connId, void *yourPtr, unsigned long int buffer) override;    // TODO: needs a better name
-    void socketDataArrived(int connId, void *yourPtr, cPacket *msg, bool urgent) override;    // TODO: needs a better name
-    void socketDataNotificationArrived(int connId, void *yourPtr, cPacket *msg) override;
-    void socketPeerClosed(int connId, void *yourPtr) override;
-    void socketClosed(int connId, void *yourPtr) override;
-    void socketFailure(int connId, void *yourPtr, int code) override;
-    void socketStatusArrived(int connId, void *yourPtr, SCTPStatusInfo *status) override;
+        typedef std::map<IPvXAddress,pathStatus> SCTPPathStatus;
+        SCTPPathStatus sctpPathStatus;
 
-    void setPrimaryPath(const char *addr);
-    void sendRequestArrived() override;
-    void sendQueueRequest();
-    void shutdownReceivedArrived(int connId) override;
-    void sendqueueAbatedArrived(int connId, unsigned long int buffer) override;
-    void msgAbandonedArrived(int assocId) override;
-    void sendStreamResetNotification();
-    void sendRequest(bool last = true);
+        virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback)
+        { Enter_Method_Silent(); throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName()); return true; }
 
-    virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) override
-    { Enter_Method_Silent(); throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName()); return true; }
+    protected:
+        virtual int numInitStages() const { return 4; }
 
-  public:
-    SCTPClient();
-    virtual ~SCTPClient();
+        /**
+         * Initialization.
+         */
+        void initialize(int stage);
+
+        /**
+         * For self-messages it invokes handleTimer(); messages arriving from SCTP
+         * will get dispatched to the socketXXX() functions.
+         */
+        void handleMessage(cMessage *msg);
+
+        /**
+         * Records basic statistics: numSessions, packetsSent, packetsRcvd,
+         * bytesSent, bytesRcvd. Redefine to record different or more statistics
+         * at the end of the simulation.
+         */
+        void finish();
+
+        /** @name Utility functions */
+        //@{
+        /** Issues an active OPEN to the address/port given as module parameters */
+        void connect();
+
+        /** Issues CLOSE command */
+        void close();
+
+        /** Sends a GenericAppMsg of the given length */
+        //virtual void sendPacket(int32 numBytes, bool serverClose=false);
+
+        /** When running under GUI, it displays the given string next to the icon */
+        void setStatusString(const char *s);
+        //@}
+
+        /** Invoked from handleMessage(). Should be redefined to handle self-messages. */
+        void handleTimer(cMessage *msg);
+
+        /** @name SCTPSocket::CallbackInterface callback methods */
+        //@{
+
+        /** Does nothing but update statistics/status. Redefine to perform or schedule first sending. */
+        void socketEstablished(int32 connId, void *yourPtr, uint64 buffer);
+
+        /**
+         * Does nothing but update statistics/status. Redefine to perform or schedule next sending.
+         * Beware: this funcion deletes the incoming message, which might not be what you want.
+         */
+        void socketDataArrived(int32 connId, void *yourPtr, cPacket *msg, bool urgent);
+
+        void socketDataNotificationArrived(int32 connId, void *yourPtr, cPacket *msg);
+
+        /** Since remote SCTP closed, invokes close(). Redefine if you want to do something else. */
+        void socketPeerClosed(int32 connId, void *yourPtr);
+
+        /** Does nothing but update statistics/status. Redefine if you want to do something else, such as opening a new connection. */
+        void socketClosed(int32 connId, void *yourPtr);
+
+        /** Does nothing but update statistics/status. Redefine if you want to try reconnecting after a delay. */
+        void socketFailure(int32 connId, void *yourPtr, int32 code);
+
+        /** Redefine to handle incoming SCTPStatusInfo. */
+        void socketStatusArrived(int32 connId, void *yourPtr, SCTPStatusInfo *status);
+        //@}
+
+        void setAssociation(SCTPAssociation *_assoc) {assoc = _assoc;};
+        void setPrimaryPath(const char* addr);
+        void sendRequestArrived();
+        void sendQueueRequest();
+        void shutdownReceivedArrived(int32 connId);
+        void sendqueueFullArrived(int32 connId);
+        void sendqueueAbatedArrived(int32 connId, uint64 buffer);
+        void addressAddedArrived(int32 assocId, IPvXAddress remoteAddr);
+        void msgAbandonedArrived(int32 assocId);
+        void sendStreamResetNotification();
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_SCTPCLIENT_H
+#endif
 

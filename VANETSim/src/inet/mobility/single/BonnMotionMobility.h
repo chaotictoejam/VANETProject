@@ -15,15 +15,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BONNMOTIONMOBILITY_H
-#define __INET_BONNMOTIONMOBILITY_H
+#ifndef BONN_MOTION_MOBILITY_H
+#define BONN_MOTION_MOBILITY_H
 
-#include "inet/common/INETDefs.h"
+#include "INETDefs.h"
 
-#include "inet/mobility/base/LineSegmentsMobilityBase.h"
-#include "inet/mobility/single/BonnMotionFileCache.h"
+#include "LineSegmentsMobilityBase.h"
+#include "BonnMotionFileCache.h"
 
-namespace inet {
 
 /**
  * @brief Uses the BonnMotion native file format. See NED file for more info.
@@ -38,34 +37,26 @@ class INET_API BonnMotionMobility : public LineSegmentsMobilityBase
     bool is3D;
     const BonnMotionFile::Line *lines;
     int currentLine;
-    double maxSpeed; // the possible maximum speed at any future time
 
   protected:
-    virtual int numInitStages() const override { return NUM_INIT_STAGES; }
+    virtual int numInitStages() const { return 3; }
 
     /** @brief Initializes mobility model parameters. */
-    virtual void initialize(int stage) override;
+    virtual void initialize(int stage);
 
     /** @brief Initializes the position according to the mobility model. */
-    virtual void setInitialPosition() override;
+    virtual void setInitialPosition();
 
     /** @brief Overridden from LineSegmentsMobilityBase. */
-    virtual void setTargetPosition() override;
+    virtual void setTargetPosition();
 
     /** @brief Overridden from LineSegmentsMobilityBase. */
-    virtual void move() override;
-
-    virtual void computeMaxSpeed();
+    virtual void move();
 
   public:
     BonnMotionMobility();
 
     virtual ~BonnMotionMobility();
-
-    virtual double getMaxSpeed() const override { return maxSpeed; }
 };
 
-} // namespace inet
-
-#endif // ifndef __INET_BONNMOTIONMOBILITY_H
-
+#endif

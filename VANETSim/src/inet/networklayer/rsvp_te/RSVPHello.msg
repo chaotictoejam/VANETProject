@@ -15,10 +15,9 @@
 
 
 cplusplus {{
-#include "inet/networklayer/rsvp_te/RSVPPacket.h"
+#include "RSVPPacket.h"
 }}
 
-namespace inet;
 
 class RSVPMessage;
 
