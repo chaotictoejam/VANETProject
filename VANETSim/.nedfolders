@@ -2,8 +2,8 @@ src
 simulations
 -inet.transportlayer.tcp_lwip
 -inet.transportlayer.tcp_nsc
--inet.examples.emulation
 -inet.applications.voipstream
--inet.examples.voipstream
--inet.linklayer.ext
+-inet.examples.emulation
 -inet.underTest.hip
+-inet.linklayer.ext
+-inet.examples.voipstream

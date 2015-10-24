@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for inet
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -o inet -O out -Xnode/xmipv6 -I.. -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH
+#  opp_makemake -f --deep -o inet -O out -Xnode/xmipv6 -I.. -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6
 #
 
 # Name of target to be created (-o option)
@@ -143,6 +143,7 @@ INCLUDE_PATH = \
     -Inetworklayer/rsvp_te \
     -Inetworklayer/ted \
     -Inetworklayer/wiseroute \
+    -Inetworklayer/xmipv6 \
     -Inode \
     -Inode/aodv \
     -Inode/bgp \
@@ -639,6 +640,10 @@ OBJS = \
     $O/networklayer/ted/LinkStateRouting.o \
     $O/networklayer/ted/TED.o \
     $O/networklayer/wiseroute/WiseRoute.o \
+    $O/networklayer/xmipv6/BindingCache.o \
+    $O/networklayer/xmipv6/BindingUpdateList.o \
+    $O/networklayer/xmipv6/MobilityHeader.o \
+    $O/networklayer/xmipv6/xMIPv6.o \
     $O/physicallayer/analogmodel/bitlevel/DimensionalSignalAnalogModel.o \
     $O/physicallayer/analogmodel/bitlevel/LayeredDimensionalAnalogModel.o \
     $O/physicallayer/analogmodel/bitlevel/LayeredScalarAnalogModel.o \
@@ -1157,6 +1162,7 @@ OBJS = \
     $O/networklayer/ted/LinkStatePacket_m.o \
     $O/networklayer/ted/TED_m.o \
     $O/networklayer/wiseroute/WiseRouteDatagram_m.o \
+    $O/networklayer/xmipv6/MobilityHeader_m.o \
     $O/physicallayer/apskradio/bitlevel/APSKPhyFrame_m.o \
     $O/physicallayer/contract/packetlevel/RadioControlInfo_m.o \
     $O/physicallayer/ieee80211/bitlevel/Ieee80211OFDMPLCPFrame_m.o \
@@ -1281,6 +1287,7 @@ MSGFILES = \
     networklayer/ted/LinkStatePacket.msg \
     networklayer/ted/TED.msg \
     networklayer/wiseroute/WiseRouteDatagram.msg \
+    networklayer/xmipv6/MobilityHeader.msg \
     physicallayer/apskradio/bitlevel/APSKPhyFrame.msg \
     physicallayer/contract/packetlevel/RadioControlInfo.msg \
     physicallayer/ieee80211/bitlevel/Ieee80211OFDMPLCPFrame.msg \
@@ -1395,7 +1402,8 @@ COPTS = $(CFLAGS) \
     -DWITH_LMAC \
     -DWITH_CSMA \
     -DWITH_XMAC \
-    -DWITH_80211MESH $(INCLUDE_PATH) -I$(OMNETPP_INCL_DIR)
+    -DWITH_80211MESH \
+    -DWITH_xMIPv6 $(INCLUDE_PATH) -I$(OMNETPP_INCL_DIR)
 MSGCOPTS = $(INCLUDE_PATH)
 
 # we want to recompile everything if COPTS changes,
@@ -1613,6 +1621,7 @@ clean:
 	$(Q)-rm -f networklayer/rsvp_te/*_m.cc networklayer/rsvp_te/*_m.h
 	$(Q)-rm -f networklayer/ted/*_m.cc networklayer/ted/*_m.h
 	$(Q)-rm -f networklayer/wiseroute/*_m.cc networklayer/wiseroute/*_m.h
+	$(Q)-rm -f networklayer/xmipv6/*_m.cc networklayer/xmipv6/*_m.h
 	$(Q)-rm -f node/*_m.cc node/*_m.h
 	$(Q)-rm -f node/aodv/*_m.cc node/aodv/*_m.h
 	$(Q)-rm -f node/bgp/*_m.cc node/bgp/*_m.h
@@ -1752,7 +1761,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc applications/*.cc applications/base/*.cc applications/contract/*.cc applications/dhcp/*.cc applications/ethernet/*.cc applications/generic/*.cc applications/httptools/*.cc applications/httptools/browser/*.cc applications/httptools/common/*.cc applications/httptools/configurator/*.cc applications/httptools/server/*.cc applications/netperfmeter/*.cc applications/pingapp/*.cc applications/rtpapp/*.cc applications/sctpapp/*.cc applications/tcpapp/*.cc applications/trafgen/*.cc applications/tunapp/*.cc applications/udpapp/*.cc applications/voip/*.cc common/*.cc common/figures/*.cc common/geometry/*.cc common/geometry/base/*.cc common/geometry/common/*.cc common/geometry/container/*.cc common/geometry/object/*.cc common/geometry/shape/*.cc common/geometry/shape/polyhedron/*.cc common/lifecycle/*.cc common/mapping/*.cc common/misc/*.cc common/packet/*.cc common/queue/*.cc common/scenario/*.cc common/serializer/*.cc common/serializer/headers/*.cc common/serializer/headerserializers/*.cc common/serializer/headerserializers/arp/*.cc common/serializer/headerserializers/ethernet/*.cc common/serializer/headerserializers/ieee80211/*.cc common/serializer/headerserializers/ieee80211/headers/*.cc common/serializer/ipv4/*.cc common/serializer/ipv4/headers/*.cc common/serializer/ipv6/*.cc common/serializer/ipv6/headers/*.cc common/serializer/sctp/*.cc common/serializer/sctp/headers/*.cc common/serializer/tcp/*.cc common/serializer/tcp/headers/*.cc common/serializer/udp/*.cc common/serializer/udp/headers/*.cc environment/*.cc environment/common/*.cc environment/contract/*.cc environment/objectcache/*.cc linklayer/*.cc linklayer/base/*.cc linklayer/bmac/*.cc linklayer/channels/*.cc linklayer/common/*.cc linklayer/configurator/*.cc linklayer/contract/*.cc linklayer/csma/*.cc linklayer/ethernet/*.cc linklayer/ethernet/switch/*.cc linklayer/ideal/*.cc linklayer/ieee80211/*.cc linklayer/ieee80211/mac/*.cc linklayer/ieee80211/mgmt/*.cc linklayer/ieee80211/mgmt/wpa2/*.cc linklayer/ieee80211mesh/*.cc linklayer/ieee80211mesh/ethernet/*.cc linklayer/ieee80211mesh/hwmp/*.cc linklayer/ieee80211mesh/locator/*.cc linklayer/ieee80211mesh/mgmt/*.cc linklayer/ieee80211mesh/nodes/*.cc linklayer/ieee802154/*.cc linklayer/ieee8021d/*.cc linklayer/ieee8021d/common/*.cc linklayer/ieee8021d/relay/*.cc linklayer/ieee8021d/rstp/*.cc linklayer/ieee8021d/stp/*.cc linklayer/ieee8021d/tester/*.cc linklayer/lmac/*.cc linklayer/loopback/*.cc linklayer/ppp/*.cc linklayer/tun/*.cc linklayer/xmac/*.cc mobility/*.cc mobility/base/*.cc mobility/contract/*.cc mobility/group/*.cc mobility/single/*.cc mobility/static/*.cc networklayer/*.cc networklayer/arp/*.cc networklayer/arp/generic/*.cc networklayer/arp/ipv4/*.cc networklayer/base/*.cc networklayer/common/*.cc networklayer/configurator/*.cc networklayer/configurator/base/*.cc networklayer/configurator/contract/*.cc networklayer/configurator/generic/*.cc networklayer/configurator/ipv4/*.cc networklayer/configurator/ipv6/*.cc networklayer/contract/*.cc networklayer/contract/generic/*.cc networklayer/contract/ipv4/*.cc networklayer/contract/ipv6/*.cc networklayer/diffserv/*.cc networklayer/flood/*.cc networklayer/generic/*.cc networklayer/icmpv6/*.cc networklayer/internetcloud/*.cc networklayer/ipv4/*.cc networklayer/ipv6/*.cc networklayer/ipv6tunneling/*.cc networklayer/ldp/*.cc networklayer/mpls/*.cc networklayer/multi/*.cc networklayer/probabilistic/*.cc networklayer/rsvp_te/*.cc networklayer/ted/*.cc networklayer/wiseroute/*.cc node/*.cc node/aodv/*.cc node/bgp/*.cc node/dymo/*.cc node/ethernet/*.cc node/gpsr/*.cc node/httptools/*.cc node/inet/*.cc node/internetcloud/*.cc node/ipv6/*.cc node/mpls/*.cc node/ospfv2/*.cc node/rip/*.cc node/rtp/*.cc node/wireless/*.cc physicallayer/*.cc physicallayer/analogmodel/*.cc physicallayer/analogmodel/bitlevel/*.cc physicallayer/analogmodel/packetlevel/*.cc physicallayer/antenna/*.cc physicallayer/apskradio/*.cc physicallayer/apskradio/bitlevel/*.cc physicallayer/apskradio/bitlevel/errormodel/*.cc physicallayer/apskradio/packetlevel/*.cc physicallayer/apskradio/packetlevel/errormodel/*.cc physicallayer/backgroundnoise/*.cc physicallayer/base/*.cc physicallayer/base/bitlevel/*.cc physicallayer/base/packetlevel/*.cc physicallayer/common/*.cc physicallayer/common/bitlevel/*.cc physicallayer/common/packetlevel/*.cc physicallayer/communicationcache/*.cc physicallayer/contract/*.cc physicallayer/contract/bitlevel/*.cc physicallayer/contract/packetlevel/*.cc physicallayer/energyconsumer/*.cc physicallayer/errormodel/*.cc physicallayer/errormodel/bitlevel/*.cc physicallayer/errormodel/packetlevel/*.cc physicallayer/idealradio/*.cc physicallayer/ieee80211/*.cc physicallayer/ieee80211/bitlevel/*.cc physicallayer/ieee80211/bitlevel/errormodel/*.cc physicallayer/ieee80211/mode/*.cc physicallayer/ieee80211/packetlevel/*.cc physicallayer/ieee80211/packetlevel/errormodel/*.cc physicallayer/ieee802154/*.cc physicallayer/ieee802154/bitlevel/*.cc physicallayer/ieee802154/packetlevel/*.cc physicallayer/modulation/*.cc physicallayer/neighborcache/*.cc physicallayer/obstacleloss/*.cc physicallayer/pathloss/*.cc physicallayer/propagation/*.cc power/*.cc power/base/*.cc power/consumer/*.cc power/contract/*.cc power/generator/*.cc power/storage/*.cc routing/*.cc routing/aodv/*.cc routing/bgpv4/*.cc routing/bgpv4/BGPMessage/*.cc routing/contract/*.cc routing/dymo/*.cc routing/extras/*.cc routing/extras/PASER/*.cc routing/extras/PASER/IPv4_ADAPTED/*.cc routing/extras/PASER/generic/*.cc routing/extras/PASER/paser_buffer/*.cc routing/extras/PASER/paser_configuration/*.cc routing/extras/PASER/paser_logic/*.cc routing/extras/PASER/paser_logic/cryptography/*.cc routing/extras/PASER/paser_logic/message_processing/*.cc routing/extras/PASER/paser_logic/route_discovery/*.cc routing/extras/PASER/paser_logic/route_maintenance/*.cc routing/extras/PASER/paser_message_structure/*.cc routing/extras/PASER/paser_socket/*.cc routing/extras/PASER/paser_tables/*.cc routing/extras/PASER/paser_timer_management/*.cc routing/extras/PASER/simple_kdc/*.cc routing/extras/PASER/simple_kdc/kdc_message/*.cc routing/extras/aodv-uu/*.cc routing/extras/aodv-uu/aodv-uu/*.cc routing/extras/base/*.cc routing/extras/batman/*.cc routing/extras/batman/batmand/*.cc routing/extras/batman/batmand/orig/*.cc routing/extras/dsdv/*.cc routing/extras/dsr/*.cc routing/extras/dsr/dsr-uu/*.cc routing/extras/dymo/*.cc routing/extras/dymo/dymoum/*.cc routing/extras/dymo_fau/*.cc routing/extras/olsr/*.cc routing/extras/saors/*.cc routing/extras/saors/SaorsManager/*.cc routing/extras/saors/SimBetTS/*.cc routing/extras/saors/base/*.cc routing/extras/saors/dt_dymo/*.cc routing/extras/saors/dtrouting/*.cc routing/extras/saors/ep_dymo/*.cc routing/extras/saors/r_dymo/*.cc routing/extras/saors/sampho/*.cc routing/gpsr/*.cc routing/ospfv2/*.cc routing/ospfv2/interface/*.cc routing/ospfv2/messagehandler/*.cc routing/ospfv2/neighbor/*.cc routing/ospfv2/router/*.cc routing/pim/*.cc routing/pim/modes/*.cc routing/pim/tables/*.cc routing/rip/*.cc securityModule/*.cc securityModule/message/*.cc transportlayer/*.cc transportlayer/base/*.cc transportlayer/contract/*.cc transportlayer/contract/sctp/*.cc transportlayer/contract/tcp/*.cc transportlayer/contract/udp/*.cc transportlayer/rtp/*.cc transportlayer/rtp/profiles/*.cc transportlayer/rtp/profiles/avprofile/*.cc transportlayer/sctp/*.cc transportlayer/tcp/*.cc transportlayer/tcp/flavours/*.cc transportlayer/tcp/queues/*.cc transportlayer/tcp_common/*.cc transportlayer/udp/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc applications/*.cc applications/base/*.cc applications/contract/*.cc applications/dhcp/*.cc applications/ethernet/*.cc applications/generic/*.cc applications/httptools/*.cc applications/httptools/browser/*.cc applications/httptools/common/*.cc applications/httptools/configurator/*.cc applications/httptools/server/*.cc applications/netperfmeter/*.cc applications/pingapp/*.cc applications/rtpapp/*.cc applications/sctpapp/*.cc applications/tcpapp/*.cc applications/trafgen/*.cc applications/tunapp/*.cc applications/udpapp/*.cc applications/voip/*.cc common/*.cc common/figures/*.cc common/geometry/*.cc common/geometry/base/*.cc common/geometry/common/*.cc common/geometry/container/*.cc common/geometry/object/*.cc common/geometry/shape/*.cc common/geometry/shape/polyhedron/*.cc common/lifecycle/*.cc common/mapping/*.cc common/misc/*.cc common/packet/*.cc common/queue/*.cc common/scenario/*.cc common/serializer/*.cc common/serializer/headers/*.cc common/serializer/headerserializers/*.cc common/serializer/headerserializers/arp/*.cc common/serializer/headerserializers/ethernet/*.cc common/serializer/headerserializers/ieee80211/*.cc common/serializer/headerserializers/ieee80211/headers/*.cc common/serializer/ipv4/*.cc common/serializer/ipv4/headers/*.cc common/serializer/ipv6/*.cc common/serializer/ipv6/headers/*.cc common/serializer/sctp/*.cc common/serializer/sctp/headers/*.cc common/serializer/tcp/*.cc common/serializer/tcp/headers/*.cc common/serializer/udp/*.cc common/serializer/udp/headers/*.cc environment/*.cc environment/common/*.cc environment/contract/*.cc environment/objectcache/*.cc linklayer/*.cc linklayer/base/*.cc linklayer/bmac/*.cc linklayer/channels/*.cc linklayer/common/*.cc linklayer/configurator/*.cc linklayer/contract/*.cc linklayer/csma/*.cc linklayer/ethernet/*.cc linklayer/ethernet/switch/*.cc linklayer/ideal/*.cc linklayer/ieee80211/*.cc linklayer/ieee80211/mac/*.cc linklayer/ieee80211/mgmt/*.cc linklayer/ieee80211/mgmt/wpa2/*.cc linklayer/ieee80211mesh/*.cc linklayer/ieee80211mesh/ethernet/*.cc linklayer/ieee80211mesh/hwmp/*.cc linklayer/ieee80211mesh/locator/*.cc linklayer/ieee80211mesh/mgmt/*.cc linklayer/ieee80211mesh/nodes/*.cc linklayer/ieee802154/*.cc linklayer/ieee8021d/*.cc linklayer/ieee8021d/common/*.cc linklayer/ieee8021d/relay/*.cc linklayer/ieee8021d/rstp/*.cc linklayer/ieee8021d/stp/*.cc linklayer/ieee8021d/tester/*.cc linklayer/lmac/*.cc linklayer/loopback/*.cc linklayer/ppp/*.cc linklayer/tun/*.cc linklayer/xmac/*.cc mobility/*.cc mobility/base/*.cc mobility/contract/*.cc mobility/group/*.cc mobility/single/*.cc mobility/static/*.cc networklayer/*.cc networklayer/arp/*.cc networklayer/arp/generic/*.cc networklayer/arp/ipv4/*.cc networklayer/base/*.cc networklayer/common/*.cc networklayer/configurator/*.cc networklayer/configurator/base/*.cc networklayer/configurator/contract/*.cc networklayer/configurator/generic/*.cc networklayer/configurator/ipv4/*.cc networklayer/configurator/ipv6/*.cc networklayer/contract/*.cc networklayer/contract/generic/*.cc networklayer/contract/ipv4/*.cc networklayer/contract/ipv6/*.cc networklayer/diffserv/*.cc networklayer/flood/*.cc networklayer/generic/*.cc networklayer/icmpv6/*.cc networklayer/internetcloud/*.cc networklayer/ipv4/*.cc networklayer/ipv6/*.cc networklayer/ipv6tunneling/*.cc networklayer/ldp/*.cc networklayer/mpls/*.cc networklayer/multi/*.cc networklayer/probabilistic/*.cc networklayer/rsvp_te/*.cc networklayer/ted/*.cc networklayer/wiseroute/*.cc networklayer/xmipv6/*.cc node/*.cc node/aodv/*.cc node/bgp/*.cc node/dymo/*.cc node/ethernet/*.cc node/gpsr/*.cc node/httptools/*.cc node/inet/*.cc node/internetcloud/*.cc node/ipv6/*.cc node/mpls/*.cc node/ospfv2/*.cc node/rip/*.cc node/rtp/*.cc node/wireless/*.cc physicallayer/*.cc physicallayer/analogmodel/*.cc physicallayer/analogmodel/bitlevel/*.cc physicallayer/analogmodel/packetlevel/*.cc physicallayer/antenna/*.cc physicallayer/apskradio/*.cc physicallayer/apskradio/bitlevel/*.cc physicallayer/apskradio/bitlevel/errormodel/*.cc physicallayer/apskradio/packetlevel/*.cc physicallayer/apskradio/packetlevel/errormodel/*.cc physicallayer/backgroundnoise/*.cc physicallayer/base/*.cc physicallayer/base/bitlevel/*.cc physicallayer/base/packetlevel/*.cc physicallayer/common/*.cc physicallayer/common/bitlevel/*.cc physicallayer/common/packetlevel/*.cc physicallayer/communicationcache/*.cc physicallayer/contract/*.cc physicallayer/contract/bitlevel/*.cc physicallayer/contract/packetlevel/*.cc physicallayer/energyconsumer/*.cc physicallayer/errormodel/*.cc physicallayer/errormodel/bitlevel/*.cc physicallayer/errormodel/packetlevel/*.cc physicallayer/idealradio/*.cc physicallayer/ieee80211/*.cc physicallayer/ieee80211/bitlevel/*.cc physicallayer/ieee80211/bitlevel/errormodel/*.cc physicallayer/ieee80211/mode/*.cc physicallayer/ieee80211/packetlevel/*.cc physicallayer/ieee80211/packetlevel/errormodel/*.cc physicallayer/ieee802154/*.cc physicallayer/ieee802154/bitlevel/*.cc physicallayer/ieee802154/packetlevel/*.cc physicallayer/modulation/*.cc physicallayer/neighborcache/*.cc physicallayer/obstacleloss/*.cc physicallayer/pathloss/*.cc physicallayer/propagation/*.cc power/*.cc power/base/*.cc power/consumer/*.cc power/contract/*.cc power/generator/*.cc power/storage/*.cc routing/*.cc routing/aodv/*.cc routing/bgpv4/*.cc routing/bgpv4/BGPMessage/*.cc routing/contract/*.cc routing/dymo/*.cc routing/extras/*.cc routing/extras/PASER/*.cc routing/extras/PASER/IPv4_ADAPTED/*.cc routing/extras/PASER/generic/*.cc routing/extras/PASER/paser_buffer/*.cc routing/extras/PASER/paser_configuration/*.cc routing/extras/PASER/paser_logic/*.cc routing/extras/PASER/paser_logic/cryptography/*.cc routing/extras/PASER/paser_logic/message_processing/*.cc routing/extras/PASER/paser_logic/route_discovery/*.cc routing/extras/PASER/paser_logic/route_maintenance/*.cc routing/extras/PASER/paser_message_structure/*.cc routing/extras/PASER/paser_socket/*.cc routing/extras/PASER/paser_tables/*.cc routing/extras/PASER/paser_timer_management/*.cc routing/extras/PASER/simple_kdc/*.cc routing/extras/PASER/simple_kdc/kdc_message/*.cc routing/extras/aodv-uu/*.cc routing/extras/aodv-uu/aodv-uu/*.cc routing/extras/base/*.cc routing/extras/batman/*.cc routing/extras/batman/batmand/*.cc routing/extras/batman/batmand/orig/*.cc routing/extras/dsdv/*.cc routing/extras/dsr/*.cc routing/extras/dsr/dsr-uu/*.cc routing/extras/dymo/*.cc routing/extras/dymo/dymoum/*.cc routing/extras/dymo_fau/*.cc routing/extras/olsr/*.cc routing/extras/saors/*.cc routing/extras/saors/SaorsManager/*.cc routing/extras/saors/SimBetTS/*.cc routing/extras/saors/base/*.cc routing/extras/saors/dt_dymo/*.cc routing/extras/saors/dtrouting/*.cc routing/extras/saors/ep_dymo/*.cc routing/extras/saors/r_dymo/*.cc routing/extras/saors/sampho/*.cc routing/gpsr/*.cc routing/ospfv2/*.cc routing/ospfv2/interface/*.cc routing/ospfv2/messagehandler/*.cc routing/ospfv2/neighbor/*.cc routing/ospfv2/router/*.cc routing/pim/*.cc routing/pim/modes/*.cc routing/pim/tables/*.cc routing/rip/*.cc securityModule/*.cc securityModule/message/*.cc transportlayer/*.cc transportlayer/base/*.cc transportlayer/contract/*.cc transportlayer/contract/sctp/*.cc transportlayer/contract/tcp/*.cc transportlayer/contract/udp/*.cc transportlayer/rtp/*.cc transportlayer/rtp/profiles/*.cc transportlayer/rtp/profiles/avprofile/*.cc transportlayer/sctp/*.cc transportlayer/tcp/*.cc transportlayer/tcp/flavours/*.cc transportlayer/tcp/queues/*.cc transportlayer/tcp_common/*.cc transportlayer/udp/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/applications/base/AddressModule.o: applications/base/AddressModule.cc \
@@ -6123,11 +6132,8 @@ $O/linklayer/ieee80211/mgmt/wpa2/SecurityIeee80211MgmtAdhoc.o: linklayer/ieee802
 	networklayer/contract/IRoutingTable.h \
 	networklayer/contract/ipv4/IPv4Address.h \
 	networklayer/contract/ipv6/IPv6Address.h \
-	networklayer/ipv4/IIPv4RoutingTable.h \
 	networklayer/ipv4/IPv4Datagram.h \
 	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
 	securityModule/Security.h \
 	securityModule/SecurityKeys.h \
 	securityModule/SecurityWPA2.h \
@@ -6167,11 +6173,8 @@ $O/linklayer/ieee80211/mgmt/wpa2/SecurityIeee80211MgmtBase.o: linklayer/ieee8021
 	networklayer/contract/IRoutingTable.h \
 	networklayer/contract/ipv4/IPv4Address.h \
 	networklayer/contract/ipv6/IPv6Address.h \
-	networklayer/ipv4/IIPv4RoutingTable.h \
 	networklayer/ipv4/IPv4Datagram.h \
 	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
 	securityModule/Security.h \
 	securityModule/SecurityKeys.h \
 	securityModule/SecurityWPA2.h \
@@ -6427,7 +6430,6 @@ $O/linklayer/ieee80211mesh/mgmt/Ieee80211Mesh.o: linklayer/ieee80211mesh/mgmt/Ie
 	linklayer/ieee80211/mgmt/Ieee80211MgmtBase.h \
 	linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h \
 	linklayer/ieee80211/mgmt/Ieee80211PassiveQueue.h \
-	linklayer/ieee80211/mgmt/Ieee80211Primitives_m.h \
 	linklayer/ieee80211mesh/locator/ILocator.h \
 	linklayer/ieee80211mesh/locator/locatorPkt_m.h \
 	linklayer/ieee80211mesh/mgmt/Ieee80211Mesh.h \
@@ -6436,7 +6438,6 @@ $O/linklayer/ieee80211mesh/mgmt/Ieee80211Mesh.o: linklayer/ieee80211mesh/mgmt/Ie
 	mobility/contract/IMobility.h \
 	networklayer/common/IPProtocolId_m.h \
 	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTable.h \
 	networklayer/common/InterfaceToken.h \
 	networklayer/common/L3Address.h \
 	networklayer/common/ModuleIdAddress.h \
@@ -6502,9 +6503,7 @@ $O/linklayer/ieee80211mesh/mgmt/Ieee80211Mesh.o: linklayer/ieee80211mesh/mgmt/Ie
 	routing/extras/olsr/OLSRpkt_m.h \
 	securityModule/Security.h \
 	securityModule/SecurityKeys.h \
-	securityModule/message/NewMsgWithMacAddr_m.h \
-	securityModule/message/securityPkt_m.h \
-	transportlayer/udp/UDPPacket_m.h
+	securityModule/message/securityPkt_m.h
 $O/linklayer/ieee80211mesh/mgmt/Ieee80211MeshLwmpls.o: linklayer/ieee80211mesh/mgmt/Ieee80211MeshLwmpls.cc \
 	common/BitVector.h \
 	common/Compat.h \
@@ -6550,7 +6549,6 @@ $O/linklayer/ieee80211mesh/mgmt/Ieee80211MeshLwmpls.o: linklayer/ieee80211mesh/m
 	linklayer/ieee80211/mgmt/Ieee80211MgmtBase.h \
 	linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h \
 	linklayer/ieee80211/mgmt/Ieee80211PassiveQueue.h \
-	linklayer/ieee80211/mgmt/Ieee80211Primitives_m.h \
 	linklayer/ieee80211mesh/locator/ILocator.h \
 	linklayer/ieee80211mesh/mgmt/Ieee80211Mesh.h \
 	linklayer/ieee80211mesh/mgmt/LWMPLSPacket_m.h \
@@ -6559,7 +6557,6 @@ $O/linklayer/ieee80211mesh/mgmt/Ieee80211MeshLwmpls.o: linklayer/ieee80211mesh/m
 	networklayer/arp/ipv4/ARPPacket_m.h \
 	networklayer/common/IPProtocolId_m.h \
 	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTable.h \
 	networklayer/common/InterfaceToken.h \
 	networklayer/common/L3Address.h \
 	networklayer/common/ModuleIdAddress.h \
@@ -6634,9 +6631,7 @@ $O/linklayer/ieee80211mesh/mgmt/Ieee80211MeshLwmpls.o: linklayer/ieee80211mesh/m
 	routing/ospfv2/OSPFPacket_m.h \
 	securityModule/Security.h \
 	securityModule/SecurityKeys.h \
-	securityModule/message/NewMsgWithMacAddr_m.h \
-	securityModule/message/securityPkt_m.h \
-	transportlayer/udp/UDPPacket_m.h
+	securityModule/message/securityPkt_m.h
 $O/linklayer/ieee80211mesh/mgmt/LWMPLSPacket_m.o: linklayer/ieee80211mesh/mgmt/LWMPLSPacket_m.cc \
 	common/Compat.h \
 	common/INETDefs.h \
@@ -8907,6 +8902,8 @@ $O/networklayer/icmpv6/IPv6NeighbourDiscovery.o: networklayer/icmpv6/IPv6Neighbo
 	common/InitStages.h \
 	common/ModuleAccess.h \
 	common/NotifierConsts.h \
+	common/TLVOption.h \
+	common/TLVOption_m.h \
 	common/lifecycle/ILifecycle.h \
 	common/lifecycle/NodeStatus.h \
 	linklayer/common/MACAddress.h \
@@ -8932,9 +8929,16 @@ $O/networklayer/icmpv6/IPv6NeighbourDiscovery.o: networklayer/icmpv6/IPv6Neighbo
 	networklayer/icmpv6/IPv6NeighbourDiscovery.h \
 	networklayer/ipv6/IPv6Datagram.h \
 	networklayer/ipv6/IPv6Datagram_m.h \
+	networklayer/ipv6/IPv6ExtensionHeaders.h \
+	networklayer/ipv6/IPv6ExtensionHeaders_m.h \
 	networklayer/ipv6/IPv6InterfaceData.h \
 	networklayer/ipv6/IPv6Route.h \
-	networklayer/ipv6/IPv6RoutingTable.h
+	networklayer/ipv6/IPv6RoutingTable.h \
+	networklayer/ipv6tunneling/IPv6Tunneling.h \
+	networklayer/xmipv6/BindingUpdateList.h \
+	networklayer/xmipv6/MobilityHeader.h \
+	networklayer/xmipv6/MobilityHeader_m.h \
+	networklayer/xmipv6/xMIPv6.h
 $O/networklayer/internetcloud/CloudDelayerBase.o: networklayer/internetcloud/CloudDelayerBase.cc \
 	common/Compat.h \
 	common/INETDefs.h \
@@ -9447,7 +9451,9 @@ $O/networklayer/ipv6/IPv6.o: networklayer/ipv6/IPv6.cc \
 	networklayer/ipv6/IPv6InterfaceData.h \
 	networklayer/ipv6/IPv6Route.h \
 	networklayer/ipv6/IPv6RoutingTable.h \
-	networklayer/ipv6tunneling/IPv6Tunneling.h
+	networklayer/ipv6tunneling/IPv6Tunneling.h \
+	networklayer/xmipv6/MobilityHeader.h \
+	networklayer/xmipv6/MobilityHeader_m.h
 $O/networklayer/ipv6/IPv6Datagram.o: networklayer/ipv6/IPv6Datagram.cc \
 	common/Compat.h \
 	common/INETDefs.h \
@@ -9614,6 +9620,8 @@ $O/networklayer/ipv6tunneling/IPv6Tunneling.o: networklayer/ipv6tunneling/IPv6Tu
 	common/InitStages.h \
 	common/ModuleAccess.h \
 	common/NotifierConsts.h \
+	common/TLVOption.h \
+	common/TLVOption_m.h \
 	common/lifecycle/ILifecycle.h \
 	common/lifecycle/NodeStatus.h \
 	linklayer/common/MACAddress.h \
@@ -9634,10 +9642,16 @@ $O/networklayer/ipv6tunneling/IPv6Tunneling.o: networklayer/ipv6tunneling/IPv6Tu
 	networklayer/contract/ipv6/IPv6ControlInfo_m.h \
 	networklayer/ipv6/IPv6Datagram.h \
 	networklayer/ipv6/IPv6Datagram_m.h \
+	networklayer/ipv6/IPv6ExtensionHeaders.h \
+	networklayer/ipv6/IPv6ExtensionHeaders_m.h \
 	networklayer/ipv6/IPv6InterfaceData.h \
 	networklayer/ipv6/IPv6Route.h \
 	networklayer/ipv6/IPv6RoutingTable.h \
-	networklayer/ipv6tunneling/IPv6Tunneling.h
+	networklayer/ipv6tunneling/IPv6Tunneling.h \
+	networklayer/xmipv6/BindingUpdateList.h \
+	networklayer/xmipv6/MobilityHeader.h \
+	networklayer/xmipv6/MobilityHeader_m.h \
+	networklayer/xmipv6/xMIPv6.h
 $O/networklayer/ldp/LDP.o: networklayer/ldp/LDP.cc \
 	common/ByteArray.h \
 	common/ByteArray_m.h \
@@ -10203,6 +10217,109 @@ $O/networklayer/wiseroute/WiseRouteDatagram_m.o: networklayer/wiseroute/WiseRout
 	networklayer/contract/ipv4/IPv4Address.h \
 	networklayer/contract/ipv6/IPv6Address.h \
 	networklayer/wiseroute/WiseRouteDatagram_m.h
+$O/networklayer/xmipv6/BindingCache.o: networklayer/xmipv6/BindingCache.cc \
+	common/Compat.h \
+	common/INETDefs.h \
+	common/InitStages.h \
+	networklayer/contract/ipv6/IPv6Address.h \
+	networklayer/xmipv6/BindingCache.h
+$O/networklayer/xmipv6/BindingUpdateList.o: networklayer/xmipv6/BindingUpdateList.cc \
+	common/Compat.h \
+	common/INETDefs.h \
+	common/InitStages.h \
+	common/NotifierConsts.h \
+	linklayer/common/MACAddress.h \
+	networklayer/common/InterfaceEntry.h \
+	networklayer/common/InterfaceToken.h \
+	networklayer/common/L3Address.h \
+	networklayer/common/ModuleIdAddress.h \
+	networklayer/common/ModulePathAddress.h \
+	networklayer/contract/ipv4/IPv4Address.h \
+	networklayer/contract/ipv6/IPv6Address.h \
+	networklayer/ipv6/IPv6InterfaceData.h \
+	networklayer/xmipv6/BindingUpdateList.h
+$O/networklayer/xmipv6/MobilityHeader.o: networklayer/xmipv6/MobilityHeader.cc \
+	common/Compat.h \
+	common/INETDefs.h \
+	common/InitStages.h \
+	common/TLVOption.h \
+	common/TLVOption_m.h \
+	linklayer/common/MACAddress.h \
+	networklayer/common/IPProtocolId_m.h \
+	networklayer/common/L3Address.h \
+	networklayer/common/ModuleIdAddress.h \
+	networklayer/common/ModulePathAddress.h \
+	networklayer/contract/INetworkDatagram.h \
+	networklayer/contract/ipv4/IPv4Address.h \
+	networklayer/contract/ipv6/IPv6Address.h \
+	networklayer/ipv6/IPv6Datagram.h \
+	networklayer/ipv6/IPv6Datagram_m.h \
+	networklayer/ipv6/IPv6ExtensionHeaders.h \
+	networklayer/ipv6/IPv6ExtensionHeaders_m.h \
+	networklayer/xmipv6/MobilityHeader.h \
+	networklayer/xmipv6/MobilityHeader_m.h
+$O/networklayer/xmipv6/MobilityHeader_m.o: networklayer/xmipv6/MobilityHeader_m.cc \
+	common/Compat.h \
+	common/INETDefs.h \
+	common/InitStages.h \
+	common/TLVOption.h \
+	common/TLVOption_m.h \
+	linklayer/common/MACAddress.h \
+	networklayer/common/IPProtocolId_m.h \
+	networklayer/common/L3Address.h \
+	networklayer/common/ModuleIdAddress.h \
+	networklayer/common/ModulePathAddress.h \
+	networklayer/contract/INetworkDatagram.h \
+	networklayer/contract/ipv4/IPv4Address.h \
+	networklayer/contract/ipv6/IPv6Address.h \
+	networklayer/ipv6/IPv6Datagram.h \
+	networklayer/ipv6/IPv6Datagram_m.h \
+	networklayer/ipv6/IPv6ExtensionHeaders.h \
+	networklayer/ipv6/IPv6ExtensionHeaders_m.h \
+	networklayer/xmipv6/MobilityHeader_m.h
+$O/networklayer/xmipv6/xMIPv6.o: networklayer/xmipv6/xMIPv6.cc \
+	common/Compat.h \
+	common/INETDefs.h \
+	common/InitStages.h \
+	common/ModuleAccess.h \
+	common/NotifierConsts.h \
+	common/TLVOption.h \
+	common/TLVOption_m.h \
+	common/lifecycle/ILifecycle.h \
+	linklayer/common/MACAddress.h \
+	networklayer/common/IPProtocolId_m.h \
+	networklayer/common/InterfaceEntry.h \
+	networklayer/common/InterfaceToken.h \
+	networklayer/common/L3Address.h \
+	networklayer/common/L3AddressResolver.h \
+	networklayer/common/ModuleIdAddress.h \
+	networklayer/common/ModulePathAddress.h \
+	networklayer/contract/IInterfaceTable.h \
+	networklayer/contract/INetworkDatagram.h \
+	networklayer/contract/INetworkProtocolControlInfo.h \
+	networklayer/contract/IRoute.h \
+	networklayer/contract/IRoutingTable.h \
+	networklayer/contract/ipv4/IPv4Address.h \
+	networklayer/contract/ipv6/IPv6Address.h \
+	networklayer/contract/ipv6/IPv6ControlInfo.h \
+	networklayer/contract/ipv6/IPv6ControlInfo_m.h \
+	networklayer/icmpv6/ICMPv6Message_m.h \
+	networklayer/icmpv6/IPv6NDMessage_m.h \
+	networklayer/icmpv6/IPv6NeighbourCache.h \
+	networklayer/icmpv6/IPv6NeighbourDiscovery.h \
+	networklayer/ipv6/IPv6Datagram.h \
+	networklayer/ipv6/IPv6Datagram_m.h \
+	networklayer/ipv6/IPv6ExtensionHeaders.h \
+	networklayer/ipv6/IPv6ExtensionHeaders_m.h \
+	networklayer/ipv6/IPv6InterfaceData.h \
+	networklayer/ipv6/IPv6Route.h \
+	networklayer/ipv6/IPv6RoutingTable.h \
+	networklayer/ipv6tunneling/IPv6Tunneling.h \
+	networklayer/xmipv6/BindingCache.h \
+	networklayer/xmipv6/BindingUpdateList.h \
+	networklayer/xmipv6/MobilityHeader.h \
+	networklayer/xmipv6/MobilityHeader_m.h \
+	networklayer/xmipv6/xMIPv6.h
 $O/physicallayer/analogmodel/bitlevel/DimensionalSignalAnalogModel.o: physicallayer/analogmodel/bitlevel/DimensionalSignalAnalogModel.cc \
 	common/Compat.h \
 	common/INETDefs.h \
@@ -24396,26 +24513,19 @@ $O/securityModule/Security.o: securityModule/Security.cc \
 	linklayer/ieee80211/mgmt/Ieee80211Primitives_m.h \
 	networklayer/common/IPProtocolId_m.h \
 	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTable.h \
 	networklayer/common/InterfaceToken.h \
 	networklayer/common/L3Address.h \
 	networklayer/common/ModuleIdAddress.h \
 	networklayer/common/ModulePathAddress.h \
 	networklayer/contract/IInterfaceTable.h \
 	networklayer/contract/INetworkDatagram.h \
-	networklayer/contract/IRoute.h \
-	networklayer/contract/IRoutingTable.h \
 	networklayer/contract/ipv4/IPv4Address.h \
 	networklayer/contract/ipv6/IPv6Address.h \
-	networklayer/ipv4/IIPv4RoutingTable.h \
 	networklayer/ipv4/IPv4Datagram.h \
 	networklayer/ipv4/IPv4Datagram_m.h \
 	networklayer/ipv4/IPv4InterfaceData.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
 	securityModule/Security.h \
 	securityModule/SecurityKeys.h \
-	securityModule/message/NewMsgWithMacAddr_m.h \
 	securityModule/message/securityPkt_m.h \
 	transportlayer/contract/ITransportPacket.h \
 	transportlayer/contract/tcp/TCPCommand_m.h \
@@ -24467,12 +24577,9 @@ $O/securityModule/SecurityWPA2.o: securityModule/SecurityWPA2.cc \
 	networklayer/contract/IRoutingTable.h \
 	networklayer/contract/ipv4/IPv4Address.h \
 	networklayer/contract/ipv6/IPv6Address.h \
-	networklayer/ipv4/IIPv4RoutingTable.h \
 	networklayer/ipv4/IPv4Datagram.h \
 	networklayer/ipv4/IPv4Datagram_m.h \
 	networklayer/ipv4/IPv4InterfaceData.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
 	securityModule/Security.h \
 	securityModule/SecurityKeys.h \
 	securityModule/SecurityWPA2.h \
@@ -24501,39 +24608,14 @@ $O/securityModule/message/securityPkt_m.o: securityModule/message/securityPkt_m.
 	common/Compat.h \
 	common/INETDefs.h \
 	common/InitStages.h \
-	common/NotifierConsts.h \
-	common/TLVOption.h \
-	common/TLVOption_m.h \
-	common/lifecycle/ILifecycle.h \
 	linklayer/common/Ieee802Ctrl_m.h \
 	linklayer/common/MACAddress.h \
 	linklayer/ieee80211/mac/Ieee80211Consts.h \
 	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
 	linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h \
-	linklayer/ieee80211/mgmt/Ieee80211Primitives_m.h \
-	networklayer/common/IPProtocolId_m.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTable.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/common/L3Address.h \
-	networklayer/common/ModuleIdAddress.h \
-	networklayer/common/ModulePathAddress.h \
-	networklayer/contract/IInterfaceTable.h \
-	networklayer/contract/INetworkDatagram.h \
-	networklayer/contract/IRoute.h \
-	networklayer/contract/IRoutingTable.h \
-	networklayer/contract/ipv4/IPv4Address.h \
-	networklayer/contract/ipv6/IPv6Address.h \
-	networklayer/ipv4/IIPv4RoutingTable.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
 	securityModule/Security.h \
 	securityModule/SecurityKeys.h \
-	securityModule/message/NewMsgWithMacAddr_m.h \
-	securityModule/message/securityPkt_m.h \
-	transportlayer/udp/UDPPacket_m.h
+	securityModule/message/securityPkt_m.h
 $O/transportlayer/base/TransportProtocolBase.o: transportlayer/base/TransportProtocolBase.cc \
 	common/Compat.h \
 	common/INETDefs.h \

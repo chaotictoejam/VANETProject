@@ -30,24 +30,6 @@
         linkerFlags = ""
         />
     <feature
-        id="TCP_NSC"
-        name="TCP (NSC)"
-        description = "TCP module based on Sam Jensen's Network Simulation Cradle
-                       (NSC, http://www.wand.net.nz/~stj2/nsc) that wraps real
-                       OS stacks: Linux, FreeBSD, OpenBSD and lwIP.
-                       NSC must be downloaded and installed separately; read
-                       inet/3rdparty/README for more information."
-        initiallyEnabled = "false"
-        requires = "TCP_common"
-        labels = ""
-        nedPackages = "
-                       inet.transportlayer.tcp_nsc
-                      "
-        extraSourceFolders = ""
-        compileFlags = "-DWITH_TCP_NSC"
-        linkerFlags = ""
-        />
-    <feature
         id="IPv4"
         name="IPv4 protocol"
         description = "Basic IPv4 support"
@@ -254,23 +236,6 @@
         extraSourceFolders = ""
         compileFlags = "-DWITH_PPP"
         linkerFlags = ""
-        />
-    <feature
-        id="ExternalInterface"
-        name="Network emulation support"
-        description = "Support for connecting the simulation to a real network.
-                       The ExternalInterface module is responsible for sending/receiving
-                       packets on the network. This feature requires at least version 1.5.3 
-                       of the libpcap-dev package."
-        initiallyEnabled = "false"
-        requires = "IPv4"
-        labels = "nic"
-        nedPackages = "
-                       inet.linklayer.ext
-                      "
-        extraSourceFolders = ""
-        compileFlags = "-DWITH_EXT_IF"
-        linkerFlags = "-lpcap"
         />
     <feature
         id="MPLS"
@@ -540,20 +505,6 @@
                       "
         extraSourceFolders = ""
         compileFlags = "-DWITH_IDEALWIRELESS"
-        linkerFlags = ""
-        />
-    <feature
-        id="VoIPStream"
-        name="VoIPStream"
-        description = "Voice over IP tool. Required external libraries: libavcodec libavformat libavresample libavutil"
-        initiallyEnabled = "false"
-        requires = "UDP"
-        labels = ""
-        nedPackages = "
-                       inet.applications.voipstream
-                      "
-        extraSourceFolders = ""
-        compileFlags = "-DWITH_VOIPSTREAM"
         linkerFlags = ""
         />
     <feature
