@@ -240,17 +240,17 @@ void NS_CLASS aodvvanet_socket_process_packet(AODVVANET_msg * aodvvanet_msg, int
 {
     /* If this was a HELLO message... Process as HELLO. */
 #ifndef OMNETPP
-    if ((aodvvanet_msg->type == AODVVANET_RREP && ttl == 1 &&
+    if ((aodvvanet_msg->type == AODVVANET_AODVVANETRREP && ttl == 1 &&
             dst.s_addr == AODVVANET_BROADCAST))
     {
-        hello_process((RREP *) aodvvanet_msg, len, ifindex);
+        hello_process((AODVVANETRREP *) aodvvanet_msg, len, ifindex);
         return;
     }
 #else
-    if ((aodvvanet_msg->type == AODVVANET_RREP && ttl == 0 && // ttl is decremented for ip layer before send to aodv
+    if ((aodvvanet_msg->type == AODVVANET_AODVVANETRREP && ttl == 0 && // ttl is decremented for ip layer before send to aodv
             dst.s_addr == VanetAddress(IPv4Address(AODVVANET_BROADCAST))))
     {
-        hello_process((RREP *) aodvvanet_msg, len, ifindex);
+        hello_process((AODVVANETRREP *) aodvvanet_msg, len, ifindex);
         return;
     }
 #endif
@@ -262,20 +262,20 @@ void NS_CLASS aodvvanet_socket_process_packet(AODVVANET_msg * aodvvanet_msg, int
     switch (aodvvanet_msg->type)
     {
 
-    case AODVVANET_RREQ:
-        rreq_process((RREQ *) aodvvanet_msg, len, src, dst, ttl, ifindex);
+    case AODVVANET_AODVVANETRREQ:
+        rreq_process((AODVVANETRREQ *) aodvvanet_msg, len, src, dst, ttl, ifindex);
         break;
-    case AODVVANET_RREP:
-        DEBUG(LOG_DEBUG, 0, "Received RREP");
-        rrep_process((RREP *) aodvvanet_msg, len, src, dst, ttl, ifindex);
+    case AODVVANET_AODVVANETRREP:
+        DEBUG(LOG_DEBUG, 0, "Received AODVVANETRREP");
+        rrep_process((AODVVANETRREP *) aodvvanet_msg, len, src, dst, ttl, ifindex);
         break;
     case AODVVANET_AODVVANETRERR:
         DEBUG(LOG_DEBUG, 0, "Received AODVVANETRERR");
         rerr_process((AODVVANETRERR *) aodvvanet_msg, len, src, dst);
         break;
-    case AODVVANET_RREP_ACK:
-        DEBUG(LOG_DEBUG, 0, "Received RREP_ACK");
-        rrep_ack_process((RREP_ack *) aodvvanet_msg, len, src, dst);
+    case AODVVANET_AODVVANETRREP_ACK:
+        DEBUG(LOG_DEBUG, 0, "Received AODVVANETRREP_ACK");
+        rrep_ack_process((AODVVANETRREP_ack *) aodvvanet_msg, len, src, dst);
         break;
     default:
         alog(LOG_WARNING, 0, __FUNCTION__,
@@ -422,7 +422,7 @@ void NS_CLASS aodvvanet_socket_send(AODVVANET_msg * aodvvanet_msg, struct in_add
 
     struct sockaddr_in dst_addr;
 
-    if (wait_on_reboot && aodvvanet_msg->type == AODVVANET_RREP)
+    if (wait_on_reboot && aodvvanet_msg->type == AODVVANET_AODVVANETRREP)
         return;
 
     memset(&dst_addr, 0, sizeof(dst_addr));
@@ -446,8 +446,8 @@ void NS_CLASS aodvvanet_socket_send(AODVVANET_msg * aodvvanet_msg, struct in_add
        agents, _not_ for forwarding "regular" IP packets!
      */
 
-    /* If we are in waiting phase after reboot, don't send any RREPs */
-    if (wait_on_reboot && aodvvanet_msg->type == AODVVANET_RREP)
+    /* If we are in waiting phase after reboot, don't send any AODVVANETRREPs */
+    if (wait_on_reboot && aodvvanet_msg->type == AODVVANET_AODVVANETRREP)
     {
 #ifdef OMNETPP
         delete aodvvanet_msg;
@@ -494,7 +494,7 @@ void NS_CLASS aodvvanet_socket_send(AODVVANET_msg * aodvvanet_msg, struct in_add
 #endif              /* NS_PORT */
 
     /* If rate limiting is enabled, check if we are sending either a
-       RREQ or a AODVVANETRERR. In that case, drop the outgoing control packet
+       AODVVANETRREQ or a AODVVANETRERR. In that case, drop the outgoing control packet
        if the time since last transmit of that type of packet is less
        than the allowed RATE LIMIT time... */
 
@@ -505,12 +505,12 @@ void NS_CLASS aodvvanet_socket_send(AODVVANET_msg * aodvvanet_msg, struct in_add
 
         switch (aodvvanet_msg->type)
         {
-        case AODVVANET_RREQ:
-            if (num_rreq == (RREQ_RATELIMIT - 1))
+        case AODVVANET_AODVVANETRREQ:
+            if (num_rreq == (AODVVANETRREQ_RATELIMIT - 1))
             {
                 if (timeval_diff(&now, &rreq_ratel[0]) < 1000)
                 {
-                    DEBUG(LOG_DEBUG, 0, "RATELIMIT: Dropping RREQ %ld ms",
+                    DEBUG(LOG_DEBUG, 0, "RATELIMIT: Dropping AODVVANETRREQ %ld ms",
                           timeval_diff(&now, &rreq_ratel[0]));
 #ifdef OMNETPP
                     delete aodvvanet_msg;
@@ -572,24 +572,24 @@ void NS_CLASS aodvvanet_socket_send(AODVVANET_msg * aodvvanet_msg, struct in_add
     aodvvanet_msg->prevFix=this->isStaticNode();
     if (this->isStaticNode())
     {
-        if (dynamic_cast<RREP*>(aodvvanet_msg))
+        if (dynamic_cast<AODVVANETRREP*>(aodvvanet_msg))
         {
-            dynamic_cast<RREP*>(aodvvanet_msg)->cost += costStatic;
+            dynamic_cast<AODVVANETRREP*>(aodvvanet_msg)->cost += costStatic;
         }
-        else if (dynamic_cast<RREQ*> (aodvvanet_msg))
+        else if (dynamic_cast<AODVVANETRREQ*> (aodvvanet_msg))
         {
-            dynamic_cast<RREQ*>(aodvvanet_msg)->cost += costStatic;
+            dynamic_cast<AODVVANETRREQ*>(aodvvanet_msg)->cost += costStatic;
         }
     }
     else
     {
-        if (dynamic_cast<RREP*>(aodvvanet_msg))
+        if (dynamic_cast<AODVVANETRREP*>(aodvvanet_msg))
         {
-            dynamic_cast<RREP*>(aodvvanet_msg)->cost += costMobile;
+            dynamic_cast<AODVVANETRREP*>(aodvvanet_msg)->cost += costMobile;
         }
-        else if (dynamic_cast<RREQ*>(aodvvanet_msg))
+        else if (dynamic_cast<AODVVANETRREQ*>(aodvvanet_msg))
         {
-            dynamic_cast<RREQ*>(aodvvanet_msg)->cost += costMobile;
+            dynamic_cast<AODVVANETRREQ*>(aodvvanet_msg)->cost += costMobile;
         }
     }
     VanetAddress destAdd;
@@ -668,7 +668,7 @@ void NS_CLASS aodvvanet_socket_send(AODVVANET_msg * aodvvanet_msg, struct in_add
 #endif // OMNETPP
 
     /* Do not print hello msgs... */
-    if (!(aodvvanet_msg->type == AODVVANET_RREP && (dst.s_addr == VanetAddress(IPv4Address(AODVVANET_BROADCAST)))))
+    if (!(aodvvanet_msg->type == AODVVANET_AODVVANETRREP && (dst.s_addr == VanetAddress(IPv4Address(AODVVANET_BROADCAST)))))
         DEBUG(LOG_INFO, 0, "AODV msg to %s ttl=%d retval=%u size=%u",
               ip_to_str(dst), ttl, retval, len);
 

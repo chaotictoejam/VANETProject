@@ -42,7 +42,7 @@ extern int debug;
 void log_init();
 void log_cleanup();
 
-const char *packet_type(unsigned int type);
+const char *aodvvanetpacket_type(unsigned int type);
 void alog(int type, int errnum, const char *function, const char *format, ...);
 void log_pkt_fields(AODVVANET_msg * msg);
 void print_rt_table(void *arg);
@@ -51,8 +51,8 @@ char *ip_to_str(struct in_addr addr);
 #ifdef NS_PORT
 void write_to_log_file(char *msg, int len);
 char *devs_ip_to_str();
-char *rreq_flags_to_str(RREQ * rreq);
-char *rrep_flags_to_str(RREP * rrep);
+char *rreq_flags_to_str(AODVVANETRREQ * rreq);
+char *rrep_flags_to_str(AODVVANETRREP * rrep);
 char *rt_flags_to_str(u_int16_t flags);
 const char *state_to_str(u_int8_t state);
 #endif

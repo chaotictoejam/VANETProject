@@ -38,7 +38,7 @@ struct UnreachableBITCARNode
 
 enum BITCARControlPacketType
 {
-    RREQ = 1;
+    AODVVANETRREQ = 1;
     RREP = 2;
     RERR = 3;
     RREPACK = 4;
@@ -55,9 +55,9 @@ packet BITCARControlPacket
 //
 // Represents an BITCAR Route Request
 //
-class BITCARRREQ extends BITCARControlPacket
+class BITCARAODVVANETRREQ extends BITCARControlPacket
 {
-    unsigned int packetType = RREQ;
+    unsigned int packetType = AODVVANETRREQ;
     bool joinFlag;
     bool repairFlag;
     bool gratuitousRREPFlag;

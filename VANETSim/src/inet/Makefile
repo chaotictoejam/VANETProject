@@ -31,7 +31,6 @@ INCLUDE_PATH = \
     -Iapplications/trafgen \
     -Iapplications/udpapp \
     -Iapplications/util \
-    -Iapplications/voip \
     -Ibase \
     -Ibattery \
     -Ibattery/models \
@@ -292,8 +291,6 @@ OBJS = \
     $O/applications/udpapp/UDPVideoStreamSvr.o \
     $O/applications/udpapp/UDPVideoStreamSvr2.o \
     $O/applications/util/AddressModule.o \
-    $O/applications/voip/SimpleVoIPReceiver.o \
-    $O/applications/voip/SimpleVoIPSender.o \
     $O/base/AbstractQueue.o \
     $O/base/BasicModule.o \
     $O/base/ByteArray.o \
@@ -831,7 +828,6 @@ OBJS = \
     $O/applications/udpapp/UDPEchoAppMsg_m.o \
     $O/applications/udpapp/UDPVideoData_m.o \
     $O/applications/udpapp/VideoPacket_m.o \
-    $O/applications/voip/SimpleVoIPPacket_m.o \
     $O/base/ByteArray_m.o \
     $O/base/ByteArrayMessage_m.o \
     $O/linklayer/channels/LinkFailureMessage_m.o \
@@ -949,7 +945,6 @@ MSGFILES = \
     applications/udpapp/UDPEchoAppMsg.msg \
     applications/udpapp/UDPVideoData.msg \
     applications/udpapp/VideoPacket.msg \
-    applications/voip/SimpleVoIPPacket.msg \
     base/ByteArray.msg \
     base/ByteArrayMessage.msg \
     linklayer/channels/LinkFailureMessage.msg \
@@ -1231,7 +1226,6 @@ clean:
 	$(Q)-rm -f applications/trafgen/*_m.cc applications/trafgen/*_m.h
 	$(Q)-rm -f applications/udpapp/*_m.cc applications/udpapp/*_m.h
 	$(Q)-rm -f applications/util/*_m.cc applications/util/*_m.h
-	$(Q)-rm -f applications/voip/*_m.cc applications/voip/*_m.h
 	$(Q)-rm -f base/*_m.cc base/*_m.h
 	$(Q)-rm -f battery/*_m.cc battery/*_m.h
 	$(Q)-rm -f battery/models/*_m.cc battery/models/*_m.h
@@ -1420,7 +1414,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc applications/*.cc applications/common/*.cc applications/dhcp/*.cc applications/ethernet/*.cc applications/generic/*.cc applications/httptools/*.cc applications/netperfmeter/*.cc applications/pingapp/*.cc applications/rtpapp/*.cc applications/sctpapp/*.cc applications/tcpapp/*.cc applications/traci/*.cc applications/trafgen/*.cc applications/udpapp/*.cc applications/util/*.cc applications/voip/*.cc base/*.cc battery/*.cc battery/models/*.cc generic/*.cc linklayer/*.cc linklayer/channels/*.cc linklayer/common/*.cc linklayer/configurator/*.cc linklayer/contract/*.cc linklayer/ethernet/*.cc linklayer/ethernet/switch/*.cc linklayer/ext/*.cc linklayer/idealwireless/*.cc linklayer/ieee80211/*.cc linklayer/ieee80211/mac/*.cc linklayer/ieee80211/mgmt/*.cc linklayer/ieee80211/mgmt/wpa2/*.cc linklayer/ieee80211/radio/*.cc linklayer/ieee80211/radio/errormodel/*.cc linklayer/ieee80211mesh/*.cc linklayer/ieee80211mesh/ethernet/*.cc linklayer/ieee80211mesh/hwmp/*.cc linklayer/ieee80211mesh/locator/*.cc linklayer/ieee80211mesh/mgmt/*.cc linklayer/ieee80211mesh/nodes/*.cc linklayer/ieee80211mesh/vanetlocator/*.cc linklayer/ieee8021d/*.cc linklayer/ieee8021d/common/*.cc linklayer/ieee8021d/relay/*.cc linklayer/ieee8021d/rstp/*.cc linklayer/ieee8021d/stp/*.cc linklayer/ieee8021d/tester/*.cc linklayer/loopback/*.cc linklayer/ppp/*.cc linklayer/queue/*.cc linklayer/radio/*.cc linklayer/radio/propagation/*.cc mobility/*.cc mobility/common/*.cc mobility/contract/*.cc mobility/group/*.cc mobility/single/*.cc mobility/static/*.cc networklayer/*.cc networklayer/arp/*.cc networklayer/autorouting/*.cc networklayer/autorouting/ipv4/*.cc networklayer/autorouting/ipv6/*.cc networklayer/bgpv4/*.cc networklayer/bgpv4/BGPMessage/*.cc networklayer/common/*.cc networklayer/contract/*.cc networklayer/diffserv/*.cc networklayer/icmpv6/*.cc networklayer/internetcloud/*.cc networklayer/ipv4/*.cc networklayer/ipv6/*.cc networklayer/ipv6tunneling/*.cc networklayer/ldp/*.cc networklayer/manetrouting/*.cc networklayer/manetrouting/PASER/*.cc networklayer/manetrouting/PASER/IPv4_ADAPTED/*.cc networklayer/manetrouting/PASER/paser_buffer/*.cc networklayer/manetrouting/PASER/paser_configuration/*.cc networklayer/manetrouting/PASER/paser_logic/*.cc networklayer/manetrouting/PASER/paser_logic/cryptography/*.cc networklayer/manetrouting/PASER/paser_logic/message_processing/*.cc networklayer/manetrouting/PASER/paser_logic/route_discovery/*.cc networklayer/manetrouting/PASER/paser_logic/route_maintenance/*.cc networklayer/manetrouting/PASER/paser_message_structure/*.cc networklayer/manetrouting/PASER/paser_socket/*.cc networklayer/manetrouting/PASER/paser_tables/*.cc networklayer/manetrouting/PASER/paser_timer_management/*.cc networklayer/manetrouting/PASER/simple_kdc/*.cc networklayer/manetrouting/PASER/simple_kdc/kdc_message/*.cc networklayer/manetrouting/aodv-uu/*.cc networklayer/manetrouting/aodv-uu/aodv-uu/*.cc networklayer/manetrouting/base/*.cc networklayer/manetrouting/batman/*.cc networklayer/manetrouting/batman/batmand/*.cc networklayer/manetrouting/batman/batmand/orig/*.cc networklayer/manetrouting/dsdv/*.cc networklayer/manetrouting/dsr/*.cc networklayer/manetrouting/dsr/dsr-uu/*.cc networklayer/manetrouting/dymo/*.cc networklayer/manetrouting/dymo/dymoum/*.cc networklayer/manetrouting/dymo_fau/*.cc networklayer/manetrouting/olsr/*.cc networklayer/mpls/*.cc networklayer/ospfv2/*.cc networklayer/ospfv2/interface/*.cc networklayer/ospfv2/messagehandler/*.cc networklayer/ospfv2/neighbor/*.cc networklayer/ospfv2/router/*.cc networklayer/routing/*.cc networklayer/routing/aodv/*.cc networklayer/routing/dymo/*.cc networklayer/routing/gpsr/*.cc networklayer/routing/rip/*.cc networklayer/rsvp_te/*.cc networklayer/ted/*.cc networklayer/vanetrouting/*.cc networklayer/vanetrouting/aodvvanet/*.cc networklayer/vanetrouting/aodvvanet/aodvvanet/*.cc networklayer/vanetrouting/aodvvanetrouting/*.cc networklayer/vanetrouting/base/*.cc networklayer/vanetrouting/bitcar/*.cc networklayer/vanetrouting/geoadv/*.cc networklayer/vanetrouting/rbvtr/*.cc networklayer/xmipv6/*.cc nodes/*.cc nodes/aodv/*.cc nodes/aodvvanet/*.cc nodes/bgp/*.cc nodes/bitcar/*.cc nodes/dymo/*.cc nodes/ethernet/*.cc nodes/gpsr/*.cc nodes/httptools/*.cc nodes/inet/*.cc nodes/internetcloud/*.cc nodes/ipv6/*.cc nodes/mpls/*.cc nodes/ospfv2/*.cc nodes/rbvtr/*.cc nodes/rip/*.cc nodes/rtp/*.cc nodes/wireless/*.cc nodes/xmipv6/*.cc securityModule/*.cc securityModule/message/*.cc status/*.cc transport/*.cc transport/contract/*.cc transport/rtp/*.cc transport/rtp/profiles/*.cc transport/rtp/profiles/avprofile/*.cc transport/sctp/*.cc transport/tcp/*.cc transport/tcp/flavours/*.cc transport/tcp/queues/*.cc transport/tcp_common/*.cc transport/udp/*.cc util/*.cc util/headerserializers/*.cc util/headerserializers/headers/*.cc util/headerserializers/ipv4/*.cc util/headerserializers/ipv4/headers/*.cc util/headerserializers/ipv6/*.cc util/headerserializers/ipv6/headers/*.cc util/headerserializers/sctp/*.cc util/headerserializers/sctp/headers/*.cc util/headerserializers/tcp/*.cc util/headerserializers/tcp/headers/*.cc util/headerserializers/udp/*.cc util/headerserializers/udp/headers/*.cc util/messageprinters/*.cc world/*.cc world/annotations/*.cc world/httptools/*.cc world/obstacles/*.cc world/powercontrol/*.cc world/radio/*.cc world/scenario/*.cc world/traci/*.cc wpan/*.cc wpan/Isabel/*.cc wpan/Isabel/Analysis/*.cc wpan/Isabel/Base/*.cc wpan/applications/*.cc wpan/applications/Ieee802154TestApp/*.cc wpan/linklayer/*.cc wpan/linklayer/bmac/*.cc wpan/linklayer/ieee802154/*.cc wpan/linklayer/ieee802154/contract/*.cc wpan/linklayer/ieee802154/mac/*.cc wpan/networklayer/*.cc wpan/networklayer/Ieee802154StarRouting/*.cc wpan/networklayer/contract/*.cc wpan/nodes/*.cc wpan/phyLayer/*.cc wpan/phyLayer/ieee802154/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc applications/*.cc applications/common/*.cc applications/dhcp/*.cc applications/ethernet/*.cc applications/generic/*.cc applications/httptools/*.cc applications/netperfmeter/*.cc applications/pingapp/*.cc applications/rtpapp/*.cc applications/sctpapp/*.cc applications/tcpapp/*.cc applications/traci/*.cc applications/trafgen/*.cc applications/udpapp/*.cc applications/util/*.cc base/*.cc battery/*.cc battery/models/*.cc generic/*.cc linklayer/*.cc linklayer/channels/*.cc linklayer/common/*.cc linklayer/configurator/*.cc linklayer/contract/*.cc linklayer/ethernet/*.cc linklayer/ethernet/switch/*.cc linklayer/ext/*.cc linklayer/idealwireless/*.cc linklayer/ieee80211/*.cc linklayer/ieee80211/mac/*.cc linklayer/ieee80211/mgmt/*.cc linklayer/ieee80211/mgmt/wpa2/*.cc linklayer/ieee80211/radio/*.cc linklayer/ieee80211/radio/errormodel/*.cc linklayer/ieee80211mesh/*.cc linklayer/ieee80211mesh/ethernet/*.cc linklayer/ieee80211mesh/hwmp/*.cc linklayer/ieee80211mesh/locator/*.cc linklayer/ieee80211mesh/mgmt/*.cc linklayer/ieee80211mesh/nodes/*.cc linklayer/ieee80211mesh/vanetlocator/*.cc linklayer/ieee8021d/*.cc linklayer/ieee8021d/common/*.cc linklayer/ieee8021d/relay/*.cc linklayer/ieee8021d/rstp/*.cc linklayer/ieee8021d/stp/*.cc linklayer/ieee8021d/tester/*.cc linklayer/loopback/*.cc linklayer/ppp/*.cc linklayer/queue/*.cc linklayer/radio/*.cc linklayer/radio/propagation/*.cc mobility/*.cc mobility/common/*.cc mobility/contract/*.cc mobility/group/*.cc mobility/single/*.cc mobility/static/*.cc networklayer/*.cc networklayer/arp/*.cc networklayer/autorouting/*.cc networklayer/autorouting/ipv4/*.cc networklayer/autorouting/ipv6/*.cc networklayer/bgpv4/*.cc networklayer/bgpv4/BGPMessage/*.cc networklayer/common/*.cc networklayer/contract/*.cc networklayer/diffserv/*.cc networklayer/icmpv6/*.cc networklayer/internetcloud/*.cc networklayer/ipv4/*.cc networklayer/ipv6/*.cc networklayer/ipv6tunneling/*.cc networklayer/ldp/*.cc networklayer/manetrouting/*.cc networklayer/manetrouting/PASER/*.cc networklayer/manetrouting/PASER/IPv4_ADAPTED/*.cc networklayer/manetrouting/PASER/paser_buffer/*.cc networklayer/manetrouting/PASER/paser_configuration/*.cc networklayer/manetrouting/PASER/paser_logic/*.cc networklayer/manetrouting/PASER/paser_logic/cryptography/*.cc networklayer/manetrouting/PASER/paser_logic/message_processing/*.cc networklayer/manetrouting/PASER/paser_logic/route_discovery/*.cc networklayer/manetrouting/PASER/paser_logic/route_maintenance/*.cc networklayer/manetrouting/PASER/paser_message_structure/*.cc networklayer/manetrouting/PASER/paser_socket/*.cc networklayer/manetrouting/PASER/paser_tables/*.cc networklayer/manetrouting/PASER/paser_timer_management/*.cc networklayer/manetrouting/PASER/simple_kdc/*.cc networklayer/manetrouting/PASER/simple_kdc/kdc_message/*.cc networklayer/manetrouting/aodv-uu/*.cc networklayer/manetrouting/aodv-uu/aodv-uu/*.cc networklayer/manetrouting/base/*.cc networklayer/manetrouting/batman/*.cc networklayer/manetrouting/batman/batmand/*.cc networklayer/manetrouting/batman/batmand/orig/*.cc networklayer/manetrouting/dsdv/*.cc networklayer/manetrouting/dsr/*.cc networklayer/manetrouting/dsr/dsr-uu/*.cc networklayer/manetrouting/dymo/*.cc networklayer/manetrouting/dymo/dymoum/*.cc networklayer/manetrouting/dymo_fau/*.cc networklayer/manetrouting/olsr/*.cc networklayer/mpls/*.cc networklayer/ospfv2/*.cc networklayer/ospfv2/interface/*.cc networklayer/ospfv2/messagehandler/*.cc networklayer/ospfv2/neighbor/*.cc networklayer/ospfv2/router/*.cc networklayer/routing/*.cc networklayer/routing/aodv/*.cc networklayer/routing/dymo/*.cc networklayer/routing/gpsr/*.cc networklayer/routing/rip/*.cc networklayer/rsvp_te/*.cc networklayer/ted/*.cc networklayer/vanetrouting/*.cc networklayer/vanetrouting/aodvvanet/*.cc networklayer/vanetrouting/aodvvanet/aodvvanet/*.cc networklayer/vanetrouting/aodvvanetrouting/*.cc networklayer/vanetrouting/base/*.cc networklayer/vanetrouting/bitcar/*.cc networklayer/vanetrouting/geoadv/*.cc networklayer/vanetrouting/rbvtr/*.cc networklayer/xmipv6/*.cc nodes/*.cc nodes/aodv/*.cc nodes/aodvvanet/*.cc nodes/bgp/*.cc nodes/bitcar/*.cc nodes/dymo/*.cc nodes/ethernet/*.cc nodes/gpsr/*.cc nodes/httptools/*.cc nodes/inet/*.cc nodes/internetcloud/*.cc nodes/ipv6/*.cc nodes/mpls/*.cc nodes/ospfv2/*.cc nodes/rbvtr/*.cc nodes/rip/*.cc nodes/rtp/*.cc nodes/wireless/*.cc nodes/xmipv6/*.cc securityModule/*.cc securityModule/message/*.cc status/*.cc transport/*.cc transport/contract/*.cc transport/rtp/*.cc transport/rtp/profiles/*.cc transport/rtp/profiles/avprofile/*.cc transport/sctp/*.cc transport/tcp/*.cc transport/tcp/flavours/*.cc transport/tcp/queues/*.cc transport/tcp_common/*.cc transport/udp/*.cc util/*.cc util/headerserializers/*.cc util/headerserializers/headers/*.cc util/headerserializers/ipv4/*.cc util/headerserializers/ipv4/headers/*.cc util/headerserializers/ipv6/*.cc util/headerserializers/ipv6/headers/*.cc util/headerserializers/sctp/*.cc util/headerserializers/sctp/headers/*.cc util/headerserializers/tcp/*.cc util/headerserializers/tcp/headers/*.cc util/headerserializers/udp/*.cc util/headerserializers/udp/headers/*.cc util/messageprinters/*.cc world/*.cc world/annotations/*.cc world/httptools/*.cc world/obstacles/*.cc world/powercontrol/*.cc world/radio/*.cc world/scenario/*.cc world/traci/*.cc wpan/*.cc wpan/Isabel/*.cc wpan/Isabel/Analysis/*.cc wpan/Isabel/Base/*.cc wpan/applications/*.cc wpan/applications/Ieee802154TestApp/*.cc wpan/linklayer/*.cc wpan/linklayer/bmac/*.cc wpan/linklayer/ieee802154/*.cc wpan/linklayer/ieee802154/contract/*.cc wpan/linklayer/ieee802154/mac/*.cc wpan/networklayer/*.cc wpan/networklayer/Ieee802154StarRouting/*.cc wpan/networklayer/contract/*.cc wpan/nodes/*.cc wpan/phyLayer/*.cc wpan/phyLayer/ieee802154/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/applications/common/ApplicationBase.o: applications/common/ApplicationBase.cc \
@@ -2628,36 +2622,6 @@ $O/applications/util/AddressModule.o: applications/util/AddressModule.cc \
 	networklayer/contract/IPv6Address.h \
 	networklayer/contract/IPvXAddress.h \
 	networklayer/contract/IPvXAddressResolver.h
-$O/applications/voip/SimpleVoIPPacket_m.o: applications/voip/SimpleVoIPPacket_m.cc \
-	applications/voip/SimpleVoIPPacket_m.h
-$O/applications/voip/SimpleVoIPReceiver.o: applications/voip/SimpleVoIPReceiver.cc \
-	applications/voip/SimpleVoIPPacket_m.h \
-	applications/voip/SimpleVoIPReceiver.h \
-	base/Compat.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/contract/IPvXAddressResolver.h \
-	status/NodeStatus.h \
-	transport/contract/UDPSocket.h
-$O/applications/voip/SimpleVoIPSender.o: applications/voip/SimpleVoIPSender.cc \
-	applications/voip/SimpleVoIPPacket_m.h \
-	applications/voip/SimpleVoIPSender.h \
-	base/Compat.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/contract/IPvXAddressResolver.h \
-	status/NodeStatus.h \
-	transport/contract/UDPSocket.h
 $O/base/AbstractQueue.o: base/AbstractQueue.cc \
 	base/AbstractQueue.h \
 	base/Compat.h \

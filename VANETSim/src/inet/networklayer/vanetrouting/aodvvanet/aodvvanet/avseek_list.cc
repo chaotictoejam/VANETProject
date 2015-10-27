@@ -44,7 +44,7 @@
 
 #ifndef NS_PORT
 /* The seek list is a linked list of destinations we are seeking
-   (with RREQ's). */
+   (with AODVVANETRREQ's). */
 
 static AVLIST(seekhead);
 

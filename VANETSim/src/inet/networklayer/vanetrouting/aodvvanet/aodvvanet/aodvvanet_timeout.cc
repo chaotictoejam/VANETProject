@@ -70,7 +70,7 @@ void NS_CLASS route_discovery_timeout(void *arg)
 
     DEBUG(LOG_DEBUG, 0, "%s", ip_to_str(seek_entry->dest_addr));
 
-    if (seek_entry->reqs < RREQ_RETRIES)
+    if (seek_entry->reqs < AODVVANETRREQ_RETRIES)
     {
 
         if (expanding_ring_search)
@@ -92,13 +92,13 @@ void NS_CLASS route_discovery_timeout(void *arg)
             timer_set_timeout(&seek_entry->seek_timer,
                               seek_entry->reqs * 2 * NET_TRAVERSAL_TIME);
         }
-        /* AODV should use a binary exponential backoff RREP waiting
+        /* AODV should use a binary exponential backoff AODVVANETRREP waiting
            time. */
         DEBUG(LOG_DEBUG, 0, "Seeking %s ttl=%d wait=%d",
               ip_to_str(seek_entry->dest_addr),
               TTL_VALUE, 2 * TTL_VALUE * NODE_TRAVERSAL_TIME);
 
-        /* A routing table entry waiting for a RREP should not be expunged
+        /* A routing table entry waiting for a AODVVANETRREP should not be expunged
            before 2 * NET_TRAVERSAL_TIME... */
         rt = rt_table_find(seek_entry->dest_addr);
 
@@ -339,7 +339,7 @@ void NS_CLASS rrep_ack_timeout(void *arg)
     if (!rt)
         return;
 
-    /* When a RREP transmission fails (i.e. lack of RREP-ACK), add to
+    /* When a AODVVANETRREP transmission fails (i.e. lack of AODVVANETRREP-ACK), add to
        blacklist set... */
     rreq_blackavlist_insert(rt->dest_addr);
 

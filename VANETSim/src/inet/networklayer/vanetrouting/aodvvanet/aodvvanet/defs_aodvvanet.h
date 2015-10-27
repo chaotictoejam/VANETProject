@@ -52,7 +52,7 @@
 #endif
 
 #ifdef NS_PORT
-#define NS_CLASS AODVVANETRERR::
+#define NS_CLASS AODVVANET::
 #define NS_OUTSIDE_CLASS ::
 #define NS_STATIC
 #define NS_INLINE
@@ -118,7 +118,7 @@ struct host_info
     u_int32_t seqno;        /* Sequence number */
     struct timeval bcast_time;  /* The time of the last broadcast msg sent */
     struct timeval fwd_time;    /* The time a data packet was last forwarded */
-    u_int32_t rreq_id;      /* RREQ id */
+    u_int32_t rreq_id;      /* AODVVANETRREQ id */
     int nif;            /* Number of interfaces to broadcast on */
     struct dev_info devs[MAX_NR_INTERFACES];
 };
@@ -195,10 +195,10 @@ static inline int name2index(char *name)
 
 /* AODV Message types */
 #define AODVVANET_HELLO    0     /* Really never used as a separate type... */
-#define AODVVANET_RREQ     1
-#define AODVVANET_RREP     2
+#define AODVVANET_AODVVANETRREQ     1
+#define AODVVANET_AODVVANETRREP     2
 #define AODVVANET_AODVVANETRERR     3
-#define AODVVANET_RREP_ACK 4
+#define AODVVANET_AODVVANETRREP_ACK 4
 
 #ifndef OMNETPP
 /* An generic AODV extensions header */
@@ -250,11 +250,11 @@ typedef AODVVANET_msg hdr_aodvuu;    // Name convention for headers
 #endif
 
 /* AODV Extension types */
-#define RREQ_EXT 1
-#define RREP_EXT 1
-#define RREP_HELLO_INTERVAL_EXT 2
-#define RREP_HELLO_NEIGHBOR_SET_EXT 3
-#define RREP_INET_DEST_EXT 4
+#define AODVVANETRREQ_EXT 1
+#define AODVVANETRREP_EXT 1
+#define AODVVANETRREP_HELLO_INTERVAL_EXT 2
+#define AODVVANETRREP_HELLO_NEIGHBOR_SET_EXT 3
+#define AODVVANETRREP_INET_DEST_EXT 4
 
 
 

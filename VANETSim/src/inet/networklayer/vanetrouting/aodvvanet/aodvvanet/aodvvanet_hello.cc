@@ -95,13 +95,13 @@ void NS_CLASS hello_stop()
 
 void NS_CLASS hello_send(void *arg)
 {
-    RREP *rrep;
+    AODVVANETRREP *rrep;
     AODVVANET_ext *ext = NULL;
     u_int8_t flags = 0;
     struct in_addr dest;
     long time_diff, jitter;
     struct timeval now;
-    int msg_size = RREP_SIZE;
+    int msg_size = AODVVANETRREP_SIZE;
     int i;
     char buffer[300];
     char *buffer_ptr;
@@ -146,7 +146,7 @@ void NS_CLASS hello_send(void *arg)
                                DEV_NR(i).ipaddr,
                                ALLOWED_HELLO_LOSS * HELLO_INTERVAL);
 
-            /* Assemble a RREP extension which contain our neighbor set... */
+            /* Assemble a AODVVANETRREP extension which contain our neighbor set... */
             if (unidir_hack)
             {
                 int i;
@@ -155,8 +155,8 @@ void NS_CLASS hello_send(void *arg)
                     ext = AODVVANET_EXT_NEXT(ext);
                 else
                     /* Check for hello interval extension: */
-                    ext = (AODVVANET_ext *) ((char *) rrep + RREP_SIZE);
-                ext->type = RREP_HELLO_NEIGHBOR_SET_EXT;
+                    ext = (AODVVANET_ext *) ((char *) rrep + AODVVANETRREP_SIZE);
+                ext->type = AODVVANETRREP_HELLO_NEIGHBOR_SET_EXT;
                 ext->length = 0;
 #endif
 
@@ -217,7 +217,7 @@ void NS_CLASS hello_send(void *arg)
 #ifdef OMNETPP
                 if (ext->length)
                 {
-                    msg_size = RREP_SIZE + AODVVANET_EXT_SIZE(ext);
+                    msg_size = AODVVANETRREP_SIZE + AODVVANET_EXT_SIZE(ext);
 
                 }
                 rrep->setName("AodvHello");
@@ -225,8 +225,8 @@ void NS_CLASS hello_send(void *arg)
 #else
                 if (buffer_ptr-buffer>0)
                 {
-                    rrep->addExtension(RREP_HELLO_NEIGHBOR_SET_EXT,(int)(buffer_ptr-buffer),buffer);
-                    msg_size = RREP_SIZE + (int)(buffer_ptr-buffer);
+                    rrep->addExtension(AODVVANETRREP_HELLO_NEIGHBOR_SET_EXT,(int)(buffer_ptr-buffer),buffer);
+                    msg_size = AODVVANETRREP_SIZE + (int)(buffer_ptr-buffer);
                 }
 
 #endif
@@ -255,7 +255,7 @@ void NS_CLASS hello_send(void *arg)
 
 
 /* Process a hello message */
-void NS_CLASS hello_process(RREP * hello, int rreplen, unsigned int ifindex)
+void NS_CLASS hello_process(AODVVANETRREP * hello, int rreplen, unsigned int ifindex)
 {
     u_int32_t hello_seqno, timeout, hello_interval = HELLO_INTERVAL;
     u_int8_t state, flags = 0;
@@ -291,8 +291,8 @@ void NS_CLASS hello_process(RREP * hello, int rreplen, unsigned int ifindex)
         flags |= RT_UNIDIR;
 #ifndef OMNETPP
     /* Check for hello interval extension: */
-    ext = (AODVVANET_ext *) ((char *) hello + RREP_SIZE);
-    while (rreplen > (int) RREP_SIZE)
+    ext = (AODVVANET_ext *) ((char *) hello + AODVVANETRREP_SIZE);
+    while (rreplen > (int) AODVVANETRREP_SIZE)
     {
 #else
     ext = hello->getFirstExtension();
@@ -301,7 +301,7 @@ void NS_CLASS hello_process(RREP * hello, int rreplen, unsigned int ifindex)
 #endif
         switch (ext->type)
         {
-        case RREP_HELLO_INTERVAL_EXT:
+        case AODVVANETRREP_HELLO_INTERVAL_EXT:
             if (ext->length == 4)
             {
                 memcpy(&hello_interval, AODVVANET_EXT_DATA(ext), 4);
@@ -319,13 +319,13 @@ void NS_CLASS hello_process(RREP * hello, int rreplen, unsigned int ifindex)
                 alog(LOG_WARNING, 0,
                      __FUNCTION__, "Bad hello interval extension!");
             break;
-        case RREP_HELLO_NEIGHBOR_SET_EXT:
+        case AODVVANETRREP_HELLO_NEIGHBOR_SET_EXT:
 
 #ifdef DEBUG_HELLO
-            DEBUG(LOG_INFO, 0, "RREP_HELLO_NEIGHBOR_SET_EXT");
+            DEBUG(LOG_INFO, 0, "AODVVANETRREP_HELLO_NEIGHBOR_SET_EXT");
 #endif
 #ifdef OMNETPP
-            EV << "RREP_HELLO_NEIGHBOR_SET_EXT";
+            EV << "AODVVANETRREP_HELLO_NEIGHBOR_SET_EXT";
 #endif
 
             for (i = 0; i < ext->length; i = i + 4)

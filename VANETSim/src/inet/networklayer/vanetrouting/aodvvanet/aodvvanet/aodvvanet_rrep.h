@@ -20,8 +20,8 @@
  *
  *
  *****************************************************************************/
-#ifndef _AODVVANET_RREP_H
-#define _AODVVANET_RREP_H
+#ifndef _AODVVANET_AODVVANETRREP_H
+#define _AODVVANET_AODVVANETRREP_H
 
 #ifndef NS_NO_GLOBALS
 
@@ -38,10 +38,10 @@
 #include "defs_aodvvanet.h"
 #include "routing_table.h"
 
-/* RREP Flags: */
+/* AODVVANETRREP Flags: */
 
-#define RREP_ACK       0x1
-#define RREP_REPAIR    0x2
+#define AODVVANETRREP_ACK       0x1
+#define AODVVANETRREP_REPAIR    0x2
 
 #ifndef OMNETPP
 typedef struct
@@ -67,16 +67,16 @@ typedef struct
     u_int32_t dest_seqno;
     u_int32_t orig_addr;
     u_int32_t lifetime;
-} RREP;
+} AODVVANETRREP;
 
-#define RREP_SIZE sizeof(RREP)
+#define AODVVANETRREP_SIZE sizeof(AODVVANETRREP)
 typedef struct
 {
     u_int8_t type;
     u_int8_t reserved;
-} RREP_ack;
+} AODVVANETRREP_ack;
 
-#define RREP_ACK_SIZE sizeof(RREP_ack)
+#define AODVVANETRREP_ACK_SIZE sizeof(AODVVANETRREP_ack)
 
 
 #endif
@@ -85,24 +85,24 @@ typedef struct
 #endif              /* NS_NO_GLOBALS */
 
 #ifndef NS_NO_DECLARATIONS
-RREP *rrep_create(u_int8_t flags,
+AODVVANETRREP *rrep_create(u_int8_t flags,
                   u_int8_t prefix,
                   u_int8_t hcnt,
                   struct in_addr dest_addr,
                   u_int32_t dest_seqno,
                   struct in_addr orig_addr, u_int32_t life);
 
-RREP_ack *rrep_ack_create();
-AODVVANET_ext *rrep_add_ext(RREP * rrep, int type, unsigned int offset,
+AODVVANETRREP_ack *rrep_ack_create();
+AODVVANET_ext *rrep_add_ext(AODVVANETRREP * rrep, int type, unsigned int offset,
                        int len, char *data);
-void rrep_send(RREP * rrep, rt_table_t * rev_rt, rt_table_t * fwd_rt, int size, double delay = 0);
-void rrep_forward(RREP * rrep, int size, rt_table_t * rev_rt,
+void rrep_send(AODVVANETRREP * rrep, rt_table_t * rev_rt, rt_table_t * fwd_rt, int size, double delay = 0);
+void rrep_forward(AODVVANETRREP * rrep, int size, rt_table_t * rev_rt,
                   rt_table_t * fwd_rt, int ttl);
-void rrep_process(RREP * rrep, int rreplen, struct in_addr ip_src,
+void rrep_process(AODVVANETRREP * rrep, int rreplen, struct in_addr ip_src,
                   struct in_addr ip_dst, int ip_ttl, unsigned int ifindex);
-void rrep_ack_process(RREP_ack * rrep_ack, int rreplen, struct in_addr ip_src,
+void rrep_ack_process(AODVVANETRREP_ack * rrep_ack, int rreplen, struct in_addr ip_src,
                       struct in_addr ip_dst);
 #endif              /* NS_NO_DECLARATIONS */
 
-#endif              /* AODVVANET_RREP_H */
+#endif              /* AODVVANET_AODVVANETRREP_H */
 

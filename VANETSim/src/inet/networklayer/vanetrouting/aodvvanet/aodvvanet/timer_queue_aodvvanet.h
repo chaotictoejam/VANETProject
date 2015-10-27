@@ -32,7 +32,7 @@
 #include "avlist.h"
 
 #ifdef NS_PORT
-typedef void (AODVVANETRERR::*timeout_func_t) (void *);
+typedef void (AODVVANET::*timeout_func_t) (void *);
 #else
 typedef void (*timeout_func_t) (void *);
 #endif

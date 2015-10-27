@@ -66,7 +66,7 @@ int NS_CLASS locality(struct in_addr dest, unsigned int ifindex)
             switch (h_errno)
             {
             case HOST_NOT_FOUND:
-                DEBUG(LOG_DEBUG, 0, "RREQ for Non-Internet dest %s",
+                DEBUG(LOG_DEBUG, 0, "AODVVANETRREQ for Non-Internet dest %s",
                       ip_to_str(dest));
                 return HOST_UNKNOWN;
             default:

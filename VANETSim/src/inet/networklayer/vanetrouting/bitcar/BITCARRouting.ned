@@ -64,19 +64,19 @@ simple BITCARRouting
         double nodeTraversalTime @unit("s") = default(0.04s); // an estimation of the average one-hop traversal time
         int rerrRatelimit = default(10); // maximum number of RERR messages that the BITCAR may originate in 1s.
         int rreqRetries = default(2); // specifies the number of times BITCAR will repeat an expanded ring search for a destination
-        int rreqRatelimit = default(10); // maximum number of RREQ messages that the BITCAR may originate in 1s.
+        int rreqRatelimit = default(10); // maximum number of AODVVANETRREQ messages that the BITCAR may originate in 1s.
         int timeoutBuffer = default(2); // plus time to wait for a delayed RREP (due to congestion) (to omit this buffer set it to 0)
         int ttlStart = default(2); // specifies the TTL value when initiating a route request
-        int ttlIncrement = default(2); // specifies the value by which the TTL will be incremented each time a RREQ is retransmitted
-        int ttlThreshold = default(7); // the maximum value of TTL over which NET_DIAMETER value will be used to broadcast any RREQ
-        int localAddTTL = default(2); // it is used by the formula which calculates the initial TTL of the RREQ for a local repair
+        int ttlIncrement = default(2); // specifies the value by which the TTL will be incremented each time a AODVVANETRREQ is retransmitted
+        int ttlThreshold = default(7); // the maximum value of TTL over which NET_DIAMETER value will be used to broadcast any AODVVANETRREQ
+        int localAddTTL = default(2); // it is used by the formula which calculates the initial TTL of the AODVVANETRREQ for a local repair
 
         double myRouteTimeout @unit("s") = default(2 * activeRouteTimeout); // the value of the lifetime field that a destination node places in RREPs
         double deletePeriod @unit("s") = default(5 * max(activeRouteTimeout, helloInterval)); // the time after which an expired route is deleted
         double blacklistTimeout @unit("s") = default(rreqRetries * netTraversalTime); // the time after which a blacklisted node is removed from the blacklist
         double netTraversalTime @unit("s") = default(2 * nodeTraversalTime * netDiameter); // an estimation of the traversal time for the complete network
         double nextHopWait @unit("s") = default(nodeTraversalTime + 0.01s); // timeout for a RREP-ACK
-        double pathDiscoveryTime @unit("s") = default(2 * netTraversalTime); // buffer timeout for each broadcasted RREQ message
+        double pathDiscoveryTime @unit("s") = default(2 * netTraversalTime); // buffer timeout for each broadcasted AODVVANETRREQ message
     gates:
         input ipIn;
         output ipOut;

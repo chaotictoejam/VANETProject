@@ -155,7 +155,7 @@ void NS_CLASS rerr_process(AODVVANETRERR * rerr, int rerrlen,struct in_addr ip_s
                 {
                     u_int8_t rreq_flags = 0;
                     if (par("targetOnlyRreq").boolValue())
-                        rreq_flags |= RREQ_DEST_ONLY;
+                        rreq_flags |= AODVVANETRREQ_DEST_ONLY;
                     rreq_route_discovery(udest_addr, rreq_flags, NULL);
                 }
             }

@@ -848,11 +848,11 @@ void *AODVVANETRERRDescriptor::getFieldStructPointer(void *object, int field, in
     }
 }
 
-class RREPDescriptor : public cClassDescriptor
+class AODVVANETRREPDescriptor : public cClassDescriptor
 {
   public:
-    RREPDescriptor();
-    virtual ~RREPDescriptor();
+    AODVVANETRREPDescriptor();
+    virtual ~AODVVANETRREPDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -871,22 +871,22 @@ class RREPDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(RREPDescriptor);
+Register_ClassDescriptor(AODVVANETRREPDescriptor);
 
-RREPDescriptor::RREPDescriptor() : cClassDescriptor("RREP", "AODVVANET_msg")
+AODVVANETRREPDescriptor::AODVVANETRREPDescriptor() : cClassDescriptor("AODVVANETRREP", "AODVVANET_msg")
 {
 }
 
-RREPDescriptor::~RREPDescriptor()
+AODVVANETRREPDescriptor::~AODVVANETRREPDescriptor()
 {
 }
 
-bool RREPDescriptor::doesSupport(cObject *obj) const
+bool AODVVANETRREPDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<RREP *>(obj)!=NULL;
+    return dynamic_cast<AODVVANETRREP *>(obj)!=NULL;
 }
 
-const char *RREPDescriptor::getProperty(const char *propertyname) const
+const char *AODVVANETRREPDescriptor::getProperty(const char *propertyname) const
 {
     if (!strcmp(propertyname,"descriptor")) return "readonly";
     if (!strcmp(propertyname,"existingClass")) return "true";
@@ -894,13 +894,13 @@ const char *RREPDescriptor::getProperty(const char *propertyname) const
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int RREPDescriptor::getFieldCount(void *object) const
+int AODVVANETRREPDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? 12+basedesc->getFieldCount(object) : 12;
 }
 
-unsigned int RREPDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int AODVVANETRREPDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -925,7 +925,7 @@ unsigned int RREPDescriptor::getFieldTypeFlags(void *object, int field) const
     return (field>=0 && field<12) ? fieldTypeFlags[field] : 0;
 }
 
-const char *RREPDescriptor::getFieldName(void *object, int field) const
+const char *AODVVANETRREPDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -950,7 +950,7 @@ const char *RREPDescriptor::getFieldName(void *object, int field) const
     return (field>=0 && field<12) ? fieldNames[field] : NULL;
 }
 
-int RREPDescriptor::findField(void *object, const char *fieldName) const
+int AODVVANETRREPDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
@@ -969,7 +969,7 @@ int RREPDescriptor::findField(void *object, const char *fieldName) const
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *RREPDescriptor::getFieldTypeString(void *object, int field) const
+const char *AODVVANETRREPDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -994,7 +994,7 @@ const char *RREPDescriptor::getFieldTypeString(void *object, int field) const
     return (field>=0 && field<12) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *RREPDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *AODVVANETRREPDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1007,7 +1007,7 @@ const char *RREPDescriptor::getFieldProperty(void *object, int field, const char
     }
 }
 
-int RREPDescriptor::getArraySize(void *object, int field) const
+int AODVVANETRREPDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1015,13 +1015,13 @@ int RREPDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    RREP *pp = (RREP *)object; (void)pp;
+    AODVVANETRREP *pp = (AODVVANETRREP *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string RREPDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string AODVVANETRREPDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1029,7 +1029,7 @@ std::string RREPDescriptor::getFieldAsString(void *object, int field, int i) con
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    RREP *pp = (RREP *)object; (void)pp;
+    AODVVANETRREP *pp = (AODVVANETRREP *)object; (void)pp;
     switch (field) {
         case 0: return ulong2string(pp->getRes1());
         case 1: return ulong2string(pp->getA());
@@ -1047,7 +1047,7 @@ std::string RREPDescriptor::getFieldAsString(void *object, int field, int i) con
     }
 }
 
-bool RREPDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool AODVVANETRREPDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1055,13 +1055,13 @@ bool RREPDescriptor::setFieldAsString(void *object, int field, int i, const char
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    RREP *pp = (RREP *)object; (void)pp;
+    AODVVANETRREP *pp = (AODVVANETRREP *)object; (void)pp;
     switch (field) {
         default: return false;
     }
 }
 
-const char *RREPDescriptor::getFieldStructName(void *object, int field) const
+const char *AODVVANETRREPDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1076,7 +1076,7 @@ const char *RREPDescriptor::getFieldStructName(void *object, int field) const
     };
 }
 
-void *RREPDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *AODVVANETRREPDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1084,7 +1084,7 @@ void *RREPDescriptor::getFieldStructPointer(void *object, int field, int i) cons
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    RREP *pp = (RREP *)object; (void)pp;
+    AODVVANETRREP *pp = (AODVVANETRREP *)object; (void)pp;
     switch (field) {
         case 6: return (void *)(&pp->getDest_addr()); break;
         case 8: return (void *)(&pp->getOrig_addr()); break;
@@ -1092,11 +1092,11 @@ void *RREPDescriptor::getFieldStructPointer(void *object, int field, int i) cons
     }
 }
 
-class RREP_ackDescriptor : public cClassDescriptor
+class AODVVANETRREP_ackDescriptor : public cClassDescriptor
 {
   public:
-    RREP_ackDescriptor();
-    virtual ~RREP_ackDescriptor();
+    AODVVANETRREP_ackDescriptor();
+    virtual ~AODVVANETRREP_ackDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -1115,22 +1115,22 @@ class RREP_ackDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(RREP_ackDescriptor);
+Register_ClassDescriptor(AODVVANETRREP_ackDescriptor);
 
-RREP_ackDescriptor::RREP_ackDescriptor() : cClassDescriptor("RREP_ack", "AODVVANET_msg")
+AODVVANETRREP_ackDescriptor::AODVVANETRREP_ackDescriptor() : cClassDescriptor("AODVVANETRREP_ack", "AODVVANET_msg")
 {
 }
 
-RREP_ackDescriptor::~RREP_ackDescriptor()
+AODVVANETRREP_ackDescriptor::~AODVVANETRREP_ackDescriptor()
 {
 }
 
-bool RREP_ackDescriptor::doesSupport(cObject *obj) const
+bool AODVVANETRREP_ackDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<RREP_ack *>(obj)!=NULL;
+    return dynamic_cast<AODVVANETRREP_ack *>(obj)!=NULL;
 }
 
-const char *RREP_ackDescriptor::getProperty(const char *propertyname) const
+const char *AODVVANETRREP_ackDescriptor::getProperty(const char *propertyname) const
 {
     if (!strcmp(propertyname,"descriptor")) return "readonly";
     if (!strcmp(propertyname,"existingClass")) return "true";
@@ -1138,13 +1138,13 @@ const char *RREP_ackDescriptor::getProperty(const char *propertyname) const
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int RREP_ackDescriptor::getFieldCount(void *object) const
+int AODVVANETRREP_ackDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? 1+basedesc->getFieldCount(object) : 1;
 }
 
-unsigned int RREP_ackDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int AODVVANETRREP_ackDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1158,7 +1158,7 @@ unsigned int RREP_ackDescriptor::getFieldTypeFlags(void *object, int field) cons
     return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
 }
 
-const char *RREP_ackDescriptor::getFieldName(void *object, int field) const
+const char *AODVVANETRREP_ackDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1172,7 +1172,7 @@ const char *RREP_ackDescriptor::getFieldName(void *object, int field) const
     return (field>=0 && field<1) ? fieldNames[field] : NULL;
 }
 
-int RREP_ackDescriptor::findField(void *object, const char *fieldName) const
+int AODVVANETRREP_ackDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
@@ -1180,7 +1180,7 @@ int RREP_ackDescriptor::findField(void *object, const char *fieldName) const
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *RREP_ackDescriptor::getFieldTypeString(void *object, int field) const
+const char *AODVVANETRREP_ackDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1194,7 +1194,7 @@ const char *RREP_ackDescriptor::getFieldTypeString(void *object, int field) cons
     return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *RREP_ackDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *AODVVANETRREP_ackDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1207,7 +1207,7 @@ const char *RREP_ackDescriptor::getFieldProperty(void *object, int field, const 
     }
 }
 
-int RREP_ackDescriptor::getArraySize(void *object, int field) const
+int AODVVANETRREP_ackDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1215,13 +1215,13 @@ int RREP_ackDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    RREP_ack *pp = (RREP_ack *)object; (void)pp;
+    AODVVANETRREP_ack *pp = (AODVVANETRREP_ack *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string RREP_ackDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string AODVVANETRREP_ackDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1229,14 +1229,14 @@ std::string RREP_ackDescriptor::getFieldAsString(void *object, int field, int i)
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    RREP_ack *pp = (RREP_ack *)object; (void)pp;
+    AODVVANETRREP_ack *pp = (AODVVANETRREP_ack *)object; (void)pp;
     switch (field) {
         case 0: return ulong2string(pp->getReserved());
         default: return "";
     }
 }
 
-bool RREP_ackDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool AODVVANETRREP_ackDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1244,13 +1244,13 @@ bool RREP_ackDescriptor::setFieldAsString(void *object, int field, int i, const 
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    RREP_ack *pp = (RREP_ack *)object; (void)pp;
+    AODVVANETRREP_ack *pp = (AODVVANETRREP_ack *)object; (void)pp;
     switch (field) {
         default: return false;
     }
 }
 
-const char *RREP_ackDescriptor::getFieldStructName(void *object, int field) const
+const char *AODVVANETRREP_ackDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1263,7 +1263,7 @@ const char *RREP_ackDescriptor::getFieldStructName(void *object, int field) cons
     };
 }
 
-void *RREP_ackDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *AODVVANETRREP_ackDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1271,17 +1271,17 @@ void *RREP_ackDescriptor::getFieldStructPointer(void *object, int field, int i) 
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    RREP_ack *pp = (RREP_ack *)object; (void)pp;
+    AODVVANETRREP_ack *pp = (AODVVANETRREP_ack *)object; (void)pp;
     switch (field) {
         default: return NULL;
     }
 }
 
-class RREQDescriptor : public cClassDescriptor
+class AODVVANETRREQDescriptor : public cClassDescriptor
 {
   public:
-    RREQDescriptor();
-    virtual ~RREQDescriptor();
+    AODVVANETRREQDescriptor();
+    virtual ~AODVVANETRREQDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -1300,22 +1300,22 @@ class RREQDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(RREQDescriptor);
+Register_ClassDescriptor(AODVVANETRREQDescriptor);
 
-RREQDescriptor::RREQDescriptor() : cClassDescriptor("RREQ", "AODVVANET_msg")
+AODVVANETRREQDescriptor::AODVVANETRREQDescriptor() : cClassDescriptor("AODVVANETRREQ", "AODVVANET_msg")
 {
 }
 
-RREQDescriptor::~RREQDescriptor()
+AODVVANETRREQDescriptor::~AODVVANETRREQDescriptor()
 {
 }
 
-bool RREQDescriptor::doesSupport(cObject *obj) const
+bool AODVVANETRREQDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<RREQ *>(obj)!=NULL;
+    return dynamic_cast<AODVVANETRREQ *>(obj)!=NULL;
 }
 
-const char *RREQDescriptor::getProperty(const char *propertyname) const
+const char *AODVVANETRREQDescriptor::getProperty(const char *propertyname) const
 {
     if (!strcmp(propertyname,"descriptor")) return "readonly";
     if (!strcmp(propertyname,"existingClass")) return "true";
@@ -1323,13 +1323,13 @@ const char *RREQDescriptor::getProperty(const char *propertyname) const
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int RREQDescriptor::getFieldCount(void *object) const
+int AODVVANETRREQDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? 14+basedesc->getFieldCount(object) : 14;
 }
 
-unsigned int RREQDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int AODVVANETRREQDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1356,7 +1356,7 @@ unsigned int RREQDescriptor::getFieldTypeFlags(void *object, int field) const
     return (field>=0 && field<14) ? fieldTypeFlags[field] : 0;
 }
 
-const char *RREQDescriptor::getFieldName(void *object, int field) const
+const char *AODVVANETRREQDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1383,7 +1383,7 @@ const char *RREQDescriptor::getFieldName(void *object, int field) const
     return (field>=0 && field<14) ? fieldNames[field] : NULL;
 }
 
-int RREQDescriptor::findField(void *object, const char *fieldName) const
+int AODVVANETRREQDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
@@ -1404,7 +1404,7 @@ int RREQDescriptor::findField(void *object, const char *fieldName) const
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *RREQDescriptor::getFieldTypeString(void *object, int field) const
+const char *AODVVANETRREQDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1431,7 +1431,7 @@ const char *RREQDescriptor::getFieldTypeString(void *object, int field) const
     return (field>=0 && field<14) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *RREQDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *AODVVANETRREQDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1444,7 +1444,7 @@ const char *RREQDescriptor::getFieldProperty(void *object, int field, const char
     }
 }
 
-int RREQDescriptor::getArraySize(void *object, int field) const
+int AODVVANETRREQDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1452,13 +1452,13 @@ int RREQDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    RREQ *pp = (RREQ *)object; (void)pp;
+    AODVVANETRREQ *pp = (AODVVANETRREQ *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string RREQDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string AODVVANETRREQDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1466,7 +1466,7 @@ std::string RREQDescriptor::getFieldAsString(void *object, int field, int i) con
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    RREQ *pp = (RREQ *)object; (void)pp;
+    AODVVANETRREQ *pp = (AODVVANETRREQ *)object; (void)pp;
     switch (field) {
         case 0: return ulong2string(pp->getJ());
         case 1: return ulong2string(pp->getR());
@@ -1486,7 +1486,7 @@ std::string RREQDescriptor::getFieldAsString(void *object, int field, int i) con
     }
 }
 
-bool RREQDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool AODVVANETRREQDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1494,13 +1494,13 @@ bool RREQDescriptor::setFieldAsString(void *object, int field, int i, const char
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    RREQ *pp = (RREQ *)object; (void)pp;
+    AODVVANETRREQ *pp = (AODVVANETRREQ *)object; (void)pp;
     switch (field) {
         default: return false;
     }
 }
 
-const char *RREQDescriptor::getFieldStructName(void *object, int field) const
+const char *AODVVANETRREQDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1515,7 +1515,7 @@ const char *RREQDescriptor::getFieldStructName(void *object, int field) const
     };
 }
 
-void *RREQDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *AODVVANETRREQDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -1523,7 +1523,7 @@ void *RREQDescriptor::getFieldStructPointer(void *object, int field, int i) cons
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    RREQ *pp = (RREQ *)object; (void)pp;
+    AODVVANETRREQ *pp = (AODVVANETRREQ *)object; (void)pp;
     switch (field) {
         case 8: return (void *)(&pp->getDest_addr()); break;
         case 10: return (void *)(&pp->getOrig_addr()); break;

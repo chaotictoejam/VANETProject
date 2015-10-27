@@ -139,16 +139,16 @@ void NS_CLASS write_to_log_file(char *msg, int len)
 #endif
 }
 
-const char *packet_type(uint32 type)
+const char *aodvvanetpacket_type(uint32 type)
 {
     static char temp[50];
 
     switch (type)
     {
-    case AODVVANET_RREQ:
-        return "AODVVANET_RREQ";
-    case AODVVANET_RREP:
-        return "AODVVANET_RREP";
+    case AODVVANET_AODVVANETRREQ:
+        return "AODVVANET_AODVVANETRREQ";
+    case AODVVANET_AODVVANETRREP:
+        return "AODVVANET_AODVVANETRREP";
     case AODVVANET_AODVVANETRERR:
         return "AODVVANET_AODVVANETRERR";
     default:
@@ -246,7 +246,7 @@ syslog:
 }
 
 
-char *NS_CLASS rreq_flags_to_str(RREQ * rreq)
+char *NS_CLASS rreq_flags_to_str(AODVVANETRREQ * rreq)
 {
     static char buf[5];
     int len = 0;
@@ -267,7 +267,7 @@ char *NS_CLASS rreq_flags_to_str(RREQ * rreq)
     return str;
 }
 
-char *NS_CLASS rrep_flags_to_str(RREP * rrep)
+char *NS_CLASS rrep_flags_to_str(AODVVANETRREP * rrep)
 {
     static char buf[3];
     int len = 0;
@@ -287,15 +287,15 @@ char *NS_CLASS rrep_flags_to_str(RREP * rrep)
 void NS_CLASS log_pkt_fields(AODVVANET_msg * msg)
 {
 
-    RREQ *rreq;
-    RREP *rrep;
+    AODVVANETRREQ *rreq;
+    AODVVANETRREP *rrep;
     AODVVANETRERR *rerr;
     struct in_addr dest, orig;
 
     switch (msg->type)
     {
-    case AODVVANET_RREQ:
-        rreq = (RREQ *) msg;
+    case AODVVANET_AODVVANETRREQ:
+        rreq = (AODVVANETRREQ *) msg;
         dest.s_addr = rreq->dest_addr;
         orig.s_addr = rreq->orig_addr;
         DEBUG(LOG_DEBUG, 0,
@@ -306,8 +306,8 @@ void NS_CLASS log_pkt_fields(AODVVANET_msg * msg)
         DEBUG(LOG_DEBUG, 0, "rreq->orig_addr:%s rreq->orig_seqno=%ld",
               ip_to_str(orig), ntohl(rreq->orig_seqno));
         break;
-    case AODVVANET_RREP:
-        rrep = (RREP *) msg;
+    case AODVVANET_AODVVANETRREP:
+        rrep = (AODVVANETRREP *) msg;
         dest.s_addr = rrep->dest_addr;
         orig.s_addr = rrep->orig_addr;
         DEBUG(LOG_DEBUG, 0, "rrep->flags:%s rrep->hcnt=%d",

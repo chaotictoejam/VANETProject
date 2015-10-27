@@ -423,7 +423,7 @@ class VanetRoutingBase : public cSimpleModule, public INotifiable, protected cLi
     virtual bool getNextHopGroup(const VanetAddress&, VanetAddress &add, int &iface, VanetAddress&, bool &, int group = 0){opp_error("getNextHopGroup, method is not implemented"); return false;}
 
 
-    /// proxy/gateway methods, this methods help to the reactive protocols to answer the RREQ for a address that are in other subnetwork
+    /// proxy/gateway methods, this methods help to the reactive protocols to answer the AODVVANETRREQ for a address that are in other subnetwork
     //@{
     /// Set if the node will work like gateway for address in the list
     virtual void setIsGateway(bool p) {isGateway = p;}

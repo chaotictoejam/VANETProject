@@ -38,7 +38,7 @@ struct UnreachableRBVTRNode
 
 enum RBVTRControlPacketType
 {
-    RREQ = 1;
+    AODVVANETRREQ = 1;
     RREP = 2;
     RERR = 3;
     RREPACK = 4;
@@ -55,9 +55,9 @@ packet RBVTRControlPacket
 //
 // Represents an RBVTR Route Request
 //
-class RBVTRRREQ extends RBVTRControlPacket
+class RBVTRAODVVANETRREQ extends RBVTRControlPacket
 {
-    unsigned int packetType = RREQ;
+    unsigned int packetType = AODVVANETRREQ;
     bool joinFlag;
     bool repairFlag;
     bool gratuitousRREPFlag;

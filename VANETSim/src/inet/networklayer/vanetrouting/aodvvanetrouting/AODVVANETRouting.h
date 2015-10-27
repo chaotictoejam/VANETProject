@@ -42,25 +42,25 @@ class AODVVANETRouting : public cSimpleModule, public ILifecycle, public INetfil
 {
   protected:
     /*
-     * It implements a unique identifier for an arbitrary RREQ message
+     * It implements a unique identifier for an arbitrary AODVVANETRoutingRREQ message
      * in the network. See: rreqsArrivalTime.
      */
-    class RREQIdentifier
+    class AODVVANETRoutingRREQIdentifier
     {
       public:
         IPv4Address originatorAddr;
         unsigned int rreqID;
-        RREQIdentifier(const IPv4Address& originatorAddr, unsigned int rreqID) : originatorAddr(originatorAddr), rreqID(rreqID) {};
-        bool operator==(const RREQIdentifier& other) const
+        AODVVANETRoutingRREQIdentifier(const IPv4Address& originatorAddr, unsigned int rreqID) : originatorAddr(originatorAddr), rreqID(rreqID) {};
+        bool operator==(const AODVVANETRoutingRREQIdentifier& other) const
         {
             return this->originatorAddr == other.originatorAddr && this->rreqID == other.rreqID;
         }
     };
 
-    class RREQIdentifierCompare
+    class AODVVANETRoutingRREQIdentifierCompare
     {
       public:
-        bool operator()(const RREQIdentifier& lhs, const RREQIdentifier& rhs) const
+        bool operator()(const AODVVANETRoutingRREQIdentifier& lhs, const AODVVANETRoutingRREQIdentifier& rhs) const
         {
             return lhs.rreqID < rhs.rreqID;
         }
@@ -114,14 +114,14 @@ class AODVVANETRouting : public cSimpleModule, public ILifecycle, public INetfil
     simtime_t pathDiscoveryTime;
 
     // state
-    unsigned int rreqId;    // when sending a new RREQ packet, rreqID incremented by one from the last id used by this node
+    unsigned int rreqId;    // when sending a new AODVVANETRoutingRREQ packet, rreqID incremented by one from the last id used by this node
     unsigned int sequenceNum;    // it helps to prevent loops in the routes (RFC 3561 6.1 p11.)
-    std::map<IPv4Address, WaitForAODVVANETRREP *> waitForRREPTimers;    // timeout for Route Replies
-    std::map<RREQIdentifier, simtime_t, RREQIdentifierCompare> rreqsArrivalTime;    // maps RREQ id to its arriving time
+    std::map<IPv4Address, WaitForAODVVANETRoutingRREP *> waitForRREPTimers;    // timeout for Route Replies
+    std::map<AODVVANETRoutingRREQIdentifier, simtime_t, AODVVANETRoutingRREQIdentifierCompare> rreqsArrivalTime;    // maps AODVVANETRoutingRREQ id to its arriving time
     IPv4Address failedNextHop;    // next hop to the destination who failed to send us RREP-ACK
-    std::map<IPv4Address, simtime_t> blacklist;    // we don't accept RREQs from blacklisted nodes
+    std::map<IPv4Address, simtime_t> blacklist;    // we don't accept AODVVANETRoutingRREQs from blacklisted nodes
     unsigned int rerrCount;    // num of originated RERR in the last second
-    unsigned int rreqCount;    // num of originated RREQ in the last second
+    unsigned int rreqCount;    // num of originated AODVVANETRoutingRREQ in the last second
     simtime_t lastBroadcastTime;    // the last time when any control packet was broadcasted
     std::map<IPv4Address, unsigned int> addressToRreqRetries; // number of re-discovery attempts per address
 
@@ -158,35 +158,35 @@ class AODVVANETRouting : public cSimpleModule, public ILifecycle, public INetfil
     void expungeRoutes();
 
     /* Control packet creators */
-    AODVVANETRREPACK *createRREPACK();
-    AODVVANETRREP *createHelloMessage();
-    AODVVANETRREQ *createRREQ(const IPv4Address& destAddr);
-    AODVVANETRREP *createRREP(AODVVANETRREQ *rreq, IPv4Route *destRoute, IPv4Route *originatorRoute, const IPv4Address& sourceAddr);
-    AODVVANETRREP *createGratuitousRREP(AODVVANETRREQ *rreq, IPv4Route *originatorRoute);
-    AODVVANETRERR *createRERR(const std::vector<UnreachableAODVNode>& unreachableAODVNodes);
+    AODVVANETRoutingRREPACK *createRREPACK();
+    AODVVANETRoutingRREP *createHelloMessage();
+    AODVVANETAODVVANETRoutingRREQ *createAODVVANETRoutingRREQ(const IPv4Address& destAddr);
+    AODVVANETRoutingRREP *createRREP(AODVVANETAODVVANETRoutingRREQ *rreq, IPv4Route *destRoute, IPv4Route *originatorRoute, const IPv4Address& sourceAddr);
+    AODVVANETRoutingRREP *createGratuitousRREP(AODVVANETAODVVANETRoutingRREQ *rreq, IPv4Route *originatorRoute);
+    AODVVANETRoutingRERR *createRERR(const std::vector<UnreachableAODVNode>& unreachableAODVNodes);
 
     /* Control Packet handlers */
-    void handleRREP(AODVVANETRREP *rrep, const IPv4Address& sourceAddr);
-    void handleRREQ(AODVVANETRREQ *rreq, const IPv4Address& sourceAddr, unsigned int timeToLive);
-    void handleRERR(AODVVANETRERR *rerr, const IPv4Address& sourceAddr);
-    void handleHelloMessage(AODVVANETRREP *helloMessage);
-    void handleRREPACK(AODVVANETRREPACK *rrepACK, const IPv4Address& neighborAddr);
+    void handleRREP(AODVVANETRoutingRREP *rrep, const IPv4Address& sourceAddr);
+    void handleAODVVANETRoutingRREQ(AODVVANETAODVVANETRoutingRREQ *rreq, const IPv4Address& sourceAddr, unsigned int timeToLive);
+    void handleRERR(AODVVANETRoutingRERR *rerr, const IPv4Address& sourceAddr);
+    void handleHelloMessage(AODVVANETRoutingRREP *helloMessage);
+    void handleRREPACK(AODVVANETRoutingRREPACK *rrepACK, const IPv4Address& neighborAddr);
 
     /* Control Packet sender methods */
-    void sendRREQ(AODVVANETRREQ *rreq, const IPv4Address& destAddr, unsigned int timeToLive);
-    void sendRREPACK(AODVVANETRREPACK *rrepACK, const IPv4Address& destAddr);
-    void sendRREP(AODVVANETRREP *rrep, const IPv4Address& destAddr, unsigned int timeToLive);
-    void sendGRREP(AODVVANETRREP *grrep, const IPv4Address& destAddr, unsigned int timeToLive);
+    void sendAODVVANETRoutingRREQ(AODVVANETAODVVANETRoutingRREQ *rreq, const IPv4Address& destAddr, unsigned int timeToLive);
+    void sendRREPACK(AODVVANETRoutingRREPACK *rrepACK, const IPv4Address& destAddr);
+    void sendRREP(AODVVANETRoutingRREP *rrep, const IPv4Address& destAddr, unsigned int timeToLive);
+    void sendGRREP(AODVVANETRoutingRREP *grrep, const IPv4Address& destAddr, unsigned int timeToLive);
 
     /* Control Packet forwarders */
-    void forwardRREP(AODVVANETRREP *rrep, const IPv4Address& destAddr, unsigned int timeToLive);
-    void forwardRREQ(AODVVANETRREQ *rreq, unsigned int timeToLive);
+    void forwardRREP(AODVVANETRoutingRREP *rrep, const IPv4Address& destAddr, unsigned int timeToLive);
+    void forwardAODVVANETRoutingRREQ(AODVVANETAODVVANETRoutingRREQ *rreq, unsigned int timeToLive);
 
     /* Self message handlers */
     void handleRREPACKTimer();
     void handleBlackListTimer();
     void sendHelloMessagesIfNeeded();
-    void handleWaitForAODVVANETRREP(WaitForAODVVANETRREP *rrepTimer);
+    void handleWaitForAODVVANETRoutingRREP(WaitForAODVVANETRoutingRREP *rrepTimer);
 
     /* General functions to handle route errors */
     void sendRERRWhenNoRouteToForward(const IPv4Address& unreachableAddr);

@@ -107,7 +107,7 @@ struct AODVVANETRERR : public AODVVANET_msg
 //#define AODVVANETRERR_SIZE 8+VanetAddressSizeUsed
 #define AODVVANETRERR_CALC_SIZE(rerr) (rerr->getByteLength())
 
-struct RREP : public AODVVANET_msg
+struct AODVVANETRREP : public AODVVANET_msg
 {
     u_int16_t res1;
     u_int16_t a;
@@ -115,19 +115,17 @@ struct RREP : public AODVVANET_msg
     u_int16_t prefix;
     u_int16_t res2;
     u_int8_t hcnt;
-//  u_int32_t dest_addr;
     VanetAddress dest_addr;
     u_int32_t dest_seqno;
-//  u_int32_t orig_addr;
     VanetAddress orig_addr;
     u_int32_t lifetime;
     uint32_t cost;
     uint8_t  hopfix;
     uint8_t  totalHops;
-    explicit RREP (const char *name="RREPAodvMsg");
-    RREP (const RREP &m);
-    RREP &  operator= (const RREP &m);
-    virtual RREP *dup() const {return new RREP(*this);}
+    explicit AODVVANETRREP (const char *name="AODVVANETRREPAodvMsg");
+    AODVVANETRREP (const AODVVANETRREP &m);
+    AODVVANETRREP &  operator= (const AODVVANETRREP &m);
+    virtual AODVVANETRREP *dup() const {return new AODVVANETRREP(*this);}
     virtual std::string detailedInfo() const;
     uint16_t getRes1() const {return res1;}
     uint16_t getA() const {return a;}
@@ -144,48 +142,46 @@ struct RREP : public AODVVANET_msg
     uint32_t getCost() const {return cost;}
     uint8_t  getHopfix() const {return hopfix;}
   private:
-    void copy(const RREP& other);
+    void copy(const AODVVANETRREP& other);
 } ;
 // 20 for IPv4
-//#define RREP_SIZE (VanetAddressSizeUsed*2)+12
+//#define AODVVANETRREP_SIZE (VanetAddressSizeUsed*2)+12
 
-struct RREP_ack : public AODVVANET_msg
+struct AODVVANETRREP_ack : public AODVVANET_msg
 {
     u_int8_t reserved;
   public:
-    explicit RREP_ack (const char *name="RREPAckAodvMsg") : AODVVANET_msg (name) {setBitLength(2*8);}
-    RREP_ack (const RREP_ack  &m);
-    RREP_ack &  operator= (const RREP_ack &m);
-    virtual RREP_ack *dup() const {return new RREP_ack(*this);}
+    explicit AODVVANETRREP_ack (const char *name="AODVVANETRREPAckAodvMsg") : AODVVANET_msg (name) {setBitLength(2*8);}
+    AODVVANETRREP_ack (const AODVVANETRREP_ack  &m);
+    AODVVANETRREP_ack &  operator= (const AODVVANETRREP_ack &m);
+    virtual AODVVANETRREP_ack *dup() const {return new AODVVANETRREP_ack(*this);}
     uint8_t getReserved() const {return reserved;}
   private:
-    void copy(const RREP_ack& other) { reserved = other.reserved; }
+    void copy(const AODVVANETRREP_ack& other) { reserved = other.reserved; }
 } ;
-#define RREP_ACK_SIZE 2
+#define AODVVANETRREP_ACK_SIZE 2
 
-struct RREQ : public AODVVANET_msg
+struct AODVVANETRREQ : public AODVVANET_msg
 {
     u_int8_t j;     /* Join flag (multicast) */
     u_int8_t r;     /* Repair flag */
-    u_int8_t g;     /* Gratuitous RREP flag */
+    u_int8_t g;     /* Gratuitous AODVVANETRREP flag */
     u_int8_t d;     /* Destination only respond */
     u_int8_t res1;
     u_int8_t res2;
     u_int8_t hcnt;
     u_int32_t rreq_id;
-//  u_int32_t dest_addr;
     VanetAddress dest_addr;
     u_int32_t dest_seqno;
-//  u_int32_t orig_addr;
     VanetAddress orig_addr;
     u_int32_t orig_seqno;
     uint32_t   cost;
     uint8_t  hopfix;
-    explicit RREQ(const char *name="RREQAodvMsg");
+    explicit AODVVANETRREQ(const char *name="AODVVANETRREQAodvMsg");
 
-    RREQ (const RREQ &m);
-    RREQ &  operator= (const RREQ &m);
-    virtual RREQ *dup() const {return new RREQ(*this);}
+    AODVVANETRREQ (const AODVVANETRREQ &m);
+    AODVVANETRREQ &  operator= (const AODVVANETRREQ &m);
+    virtual AODVVANETRREQ *dup() const {return new AODVVANETRREQ(*this);}
     virtual std::string detailedInfo() const;
     uint8_t getJ() const {return j;}
     uint8_t getR() const {return r;}
@@ -195,18 +191,16 @@ struct RREQ : public AODVVANET_msg
     uint8_t getRes2() const {return res2;}
     uint8_t getHcnt() const {return hcnt;}
     uint32_t getRreq_id() const {return rreq_id;}
-    //uint32_t getDest_addr() const {return dest_addr;}
     const VanetAddress& getDest_addr() const {return dest_addr;}
     uint32_t getDest_seqno() const {return dest_seqno;}
-    //u_int32_t getOrig_addr() const {return orig_addr;}
     const VanetAddress& getOrig_addr() const {return orig_addr;}
     uint32_t getOrig_seqno() const {return orig_seqno;}
     uint32_t getCost() const {return cost;}
     uint8_t getHopfix() const {return hopfix;}
   private:
-    void copy(const RREQ& other);
+    void copy(const AODVVANETRREQ& other);
 };
 // 24 for IPv4
-//#define RREQ_SIZE 16+(VanetAddressSizeUsed*2)
+//#define AODVVANETRREQ_SIZE 16+(VanetAddressSizeUsed*2)
 #endif
 

@@ -130,8 +130,8 @@ void BITCARRouting::handleMessage(cMessage *msg)
         unsigned int arrivalPacketTTL = udpProtocolCtrlInfo->getTimeToLive();
 
         switch (ctrlPacket->getPacketType()) {
-            case RREQ:
-                handleRREQ(check_and_cast<BITCARRREQ *>(ctrlPacket), sourceAddr, arrivalPacketTTL);
+            case AODVVANETRREQ:
+                handleAODVVANETRREQ(check_and_cast<BITCARAODVVANETRREQ *>(ctrlPacket), sourceAddr, arrivalPacketTTL);
                 break;
 
             case RREP:
@@ -181,7 +181,7 @@ INetfilter::IHook::Result BITCARRouting::ensureRouteForDatagram(IPv4Datagram *da
         }
         else if (sourceAddr.isUnspecified() || routingTable->isLocalAddress(sourceAddr)) {
             bool isInactive = routeData && !routeData->isActive();
-            // A node disseminates a RREQ when it determines that it needs a route
+            // A node disseminates a AODVVANETRREQ when it determines that it needs a route
             // to a destination and does not have one available.  This can happen if
             // the destination is previously unknown to the node, or if a previously
             // valid route to the destination expires or is marked as invalid.
@@ -192,7 +192,7 @@ INetfilter::IHook::Result BITCARRouting::ensureRouteForDatagram(IPv4Datagram *da
 
             if (!hasOngoingRouteDiscovery(destAddr)) {
                 // When a new route to the same destination is required at a later time
-                // (e.g., upon route loss), the TTL in the RREQ IP header is initially
+                // (e.g., upon route loss), the TTL in the AODVVANETRREQ IP header is initially
                 // set to the Hop Count plus TTL_INCREMENT.
                 if (isInactive)
                     startRouteDiscovery(destAddr, route->getMetric() + ttlIncrement);
@@ -233,9 +233,9 @@ void BITCARRouting::startRouteDiscovery(const IPv4Address& target, unsigned time
 {
     EV_INFO << "Starting route discovery with originator " << getSelfIPAddress() << " and destination " << target << endl;
     ASSERT(!hasOngoingRouteDiscovery(target));
-    BITCARRREQ *rreq = createRREQ(target);
+    BITCARAODVVANETRREQ *rreq = createAODVVANETRREQ(target);
     addressToRreqRetries[target] = 0;
-    sendRREQ(rreq, IPv4Address::ALLONES_ADDRESS, timeToLive);
+    sendAODVVANETRREQ(rreq, IPv4Address::ALLONES_ADDRESS, timeToLive);
 }
 
 IPv4Address BITCARRouting::getSelfIPAddress() const
@@ -250,20 +250,20 @@ void BITCARRouting::delayDatagram(IPv4Datagram *datagram)
     targetAddressToDelayedPackets.insert(std::pair<IPv4Address, IPv4Datagram *>(target, datagram));
 }
 
-void BITCARRouting::sendRREQ(BITCARRREQ *rreq, const IPv4Address& destAddr, unsigned int timeToLive)
+void BITCARRouting::sendAODVVANETRREQ(BITCARAODVVANETRREQ *rreq, const IPv4Address& destAddr, unsigned int timeToLive)
 {
     // In an expanding ring search, the originating node initially uses a TTL =
-    // TTL_START in the RREQ packet IP header and sets the timeout for
+    // TTL_START in the AODVVANETRREQ packet IP header and sets the timeout for
     // receiving a RREP to RING_TRAVERSAL_TIME milliseconds.  The
     // TTL_VALUE used in calculating RING_TRAVERSAL_TIME is set equal to the
-    // value of the TTL field in the IP header.  If the RREQ times out
-    // without a corresponding RREP, the originator broadcasts the RREQ
+    // value of the TTL field in the IP header.  If the AODVVANETRREQ times out
+    // without a corresponding RREP, the originator broadcasts the AODVVANETRREQ
     // again with the TTL incremented by TTL_INCREMENT.  This continues
-    // until the TTL set in the RREQ reaches TTL_THRESHOLD, beyond which a
+    // until the TTL set in the AODVVANETRREQ reaches TTL_THRESHOLD, beyond which a
     // TTL = NET_DIAMETER is used for each attempt.
 
     if (rreqCount >= rreqRatelimit) {
-        EV_WARN << "A node should not originate more than RREQ_RATELIMIT RREQ messages per second. Canceling sending RREQ" << endl;
+        EV_WARN << "A node should not originate more than AODVVANETRREQ_RATELIMIT AODVVANETRREQ messages per second. Canceling sending AODVVANETRREQ" << endl;
         delete rreq;
         return;
     }
@@ -278,7 +278,7 @@ void BITCARRouting::sendRREQ(BITCARRREQ *rreq, const IPv4Address& destAddr, unsi
         // The Hop Count stored in an invalid routing table entry indicates the
         // last known hop count to that destination in the routing table.  When
         // a new route to the same destination is required at a later time
-        // (e.g., upon route loss), the TTL in the RREQ IP header is initially
+        // (e.g., upon route loss), the TTL in the AODVVANETRREQ IP header is initially
         // set to the Hop Count plus TTL_INCREMENT.  Thereafter, following each
         // timeout the TTL is incremented by TTL_INCREMENT until TTL =
         // TTL_THRESHOLD is reached.  Beyond this TTL = NET_DIAMETER is used.
@@ -338,7 +338,7 @@ void BITCARRouting::sendRREP(BITCARRREP *rrep, const IPv4Address& destAddr, unsi
     // it is probably an unidirectional link
     if (destRoute->getMetric() == 1) {
         // It is possible that a RREP transmission may fail, especially if the
-        // RREQ transmission triggering the RREP occurs over a unidirectional
+        // AODVVANETRREQ transmission triggering the RREP occurs over a unidirectional
         // link.
 
         rrep->setAckRequiredFlag(true);
@@ -356,24 +356,24 @@ void BITCARRouting::sendRREP(BITCARRREP *rrep, const IPv4Address& destAddr, unsi
     sendBITCARPacket(rrep, nextHop, timeToLive, 0);
 }
 
-BITCARRREQ *BITCARRouting::createRREQ(const IPv4Address& destAddr)
+BITCARAODVVANETRREQ *BITCARRouting::createAODVVANETRREQ(const IPv4Address& destAddr)
 {
-    BITCARRREQ *rreqPacket = new BITCARRREQ("BITCAR-RREQ");
+    BITCARAODVVANETRREQ *rreqPacket = new BITCARAODVVANETRREQ("BITCAR-AODVVANETRREQ");
 
     rreqPacket->setGratuitousRREPFlag(askGratuitousRREP);
     IPv4Route *lastKnownRoute = routingTable->findBestMatchingRoute(destAddr);
 
-    rreqPacket->setPacketType(RREQ);
+    rreqPacket->setPacketType(AODVVANETRREQ);
 
-    // The Originator Sequence Number in the RREQ message is the
+    // The Originator Sequence Number in the AODVVANETRREQ message is the
     // node's own sequence number, which is incremented prior to
-    // insertion in a RREQ.
+    // insertion in a AODVVANETRREQ.
     sequenceNum++;
 
     rreqPacket->setOriginatorSeqNum(sequenceNum);
 
     if (lastKnownRoute && lastKnownRoute->getSource() == this) {
-        // The Destination Sequence Number field in the RREQ message is the last
+        // The Destination Sequence Number field in the AODVVANETRREQ message is the last
         // known destination sequence number for this destination and is copied
         // from the Destination Sequence Number field in the routing table.
 
@@ -391,8 +391,8 @@ BITCARRREQ *BITCARRouting::createRREQ(const IPv4Address& destAddr)
     rreqPacket->setOriginatorAddr(getSelfIPAddress());
     rreqPacket->setDestAddr(destAddr);
 
-    // The RREQ ID field is incremented by one from the last RREQ ID used
-    // by the current node. Each node maintains only one RREQ ID.
+    // The AODVVANETRREQ ID field is incremented by one from the last AODVVANETRREQ ID used
+    // by the current node. Each node maintains only one AODVVANETRREQ ID.
     rreqId++;
     rreqPacket->setRreqId(rreqId);
 
@@ -414,31 +414,31 @@ BITCARRREQ *BITCARRouting::createRREQ(const IPv4Address& destAddr)
     rreqPacket->setAcceleration(mod->getCurrentAcceleration());
     //rreqPacket->setDirection(mod->getCurrentDirection());
 
-    // Before broadcasting the RREQ, the originating node buffers the RREQ
-    // ID and the Originator IP address (its own address) of the RREQ for
+    // Before broadcasting the AODVVANETRREQ, the originating node buffers the AODVVANETRREQ
+    // ID and the Originator IP address (its own address) of the AODVVANETRREQ for
     // PATH_DISCOVERY_TIME.
     // In this way, when the node receives the packet again from its neighbors,
     // it will not reprocess and re-forward the packet.
 
-    RREQIdentifier rreqIdentifier(getSelfIPAddress(), rreqId);
+    AODVVANETRREQIdentifier rreqIdentifier(getSelfIPAddress(), rreqId);
     rreqsArrivalTime[rreqIdentifier] = simTime();
 
     return rreqPacket;
 }
 
-BITCARRREP *BITCARRouting::createRREP(BITCARRREQ *rreq, IPv4Route *destRoute, IPv4Route *originatorRoute, const IPv4Address& lastHopAddr)
+BITCARRREP *BITCARRouting::createRREP(BITCARAODVVANETRREQ *rreq, IPv4Route *destRoute, IPv4Route *originatorRoute, const IPv4Address& lastHopAddr)
 {
     BITCARRREP *rrep = new BITCARRREP("BITCAR-RREP");
     rrep->setPacketType(RREP);
 
     // When generating a RREP message, a node copies the Destination IP
-    // IPv4Address and the Originator Sequence Number from the RREQ message into
+    // IPv4Address and the Originator Sequence Number from the AODVVANETRREQ message into
     // the corresponding fields in the RREP message.
 
     rrep->setDestAddr(rreq->getDestAddr());
     rrep->setOriginatorSeqNum(rreq->getOriginatorSeqNum());
 
-    // OriginatorAddr = The IP address of the node which originated the RREQ
+    // OriginatorAddr = The IP address of the node which originated the AODVVANETRREQ
     // for which the route is supplied.
     rrep->setOriginatorAddr(rreq->getOriginatorAddr());
 
@@ -448,7 +448,7 @@ BITCARRREP *BITCARRouting::createRREP(BITCARRREQ *rreq, IPv4Route *destRoute, IP
 
     if (rreq->getDestAddr() == getSelfIPAddress()) {    // node is itself the requested destination
         // If the generating node is the destination itself, it MUST increment
-        // its own sequence number by one if the sequence number in the RREQ
+        // its own sequence number by one if the sequence number in the AODVVANETRREQ
         // packet is equal to that incremented value.
 
         if (!rreq->getUnknownSeqNumFlag() && sequenceNum + 1 == rreq->getDestSeqNum())
@@ -475,16 +475,16 @@ BITCARRREP *BITCARRouting::createRREP(BITCARRREQ *rreq, IPv4Route *destRoute, IP
         rrep->setDestSeqNum(destRouteData->getDestSeqNum());
 
         // The intermediate node updates the forward route entry by placing the
-        // last hop node (from which it received the RREQ, as indicated by the
+        // last hop node (from which it received the AODVVANETRREQ, as indicated by the
         // source IP address field in the IP header) into the precursor list for
         // the forward route entry -- i.e., the entry for the Destination IP
         // IPv4Address.
         destRouteData->addPrecursor(lastHopAddr);
 
         // The intermediate node also updates its route table entry
-        // for the node originating the RREQ by placing the next hop towards the
+        // for the node originating the AODVVANETRREQ by placing the next hop towards the
         // destination in the precursor list for the reverse route entry --
-        // i.e., the entry for the Originator IP IPv4Address field of the RREQ
+        // i.e., the entry for the Originator IP IPv4Address field of the AODVVANETRREQ
         // message data.
 
         originatorRouteData->addPrecursor(destRoute->getGateway());
@@ -503,7 +503,7 @@ BITCARRREP *BITCARRouting::createRREP(BITCARRREQ *rreq, IPv4Route *destRoute, IP
     return rrep;
 }
 
-BITCARRREP *BITCARRouting::createGratuitousRREP(BITCARRREQ *rreq, IPv4Route *originatorRoute)
+BITCARRREP *BITCARRouting::createGratuitousRREP(BITCARAODVVANETRREQ *rreq, IPv4Route *originatorRoute)
 {
     ASSERT(originatorRoute != NULL);
     BITCARRREP *grrep = new BITCARRREP("BITCAR-GRREP");
@@ -514,16 +514,16 @@ BITCARRREP *BITCARRouting::createGratuitousRREP(BITCARRREQ *rreq, IPv4Route *ori
     //                                  originator
     //
     // Destination IP IPv4Address           The IP address of the node that
-    //                                  originated the RREQ
+    //                                  originated the AODVVANETRREQ
     //
     // Destination Sequence Number      The Originator Sequence Number from
-    //                                  the RREQ
+    //                                  the AODVVANETRREQ
     //
     // Originator IP IPv4Address            The IP address of the Destination
-    //                                  node in the RREQ
+    //                                  node in the AODVVANETRREQ
     //
     // Lifetime                         The remaining lifetime of the route
-    //                                  towards the originator of the RREQ,
+    //                                  towards the originator of the AODVVANETRREQ,
     //                                  as known by the intermediate node.
 
     grrep->setPacketType(RREP);
@@ -748,12 +748,12 @@ void BITCARRouting::sendBITCARPacket(BITCARControlPacket *packet, const IPv4Addr
         sendDelayed(udpPacket, delay, "ipOut");
 }
 
-void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, unsigned int timeToLive)
+void BITCARRouting::handleAODVVANETRREQ(BITCARAODVVANETRREQ *rreq, const IPv4Address& sourceAddr, unsigned int timeToLive)
 {
     EV_INFO << "BITCAR Route Request arrived with source addr: " << sourceAddr << " originator addr: " << rreq->getOriginatorAddr()
             << " destination addr: " << rreq->getDestAddr() << endl;
 
-    // A node ignores all RREQs received from any node in its blacklist set.
+    // A node ignores all AODVVANETRREQs received from any node in its blacklist set.
 
     std::map<IPv4Address, simtime_t>::iterator blackListIt = blacklist.find(sourceAddr);
     if (blackListIt != blacklist.end()) {
@@ -762,7 +762,7 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
         return;
     }
 
-    // When a node receives a RREQ, it first creates or updates a route to
+    // When a node receives a AODVVANETRREQ, it first creates or updates a route to
     // the previous hop without a valid sequence number
 
     IPv4Route *previousHopRoute = routingTable->findBestMatchingRoute(sourceAddr);
@@ -774,13 +774,13 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
     else
         updateRoutingTable(previousHopRoute, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, simTime() + activeRouteTimeout);
 
-    // then checks to determine whether it has received a RREQ with the same
-    // Originator IP address and RREQ ID within at least the last PATH_DISCOVERY_TIME.
-    // If such a RREQ has been received, the node silently discards the newly received RREQ.
+    // then checks to determine whether it has received a AODVVANETRREQ with the same
+    // Originator IP address and AODVVANETRREQ ID within at least the last PATH_DISCOVERY_TIME.
+    // If such a AODVVANETRREQ has been received, the node silently discards the newly received AODVVANETRREQ.
 
-    RREQIdentifier rreqIdentifier(rreq->getOriginatorAddr(), rreq->getRreqId());
-    std::map<RREQIdentifier, simtime_t, RREQIdentifierCompare>::iterator checkRREQArrivalTime = rreqsArrivalTime.find(rreqIdentifier);
-    if (checkRREQArrivalTime != rreqsArrivalTime.end() && simTime() - checkRREQArrivalTime->second <= pathDiscoveryTime) {
+    AODVVANETRREQIdentifier rreqIdentifier(rreq->getOriginatorAddr(), rreq->getRreqId());
+    std::map<AODVVANETRREQIdentifier, simtime_t, AODVVANETRREQIdentifierCompare>::iterator checkAODVVANETRREQArrivalTime = rreqsArrivalTime.find(rreqIdentifier);
+    if (checkAODVVANETRREQArrivalTime != rreqsArrivalTime.end() && simTime() - checkAODVVANETRREQArrivalTime->second <= pathDiscoveryTime) {
         EV_WARN << "The same packet has arrived within PATH_DISCOVERY_TIME= " << pathDiscoveryTime << ". Discarding it" << endl;
         delete rreq;
         return;
@@ -789,7 +789,7 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
     // update or create
     rreqsArrivalTime[rreqIdentifier] = simTime();
 
-    // First, it first increments the hop count value in the RREQ by one, to
+    // First, it first increments the hop count value in the AODVVANETRREQ by one, to
     // account for the new hop through the intermediate node.
 
     rreq->setHopCount(rreq->getHopCount() + 1);
@@ -799,25 +799,25 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
     IPv4Route *reverseRoute = routingTable->findBestMatchingRoute(rreq->getOriginatorAddr());
 
     // If need be, the route is created, or updated using the Originator Sequence Number from the
-    // RREQ in its routing table.
+    // AODVVANETRREQ in its routing table.
     //
     // When the reverse route is created or updated, the following actions on
     // the route are also carried out:
     //
-    //   1. the Originator Sequence Number from the RREQ is compared to the
+    //   1. the Originator Sequence Number from the AODVVANETRREQ is compared to the
     //      corresponding destination sequence number in the route table entry
     //      and copied if greater than the existing value there
     //
     //   2. the valid sequence number field is set to true;
     //
     //   3. the next hop in the routing table becomes the node from which the
-    //      RREQ was received (it is obtained from the source IP address in
+    //      AODVVANETRREQ was received (it is obtained from the source IP address in
     //      the IP header and is often not equal to the Originator IP Address
-    //      field in the RREQ message);
+    //      field in the AODVVANETRREQ message);
     //
-    //   4. the hop count is copied from the Hop Count in the RREQ message;
+    //   4. the hop count is copied from the Hop Count in the AODVVANETRREQ message;
     //
-    //   Whenever a RREQ message is received, the Lifetime of the reverse
+    //   Whenever a AODVVANETRREQ message is received, the Lifetime of the reverse
     //   route entry for the Originator IP address is set to be the maximum of
     //   (ExistingLifetime, MinimalLifetime), where
     //
@@ -829,7 +829,7 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
     int rreqSeqNum = rreq->getOriginatorSeqNum();
     if (!reverseRoute || reverseRoute->getSource() != this) {    // create
         // This reverse route will be needed if the node receives a RREP back to the
-        // node that originated the RREQ (identified by the Originator IP Address).
+        // node that originated the AODVVANETRREQ (identified by the Originator IP Address).
         reverseRoute = createRoute(rreq->getOriginatorAddr(), sourceAddr, hopCount, true, rreqSeqNum, true, newLifeTime);
     }
     else {
@@ -864,12 +864,12 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
     // (ii)      it has an active route to the destination, the destination
     //           sequence number in the node's existing route table entry
     //           for the destination is valid and greater than or equal to
-    //           the Destination Sequence Number of the RREQ (comparison
+    //           the Destination Sequence Number of the AODVVANETRREQ (comparison
     //           using signed 32-bit arithmetic), and the "destination only"
     //           ('D') flag is NOT set.
 
-    // After a node receives a RREQ and responds with a RREP, it discards
-    // the RREQ.  If the RREQ has the 'G' flag set, and the intermediate
+    // After a node receives a AODVVANETRREQ and responds with a RREP, it discards
+    // the AODVVANETRREQ.  If the AODVVANETRREQ has the 'G' flag set, and the intermediate
     // node returns a RREP to the originating node, it MUST also unicast a
     // gratuitous RREP to the destination node.
 
@@ -887,7 +887,7 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
         sendRREP(rrep, rreq->getOriginatorAddr(), 255);
 
         delete rreq;
-        return;    // discard RREQ, in this case, we do not forward it.
+        return;    // discard AODVVANETRREQ, in this case, we do not forward it.
     }
 
     // check (ii)
@@ -912,8 +912,8 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
         if (rreq->getGratuitousRREPFlag()) {
             // The gratuitous RREP is then sent to the next hop along the path to
             // the destination node, just as if the destination node had already
-            // issued a RREQ for the originating node and this RREP was produced in
-            // response to that (fictitious) RREQ.
+            // issued a AODVVANETRREQ for the originating node and this RREP was produced in
+            // response to that (fictitious) AODVVANETRREQ.
 
             IPv4Route *originatorRoute = routingTable->findBestMatchingRoute(rreq->getOriginatorAddr());
             BITCARRREP *grrep = createGratuitousRREP(rreq, originatorRoute);
@@ -921,21 +921,21 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
         }
 
         delete rreq;
-        return;    // discard RREQ, in this case, we also do not forward it.
+        return;    // discard AODVVANETRREQ, in this case, we also do not forward it.
     }
     // If a node does not generate a RREP, and if the incoming IP header has TTL larger than 1,
-    // the node updates and broadcasts the RREQ to address 255.255.255.255
+    // the node updates and broadcasts the AODVVANETRREQ to address 255.255.255.255
     // on each of its configured interfaces.  To update
-    // the RREQ, the TTL or hop limit field in the outgoing IP header is
-    // decreased by one, and the Hop Count field in the RREQ message is
+    // the AODVVANETRREQ, the TTL or hop limit field in the outgoing IP header is
+    // decreased by one, and the Hop Count field in the AODVVANETRREQ message is
     // incremented by one, to account for the new hop through the
     // intermediate node. (!) Lastly, the Destination Sequence number for the
     // requested destination is set to the maximum of the corresponding
-    // value received in the RREQ message, and the destination sequence
+    // value received in the AODVVANETRREQ message, and the destination sequence
     // value currently maintained by the node for the requested destination.
     // However, the forwarding node MUST NOT modify its maintained value for
     // the destination sequence number, even if the value received in the
-    // incoming RREQ is larger than the value currently maintained by the
+    // incoming AODVVANETRREQ is larger than the value currently maintained by the
     // forwarding node.
 
     if (timeToLive > 0 && (simTime() > rebootTime + deletePeriod || rebootTime == 0)) {
@@ -943,11 +943,11 @@ void BITCARRouting::handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, 
             rreq->setDestSeqNum(std::max(destRouteData->getDestSeqNum(), rreq->getDestSeqNum()));
         rreq->setUnknownSeqNumFlag(false);
 
-        BITCARRREQ *outgoingRREQ = rreq->dup();
-        forwardRREQ(outgoingRREQ, timeToLive);
+        BITCARAODVVANETRREQ *outgoingAODVVANETRREQ = rreq->dup();
+        forwardAODVVANETRREQ(outgoingAODVVANETRREQ, timeToLive);
     }
     else
-        EV_WARN << "Can't forward the RREQ because of its small (<= 1) TTL: " << timeToLive << " or the BITCAR reboot has not completed yet" << endl;
+        EV_WARN << "Can't forward the AODVVANETRREQ because of its small (<= 1) TTL: " << timeToLive << " or the BITCAR reboot has not completed yet" << endl;
 
     delete rreq;
 }
@@ -1245,18 +1245,18 @@ void BITCARRouting::handleWaitForBITCARRREP(WaitForBITCARRREP *rrepTimer)
 
     ASSERT(addressToRreqRetries.find(destAddr) != addressToRreqRetries.end());
     if (addressToRreqRetries[destAddr] == rreqRetries) {
-        EV_WARN << "Re-discovery attempts for node " << destAddr << " reached RREQ_RETRIES= " << rreqRetries << " limit. Stop sending RREQ." << endl;
+        EV_WARN << "Re-discovery attempts for node " << destAddr << " reached AODVVANETRREQ_RETRIES= " << rreqRetries << " limit. Stop sending AODVVANETRREQ." << endl;
         return;
     }
 
-    BITCARRREQ *rreq = createRREQ(destAddr);
+    BITCARAODVVANETRREQ *rreq = createAODVVANETRREQ(destAddr);
 
     // the node MAY try again to discover a route by broadcasting another
-    // RREQ, up to a maximum of RREQ_RETRIES times at the maximum TTL value.
+    // AODVVANETRREQ, up to a maximum of AODVVANETRREQ_RETRIES times at the maximum TTL value.
     if (rrepTimer->getLastTTL() == netDiameter) // netDiameter is the maximum TTL value
         addressToRreqRetries[destAddr]++;
 
-    sendRREQ(rreq, IPv4Address::ALLONES_ADDRESS, 0);
+    sendAODVVANETRREQ(rreq, IPv4Address::ALLONES_ADDRESS, 0);
 }
 
 void BITCARRouting::forwardRREP(BITCARRREP *rrep, const IPv4Address& destAddr, unsigned int timeToLive)
@@ -1270,7 +1270,7 @@ void BITCARRouting::forwardRREP(BITCARRREP *rrep, const IPv4Address& destAddr, u
     sendBITCARPacket(rrep, destAddr, 100, jitterPar->doubleValue());
 }
 
-void BITCARRouting::forwardRREQ(BITCARRREQ *rreq, unsigned int timeToLive)
+void BITCARRouting::forwardAODVVANETRREQ(BITCARAODVVANETRREQ *rreq, unsigned int timeToLive)
 {
     EV_INFO << "Forwarding the Route Request message with TTL= " << timeToLive << endl;
     sendBITCARPacket(rreq, IPv4Address::ALLONES_ADDRESS, timeToLive, jitterPar->doubleValue());
@@ -1338,7 +1338,7 @@ void BITCARRouting::sendHelloMessagesIfNeeded()
 {
     ASSERT(useHelloMessages);
     // Every HELLO_INTERVAL milliseconds, the node checks whether it has
-    // sent a broadcast (e.g., a RREQ or an appropriate layer 2 message)
+    // sent a broadcast (e.g., a AODVVANETRREQ or an appropriate layer 2 message)
     // within the last HELLO_INTERVAL.  If it has not, it MAY broadcast
     // a RREP with TTL = 1
 

@@ -205,8 +205,8 @@ void AODVVANETRERR::clearUdest()
 }
 
 
-Register_Class(RREP);
-RREP::RREP (const char *name) : AODVVANET_msg (name)
+Register_Class(AODVVANETRREP);
+AODVVANETRREP::AODVVANETRREP (const char *name) : AODVVANET_msg (name)
 {
     VanetRoutingBase * owner = check_and_cast<VanetRoutingBase*>(this->getOwner());
     setBitLength((12+(owner->getAddressSize()*2))*8);
@@ -225,12 +225,12 @@ RREP::RREP (const char *name) : AODVVANET_msg (name)
     totalHops = 0;
 }
 
-RREP::RREP(const RREP& m) : AODVVANET_msg(m)
+AODVVANETRREP::AODVVANETRREP(const AODVVANETRREP& m) : AODVVANET_msg(m)
 {
     copy(m);
 }
 
-RREP& RREP::operator=(const RREP& m)
+AODVVANETRREP& AODVVANETRREP::operator=(const AODVVANETRREP& m)
 {
     if (this==&m) return *this;
     AODVVANET_msg::operator=(m);
@@ -238,7 +238,7 @@ RREP& RREP::operator=(const RREP& m)
     return *this;
 }
 
-void RREP::copy(const RREP& m)
+void AODVVANETRREP::copy(const AODVVANETRREP& m)
 {
     res1 = m.res1;
     a = m.a;
@@ -255,12 +255,12 @@ void RREP::copy(const RREP& m)
     totalHops = m.totalHops;
 }
 
-std::string RREP::detailedInfo() const
+std::string AODVVANETRREP::detailedInfo() const
 {
     std::stringstream out;
     int timeToLive = ttl;
     int hops = hcnt;
-    out << " RREP "  << "\n"; // Khmm...
+    out << " AODVVANETRREP "  << "\n"; // Khmm...
     out <<" Source :"<< orig_addr << "\n";
     out <<" Destination :"<< dest_addr << "\n";
     out <<" Destination seq num:"<< dest_seqno << "\n";
@@ -271,13 +271,13 @@ std::string RREP::detailedInfo() const
 
 
 
-Register_Class(RREP_ack);
-RREP_ack::RREP_ack(const RREP_ack& m) : AODVVANET_msg(m)
+Register_Class(AODVVANETRREP_ack);
+AODVVANETRREP_ack::AODVVANETRREP_ack(const AODVVANETRREP_ack& m) : AODVVANET_msg(m)
 {
     copy(m);
 }
 
-RREP_ack& RREP_ack::operator=(const RREP_ack& m)
+AODVVANETRREP_ack& AODVVANETRREP_ack::operator=(const AODVVANETRREP_ack& m)
 {
     if (this==&m) return *this;
     AODVVANET_msg::operator=(m);
@@ -287,13 +287,13 @@ RREP_ack& RREP_ack::operator=(const RREP_ack& m)
 
 
 
-Register_Class(RREQ);
+Register_Class(AODVVANETRREQ);
 
-RREQ::RREQ::RREQ(const char *name) : AODVVANET_msg (name)
+AODVVANETRREQ::AODVVANETRREQ::AODVVANETRREQ(const char *name) : AODVVANET_msg (name)
 {
     j = 0;
     r = 0;     /* Repair flag */
-    g = 0;     /* Gratuitous RREP flag */
+    g = 0;     /* Gratuitous AODVVANETRREP flag */
     d = 0;     /* Destination only respond */
     res1 = 0;
     res2 = 0;
@@ -309,12 +309,12 @@ RREQ::RREQ::RREQ(const char *name) : AODVVANET_msg (name)
     setBitLength((16+(owner->getAddressSize()*2))*8);
 }
 
-RREQ::RREQ(const RREQ& m) : AODVVANET_msg(m)
+AODVVANETRREQ::AODVVANETRREQ(const AODVVANETRREQ& m) : AODVVANET_msg(m)
 {
     copy(m);
 }
 
-RREQ& RREQ::operator=(const RREQ& m)
+AODVVANETRREQ& AODVVANETRREQ::operator=(const AODVVANETRREQ& m)
 {
     if (this==&m) return *this;
     AODVVANET_msg::operator=(m);
@@ -322,11 +322,11 @@ RREQ& RREQ::operator=(const RREQ& m)
     return *this;
 }
 
-void RREQ::copy(const RREQ& m)
+void AODVVANETRREQ::copy(const AODVVANETRREQ& m)
 {
     j = m.j;      /* Join flag (multicast) */
     r = m.r;      /* Repair flag */
-    g = m.g;      /* Gratuitous RREP flag */
+    g = m.g;      /* Gratuitous AODVVANETRREP flag */
     d = m.d;      /* Destination only respond */
     res1 = m.res1;
     res2 = m.res2;
@@ -340,12 +340,12 @@ void RREQ::copy(const RREQ& m)
     hopfix = m.hopfix;
 }
 
-std::string RREQ::detailedInfo() const
+std::string AODVVANETRREQ::detailedInfo() const
 {
     std::stringstream out;
     int timeToLive = ttl;
     int hops = hcnt;
-    out << " RREQ "  << "\n"; // Khmm...
+    out << " AODVVANETRREQ "  << "\n"; // Khmm...
     out <<" Source :"<< orig_addr << "\n";
     out <<" Source seq num:"<< orig_seqno << "\n";
     out <<" Destination :"<< dest_addr << "\n";

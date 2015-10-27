@@ -38,7 +38,7 @@ struct UnreachableAODVNode
 
 enum AODVVANETControlPacketType
 {
-    RREQ = 1;
+    AODVVANETRoutingRREQ = 1;
     RREP = 2;
     RERR = 3;
     RREPACK = 4;
@@ -55,9 +55,9 @@ packet AODVVANETControlPacket
 //
 // Represents an AODVVANET Route Request
 //
-class AODVVANETRREQ extends AODVVANETControlPacket
+class AODVVANETAODVVANETRoutingRREQ extends AODVVANETControlPacket
 {
-    unsigned int packetType = RREQ;
+    unsigned int packetType = AODVVANETRoutingRREQ;
     bool joinFlag;
     bool repairFlag;
     bool gratuitousRREPFlag;
@@ -80,7 +80,7 @@ class AODVVANETRREQ extends AODVVANETControlPacket
 //
 // Represents an AODVVANET Route Reply
 //
-class AODVVANETRREP extends AODVVANETControlPacket
+class AODVVANETRoutingRREP extends AODVVANETControlPacket
 {
     unsigned int packetType = RREP;
     bool repairFlag;
@@ -99,7 +99,7 @@ class AODVVANETRREP extends AODVVANETControlPacket
 //
 // Represents an AODVVANET Route Error
 //
-class AODVVANETRERR extends AODVVANETControlPacket
+class AODVVANETRoutingRERR extends AODVVANETControlPacket
 {
     unsigned int packetType = RERR;
     UnreachableAODVNode unreachableAODVNodes[];
@@ -110,7 +110,7 @@ class AODVVANETRERR extends AODVVANETControlPacket
 //
 // Represents an AODVVANET Route Reply ACK
 //
-class AODVVANETRREPACK extends AODVVANETControlPacket
+class AODVVANETRoutingRREPACK extends AODVVANETControlPacket
 {
     unsigned int packetType = RREPACK;
 }
@@ -118,7 +118,7 @@ class AODVVANETRREPACK extends AODVVANETControlPacket
 //
 // Represents a timer for a Route Reply packet
 //
-message WaitForAODVVANETRREP
+message WaitForAODVVANETRoutingRREP
 {
     IPv4Address destAddr;
     unsigned int lastTTL;

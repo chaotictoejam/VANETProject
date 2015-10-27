@@ -43,7 +43,7 @@ typedef struct avseek_list
     struct in_addr dest_addr;
     u_int32_t dest_seqno;
     struct ip_data *ipd;
-    u_int8_t flags;     /* The flags we are using for resending the RREQ */
+    u_int8_t flags;     /* The flags we are using for resending the AODVVANETRREQ */
     int reqs;
     int ttl;
     struct timer seek_timer;

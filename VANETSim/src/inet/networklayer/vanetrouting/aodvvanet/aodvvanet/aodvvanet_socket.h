@@ -47,7 +47,7 @@
 
 #ifndef NS_NO_DECLARATIONS
 
-struct timeval rreq_ratel[RREQ_RATELIMIT - 1], rerr_ratel[AODVVANETRERR_RATELIMIT - 1];
+struct timeval rreq_ratel[AODVVANETRREQ_RATELIMIT - 1], rerr_ratel[AODVVANETRERR_RATELIMIT - 1];
 int num_rreq;
 int num_rerr;
 

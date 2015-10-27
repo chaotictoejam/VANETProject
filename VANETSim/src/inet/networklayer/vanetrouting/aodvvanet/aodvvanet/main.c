@@ -57,7 +57,7 @@ int local_repair = 0;
 int receive_n_hellos = 0;
 int hello_jittering = 1;
 int optimized_hellos = 0;
-int ratelimit = 1;		/* Option for rate limiting RREQs and AODVVANETRERRs. */
+int ratelimit = 1;		/* Option for rate limiting AODVVANETRREQs and AODVVANETRERRs. */
 char *progname;
 int wait_on_reboot = 1;
 int qual_threshold = 0;
@@ -104,7 +104,7 @@ void usage(int status)
     printf
 	("\nUsage: %s [-dghjlouwxLDRV] [-i if0,if1,..] [-r N] [-n N] [-q THR]\n\n"
 	 "-d, --daemon            Daemon mode, i.e. detach from the console.\n"
-	 "-g, --force-gratuitous  Force the gratuitous flag to be set on all RREQ's.\n"
+	 "-g, --force-gratuitous  Force the gratuitous flag to be set on all AODVVANETRREQ's.\n"
 	 "-h, --help              This information.\n"
 	 "-i, --interface         Network interfaces to attach to. Defaults to first\n"
 	 "                        wireless interface.\n"
@@ -115,11 +115,11 @@ void usage(int status)
 	 "-n, --n-hellos          Receive N hellos from host before treating as neighbor.\n"
 	 "-u, --unidir-hack       Detect and avoid unidirectional links (experimental).\n"
 	 "-w, --gateway-mode      Enable experimental Internet gateway support.\n"
-	 "-x, --no-expanding-ring Disable expanding ring search for RREQs.\n"
+	 "-x, --no-expanding-ring Disable expanding ring search for AODVVANETRREQs.\n"
 	 "-D, --no-worb           Disable 15 seconds wait on reboot delay.\n"
 	 "-L, --local-repair      Enable local repair.\n"
 	 "-f, --llfeedback        Enable link layer feedback.\n"
-	 "-R, --rate-limit        Toggle rate limiting of RREQs and AODVVANETRERRs (default ON).\n"
+	 "-R, --rate-limit        Toggle rate limiting of AODVVANETRREQs and AODVVANETRERRs (default ON).\n"
 	 "-q, --quality-threshold Set a minimum signal quality threshold for control packets.\n"
 	 "-V, --version           Show version.\n\n"
 	 "Erik Nordström, <erik.nordstrom@it.uu.se>\n\n",

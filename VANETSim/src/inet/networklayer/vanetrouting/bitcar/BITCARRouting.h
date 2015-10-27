@@ -42,25 +42,25 @@ class BITCARRouting : public cSimpleModule, public ILifecycle, public INetfilter
 {
   protected:
     /*
-     * It implements a unique identifier for an arbitrary RREQ message
+     * It implements a unique identifier for an arbitrary AODVVANETRREQ message
      * in the network. See: rreqsArrivalTime.
      */
-    class RREQIdentifier
+    class AODVVANETRREQIdentifier
     {
       public:
         IPv4Address originatorAddr;
         unsigned int rreqID;
-        RREQIdentifier(const IPv4Address& originatorAddr, unsigned int rreqID) : originatorAddr(originatorAddr), rreqID(rreqID) {};
-        bool operator==(const RREQIdentifier& other) const
+        AODVVANETRREQIdentifier(const IPv4Address& originatorAddr, unsigned int rreqID) : originatorAddr(originatorAddr), rreqID(rreqID) {};
+        bool operator==(const AODVVANETRREQIdentifier& other) const
         {
             return this->originatorAddr == other.originatorAddr && this->rreqID == other.rreqID;
         }
     };
 
-    class RREQIdentifierCompare
+    class AODVVANETRREQIdentifierCompare
     {
       public:
-        bool operator()(const RREQIdentifier& lhs, const RREQIdentifier& rhs) const
+        bool operator()(const AODVVANETRREQIdentifier& lhs, const AODVVANETRREQIdentifier& rhs) const
         {
             return lhs.rreqID < rhs.rreqID;
         }
@@ -107,14 +107,14 @@ class BITCARRouting : public cSimpleModule, public ILifecycle, public INetfilter
     simtime_t pathDiscoveryTime;
 
     // state
-    unsigned int rreqId;    // when sending a new RREQ packet, rreqID incremented by one from the last id used by this node
+    unsigned int rreqId;    // when sending a new AODVVANETRREQ packet, rreqID incremented by one from the last id used by this node
     unsigned int sequenceNum;    // it helps to prevent loops in the routes (RFC 3561 6.1 p11.)
     std::map<IPv4Address, WaitForBITCARRREP *> waitForRREPTimers;    // timeout for Route Replies
-    std::map<RREQIdentifier, simtime_t, RREQIdentifierCompare> rreqsArrivalTime;    // maps RREQ id to its arriving time
+    std::map<AODVVANETRREQIdentifier, simtime_t, AODVVANETRREQIdentifierCompare> rreqsArrivalTime;    // maps AODVVANETRREQ id to its arriving time
     IPv4Address failedNextHop;    // next hop to the destination who failed to send us RREP-ACK
-    std::map<IPv4Address, simtime_t> blacklist;    // we don't accept RREQs from blacklisted nodes
+    std::map<IPv4Address, simtime_t> blacklist;    // we don't accept AODVVANETRREQs from blacklisted nodes
     unsigned int rerrCount;    // num of originated RERR in the last second
-    unsigned int rreqCount;    // num of originated RREQ in the last second
+    unsigned int rreqCount;    // num of originated AODVVANETRREQ in the last second
     simtime_t lastBroadcastTime;    // the last time when any control packet was broadcasted
     std::map<IPv4Address, unsigned int> addressToRreqRetries; // number of re-discovery attempts per address
 
@@ -153,27 +153,27 @@ class BITCARRouting : public cSimpleModule, public ILifecycle, public INetfilter
     /* Control packet creators */
     BITCARRREPACK *createRREPACK();
     BITCARRREP *createHelloMessage();
-    BITCARRREQ *createRREQ(const IPv4Address& destAddr);
-    BITCARRREP *createRREP(BITCARRREQ *rreq, IPv4Route *destRoute, IPv4Route *originatorRoute, const IPv4Address& sourceAddr);
-    BITCARRREP *createGratuitousRREP(BITCARRREQ *rreq, IPv4Route *originatorRoute);
+    BITCARAODVVANETRREQ *createAODVVANETRREQ(const IPv4Address& destAddr);
+    BITCARRREP *createRREP(BITCARAODVVANETRREQ *rreq, IPv4Route *destRoute, IPv4Route *originatorRoute, const IPv4Address& sourceAddr);
+    BITCARRREP *createGratuitousRREP(BITCARAODVVANETRREQ *rreq, IPv4Route *originatorRoute);
     BITCARRERR *createRERR(const std::vector<UnreachableBITCARNode>& unreachableBITCARNodes);
 
     /* Control Packet handlers */
     void handleRREP(BITCARRREP *rrep, const IPv4Address& sourceAddr);
-    void handleRREQ(BITCARRREQ *rreq, const IPv4Address& sourceAddr, unsigned int timeToLive);
+    void handleAODVVANETRREQ(BITCARAODVVANETRREQ *rreq, const IPv4Address& sourceAddr, unsigned int timeToLive);
     void handleRERR(BITCARRERR *rerr, const IPv4Address& sourceAddr);
     void handleHelloMessage(BITCARRREP *helloMessage);
     void handleRREPACK(BITCARRREPACK *rrepACK, const IPv4Address& neighborAddr);
 
     /* Control Packet sender methods */
-    void sendRREQ(BITCARRREQ *rreq, const IPv4Address& destAddr, unsigned int timeToLive);
+    void sendAODVVANETRREQ(BITCARAODVVANETRREQ *rreq, const IPv4Address& destAddr, unsigned int timeToLive);
     void sendRREPACK(BITCARRREPACK *rrepACK, const IPv4Address& destAddr);
     void sendRREP(BITCARRREP *rrep, const IPv4Address& destAddr, unsigned int timeToLive);
     void sendGRREP(BITCARRREP *grrep, const IPv4Address& destAddr, unsigned int timeToLive);
 
     /* Control Packet forwarders */
     void forwardRREP(BITCARRREP *rrep, const IPv4Address& destAddr, unsigned int timeToLive);
-    void forwardRREQ(BITCARRREQ *rreq, unsigned int timeToLive);
+    void forwardAODVVANETRREQ(BITCARAODVVANETRREQ *rreq, unsigned int timeToLive);
 
     /* Self message handlers */
     void handleRREPACKTimer();

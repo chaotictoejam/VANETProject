@@ -118,8 +118,8 @@ class AODVVANET : public VanetRoutingBase
   private:
     int  AODVVANETRERR_UDEST_SIZE;
     int AODVVANETRERR_SIZE;
-    int RREP_SIZE;
-    int  RREQ_SIZE;
+    int AODVVANETRREP_SIZE;
+    int  AODVVANETRREQ_SIZE;
   private:
     char nodeName[50];
     ICMPAccess icmpAccess;
@@ -187,7 +187,7 @@ class AODVVANET : public VanetRoutingBase
             }
     };
 
-    struct RREPProcessed
+    struct AODVVANETRREPProcessed
     {
         u_int8_t hcnt;
         u_int8_t totalHops;
@@ -198,7 +198,7 @@ class AODVVANET : public VanetRoutingBase
         VanetAddress next;
     };
 
-    struct RREQInfo
+    struct AODVVANETRREQInfo
     {
         u_int8_t hcnt;
         u_int32_t dest_seqno;
@@ -208,14 +208,14 @@ class AODVVANET : public VanetRoutingBase
         cPacket *pkt;
     };
 
-    struct RREQProcessed : cMessage
+    struct AODVVANETRREQProcessed : cMessage
     {
         PacketDestOrigin destOrigin;
-        std::deque<RREQInfo> infoList;
+        std::deque<AODVVANETRREQInfo> infoList;
     };
 
-    std::map<PacketDestOrigin,RREPProcessed> rrepProc;
-    std::map<PacketDestOrigin,RREQProcessed*> rreqProc;
+    std::map<PacketDestOrigin,AODVVANETRREPProcessed> rrepProc;
+    std::map<PacketDestOrigin,AODVVANETRREQProcessed*> rreqProc;
 
     struct DelayInfo : public cObject
     {
@@ -227,7 +227,7 @@ class AODVVANET : public VanetRoutingBase
     bool storeRreq;
     bool checkRrep;
     virtual bool isThisRrepPrevSent(cMessage *);
-    virtual bool getDestAddressRreq(cPacket *msg,PacketDestOrigin &orgDest,RREQInfo &rreqInfo);
+    virtual bool getDestAddressRreq(cPacket *msg,PacketDestOrigin &orgDest,AODVVANETRREQInfo &rreqInfo);
   public:
     static int  log_file_fd;
     static bool log_file_fd_init;
@@ -301,10 +301,10 @@ class AODVVANET : public VanetRoutingBase
 #undef _AODVVANET_AODVVANETRERR_H
 #include "aodvvanet/aodvvanet_rerr.h"
 
-#undef _AODVVANET_RREP_H
+#undef _AODVVANET_AODVVANETRREP_H
 #include "aodvvanet/aodvvanet_rrep.h"
 
-#undef _AODVVANET_RREQ_H
+#undef _AODVVANET_AODVVANETRREQ_H
 #include "aodvvanet/aodvvanet_rreq.h"
 
 #undef _AODVVANET_SOCKET_H
