@@ -4,7 +4,7 @@ import inet.base.LifecycleController;
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.networklayer.ipv4.RoutingTableRecorder;
 import inet.world.radio.IdealChannelModel;
-import inet.world.traci.aodvTraCIScenarioManagerLaunchd;
+import dissertation.world.traci.aodvTraCIScenarioManagerLaunchd;
 
 
 module AODVVANETROUTEHighway

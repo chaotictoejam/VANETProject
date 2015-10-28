@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for inet
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -o inet -O out -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6 -DWITH_TRACI
+#  opp_makemake -f --deep -o inet -O out -I../dissertation/networklayer/vanetrouting/base -I../dissertation -I../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet -I../dissertation/networklayer/vanetrouting/aodvvanet -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6 -DWITH_TRACI
 #
 
 # Name of target to be created (-o option)
@@ -15,6 +15,10 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
 
 # C++ include paths (with -I)
 INCLUDE_PATH = \
+    -I../dissertation/networklayer/vanetrouting/base \
+    -I../dissertation \
+    -I../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet \
+    -I../dissertation/networklayer/vanetrouting/aodvvanet \
     -I. \
     -Iapplications \
     -Iapplications/common \
@@ -132,20 +136,10 @@ INCLUDE_PATH = \
     -Inetworklayer/routing/rip \
     -Inetworklayer/rsvp_te \
     -Inetworklayer/ted \
-    -Inetworklayer/vanetrouting \
-    -Inetworklayer/vanetrouting/aodvvanet \
-    -Inetworklayer/vanetrouting/aodvvanet/aodvvanet \
-    -Inetworklayer/vanetrouting/aodvvanetrouting \
-    -Inetworklayer/vanetrouting/base \
-    -Inetworklayer/vanetrouting/bitcar \
-    -Inetworklayer/vanetrouting/geoadv \
-    -Inetworklayer/vanetrouting/rbvtr \
     -Inetworklayer/xmipv6 \
     -Inodes \
     -Inodes/aodv \
-    -Inodes/aodvvanet \
     -Inodes/bgp \
-    -Inodes/bitcar \
     -Inodes/dymo \
     -Inodes/ethernet \
     -Inodes/gpsr \
@@ -155,7 +149,6 @@ INCLUDE_PATH = \
     -Inodes/ipv6 \
     -Inodes/mpls \
     -Inodes/ospfv2 \
-    -Inodes/rbvtr \
     -Inodes/rip \
     -Inodes/rtp \
     -Inodes/wireless \
@@ -408,22 +401,15 @@ OBJS = \
     $O/linklayer/radio/propagation/SUIModel.o \
     $O/linklayer/radio/propagation/TwoRayGroundModel.o \
     $O/mobility/common/LineSegmentsMobilityBase.o \
-    $O/mobility/common/LineSegmentsVANETMobilityBase.o \
     $O/mobility/common/MobilityAccess.o \
     $O/mobility/common/MobilityBase.o \
     $O/mobility/common/MovingMobilityBase.o \
-    $O/mobility/common/MovingVANETMobilityBase.o \
-    $O/mobility/common/VANETMobilityAccess.o \
-    $O/mobility/common/VANETMobilityBase.o \
     $O/mobility/contract/IMobility.o \
-    $O/mobility/contract/IVANETMobility.o \
     $O/mobility/group/MoBANCoordinator.o \
     $O/mobility/group/MoBANLocal.o \
     $O/mobility/group/Posture.o \
     $O/mobility/group/PostureTransition.o \
     $O/mobility/single/ANSimMobility.o \
-    $O/mobility/single/aodvTraCIMobility.o \
-    $O/mobility/single/bitcarTraCIMobility.o \
     $O/mobility/single/BonnMotionFileCache.o \
     $O/mobility/single/BonnMotionMobility.o \
     $O/mobility/single/ChiangMobility.o \
@@ -433,11 +419,9 @@ OBJS = \
     $O/mobility/single/LaptopModelManager.o \
     $O/mobility/single/LinearMobility.o \
     $O/mobility/single/LinearNodeDistributionMobility.o \
-    $O/mobility/single/LinearVANETMobility.o \
     $O/mobility/single/MassMobility.o \
     $O/mobility/single/Ns2MotionMobility.o \
     $O/mobility/single/RandomWPMobility.o \
-    $O/mobility/single/rbvtrTraCIMobility.o \
     $O/mobility/single/RectangleMobility.o \
     $O/mobility/single/TraCIMobility.o \
     $O/mobility/single/TractorMobility.o \
@@ -656,31 +640,6 @@ OBJS = \
     $O/networklayer/rsvp_te/Utils.o \
     $O/networklayer/ted/LinkStateRouting.o \
     $O/networklayer/ted/TED.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.o \
-    $O/networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/locality.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.o \
-    $O/networklayer/vanetrouting/aodvvanetrouting/AODVVANETRouteData.o \
-    $O/networklayer/vanetrouting/aodvvanetrouting/AODVVANETRouting.o \
-    $O/networklayer/vanetrouting/base/VanetAddress.o \
-    $O/networklayer/vanetrouting/base/VanetNetfilterHook.o \
-    $O/networklayer/vanetrouting/base/VanetRoutingBase.o \
-    $O/networklayer/vanetrouting/bitcar/BITCARRouteData.o \
-    $O/networklayer/vanetrouting/bitcar/BITCARRouting.o \
-    $O/networklayer/vanetrouting/rbvtr/RBVTRRouteData.o \
-    $O/networklayer/vanetrouting/rbvtr/RBVTRRouting.o \
     $O/networklayer/xmipv6/BindingCache.o \
     $O/networklayer/xmipv6/BindingUpdateList.o \
     $O/networklayer/xmipv6/MobilityHeader.o \
@@ -797,16 +756,9 @@ OBJS = \
     $O/world/radio/IdealChannelModel.o \
     $O/world/radio/IdealChannelModelAccess.o \
     $O/world/scenario/ScenarioManager.o \
-    $O/world/traci/aodvTraCIScenarioManager.o \
-    $O/world/traci/aodvTraCIScenarioManagerLaunchd.o \
-    $O/world/traci/bitcarTraCIScenarioManager.o \
-    $O/world/traci/bitcarTraCIScenarioManagerLaunchd.o \
-    $O/world/traci/rbvtrTraCIScenarioManager.o \
-    $O/world/traci/rbvtrTraCIScenarioManagerLaunchd.o \
     $O/world/traci/TraCIColor.o \
     $O/world/traci/TraCIScenarioManager.o \
     $O/world/traci/TraCIScenarioManagerLaunchd.o \
-    $O/world/traci/vanetTraCIColor.o \
     $O/wpan/Isabel/Analysis/AnalysisEnergy.o \
     $O/wpan/Isabel/Base/Display.o \
     $O/wpan/applications/Ieee802154TestApp/Ieee802154TestApp.o \
@@ -897,14 +849,6 @@ OBJS = \
     $O/networklayer/rsvp_te/SignallingMsg_m.o \
     $O/networklayer/ted/LinkStatePacket_m.o \
     $O/networklayer/ted/TED_m.o \
-    $O/networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.o \
-    $O/networklayer/vanetrouting/aodvvanetrouting/AODVVANETControlPackets_m.o \
-    $O/networklayer/vanetrouting/base/ControlVanetRouting_m.o \
-    $O/networklayer/vanetrouting/base/Vanet_ControlInfoBreakLink_m.o \
-    $O/networklayer/vanetrouting/base/Vanet_LocatorNotificationInfo_m.o \
-    $O/networklayer/vanetrouting/base/Vanet_MeshControlInfo_m.o \
-    $O/networklayer/vanetrouting/bitcar/BITCARControlPackets_m.o \
-    $O/networklayer/vanetrouting/rbvtr/RBVTRControlPackets_m.o \
     $O/networklayer/xmipv6/MobilityHeader_m.o \
     $O/securityModule/message/NewMsgWithMacAddr_m.o \
     $O/securityModule/message/securityPkt_m.o \
@@ -1014,14 +958,6 @@ MSGFILES = \
     networklayer/rsvp_te/SignallingMsg.msg \
     networklayer/ted/LinkStatePacket.msg \
     networklayer/ted/TED.msg \
-    networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.msg \
-    networklayer/vanetrouting/aodvvanetrouting/AODVVANETControlPackets.msg \
-    networklayer/vanetrouting/base/ControlVanetRouting.msg \
-    networklayer/vanetrouting/base/Vanet_ControlInfoBreakLink.msg \
-    networklayer/vanetrouting/base/Vanet_LocatorNotificationInfo.msg \
-    networklayer/vanetrouting/base/Vanet_MeshControlInfo.msg \
-    networklayer/vanetrouting/bitcar/BITCARControlPackets.msg \
-    networklayer/vanetrouting/rbvtr/RBVTRControlPackets.msg \
     networklayer/xmipv6/MobilityHeader.msg \
     securityModule/message/NewMsgWithMacAddr.msg \
     securityModule/message/securityPkt.msg \
@@ -1327,20 +1263,10 @@ clean:
 	$(Q)-rm -f networklayer/routing/rip/*_m.cc networklayer/routing/rip/*_m.h
 	$(Q)-rm -f networklayer/rsvp_te/*_m.cc networklayer/rsvp_te/*_m.h
 	$(Q)-rm -f networklayer/ted/*_m.cc networklayer/ted/*_m.h
-	$(Q)-rm -f networklayer/vanetrouting/*_m.cc networklayer/vanetrouting/*_m.h
-	$(Q)-rm -f networklayer/vanetrouting/aodvvanet/*_m.cc networklayer/vanetrouting/aodvvanet/*_m.h
-	$(Q)-rm -f networklayer/vanetrouting/aodvvanet/aodvvanet/*_m.cc networklayer/vanetrouting/aodvvanet/aodvvanet/*_m.h
-	$(Q)-rm -f networklayer/vanetrouting/aodvvanetrouting/*_m.cc networklayer/vanetrouting/aodvvanetrouting/*_m.h
-	$(Q)-rm -f networklayer/vanetrouting/base/*_m.cc networklayer/vanetrouting/base/*_m.h
-	$(Q)-rm -f networklayer/vanetrouting/bitcar/*_m.cc networklayer/vanetrouting/bitcar/*_m.h
-	$(Q)-rm -f networklayer/vanetrouting/geoadv/*_m.cc networklayer/vanetrouting/geoadv/*_m.h
-	$(Q)-rm -f networklayer/vanetrouting/rbvtr/*_m.cc networklayer/vanetrouting/rbvtr/*_m.h
 	$(Q)-rm -f networklayer/xmipv6/*_m.cc networklayer/xmipv6/*_m.h
 	$(Q)-rm -f nodes/*_m.cc nodes/*_m.h
 	$(Q)-rm -f nodes/aodv/*_m.cc nodes/aodv/*_m.h
-	$(Q)-rm -f nodes/aodvvanet/*_m.cc nodes/aodvvanet/*_m.h
 	$(Q)-rm -f nodes/bgp/*_m.cc nodes/bgp/*_m.h
-	$(Q)-rm -f nodes/bitcar/*_m.cc nodes/bitcar/*_m.h
 	$(Q)-rm -f nodes/dymo/*_m.cc nodes/dymo/*_m.h
 	$(Q)-rm -f nodes/ethernet/*_m.cc nodes/ethernet/*_m.h
 	$(Q)-rm -f nodes/gpsr/*_m.cc nodes/gpsr/*_m.h
@@ -1350,7 +1276,6 @@ clean:
 	$(Q)-rm -f nodes/ipv6/*_m.cc nodes/ipv6/*_m.h
 	$(Q)-rm -f nodes/mpls/*_m.cc nodes/mpls/*_m.h
 	$(Q)-rm -f nodes/ospfv2/*_m.cc nodes/ospfv2/*_m.h
-	$(Q)-rm -f nodes/rbvtr/*_m.cc nodes/rbvtr/*_m.h
 	$(Q)-rm -f nodes/rip/*_m.cc nodes/rip/*_m.h
 	$(Q)-rm -f nodes/rtp/*_m.cc nodes/rtp/*_m.h
 	$(Q)-rm -f nodes/wireless/*_m.cc nodes/wireless/*_m.h
@@ -1414,7 +1339,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc applications/*.cc applications/common/*.cc applications/dhcp/*.cc applications/ethernet/*.cc applications/generic/*.cc applications/httptools/*.cc applications/netperfmeter/*.cc applications/pingapp/*.cc applications/rtpapp/*.cc applications/sctpapp/*.cc applications/tcpapp/*.cc applications/traci/*.cc applications/trafgen/*.cc applications/udpapp/*.cc applications/util/*.cc base/*.cc battery/*.cc battery/models/*.cc generic/*.cc linklayer/*.cc linklayer/channels/*.cc linklayer/common/*.cc linklayer/configurator/*.cc linklayer/contract/*.cc linklayer/ethernet/*.cc linklayer/ethernet/switch/*.cc linklayer/ext/*.cc linklayer/idealwireless/*.cc linklayer/ieee80211/*.cc linklayer/ieee80211/mac/*.cc linklayer/ieee80211/mgmt/*.cc linklayer/ieee80211/mgmt/wpa2/*.cc linklayer/ieee80211/radio/*.cc linklayer/ieee80211/radio/errormodel/*.cc linklayer/ieee80211mesh/*.cc linklayer/ieee80211mesh/ethernet/*.cc linklayer/ieee80211mesh/hwmp/*.cc linklayer/ieee80211mesh/locator/*.cc linklayer/ieee80211mesh/mgmt/*.cc linklayer/ieee80211mesh/nodes/*.cc linklayer/ieee80211mesh/vanetlocator/*.cc linklayer/ieee8021d/*.cc linklayer/ieee8021d/common/*.cc linklayer/ieee8021d/relay/*.cc linklayer/ieee8021d/rstp/*.cc linklayer/ieee8021d/stp/*.cc linklayer/ieee8021d/tester/*.cc linklayer/loopback/*.cc linklayer/ppp/*.cc linklayer/queue/*.cc linklayer/radio/*.cc linklayer/radio/propagation/*.cc mobility/*.cc mobility/common/*.cc mobility/contract/*.cc mobility/group/*.cc mobility/single/*.cc mobility/static/*.cc networklayer/*.cc networklayer/arp/*.cc networklayer/autorouting/*.cc networklayer/autorouting/ipv4/*.cc networklayer/autorouting/ipv6/*.cc networklayer/bgpv4/*.cc networklayer/bgpv4/BGPMessage/*.cc networklayer/common/*.cc networklayer/contract/*.cc networklayer/diffserv/*.cc networklayer/icmpv6/*.cc networklayer/internetcloud/*.cc networklayer/ipv4/*.cc networklayer/ipv6/*.cc networklayer/ipv6tunneling/*.cc networklayer/ldp/*.cc networklayer/manetrouting/*.cc networklayer/manetrouting/PASER/*.cc networklayer/manetrouting/PASER/IPv4_ADAPTED/*.cc networklayer/manetrouting/PASER/paser_buffer/*.cc networklayer/manetrouting/PASER/paser_configuration/*.cc networklayer/manetrouting/PASER/paser_logic/*.cc networklayer/manetrouting/PASER/paser_logic/cryptography/*.cc networklayer/manetrouting/PASER/paser_logic/message_processing/*.cc networklayer/manetrouting/PASER/paser_logic/route_discovery/*.cc networklayer/manetrouting/PASER/paser_logic/route_maintenance/*.cc networklayer/manetrouting/PASER/paser_message_structure/*.cc networklayer/manetrouting/PASER/paser_socket/*.cc networklayer/manetrouting/PASER/paser_tables/*.cc networklayer/manetrouting/PASER/paser_timer_management/*.cc networklayer/manetrouting/PASER/simple_kdc/*.cc networklayer/manetrouting/PASER/simple_kdc/kdc_message/*.cc networklayer/manetrouting/aodv-uu/*.cc networklayer/manetrouting/aodv-uu/aodv-uu/*.cc networklayer/manetrouting/base/*.cc networklayer/manetrouting/batman/*.cc networklayer/manetrouting/batman/batmand/*.cc networklayer/manetrouting/batman/batmand/orig/*.cc networklayer/manetrouting/dsdv/*.cc networklayer/manetrouting/dsr/*.cc networklayer/manetrouting/dsr/dsr-uu/*.cc networklayer/manetrouting/dymo/*.cc networklayer/manetrouting/dymo/dymoum/*.cc networklayer/manetrouting/dymo_fau/*.cc networklayer/manetrouting/olsr/*.cc networklayer/mpls/*.cc networklayer/ospfv2/*.cc networklayer/ospfv2/interface/*.cc networklayer/ospfv2/messagehandler/*.cc networklayer/ospfv2/neighbor/*.cc networklayer/ospfv2/router/*.cc networklayer/routing/*.cc networklayer/routing/aodv/*.cc networklayer/routing/dymo/*.cc networklayer/routing/gpsr/*.cc networklayer/routing/rip/*.cc networklayer/rsvp_te/*.cc networklayer/ted/*.cc networklayer/vanetrouting/*.cc networklayer/vanetrouting/aodvvanet/*.cc networklayer/vanetrouting/aodvvanet/aodvvanet/*.cc networklayer/vanetrouting/aodvvanetrouting/*.cc networklayer/vanetrouting/base/*.cc networklayer/vanetrouting/bitcar/*.cc networklayer/vanetrouting/geoadv/*.cc networklayer/vanetrouting/rbvtr/*.cc networklayer/xmipv6/*.cc nodes/*.cc nodes/aodv/*.cc nodes/aodvvanet/*.cc nodes/bgp/*.cc nodes/bitcar/*.cc nodes/dymo/*.cc nodes/ethernet/*.cc nodes/gpsr/*.cc nodes/httptools/*.cc nodes/inet/*.cc nodes/internetcloud/*.cc nodes/ipv6/*.cc nodes/mpls/*.cc nodes/ospfv2/*.cc nodes/rbvtr/*.cc nodes/rip/*.cc nodes/rtp/*.cc nodes/wireless/*.cc nodes/xmipv6/*.cc securityModule/*.cc securityModule/message/*.cc status/*.cc transport/*.cc transport/contract/*.cc transport/rtp/*.cc transport/rtp/profiles/*.cc transport/rtp/profiles/avprofile/*.cc transport/sctp/*.cc transport/tcp/*.cc transport/tcp/flavours/*.cc transport/tcp/queues/*.cc transport/tcp_common/*.cc transport/udp/*.cc util/*.cc util/headerserializers/*.cc util/headerserializers/headers/*.cc util/headerserializers/ipv4/*.cc util/headerserializers/ipv4/headers/*.cc util/headerserializers/ipv6/*.cc util/headerserializers/ipv6/headers/*.cc util/headerserializers/sctp/*.cc util/headerserializers/sctp/headers/*.cc util/headerserializers/tcp/*.cc util/headerserializers/tcp/headers/*.cc util/headerserializers/udp/*.cc util/headerserializers/udp/headers/*.cc util/messageprinters/*.cc world/*.cc world/annotations/*.cc world/httptools/*.cc world/obstacles/*.cc world/powercontrol/*.cc world/radio/*.cc world/scenario/*.cc world/traci/*.cc wpan/*.cc wpan/Isabel/*.cc wpan/Isabel/Analysis/*.cc wpan/Isabel/Base/*.cc wpan/applications/*.cc wpan/applications/Ieee802154TestApp/*.cc wpan/linklayer/*.cc wpan/linklayer/bmac/*.cc wpan/linklayer/ieee802154/*.cc wpan/linklayer/ieee802154/contract/*.cc wpan/linklayer/ieee802154/mac/*.cc wpan/networklayer/*.cc wpan/networklayer/Ieee802154StarRouting/*.cc wpan/networklayer/contract/*.cc wpan/nodes/*.cc wpan/phyLayer/*.cc wpan/phyLayer/ieee802154/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc applications/*.cc applications/common/*.cc applications/dhcp/*.cc applications/ethernet/*.cc applications/generic/*.cc applications/httptools/*.cc applications/netperfmeter/*.cc applications/pingapp/*.cc applications/rtpapp/*.cc applications/sctpapp/*.cc applications/tcpapp/*.cc applications/traci/*.cc applications/trafgen/*.cc applications/udpapp/*.cc applications/util/*.cc base/*.cc battery/*.cc battery/models/*.cc generic/*.cc linklayer/*.cc linklayer/channels/*.cc linklayer/common/*.cc linklayer/configurator/*.cc linklayer/contract/*.cc linklayer/ethernet/*.cc linklayer/ethernet/switch/*.cc linklayer/ext/*.cc linklayer/idealwireless/*.cc linklayer/ieee80211/*.cc linklayer/ieee80211/mac/*.cc linklayer/ieee80211/mgmt/*.cc linklayer/ieee80211/mgmt/wpa2/*.cc linklayer/ieee80211/radio/*.cc linklayer/ieee80211/radio/errormodel/*.cc linklayer/ieee80211mesh/*.cc linklayer/ieee80211mesh/ethernet/*.cc linklayer/ieee80211mesh/hwmp/*.cc linklayer/ieee80211mesh/locator/*.cc linklayer/ieee80211mesh/mgmt/*.cc linklayer/ieee80211mesh/nodes/*.cc linklayer/ieee80211mesh/vanetlocator/*.cc linklayer/ieee8021d/*.cc linklayer/ieee8021d/common/*.cc linklayer/ieee8021d/relay/*.cc linklayer/ieee8021d/rstp/*.cc linklayer/ieee8021d/stp/*.cc linklayer/ieee8021d/tester/*.cc linklayer/loopback/*.cc linklayer/ppp/*.cc linklayer/queue/*.cc linklayer/radio/*.cc linklayer/radio/propagation/*.cc mobility/*.cc mobility/common/*.cc mobility/contract/*.cc mobility/group/*.cc mobility/single/*.cc mobility/static/*.cc networklayer/*.cc networklayer/arp/*.cc networklayer/autorouting/*.cc networklayer/autorouting/ipv4/*.cc networklayer/autorouting/ipv6/*.cc networklayer/bgpv4/*.cc networklayer/bgpv4/BGPMessage/*.cc networklayer/common/*.cc networklayer/contract/*.cc networklayer/diffserv/*.cc networklayer/icmpv6/*.cc networklayer/internetcloud/*.cc networklayer/ipv4/*.cc networklayer/ipv6/*.cc networklayer/ipv6tunneling/*.cc networklayer/ldp/*.cc networklayer/manetrouting/*.cc networklayer/manetrouting/PASER/*.cc networklayer/manetrouting/PASER/IPv4_ADAPTED/*.cc networklayer/manetrouting/PASER/paser_buffer/*.cc networklayer/manetrouting/PASER/paser_configuration/*.cc networklayer/manetrouting/PASER/paser_logic/*.cc networklayer/manetrouting/PASER/paser_logic/cryptography/*.cc networklayer/manetrouting/PASER/paser_logic/message_processing/*.cc networklayer/manetrouting/PASER/paser_logic/route_discovery/*.cc networklayer/manetrouting/PASER/paser_logic/route_maintenance/*.cc networklayer/manetrouting/PASER/paser_message_structure/*.cc networklayer/manetrouting/PASER/paser_socket/*.cc networklayer/manetrouting/PASER/paser_tables/*.cc networklayer/manetrouting/PASER/paser_timer_management/*.cc networklayer/manetrouting/PASER/simple_kdc/*.cc networklayer/manetrouting/PASER/simple_kdc/kdc_message/*.cc networklayer/manetrouting/aodv-uu/*.cc networklayer/manetrouting/aodv-uu/aodv-uu/*.cc networklayer/manetrouting/base/*.cc networklayer/manetrouting/batman/*.cc networklayer/manetrouting/batman/batmand/*.cc networklayer/manetrouting/batman/batmand/orig/*.cc networklayer/manetrouting/dsdv/*.cc networklayer/manetrouting/dsr/*.cc networklayer/manetrouting/dsr/dsr-uu/*.cc networklayer/manetrouting/dymo/*.cc networklayer/manetrouting/dymo/dymoum/*.cc networklayer/manetrouting/dymo_fau/*.cc networklayer/manetrouting/olsr/*.cc networklayer/mpls/*.cc networklayer/ospfv2/*.cc networklayer/ospfv2/interface/*.cc networklayer/ospfv2/messagehandler/*.cc networklayer/ospfv2/neighbor/*.cc networklayer/ospfv2/router/*.cc networklayer/routing/*.cc networklayer/routing/aodv/*.cc networklayer/routing/dymo/*.cc networklayer/routing/gpsr/*.cc networklayer/routing/rip/*.cc networklayer/rsvp_te/*.cc networklayer/ted/*.cc networklayer/xmipv6/*.cc nodes/*.cc nodes/aodv/*.cc nodes/bgp/*.cc nodes/dymo/*.cc nodes/ethernet/*.cc nodes/gpsr/*.cc nodes/httptools/*.cc nodes/inet/*.cc nodes/internetcloud/*.cc nodes/ipv6/*.cc nodes/mpls/*.cc nodes/ospfv2/*.cc nodes/rip/*.cc nodes/rtp/*.cc nodes/wireless/*.cc nodes/xmipv6/*.cc securityModule/*.cc securityModule/message/*.cc status/*.cc transport/*.cc transport/contract/*.cc transport/rtp/*.cc transport/rtp/profiles/*.cc transport/rtp/profiles/avprofile/*.cc transport/sctp/*.cc transport/tcp/*.cc transport/tcp/flavours/*.cc transport/tcp/queues/*.cc transport/tcp_common/*.cc transport/udp/*.cc util/*.cc util/headerserializers/*.cc util/headerserializers/headers/*.cc util/headerserializers/ipv4/*.cc util/headerserializers/ipv4/headers/*.cc util/headerserializers/ipv6/*.cc util/headerserializers/ipv6/headers/*.cc util/headerserializers/sctp/*.cc util/headerserializers/sctp/headers/*.cc util/headerserializers/tcp/*.cc util/headerserializers/tcp/headers/*.cc util/headerserializers/udp/*.cc util/headerserializers/udp/headers/*.cc util/messageprinters/*.cc world/*.cc world/annotations/*.cc world/httptools/*.cc world/obstacles/*.cc world/powercontrol/*.cc world/radio/*.cc world/scenario/*.cc world/traci/*.cc wpan/*.cc wpan/Isabel/*.cc wpan/Isabel/Analysis/*.cc wpan/Isabel/Base/*.cc wpan/applications/*.cc wpan/applications/Ieee802154TestApp/*.cc wpan/linklayer/*.cc wpan/linklayer/bmac/*.cc wpan/linklayer/ieee802154/*.cc wpan/linklayer/ieee802154/contract/*.cc wpan/linklayer/ieee802154/mac/*.cc wpan/networklayer/*.cc wpan/networklayer/Ieee802154StarRouting/*.cc wpan/networklayer/contract/*.cc wpan/nodes/*.cc wpan/phyLayer/*.cc wpan/phyLayer/ieee802154/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/applications/common/ApplicationBase.o: applications/common/ApplicationBase.cc \
@@ -2240,6 +2165,11 @@ $O/applications/traci/TraCITestApp.o: applications/traci/TraCITestApp.cc \
 	world/traci/TraCIColor.h \
 	world/traci/TraCIScenarioManager.h
 $O/applications/traci/aodvTraCI.o: applications/traci/aodvTraCI.cc \
+	../dissertation/mobility/common/VANETMobilityBase.h \
+	../dissertation/mobility/contract/IVANETMobility.h \
+	../dissertation/mobility/single/aodvTraCIMobility.h \
+	../dissertation/world/traci/aodvTraCIScenarioManager.h \
+	../dissertation/world/traci/vanetTraCIColor.h \
 	applications/traci/aodvTraCI.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -2247,18 +2177,18 @@ $O/applications/traci/aodvTraCI.o: applications/traci/aodvTraCI.cc \
 	base/INETDefs.h \
 	base/LifecycleOperation.h \
 	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/aodvTraCIMobility.h \
 	networklayer/contract/IPv4Address.h \
 	networklayer/contract/IPv6Address.h \
 	networklayer/contract/IPvXAddress.h \
 	status/NodeStatus.h \
 	transport/contract/UDPSocket.h \
-	util/FWMath.h \
-	world/traci/aodvTraCIScenarioManager.h \
-	world/traci/vanetTraCIColor.h
+	util/FWMath.h
 $O/applications/traci/aodvTraCITestApp.o: applications/traci/aodvTraCITestApp.cc \
+	../dissertation/mobility/common/VANETMobilityBase.h \
+	../dissertation/mobility/contract/IVANETMobility.h \
+	../dissertation/mobility/single/aodvTraCIMobility.h \
+	../dissertation/world/traci/aodvTraCIScenarioManager.h \
+	../dissertation/world/traci/vanetTraCIColor.h \
 	applications/traci/aodvTraCITestApp.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -2266,14 +2196,14 @@ $O/applications/traci/aodvTraCITestApp.o: applications/traci/aodvTraCITestApp.cc
 	base/INETDefs.h \
 	base/LifecycleOperation.h \
 	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/aodvTraCIMobility.h \
 	status/NodeStatus.h \
-	util/FWMath.h \
-	world/traci/aodvTraCIScenarioManager.h \
-	world/traci/vanetTraCIColor.h
+	util/FWMath.h
 $O/applications/traci/bitcarTraCIDemo.o: applications/traci/bitcarTraCIDemo.cc \
+	../dissertation/mobility/common/VANETMobilityBase.h \
+	../dissertation/mobility/contract/IVANETMobility.h \
+	../dissertation/mobility/single/bitcarTraCIMobility.h \
+	../dissertation/world/traci/bitcarTraCIScenarioManager.h \
+	../dissertation/world/traci/vanetTraCIColor.h \
 	applications/traci/bitcarTraCIDemo.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -2281,18 +2211,18 @@ $O/applications/traci/bitcarTraCIDemo.o: applications/traci/bitcarTraCIDemo.cc \
 	base/INETDefs.h \
 	base/LifecycleOperation.h \
 	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/bitcarTraCIMobility.h \
 	networklayer/contract/IPv4Address.h \
 	networklayer/contract/IPv6Address.h \
 	networklayer/contract/IPvXAddress.h \
 	status/NodeStatus.h \
 	transport/contract/UDPSocket.h \
-	util/FWMath.h \
-	world/traci/bitcarTraCIScenarioManager.h \
-	world/traci/vanetTraCIColor.h
+	util/FWMath.h
 $O/applications/traci/bitcarTraCITestApp.o: applications/traci/bitcarTraCITestApp.cc \
+	../dissertation/mobility/common/VANETMobilityBase.h \
+	../dissertation/mobility/contract/IVANETMobility.h \
+	../dissertation/mobility/single/bitcarTraCIMobility.h \
+	../dissertation/world/traci/bitcarTraCIScenarioManager.h \
+	../dissertation/world/traci/vanetTraCIColor.h \
 	applications/traci/bitcarTraCITestApp.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -2300,14 +2230,14 @@ $O/applications/traci/bitcarTraCITestApp.o: applications/traci/bitcarTraCITestAp
 	base/INETDefs.h \
 	base/LifecycleOperation.h \
 	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/bitcarTraCIMobility.h \
 	status/NodeStatus.h \
-	util/FWMath.h \
-	world/traci/bitcarTraCIScenarioManager.h \
-	world/traci/vanetTraCIColor.h
+	util/FWMath.h
 $O/applications/traci/rbvtrTraCIDemo.o: applications/traci/rbvtrTraCIDemo.cc \
+	../dissertation/mobility/common/VANETMobilityBase.h \
+	../dissertation/mobility/contract/IVANETMobility.h \
+	../dissertation/mobility/single/rbvtrTraCIMobility.h \
+	../dissertation/world/traci/rbvtrTraCIScenarioManager.h \
+	../dissertation/world/traci/vanetTraCIColor.h \
 	applications/traci/rbvtrTraCIDemo.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -2315,18 +2245,18 @@ $O/applications/traci/rbvtrTraCIDemo.o: applications/traci/rbvtrTraCIDemo.cc \
 	base/INETDefs.h \
 	base/LifecycleOperation.h \
 	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/rbvtrTraCIMobility.h \
 	networklayer/contract/IPv4Address.h \
 	networklayer/contract/IPv6Address.h \
 	networklayer/contract/IPvXAddress.h \
 	status/NodeStatus.h \
 	transport/contract/UDPSocket.h \
-	util/FWMath.h \
-	world/traci/rbvtrTraCIScenarioManager.h \
-	world/traci/vanetTraCIColor.h
+	util/FWMath.h
 $O/applications/traci/rbvtrTraCITestApp.o: applications/traci/rbvtrTraCITestApp.cc \
+	../dissertation/mobility/common/VANETMobilityBase.h \
+	../dissertation/mobility/contract/IVANETMobility.h \
+	../dissertation/mobility/single/rbvtrTraCIMobility.h \
+	../dissertation/world/traci/rbvtrTraCIScenarioManager.h \
+	../dissertation/world/traci/vanetTraCIColor.h \
 	applications/traci/rbvtrTraCITestApp.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -2334,13 +2264,8 @@ $O/applications/traci/rbvtrTraCITestApp.o: applications/traci/rbvtrTraCITestApp.
 	base/INETDefs.h \
 	base/LifecycleOperation.h \
 	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/rbvtrTraCIMobility.h \
 	status/NodeStatus.h \
-	util/FWMath.h \
-	world/traci/rbvtrTraCIScenarioManager.h \
-	world/traci/vanetTraCIColor.h
+	util/FWMath.h
 $O/applications/trafgen/TrafGen.o: applications/trafgen/TrafGen.cc \
 	applications/trafgen/TrafGen.h
 $O/applications/trafgen/TrafGenPar.o: applications/trafgen/TrafGenPar.cc \
@@ -3442,6 +3367,11 @@ $O/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhocWithRouting.o: linklayer/ieee80211
 	networklayer/manetrouting/base/compatibility.h \
 	util/FWMath.h
 $O/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhocWithVanetRouting.o: linklayer/ieee80211/mgmt/Ieee80211MgmtAdhocWithVanetRouting.cc \
+	../dissertation/networklayer/vanetrouting/base/ControlVanetRouting_m.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/VanetNetfilterHook.h \
+	../dissertation/networklayer/vanetrouting/base/VanetRoutingBase.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -3486,11 +3416,6 @@ $O/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhocWithVanetRouting.o: linklayer/ieee
 	networklayer/ipv4/IPv4RouteRule.h \
 	networklayer/ipv4/IRoutingTable.h \
 	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/vanetrouting/base/ControlVanetRouting_m.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/linklayer/ieee80211/mgmt/Ieee80211MgmtBase.o: linklayer/ieee80211/mgmt/Ieee80211MgmtBase.cc \
 	base/Compat.h \
@@ -4141,6 +4066,7 @@ $O/linklayer/ieee80211mesh/vanetlocator/VanetBigUint.o: linklayer/ieee80211mesh/
 	base/INETDefs.h \
 	linklayer/ieee80211mesh/vanetlocator/VanetBigUint.h
 $O/linklayer/ieee80211mesh/vanetlocator/VanetLocatorModule.o: linklayer/ieee80211mesh/vanetlocator/VanetLocatorModule.cc \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
 	base/Compat.h \
 	base/ILifecycle.h \
 	base/INETDefs.h \
@@ -4178,13 +4104,13 @@ $O/linklayer/ieee80211mesh/vanetlocator/VanetLocatorModule.o: linklayer/ieee8021
 	networklayer/ipv4/IRoutingTable.h \
 	networklayer/ipv4/RoutingTableAccess.h \
 	networklayer/manetrouting/base/LocatorNotificationInfo_m.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
 	transport/contract/UDPControlInfo.h \
 	transport/contract/UDPControlInfo_m.h \
 	transport/contract/UDPSocket.h \
 	transport/udp/UDP.h \
 	util/GlobalWirelessLinkInspectorVanet.h
 $O/linklayer/ieee80211mesh/vanetlocator/VanetLocatorModuleClient.o: linklayer/ieee80211mesh/vanetlocator/VanetLocatorModuleClient.cc \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
 	base/Compat.h \
 	base/ILifecycle.h \
 	base/INETDefs.h \
@@ -4219,20 +4145,19 @@ $O/linklayer/ieee80211mesh/vanetlocator/VanetLocatorModuleClient.o: linklayer/ie
 	networklayer/ipv4/IPv4RouteRule.h \
 	networklayer/ipv4/IRoutingTable.h \
 	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
 	transport/contract/UDPControlInfo.h \
 	transport/contract/UDPControlInfo_m.h \
 	transport/contract/UDPSocket.h \
 	transport/udp/UDP.h
 $O/linklayer/ieee80211mesh/vanetlocator/vanetlocatorPkt_m.o: linklayer/ieee80211mesh/vanetlocator/vanetlocatorPkt_m.cc \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
 	base/Compat.h \
 	base/INETDefs.h \
 	linklayer/contract/MACAddress.h \
 	linklayer/ieee80211mesh/vanetlocator/vanetlocatorPkt_m.h \
 	networklayer/contract/IPv4Address.h \
 	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/vanetrouting/base/VanetAddress.h
+	networklayer/contract/IPvXAddress.h
 $O/linklayer/ieee8021d/common/Ieee8021dBPDU_m.o: linklayer/ieee8021d/common/Ieee8021dBPDU_m.cc \
 	base/Compat.h \
 	base/INETDefs.h \
@@ -4625,16 +4550,6 @@ $O/mobility/common/LineSegmentsMobilityBase.o: mobility/common/LineSegmentsMobil
 	mobility/common/MovingMobilityBase.h \
 	mobility/contract/IMobility.h \
 	util/FWMath.h
-$O/mobility/common/LineSegmentsVANETMobilityBase.o: mobility/common/LineSegmentsVANETMobilityBase.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/common/LineSegmentsVANETMobilityBase.h \
-	mobility/common/MovingVANETMobilityBase.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	util/FWMath.h
 $O/mobility/common/MobilityAccess.o: mobility/common/MobilityAccess.cc \
 	base/Compat.h \
 	base/Coord.h \
@@ -4660,42 +4575,11 @@ $O/mobility/common/MovingMobilityBase.o: mobility/common/MovingMobilityBase.cc \
 	mobility/common/MovingMobilityBase.h \
 	mobility/contract/IMobility.h \
 	util/FWMath.h
-$O/mobility/common/MovingVANETMobilityBase.o: mobility/common/MovingVANETMobilityBase.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/common/MovingVANETMobilityBase.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	util/FWMath.h
-$O/mobility/common/VANETMobilityAccess.o: mobility/common/VANETMobilityAccess.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/common/VANETMobilityAccess.h \
-	mobility/contract/IVANETMobility.h \
-	util/FWMath.h
-$O/mobility/common/VANETMobilityBase.o: mobility/common/VANETMobilityBase.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	util/FWMath.h
 $O/mobility/contract/IMobility.o: mobility/contract/IMobility.cc \
 	base/Compat.h \
 	base/Coord.h \
 	base/INETDefs.h \
 	mobility/contract/IMobility.h \
-	util/FWMath.h
-$O/mobility/contract/IVANETMobility.o: mobility/contract/IVANETMobility.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	mobility/contract/IVANETMobility.h \
 	util/FWMath.h
 $O/mobility/group/MoBANCoordinator.o: mobility/group/MoBANCoordinator.cc \
 	base/Compat.h \
@@ -4837,16 +4721,6 @@ $O/mobility/single/LinearNodeDistributionMobility.o: mobility/single/LinearNodeD
 	mobility/single/LinearNodeDistributionMobility.h \
 	mobility/static/StationaryMobility.h \
 	util/FWMath.h
-$O/mobility/single/LinearVANETMobility.o: mobility/single/LinearVANETMobility.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/common/MovingVANETMobilityBase.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/LinearVANETMobility.h \
-	util/FWMath.h
 $O/mobility/single/MassMobility.o: mobility/single/MassMobility.cc \
 	base/Compat.h \
 	base/Coord.h \
@@ -4923,39 +4797,6 @@ $O/mobility/single/TurtleMobility.o: mobility/single/TurtleMobility.cc \
 	mobility/contract/IMobility.h \
 	mobility/single/TurtleMobility.h \
 	util/FWMath.h
-$O/mobility/single/aodvTraCIMobility.o: mobility/single/aodvTraCIMobility.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/aodvTraCIMobility.h \
-	util/FWMath.h \
-	world/traci/aodvTraCIScenarioManager.h \
-	world/traci/vanetTraCIColor.h
-$O/mobility/single/bitcarTraCIMobility.o: mobility/single/bitcarTraCIMobility.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/bitcarTraCIMobility.h \
-	util/FWMath.h \
-	world/traci/bitcarTraCIScenarioManager.h \
-	world/traci/vanetTraCIColor.h
-$O/mobility/single/rbvtrTraCIMobility.o: mobility/single/rbvtrTraCIMobility.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/rbvtrTraCIMobility.h \
-	util/FWMath.h \
-	world/traci/rbvtrTraCIScenarioManager.h \
-	world/traci/vanetTraCIColor.h
 $O/mobility/static/StaticGridMobility.o: mobility/static/StaticGridMobility.cc \
 	base/Compat.h \
 	base/Coord.h \
@@ -6456,6 +6297,13 @@ $O/networklayer/manetrouting/aodv-uu/aodv_msg_struct_m.o: networklayer/manetrout
 	networklayer/manetrouting/base/ManetAddress.h \
 	networklayer/manetrouting/base/compatibility.h
 $O/networklayer/manetrouting/aodv-uu/aodv_uu_omnet.o: networklayer/manetrouting/aodv-uu/aodv_uu_omnet.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6524,17 +6372,17 @@ $O/networklayer/manetrouting/aodv-uu/aodv_uu_omnet.o: networklayer/manetrouting/
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	transport/udp/UDPPacket.h \
 	transport/udp/UDPPacket_m.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/packet_queue_omnet.o: networklayer/manetrouting/aodv-uu/packet_queue_omnet.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6597,15 +6445,15 @@ $O/networklayer/manetrouting/aodv-uu/packet_queue_omnet.o: networklayer/manetrou
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_hello.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_hello.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6668,15 +6516,15 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_hello.o: networklayer/manetrou
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_neighbor.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_neighbor.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6739,15 +6587,15 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_neighbor.o: networklayer/manet
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rerr.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rerr.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6810,15 +6658,15 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rerr.o: networklayer/manetrout
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rrep.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rrep.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6881,15 +6729,15 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rrep.o: networklayer/manetrout
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rreq.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rreq.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6952,15 +6800,15 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rreq.o: networklayer/manetrout
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_socket.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_socket.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -7023,15 +6871,15 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_socket.o: networklayer/manetro
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_timeout.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_timeout.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -7094,15 +6942,15 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_timeout.o: networklayer/manetr
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/debug_aodv.o: networklayer/manetrouting/aodv-uu/aodv-uu/debug_aodv.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -7165,17 +7013,17 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/debug_aodv.o: networklayer/manetrou
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/list.o: networklayer/manetrouting/aodv-uu/aodv-uu/list.cc \
 	networklayer/manetrouting/aodv-uu/aodv-uu/list.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/locality.o: networklayer/manetrouting/aodv-uu/aodv-uu/locality.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -7239,15 +7087,15 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/locality.o: networklayer/manetrouti
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.o: networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -7310,15 +7158,15 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.o: networklayer/manet
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.o: networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -7381,15 +7229,15 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.o: networklayer/manetrout
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.o: networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.cc \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
+	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
+	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -7452,13 +7300,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.o: networklayer/ma
 	networklayer/manetrouting/base/ManetNetfilterHook.h \
 	networklayer/manetrouting/base/ManetRoutingBase.h \
 	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/base/ControlInfoBreakLink_m.o: networklayer/manetrouting/base/ControlInfoBreakLink_m.cc \
 	base/Compat.h \
@@ -12292,1384 +12133,6 @@ $O/networklayer/ted/TED_m.o: networklayer/ted/TED_m.cc \
 	base/INETDefs.h \
 	networklayer/contract/IPv4Address.h \
 	networklayer/ted/TED_m.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.o: networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.o: networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	linklayer/contract/MACAddress.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.o: networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv4ControlInfo.h \
-	networklayer/contract/IPv4ControlInfo_m.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPv6ControlInfo.h \
-	networklayer/contract/IPv6ControlInfo_m.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4InterfaceData.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/ControlVanetRouting_m.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	transport/udp/UDPPacket.h \
-	transport/udp/UDPPacket_m.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.o: networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.o: networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.o: networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.o: networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.o: networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.o: networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.o: networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.o: networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.o: networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.cc \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.o: networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.o: networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/locality.o: networklayer/vanetrouting/aodvvanet/aodvvanet/locality.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4InterfaceData.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.o: networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.o: networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/defs_aodv.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/list.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/params.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.h \
-	networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_hello.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_neighbor.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rerr.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rrep.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_rreq.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_socket.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/aodvvanet_timeout.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/avseek_list.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/debug_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/locality.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_msg_struct_m.h \
-	networklayer/vanetrouting/aodvvanet/aodvvanet_omnet.h \
-	networklayer/vanetrouting/aodvvanet/av_packet_queue_omnet.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanetrouting/AODVVANETControlPackets_m.o: networklayer/vanetrouting/aodvvanetrouting/AODVVANETControlPackets_m.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/contract/IVANETMobility.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/vanetrouting/aodvvanetrouting/AODVVANETControlPackets_m.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/aodvvanetrouting/AODVVANETRouteData.o: networklayer/vanetrouting/aodvvanetrouting/AODVVANETRouteData.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/vanetrouting/aodvvanetrouting/AODVVANETRouteData.h
-$O/networklayer/vanetrouting/aodvvanetrouting/AODVVANETRouting.o: networklayer/vanetrouting/aodvvanetrouting/AODVVANETRouting.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	base/NodeOperations.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	mobility/contract/IVANETMobility.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTableAccess.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPSocket.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv4ControlInfo.h \
-	networklayer/contract/IPv4ControlInfo_m.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/vanetrouting/aodvvanetrouting/AODVVANETControlPackets_m.h \
-	networklayer/vanetrouting/aodvvanetrouting/AODVVANETRouteData.h \
-	networklayer/vanetrouting/aodvvanetrouting/AODVVANETRouting.h \
-	status/NodeStatus.h \
-	transport/contract/UDPControlInfo.h \
-	transport/contract/UDPControlInfo_m.h \
-	transport/contract/UDPSocket.h \
-	transport/udp/UDPPacket.h \
-	transport/udp/UDPPacket_m.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/base/ControlVanetRouting_m.o: networklayer/vanetrouting/base/ControlVanetRouting_m.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	linklayer/contract/MACAddress.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/vanetrouting/base/ControlVanetRouting_m.h \
-	networklayer/vanetrouting/base/VanetAddress.h
-$O/networklayer/vanetrouting/base/VanetAddress.o: networklayer/vanetrouting/base/VanetAddress.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	linklayer/contract/MACAddress.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/vanetrouting/base/VanetAddress.h
-$O/networklayer/vanetrouting/base/VanetNetfilterHook.o: networklayer/vanetrouting/base/VanetNetfilterHook.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/MACAddress.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTableAccess.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv4ControlInfo.h \
-	networklayer/contract/IPv4ControlInfo_m.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/base/compatibility_dsr.h \
-	networklayer/manetrouting/dsr/dsr-pkt_omnet.h \
-	networklayer/manetrouting/dsr/dsr-uu/dsr-opt.h \
-	networklayer/manetrouting/dsr/dsr-uu/dsr-pkt.h \
-	networklayer/manetrouting/dsr/dsr-uu/dsr.h \
-	networklayer/manetrouting/dsr/dsr-uu/timer.h \
-	networklayer/vanetrouting/base/ControlVanetRouting_m.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h
-$O/networklayer/vanetrouting/base/VanetRoutingBase.o: networklayer/vanetrouting/base/VanetRoutingBase.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/IPassiveQueue.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	base/NodeOperations.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/PassiveQueueBase.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	linklayer/ieee80211/mgmt/Ieee80211MgmtAP.h \
-	linklayer/ieee80211/mgmt/Ieee80211MgmtAPBase.h \
-	linklayer/ieee80211/mgmt/Ieee80211MgmtBase.h \
-	linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h \
-	linklayer/ieee80211mesh/vanetlocator/IVanetLocator.h \
-	mobility/common/MobilityAccess.h \
-	mobility/contract/IMobility.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTableAccess.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPSocket.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv4ControlInfo.h \
-	networklayer/contract/IPv4ControlInfo_m.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPv6ControlInfo.h \
-	networklayer/contract/IPv6ControlInfo_m.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4InterfaceData.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
-	networklayer/vanetrouting/base/VanetNetfilterHook.h \
-	networklayer/vanetrouting/base/VanetRoutingBase.h \
-	networklayer/vanetrouting/base/Vanet_ControlInfoBreakLink_m.h \
-	networklayer/vanetrouting/base/compatibility_vanet.h \
-	transport/udp/UDPPacket.h \
-	transport/udp/UDPPacket_m.h \
-	util/FWMath.h \
-	util/GlobalWirelessLinkInspectorVanet.h
-$O/networklayer/vanetrouting/base/Vanet_ControlInfoBreakLink_m.o: networklayer/vanetrouting/base/Vanet_ControlInfoBreakLink_m.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	linklayer/contract/MACAddress.h \
-	networklayer/vanetrouting/base/Vanet_ControlInfoBreakLink_m.h
-$O/networklayer/vanetrouting/base/Vanet_LocatorNotificationInfo_m.o: networklayer/vanetrouting/base/Vanet_LocatorNotificationInfo_m.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	linklayer/contract/MACAddress.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/vanetrouting/base/Vanet_LocatorNotificationInfo_m.h
-$O/networklayer/vanetrouting/base/Vanet_MeshControlInfo_m.o: networklayer/vanetrouting/base/Vanet_MeshControlInfo_m.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	networklayer/vanetrouting/base/Vanet_MeshControlInfo_m.h
-$O/networklayer/vanetrouting/bitcar/BITCARControlPackets_m.o: networklayer/vanetrouting/bitcar/BITCARControlPackets_m.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/contract/IVANETMobility.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/vanetrouting/bitcar/BITCARControlPackets_m.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/bitcar/BITCARRouteData.o: networklayer/vanetrouting/bitcar/BITCARRouteData.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/vanetrouting/bitcar/BITCARRouteData.h
-$O/networklayer/vanetrouting/bitcar/BITCARRouting.o: networklayer/vanetrouting/bitcar/BITCARRouting.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	base/NodeOperations.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	mobility/contract/IVANETMobility.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTableAccess.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPSocket.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv4ControlInfo.h \
-	networklayer/contract/IPv4ControlInfo_m.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/vanetrouting/bitcar/BITCARControlPackets_m.h \
-	networklayer/vanetrouting/bitcar/BITCARRouteData.h \
-	networklayer/vanetrouting/bitcar/BITCARRouting.h \
-	status/NodeStatus.h \
-	transport/contract/UDPControlInfo.h \
-	transport/contract/UDPControlInfo_m.h \
-	transport/contract/UDPSocket.h \
-	transport/udp/UDPPacket.h \
-	transport/udp/UDPPacket_m.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/rbvtr/RBVTRControlPackets_m.o: networklayer/vanetrouting/rbvtr/RBVTRControlPackets_m.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/contract/IVANETMobility.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/vanetrouting/rbvtr/RBVTRControlPackets_m.h \
-	util/FWMath.h
-$O/networklayer/vanetrouting/rbvtr/RBVTRRouteData.o: networklayer/vanetrouting/rbvtr/RBVTRRouteData.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/vanetrouting/rbvtr/RBVTRRouteData.h
-$O/networklayer/vanetrouting/rbvtr/RBVTRRouting.o: networklayer/vanetrouting/rbvtr/RBVTRRouting.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	base/NodeOperations.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211/mac/Ieee80211Consts.h \
-	linklayer/ieee80211/mac/Ieee80211Frame_m.h \
-	mobility/contract/IVANETMobility.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTableAccess.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPSocket.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv4ControlInfo.h \
-	networklayer/contract/IPv4ControlInfo_m.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/vanetrouting/rbvtr/RBVTRControlPackets_m.h \
-	networklayer/vanetrouting/rbvtr/RBVTRRouteData.h \
-	networklayer/vanetrouting/rbvtr/RBVTRRouting.h \
-	status/NodeStatus.h \
-	transport/contract/UDPControlInfo.h \
-	transport/contract/UDPControlInfo_m.h \
-	transport/contract/UDPSocket.h \
-	transport/udp/UDPPacket.h \
-	transport/udp/UDPPacket_m.h \
-	util/FWMath.h
 $O/networklayer/xmipv6/BindingCache.o: networklayer/xmipv6/BindingCache.cc \
 	base/Compat.h \
 	base/INETDefs.h \
@@ -15315,13 +13778,13 @@ $O/util/GlobalWirelessLinkInspector.o: util/GlobalWirelessLinkInspector.cc \
 	networklayer/manetrouting/base/ManetAddress.h \
 	util/GlobalWirelessLinkInspector.h
 $O/util/GlobalWirelessLinkInspectorVanet.o: util/GlobalWirelessLinkInspectorVanet.cc \
+	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
 	base/Compat.h \
 	base/INETDefs.h \
 	linklayer/contract/MACAddress.h \
 	networklayer/contract/IPv4Address.h \
 	networklayer/contract/IPv6Address.h \
 	networklayer/contract/IPvXAddress.h \
-	networklayer/vanetrouting/base/VanetAddress.h \
 	util/GlobalWirelessLinkInspectorVanet.h
 $O/util/Macho.o: util/Macho.cc \
 	util/Macho.h
@@ -15815,74 +14278,6 @@ $O/world/traci/TraCIScenarioManagerLaunchd.o: world/traci/TraCIScenarioManagerLa
 	world/traci/TraCIConstants.h \
 	world/traci/TraCIScenarioManager.h \
 	world/traci/TraCIScenarioManagerLaunchd.h
-$O/world/traci/aodvTraCIScenarioManager.o: world/traci/aodvTraCIScenarioManager.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/aodvTraCIMobility.h \
-	util/FWMath.h \
-	world/traci/aodvTraCIConstants.h \
-	world/traci/aodvTraCIScenarioManager.h \
-	world/traci/vanetTraCIColor.h
-$O/world/traci/aodvTraCIScenarioManagerLaunchd.o: world/traci/aodvTraCIScenarioManagerLaunchd.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	util/FWMath.h \
-	world/traci/aodvTraCIConstants.h \
-	world/traci/aodvTraCIScenarioManager.h \
-	world/traci/aodvTraCIScenarioManagerLaunchd.h \
-	world/traci/vanetTraCIColor.h
-$O/world/traci/bitcarTraCIScenarioManager.o: world/traci/bitcarTraCIScenarioManager.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/bitcarTraCIMobility.h \
-	util/FWMath.h \
-	world/traci/bitcarTraCIConstants.h \
-	world/traci/bitcarTraCIScenarioManager.h \
-	world/traci/vanetTraCIColor.h
-$O/world/traci/bitcarTraCIScenarioManagerLaunchd.o: world/traci/bitcarTraCIScenarioManagerLaunchd.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	util/FWMath.h \
-	world/traci/bitcarTraCIConstants.h \
-	world/traci/bitcarTraCIScenarioManager.h \
-	world/traci/bitcarTraCIScenarioManagerLaunchd.h \
-	world/traci/vanetTraCIColor.h
-$O/world/traci/rbvtrTraCIScenarioManager.o: world/traci/rbvtrTraCIScenarioManager.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	mobility/common/VANETMobilityBase.h \
-	mobility/contract/IVANETMobility.h \
-	mobility/single/rbvtrTraCIMobility.h \
-	util/FWMath.h \
-	world/traci/rbvtrTraCIConstants.h \
-	world/traci/rbvtrTraCIScenarioManager.h \
-	world/traci/vanetTraCIColor.h
-$O/world/traci/rbvtrTraCIScenarioManagerLaunchd.o: world/traci/rbvtrTraCIScenarioManagerLaunchd.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/ModuleAccess.h \
-	util/FWMath.h \
-	world/traci/rbvtrTraCIConstants.h \
-	world/traci/rbvtrTraCIScenarioManager.h \
-	world/traci/rbvtrTraCIScenarioManagerLaunchd.h \
-	world/traci/vanetTraCIColor.h
-$O/world/traci/vanetTraCIColor.o: world/traci/vanetTraCIColor.cc \
-	world/traci/vanetTraCIColor.h
 $O/wpan/Isabel/Analysis/AnalysisEnergy.o: wpan/Isabel/Analysis/AnalysisEnergy.cc \
 	base/Compat.h \
 	base/Coord.h \

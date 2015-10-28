@@ -4,13 +4,13 @@ import inet.applications.traci.rbvtrTraCIDemo;
 import inet.base.LifecycleController;
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;
-import inet.mobility.contract.IVANETMobility;
+import dissertation.mobility.contract.IVANETMobility;
 import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.nodes.inet.NetworkLayer;
-import inet.nodes.rbvtr.RBVTRRouter;
+import dissertation.nodes.rbvtr.RBVTRRouter;
 import inet.transport.udp.UDP;
 import inet.world.radio.ChannelControl;
 

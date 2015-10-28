@@ -1,7 +1,7 @@
 package vanetsim.simulations._nodes;
 
 import inet.world.radio.ChannelControl;
-import inet.world.traci.aodvTraCIScenarioManagerLaunchd;
+import dissertation.world.traci.aodvTraCIScenarioManagerLaunchd;
 
 
 module AODVVANETHighway

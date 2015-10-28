@@ -1,7 +1,7 @@
 package vanetsim.simulations._nodes;
 
 import inet.world.radio.ChannelControl;
-import inet.world.traci.rbvtrTraCIScenarioManagerLaunchd;
+import dissertation.world.traci.rbvtrTraCIScenarioManagerLaunchd;
 
 
 module RBVTRHighway

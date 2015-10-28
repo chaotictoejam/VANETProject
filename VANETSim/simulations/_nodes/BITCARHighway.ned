@@ -1,7 +1,7 @@
 package vanetsim.simulations._nodes;
 
 import inet.world.radio.ChannelControl;
-import inet.world.traci.bitcarTraCIScenarioManagerLaunchd;
+import dissertation.world.traci.bitcarTraCIScenarioManagerLaunchd;
 
 
 module BITCARHighway
