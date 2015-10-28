@@ -13,18 +13,13 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package inet.linklayer.ieee80211mesh.vanetlocator;
-import inet.linklayer.ieee80211mesh.vanetlocator.IVanetLocator;
+package dissertation.linklayer.ieee80211mesh.vanetlocator;
 
 //
 // TODO auto-generated type
 //
-simple VanetLocator like IVanetLocator
+moduleinterface IVanetLocator
 {
-    parameters:
-        bool useGlobal = default(true);
-        string iface = default("");
-        @class(VanetLocatorModule);
     gates:
         input inGate;
         output outGate;

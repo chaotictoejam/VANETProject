@@ -16,7 +16,7 @@
 //
 
 
-package inet.linklayer.ieee80211.mgmt;
+package dissertation.linklayer.ieee80211.mgmt;
 
 import inet.linklayer.ieee80211.mgmt.IIeee80211Mgmt;
 
