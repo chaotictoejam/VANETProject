@@ -18,10 +18,10 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package  inet.applications.traci;
+package  dissertation.applications.traci;
 
 
-simple bitcarTraCITestApp
+simple aodvTraCITestApp
 {
     parameters:
         int testNumber;  // number of test to run (-1: no test)

@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for inet
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -o inet -O out -I../dissertation/networklayer/vanetrouting/base -I../dissertation -I../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet -I../dissertation/networklayer/vanetrouting/aodvvanet -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6 -DWITH_TRACI
+#  opp_makemake -f --deep -o inet -O out -I../dissertation/networklayer/vanetrouting/base -I../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet -I../dissertation/networklayer/vanetrouting/aodvvanet -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6 -DWITH_TRACI
 #
 
 # Name of target to be created (-o option)
@@ -16,7 +16,6 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
 # C++ include paths (with -I)
 INCLUDE_PATH = \
     -I../dissertation/networklayer/vanetrouting/base \
-    -I../dissertation \
     -I../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet \
     -I../dissertation/networklayer/vanetrouting/aodvvanet \
     -I. \
@@ -261,12 +260,6 @@ OBJS = \
     $O/applications/tcpapp/TCPSinkApp.o \
     $O/applications/tcpapp/TCPSrvHostApp.o \
     $O/applications/tcpapp/TelnetApp.o \
-    $O/applications/traci/aodvTraCI.o \
-    $O/applications/traci/aodvTraCITestApp.o \
-    $O/applications/traci/bitcarTraCIDemo.o \
-    $O/applications/traci/bitcarTraCITestApp.o \
-    $O/applications/traci/rbvtrTraCIDemo.o \
-    $O/applications/traci/rbvtrTraCITestApp.o \
     $O/applications/traci/TraCIDemo.o \
     $O/applications/traci/TraCITestApp.o \
     $O/applications/trafgen/TrafGen.o \
@@ -2164,108 +2157,6 @@ $O/applications/traci/TraCITestApp.o: applications/traci/TraCITestApp.cc \
 	util/FWMath.h \
 	world/traci/TraCIColor.h \
 	world/traci/TraCIScenarioManager.h
-$O/applications/traci/aodvTraCI.o: applications/traci/aodvTraCI.cc \
-	../dissertation/mobility/common/VANETMobilityBase.h \
-	../dissertation/mobility/contract/IVANETMobility.h \
-	../dissertation/mobility/single/aodvTraCIMobility.h \
-	../dissertation/world/traci/aodvTraCIScenarioManager.h \
-	../dissertation/world/traci/vanetTraCIColor.h \
-	applications/traci/aodvTraCI.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	status/NodeStatus.h \
-	transport/contract/UDPSocket.h \
-	util/FWMath.h
-$O/applications/traci/aodvTraCITestApp.o: applications/traci/aodvTraCITestApp.cc \
-	../dissertation/mobility/common/VANETMobilityBase.h \
-	../dissertation/mobility/contract/IVANETMobility.h \
-	../dissertation/mobility/single/aodvTraCIMobility.h \
-	../dissertation/world/traci/aodvTraCIScenarioManager.h \
-	../dissertation/world/traci/vanetTraCIColor.h \
-	applications/traci/aodvTraCITestApp.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	status/NodeStatus.h \
-	util/FWMath.h
-$O/applications/traci/bitcarTraCIDemo.o: applications/traci/bitcarTraCIDemo.cc \
-	../dissertation/mobility/common/VANETMobilityBase.h \
-	../dissertation/mobility/contract/IVANETMobility.h \
-	../dissertation/mobility/single/bitcarTraCIMobility.h \
-	../dissertation/world/traci/bitcarTraCIScenarioManager.h \
-	../dissertation/world/traci/vanetTraCIColor.h \
-	applications/traci/bitcarTraCIDemo.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	status/NodeStatus.h \
-	transport/contract/UDPSocket.h \
-	util/FWMath.h
-$O/applications/traci/bitcarTraCITestApp.o: applications/traci/bitcarTraCITestApp.cc \
-	../dissertation/mobility/common/VANETMobilityBase.h \
-	../dissertation/mobility/contract/IVANETMobility.h \
-	../dissertation/mobility/single/bitcarTraCIMobility.h \
-	../dissertation/world/traci/bitcarTraCIScenarioManager.h \
-	../dissertation/world/traci/vanetTraCIColor.h \
-	applications/traci/bitcarTraCITestApp.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	status/NodeStatus.h \
-	util/FWMath.h
-$O/applications/traci/rbvtrTraCIDemo.o: applications/traci/rbvtrTraCIDemo.cc \
-	../dissertation/mobility/common/VANETMobilityBase.h \
-	../dissertation/mobility/contract/IVANETMobility.h \
-	../dissertation/mobility/single/rbvtrTraCIMobility.h \
-	../dissertation/world/traci/rbvtrTraCIScenarioManager.h \
-	../dissertation/world/traci/vanetTraCIColor.h \
-	applications/traci/rbvtrTraCIDemo.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	status/NodeStatus.h \
-	transport/contract/UDPSocket.h \
-	util/FWMath.h
-$O/applications/traci/rbvtrTraCITestApp.o: applications/traci/rbvtrTraCITestApp.cc \
-	../dissertation/mobility/common/VANETMobilityBase.h \
-	../dissertation/mobility/contract/IVANETMobility.h \
-	../dissertation/mobility/single/rbvtrTraCIMobility.h \
-	../dissertation/world/traci/rbvtrTraCIScenarioManager.h \
-	../dissertation/world/traci/vanetTraCIColor.h \
-	applications/traci/rbvtrTraCITestApp.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	status/NodeStatus.h \
-	util/FWMath.h
 $O/applications/trafgen/TrafGen.o: applications/trafgen/TrafGen.cc \
 	applications/trafgen/TrafGen.h
 $O/applications/trafgen/TrafGenPar.o: applications/trafgen/TrafGenPar.cc \

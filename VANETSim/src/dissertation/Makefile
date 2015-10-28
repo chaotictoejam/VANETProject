@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for dissertation
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -o dissertation -O out -I../inet -I../inet/util -I../inet/networklayer/arp -I../inet/linklayer/common -I../inet/linklayer/radio -I../inet/networklayer/ipv4 -I../inet/util/headerserializers/ipv4 -I../inet/linklayer/ieee80211/mac -I../inet/networklayer/manetrouting/dsr -I../inet/util/headerserializers/ipv6 -I../inet/util/headerserializers/tcp -I../inet/world/obstacles -I../inet/wpan/linklayer/ieee802154/contract -I../inet/util/headerserializers/sctp -I../inet/mobility/common -I../inet/wpan/phyLayer/ieee802154 -I../inet/networklayer/routing/aodv -I../inet/world/radio -I../inet/linklayer/ieee80211mesh/vanetlocator -I../inet/transport/tcp_common -I../inet/networklayer/contract -I../inet/networklayer/autorouting/ipv4 -I../inet/applications/pingapp -I../inet/linklayer/ethernet -I../inet/linklayer/ieee80211mesh/locator -I../inet/networklayer/common -I../inet/networklayer/icmpv6 -I../inet/wpan/linklayer/bmac -I../inet/util/headerserializers/udp -I../inet/linklayer/ieee80211/radio -I../inet/linklayer/radio/propagation -I../inet/util/headerserializers -I../inet/base -I../inet/networklayer/ipv6tunneling -I../inet/world/powercontrol -I../inet/transport/udp -I../inet/networklayer/manetrouting/base -I../inet/wpan/networklayer/contract -I../inet/status -I../inet/linklayer/contract -I../inet/linklayer/ieee80211/mgmt -I../inet/networklayer/xmipv6 -I../inet/battery/models -I../inet/mobility/contract -I../inet/transport/contract -I../inet/transport/sctp -I../inet/networklayer/ipv6 -I../inet/linklayer/ieee80211/radio/errormodel -I../inet/networklayer/manetrouting/aodv-uu/aodv-uu -I../inet/networklayer/manetrouting/aodv-uu -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6 -DWITH_TRACI
+#  opp_makemake -f --deep -o dissertation -O out -I../inet -I../inet/util -I../inet/networklayer/arp -I../inet/linklayer/common -I../inet/linklayer/ieee80211mesh/locator -I../inet/linklayer/radio -I../inet/networklayer/icmpv6 -I../inet/networklayer/common -I../inet/networklayer/ipv4 -I../inet/util/headerserializers/ipv4 -I../inet/wpan/linklayer/bmac -I../inet/linklayer/ieee80211/mac -I../inet/networklayer/manetrouting/dsr -I../inet/util/headerserializers/udp -I../inet/linklayer/ieee80211/radio -I../inet/linklayer/radio/propagation -I../inet/util/headerserializers -I../inet/wpan/linklayer/ieee802154/contract -I../inet/world/obstacles -I../inet/util/headerserializers/ipv6 -I../inet/base -I../inet/util/headerserializers/tcp -I../inet/util/headerserializers/sctp -I../inet/mobility/common -I../inet/wpan/phyLayer/ieee802154 -I../inet/world/powercontrol -I../inet/networklayer/ipv6tunneling -I../inet/networklayer/routing/aodv -I../inet/world/radio -I../inet/transport/udp -I../inet/networklayer/manetrouting/base -I../inet/linklayer/ieee80211mesh/vanetlocator -I../inet/wpan/networklayer/contract -I../inet/status -I../inet/linklayer/contract -I../inet/linklayer/ieee80211/mgmt -I../inet/transport/tcp_common -I../inet/networklayer/contract -I../inet/battery/models -I../inet/networklayer/xmipv6 -I../inet/networklayer/autorouting/ipv4 -I../inet/transport/contract -I../inet/mobility/contract -I../inet/applications/pingapp -I../inet/transport/sctp -I../inet/linklayer/ethernet -I../inet/linklayer/ieee80211/radio/errormodel -I../inet/networklayer/ipv6 -I../inet/networklayer/manetrouting/aodv-uu/aodv-uu -I../inet/networklayer/manetrouting/aodv-uu -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6 -DWITH_TRACI
 #
 
 # Name of target to be created (-o option)
@@ -19,54 +19,55 @@ INCLUDE_PATH = \
     -I../inet/util \
     -I../inet/networklayer/arp \
     -I../inet/linklayer/common \
+    -I../inet/linklayer/ieee80211mesh/locator \
     -I../inet/linklayer/radio \
+    -I../inet/networklayer/icmpv6 \
+    -I../inet/networklayer/common \
     -I../inet/networklayer/ipv4 \
     -I../inet/util/headerserializers/ipv4 \
+    -I../inet/wpan/linklayer/bmac \
     -I../inet/linklayer/ieee80211/mac \
     -I../inet/networklayer/manetrouting/dsr \
-    -I../inet/util/headerserializers/ipv6 \
-    -I../inet/util/headerserializers/tcp \
-    -I../inet/world/obstacles \
-    -I../inet/wpan/linklayer/ieee802154/contract \
-    -I../inet/util/headerserializers/sctp \
-    -I../inet/mobility/common \
-    -I../inet/wpan/phyLayer/ieee802154 \
-    -I../inet/networklayer/routing/aodv \
-    -I../inet/world/radio \
-    -I../inet/linklayer/ieee80211mesh/vanetlocator \
-    -I../inet/transport/tcp_common \
-    -I../inet/networklayer/contract \
-    -I../inet/networklayer/autorouting/ipv4 \
-    -I../inet/applications/pingapp \
-    -I../inet/linklayer/ethernet \
-    -I../inet/linklayer/ieee80211mesh/locator \
-    -I../inet/networklayer/common \
-    -I../inet/networklayer/icmpv6 \
-    -I../inet/wpan/linklayer/bmac \
     -I../inet/util/headerserializers/udp \
     -I../inet/linklayer/ieee80211/radio \
     -I../inet/linklayer/radio/propagation \
     -I../inet/util/headerserializers \
+    -I../inet/wpan/linklayer/ieee802154/contract \
+    -I../inet/world/obstacles \
+    -I../inet/util/headerserializers/ipv6 \
     -I../inet/base \
-    -I../inet/networklayer/ipv6tunneling \
+    -I../inet/util/headerserializers/tcp \
+    -I../inet/util/headerserializers/sctp \
+    -I../inet/mobility/common \
+    -I../inet/wpan/phyLayer/ieee802154 \
     -I../inet/world/powercontrol \
+    -I../inet/networklayer/ipv6tunneling \
+    -I../inet/networklayer/routing/aodv \
+    -I../inet/world/radio \
     -I../inet/transport/udp \
     -I../inet/networklayer/manetrouting/base \
+    -I../inet/linklayer/ieee80211mesh/vanetlocator \
     -I../inet/wpan/networklayer/contract \
     -I../inet/status \
     -I../inet/linklayer/contract \
     -I../inet/linklayer/ieee80211/mgmt \
-    -I../inet/networklayer/xmipv6 \
+    -I../inet/transport/tcp_common \
+    -I../inet/networklayer/contract \
     -I../inet/battery/models \
-    -I../inet/mobility/contract \
+    -I../inet/networklayer/xmipv6 \
+    -I../inet/networklayer/autorouting/ipv4 \
     -I../inet/transport/contract \
+    -I../inet/mobility/contract \
+    -I../inet/applications/pingapp \
     -I../inet/transport/sctp \
-    -I../inet/networklayer/ipv6 \
+    -I../inet/linklayer/ethernet \
     -I../inet/linklayer/ieee80211/radio/errormodel \
+    -I../inet/networklayer/ipv6 \
     -I../inet/networklayer/manetrouting/aodv-uu/aodv-uu \
     -I../inet/networklayer/manetrouting/aodv-uu \
     -I. \
     -Iapplications \
+    -Iapplications/traci \
     -Imobility \
     -Imobility/common \
     -Imobility/contract \
@@ -100,6 +101,12 @@ O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
 OBJS = \
+    $O/applications/traci/aodvTraCI.o \
+    $O/applications/traci/aodvTraCITestApp.o \
+    $O/applications/traci/bitcarTraCIDemo.o \
+    $O/applications/traci/bitcarTraCITestApp.o \
+    $O/applications/traci/rbvtrTraCIDemo.o \
+    $O/applications/traci/rbvtrTraCITestApp.o \
     $O/mobility/common/LineSegmentsVANETMobilityBase.o \
     $O/mobility/common/MovingVANETMobilityBase.o \
     $O/mobility/common/VANETMobilityAccess.o \
@@ -244,7 +251,7 @@ all: $O/$(TARGET)
 $O/$(TARGET): $(OBJS)  $(wildcard $(EXTRA_OBJS)) Makefile
 	@$(MKPATH) $O
 	@echo Creating executable: $@
-	$(Q)$(CXX) $(LDFLAGS) -o $O/$(TARGET)  $(OBJS) $(EXTRA_OBJS) $(AS_NEEDED_OFF) $(WHOLE_ARCHIVE_ON) $(LIBS) $(WHOLE_ARCHIVE_OFF) $(OMNETPP_LIBS)
+	$(Q)echo >.tmp$$$$ $(OBJS) $(EXTRA_OBJS) && $(AR) .tmplib$$$$ @.tmp$$$$ && $(CXX) -o $O/$(TARGET) $(AS_NEEDED_OFF) $(WHOLE_ARCHIVE_ON) .tmplib$$$$ $(LIBS) $(WHOLE_ARCHIVE_OFF) $(OMNETPP_LIBS) $(LDFLAGS) && rm .tmp$$$$ && rm .tmplib$$$$
 
 .PHONY: all clean cleanall depend msgheaders
 
@@ -267,6 +274,7 @@ clean:
 	$(Q)-rm -f dissertation dissertation.exe libdissertation.so libdissertation.a libdissertation.dll libdissertation.dylib
 	$(Q)-rm -f ./*_m.cc ./*_m.h
 	$(Q)-rm -f applications/*_m.cc applications/*_m.h
+	$(Q)-rm -f applications/traci/*_m.cc applications/traci/*_m.h
 	$(Q)-rm -f mobility/*_m.cc mobility/*_m.h
 	$(Q)-rm -f mobility/common/*_m.cc mobility/common/*_m.h
 	$(Q)-rm -f mobility/contract/*_m.cc mobility/contract/*_m.h
@@ -292,9 +300,111 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc applications/*.cc mobility/*.cc mobility/common/*.cc mobility/contract/*.cc mobility/single/*.cc networklayer/*.cc networklayer/vanetrouting/*.cc networklayer/vanetrouting/aodvvanet/*.cc networklayer/vanetrouting/aodvvanet/aodvvanet/*.cc networklayer/vanetrouting/aodvvanetrouting/*.cc networklayer/vanetrouting/base/*.cc networklayer/vanetrouting/bitcar/*.cc networklayer/vanetrouting/geoadv/*.cc networklayer/vanetrouting/rbvtr/*.cc nodes/*.cc nodes/aodvvanet/*.cc nodes/bitcar/*.cc nodes/rbvtr/*.cc world/*.cc world/traci/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc applications/*.cc applications/traci/*.cc mobility/*.cc mobility/common/*.cc mobility/contract/*.cc mobility/single/*.cc networklayer/*.cc networklayer/vanetrouting/*.cc networklayer/vanetrouting/aodvvanet/*.cc networklayer/vanetrouting/aodvvanet/aodvvanet/*.cc networklayer/vanetrouting/aodvvanetrouting/*.cc networklayer/vanetrouting/base/*.cc networklayer/vanetrouting/bitcar/*.cc networklayer/vanetrouting/geoadv/*.cc networklayer/vanetrouting/rbvtr/*.cc nodes/*.cc nodes/aodvvanet/*.cc nodes/bitcar/*.cc nodes/rbvtr/*.cc world/*.cc world/traci/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
+$O/applications/traci/aodvTraCI.o: applications/traci/aodvTraCI.cc \
+	applications/traci/aodvTraCI.h \
+	mobility/common/VANETMobilityBase.h \
+	mobility/contract/IVANETMobility.h \
+	mobility/single/aodvTraCIMobility.h \
+	world/traci/aodvTraCIScenarioManager.h \
+	world/traci/vanetTraCIColor.h \
+	../inet/base/Compat.h \
+	../inet/base/Coord.h \
+	../inet/base/ILifecycle.h \
+	../inet/base/INETDefs.h \
+	../inet/base/LifecycleOperation.h \
+	../inet/base/ModuleAccess.h \
+	../inet/networklayer/contract/IPv4Address.h \
+	../inet/networklayer/contract/IPv6Address.h \
+	../inet/networklayer/contract/IPvXAddress.h \
+	../inet/status/NodeStatus.h \
+	../inet/transport/contract/UDPSocket.h \
+	../inet/util/FWMath.h
+$O/applications/traci/aodvTraCITestApp.o: applications/traci/aodvTraCITestApp.cc \
+	applications/traci/aodvTraCITestApp.h \
+	mobility/common/VANETMobilityBase.h \
+	mobility/contract/IVANETMobility.h \
+	mobility/single/aodvTraCIMobility.h \
+	world/traci/aodvTraCIScenarioManager.h \
+	world/traci/vanetTraCIColor.h \
+	../inet/base/Compat.h \
+	../inet/base/Coord.h \
+	../inet/base/ILifecycle.h \
+	../inet/base/INETDefs.h \
+	../inet/base/LifecycleOperation.h \
+	../inet/base/ModuleAccess.h \
+	../inet/status/NodeStatus.h \
+	../inet/util/FWMath.h
+$O/applications/traci/bitcarTraCIDemo.o: applications/traci/bitcarTraCIDemo.cc \
+	applications/traci/bitcarTraCIDemo.h \
+	mobility/common/VANETMobilityBase.h \
+	mobility/contract/IVANETMobility.h \
+	mobility/single/bitcarTraCIMobility.h \
+	world/traci/bitcarTraCIScenarioManager.h \
+	world/traci/vanetTraCIColor.h \
+	../inet/base/Compat.h \
+	../inet/base/Coord.h \
+	../inet/base/ILifecycle.h \
+	../inet/base/INETDefs.h \
+	../inet/base/LifecycleOperation.h \
+	../inet/base/ModuleAccess.h \
+	../inet/networklayer/contract/IPv4Address.h \
+	../inet/networklayer/contract/IPv6Address.h \
+	../inet/networklayer/contract/IPvXAddress.h \
+	../inet/status/NodeStatus.h \
+	../inet/transport/contract/UDPSocket.h \
+	../inet/util/FWMath.h
+$O/applications/traci/bitcarTraCITestApp.o: applications/traci/bitcarTraCITestApp.cc \
+	applications/traci/bitcarTraCITestApp.h \
+	mobility/common/VANETMobilityBase.h \
+	mobility/contract/IVANETMobility.h \
+	mobility/single/bitcarTraCIMobility.h \
+	world/traci/bitcarTraCIScenarioManager.h \
+	world/traci/vanetTraCIColor.h \
+	../inet/base/Compat.h \
+	../inet/base/Coord.h \
+	../inet/base/ILifecycle.h \
+	../inet/base/INETDefs.h \
+	../inet/base/LifecycleOperation.h \
+	../inet/base/ModuleAccess.h \
+	../inet/status/NodeStatus.h \
+	../inet/util/FWMath.h
+$O/applications/traci/rbvtrTraCIDemo.o: applications/traci/rbvtrTraCIDemo.cc \
+	applications/traci/rbvtrTraCIDemo.h \
+	mobility/common/VANETMobilityBase.h \
+	mobility/contract/IVANETMobility.h \
+	mobility/single/rbvtrTraCIMobility.h \
+	world/traci/rbvtrTraCIScenarioManager.h \
+	world/traci/vanetTraCIColor.h \
+	../inet/base/Compat.h \
+	../inet/base/Coord.h \
+	../inet/base/ILifecycle.h \
+	../inet/base/INETDefs.h \
+	../inet/base/LifecycleOperation.h \
+	../inet/base/ModuleAccess.h \
+	../inet/networklayer/contract/IPv4Address.h \
+	../inet/networklayer/contract/IPv6Address.h \
+	../inet/networklayer/contract/IPvXAddress.h \
+	../inet/status/NodeStatus.h \
+	../inet/transport/contract/UDPSocket.h \
+	../inet/util/FWMath.h
+$O/applications/traci/rbvtrTraCITestApp.o: applications/traci/rbvtrTraCITestApp.cc \
+	applications/traci/rbvtrTraCITestApp.h \
+	mobility/common/VANETMobilityBase.h \
+	mobility/contract/IVANETMobility.h \
+	mobility/single/rbvtrTraCIMobility.h \
+	world/traci/rbvtrTraCIScenarioManager.h \
+	world/traci/vanetTraCIColor.h \
+	../inet/base/Compat.h \
+	../inet/base/Coord.h \
+	../inet/base/ILifecycle.h \
+	../inet/base/INETDefs.h \
+	../inet/base/LifecycleOperation.h \
+	../inet/base/ModuleAccess.h \
+	../inet/status/NodeStatus.h \
+	../inet/util/FWMath.h
 $O/mobility/common/LineSegmentsVANETMobilityBase.o: mobility/common/LineSegmentsVANETMobilityBase.cc \
 	mobility/common/LineSegmentsVANETMobilityBase.h \
 	mobility/common/MovingVANETMobilityBase.h \
