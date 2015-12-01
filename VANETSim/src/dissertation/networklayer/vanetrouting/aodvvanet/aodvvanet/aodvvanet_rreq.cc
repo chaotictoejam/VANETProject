@@ -34,7 +34,7 @@
 
 #include "aodvvanet_rreq.h"
 #include "aodvvanet_rrep.h"
-#include "routing_table.h"
+#include "routing_table_aodvvanet.h"
 #include "aodvvanet_timeout.h"
 #include "timer_queue_aodvvanet.h"
 #include "aodvvanet_socket.h"

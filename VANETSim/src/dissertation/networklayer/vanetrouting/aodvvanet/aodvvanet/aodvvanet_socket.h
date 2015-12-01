@@ -31,7 +31,7 @@
 
 #include "defs_aodvvanet.h"
 #include "aodvvanet_rerr.h"
-#include "params.h"
+#include "params_aodvvanet.h"
 
 #ifndef OMNETPP
 #define IPHDR_SIZE sizeof(struct iphdr)

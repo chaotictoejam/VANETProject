@@ -33,7 +33,7 @@
 #include "aodvvanet_rerr.h"
 #include "aodvvanet_hello.h"
 #include "aodvvanet_socket.h"
-#include "routing_table.h"
+#include "routing_table_aodvvanet.h"
 #include "params.h"
 #include "defs_aodvvanet.h"
 #include "debug_aodvvanet.h"

@@ -37,7 +37,7 @@
 
 #include "defs_aodvvanet.h"
 #include "avseek_list.h"
-#include "routing_table.h"
+#include "routing_table_aodvvanet.h"
 
 /* AODVVANETRREQ Flags: */
 #define AODVVANETRREQ_JOIN          0x1

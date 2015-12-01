@@ -48,7 +48,7 @@
 #include "debug_aodvvanet.h"
 #include "params.h"
 #include "timer_queue_aodvvanet.h"
-#include "routing_table.h"
+#include "routing_table_aodvvanet.h"
 #endif
 
 #ifndef NS_PORT

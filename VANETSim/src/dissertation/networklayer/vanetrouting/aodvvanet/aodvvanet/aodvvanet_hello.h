@@ -26,7 +26,7 @@
 #ifndef NS_NO_GLOBALS
 #include "defs_aodvvanet.h"
 #include "aodvvanet_rrep.h"
-#include "routing_table.h"
+#include "routing_table_aodvvanet.h"
 #endif              /* NS_NO_GLOBALS */
 
 #ifndef NS_NO_DECLARATIONS

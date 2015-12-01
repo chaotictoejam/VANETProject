@@ -42,7 +42,7 @@
 #include "timer_queue_aodvvanet.h"
 #include "debug_aodvvanet.h"
 #include "params.h"
-#include "routing_table.h"
+#include "routing_table_aodvvanet.h"
 #include "avseek_list.h"
 #include "nl.h"
 

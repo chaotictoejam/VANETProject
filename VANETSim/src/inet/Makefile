@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for inet
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -o inet -O out -I../dissertation/linklayer/ieee80211mesh/vanetlocator -I../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet -I../dissertation/networklayer/vanetrouting/base -I../dissertation/networklayer/vanetrouting/aodvvanet -I../dissertation/util -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6 -DWITH_TRACI
+#  opp_makemake -f --deep -o inet -O out -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6 -DWITH_TRACI
 #
 
 # Name of target to be created (-o option)
@@ -15,11 +15,6 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
 
 # C++ include paths (with -I)
 INCLUDE_PATH = \
-    -I../dissertation/linklayer/ieee80211mesh/vanetlocator \
-    -I../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet \
-    -I../dissertation/networklayer/vanetrouting/base \
-    -I../dissertation/networklayer/vanetrouting/aodvvanet \
-    -I../dissertation/util \
     -I. \
     -Iapplications \
     -Iapplications/common \
@@ -68,7 +63,6 @@ INCLUDE_PATH = \
     -Ilinklayer/ieee8021d/stp \
     -Ilinklayer/ieee8021d/tester \
     -Ilinklayer/loopback \
-    -Ilinklayer/ppp \
     -Ilinklayer/queue \
     -Ilinklayer/radio \
     -Ilinklayer/radio/propagation \
@@ -95,28 +89,9 @@ INCLUDE_PATH = \
     -Inetworklayer/ipv6tunneling \
     -Inetworklayer/ldp \
     -Inetworklayer/manetrouting \
-    -Inetworklayer/manetrouting/PASER \
-    -Inetworklayer/manetrouting/PASER/IPv4_ADAPTED \
-    -Inetworklayer/manetrouting/PASER/paser_buffer \
-    -Inetworklayer/manetrouting/PASER/paser_configuration \
-    -Inetworklayer/manetrouting/PASER/paser_logic \
-    -Inetworklayer/manetrouting/PASER/paser_logic/cryptography \
-    -Inetworklayer/manetrouting/PASER/paser_logic/message_processing \
-    -Inetworklayer/manetrouting/PASER/paser_logic/route_discovery \
-    -Inetworklayer/manetrouting/PASER/paser_logic/route_maintenance \
-    -Inetworklayer/manetrouting/PASER/paser_message_structure \
-    -Inetworklayer/manetrouting/PASER/paser_socket \
-    -Inetworklayer/manetrouting/PASER/paser_tables \
-    -Inetworklayer/manetrouting/PASER/paser_timer_management \
-    -Inetworklayer/manetrouting/PASER/simple_kdc \
-    -Inetworklayer/manetrouting/PASER/simple_kdc/kdc_message \
     -Inetworklayer/manetrouting/aodv-uu \
     -Inetworklayer/manetrouting/aodv-uu/aodv-uu \
     -Inetworklayer/manetrouting/base \
-    -Inetworklayer/manetrouting/batman \
-    -Inetworklayer/manetrouting/batman/batmand \
-    -Inetworklayer/manetrouting/batman/batmand/orig \
-    -Inetworklayer/manetrouting/dsdv \
     -Inetworklayer/manetrouting/dsr \
     -Inetworklayer/manetrouting/dsr/dsr-uu \
     -Inetworklayer/manetrouting/dymo \
@@ -188,24 +163,7 @@ INCLUDE_PATH = \
     -Iworld/powercontrol \
     -Iworld/radio \
     -Iworld/scenario \
-    -Iworld/traci \
-    -Iwpan \
-    -Iwpan/Isabel \
-    -Iwpan/Isabel/Analysis \
-    -Iwpan/Isabel/Base \
-    -Iwpan/applications \
-    -Iwpan/applications/Ieee802154TestApp \
-    -Iwpan/linklayer \
-    -Iwpan/linklayer/bmac \
-    -Iwpan/linklayer/ieee802154 \
-    -Iwpan/linklayer/ieee802154/contract \
-    -Iwpan/linklayer/ieee802154/mac \
-    -Iwpan/networklayer \
-    -Iwpan/networklayer/Ieee802154StarRouting \
-    -Iwpan/networklayer/contract \
-    -Iwpan/nodes \
-    -Iwpan/phyLayer \
-    -Iwpan/phyLayer/ieee802154
+    -Iworld/traci
 
 # Additional object and library files to link with
 EXTRA_OBJS =
@@ -369,7 +327,6 @@ OBJS = \
     $O/linklayer/ieee8021d/stp/STP.o \
     $O/linklayer/ieee8021d/tester/STPTester.o \
     $O/linklayer/loopback/Loopback.o \
-    $O/linklayer/ppp/PPP.o \
     $O/linklayer/queue/AlgorithmicDropperBase.o \
     $O/linklayer/queue/DropTailQueue.o \
     $O/linklayer/queue/FIFOQueue.o \
@@ -475,36 +432,6 @@ OBJS = \
     $O/networklayer/ipv6/RoutingTable6.o \
     $O/networklayer/ipv6tunneling/IPv6Tunneling.o \
     $O/networklayer/ldp/LDP.o \
-    $O/networklayer/manetrouting/PASER/IPv4_ADAPTED/IPv4_paser.o \
-    $O/networklayer/manetrouting/PASER/paser_buffer/PASER_Message_Queue.o \
-    $O/networklayer/manetrouting/PASER/paser_configuration/PASER_Configurations.o \
-    $O/networklayer/manetrouting/PASER/paser_logic/PASER_Global.o \
-    $O/networklayer/manetrouting/PASER/paser_logic/cryptography/PASER_Crypto_Hash.o \
-    $O/networklayer/manetrouting/PASER/paser_logic/cryptography/PASER_Crypto_Root.o \
-    $O/networklayer/manetrouting/PASER/paser_logic/cryptography/PASER_Crypto_Sign.o \
-    $O/networklayer/manetrouting/PASER/paser_logic/message_processing/PASER_Message_Processing.o \
-    $O/networklayer/manetrouting/PASER/paser_logic/message_processing/PASER_RERR_List.o \
-    $O/networklayer/manetrouting/PASER/paser_logic/route_discovery/PASER_Route_Discovery.o \
-    $O/networklayer/manetrouting/PASER/paser_logic/route_maintenance/PASER_Route_Maintenance.o \
-    $O/networklayer/manetrouting/PASER/paser_message_structure/PASER_MSG.o \
-    $O/networklayer/manetrouting/PASER/paser_message_structure/PASER_TB_Hello.o \
-    $O/networklayer/manetrouting/PASER/paser_message_structure/PASER_TB_RERR.o \
-    $O/networklayer/manetrouting/PASER/paser_message_structure/PASER_TU_RREP.o \
-    $O/networklayer/manetrouting/PASER/paser_message_structure/PASER_TU_RREP_ACK.o \
-    $O/networklayer/manetrouting/PASER/paser_message_structure/PASER_TU_RREQ.o \
-    $O/networklayer/manetrouting/PASER/paser_message_structure/PASER_UB_Key_Refresh.o \
-    $O/networklayer/manetrouting/PASER/paser_message_structure/PASER_UB_Root_Refresh.o \
-    $O/networklayer/manetrouting/PASER/paser_message_structure/PASER_UB_RREQ.o \
-    $O/networklayer/manetrouting/PASER/paser_message_structure/PASER_UU_RREP.o \
-    $O/networklayer/manetrouting/PASER/paser_socket/PASER_Socket.o \
-    $O/networklayer/manetrouting/PASER/paser_tables/PASER_Neighbor_Entry.o \
-    $O/networklayer/manetrouting/PASER/paser_tables/PASER_Neighbor_Table.o \
-    $O/networklayer/manetrouting/PASER/paser_tables/PASER_Routing_Entry.o \
-    $O/networklayer/manetrouting/PASER/paser_tables/PASER_Routing_Table.o \
-    $O/networklayer/manetrouting/PASER/paser_tables/PASER_RREQ_List.o \
-    $O/networklayer/manetrouting/PASER/paser_timer_management/PASER_Timer_Message.o \
-    $O/networklayer/manetrouting/PASER/paser_timer_management/PASER_Timer_Queue.o \
-    $O/networklayer/manetrouting/PASER/simple_kdc/SimpleKDC.o \
     $O/networklayer/manetrouting/aodv-uu/aodv_msg_struct.o \
     $O/networklayer/manetrouting/aodv-uu/aodv_uu_omnet.o \
     $O/networklayer/manetrouting/aodv-uu/packet_queue_omnet.o \
@@ -524,15 +451,6 @@ OBJS = \
     $O/networklayer/manetrouting/base/ManetAddress.o \
     $O/networklayer/manetrouting/base/ManetNetfilterHook.o \
     $O/networklayer/manetrouting/base/ManetRoutingBase.o \
-    $O/networklayer/manetrouting/batman/BatmanMain.o \
-    $O/networklayer/manetrouting/batman/batmand/batman.o \
-    $O/networklayer/manetrouting/batman/batmand/bitarray.o \
-    $O/networklayer/manetrouting/batman/batmand/hna.o \
-    $O/networklayer/manetrouting/batman/batmand/originator.o \
-    $O/networklayer/manetrouting/batman/batmand/os.o \
-    $O/networklayer/manetrouting/batman/batmand/ring_buffer.o \
-    $O/networklayer/manetrouting/batman/batmand/schedule.o \
-    $O/networklayer/manetrouting/dsdv/DSDV_2.o \
     $O/networklayer/manetrouting/dsr/dsr-pkt_omnet.o \
     $O/networklayer/manetrouting/dsr/dsr-uu-omnetpp.o \
     $O/networklayer/manetrouting/dsr/dsr-uu/dsr-ack.o \
@@ -748,16 +666,6 @@ OBJS = \
     $O/world/traci/TraCIColor.o \
     $O/world/traci/TraCIScenarioManager.o \
     $O/world/traci/TraCIScenarioManagerLaunchd.o \
-    $O/wpan/Isabel/Analysis/AnalysisEnergy.o \
-    $O/wpan/Isabel/Base/Display.o \
-    $O/wpan/applications/Ieee802154TestApp/Ieee802154TestApp.o \
-    $O/wpan/linklayer/bmac/BMacLayer.o \
-    $O/wpan/linklayer/ieee802154/mac/csma802154.o \
-    $O/wpan/linklayer/ieee802154/mac/Ieee802154Link.o \
-    $O/wpan/linklayer/ieee802154/mac/Ieee802154Mac.o \
-    $O/wpan/networklayer/Ieee802154StarRouting/Ieee802154StarRouting.o \
-    $O/wpan/phyLayer/ieee802154/Ieee802154Phy.o \
-    $O/wpan/phyLayer/ieee802154/Ieee802154RadioModel.o \
     $O/applications/dhcp/DHCPMessage_m.o \
     $O/applications/ethernet/EtherApp_m.o \
     $O/applications/httptools/HttpEventMessages_m.o \
@@ -784,7 +692,6 @@ OBJS = \
     $O/linklayer/ieee80211mesh/locator/locatorPkt_m.o \
     $O/linklayer/ieee80211mesh/mgmt/LWMPLSPacket_m.o \
     $O/linklayer/ieee8021d/common/Ieee8021dBPDU_m.o \
-    $O/linklayer/ppp/PPPFrame_m.o \
     $O/linklayer/radio/AirFrame_m.o \
     $O/linklayer/radio/IdealAirFrame_m.o \
     $O/linklayer/radio/Radio80211aControlInfo_m.o \
@@ -807,14 +714,11 @@ OBJS = \
     $O/networklayer/ipv6/IPv6Datagram_m.o \
     $O/networklayer/ipv6/IPv6ExtensionHeaders_m.o \
     $O/networklayer/ldp/LDPPacket_m.o \
-    $O/networklayer/manetrouting/PASER/simple_kdc/kdc_message/crl_message_m.o \
     $O/networklayer/manetrouting/aodv-uu/aodv_msg_struct_m.o \
     $O/networklayer/manetrouting/base/ControlInfoBreakLink_m.o \
     $O/networklayer/manetrouting/base/ControlManetRouting_m.o \
     $O/networklayer/manetrouting/base/LocatorNotificationInfo_m.o \
     $O/networklayer/manetrouting/base/MeshControlInfo_m.o \
-    $O/networklayer/manetrouting/batman/BatmanMsg_m.o \
-    $O/networklayer/manetrouting/dsdv/DSDVhello_m.o \
     $O/networklayer/manetrouting/dymo_fau/DYMO_Packet_m.o \
     $O/networklayer/manetrouting/dymo_fau/DYMO_PacketBBMessage_m.o \
     $O/networklayer/manetrouting/dymo_fau/DYMO_RERR_m.o \
@@ -857,12 +761,7 @@ OBJS = \
     $O/transport/sctp/SCTPMessage_m.o \
     $O/transport/tcp_common/TCPSegment_m.o \
     $O/transport/udp/UDPPacket_m.o \
-    $O/world/powercontrol/PowerControlMessages_m.o \
-    $O/wpan/applications/Ieee802154TestApp/Ieee802154AppPkt_m.o \
-    $O/wpan/linklayer/bmac/bmacpkt_m.o \
-    $O/wpan/linklayer/ieee802154/contract/Ieee802154MacPhyPrimitives_m.o \
-    $O/wpan/linklayer/ieee802154/mac/Ieee802154Frame_m.o \
-    $O/wpan/networklayer/contract/Ieee802154NetworkCtrlInfo_m.o
+    $O/world/powercontrol/PowerControlMessages_m.o
 
 # Message files
 MSGFILES = \
@@ -892,7 +791,6 @@ MSGFILES = \
     linklayer/ieee80211mesh/locator/locatorPkt.msg \
     linklayer/ieee80211mesh/mgmt/LWMPLSPacket.msg \
     linklayer/ieee8021d/common/Ieee8021dBPDU.msg \
-    linklayer/ppp/PPPFrame.msg \
     linklayer/radio/AirFrame.msg \
     linklayer/radio/IdealAirFrame.msg \
     linklayer/radio/Radio80211aControlInfo.msg \
@@ -915,14 +813,11 @@ MSGFILES = \
     networklayer/ipv6/IPv6Datagram.msg \
     networklayer/ipv6/IPv6ExtensionHeaders.msg \
     networklayer/ldp/LDPPacket.msg \
-    networklayer/manetrouting/PASER/simple_kdc/kdc_message/crl_message.msg \
     networklayer/manetrouting/aodv-uu/aodv_msg_struct.msg \
     networklayer/manetrouting/base/ControlInfoBreakLink.msg \
     networklayer/manetrouting/base/ControlManetRouting.msg \
     networklayer/manetrouting/base/LocatorNotificationInfo.msg \
     networklayer/manetrouting/base/MeshControlInfo.msg \
-    networklayer/manetrouting/batman/BatmanMsg.msg \
-    networklayer/manetrouting/dsdv/DSDVhello.msg \
     networklayer/manetrouting/dymo_fau/DYMO_Packet.msg \
     networklayer/manetrouting/dymo_fau/DYMO_PacketBBMessage.msg \
     networklayer/manetrouting/dymo_fau/DYMO_RERR.msg \
@@ -965,12 +860,7 @@ MSGFILES = \
     transport/sctp/SCTPMessage.msg \
     transport/tcp_common/TCPSegment.msg \
     transport/udp/UDPPacket.msg \
-    world/powercontrol/PowerControlMessages.msg \
-    wpan/applications/Ieee802154TestApp/Ieee802154AppPkt.msg \
-    wpan/linklayer/bmac/bmacpkt.msg \
-    wpan/linklayer/ieee802154/contract/Ieee802154MacPhyPrimitives.msg \
-    wpan/linklayer/ieee802154/mac/Ieee802154Frame.msg \
-    wpan/networklayer/contract/Ieee802154NetworkCtrlInfo.msg
+    world/powercontrol/PowerControlMessages.msg
 
 #------------------------------------------------------------------------------
 
@@ -1181,7 +1071,6 @@ clean:
 	$(Q)-rm -f linklayer/ieee8021d/stp/*_m.cc linklayer/ieee8021d/stp/*_m.h
 	$(Q)-rm -f linklayer/ieee8021d/tester/*_m.cc linklayer/ieee8021d/tester/*_m.h
 	$(Q)-rm -f linklayer/loopback/*_m.cc linklayer/loopback/*_m.h
-	$(Q)-rm -f linklayer/ppp/*_m.cc linklayer/ppp/*_m.h
 	$(Q)-rm -f linklayer/queue/*_m.cc linklayer/queue/*_m.h
 	$(Q)-rm -f linklayer/radio/*_m.cc linklayer/radio/*_m.h
 	$(Q)-rm -f linklayer/radio/propagation/*_m.cc linklayer/radio/propagation/*_m.h
@@ -1208,28 +1097,9 @@ clean:
 	$(Q)-rm -f networklayer/ipv6tunneling/*_m.cc networklayer/ipv6tunneling/*_m.h
 	$(Q)-rm -f networklayer/ldp/*_m.cc networklayer/ldp/*_m.h
 	$(Q)-rm -f networklayer/manetrouting/*_m.cc networklayer/manetrouting/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/*_m.cc networklayer/manetrouting/PASER/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/IPv4_ADAPTED/*_m.cc networklayer/manetrouting/PASER/IPv4_ADAPTED/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/paser_buffer/*_m.cc networklayer/manetrouting/PASER/paser_buffer/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/paser_configuration/*_m.cc networklayer/manetrouting/PASER/paser_configuration/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/paser_logic/*_m.cc networklayer/manetrouting/PASER/paser_logic/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/paser_logic/cryptography/*_m.cc networklayer/manetrouting/PASER/paser_logic/cryptography/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/paser_logic/message_processing/*_m.cc networklayer/manetrouting/PASER/paser_logic/message_processing/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/paser_logic/route_discovery/*_m.cc networklayer/manetrouting/PASER/paser_logic/route_discovery/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/paser_logic/route_maintenance/*_m.cc networklayer/manetrouting/PASER/paser_logic/route_maintenance/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/paser_message_structure/*_m.cc networklayer/manetrouting/PASER/paser_message_structure/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/paser_socket/*_m.cc networklayer/manetrouting/PASER/paser_socket/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/paser_tables/*_m.cc networklayer/manetrouting/PASER/paser_tables/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/paser_timer_management/*_m.cc networklayer/manetrouting/PASER/paser_timer_management/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/simple_kdc/*_m.cc networklayer/manetrouting/PASER/simple_kdc/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/PASER/simple_kdc/kdc_message/*_m.cc networklayer/manetrouting/PASER/simple_kdc/kdc_message/*_m.h
 	$(Q)-rm -f networklayer/manetrouting/aodv-uu/*_m.cc networklayer/manetrouting/aodv-uu/*_m.h
 	$(Q)-rm -f networklayer/manetrouting/aodv-uu/aodv-uu/*_m.cc networklayer/manetrouting/aodv-uu/aodv-uu/*_m.h
 	$(Q)-rm -f networklayer/manetrouting/base/*_m.cc networklayer/manetrouting/base/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/batman/*_m.cc networklayer/manetrouting/batman/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/batman/batmand/*_m.cc networklayer/manetrouting/batman/batmand/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/batman/batmand/orig/*_m.cc networklayer/manetrouting/batman/batmand/orig/*_m.h
-	$(Q)-rm -f networklayer/manetrouting/dsdv/*_m.cc networklayer/manetrouting/dsdv/*_m.h
 	$(Q)-rm -f networklayer/manetrouting/dsr/*_m.cc networklayer/manetrouting/dsr/*_m.h
 	$(Q)-rm -f networklayer/manetrouting/dsr/dsr-uu/*_m.cc networklayer/manetrouting/dsr/dsr-uu/*_m.h
 	$(Q)-rm -f networklayer/manetrouting/dymo/*_m.cc networklayer/manetrouting/dymo/*_m.h
@@ -1302,30 +1172,13 @@ clean:
 	$(Q)-rm -f world/radio/*_m.cc world/radio/*_m.h
 	$(Q)-rm -f world/scenario/*_m.cc world/scenario/*_m.h
 	$(Q)-rm -f world/traci/*_m.cc world/traci/*_m.h
-	$(Q)-rm -f wpan/*_m.cc wpan/*_m.h
-	$(Q)-rm -f wpan/Isabel/*_m.cc wpan/Isabel/*_m.h
-	$(Q)-rm -f wpan/Isabel/Analysis/*_m.cc wpan/Isabel/Analysis/*_m.h
-	$(Q)-rm -f wpan/Isabel/Base/*_m.cc wpan/Isabel/Base/*_m.h
-	$(Q)-rm -f wpan/applications/*_m.cc wpan/applications/*_m.h
-	$(Q)-rm -f wpan/applications/Ieee802154TestApp/*_m.cc wpan/applications/Ieee802154TestApp/*_m.h
-	$(Q)-rm -f wpan/linklayer/*_m.cc wpan/linklayer/*_m.h
-	$(Q)-rm -f wpan/linklayer/bmac/*_m.cc wpan/linklayer/bmac/*_m.h
-	$(Q)-rm -f wpan/linklayer/ieee802154/*_m.cc wpan/linklayer/ieee802154/*_m.h
-	$(Q)-rm -f wpan/linklayer/ieee802154/contract/*_m.cc wpan/linklayer/ieee802154/contract/*_m.h
-	$(Q)-rm -f wpan/linklayer/ieee802154/mac/*_m.cc wpan/linklayer/ieee802154/mac/*_m.h
-	$(Q)-rm -f wpan/networklayer/*_m.cc wpan/networklayer/*_m.h
-	$(Q)-rm -f wpan/networklayer/Ieee802154StarRouting/*_m.cc wpan/networklayer/Ieee802154StarRouting/*_m.h
-	$(Q)-rm -f wpan/networklayer/contract/*_m.cc wpan/networklayer/contract/*_m.h
-	$(Q)-rm -f wpan/nodes/*_m.cc wpan/nodes/*_m.h
-	$(Q)-rm -f wpan/phyLayer/*_m.cc wpan/phyLayer/*_m.h
-	$(Q)-rm -f wpan/phyLayer/ieee802154/*_m.cc wpan/phyLayer/ieee802154/*_m.h
 
 cleanall: clean
 	$(Q)-rm -rf $(PROJECT_OUTPUT_DIR)
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc applications/*.cc applications/common/*.cc applications/dhcp/*.cc applications/ethernet/*.cc applications/generic/*.cc applications/httptools/*.cc applications/netperfmeter/*.cc applications/pingapp/*.cc applications/rtpapp/*.cc applications/sctpapp/*.cc applications/tcpapp/*.cc applications/traci/*.cc applications/trafgen/*.cc applications/udpapp/*.cc applications/util/*.cc base/*.cc battery/*.cc battery/models/*.cc generic/*.cc linklayer/*.cc linklayer/channels/*.cc linklayer/common/*.cc linklayer/configurator/*.cc linklayer/contract/*.cc linklayer/ethernet/*.cc linklayer/ethernet/switch/*.cc linklayer/ext/*.cc linklayer/idealwireless/*.cc linklayer/ieee80211/*.cc linklayer/ieee80211/mac/*.cc linklayer/ieee80211/mgmt/*.cc linklayer/ieee80211/mgmt/wpa2/*.cc linklayer/ieee80211/radio/*.cc linklayer/ieee80211/radio/errormodel/*.cc linklayer/ieee80211mesh/*.cc linklayer/ieee80211mesh/ethernet/*.cc linklayer/ieee80211mesh/hwmp/*.cc linklayer/ieee80211mesh/locator/*.cc linklayer/ieee80211mesh/mgmt/*.cc linklayer/ieee80211mesh/nodes/*.cc linklayer/ieee8021d/*.cc linklayer/ieee8021d/common/*.cc linklayer/ieee8021d/relay/*.cc linklayer/ieee8021d/rstp/*.cc linklayer/ieee8021d/stp/*.cc linklayer/ieee8021d/tester/*.cc linklayer/loopback/*.cc linklayer/ppp/*.cc linklayer/queue/*.cc linklayer/radio/*.cc linklayer/radio/propagation/*.cc mobility/*.cc mobility/common/*.cc mobility/contract/*.cc mobility/group/*.cc mobility/single/*.cc mobility/static/*.cc networklayer/*.cc networklayer/arp/*.cc networklayer/autorouting/*.cc networklayer/autorouting/ipv4/*.cc networklayer/autorouting/ipv6/*.cc networklayer/bgpv4/*.cc networklayer/bgpv4/BGPMessage/*.cc networklayer/common/*.cc networklayer/contract/*.cc networklayer/diffserv/*.cc networklayer/icmpv6/*.cc networklayer/internetcloud/*.cc networklayer/ipv4/*.cc networklayer/ipv6/*.cc networklayer/ipv6tunneling/*.cc networklayer/ldp/*.cc networklayer/manetrouting/*.cc networklayer/manetrouting/PASER/*.cc networklayer/manetrouting/PASER/IPv4_ADAPTED/*.cc networklayer/manetrouting/PASER/paser_buffer/*.cc networklayer/manetrouting/PASER/paser_configuration/*.cc networklayer/manetrouting/PASER/paser_logic/*.cc networklayer/manetrouting/PASER/paser_logic/cryptography/*.cc networklayer/manetrouting/PASER/paser_logic/message_processing/*.cc networklayer/manetrouting/PASER/paser_logic/route_discovery/*.cc networklayer/manetrouting/PASER/paser_logic/route_maintenance/*.cc networklayer/manetrouting/PASER/paser_message_structure/*.cc networklayer/manetrouting/PASER/paser_socket/*.cc networklayer/manetrouting/PASER/paser_tables/*.cc networklayer/manetrouting/PASER/paser_timer_management/*.cc networklayer/manetrouting/PASER/simple_kdc/*.cc networklayer/manetrouting/PASER/simple_kdc/kdc_message/*.cc networklayer/manetrouting/aodv-uu/*.cc networklayer/manetrouting/aodv-uu/aodv-uu/*.cc networklayer/manetrouting/base/*.cc networklayer/manetrouting/batman/*.cc networklayer/manetrouting/batman/batmand/*.cc networklayer/manetrouting/batman/batmand/orig/*.cc networklayer/manetrouting/dsdv/*.cc networklayer/manetrouting/dsr/*.cc networklayer/manetrouting/dsr/dsr-uu/*.cc networklayer/manetrouting/dymo/*.cc networklayer/manetrouting/dymo/dymoum/*.cc networklayer/manetrouting/dymo_fau/*.cc networklayer/manetrouting/olsr/*.cc networklayer/mpls/*.cc networklayer/ospfv2/*.cc networklayer/ospfv2/interface/*.cc networklayer/ospfv2/messagehandler/*.cc networklayer/ospfv2/neighbor/*.cc networklayer/ospfv2/router/*.cc networklayer/routing/*.cc networklayer/routing/aodv/*.cc networklayer/routing/dymo/*.cc networklayer/routing/gpsr/*.cc networklayer/routing/rip/*.cc networklayer/rsvp_te/*.cc networklayer/ted/*.cc networklayer/xmipv6/*.cc nodes/*.cc nodes/aodv/*.cc nodes/bgp/*.cc nodes/dymo/*.cc nodes/ethernet/*.cc nodes/gpsr/*.cc nodes/httptools/*.cc nodes/inet/*.cc nodes/internetcloud/*.cc nodes/ipv6/*.cc nodes/mpls/*.cc nodes/ospfv2/*.cc nodes/rip/*.cc nodes/rtp/*.cc nodes/wireless/*.cc nodes/xmipv6/*.cc securityModule/*.cc securityModule/message/*.cc status/*.cc transport/*.cc transport/contract/*.cc transport/rtp/*.cc transport/rtp/profiles/*.cc transport/rtp/profiles/avprofile/*.cc transport/sctp/*.cc transport/tcp/*.cc transport/tcp/flavours/*.cc transport/tcp/queues/*.cc transport/tcp_common/*.cc transport/udp/*.cc util/*.cc util/headerserializers/*.cc util/headerserializers/headers/*.cc util/headerserializers/ipv4/*.cc util/headerserializers/ipv4/headers/*.cc util/headerserializers/ipv6/*.cc util/headerserializers/ipv6/headers/*.cc util/headerserializers/sctp/*.cc util/headerserializers/sctp/headers/*.cc util/headerserializers/tcp/*.cc util/headerserializers/tcp/headers/*.cc util/headerserializers/udp/*.cc util/headerserializers/udp/headers/*.cc util/messageprinters/*.cc world/*.cc world/annotations/*.cc world/httptools/*.cc world/obstacles/*.cc world/powercontrol/*.cc world/radio/*.cc world/scenario/*.cc world/traci/*.cc wpan/*.cc wpan/Isabel/*.cc wpan/Isabel/Analysis/*.cc wpan/Isabel/Base/*.cc wpan/applications/*.cc wpan/applications/Ieee802154TestApp/*.cc wpan/linklayer/*.cc wpan/linklayer/bmac/*.cc wpan/linklayer/ieee802154/*.cc wpan/linklayer/ieee802154/contract/*.cc wpan/linklayer/ieee802154/mac/*.cc wpan/networklayer/*.cc wpan/networklayer/Ieee802154StarRouting/*.cc wpan/networklayer/contract/*.cc wpan/nodes/*.cc wpan/phyLayer/*.cc wpan/phyLayer/ieee802154/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc applications/*.cc applications/common/*.cc applications/dhcp/*.cc applications/ethernet/*.cc applications/generic/*.cc applications/httptools/*.cc applications/netperfmeter/*.cc applications/pingapp/*.cc applications/rtpapp/*.cc applications/sctpapp/*.cc applications/tcpapp/*.cc applications/traci/*.cc applications/trafgen/*.cc applications/udpapp/*.cc applications/util/*.cc base/*.cc battery/*.cc battery/models/*.cc generic/*.cc linklayer/*.cc linklayer/channels/*.cc linklayer/common/*.cc linklayer/configurator/*.cc linklayer/contract/*.cc linklayer/ethernet/*.cc linklayer/ethernet/switch/*.cc linklayer/ext/*.cc linklayer/idealwireless/*.cc linklayer/ieee80211/*.cc linklayer/ieee80211/mac/*.cc linklayer/ieee80211/mgmt/*.cc linklayer/ieee80211/mgmt/wpa2/*.cc linklayer/ieee80211/radio/*.cc linklayer/ieee80211/radio/errormodel/*.cc linklayer/ieee80211mesh/*.cc linklayer/ieee80211mesh/ethernet/*.cc linklayer/ieee80211mesh/hwmp/*.cc linklayer/ieee80211mesh/locator/*.cc linklayer/ieee80211mesh/mgmt/*.cc linklayer/ieee80211mesh/nodes/*.cc linklayer/ieee8021d/*.cc linklayer/ieee8021d/common/*.cc linklayer/ieee8021d/relay/*.cc linklayer/ieee8021d/rstp/*.cc linklayer/ieee8021d/stp/*.cc linklayer/ieee8021d/tester/*.cc linklayer/loopback/*.cc linklayer/queue/*.cc linklayer/radio/*.cc linklayer/radio/propagation/*.cc mobility/*.cc mobility/common/*.cc mobility/contract/*.cc mobility/group/*.cc mobility/single/*.cc mobility/static/*.cc networklayer/*.cc networklayer/arp/*.cc networklayer/autorouting/*.cc networklayer/autorouting/ipv4/*.cc networklayer/autorouting/ipv6/*.cc networklayer/bgpv4/*.cc networklayer/bgpv4/BGPMessage/*.cc networklayer/common/*.cc networklayer/contract/*.cc networklayer/diffserv/*.cc networklayer/icmpv6/*.cc networklayer/internetcloud/*.cc networklayer/ipv4/*.cc networklayer/ipv6/*.cc networklayer/ipv6tunneling/*.cc networklayer/ldp/*.cc networklayer/manetrouting/*.cc networklayer/manetrouting/aodv-uu/*.cc networklayer/manetrouting/aodv-uu/aodv-uu/*.cc networklayer/manetrouting/base/*.cc networklayer/manetrouting/dsr/*.cc networklayer/manetrouting/dsr/dsr-uu/*.cc networklayer/manetrouting/dymo/*.cc networklayer/manetrouting/dymo/dymoum/*.cc networklayer/manetrouting/dymo_fau/*.cc networklayer/manetrouting/olsr/*.cc networklayer/mpls/*.cc networklayer/ospfv2/*.cc networklayer/ospfv2/interface/*.cc networklayer/ospfv2/messagehandler/*.cc networklayer/ospfv2/neighbor/*.cc networklayer/ospfv2/router/*.cc networklayer/routing/*.cc networklayer/routing/aodv/*.cc networklayer/routing/dymo/*.cc networklayer/routing/gpsr/*.cc networklayer/routing/rip/*.cc networklayer/rsvp_te/*.cc networklayer/ted/*.cc networklayer/xmipv6/*.cc nodes/*.cc nodes/aodv/*.cc nodes/bgp/*.cc nodes/dymo/*.cc nodes/ethernet/*.cc nodes/gpsr/*.cc nodes/httptools/*.cc nodes/inet/*.cc nodes/internetcloud/*.cc nodes/ipv6/*.cc nodes/mpls/*.cc nodes/ospfv2/*.cc nodes/rip/*.cc nodes/rtp/*.cc nodes/wireless/*.cc nodes/xmipv6/*.cc securityModule/*.cc securityModule/message/*.cc status/*.cc transport/*.cc transport/contract/*.cc transport/rtp/*.cc transport/rtp/profiles/*.cc transport/rtp/profiles/avprofile/*.cc transport/sctp/*.cc transport/tcp/*.cc transport/tcp/flavours/*.cc transport/tcp/queues/*.cc transport/tcp_common/*.cc transport/udp/*.cc util/*.cc util/headerserializers/*.cc util/headerserializers/headers/*.cc util/headerserializers/ipv4/*.cc util/headerserializers/ipv4/headers/*.cc util/headerserializers/ipv6/*.cc util/headerserializers/ipv6/headers/*.cc util/headerserializers/sctp/*.cc util/headerserializers/sctp/headers/*.cc util/headerserializers/tcp/*.cc util/headerserializers/tcp/headers/*.cc util/headerserializers/udp/*.cc util/headerserializers/udp/headers/*.cc util/messageprinters/*.cc world/*.cc world/annotations/*.cc world/httptools/*.cc world/obstacles/*.cc world/powercontrol/*.cc world/radio/*.cc world/scenario/*.cc world/traci/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/applications/common/ApplicationBase.o: applications/common/ApplicationBase.cc \
@@ -4051,35 +3904,6 @@ $O/linklayer/loopback/Loopback.o: linklayer/loopback/Loopback.cc \
 	networklayer/contract/IPv6Address.h \
 	networklayer/contract/IPvXAddress.h \
 	util/opp_utils.h
-$O/linklayer/ppp/PPP.o: linklayer/ppp/PPP.cc \
-	base/Compat.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/IPassiveQueue.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	base/NodeOperations.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	linklayer/common/MACBase.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/contract/TxNotifDetails.h \
-	linklayer/ppp/PPP.h \
-	linklayer/ppp/PPPFrame_m.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTableAccess.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	status/NodeStatus.h \
-	util/opp_utils.h
-$O/linklayer/ppp/PPPFrame_m.o: linklayer/ppp/PPPFrame_m.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	linklayer/ppp/PPPFrame_m.h
 $O/linklayer/queue/AlgorithmicDropperBase.o: linklayer/queue/AlgorithmicDropperBase.cc \
 	base/Compat.h \
 	base/INETDefs.h \
@@ -5857,126 +5681,6 @@ $O/networklayer/ldp/LDPPacket_m.o: networklayer/ldp/LDPPacket_m.cc \
 	base/INETDefs.h \
 	networklayer/contract/IPv4Address.h \
 	networklayer/ldp/LDPPacket_m.h
-$O/networklayer/manetrouting/PASER/IPv4_ADAPTED/IPv4_paser.o: networklayer/manetrouting/PASER/IPv4_ADAPTED/IPv4_paser.cc \
-	base/AbstractQueue.h \
-	base/ByteArray.h \
-	base/ByteArray_m.h \
-	base/Compat.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	base/NodeOperations.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	networklayer/arp/ARPPacket_m.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTableAccess.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPSocket.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv4ControlInfo.h \
-	networklayer/contract/IPv4ControlInfo_m.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4InterfaceData.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/PASER/IPv4_ADAPTED/IPv4_paser.h \
-	status/NodeStatus.h \
-	transport/tcp_common/TCPSegment.h \
-	transport/tcp_common/TCPSegment_m.h \
-	transport/udp/UDPPacket.h \
-	transport/udp/UDPPacket_m.h
-$O/networklayer/manetrouting/PASER/paser_buffer/PASER_Message_Queue.o: networklayer/manetrouting/PASER/paser_buffer/PASER_Message_Queue.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_configuration/PASER_Configurations.o: networklayer/manetrouting/PASER/paser_configuration/PASER_Configurations.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_logic/PASER_Global.o: networklayer/manetrouting/PASER/paser_logic/PASER_Global.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_logic/cryptography/PASER_Crypto_Hash.o: networklayer/manetrouting/PASER/paser_logic/cryptography/PASER_Crypto_Hash.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_logic/cryptography/PASER_Crypto_Root.o: networklayer/manetrouting/PASER/paser_logic/cryptography/PASER_Crypto_Root.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_logic/cryptography/PASER_Crypto_Sign.o: networklayer/manetrouting/PASER/paser_logic/cryptography/PASER_Crypto_Sign.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_logic/message_processing/PASER_Message_Processing.o: networklayer/manetrouting/PASER/paser_logic/message_processing/PASER_Message_Processing.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_logic/message_processing/PASER_RERR_List.o: networklayer/manetrouting/PASER/paser_logic/message_processing/PASER_RERR_List.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_logic/route_discovery/PASER_Route_Discovery.o: networklayer/manetrouting/PASER/paser_logic/route_discovery/PASER_Route_Discovery.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_logic/route_maintenance/PASER_Route_Maintenance.o: networklayer/manetrouting/PASER/paser_logic/route_maintenance/PASER_Route_Maintenance.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_message_structure/PASER_MSG.o: networklayer/manetrouting/PASER/paser_message_structure/PASER_MSG.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_message_structure/PASER_TB_Hello.o: networklayer/manetrouting/PASER/paser_message_structure/PASER_TB_Hello.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_message_structure/PASER_TB_RERR.o: networklayer/manetrouting/PASER/paser_message_structure/PASER_TB_RERR.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_message_structure/PASER_TU_RREP.o: networklayer/manetrouting/PASER/paser_message_structure/PASER_TU_RREP.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_message_structure/PASER_TU_RREP_ACK.o: networklayer/manetrouting/PASER/paser_message_structure/PASER_TU_RREP_ACK.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_message_structure/PASER_TU_RREQ.o: networklayer/manetrouting/PASER/paser_message_structure/PASER_TU_RREQ.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_message_structure/PASER_UB_Key_Refresh.o: networklayer/manetrouting/PASER/paser_message_structure/PASER_UB_Key_Refresh.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_message_structure/PASER_UB_RREQ.o: networklayer/manetrouting/PASER/paser_message_structure/PASER_UB_RREQ.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_message_structure/PASER_UB_Root_Refresh.o: networklayer/manetrouting/PASER/paser_message_structure/PASER_UB_Root_Refresh.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_message_structure/PASER_UU_RREP.o: networklayer/manetrouting/PASER/paser_message_structure/PASER_UU_RREP.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_socket/PASER_Socket.o: networklayer/manetrouting/PASER/paser_socket/PASER_Socket.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_tables/PASER_Neighbor_Entry.o: networklayer/manetrouting/PASER/paser_tables/PASER_Neighbor_Entry.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_tables/PASER_Neighbor_Table.o: networklayer/manetrouting/PASER/paser_tables/PASER_Neighbor_Table.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_tables/PASER_RREQ_List.o: networklayer/manetrouting/PASER/paser_tables/PASER_RREQ_List.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_tables/PASER_Routing_Entry.o: networklayer/manetrouting/PASER/paser_tables/PASER_Routing_Entry.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_tables/PASER_Routing_Table.o: networklayer/manetrouting/PASER/paser_tables/PASER_Routing_Table.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_timer_management/PASER_Timer_Message.o: networklayer/manetrouting/PASER/paser_timer_management/PASER_Timer_Message.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/paser_timer_management/PASER_Timer_Queue.o: networklayer/manetrouting/PASER/paser_timer_management/PASER_Timer_Queue.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/simple_kdc/SimpleKDC.o: networklayer/manetrouting/PASER/simple_kdc/SimpleKDC.cc \
-	generic/Configuration.h
-$O/networklayer/manetrouting/PASER/simple_kdc/kdc_message/crl_message_m.o: networklayer/manetrouting/PASER/simple_kdc/kdc_message/crl_message_m.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	generic/Configuration.h \
-	linklayer/contract/MACAddress.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/manetrouting/PASER/paser_configuration/PASER_Definitions.h \
-	networklayer/manetrouting/PASER/simple_kdc/kdc_message/crl_message_m.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/compatibility.h
 $O/networklayer/manetrouting/aodv-uu/aodv_msg_struct.o: networklayer/manetrouting/aodv-uu/aodv_msg_struct.cc \
 	base/AbstractQueue.h \
 	base/Compat.h \
@@ -6033,13 +5737,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv_msg_struct_m.o: networklayer/manetrout
 	networklayer/manetrouting/base/ManetAddress.h \
 	networklayer/manetrouting/base/compatibility.h
 $O/networklayer/manetrouting/aodv-uu/aodv_uu_omnet.o: networklayer/manetrouting/aodv-uu/aodv_uu_omnet.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6112,13 +5809,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv_uu_omnet.o: networklayer/manetrouting/
 	transport/udp/UDPPacket_m.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/packet_queue_omnet.o: networklayer/manetrouting/aodv-uu/packet_queue_omnet.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6183,13 +5873,6 @@ $O/networklayer/manetrouting/aodv-uu/packet_queue_omnet.o: networklayer/manetrou
 	networklayer/manetrouting/base/compatibility.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_hello.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_hello.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6254,13 +5937,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_hello.o: networklayer/manetrou
 	networklayer/manetrouting/base/compatibility.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_neighbor.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_neighbor.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6325,13 +6001,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_neighbor.o: networklayer/manet
 	networklayer/manetrouting/base/compatibility.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rerr.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rerr.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6396,13 +6065,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rerr.o: networklayer/manetrout
 	networklayer/manetrouting/base/compatibility.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rrep.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rrep.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6467,13 +6129,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rrep.o: networklayer/manetrout
 	networklayer/manetrouting/base/compatibility.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rreq.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rreq.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6538,13 +6193,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_rreq.o: networklayer/manetrout
 	networklayer/manetrouting/base/compatibility.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_socket.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_socket.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6609,13 +6257,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_socket.o: networklayer/manetro
 	networklayer/manetrouting/base/compatibility.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_timeout.o: networklayer/manetrouting/aodv-uu/aodv-uu/aodv_timeout.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6680,13 +6321,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/aodv_timeout.o: networklayer/manetr
 	networklayer/manetrouting/base/compatibility.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/debug_aodv.o: networklayer/manetrouting/aodv-uu/aodv-uu/debug_aodv.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6753,13 +6387,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/debug_aodv.o: networklayer/manetrou
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/list.o: networklayer/manetrouting/aodv-uu/aodv-uu/list.cc \
 	networklayer/manetrouting/aodv-uu/aodv-uu/list.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/locality.o: networklayer/manetrouting/aodv-uu/aodv-uu/locality.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6825,13 +6452,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/locality.o: networklayer/manetrouti
 	networklayer/manetrouting/base/compatibility.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.o: networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6896,13 +6516,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/routing_table.o: networklayer/manet
 	networklayer/manetrouting/base/compatibility.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.o: networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -6967,13 +6580,6 @@ $O/networklayer/manetrouting/aodv-uu/aodv-uu/seek_list.o: networklayer/manetrout
 	networklayer/manetrouting/base/compatibility.h \
 	util/FWMath.h
 $O/networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.o: networklayer/manetrouting/aodv-uu/aodv-uu/timer_queue_aodv.cc \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/avlist.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/defs_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/params.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/routing_table.h \
-	../dissertation/networklayer/vanetrouting/aodvvanet/aodvvanet/timer_queue_aodvvanet.h \
-	../dissertation/networklayer/vanetrouting/base/VanetAddress.h \
-	../dissertation/networklayer/vanetrouting/base/compatibility_vanet.h \
 	base/AbstractQueue.h \
 	base/Compat.h \
 	base/Coord.h \
@@ -7181,428 +6787,6 @@ $O/networklayer/manetrouting/base/MeshControlInfo_m.o: networklayer/manetrouting
 	linklayer/contract/Ieee802Ctrl_m.h \
 	linklayer/contract/MACAddress.h \
 	networklayer/manetrouting/base/MeshControlInfo_m.h
-$O/networklayer/manetrouting/batman/BatmanMain.o: networklayer/manetrouting/batman/BatmanMain.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211mesh/locator/ILocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv4ControlInfo.h \
-	networklayer/contract/IPv4ControlInfo_m.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/contract/IPvXAddressResolver.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4InterfaceData.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/ManetNetfilterHook.h \
-	networklayer/manetrouting/base/ManetRoutingBase.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/manetrouting/batman/BatmanMain.h \
-	networklayer/manetrouting/batman/BatmanMsg.h \
-	networklayer/manetrouting/batman/BatmanMsg_m.h \
-	networklayer/manetrouting/batman/batmand/batman.h \
-	transport/udp/UDPPacket_m.h \
-	util/FWMath.h
-$O/networklayer/manetrouting/batman/BatmanMsg_m.o: networklayer/manetrouting/batman/BatmanMsg_m.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	linklayer/contract/MACAddress.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/batman/BatmanMsg_m.h
-$O/networklayer/manetrouting/batman/batmand/batman.o: networklayer/manetrouting/batman/batmand/batman.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211mesh/locator/ILocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4InterfaceData.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/ManetNetfilterHook.h \
-	networklayer/manetrouting/base/ManetRoutingBase.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/manetrouting/batman/BatmanMain.h \
-	networklayer/manetrouting/batman/BatmanMsg.h \
-	networklayer/manetrouting/batman/BatmanMsg_m.h \
-	networklayer/manetrouting/batman/batmand/batman.h \
-	util/FWMath.h
-$O/networklayer/manetrouting/batman/batmand/bitarray.o: networklayer/manetrouting/batman/batmand/bitarray.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211mesh/locator/ILocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/ManetNetfilterHook.h \
-	networklayer/manetrouting/base/ManetRoutingBase.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/manetrouting/batman/BatmanMain.h \
-	networklayer/manetrouting/batman/BatmanMsg.h \
-	networklayer/manetrouting/batman/BatmanMsg_m.h \
-	networklayer/manetrouting/batman/batmand/batman.h \
-	util/FWMath.h
-$O/networklayer/manetrouting/batman/batmand/hna.o: networklayer/manetrouting/batman/batmand/hna.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211mesh/locator/ILocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/ManetNetfilterHook.h \
-	networklayer/manetrouting/base/ManetRoutingBase.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/manetrouting/batman/BatmanMain.h \
-	networklayer/manetrouting/batman/BatmanMsg.h \
-	networklayer/manetrouting/batman/BatmanMsg_m.h \
-	networklayer/manetrouting/batman/batmand/batman.h \
-	util/FWMath.h
-$O/networklayer/manetrouting/batman/batmand/originator.o: networklayer/manetrouting/batman/batmand/originator.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211mesh/locator/ILocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4InterfaceData.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/ManetNetfilterHook.h \
-	networklayer/manetrouting/base/ManetRoutingBase.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/manetrouting/batman/BatmanMain.h \
-	networklayer/manetrouting/batman/BatmanMsg.h \
-	networklayer/manetrouting/batman/BatmanMsg_m.h \
-	networklayer/manetrouting/batman/batmand/batman.h \
-	util/FWMath.h
-$O/networklayer/manetrouting/batman/batmand/os.o: networklayer/manetrouting/batman/batmand/os.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211mesh/locator/ILocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4InterfaceData.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/ManetNetfilterHook.h \
-	networklayer/manetrouting/base/ManetRoutingBase.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/manetrouting/batman/BatmanMain.h \
-	networklayer/manetrouting/batman/BatmanMsg.h \
-	networklayer/manetrouting/batman/BatmanMsg_m.h \
-	networklayer/manetrouting/batman/batmand/batman.h \
-	util/FWMath.h
-$O/networklayer/manetrouting/batman/batmand/ring_buffer.o: networklayer/manetrouting/batman/batmand/ring_buffer.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211mesh/locator/ILocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/ManetNetfilterHook.h \
-	networklayer/manetrouting/base/ManetRoutingBase.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/manetrouting/batman/BatmanMain.h \
-	networklayer/manetrouting/batman/BatmanMsg.h \
-	networklayer/manetrouting/batman/BatmanMsg_m.h \
-	networklayer/manetrouting/batman/batmand/batman.h \
-	util/FWMath.h
-$O/networklayer/manetrouting/batman/batmand/schedule.o: networklayer/manetrouting/batman/batmand/schedule.cc \
-	base/AbstractQueue.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	base/ProtocolMap.h \
-	base/QueueBase.h \
-	base/ReassemblyBuffer.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/ieee80211mesh/locator/ILocator.h \
-	networklayer/arp/ARP.h \
-	networklayer/arp/IARPCache.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/INetfilter.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/ICMP.h \
-	networklayer/ipv4/ICMPAccess.h \
-	networklayer/ipv4/ICMPMessage.h \
-	networklayer/ipv4/ICMPMessage_m.h \
-	networklayer/ipv4/IPv4.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4FragBuf.h \
-	networklayer/ipv4/IPv4InterfaceData.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/base/ManetAddress.h \
-	networklayer/manetrouting/base/ManetNetfilterHook.h \
-	networklayer/manetrouting/base/ManetRoutingBase.h \
-	networklayer/manetrouting/base/compatibility.h \
-	networklayer/manetrouting/batman/BatmanMain.h \
-	networklayer/manetrouting/batman/BatmanMsg.h \
-	networklayer/manetrouting/batman/BatmanMsg_m.h \
-	networklayer/manetrouting/batman/batmand/batman.h \
-	util/FWMath.h
-$O/networklayer/manetrouting/dsdv/DSDV_2.o: networklayer/manetrouting/dsdv/DSDV_2.cc \
-	base/Compat.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	linklayer/contract/MACAddress.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTableAccess.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPProtocolId_m.h \
-	networklayer/contract/IPSocket.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv4ControlInfo.h \
-	networklayer/contract/IPv4ControlInfo_m.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	networklayer/ipv4/IPv4Datagram.h \
-	networklayer/ipv4/IPv4Datagram_m.h \
-	networklayer/ipv4/IPv4InterfaceData.h \
-	networklayer/ipv4/IPv4Route.h \
-	networklayer/ipv4/IPv4RouteRule.h \
-	networklayer/ipv4/IRoutingTable.h \
-	networklayer/ipv4/RoutingTable.h \
-	networklayer/ipv4/RoutingTableAccess.h \
-	networklayer/manetrouting/dsdv/DSDV_2.h \
-	networklayer/manetrouting/dsdv/DSDVhello_m.h
-$O/networklayer/manetrouting/dsdv/DSDVhello_m.o: networklayer/manetrouting/dsdv/DSDVhello_m.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/manetrouting/dsdv/DSDVhello_m.h
 $O/networklayer/manetrouting/dsr/dsr-pkt_omnet.o: networklayer/manetrouting/dsr/dsr-pkt_omnet.cc \
 	base/Compat.h \
 	base/INETDefs.h \
@@ -7677,8 +6861,7 @@ $O/networklayer/manetrouting/dsr/dsr-uu-omnetpp.o: networklayer/manetrouting/dsr
 	networklayer/manetrouting/dsr/dsr-uu/path-cache.h \
 	networklayer/manetrouting/dsr/dsr-uu/send-buf.h \
 	networklayer/manetrouting/dsr/dsr-uu/tbl.h \
-	networklayer/manetrouting/dsr/dsr-uu/timer.h \
-	wpan/linklayer/bmac/bmacpkt_m.h
+	networklayer/manetrouting/dsr/dsr-uu/timer.h
 $O/networklayer/manetrouting/dsr/dsr-uu/dsr-ack.o: networklayer/manetrouting/dsr/dsr-uu/dsr-ack.cc \
 	base/Compat.h \
 	base/INETDefs.h \
@@ -14005,261 +13188,4 @@ $O/world/traci/TraCIScenarioManagerLaunchd.o: world/traci/TraCIScenarioManagerLa
 	world/traci/TraCIConstants.h \
 	world/traci/TraCIScenarioManager.h \
 	world/traci/TraCIScenarioManagerLaunchd.h
-$O/wpan/Isabel/Analysis/AnalysisEnergy.o: wpan/Isabel/Analysis/AnalysisEnergy.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/ModuleAccess.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	battery/models/BasicBattery.h \
-	battery/models/Energy.h \
-	mobility/contract/IMobility.h \
-	util/FWMath.h \
-	world/radio/ChannelControl.h \
-	world/radio/IChannelControl.h \
-	wpan/Isabel/Analysis/AnalysisEnergy.h
-$O/wpan/Isabel/Base/Display.o: wpan/Isabel/Base/Display.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	util/FWMath.h \
-	wpan/Isabel/Base/Display.h
-$O/wpan/applications/Ieee802154TestApp/Ieee802154AppPkt_m.o: wpan/applications/Ieee802154TestApp/Ieee802154AppPkt_m.cc \
-	wpan/applications/Ieee802154TestApp/Ieee802154AppPkt_m.h
-$O/wpan/applications/Ieee802154TestApp/Ieee802154TestApp.o: wpan/applications/Ieee802154TestApp/Ieee802154TestApp.cc \
-	applications/trafgen/TrafGenPar.h \
-	wpan/applications/Ieee802154TestApp/Ieee802154AppPkt_m.h \
-	wpan/applications/Ieee802154TestApp/Ieee802154TestApp.h
-$O/wpan/linklayer/bmac/BMacLayer.o: wpan/linklayer/bmac/BMacLayer.cc \
-	base/BasicModule.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/IPassiveQueue.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	base/NodeOperations.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	linklayer/common/MACBase.h \
-	linklayer/common/WirelessMacBase.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/contract/PhyControlInfo_m.h \
-	linklayer/contract/RadioState.h \
-	linklayer/radio/AirFrame_m.h \
-	linklayer/radio/INoiseGenerator.h \
-	linklayer/radio/IRadioModel.h \
-	linklayer/radio/ModulationType.h \
-	linklayer/radio/Radio.h \
-	linklayer/radio/SnrList.h \
-	linklayer/radio/propagation/IReceptionModel.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTableAccess.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	status/NodeStatus.h \
-	util/FWMath.h \
-	world/annotations/AnnotationManager.h \
-	world/obstacles/Obstacle.h \
-	world/obstacles/ObstacleControl.h \
-	world/radio/ChannelAccess.h \
-	world/radio/IChannelControl.h \
-	wpan/linklayer/bmac/BMacLayer.h \
-	wpan/linklayer/bmac/bmacpkt_m.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Const.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Def.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Enum.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154MacPhyPrimitives_m.h \
-	wpan/networklayer/contract/Ieee802154NetworkCtrlInfo_m.h \
-	wpan/phyLayer/ieee802154/Ieee802154Phy.h
-$O/wpan/linklayer/bmac/bmacpkt_m.o: wpan/linklayer/bmac/bmacpkt_m.cc \
-	wpan/linklayer/bmac/bmacpkt_m.h
-$O/wpan/linklayer/ieee802154/contract/Ieee802154MacPhyPrimitives_m.o: wpan/linklayer/ieee802154/contract/Ieee802154MacPhyPrimitives_m.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/contract/PhyControlInfo_m.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Const.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Def.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Enum.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154MacPhyPrimitives_m.h
-$O/wpan/linklayer/ieee802154/mac/Ieee802154Frame_m.o: wpan/linklayer/ieee802154/mac/Ieee802154Frame_m.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/contract/PhyControlInfo_m.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Const.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Def.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Enum.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Field.h \
-	wpan/linklayer/ieee802154/mac/Ieee802154Frame_m.h
-$O/wpan/linklayer/ieee802154/mac/Ieee802154Link.o: wpan/linklayer/ieee802154/mac/Ieee802154Link.cc \
-	base/Compat.h \
-	base/INETDefs.h \
-	linklayer/contract/MACAddress.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Def.h \
-	wpan/linklayer/ieee802154/mac/Ieee802154Link.h
-$O/wpan/linklayer/ieee802154/mac/Ieee802154Mac.o: wpan/linklayer/ieee802154/mac/Ieee802154Mac.cc \
-	base/BasicModule.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/IPassiveQueue.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	base/NodeOperations.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	linklayer/common/MACBase.h \
-	linklayer/common/WirelessMacBase.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/contract/PhyControlInfo_m.h \
-	linklayer/contract/RadioState.h \
-	linklayer/radio/AirFrame_m.h \
-	linklayer/radio/INoiseGenerator.h \
-	linklayer/radio/IRadioModel.h \
-	linklayer/radio/ModulationType.h \
-	linklayer/radio/Radio.h \
-	linklayer/radio/SnrList.h \
-	linklayer/radio/propagation/IReceptionModel.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTableAccess.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	status/NodeStatus.h \
-	util/FWMath.h \
-	world/annotations/AnnotationManager.h \
-	world/obstacles/Obstacle.h \
-	world/obstacles/ObstacleControl.h \
-	world/radio/ChannelAccess.h \
-	world/radio/IChannelControl.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Const.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Def.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Enum.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Field.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154MacPhyPrimitives_m.h \
-	wpan/linklayer/ieee802154/mac/Ieee802154Frame_m.h \
-	wpan/linklayer/ieee802154/mac/Ieee802154Link.h \
-	wpan/linklayer/ieee802154/mac/Ieee802154Mac.h \
-	wpan/networklayer/contract/Ieee802154NetworkCtrlInfo_m.h \
-	wpan/phyLayer/ieee802154/Ieee802154Phy.h
-$O/wpan/linklayer/ieee802154/mac/csma802154.o: wpan/linklayer/ieee802154/mac/csma802154.cc \
-	base/BasicModule.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/IPassiveQueue.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	base/NodeOperations.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	linklayer/common/MACBase.h \
-	linklayer/common/WirelessMacBase.h \
-	linklayer/contract/Ieee802Ctrl_m.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/contract/PhyControlInfo_m.h \
-	linklayer/contract/RadioState.h \
-	linklayer/radio/AirFrame_m.h \
-	linklayer/radio/INoiseGenerator.h \
-	linklayer/radio/IRadioModel.h \
-	linklayer/radio/ModulationType.h \
-	linklayer/radio/Radio.h \
-	linklayer/radio/SnrList.h \
-	linklayer/radio/propagation/IReceptionModel.h \
-	networklayer/common/IInterfaceTable.h \
-	networklayer/common/InterfaceEntry.h \
-	networklayer/common/InterfaceTableAccess.h \
-	networklayer/common/InterfaceToken.h \
-	networklayer/contract/IPv4Address.h \
-	networklayer/contract/IPv6Address.h \
-	networklayer/contract/IPvXAddress.h \
-	status/NodeStatus.h \
-	util/FWMath.h \
-	world/annotations/AnnotationManager.h \
-	world/obstacles/Obstacle.h \
-	world/obstacles/ObstacleControl.h \
-	world/radio/ChannelAccess.h \
-	world/radio/IChannelControl.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Const.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Def.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Enum.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Field.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154MacPhyPrimitives_m.h \
-	wpan/linklayer/ieee802154/mac/Ieee802154Frame_m.h \
-	wpan/linklayer/ieee802154/mac/Ieee802154Link.h \
-	wpan/linklayer/ieee802154/mac/Ieee802154Mac.h \
-	wpan/linklayer/ieee802154/mac/csma802154.h \
-	wpan/networklayer/contract/Ieee802154NetworkCtrlInfo_m.h \
-	wpan/phyLayer/ieee802154/Ieee802154Phy.h
-$O/wpan/networklayer/Ieee802154StarRouting/Ieee802154StarRouting.o: wpan/networklayer/Ieee802154StarRouting/Ieee802154StarRouting.cc \
-	wpan/applications/Ieee802154TestApp/Ieee802154AppPkt_m.h \
-	wpan/networklayer/Ieee802154StarRouting/Ieee802154StarRouting.h \
-	wpan/networklayer/contract/Ieee802154NetworkCtrlInfo_m.h
-$O/wpan/networklayer/contract/Ieee802154NetworkCtrlInfo_m.o: wpan/networklayer/contract/Ieee802154NetworkCtrlInfo_m.cc \
-	wpan/networklayer/contract/Ieee802154NetworkCtrlInfo_m.h
-$O/wpan/phyLayer/ieee802154/Ieee802154Phy.o: wpan/phyLayer/ieee802154/Ieee802154Phy.cc \
-	base/BasicModule.h \
-	base/Compat.h \
-	base/Coord.h \
-	base/ILifecycle.h \
-	base/INETDefs.h \
-	base/INotifiable.h \
-	base/LifecycleOperation.h \
-	base/ModuleAccess.h \
-	base/NodeOperations.h \
-	base/NotificationBoard.h \
-	base/NotifierConsts.h \
-	battery/models/BasicBattery.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/contract/PhyControlInfo_m.h \
-	linklayer/contract/RadioState.h \
-	linklayer/radio/AirFrame_m.h \
-	linklayer/radio/INoiseGenerator.h \
-	linklayer/radio/IRadioModel.h \
-	linklayer/radio/ModulationType.h \
-	linklayer/radio/Radio.h \
-	linklayer/radio/Radio80211aControlInfo_m.h \
-	linklayer/radio/SnrList.h \
-	linklayer/radio/propagation/IReceptionModel.h \
-	status/NodeStatus.h \
-	util/FWMath.h \
-	world/annotations/AnnotationManager.h \
-	world/obstacles/Obstacle.h \
-	world/obstacles/ObstacleControl.h \
-	world/radio/ChannelAccess.h \
-	world/radio/IChannelControl.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Const.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Def.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Enum.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154MacPhyPrimitives_m.h \
-	wpan/phyLayer/ieee802154/Ieee802154Phy.h
-$O/wpan/phyLayer/ieee802154/Ieee802154RadioModel.o: wpan/phyLayer/ieee802154/Ieee802154RadioModel.cc \
-	base/Compat.h \
-	base/Coord.h \
-	base/INETDefs.h \
-	linklayer/contract/MACAddress.h \
-	linklayer/contract/PhyControlInfo_m.h \
-	linklayer/radio/AirFrame_m.h \
-	linklayer/radio/IRadioModel.h \
-	linklayer/radio/ModulationType.h \
-	linklayer/radio/SnrList.h \
-	util/FWMath.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Const.h \
-	wpan/linklayer/ieee802154/contract/Ieee802154Def.h \
-	wpan/phyLayer/ieee802154/Ieee802154RadioModel.h
 

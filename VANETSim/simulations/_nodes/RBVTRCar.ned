@@ -1,6 +1,6 @@
 package vanetsim.simulations._nodes;
 
-import inet.applications.traci.rbvtrTraCIDemo;
+import dissertation.applications.traci.rbvtrTraCIDemo;
 import inet.base.LifecycleController;
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;

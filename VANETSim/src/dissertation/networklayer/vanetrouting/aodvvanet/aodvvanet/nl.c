@@ -39,7 +39,7 @@
 #include "debug.h"
 #include "aodvvanet_rreq.h"
 #include "aodvvanet_timeout.h"
-#include "routing_table.h"
+#include "routing_table_aodvvanet.h"
 #include "aodvvanet_hello.h"
 #include "params.h"
 #include "aodvvanet_socket.h"

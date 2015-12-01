@@ -33,10 +33,6 @@
 #include "Ieee802154Frame_m.h"
 #endif
 
-#ifdef WITH_BMAC
-#include "bmacpkt_m.h"
-#endif
-
 #include "ICMPMessage_m.h"
 
 unsigned int DSRUU::confvals[CONFVAL_MAX];
@@ -632,22 +628,6 @@ void DSRUU::receiveChangeNotification(int category, const cObject *details)
             {
                 if (dynamic_cast<IPv4Datagram *>(frame15->getEncapsulatedPacket()))
                     dgram = check_and_cast<IPv4Datagram *>(frame15->getEncapsulatedPacket());
-                else
-                    return;
-
-                if (!get_confval(UseNetworkLayerAck))
-                {
-                    packetFailed(dgram);
-                }
-            }
-#endif
-
-#ifdef WITH_BMAC
-            BmacPkt *frameB = dynamic_cast<BmacPkt *>(const_cast<cObject *>(details));
-            if (frameB)
-            {
-                if (dynamic_cast<IPv4Datagram *>(frameB->getEncapsulatedPacket()))
-                    dgram = check_and_cast<IPv4Datagram *>(frameB->getEncapsulatedPacket());
                 else
                     return;
 

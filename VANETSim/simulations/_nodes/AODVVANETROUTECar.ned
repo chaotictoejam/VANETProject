@@ -1,6 +1,6 @@
 package vanetsim.simulations._nodes;
 
-import inet.applications.traci.aodvTraCI;
+import dissertation.applications.traci.aodvTraCI;
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;
 import dissertation.mobility.contract.IVANETMobility;

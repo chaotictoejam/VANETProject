@@ -36,7 +36,7 @@
 #endif
 
 #include "defs_aodvvanet.h"
-#include "routing_table.h"
+#include "routing_table_aodvvanet.h"
 
 
 /* AODVVANETRERR Flags: */

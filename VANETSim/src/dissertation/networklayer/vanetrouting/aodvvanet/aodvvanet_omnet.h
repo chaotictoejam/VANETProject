@@ -59,7 +59,7 @@
 
 /* Global definitions and lib functions */
 #include <deque>
-#include "aodvvanet/params.h"
+#include "aodvvanet/params_aodvvanet.h"
 #include "aodvvanet/defs_aodvvanet.h"
 
 /* System-dependent datatypes */
@@ -92,7 +92,7 @@ class AODVVANET;
 #include "aodvvanet/aodvvanet_socket.h"
 #include "aodvvanet/aodvvanet_timeout.h"
 #include "aodvvanet/debug_aodvvanet.h"
-#include "aodvvanet/routing_table.h"
+#include "aodvvanet/routing_table_aodvvanet.h"
 #include "aodvvanet/avseek_list.h"
 #include "aodvvanet/locality.h"
 
@@ -317,7 +317,7 @@ class AODVVANET : public VanetRoutingBase
 #include "aodvvanet/debug_aodvvanet.h"
 
 #undef _ROUTING_TABLE_H
-#include "aodvvanet/routing_table.h"
+#include "aodvvanet/routing_table_aodvvanet.h"
 
 #undef _AVSEEK_LIST_H
 #include "aodvvanet/avseek_list.h"

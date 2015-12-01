@@ -37,7 +37,7 @@
 #include <iwlib.h>
 
 #include "aodvvanet_neighbor.h"
-#include "routing_table.h"
+#include "routing_table_aodvvanet.h"
 /* The netlink socket code is taken from the wireless tools by Jean Tourrilhes
  * <jt@hpl.hp.com>, who in turn took code from libnetlink.c RTnetlink service
  * routines, by Alexey Kuznetsov, <kuznet@ms2.inr.ac.ru>. All GPL code. */

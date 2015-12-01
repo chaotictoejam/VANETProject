@@ -1,6 +1,6 @@
 package vanetsim.simulations._nodes;
 
-import inet.applications.traci.bitcarTraCIDemo;
+import dissertation.applications.traci.bitcarTraCIDemo;
 import inet.base.LifecycleController;
 import inet.base.NotificationBoard;
 import inet.linklayer.ieee80211.Ieee80211Nic;

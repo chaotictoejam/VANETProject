@@ -32,7 +32,7 @@
 #else
 #include <netinet/in.h>
 #include "aodvvanet_rerr.h"
-#include "routing_table.h"
+#include "routing_table_aodvvanet.h"
 #include "aodvvanet_socket.h"
 #include "aodvvanet_timeout.h"
 #include "defs_aodvvanet.h"
