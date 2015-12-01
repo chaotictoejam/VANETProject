@@ -7,8 +7,7 @@ This Project will contain:
 		-GPSR
 	-VANET Protocols:
 		-AODV-VANET
-		-VDTP
 		-RBVT-R
 		-RBVT-P
-		-MyProtocol (BitTorrentBased)
+		-MyProtocols (BitTorrentBased, Hybrid)
 	-VANET Project working with Google Earth/Maps
