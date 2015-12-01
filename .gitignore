@@ -218,3 +218,4 @@ pip-log.txt
 .mr.developer.cfg
 VANETSim/src/inet/.tmp*
 .tmp*
+VANETSim/src/dissertation/Makefile
