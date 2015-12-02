@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -O out -d inet -d dissertation -Xdissertation -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6 -DWITH_TRACI
+#  opp_makemake -f --deep -O out -d inet -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6 -DWITH_TRACI
 #
 
 # Name of target to be created (-o option)
@@ -118,17 +118,13 @@ $O/$(TARGET): $(OBJS) submakedirs $(wildcard $(EXTRA_OBJS)) Makefile
 	@echo Creating executable: $@
 	$(Q)$(CXX) $(LDFLAGS) -o $O/$(TARGET)  $(OBJS) $(EXTRA_OBJS) $(AS_NEEDED_OFF) $(WHOLE_ARCHIVE_ON) $(LIBS) $(WHOLE_ARCHIVE_OFF) $(OMNETPP_LIBS)
 
-submakedirs:  inet_dir dissertation_dir
+submakedirs:  inet_dir
 
-.PHONY: all clean cleanall depend msgheaders  inet dissertation
+.PHONY: all clean cleanall depend msgheaders  inet
 inet: inet_dir
-dissertation: dissertation_dir
 
 inet_dir:
 	cd inet && $(MAKE) all
-
-dissertation_dir:
-	cd dissertation && $(MAKE) all
 
 .SUFFIXES: .cc
 
@@ -143,7 +139,6 @@ $O/%.o: %.cc $(COPTS_FILE)
 
 msgheaders: $(MSGFILES:.msg=_m.h)
 	$(Q)cd inet && $(MAKE) msgheaders
-	$(Q)cd dissertation && $(MAKE) msgheaders
 
 clean:
 	$(qecho) Cleaning...
@@ -152,7 +147,6 @@ clean:
 	$(Q)-rm -f ./*_m.cc ./*_m.h
 
 	-$(Q)cd inet && $(MAKE) clean
-	-$(Q)cd dissertation && $(MAKE) clean
 
 cleanall: clean
 	$(Q)-rm -rf $(PROJECT_OUTPUT_DIR)
@@ -161,7 +155,6 @@ depend:
 	$(qecho) Creating dependencies...
 	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc
 	$(Q)-cd inet && if [ -f Makefile ]; then $(MAKE) depend; fi
-	$(Q)-cd dissertation && if [ -f Makefile ]; then $(MAKE) depend; fi
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 

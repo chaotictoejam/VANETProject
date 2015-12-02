@@ -219,3 +219,6 @@ pip-log.txt
 VANETSim/src/inet/.tmp*
 .tmp*
 VANETSim/src/dissertation/Makefile
+VANETSim/src/inet/dissertation/
+VANETSim/simulations/_nodes/dissertation/
+VANETSim/simulations/dissertation/

@@ -2,5 +2,4 @@
 <dir makemake-options="--deep -o inet -O out --meta:recurse --meta:auto-include-path --meta:export-library --meta:use-exported-libs --meta:feature-cflags --meta:feature-ldflags" path="src/inet" type="makemake"/>
 <dir makemake-options="--deep -O out --meta:recurse --meta:auto-include-path --meta:export-library --meta:use-exported-libs --meta:feature-cflags --meta:feature-ldflags" path="src" type="makemake"/>
 <dir path="." type="custom"/>
-<dir makemake-options="--deep -o dissertation -O out --meta:recurse --meta:auto-include-path --meta:export-library --meta:use-exported-libs --meta:feature-cflags --meta:feature-ldflags" path="src/dissertation" type="makemake"/>
 </buildspec>
