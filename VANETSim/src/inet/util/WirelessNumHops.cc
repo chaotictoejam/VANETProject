@@ -1066,6 +1066,45 @@ bool WirelessNumHops::getKshortest(const MACAddress &dest,KroutesMac &routes)
         }
         routes.push_back(routeAux);
     }
+#if 1
+    // check if the route is in the list
+    DijkstraKshortest::Route route;
+    std::deque<int>routeMin;
+    getRoute(nodeId,routeMin);
+    bool find=false;
+    for (unsigned int i = 0; i < kroute.size();i++)
+    {
+        if (routeMin.size()!=kroute[i].size())
+            continue;
+        bool equal=true;
+        for (unsigned int j =0; j <routeMin.size();j++)
+            if (routeMin[j]!=kroute[i][j].getLo())
+            {
+                equal = false;
+                break;
+            }
+        if (equal)
+        {
+            find = true;
+            break;
+        }
+    }
+    if (!find)
+    {
+        printf("Route 1 : ");
+        for (unsigned int j =0; j <routeMin.size();j++)
+            printf("%i - ",routeMin[j]);
+        printf("\n Route k-short \n");
+        for (unsigned int i = 0; i < kroute.size();i++)
+        {
+            printf("Route %i : ",i);
+            for (unsigned int j =0; j <kroute[i].size();j++)
+                printf("%i - ",kroute[i][j].getLo());
+            printf("\n");
+        }
+        throw cRuntimeError("Discrepancies in the route k-short");
+    }
+#endif
     return true;
 }
 
