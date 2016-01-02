@@ -10,6 +10,7 @@ import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.nodes.inet.NetworkLayer;
 import inet.transport.udp.UDP;
+import inet.applications.udpapp.UDPBasicBurst;
 
 
 module Car
@@ -52,7 +53,7 @@ module Car
                 ifIn[1];
                 ifOut[1];
         }
-        app: TraCIDemo {
+        udpApp: UDPBasicBurst {
             parameters:
                 @display("p=384,46");
         }
@@ -68,8 +69,8 @@ module Car
             @display("p=522,307");
         }
     connections allowunconnected:
-        udp.appOut++ --> app.udp$i;
-        udp.appIn++ <-- app.udp$o;
+        udp.appOut++ --> udpApp.udpIn;
+        udp.appIn++ <-- udpApp.udpOut;
 
         udp.ipOut --> networkLayer.transportIn++;
         udp.ipIn <-- networkLayer.transportOut++;
