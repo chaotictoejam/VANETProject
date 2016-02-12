@@ -16,14 +16,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.nodes.inet;
+package vanetsim.inet.nodes.inet;
 
-import inet.networklayer.arp.ARP;
-import inet.networklayer.autorouting.ipv4.IPv4NodeConfigurator;
-import inet.networklayer.ipv4.ErrorHandling;
-import inet.networklayer.ipv4.ICMP;
-import inet.networklayer.ipv4.IIGMP;
-import inet.networklayer.ipv4.IPv4;
+import vanetsim.inet.networklayer.arp.ARP;
+import vanetsim.inet.networklayer.autorouting.ipv4.IPv4NodeConfigurator;
+import vanetsim.inet.networklayer.ipv4.ErrorHandling;
+import vanetsim.inet.networklayer.ipv4.ICMP;
+import vanetsim.inet.networklayer.ipv4.IIGMP;
+import vanetsim.inet.networklayer.ipv4.IPv4;
 
 
 //

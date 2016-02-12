@@ -16,16 +16,16 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.nodes.ethernet;
+package vanetsim.inet.nodes.ethernet;
 
-import inet.base.NotificationBoard;
-import inet.linklayer.IMACRelayUnit;
-import inet.linklayer.IWiredNic;
-import inet.linklayer.configurator.L2NodeConfigurator;
-import inet.linklayer.IMACAddressTable;
-import inet.linklayer.ISpanningTree;
-import inet.networklayer.common.InterfaceTable;
-import inet.status.NodeStatus;
+import vanetsim.inet.base.NotificationBoard;
+import vanetsim.inet.linklayer.IMACRelayUnit;
+import vanetsim.inet.linklayer.IWiredNic;
+import vanetsim.inet.linklayer.configurator.L2NodeConfigurator;
+import vanetsim.inet.linklayer.IMACAddressTable;
+import vanetsim.inet.linklayer.ISpanningTree;
+import vanetsim.inet.networklayer.common.InterfaceTable;
+import vanetsim.inet.status.NodeStatus;
 
 
 //

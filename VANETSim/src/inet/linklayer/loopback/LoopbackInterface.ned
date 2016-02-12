@@ -18,11 +18,11 @@
 //
 
 
-package inet.linklayer.loopback;
+package vanetsim.inet.linklayer.loopback;
 
-import inet.base.IHook;
-import inet.linklayer.INic;
-import inet.linklayer.ITrafficConditioner;
+import vanetsim.inet.base.IHook;
+import vanetsim.inet.linklayer.INic;
+import vanetsim.inet.linklayer.ITrafficConditioner;
 
 
 //

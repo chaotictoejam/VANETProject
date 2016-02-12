@@ -15,19 +15,19 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.nodes.inet;
+package vanetsim.inet.nodes.inet;
 
-import inet.base.NotificationBoard;
-import inet.battery.IBattery;
-import inet.linklayer.IExternalNic;
-import inet.linklayer.IWiredNic;
-import inet.linklayer.IWirelessNic;
-import inet.linklayer.loopback.LoopbackInterface;
-import inet.mobility.contract.IMobility;
-import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv4.RoutingTable;
-import inet.status.NodeStatus;
-import inet.util.PcapRecorder;
+import vanetsim.inet.base.NotificationBoard;
+import vanetsim.inet.battery.IBattery;
+import vanetsim.inet.linklayer.IExternalNic;
+import vanetsim.inet.linklayer.IWiredNic;
+import vanetsim.inet.linklayer.IWirelessNic;
+import vanetsim.inet.linklayer.loopback.LoopbackInterface;
+import vanetsim.inet.mobility.contract.IMobility;
+import vanetsim.inet.networklayer.common.InterfaceTable;
+import vanetsim.inet.networklayer.ipv4.RoutingTable;
+import vanetsim.inet.status.NodeStatus;
+import vanetsim.inet.util.PcapRecorder;
 
 
 //

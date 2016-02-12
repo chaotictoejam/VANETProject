@@ -17,9 +17,9 @@
 // * part of:     framework implementation developed by tkn
 // **************************************************************************/
 
-package inet.mobility.single;
+package vanetsim.inet.mobility.single;
 
-import inet.mobility.common.MovingMobilityBase;
+import vanetsim.inet.mobility.common.MovingMobilityBase;
 
 //
 // Uses a probabilistic transition matrix to change the state of motion.

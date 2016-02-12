@@ -16,7 +16,7 @@
 //
 
 
-package inet.linklayer;
+package vanetsim.inet.linklayer;
 
 //
 // Prototype for per-NIC output queues. Concrete queues can implement

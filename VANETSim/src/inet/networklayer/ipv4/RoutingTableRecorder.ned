@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 
-package inet.networklayer.ipv4;
+package vanetsim.inet.networklayer.ipv4;
 
 //
 // Records changes in the routing tables (~RoutingTable) and interface tables

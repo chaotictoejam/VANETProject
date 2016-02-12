@@ -17,9 +17,9 @@
 //
 
 
-package inet.linklayer.ethernet;
+package vanetsim.inet.linklayer.ethernet;
 
-import inet.linklayer.IEtherMAC;
+import vanetsim.inet.linklayer.IEtherMAC;
 
 
 //

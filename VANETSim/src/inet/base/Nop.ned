@@ -17,7 +17,7 @@
 
 
 
-package inet.base;
+package vanetsim.inet.base;
 
 //
 // Just lets messages through without any change or delay.

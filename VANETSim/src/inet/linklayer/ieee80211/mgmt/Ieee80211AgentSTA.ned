@@ -16,7 +16,7 @@
 //
 
 
-package inet.linklayer.ieee80211.mgmt;
+package vanetsim.inet.linklayer.ieee80211.mgmt;
 
 //
 // Used in 802.11 infrastructure mode: in a station (STA), this module

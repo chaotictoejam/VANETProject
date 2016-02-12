@@ -18,7 +18,7 @@
 //
 
 
-package inet.linklayer.ieee80211.mac;
+package vanetsim.inet.linklayer.ieee80211.mac;
 
 //
 // Implementation of the 802.11 MAC protocol. This module is intended

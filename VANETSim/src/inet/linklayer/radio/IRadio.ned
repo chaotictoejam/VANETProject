@@ -17,7 +17,7 @@
 //
 
 
-package inet.linklayer.radio;
+package vanetsim.inet.linklayer.radio;
 
 //
 // Prototype for radio modules. Radio modules deal with the transmission

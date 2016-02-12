@@ -16,9 +16,9 @@
 //
 
 
-package inet.transport.tcp_common;
+package vanetsim.inet.transport.tcp_common;
 
-import inet.transport.ITCP;
+import vanetsim.inet.transport.ITCP;
 
 
 //

@@ -13,9 +13,9 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package inet.linklayer.ethernet.switch;
+package vanetsim.inet.linklayer.ethernet.switch;
 
-import inet.linklayer.IMACAddressTable;
+import vanetsim.inet.linklayer.IMACAddressTable;
 
 //
 // This module handles the mapping between ports and MAC addresses.

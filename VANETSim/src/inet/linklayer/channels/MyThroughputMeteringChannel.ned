@@ -13,7 +13,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package inet.linklayer.channels;
+package vanetsim.inet.linklayer.channels;
 
 channel MyThroughputMeteringChannel extends ned.DatarateChannel
 {

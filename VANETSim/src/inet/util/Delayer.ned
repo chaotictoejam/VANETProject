@@ -18,9 +18,9 @@
 //
 
 
-package inet.util;
+package vanetsim.inet.util;
 
-import inet.base.IHook;
+import vanetsim.inet.base.IHook;
 
 
 //

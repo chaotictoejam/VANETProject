@@ -17,8 +17,8 @@
 //
 
 
-package inet.linklayer.ieee80211.radio;
-import inet.linklayer.radio.Radio;
+package vanetsim.inet.linklayer.ieee80211.radio;
+import vanetsim.inet.linklayer.radio.Radio;
 //
 // Physical layer for the IEEE 802.11 models. Its external interface
 // (including gates and how it communicates with other modules)

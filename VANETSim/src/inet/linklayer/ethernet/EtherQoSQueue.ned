@@ -16,11 +16,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.linklayer.ethernet;
+package vanetsim.inet.linklayer.ethernet;
 
-import inet.linklayer.IOutputQueue;
-import inet.linklayer.queue.DropTailQueue;
-import inet.linklayer.queue.PriorityScheduler;
+import vanetsim.inet.linklayer.IOutputQueue;
+import vanetsim.inet.linklayer.queue.DropTailQueue;
+import vanetsim.inet.linklayer.queue.PriorityScheduler;
 
 
 //

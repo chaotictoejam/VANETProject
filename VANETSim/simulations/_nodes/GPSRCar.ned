@@ -1,18 +1,18 @@
 package vanetsim.simulations._nodes;
 
-import inet.applications.traci.TraCIDemo;
-import inet.base.LifecycleController;
-import inet.base.NotificationBoard;
-import inet.linklayer.ieee80211.Ieee80211Nic;
-import inet.mobility.contract.IMobility;
-import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
-import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
-import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv4.RoutingTable;
-import inet.nodes.gpsr.GPSRRouter;
-import inet.nodes.inet.NetworkLayer;
-import inet.transport.udp.UDP;
-import inet.world.radio.ChannelControl;
+import vanetsim.inet.applications.traci.TraCIDemo;
+import vanetsim.inet.base.LifecycleController;
+import vanetsim.inet.base.NotificationBoard;
+import vanetsim.inet.linklayer.ieee80211.Ieee80211Nic;
+import vanetsim.inet.mobility.contract.IMobility;
+import vanetsim.inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
+import vanetsim.inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
+import vanetsim.inet.networklayer.common.InterfaceTable;
+import vanetsim.inet.networklayer.ipv4.RoutingTable;
+import vanetsim.inet.nodes.gpsr.GPSRRouter;
+import vanetsim.inet.nodes.inet.NetworkLayer;
+import vanetsim.inet.transport.udp.UDP;
+import vanetsim.inet.world.radio.ChannelControl;
 
 
 module GPSRCar

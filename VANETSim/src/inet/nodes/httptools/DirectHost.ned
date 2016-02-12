@@ -28,9 +28,9 @@
 //
 // ----------------------------------------------------------------------------
 
-package inet.nodes.httptools;
+package vanetsim.inet.nodes.httptools;
 
-import inet.applications.httptools.IHttpDirectApp;
+import vanetsim.inet.applications.httptools.IHttpDirectApp;
 
 
 //

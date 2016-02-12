@@ -16,7 +16,7 @@
 //
 
 
-package inet.linklayer.radio;
+package vanetsim.inet.linklayer.radio;
 
 //
 // Generic radio module. The implementation is largely based on the

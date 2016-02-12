@@ -16,7 +16,7 @@
 //
 
 
-package inet.applications;
+package vanetsim.inet.applications;
 
 //
 // Not an actual module type. It only shows which gates an SCTP app should have

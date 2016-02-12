@@ -15,7 +15,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package inet.linklayer.configurator;
+package vanetsim.inet.linklayer.configurator;
 
 //
 // This module has one instance per network node, and it acts like a bridge

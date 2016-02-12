@@ -15,9 +15,9 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package inet.linklayer.ieee80211mesh.hwmp;
-import inet.networklayer.manetrouting.base.BaseRouting;
-import inet.networklayer.IManetRouting;
+package vanetsim.inet.linklayer.ieee80211mesh.hwmp;
+import vanetsim.inet.networklayer.manetrouting.base.BaseRouting;
+import vanetsim.inet.networklayer.IManetRouting;
 
 //
 // Dynamic MANET On-demand (DYMO) Routing

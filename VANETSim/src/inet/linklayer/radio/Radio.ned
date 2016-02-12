@@ -19,7 +19,7 @@
 // ***************************************************************************
 // ***************************************************************************
 
-package inet.linklayer.radio;
+package vanetsim.inet.linklayer.radio;
 
 //
 // This is an abstract module that defines all parameters for radio modules

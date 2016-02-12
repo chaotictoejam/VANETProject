@@ -17,15 +17,15 @@
 //
 // Edited with OMNeT++ Academic/Noncommercial Edition.
 //
-package inet.nodes.ipv6;
+package vanetsim.inet.nodes.ipv6;
 
-import inet.networklayer.ipv6.IPv6ErrorHandling;
-import inet.networklayer.ipv6.IPv6;
-import inet.networklayer.icmpv6.IPv6NeighbourDiscovery;
-import inet.networklayer.icmpv6.ICMPv6;
-import inet.networklayer.IxMIPv6Support;
-import inet.networklayer.IIPv6Tunneling;
-import inet.base.IHook;
+import vanetsim.inet.networklayer.ipv6.IPv6ErrorHandling;
+import vanetsim.inet.networklayer.ipv6.IPv6;
+import vanetsim.inet.networklayer.icmpv6.IPv6NeighbourDiscovery;
+import vanetsim.inet.networklayer.icmpv6.ICMPv6;
+import vanetsim.inet.networklayer.IxMIPv6Support;
+import vanetsim.inet.networklayer.IIPv6Tunneling;
+import vanetsim.inet.base.IHook;
 
 
 //

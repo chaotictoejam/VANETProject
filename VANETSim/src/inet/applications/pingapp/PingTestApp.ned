@@ -15,9 +15,9 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.applications.pingapp;
+package vanetsim.inet.applications.pingapp;
 
-import inet.applications.IPingApp;
+import vanetsim.inet.applications.IPingApp;
 
 //
 // Generates ping requests to several hosts (or rather, network interfaces),

@@ -13,7 +13,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package inet.linklayer.ieee8021d.tester;
+package vanetsim.inet.linklayer.ieee8021d.tester;
 
 //
 // Network tester module

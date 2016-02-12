@@ -17,9 +17,9 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.applications.dhcp;
+package vanetsim.inet.applications.dhcp;
 
-import inet.applications.IUDPApp;
+import vanetsim.inet.applications.IUDPApp;
 
 //
 // Implements the DHCP client protocol. DHCP (Dynamic Host Configuration Protocol),

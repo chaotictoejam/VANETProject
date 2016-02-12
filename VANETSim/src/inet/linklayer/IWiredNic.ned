@@ -16,7 +16,7 @@
 //
 
 
-package inet.linklayer;
+package vanetsim.inet.linklayer;
 
 //
 // Prototype module for link layer protocols.

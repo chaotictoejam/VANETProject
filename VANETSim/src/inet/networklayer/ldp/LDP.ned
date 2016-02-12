@@ -14,7 +14,7 @@
 //
 
 
-package inet.networklayer.ldp;
+package vanetsim.inet.networklayer.ldp;
 
 //
 // Handles and processes LDP messages.

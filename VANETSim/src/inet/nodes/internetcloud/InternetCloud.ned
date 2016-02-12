@@ -17,21 +17,21 @@
 // @author Zoltan Bojthe
 //
 
-package inet.nodes.internetcloud;
+package vanetsim.inet.nodes.internetcloud;
 
 
-import inet.base.NotificationBoard;
-import inet.linklayer.IWiredNic;
-import inet.networklayer.arp.ARP;
-import inet.networklayer.autorouting.ipv4.IPv4NodeConfigurator;
-import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.internetcloud.ICloudDelayer;
-import inet.networklayer.internetcloud.InternetCloudTaggerChannel;
-import inet.networklayer.ipv4.ErrorHandling;
-import inet.networklayer.ipv4.ICMP;
-import inet.networklayer.ipv4.IPv4;
-import inet.networklayer.ipv4.RoutingTable;
-import inet.util.PcapRecorder;
+import vanetsim.inet.base.NotificationBoard;
+import vanetsim.inet.linklayer.IWiredNic;
+import vanetsim.inet.networklayer.arp.ARP;
+import vanetsim.inet.networklayer.autorouting.ipv4.IPv4NodeConfigurator;
+import vanetsim.inet.networklayer.common.InterfaceTable;
+import vanetsim.inet.networklayer.internetcloud.ICloudDelayer;
+import vanetsim.inet.networklayer.internetcloud.InternetCloudTaggerChannel;
+import vanetsim.inet.networklayer.ipv4.ErrorHandling;
+import vanetsim.inet.networklayer.ipv4.ICMP;
+import vanetsim.inet.networklayer.ipv4.IPv4;
+import vanetsim.inet.networklayer.ipv4.RoutingTable;
+import vanetsim.inet.util.PcapRecorder;
 
 
 //

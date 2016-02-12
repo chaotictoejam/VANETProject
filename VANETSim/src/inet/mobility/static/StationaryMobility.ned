@@ -15,9 +15,9 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.mobility.static;
+package vanetsim.inet.mobility.static;
 
-import inet.mobility.common.MobilityBase;
+import vanetsim.inet.mobility.common.MobilityBase;
 
 //
 // This mobility module does nothing; it can be used for stationary nodes.

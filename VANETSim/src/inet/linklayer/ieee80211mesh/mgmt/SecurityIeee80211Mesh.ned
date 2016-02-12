@@ -17,7 +17,7 @@
 //
 //
 
-package inet.linklayer.ieee80211mesh.mgmt;
+package vanetsim.inet.linklayer.ieee80211mesh.mgmt;
 
 //simple Ieee80211Mesh like IIeee80211Mgmt
 simple SecurityIeee80211Mesh

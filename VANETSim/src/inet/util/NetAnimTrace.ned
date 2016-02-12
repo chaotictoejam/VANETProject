@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.util;
+package vanetsim.inet.util;
 
 //
 // Records a NetAnim trace, using network-level modules and their connections.

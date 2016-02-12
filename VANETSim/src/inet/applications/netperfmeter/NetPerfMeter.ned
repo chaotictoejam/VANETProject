@@ -25,8 +25,8 @@
 // *
 // *   Contact: dreibh@iem.uni-due.de
 
-package inet.applications.netperfmeter;
-import inet.applications.INetPerfMeterApp;
+package vanetsim.inet.applications.netperfmeter;
+import vanetsim.inet.applications.INetPerfMeterApp;
 
 simple NetPerfMeter like INetPerfMeterApp
 {

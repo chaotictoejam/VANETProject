@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.linklayer.ethernet;
+package vanetsim.inet.linklayer.ethernet;
 
 //
 // Provides Ethernet 802.3 encapsulation/decapsulation and dispatching

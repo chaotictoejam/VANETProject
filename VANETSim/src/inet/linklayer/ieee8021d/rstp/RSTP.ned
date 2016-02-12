@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.linklayer.ieee8021d.rstp;
-import inet.linklayer.ISpanningTree;
+package vanetsim.inet.linklayer.ieee8021d.rstp;
+import vanetsim.inet.linklayer.ISpanningTree;
 
 //
 // Implements the Rapid Spanning Tree Protocol (IEEE 802.D-2004) for IEC 48-bit

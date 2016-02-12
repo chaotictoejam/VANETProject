@@ -17,9 +17,9 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.mobility.single;
+package vanetsim.inet.mobility.single;
 
-import inet.mobility.common.MovingMobilityBase;
+import vanetsim.inet.mobility.common.MovingMobilityBase;
 
 //
 // This is a random mobility model for a mobile host with a mass. It is the

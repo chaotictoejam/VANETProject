@@ -1,4 +1,4 @@
-package inet.applications.rtpapp;
+package vanetsim.inet.applications.rtpapp;
 
 //
 // The RTPApplication is just a very simple sample for an application

@@ -15,7 +15,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package inet.world.powercontrol;
+package vanetsim.inet.world.powercontrol;
 
 //
 // TODO auto-generated module

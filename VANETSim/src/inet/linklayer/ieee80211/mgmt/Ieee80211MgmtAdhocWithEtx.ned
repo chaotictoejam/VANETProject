@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.linklayer.ieee80211.mgmt;
+package vanetsim.inet.linklayer.ieee80211.mgmt;
 //
 // 802.11 management module used for ad-hoc mode.
 // Relies on the MAC layer (Ieee80211Mac) for reception and transmission of frames.

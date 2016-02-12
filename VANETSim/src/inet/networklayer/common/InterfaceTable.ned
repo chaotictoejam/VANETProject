@@ -15,7 +15,7 @@
 // License along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 
-package inet.networklayer.common;
+package vanetsim.inet.networklayer.common;
 
 //
 // Keeps the table of network interfaces.

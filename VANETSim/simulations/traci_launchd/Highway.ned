@@ -20,8 +20,8 @@
 
 package vanetsim.simulations.traci_launchd;
 
-import inet.world.radio.ChannelControl;
-import inet.world.traci.TraCIScenarioManagerLaunchd;
+import vanetsim.inet.world.radio.ChannelControl;
+import vanetsim.inet.world.traci.TraCIScenarioManagerLaunchd;
 
 module Highway
 {

@@ -275,4 +275,4 @@
 // handled in the way she likes.
 //
 
-package inet;
+package vanetsim.inet;

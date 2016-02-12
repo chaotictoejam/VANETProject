@@ -17,7 +17,7 @@
 
 
 
-package inet.base;
+package vanetsim.inet.base;
 
 //
 // Using ~NotificationBoard, modules can now notify each other about

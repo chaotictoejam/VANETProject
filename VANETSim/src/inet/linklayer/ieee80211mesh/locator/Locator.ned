@@ -13,8 +13,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package inet.linklayer.ieee80211mesh.locator;
-import inet.linklayer.ieee80211mesh.locator.ILocator;
+package vanetsim.inet.linklayer.ieee80211mesh.locator;
+import vanetsim.inet.linklayer.ieee80211mesh.locator.ILocator;
 
 //
 // TODO auto-generated type

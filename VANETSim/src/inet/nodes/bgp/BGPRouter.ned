@@ -15,9 +15,9 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.nodes.bgp;
+package vanetsim.inet.nodes.bgp;
 
-import inet.nodes.inet.Router;
+import vanetsim.inet.nodes.inet.Router;
 
 
 //

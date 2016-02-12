@@ -14,7 +14,7 @@
 //
 
 
-package inet.networklayer.mpls;
+package vanetsim.inet.networklayer.mpls;
 
 //
 // Implements the MPLS protocol.

@@ -16,7 +16,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.networklayer.arp;
+package vanetsim.inet.networklayer.arp;
 
 //
 // Implements the Address Resolution Protocol for IPv4 and IEEE 802 6-byte

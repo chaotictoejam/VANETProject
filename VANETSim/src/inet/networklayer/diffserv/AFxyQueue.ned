@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.networklayer.diffserv;
+package vanetsim.inet.networklayer.diffserv;
 
-import inet.linklayer.queue.FIFOQueue;
-import inet.linklayer.queue.REDDropper;
+import vanetsim.inet.linklayer.queue.FIFOQueue;
+import vanetsim.inet.linklayer.queue.REDDropper;
 
 
 //

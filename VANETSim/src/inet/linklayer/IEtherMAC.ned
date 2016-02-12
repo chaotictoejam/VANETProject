@@ -16,7 +16,7 @@
 //
 
 
-package inet.linklayer;
+package vanetsim.inet.linklayer;
 
 //
 // Interface for Ethernet MAC implementations. All Ethernet MAC implementations

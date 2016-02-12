@@ -16,9 +16,9 @@
 //
 
 
-package inet.applications.pingapp;
+package vanetsim.inet.applications.pingapp;
 
-import inet.applications.IPingApp;
+import vanetsim.inet.applications.IPingApp;
 
 
 //

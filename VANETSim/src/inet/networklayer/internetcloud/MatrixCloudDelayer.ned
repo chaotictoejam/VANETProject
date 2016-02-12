@@ -17,9 +17,9 @@
 // @author Zoltan Bojthe
 //
 
-package inet.networklayer.internetcloud;
+package vanetsim.inet.networklayer.internetcloud;
 
-import inet.networklayer.internetcloud.ICloudDelayer;
+import vanetsim.inet.networklayer.internetcloud.ICloudDelayer;
 
 //
 // Delay module for ~InternetCloud. This is essentially equivalent to a full graph 

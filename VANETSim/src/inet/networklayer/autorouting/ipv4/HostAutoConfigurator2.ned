@@ -18,7 +18,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
  
-package inet.networklayer.autorouting.ipv4;
+package vanetsim.inet.networklayer.autorouting.ipv4;
  
 //
 // HostAutoConfigurator automatically assigns IP addresses and sets up routing table.

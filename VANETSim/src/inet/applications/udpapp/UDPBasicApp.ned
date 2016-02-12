@@ -17,9 +17,9 @@
 //
 
 
-package inet.applications.udpapp;
+package vanetsim.inet.applications.udpapp;
 
-import inet.applications.IUDPApp;
+import vanetsim.inet.applications.IUDPApp;
 
 
 //

@@ -17,31 +17,31 @@
 //
 
 
-package inet.linklayer.ieee80211mesh.nodes;
-import inet.nodes.inet.WirelessHost;
+package vanetsim.inet.linklayer.ieee80211mesh.nodes;
+import vanetsim.inet.nodes.inet.WirelessHost;
 
-import inet.util.PcapRecorder;
-import inet.networklayer.ipv4.RoutingTable;
-import inet.networklayer.common.InterfaceTable;
-import inet.mobility.contract.IMobility;
-import inet.linklayer.ieee80211mesh.ethernet.EthernetInterfaceMesh;
-import inet.linklayer.IWirelessNic;
-import inet.linklayer.IWiredNic;
-import inet.linklayer.IExternalNic;
-import inet.base.NotificationBoard;
-import inet.nodes.inet.NetworkLayer;
-import inet.linklayer.ieee80211mesh.Ieee80211NicMesh;
-import inet.linklayer.ieee80211mesh.Ieee80211NicMeshMulti;
-import inet.networklayer.autorouting.ipv4.HostAutoConfigurator2;
-import inet.linklayer.loopback.LoopbackInterface;
+import vanetsim.inet.util.PcapRecorder;
+import vanetsim.inet.networklayer.ipv4.RoutingTable;
+import vanetsim.inet.networklayer.common.InterfaceTable;
+import vanetsim.inet.mobility.contract.IMobility;
+import vanetsim.inet.linklayer.ieee80211mesh.ethernet.EthernetInterfaceMesh;
+import vanetsim.inet.linklayer.IWirelessNic;
+import vanetsim.inet.linklayer.IWiredNic;
+import vanetsim.inet.linklayer.IExternalNic;
+import vanetsim.inet.base.NotificationBoard;
+import vanetsim.inet.nodes.inet.NetworkLayer;
+import vanetsim.inet.linklayer.ieee80211mesh.Ieee80211NicMesh;
+import vanetsim.inet.linklayer.ieee80211mesh.Ieee80211NicMeshMulti;
+import vanetsim.inet.networklayer.autorouting.ipv4.HostAutoConfigurator2;
+import vanetsim.inet.linklayer.loopback.LoopbackInterface;
 
-import inet.transport.IUDP;
-import inet.transport.ITCP;
-import inet.transport.ISCTP;
-import inet.applications.IPingApp;
-import inet.applications.IUDPApp;
-import inet.applications.ITCPApp;
-import inet.applications.ISCTPApp;
+import vanetsim.inet.transport.IUDP;
+import vanetsim.inet.transport.ITCP;
+import vanetsim.inet.transport.ISCTP;
+import vanetsim.inet.applications.IPingApp;
+import vanetsim.inet.applications.IUDPApp;
+import vanetsim.inet.applications.ITCPApp;
+import vanetsim.inet.applications.ISCTPApp;
 
 //
 // BaseHost contains the common lower layers (linklayer and networklayer)

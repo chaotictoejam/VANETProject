@@ -16,9 +16,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-package inet.mobility.single;
+package vanetsim.inet.mobility.single;
 
-import inet.mobility.common.MovingMobilityBase;
+import vanetsim.inet.mobility.common.MovingMobilityBase;
 
 //
 // Moves a tractor through a field with a certain amount of rows.

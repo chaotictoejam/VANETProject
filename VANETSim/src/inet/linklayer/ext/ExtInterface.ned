@@ -15,9 +15,9 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.linklayer.ext;
+package vanetsim.inet.linklayer.ext;
 
-import inet.linklayer.IExternalNic;
+import vanetsim.inet.linklayer.IExternalNic;
 
 //
 // Implements an interface that corresponds to a real interface

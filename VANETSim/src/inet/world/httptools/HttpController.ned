@@ -29,7 +29,7 @@
 //
 // ----------------------------------------------------------------------------
 
-package inet.world.httptools;
+package vanetsim.inet.world.httptools;
 
 //
 // HttpController

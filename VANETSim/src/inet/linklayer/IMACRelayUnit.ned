@@ -17,7 +17,7 @@
 
 
 
-package inet.linklayer;
+package vanetsim.inet.linklayer;
 
 //
 // Prototype for modules providing Ethernet switch functionality.

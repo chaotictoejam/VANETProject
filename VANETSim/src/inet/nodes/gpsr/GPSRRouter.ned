@@ -2,10 +2,10 @@
 // This program is property of its copyright holder. All rights reserved.
 // 
 
-package inet.nodes.gpsr;
+package vanetsim.inet.nodes.gpsr;
 
-import inet.networklayer.routing.gpsr.IGPSR;
-import inet.nodes.inet.WirelessHost;
+import vanetsim.inet.networklayer.routing.gpsr.IGPSR;
+import vanetsim.inet.nodes.inet.WirelessHost;
 
 //
 // TODO

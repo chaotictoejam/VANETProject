@@ -17,7 +17,7 @@
 // author: Zoltan Bojthe
 //
 
-package inet.linklayer.idealwireless;
+package vanetsim.inet.linklayer.idealwireless;
 
 
 //

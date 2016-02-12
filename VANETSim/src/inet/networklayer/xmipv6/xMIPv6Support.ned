@@ -20,9 +20,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-package inet.networklayer.xmipv6;
+package vanetsim.inet.networklayer.xmipv6;
 
-import inet.networklayer.IxMIPv6Support;
+import vanetsim.inet.networklayer.IxMIPv6Support;
 
 
 //

@@ -17,22 +17,22 @@
 //
 
 
-package inet.linklayer.ieee80211mesh.nodes;
-import inet.nodes.inet.WirelessHost;
+package vanetsim.inet.linklayer.ieee80211mesh.nodes;
+import vanetsim.inet.nodes.inet.WirelessHost;
 
-import inet.linklayer.IMACRelayUnit;
-import inet.networklayer.common.InterfaceTable;
-import inet.mobility.contract.IMobility;
-import inet.linklayer.ieee80211mesh.ethernet.EthernetInterfaceMesh;
-import inet.linklayer.IWirelessNic;
-import inet.linklayer.IWiredNic;
-import inet.linklayer.IExternalNic;
-import inet.base.NotificationBoard;
-import inet.nodes.inet.NetworkLayer;
-import inet.linklayer.ieee80211mesh.Ieee80211NicMesh;
-import inet.linklayer.ieee80211mesh.Ieee80211NicMeshMulti;
-import inet.networklayer.autorouting.ipv4.HostAutoConfigurator2;
-import inet.linklayer.IMACAddressTable;
+import vanetsim.inet.linklayer.IMACRelayUnit;
+import vanetsim.inet.networklayer.common.InterfaceTable;
+import vanetsim.inet.mobility.contract.IMobility;
+import vanetsim.inet.linklayer.ieee80211mesh.ethernet.EthernetInterfaceMesh;
+import vanetsim.inet.linklayer.IWirelessNic;
+import vanetsim.inet.linklayer.IWiredNic;
+import vanetsim.inet.linklayer.IExternalNic;
+import vanetsim.inet.base.NotificationBoard;
+import vanetsim.inet.nodes.inet.NetworkLayer;
+import vanetsim.inet.linklayer.ieee80211mesh.Ieee80211NicMesh;
+import vanetsim.inet.linklayer.ieee80211mesh.Ieee80211NicMeshMulti;
+import vanetsim.inet.networklayer.autorouting.ipv4.HostAutoConfigurator2;
+import vanetsim.inet.linklayer.IMACAddressTable;
 
 //
 // BaseHost contains the common lower layers (linklayer and networklayer)

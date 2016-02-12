@@ -28,9 +28,9 @@
 //
 // ----------------------------------------------------------------------------
 
-package inet.applications.httptools;
+package vanetsim.inet.applications.httptools;
 
-import inet.applications.ITCPApp;
+import vanetsim.inet.applications.ITCPApp;
 
 
 //

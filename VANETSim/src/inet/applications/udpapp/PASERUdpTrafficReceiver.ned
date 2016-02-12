@@ -21,9 +21,9 @@
 //* This work is part of the secure wireless mesh networks framework, which is currently under development by CNI
 //********************************************************************************/
  // This is constant bit rate APP - Similar to Iperf UDP
-package inet.applications.udpapp;
+package vanetsim.inet.applications.udpapp;
 
-import inet.applications.IUDPApp;
+import vanetsim.inet.applications.IUDPApp;
 
 simple PASERUdpTrafficReceiver like IUDPApp
 {

@@ -13,11 +13,11 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package inet.linklayer.ieee80211mesh.nodes;
+package vanetsim.inet.linklayer.ieee80211mesh.nodes;
 
-import inet.networklayer.IManetRouting;
-import inet.nodes.inet.WirelessHost;
-import inet.networklayer.autorouting.ipv4.HostAutoConfigurator2;
+import vanetsim.inet.networklayer.IManetRouting;
+import vanetsim.inet.nodes.inet.WirelessHost;
+import vanetsim.inet.networklayer.autorouting.ipv4.HostAutoConfigurator2;
 
 
 //

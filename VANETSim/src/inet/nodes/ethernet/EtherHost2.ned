@@ -15,15 +15,15 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.nodes.ethernet;
+package vanetsim.inet.nodes.ethernet;
 
-import inet.linklayer.ethernet.IEtherEncap;
-import inet.applications.ethernet.EtherTrafGen;
-import inet.linklayer.ethernet.EtherLLC;
-import inet.linklayer.ethernet.EtherQoSQueue;
-import inet.linklayer.IEtherMAC;
-import inet.applications.ethernet.EtherAppSrv;
-import inet.applications.ethernet.EtherAppCli;
+import vanetsim.inet.linklayer.ethernet.IEtherEncap;
+import vanetsim.inet.applications.ethernet.EtherTrafGen;
+import vanetsim.inet.linklayer.ethernet.EtherLLC;
+import vanetsim.inet.linklayer.ethernet.EtherQoSQueue;
+import vanetsim.inet.linklayer.IEtherMAC;
+import vanetsim.inet.applications.ethernet.EtherAppSrv;
+import vanetsim.inet.applications.ethernet.EtherAppCli;
 
 
 //

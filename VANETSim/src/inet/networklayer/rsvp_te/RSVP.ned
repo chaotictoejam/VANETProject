@@ -13,7 +13,7 @@
 //
 
 
-package inet.networklayer.rsvp_te;
+package vanetsim.inet.networklayer.rsvp_te;
 
 //
 // Implements RSVP-TE, a signalling protocol for MPLS. The module

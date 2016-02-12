@@ -17,7 +17,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 
-package inet.networklayer.ipv6;
+package vanetsim.inet.networklayer.ipv6;
 
 //
 // Handles error notifications that arrive from other protocol modules.

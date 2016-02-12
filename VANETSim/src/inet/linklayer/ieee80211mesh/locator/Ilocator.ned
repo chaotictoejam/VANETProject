@@ -13,7 +13,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package inet.linklayer.ieee80211mesh.locator;
+package vanetsim.inet.linklayer.ieee80211mesh.locator;
 
 //
 // TODO auto-generated type

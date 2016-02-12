@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.mobility.contract;
+package vanetsim.inet.mobility.contract;
 
 //
 // The module interface for mobility models.

@@ -1,4 +1,4 @@
-package inet.applications.sctpapp;//
+package vanetsim.inet.applications.sctpapp;//
 // Copyright (C) 2008 Irene Ruengeler
 //
 // This program is free software; you can redistribute it and/or
@@ -16,7 +16,7 @@ package inet.applications.sctpapp;//
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-import inet.applications.ISCTPApp;
+import vanetsim.inet.applications.ISCTPApp;
 
 simple SCTPNatServer like ISCTPApp
 {

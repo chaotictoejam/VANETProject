@@ -12,7 +12,7 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-package inet.networklayer.ted;
+package vanetsim.inet.networklayer.ted;
 
 //
 // This module implements a very minimalistic link state routing protcol.

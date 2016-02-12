@@ -1,9 +1,9 @@
 package vanetsim.simulations._nodes;
 
-import inet.world.radio.ChannelControl;
-import inet.world.traci.TraCIScenarioManagerLaunchd;
-import inet.world.obstacles.ObstacleControl;
-import inet.world.annotations.AnnotationManager;
+import vanetsim.inet.world.radio.ChannelControl;
+import vanetsim.inet.world.traci.TraCIScenarioManagerLaunchd;
+import vanetsim.inet.world.obstacles.ObstacleControl;
+import vanetsim.inet.world.annotations.AnnotationManager;
 
 module Highway
 {

@@ -16,7 +16,7 @@
 //
 
 
-package inet.applications.ethernet;
+package vanetsim.inet.applications.ethernet;
 
 //
 // Server side of the EtherCli model -- generates ~EtherAppResp packets

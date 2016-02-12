@@ -15,9 +15,9 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.networklayer.bgpv4;
+package vanetsim.inet.networklayer.bgpv4;
 
-import inet.applications.ITCPApp;
+import vanetsim.inet.applications.ITCPApp;
 
 
 //

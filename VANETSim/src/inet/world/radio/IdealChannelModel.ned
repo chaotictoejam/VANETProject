@@ -16,7 +16,7 @@
 //
 
 
-package inet.world.radio;
+package vanetsim.inet.world.radio;
 
 //
 // Channel controller module for ~IdealRadio.

@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.applications.ethernet;
+package vanetsim.inet.applications.ethernet;
 
 //
 // A simple traffic generator for the Ethernet model and the 802.11 model,

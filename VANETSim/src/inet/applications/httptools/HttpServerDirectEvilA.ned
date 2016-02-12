@@ -28,7 +28,7 @@
 //
 // ----------------------------------------------------------------------------
 
-package inet.applications.httptools;
+package vanetsim.inet.applications.httptools;
 
 //
 // Demonstrates subclassing the server to create a custom site. This site is an attacker -- a puppetmaster --

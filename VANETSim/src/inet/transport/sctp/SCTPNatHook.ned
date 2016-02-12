@@ -1,6 +1,6 @@
-package inet.transport.sctp;
+package vanetsim.inet.transport.sctp;
 
-import inet.base.IHook;
+import vanetsim.inet.base.IHook;
 
 
 //

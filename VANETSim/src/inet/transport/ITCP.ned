@@ -16,7 +16,7 @@
 //
 
 
-package inet.transport;
+package vanetsim.inet.transport;
 
 //
 // Interface for TCP protocol implementations. All TCP implementations should

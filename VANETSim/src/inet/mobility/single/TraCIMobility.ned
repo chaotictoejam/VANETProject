@@ -18,10 +18,10 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package inet.mobility.single;
+package vanetsim.inet.mobility.single;
 
-import inet.mobility.common.MobilityBase;
-import inet.mobility.contract.IMobility;
+import vanetsim.inet.mobility.common.MobilityBase;
+import vanetsim.inet.mobility.contract.IMobility;
 
 //
 // Used in modules created by the TraCIScenarioManager.

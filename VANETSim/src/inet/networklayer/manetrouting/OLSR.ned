@@ -15,10 +15,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package inet.networklayer.manetrouting;
+package vanetsim.inet.networklayer.manetrouting;
 
-import inet.networklayer.manetrouting.base.BaseRouting;
-import inet.networklayer.IManetRouting;
+import vanetsim.inet.networklayer.manetrouting.base.BaseRouting;
+import vanetsim.inet.networklayer.IManetRouting;
 
 
 //

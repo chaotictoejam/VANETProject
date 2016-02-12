@@ -16,13 +16,13 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.networklayer.diffserv;
+package vanetsim.inet.networklayer.diffserv;
 
-import inet.base.Sink;
-import inet.linklayer.IOutputQueue;
-import inet.linklayer.queue.DropTailQueue;
-import inet.linklayer.queue.PriorityScheduler;
-import inet.linklayer.queue.WRRScheduler;
+import vanetsim.inet.base.Sink;
+import vanetsim.inet.linklayer.IOutputQueue;
+import vanetsim.inet.linklayer.queue.DropTailQueue;
+import vanetsim.inet.linklayer.queue.PriorityScheduler;
+import vanetsim.inet.linklayer.queue.WRRScheduler;
 
 
 //

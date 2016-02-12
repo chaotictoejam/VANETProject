@@ -16,9 +16,9 @@
 //
 
 
-package inet.nodes.ospfv2;
+package vanetsim.inet.nodes.ospfv2;
 
-import inet.nodes.inet.Router;
+import vanetsim.inet.nodes.inet.Router;
 
 
 //

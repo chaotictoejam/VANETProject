@@ -17,9 +17,9 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.transport.tcp;
+package vanetsim.inet.transport.tcp;
 
-import inet.transport.ITCP;
+import vanetsim.inet.transport.ITCP;
 
 
 //

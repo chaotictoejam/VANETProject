@@ -17,9 +17,9 @@
 //
 //
 
-package inet.linklayer.ieee80211mesh.mgmt;
+package vanetsim.inet.linklayer.ieee80211mesh.mgmt;
 
-import inet.linklayer.ieee80211.mgmt.IIeee80211Mgmt;
+import vanetsim.inet.linklayer.ieee80211.mgmt.IIeee80211Mgmt;
 
 //simple Ieee80211Mesh like IIeee80211Mgmt
 simple Ieee80211Mesh like IIeee80211Mgmt

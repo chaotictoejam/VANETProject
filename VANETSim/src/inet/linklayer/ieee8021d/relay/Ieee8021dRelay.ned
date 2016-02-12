@@ -13,9 +13,9 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package inet.linklayer.ieee8021d.relay;
+package vanetsim.inet.linklayer.ieee8021d.relay;
 
-import inet.linklayer.IMACRelayUnit;
+import vanetsim.inet.linklayer.IMACRelayUnit;
 
 
 //

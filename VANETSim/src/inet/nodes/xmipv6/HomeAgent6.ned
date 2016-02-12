@@ -19,9 +19,9 @@
 //
 
 
-package inet.nodes.xmipv6;
+package vanetsim.inet.nodes.xmipv6;
 
-import inet.nodes.ipv6.Router6;
+import vanetsim.inet.nodes.ipv6.Router6;
 
 
 //

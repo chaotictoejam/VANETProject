@@ -95,5 +95,5 @@
 // before the IEEE standard can help.
 //
 
-package inet.linklayer.ieee80211;
+package vanetsim.inet.linklayer.ieee80211;
 

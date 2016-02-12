@@ -18,9 +18,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-package inet.networklayer.ipv6tunneling;
+package vanetsim.inet.networklayer.ipv6tunneling;
 
-import inet.networklayer.IIPv6Tunneling;
+import vanetsim.inet.networklayer.IIPv6Tunneling;
 
 
 //

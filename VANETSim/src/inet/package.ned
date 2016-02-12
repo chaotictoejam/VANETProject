@@ -1,1 +1,1 @@
-package inet;
+package vanetsim.inet;

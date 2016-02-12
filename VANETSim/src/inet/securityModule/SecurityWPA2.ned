@@ -16,7 +16,7 @@
 //********************************************************************************
 //* This work is part of the secure wireless mesh networks framework, which is currently under development by CNI */
 
-package inet.securityModule;
+package vanetsim.inet.securityModule;
 simple SecurityWPA2
 {
     parameters:

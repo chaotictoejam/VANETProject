@@ -16,9 +16,9 @@
 //
 
 
-package inet.nodes.rip;
+package vanetsim.inet.nodes.rip;
 
-import inet.nodes.inet.Router;
+import vanetsim.inet.nodes.inet.Router;
 
 //
 // An RIPv2 router.

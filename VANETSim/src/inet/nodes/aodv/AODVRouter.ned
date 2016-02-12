@@ -15,10 +15,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package inet.nodes.aodv;
+package vanetsim.inet.nodes.aodv;
 
-import inet.networklayer.routing.aodv.AODVRouting;
-import inet.nodes.inet.WirelessHost;
+import vanetsim.inet.networklayer.routing.aodv.AODVRouting;
+import vanetsim.inet.nodes.inet.WirelessHost;
 
 
 //

@@ -9,21 +9,21 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU Lesser General Public License for more details.
 //
-package inet.nodes.mpls;
+package vanetsim.inet.nodes.mpls;
 
-import inet.base.NotificationBoard;
-import inet.linklayer.IWiredNic;
-import inet.linklayer.loopback.LoopbackInterface;
-import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv4.RoutingTable;
-import inet.networklayer.mpls.LIBTable;
-import inet.networklayer.mpls.MPLS;
-import inet.networklayer.rsvp_te.RSVP;
-import inet.networklayer.rsvp_te.SimpleClassifier;
-import inet.networklayer.ted.LinkStateRouting;
-import inet.networklayer.ted.TED;
-import inet.nodes.inet.NetworkLayer;
-import inet.status.NodeStatus;
+import vanetsim.inet.base.NotificationBoard;
+import vanetsim.inet.linklayer.IWiredNic;
+import vanetsim.inet.linklayer.loopback.LoopbackInterface;
+import vanetsim.inet.networklayer.common.InterfaceTable;
+import vanetsim.inet.networklayer.ipv4.RoutingTable;
+import vanetsim.inet.networklayer.mpls.LIBTable;
+import vanetsim.inet.networklayer.mpls.MPLS;
+import vanetsim.inet.networklayer.rsvp_te.RSVP;
+import vanetsim.inet.networklayer.rsvp_te.SimpleClassifier;
+import vanetsim.inet.networklayer.ted.LinkStateRouting;
+import vanetsim.inet.networklayer.ted.TED;
+import vanetsim.inet.nodes.inet.NetworkLayer;
+import vanetsim.inet.status.NodeStatus;
 
 
 //

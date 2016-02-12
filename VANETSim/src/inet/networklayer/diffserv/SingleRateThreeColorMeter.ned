@@ -16,7 +16,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.networklayer.diffserv;
+package vanetsim.inet.networklayer.diffserv;
 
 //
 // This module implements a Single Rate Three Color Meter (RFC 2697).

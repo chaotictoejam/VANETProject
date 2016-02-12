@@ -17,7 +17,7 @@
 //
 
 
-package inet.linklayer.queue;
+package vanetsim.inet.linklayer.queue;
 
 //
 // Queue that implements Weighter Fair Queueing (WFQ), to be used in

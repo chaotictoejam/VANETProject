@@ -16,9 +16,9 @@
 //
 
 
-package inet.linklayer.queue;
+package vanetsim.inet.linklayer.queue;
 
-import inet.linklayer.IOutputQueue;
+import vanetsim.inet.linklayer.IOutputQueue;
 
 
 //

@@ -20,7 +20,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-package inet.networklayer;
+package vanetsim.inet.networklayer;
 
 //
 // Module interface for xMIPv6 (where x = F, H, F-H).

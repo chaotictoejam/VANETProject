@@ -17,7 +17,7 @@
 
 
 
-package inet.networklayer.icmpv6;
+package vanetsim.inet.networklayer.icmpv6;
 
 //
 // ICMPv6 implementation.

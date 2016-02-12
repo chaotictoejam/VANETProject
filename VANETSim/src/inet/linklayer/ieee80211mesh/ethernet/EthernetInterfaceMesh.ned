@@ -17,12 +17,12 @@
 
 
 
-package inet.linklayer.ieee80211mesh.ethernet;
+package vanetsim.inet.linklayer.ieee80211mesh.ethernet;
 
-import inet.linklayer.IWiredNic;
-import inet.linklayer.IEtherMAC;
-import inet.base.IHook;
-import inet.linklayer.ethernet.EtherQoSQueue;
+import vanetsim.inet.linklayer.IWiredNic;
+import vanetsim.inet.linklayer.IEtherMAC;
+import vanetsim.inet.base.IHook;
+import vanetsim.inet.linklayer.ethernet.EtherQoSQueue;
 
 //
 // Ethernet network interface. Complements EtherMAC and EtherEncap

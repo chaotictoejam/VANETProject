@@ -16,7 +16,7 @@
 //
 
 
-package inet.battery;
+package vanetsim.inet.battery;
 
 //
 // Interface for battery models

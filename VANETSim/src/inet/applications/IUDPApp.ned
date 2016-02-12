@@ -16,7 +16,7 @@
 //
 
 
-package inet.applications;
+package vanetsim.inet.applications;
 
 //
 // Template for UDP applications. It shows what gates a UDP app

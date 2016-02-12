@@ -13,16 +13,16 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package inet.nodes.wireless;
+package vanetsim.inet.nodes.wireless;
 
-import inet.base.NotificationBoard;
-import inet.linklayer.IMACRelayUnit;
-import inet.linklayer.IWiredNic;
-import inet.linklayer.IWirelessNic;
-import inet.linklayer.IMACAddressTable;
-import inet.mobility.contract.IMobility;
-import inet.networklayer.common.InterfaceTable;
-import inet.status.NodeStatus;
+import vanetsim.inet.base.NotificationBoard;
+import vanetsim.inet.linklayer.IMACRelayUnit;
+import vanetsim.inet.linklayer.IWiredNic;
+import vanetsim.inet.linklayer.IWirelessNic;
+import vanetsim.inet.linklayer.IMACAddressTable;
+import vanetsim.inet.mobility.contract.IMobility;
+import vanetsim.inet.networklayer.common.InterfaceTable;
+import vanetsim.inet.status.NodeStatus;
 
 
 //

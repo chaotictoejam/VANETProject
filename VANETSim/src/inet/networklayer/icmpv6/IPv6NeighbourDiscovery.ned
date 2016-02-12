@@ -16,7 +16,7 @@
 //
 
 
-package inet.networklayer.icmpv6;
+package vanetsim.inet.networklayer.icmpv6;
 
 //
 // Implements IPv6 Neighbour Discovery.

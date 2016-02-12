@@ -13,7 +13,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package inet.base;
+package vanetsim.inet.base;
 
 //
 // Generic module that can be inserted in some points in the model

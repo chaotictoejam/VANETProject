@@ -14,7 +14,7 @@
 //
 
 
-package inet.networklayer.mpls;
+package vanetsim.inet.networklayer.mpls;
 
 //
 // Stores the LIB (Label Information Base), accessed by ~MPLS and its

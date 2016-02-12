@@ -16,7 +16,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.linklayer.ethernet;
+package vanetsim.inet.linklayer.ethernet;
 
 //
 // Dummy encapsulation/decapsulation module for ~EthernetInterface.

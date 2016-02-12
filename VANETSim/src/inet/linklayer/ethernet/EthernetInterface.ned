@@ -18,12 +18,12 @@
 
 
 
-package inet.linklayer.ethernet;
+package vanetsim.inet.linklayer.ethernet;
 
-import inet.base.IHook;
-import inet.linklayer.IEtherMAC;
-import inet.linklayer.ITrafficConditioner;
-import inet.linklayer.IWiredNic;
+import vanetsim.inet.base.IHook;
+import vanetsim.inet.linklayer.IEtherMAC;
+import vanetsim.inet.linklayer.ITrafficConditioner;
+import vanetsim.inet.linklayer.IWiredNic;
 
 
 //

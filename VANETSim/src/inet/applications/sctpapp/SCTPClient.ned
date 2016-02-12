@@ -16,9 +16,9 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.applications.sctpapp;
+package vanetsim.inet.applications.sctpapp;
 
-import inet.applications.ISCTPApp;
+import vanetsim.inet.applications.ISCTPApp;
 
 //
 // Client app for SCTP-based request-reply protocols.

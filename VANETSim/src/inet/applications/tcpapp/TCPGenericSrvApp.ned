@@ -16,10 +16,10 @@
 //
 
 
-package inet.applications.tcpapp;
+package vanetsim.inet.applications.tcpapp;
 
 
-import inet.applications.ITCPApp;
+import vanetsim.inet.applications.ITCPApp;
 
 
 //

@@ -28,7 +28,7 @@
 //
 // ----------------------------------------------------------------------------
 
-package inet.applications.httptools;
+package vanetsim.inet.applications.httptools;
 
 
 //

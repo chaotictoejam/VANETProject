@@ -11,7 +11,7 @@
 //
 
 
-package inet.networklayer.ospfv2;
+package vanetsim.inet.networklayer.ospfv2;
 
 //
 // Implements the OSPFv4 routing protocol.

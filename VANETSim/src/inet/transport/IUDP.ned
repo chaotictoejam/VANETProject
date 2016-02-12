@@ -18,7 +18,7 @@
 
 
 
-package inet.transport;
+package vanetsim.inet.transport;
 
 //
 // UDP protocol interface.

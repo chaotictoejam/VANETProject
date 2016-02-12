@@ -1,4 +1,4 @@
-package inet.applications.sctpapp;
+package vanetsim.inet.applications.sctpapp;
 // Copyright (C) 2008 Irene Ruengeler
 //
 // This program is free software; you can redistribute it and/or
@@ -33,7 +33,7 @@ package inet.applications.sctpapp;
 // app sent a single 100 MB message, it will be echoed only when all
 // 100 megabytes have arrived.
 //
-import inet.applications.ISCTPApp;
+import vanetsim.inet.applications.ISCTPApp;
 
 simple SCTPNatPeer like ISCTPApp
 {

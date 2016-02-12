@@ -16,7 +16,7 @@
 //
 
 
-package inet.networklayer.autorouting.ipv4;
+package vanetsim.inet.networklayer.autorouting.ipv4;
 
 //
 // Configures IPv4 addresses and routing tables for a "flat" network,

@@ -1,4 +1,4 @@
-package inet.transport.rtp;
+package vanetsim.inet.transport.rtp;
 
 //
 // RTCP end system.

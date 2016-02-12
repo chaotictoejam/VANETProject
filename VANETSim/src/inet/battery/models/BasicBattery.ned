@@ -12,9 +12,9 @@
 //
 // Simple battery model for inetmanet framework
 
-package inet.battery.models;
+package vanetsim.inet.battery.models;
 
-import inet.battery.IBattery;
+import vanetsim.inet.battery.IBattery;
 
 
 //

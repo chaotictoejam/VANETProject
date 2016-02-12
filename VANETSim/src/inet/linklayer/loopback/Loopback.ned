@@ -18,7 +18,7 @@
 //
 
 
-package inet.linklayer.loopback;
+package vanetsim.inet.linklayer.loopback;
 
 //
 // Loopback interface module implementation.

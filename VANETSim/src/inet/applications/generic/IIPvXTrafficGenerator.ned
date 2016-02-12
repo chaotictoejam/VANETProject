@@ -17,7 +17,7 @@
 //
 
 
-package inet.applications.generic;
+package vanetsim.inet.applications.generic;
 
 //
 // Prototype for modules that generate traffic directly over IP.

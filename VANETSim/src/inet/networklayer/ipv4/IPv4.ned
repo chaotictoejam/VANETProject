@@ -16,7 +16,7 @@
 //
 
 
-package inet.networklayer.ipv4;
+package vanetsim.inet.networklayer.ipv4;
 
 //
 // Implements the IPv4 protocol. The protocol header is represented

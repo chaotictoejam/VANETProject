@@ -16,7 +16,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.networklayer.diffserv;
+package vanetsim.inet.networklayer.diffserv;
 
 //
 // This classifier contains a list of filters that identifies

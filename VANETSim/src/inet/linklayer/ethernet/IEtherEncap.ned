@@ -17,7 +17,7 @@
 // @author: Zoltan Bojthe
 //
 
-package inet.linklayer.ethernet;
+package vanetsim.inet.linklayer.ethernet;
 
 //
 // Module interface for Ethernet encapsulation/decapsulation.

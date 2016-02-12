@@ -18,7 +18,7 @@
 // **************************************************************************/
 
 
-package inet.world.radio;
+package vanetsim.inet.world.radio;
 
 //
 // ~ChannelControl has exactly one instance in every network model that

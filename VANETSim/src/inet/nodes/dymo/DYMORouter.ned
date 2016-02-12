@@ -2,10 +2,10 @@
 // This program is property of its copyright holder. All rights reserved.
 // 
 
-package inet.nodes.dymo;
+package vanetsim.inet.nodes.dymo;
 
-import inet.networklayer.routing.dymo.IDYMO;
-import inet.nodes.inet.WirelessHost;
+import vanetsim.inet.networklayer.routing.dymo.IDYMO;
+import vanetsim.inet.nodes.inet.WirelessHost;
 
 
 //

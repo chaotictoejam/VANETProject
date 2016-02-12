@@ -16,14 +16,14 @@
 //
 
 
-package inet.nodes.ethernet;
+package vanetsim.inet.nodes.ethernet;
 
-import inet.applications.ethernet.EtherAppCli;
-import inet.applications.ethernet.EtherAppSrv;
-import inet.linklayer.IEtherMAC;
-import inet.linklayer.ethernet.EtherLLC;
-import inet.linklayer.ethernet.EtherQoSQueue;
-import inet.status.NodeStatus;
+import vanetsim.inet.applications.ethernet.EtherAppCli;
+import vanetsim.inet.applications.ethernet.EtherAppSrv;
+import vanetsim.inet.linklayer.IEtherMAC;
+import vanetsim.inet.linklayer.ethernet.EtherLLC;
+import vanetsim.inet.linklayer.ethernet.EtherQoSQueue;
+import vanetsim.inet.status.NodeStatus;
 
 
 //

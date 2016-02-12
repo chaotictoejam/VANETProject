@@ -16,7 +16,7 @@
 
 
 
-package inet.util;
+package vanetsim.inet.util;
 
 
 simple GlobalWirelessLinkInspector

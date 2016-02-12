@@ -18,7 +18,7 @@
 //
 
 
-package inet.linklayer.radio;
+package vanetsim.inet.linklayer.radio;
 
 //
 // Implements a unit disk radio for use in ~IdealWirelessNic.

@@ -18,13 +18,13 @@
 //
 
 
-package inet.linklayer.idealwireless;
+package vanetsim.inet.linklayer.idealwireless;
 
-import inet.base.IHook;
-import inet.linklayer.IOutputQueue;
-import inet.linklayer.ITrafficConditioner;
-import inet.linklayer.IWirelessNic;
-import inet.linklayer.radio.IdealRadio;
+import vanetsim.inet.base.IHook;
+import vanetsim.inet.linklayer.IOutputQueue;
+import vanetsim.inet.linklayer.ITrafficConditioner;
+import vanetsim.inet.linklayer.IWirelessNic;
+import vanetsim.inet.linklayer.radio.IdealRadio;
 
 
 //

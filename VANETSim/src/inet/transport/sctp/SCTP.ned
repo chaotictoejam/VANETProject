@@ -16,9 +16,9 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.transport.sctp;
+package vanetsim.inet.transport.sctp;
 
-import inet.transport.ISCTP;
+import vanetsim.inet.transport.ISCTP;
 
 
 //

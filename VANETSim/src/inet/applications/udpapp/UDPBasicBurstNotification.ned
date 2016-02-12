@@ -19,9 +19,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-package inet.applications.udpapp;
+package vanetsim.inet.applications.udpapp;
 
-import inet.applications.IUDPApp;
+import vanetsim.inet.applications.IUDPApp;
 
 
 //

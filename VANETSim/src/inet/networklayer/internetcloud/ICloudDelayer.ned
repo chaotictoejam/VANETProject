@@ -17,7 +17,7 @@
 // @author Zoltan Bojthe
 //
 
-package inet.networklayer.internetcloud;
+package vanetsim.inet.networklayer.internetcloud;
 
 //
 // Delay module interface for InternetCloud.

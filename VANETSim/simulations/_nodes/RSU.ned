@@ -1,16 +1,16 @@
 package  vanetsim.simulations._nodes;
 
-import inet.base.NotificationBoard;
-import inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
-import inet.networklayer.common.InterfaceTable;
-import inet.applications.traci.TraCIDemo;
-import inet.mobility.single.LinearMobility;
-import inet.networklayer.ipv4.RoutingTable;
-import inet.transport.udp.UDP;
-import inet.nodes.inet.NetworkLayer;
-import inet.linklayer.ieee80211.Ieee80211Nic;
-import inet.networklayer.IManetRouting;
-import inet.mobility.contract.IMobility;
+import vanetsim.inet.base.NotificationBoard;
+import vanetsim.inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
+import vanetsim.inet.networklayer.common.InterfaceTable;
+import vanetsim.inet.applications.traci.TraCIDemo;
+import vanetsim.inet.mobility.single.LinearMobility;
+import vanetsim.inet.networklayer.ipv4.RoutingTable;
+import vanetsim.inet.transport.udp.UDP;
+import vanetsim.inet.nodes.inet.NetworkLayer;
+import vanetsim.inet.linklayer.ieee80211.Ieee80211Nic;
+import vanetsim.inet.networklayer.IManetRouting;
+import vanetsim.inet.mobility.contract.IMobility;
 
 module RSU
 {

@@ -17,7 +17,7 @@
 
 
 
-package inet.base;
+package vanetsim.inet.base;
 
 //
 // Silently discards all received packets.

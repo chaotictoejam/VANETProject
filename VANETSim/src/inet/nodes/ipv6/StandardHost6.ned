@@ -16,15 +16,15 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.nodes.ipv6;
+package vanetsim.inet.nodes.ipv6;
 
-import inet.applications.IPingApp;
-import inet.applications.ISCTPApp;
-import inet.applications.ITCPApp;
-import inet.applications.IUDPApp;
-import inet.transport.ISCTP;
-import inet.transport.ITCP;
-import inet.transport.IUDP;
+import vanetsim.inet.applications.IPingApp;
+import vanetsim.inet.applications.ISCTPApp;
+import vanetsim.inet.applications.ITCPApp;
+import vanetsim.inet.applications.IUDPApp;
+import vanetsim.inet.transport.ISCTP;
+import vanetsim.inet.transport.ITCP;
+import vanetsim.inet.transport.IUDP;
 
 
 //

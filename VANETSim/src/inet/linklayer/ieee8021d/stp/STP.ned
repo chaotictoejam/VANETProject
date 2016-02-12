@@ -15,8 +15,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package inet.linklayer.ieee8021d.stp;
-import inet.linklayer.ISpanningTree;
+package vanetsim.inet.linklayer.ieee8021d.stp;
+import vanetsim.inet.linklayer.ISpanningTree;
 
 //
 // The Spanning Tree Protocol (STP) is a network protocol that ensures a loop-free

@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.linklayer.ieee80211mesh.ethernet;
+package vanetsim.inet.linklayer.ieee80211mesh.ethernet;
 
 //
 // Performs Ethernet II encapsulation/decapsulation.

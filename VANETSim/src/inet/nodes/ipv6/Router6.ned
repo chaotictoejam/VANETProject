@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.nodes.ipv6;
+package vanetsim.inet.nodes.ipv6;
 
 //
 // IPv6 router.

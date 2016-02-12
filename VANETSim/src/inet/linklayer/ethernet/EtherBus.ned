@@ -16,7 +16,7 @@
 //
 
 
-package inet.linklayer.ethernet;
+package vanetsim.inet.linklayer.ethernet;
 
 //
 // Implements the shared coaxial cable for classic Ethernet.

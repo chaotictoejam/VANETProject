@@ -15,9 +15,9 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.util;
+package vanetsim.inet.util;
 
-import inet.base.IHook;
+import vanetsim.inet.base.IHook;
 
 //
 // Thruput measurement utility module.

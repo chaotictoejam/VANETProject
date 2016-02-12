@@ -13,9 +13,9 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package inet.nodes.inet;
+package vanetsim.inet.nodes.inet;
 
-import inet.networklayer.IManetRouting;
+import vanetsim.inet.networklayer.IManetRouting;
 
 
 //

@@ -17,7 +17,7 @@
 //
 
 
-package inet.networklayer.ipv4;
+package vanetsim.inet.networklayer.ipv4;
 
 //
 // ICMP implementation

@@ -15,17 +15,17 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.nodes.ipv6;
+package vanetsim.inet.nodes.ipv6;
 
-import inet.base.NotificationBoard;
-import inet.linklayer.IExternalNic;
-import inet.linklayer.IWiredNic;
-import inet.linklayer.IWirelessNic;
-import inet.linklayer.loopback.LoopbackInterface;
-import inet.mobility.contract.IMobility;
-import inet.networklayer.common.InterfaceTable;
-import inet.networklayer.ipv6.RoutingTable6;
-import inet.util.PcapRecorder;
+import vanetsim.inet.base.NotificationBoard;
+import vanetsim.inet.linklayer.IExternalNic;
+import vanetsim.inet.linklayer.IWiredNic;
+import vanetsim.inet.linklayer.IWirelessNic;
+import vanetsim.inet.linklayer.loopback.LoopbackInterface;
+import vanetsim.inet.mobility.contract.IMobility;
+import vanetsim.inet.networklayer.common.InterfaceTable;
+import vanetsim.inet.networklayer.ipv6.RoutingTable6;
+import vanetsim.inet.util.PcapRecorder;
 
 
 //

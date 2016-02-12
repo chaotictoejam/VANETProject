@@ -17,16 +17,16 @@
 //
 //
 
-package inet.linklayer.ieee80211mesh;
+package vanetsim.inet.linklayer.ieee80211mesh;
 
-import inet.base.IHook;
-import inet.linklayer.IWirelessNic;
-import inet.linklayer.ieee80211.mac.Ieee80211Mac;
-import inet.linklayer.ieee80211.mgmt.Ieee80211AgentSTA;
-import inet.linklayer.ieee80211.radio.Ieee80211Radio;
-import inet.linklayer.ieee80211mesh.locator.ILocator;
-import inet.securityModule.Security;
-import inet.linklayer.ieee80211mesh.mgmt.SecurityIeee80211Mesh;
+import vanetsim.inet.base.IHook;
+import vanetsim.inet.linklayer.IWirelessNic;
+import vanetsim.inet.linklayer.ieee80211.mac.Ieee80211Mac;
+import vanetsim.inet.linklayer.ieee80211.mgmt.Ieee80211AgentSTA;
+import vanetsim.inet.linklayer.ieee80211.radio.Ieee80211Radio;
+import vanetsim.inet.linklayer.ieee80211mesh.locator.ILocator;
+import vanetsim.inet.securityModule.Security;
+import vanetsim.inet.linklayer.ieee80211mesh.mgmt.SecurityIeee80211Mesh;
 
 //
 // This NIC implements an 802.11g network interface card in ad-hoc mode.

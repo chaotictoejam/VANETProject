@@ -1,4 +1,4 @@
-package inet.applications.ethernet;
+package vanetsim.inet.applications.ethernet;
 
 //******************************************************
 // @file EthernetApplication.cc

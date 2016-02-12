@@ -17,7 +17,7 @@
 // @author Zoltan Bojthe
 //
 
-package inet.networklayer.internetcloud;
+package vanetsim.inet.networklayer.internetcloud;
 
 //
 // Utility channel for ~InternetCloud.

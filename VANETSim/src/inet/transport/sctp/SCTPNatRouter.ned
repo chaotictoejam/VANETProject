@@ -16,11 +16,11 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-package inet.transport.sctp;
+package vanetsim.inet.transport.sctp;
 
-import inet.transport.sctp.SCTPNatTable;
-import inet.transport.sctp.SCTPNatHook;
-import inet.nodes.inet.StandardHost;
+import vanetsim.inet.transport.sctp.SCTPNatTable;
+import vanetsim.inet.transport.sctp.SCTPNatHook;
+import vanetsim.inet.nodes.inet.StandardHost;
 
 //
 // \IP router.

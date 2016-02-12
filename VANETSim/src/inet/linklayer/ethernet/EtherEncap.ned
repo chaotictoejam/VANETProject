@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.linklayer.ethernet;
+package vanetsim.inet.linklayer.ethernet;
 
 //
 // Performs Ethernet II or Ethernet with SNAP encapsulation/decapsulation.

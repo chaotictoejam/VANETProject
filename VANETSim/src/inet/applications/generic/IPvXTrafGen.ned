@@ -17,7 +17,7 @@
 //
 
 
-package inet.applications.generic;
+package vanetsim.inet.applications.generic;
 
 //
 // Sends IP or IPv6 datagrams to the given address at the given sendInterval.

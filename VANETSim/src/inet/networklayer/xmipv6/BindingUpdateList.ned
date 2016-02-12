@@ -20,7 +20,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-package inet.networklayer.xmipv6;
+package vanetsim.inet.networklayer.xmipv6;
 
 //
 // xMIPv6 Data structure for the Mobile Node

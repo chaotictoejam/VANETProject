@@ -17,7 +17,7 @@
 
 
 
-package inet.base;
+package vanetsim.inet.base;
 
 //
 // Joins multiple input streams into a single output stream.

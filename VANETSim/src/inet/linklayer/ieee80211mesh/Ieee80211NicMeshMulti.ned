@@ -17,15 +17,15 @@
 //
 //
 
-package inet.linklayer.ieee80211mesh;
+package vanetsim.inet.linklayer.ieee80211mesh;
 
-import inet.linklayer.ieee80211.radio.Ieee80211Radio;
-import inet.linklayer.ieee80211.mgmt.Ieee80211AgentSTA;
-import inet.linklayer.ieee80211.mgmt.IIeee80211Mgmt;
-import inet.linklayer.ieee80211.mac.Ieee80211Mac;
-import inet.linklayer.ieee80211mesh.mgmt.Ieee80211Mesh;
-import inet.base.IHook;
-import inet.linklayer.ieee80211mesh.locator.ILocator;
+import vanetsim.inet.linklayer.ieee80211.radio.Ieee80211Radio;
+import vanetsim.inet.linklayer.ieee80211.mgmt.Ieee80211AgentSTA;
+import vanetsim.inet.linklayer.ieee80211.mgmt.IIeee80211Mgmt;
+import vanetsim.inet.linklayer.ieee80211.mac.Ieee80211Mac;
+import vanetsim.inet.linklayer.ieee80211mesh.mgmt.Ieee80211Mesh;
+import vanetsim.inet.base.IHook;
+import vanetsim.inet.linklayer.ieee80211mesh.locator.ILocator;
 
 
 //

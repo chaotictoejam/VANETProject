@@ -18,9 +18,9 @@
 
 
 
-package inet.transport.udp;
+package vanetsim.inet.transport.udp;
 
-import inet.transport.IUDP;
+import vanetsim.inet.transport.IUDP;
 
 //
 // UDP protocol implementation, for IPv4 and IPv6.

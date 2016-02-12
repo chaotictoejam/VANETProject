@@ -15,9 +15,9 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package inet.mobility.common;
+package vanetsim.inet.mobility.common;
 
-import inet.mobility.contract.IMobility;
+import vanetsim.inet.mobility.contract.IMobility;
 
 //
 // Abstract base module for mobility models.
