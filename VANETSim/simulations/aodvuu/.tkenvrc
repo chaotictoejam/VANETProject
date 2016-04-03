@@ -1,4 +1,4 @@
 # Partial OMNeT++/Tkenv config file -- see $HOME/.tkenvrc as well
-config default-configname	{AODVUU-ManhattanGrid}
+config default-configname	{AODVUU-i95}
 config default-runnumber	{0}
 
