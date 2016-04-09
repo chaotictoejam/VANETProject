@@ -54,6 +54,7 @@ class WifiModulationType
         static ModulationType GetOfdmRate18MbpsBW10MHz();
         static ModulationType GetOfdmRate24MbpsBW10MHz();
         static ModulationType GetOfdmRate27MbpsBW10MHz();
+        static ModulationType GetOfdmRate54MbpsBW10MHz();
         static ModulationType GetOfdmRate1_5MbpsBW5MHz();
         static ModulationType GetOfdmRate2_25MbpsBW5MHz();
         static ModulationType GetOfdmRate3MbpsBW5MHz();

@@ -98,7 +98,7 @@ const Ieee80211DescriptorData Ieee80211Descriptor::data[] =
 
 
 
-    {'p',  3000000, WifiModulationType::GetOfdmRate3MbpsBW10MHz(),false},
+    {'p',  1000000, WifiModulationType::GetDsssRate1Mbps(),false},    {'p',  3000000, WifiModulationType::GetOfdmRate3MbpsBW10MHz(),false},
     {'p',  4500000, WifiModulationType::GetOfdmRate4_5MbpsBW10MHz(),false},
     {'p',  6000000, WifiModulationType::GetOfdmRate6MbpsBW10MHz(),false},
     {'p',  9000000, WifiModulationType::GetOfdmRate9MbpsBW10MHz(),false},
@@ -106,6 +106,7 @@ const Ieee80211DescriptorData Ieee80211Descriptor::data[] =
     {'p', 18000000, WifiModulationType::GetOfdmRate18MbpsBW10MHz(),false},
     {'p', 24000000, WifiModulationType::GetOfdmRate24MbpsBW10MHz(),false},
     {'p', 27000000, WifiModulationType::GetOfdmRate27MbpsBW10MHz(),false},
+    {'p', 54000000, WifiModulationType::GetOfdmRate54MbpsBW10MHz(),false},
 
 
 };

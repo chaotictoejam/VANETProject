@@ -415,6 +415,20 @@ WifiModulationType::GetOfdmRate27MbpsBW10MHz()
    return mode;
 }
 
+ModulationType
+WifiModulationType::GetOfdmRate54MbpsBW10MHz()
+{
+   ModulationType mode;
+   mode.setModulationClass(MOD_CLASS_OFDM);
+   mode.setBandwidth(10000000);
+   mode.setDataRate(54000000);
+   mode.setCodeRate(CODE_RATE_3_4);
+   mode.setConstellationSize(64);
+   mode.setIsMandatory(false);
+   mode.setFrequency(5000);
+   return mode;
+}
+
 /* 5 MHz channel rates */
 ModulationType
 WifiModulationType::GetOfdmRate1_5MbpsBW5MHz()
