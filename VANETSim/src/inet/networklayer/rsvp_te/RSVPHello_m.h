@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/rsvp_te/RSVPHello.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/rsvp_te/RSVPHello.msg.
 //
 
 #ifndef _RSVPHELLO_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/RSVPHello.msg:29</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/RSVPHello.msg:29</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation

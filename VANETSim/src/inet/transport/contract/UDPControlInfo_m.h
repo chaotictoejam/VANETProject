@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/contract/UDPControlInfo.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/contract/UDPControlInfo.msg.
 //
 
 #ifndef _UDPCONTROLINFO_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>transport/contract/UDPControlInfo.msg:34</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/contract/UDPControlInfo.msg:34</tt> by nedtool.
  * <pre>
  * //
  * // UDP command codes, sent by the application to ~UDP. These constants
@@ -48,7 +48,7 @@ enum UDPCommandCode {
 };
 
 /**
- * Enum generated from <tt>transport/contract/UDPControlInfo.msg:50</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/contract/UDPControlInfo.msg:50</tt> by nedtool.
  * <pre>
  * //
  * // UDP indications, sent by ~UDP to the application. ~UDP will set these
@@ -70,7 +70,7 @@ enum UDPStatusInd {
 };
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:66</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:66</tt> by nedtool.
  * <pre>
  * //
  * // Base class for UDP control info classes. The most convenient way to handle
@@ -117,7 +117,7 @@ inline void doPacking(cCommBuffer *b, UDPControlInfo& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, UDPControlInfo& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:81</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:81</tt> by nedtool.
  * <pre>
  * //
  * // Control info for binding an UDP socket. To create and bind a socket,
@@ -170,7 +170,7 @@ inline void doPacking(cCommBuffer *b, UDPBindCommand& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, UDPBindCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:97</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:97</tt> by nedtool.
  * <pre>
  * //
  * // Control info for connecting an UDP socket. To connect a socket,
@@ -223,7 +223,7 @@ inline void doPacking(cCommBuffer *b, UDPConnectCommand& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, UDPConnectCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:114</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:114</tt> by nedtool.
  * <pre>
  * //
  * // Control info for sending data via UDP. To send a packet, send it to
@@ -285,7 +285,7 @@ inline void doPacking(cCommBuffer *b, UDPSendCommand& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, UDPSendCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:129</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:129</tt> by nedtool.
  * <pre>
  * //
  * // Control info for closing an UDP socket. To close a socket, send a message
@@ -325,7 +325,7 @@ inline void doPacking(cCommBuffer *b, UDPCloseCommand& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, UDPCloseCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:140</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:140</tt> by nedtool.
  * <pre>
  * //
  * // Control info that is attached to received data packets, sent up from the
@@ -395,7 +395,7 @@ inline void doPacking(cCommBuffer *b, UDPDataIndication& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, UDPDataIndication& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:158</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:158</tt> by nedtool.
  * <pre>
  * //
  * // Control info that is sent up from the ~UDP module to the application with
@@ -454,7 +454,7 @@ inline void doPacking(cCommBuffer *b, UDPErrorIndication& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, UDPErrorIndication& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:169</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:169</tt> by nedtool.
  * <pre>
  * //
  * // Base class for UDP socket option control info classes.
@@ -491,7 +491,7 @@ inline void doPacking(cCommBuffer *b, UDPSetOptionCommand& obj) {obj.parsimPack(
 inline void doUnpacking(cCommBuffer *b, UDPSetOptionCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:181</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:181</tt> by nedtool.
  * <pre>
  * //
  * // Control info for setting the Time To Live (a.k.a. Hop Limit) option on an
@@ -537,7 +537,7 @@ inline void doPacking(cCommBuffer *b, UDPSetTimeToLiveCommand& obj) {obj.parsimP
 inline void doUnpacking(cCommBuffer *b, UDPSetTimeToLiveCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:196</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:196</tt> by nedtool.
  * <pre>
  * //
  * // Control info for setting the Type of Service (IPv4) or Traffic Class (IPv6)
@@ -585,7 +585,7 @@ inline void doPacking(cCommBuffer *b, UDPSetTypeOfServiceCommand& obj) {obj.pars
 inline void doUnpacking(cCommBuffer *b, UDPSetTypeOfServiceCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:208</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:208</tt> by nedtool.
  * <pre>
  * //
  * // Control info for setting the Broadcast option on an UDP socket.
@@ -630,7 +630,7 @@ inline void doPacking(cCommBuffer *b, UDPSetBroadcastCommand& obj) {obj.parsimPa
 inline void doUnpacking(cCommBuffer *b, UDPSetBroadcastCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:220</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:220</tt> by nedtool.
  * <pre>
  * //
  * // Control info for setting the multicast output interface for an UDP socket.
@@ -675,7 +675,7 @@ inline void doPacking(cCommBuffer *b, UDPSetMulticastInterfaceCommand& obj) {obj
 inline void doUnpacking(cCommBuffer *b, UDPSetMulticastInterfaceCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:234</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:234</tt> by nedtool.
  * <pre>
  * //
  * // Control info for setting the multicast loop option for an UDP socket.
@@ -722,7 +722,7 @@ inline void doPacking(cCommBuffer *b, UDPSetMulticastLoopCommand& obj) {obj.pars
 inline void doUnpacking(cCommBuffer *b, UDPSetMulticastLoopCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:248</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:248</tt> by nedtool.
  * <pre>
  * //
  * // Control info for setting the ReuseAddress option on an UDP socket.
@@ -769,7 +769,7 @@ inline void doPacking(cCommBuffer *b, UDPSetReuseAddressCommand& obj) {obj.parsi
 inline void doUnpacking(cCommBuffer *b, UDPSetReuseAddressCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:264</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:264</tt> by nedtool.
  * <pre>
  * //
  * // Control info for letting an UDP socket join multicast groups.
@@ -829,7 +829,7 @@ inline void doPacking(cCommBuffer *b, UDPJoinMulticastGroupsCommand& obj) {obj.p
 inline void doUnpacking(cCommBuffer *b, UDPJoinMulticastGroupsCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/UDPControlInfo.msg:278</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/UDPControlInfo.msg:278</tt> by nedtool.
  * <pre>
  * //
  * //

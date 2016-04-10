@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/rtp/RTCPPacket2.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/rtp/RTCPPacket2.msg.
 //
 
 #ifndef _RTCPPACKET2_M_H_
@@ -22,7 +22,7 @@
 // }}
 
 /**
- * Class generated from <tt>transport/rtp/RTCPPacket2.msg:30</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTCPPacket2.msg:30</tt> by nedtool.
  * <pre>
  * packet RTCPReceiverReportPacket extends RTCPPacket
  * {
@@ -90,7 +90,7 @@ class RTCPReceiverReportPacket_Base : public ::RTCPPacket
 };
 
 /**
- * Class generated from <tt>transport/rtp/RTCPPacket2.msg:38</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTCPPacket2.msg:38</tt> by nedtool.
  * <pre>
  * packet RTCPSDESPacket extends RTCPPacket
  * {
@@ -154,7 +154,7 @@ class RTCPSDESPacket_Base : public ::RTCPPacket
 };
 
 /**
- * Class generated from <tt>transport/rtp/RTCPPacket2.msg:45</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTCPPacket2.msg:45</tt> by nedtool.
  * <pre>
  * packet RTCPByePacket extends RTCPPacket
  * {

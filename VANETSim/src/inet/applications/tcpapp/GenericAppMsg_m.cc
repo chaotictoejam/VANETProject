@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/tcpapp/GenericAppMsg.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/tcpapp/GenericAppMsg.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

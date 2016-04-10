@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/contract/TCPCommand.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/contract/TCPCommand.msg.
 //
 
 #ifndef _TCPCOMMAND_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>transport/contract/TCPCommand.msg:33</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/contract/TCPCommand.msg:33</tt> by nedtool.
  * <pre>
  * //
  * // TCP command codes, sent by the application to TCP. These constants
@@ -52,7 +52,7 @@ enum TcpCommandCode {
 };
 
 /**
- * Enum generated from <tt>transport/contract/TCPCommand.msg:51</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/contract/TCPCommand.msg:51</tt> by nedtool.
  * <pre>
  * //
  * // TCP indications, sent by TCP to the application. TCP will set these
@@ -90,7 +90,7 @@ enum TcpStatusInd {
 };
 
 /**
- * Enum generated from <tt>transport/contract/TCPCommand.msg:69</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/contract/TCPCommand.msg:69</tt> by nedtool.
  * <pre>
  * //
  * // Currently not in use.
@@ -105,7 +105,7 @@ enum TCPErrorCode {
 };
 
 /**
- * Class generated from <tt>transport/contract/TCPCommand.msg:88</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/TCPCommand.msg:88</tt> by nedtool.
  * <pre>
  * //
  * // Control info for TCP connections. This class is to be set as control info
@@ -161,7 +161,7 @@ inline void doPacking(cCommBuffer *b, TCPCommand& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, TCPCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/TCPCommand.msg:98</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/TCPCommand.msg:98</tt> by nedtool.
  * <pre>
  * //
  * // Currently not in use.
@@ -206,7 +206,7 @@ inline void doPacking(cCommBuffer *b, TCPErrorInfo& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, TCPErrorInfo& obj) {obj.parsimUnpack(b);}
 
 /**
- * Enum generated from <tt>transport/contract/TCPCommand.msg:117</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/contract/TCPCommand.msg:117</tt> by nedtool.
  * <pre>
  * //
  * // Defines what to transmit as payload in TCP segments
@@ -239,7 +239,7 @@ enum TCPDataTransferMode {
 };
 
 /**
- * Class generated from <tt>transport/contract/TCPCommand.msg:151</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/TCPCommand.msg:151</tt> by nedtool.
  * <pre>
  * //
  * // Control info to be used for active or passive TCP open.
@@ -329,7 +329,7 @@ inline void doPacking(cCommBuffer *b, TCPOpenCommand& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, TCPOpenCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/TCPCommand.msg:168</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/TCPCommand.msg:168</tt> by nedtool.
  * <pre>
  * //
  * // Control info to be used with the SEND command.
@@ -368,7 +368,7 @@ inline void doPacking(cCommBuffer *b, TCPSendCommand& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, TCPSendCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/TCPCommand.msg:179</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/TCPCommand.msg:179</tt> by nedtool.
  * <pre>
  * //
  * // Sent with message kind TCP_I_ESTABLISHED, to let the app know
@@ -426,7 +426,7 @@ inline void doPacking(cCommBuffer *b, TCPConnectInfo& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, TCPConnectInfo& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/TCPCommand.msg:195</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/TCPCommand.msg:195</tt> by nedtool.
  * <pre>
  * //
  * // Sent with message kind TCP_I_STATUS, in response to command TCP_C_STATUS.

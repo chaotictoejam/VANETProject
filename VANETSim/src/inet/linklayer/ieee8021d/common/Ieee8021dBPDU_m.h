@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/ieee8021d/common/Ieee8021dBPDU.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/ieee8021d/common/Ieee8021dBPDU.msg.
 //
 
 #ifndef _IEEE8021DBPDU_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>linklayer/ieee8021d/common/Ieee8021dBPDU.msg:28</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee8021d/common/Ieee8021dBPDU.msg:28</tt> by nedtool.
  * <pre>
  * //
  * // Represents a BPDU (Bridge PDU) used by the STP and RSTP protocols,

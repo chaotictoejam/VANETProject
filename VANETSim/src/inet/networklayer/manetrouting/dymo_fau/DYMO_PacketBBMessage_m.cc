@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/manetrouting/dymo_fau/DYMO_PacketBBMessage.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/manetrouting/dymo_fau/DYMO_PacketBBMessage.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

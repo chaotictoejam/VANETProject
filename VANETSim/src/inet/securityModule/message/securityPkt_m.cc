@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from securityModule/message/securityPkt.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/securityModule/message/securityPkt.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

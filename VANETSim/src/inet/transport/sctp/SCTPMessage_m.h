@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/sctp/SCTPMessage.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/sctp/SCTPMessage.msg.
 //
 
 #ifndef _SCTPMESSAGE_M_H_
@@ -24,7 +24,7 @@ typedef cPacket *cPacketPtr;
 // }}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:36</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:36</tt> by nedtool.
  * <pre>
  * message SCTPSimpleMessage extends cPacket
  * {
@@ -77,7 +77,7 @@ inline void doPacking(cCommBuffer *b, SCTPSimpleMessage& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, SCTPSimpleMessage& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:44</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:44</tt> by nedtool.
  * <pre>
  * message SCTPMessage extends cPacket
  * {
@@ -160,7 +160,7 @@ class SCTPMessage_Base : public ::cPacket
 };
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:58</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:58</tt> by nedtool.
  * <pre>
  * message SCTPChunk extends cPacket
  * {
@@ -200,7 +200,7 @@ inline void doPacking(cCommBuffer *b, SCTPChunk& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:65</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:65</tt> by nedtool.
  * <pre>
  * message SCTPInitChunk extends SCTPChunk
  * {
@@ -310,7 +310,7 @@ inline void doPacking(cCommBuffer *b, SCTPInitChunk& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPInitChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:87</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:87</tt> by nedtool.
  * <pre>
  * message SCTPInitAckChunk extends SCTPChunk
  * {
@@ -432,7 +432,7 @@ inline void doPacking(cCommBuffer *b, SCTPInitAckChunk& obj) {obj.parsimPack(b);
 inline void doUnpacking(cCommBuffer *b, SCTPInitAckChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:113</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:113</tt> by nedtool.
  * <pre>
  * message SCTPCookieEchoChunk extends SCTPChunk
  * {
@@ -485,7 +485,7 @@ inline void doPacking(cCommBuffer *b, SCTPCookieEchoChunk& obj) {obj.parsimPack(
 inline void doUnpacking(cCommBuffer *b, SCTPCookieEchoChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:120</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:120</tt> by nedtool.
  * <pre>
  * message SCTPCookie extends cPacket
  * {
@@ -545,7 +545,7 @@ inline void doPacking(cCommBuffer *b, SCTPCookie& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPCookie& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:129</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:129</tt> by nedtool.
  * <pre>
  * message SCTPCookieAckChunk extends SCTPChunk
  * {
@@ -579,7 +579,7 @@ inline void doPacking(cCommBuffer *b, SCTPCookieAckChunk& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, SCTPCookieAckChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:133</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:133</tt> by nedtool.
  * <pre>
  * message SCTPDataMsg extends cPacket
  * {
@@ -679,7 +679,7 @@ inline void doPacking(cCommBuffer *b, SCTPDataMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPDataMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:154</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:154</tt> by nedtool.
  * <pre>
  * message SCTPDataChunk extends SCTPChunk
  * {
@@ -758,7 +758,7 @@ inline void doPacking(cCommBuffer *b, SCTPDataChunk& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPDataChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:173</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:173</tt> by nedtool.
  * <pre>
  * message SCTPForwardTsnChunk extends SCTPChunk
  * {
@@ -810,7 +810,7 @@ inline void doPacking(cCommBuffer *b, SCTPForwardTsnChunk& obj) {obj.parsimPack(
 inline void doUnpacking(cCommBuffer *b, SCTPForwardTsnChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:180</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:180</tt> by nedtool.
  * <pre>
  * message SCTPSackChunk extends SCTPChunk
  * {
@@ -925,7 +925,7 @@ inline void doPacking(cCommBuffer *b, SCTPSackChunk& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPSackChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:205</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:205</tt> by nedtool.
  * <pre>
  * message SCTPAbortChunk extends SCTPChunk
  * {
@@ -964,7 +964,7 @@ inline void doPacking(cCommBuffer *b, SCTPAbortChunk& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPAbortChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:211</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:211</tt> by nedtool.
  * <pre>
  * message SCTPHeartbeatChunk extends SCTPChunk
  * {
@@ -1014,7 +1014,7 @@ inline void doPacking(cCommBuffer *b, SCTPHeartbeatChunk& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, SCTPHeartbeatChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:218</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:218</tt> by nedtool.
  * <pre>
  * message SCTPHeartbeatAckChunk extends SCTPChunk
  * {
@@ -1064,7 +1064,7 @@ inline void doPacking(cCommBuffer *b, SCTPHeartbeatAckChunk& obj) {obj.parsimPac
 inline void doUnpacking(cCommBuffer *b, SCTPHeartbeatAckChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:225</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:225</tt> by nedtool.
  * <pre>
  * message SCTPShutdownChunk extends SCTPChunk
  * {
@@ -1102,7 +1102,7 @@ inline void doPacking(cCommBuffer *b, SCTPShutdownChunk& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, SCTPShutdownChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:230</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:230</tt> by nedtool.
  * <pre>
  * message SCTPShutdownAckChunk extends SCTPChunk
  * {
@@ -1136,7 +1136,7 @@ inline void doPacking(cCommBuffer *b, SCTPShutdownAckChunk& obj) {obj.parsimPack
 inline void doUnpacking(cCommBuffer *b, SCTPShutdownAckChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:234</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:234</tt> by nedtool.
  * <pre>
  * message SCTPShutdownCompleteChunk extends SCTPChunk
  * {
@@ -1174,7 +1174,7 @@ inline void doPacking(cCommBuffer *b, SCTPShutdownCompleteChunk& obj) {obj.parsi
 inline void doUnpacking(cCommBuffer *b, SCTPShutdownCompleteChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:239</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:239</tt> by nedtool.
  * <pre>
  * message SCTPErrorChunk extends SCTPChunk
  * {
@@ -1246,7 +1246,7 @@ class SCTPErrorChunk_Base : public ::SCTPChunk
 };
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:247</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:247</tt> by nedtool.
  * <pre>
  * message SCTPParameter extends cPacket
  * {
@@ -1284,7 +1284,7 @@ inline void doPacking(cCommBuffer *b, SCTPParameter& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPParameter& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:252</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:252</tt> by nedtool.
  * <pre>
  * message SCTPPacketDropChunk extends SCTPChunk
  * {
@@ -1346,7 +1346,7 @@ inline void doPacking(cCommBuffer *b, SCTPPacketDropChunk& obj) {obj.parsimPack(
 inline void doUnpacking(cCommBuffer *b, SCTPPacketDropChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:263</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:263</tt> by nedtool.
  * <pre>
  * message SCTPStreamResetChunk extends SCTPChunk
  * {
@@ -1410,7 +1410,7 @@ class SCTPStreamResetChunk_Base : public ::SCTPChunk
 };
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:269</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:269</tt> by nedtool.
  * <pre>
  * message SCTPOutgoingSSNResetRequestParameter extends SCTPParameter
  * {
@@ -1463,7 +1463,7 @@ inline void doPacking(cCommBuffer *b, SCTPOutgoingSSNResetRequestParameter& obj)
 inline void doUnpacking(cCommBuffer *b, SCTPOutgoingSSNResetRequestParameter& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:277</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:277</tt> by nedtool.
  * <pre>
  * message SCTPIncomingSSNResetRequestParameter extends SCTPParameter
  * {
@@ -1508,7 +1508,7 @@ inline void doPacking(cCommBuffer *b, SCTPIncomingSSNResetRequestParameter& obj)
 inline void doUnpacking(cCommBuffer *b, SCTPIncomingSSNResetRequestParameter& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:283</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:283</tt> by nedtool.
  * <pre>
  * message SCTPSSNTSNResetRequestParameter extends SCTPParameter
  * {
@@ -1546,7 +1546,7 @@ inline void doPacking(cCommBuffer *b, SCTPSSNTSNResetRequestParameter& obj) {obj
 inline void doUnpacking(cCommBuffer *b, SCTPSSNTSNResetRequestParameter& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:288</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:288</tt> by nedtool.
  * <pre>
  * message SCTPStreamResetResponseParameter extends SCTPParameter
  * {
@@ -1596,7 +1596,7 @@ inline void doPacking(cCommBuffer *b, SCTPStreamResetResponseParameter& obj) {ob
 inline void doUnpacking(cCommBuffer *b, SCTPStreamResetResponseParameter& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:296</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:296</tt> by nedtool.
  * <pre>
  * message SCTPResetTimer extends cPacket
  * {
@@ -1646,7 +1646,7 @@ inline void doPacking(cCommBuffer *b, SCTPResetTimer& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPResetTimer& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:304</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:304</tt> by nedtool.
  * <pre>
  * message SCTPAuthenticationChunk extends SCTPChunk
  * {
@@ -1699,7 +1699,7 @@ inline void doPacking(cCommBuffer *b, SCTPAuthenticationChunk& obj) {obj.parsimP
 inline void doUnpacking(cCommBuffer *b, SCTPAuthenticationChunk& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:312</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:312</tt> by nedtool.
  * <pre>
  * message SCTPAsconfChunk extends SCTPChunk
  * {
@@ -1776,7 +1776,7 @@ class SCTPAsconfChunk_Base : public ::SCTPChunk
 };
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:321</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:321</tt> by nedtool.
  * <pre>
  * message SCTPAsconfAckChunk extends SCTPChunk
  * {
@@ -1844,7 +1844,7 @@ class SCTPAsconfAckChunk_Base : public ::SCTPChunk
 };
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:328</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:328</tt> by nedtool.
  * <pre>
  * message SCTPAddIPParameter extends SCTPParameter
  * {
@@ -1887,7 +1887,7 @@ inline void doPacking(cCommBuffer *b, SCTPAddIPParameter& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, SCTPAddIPParameter& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:334</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:334</tt> by nedtool.
  * <pre>
  * message SCTPDeleteIPParameter extends SCTPParameter
  * {
@@ -1930,7 +1930,7 @@ inline void doPacking(cCommBuffer *b, SCTPDeleteIPParameter& obj) {obj.parsimPac
 inline void doUnpacking(cCommBuffer *b, SCTPDeleteIPParameter& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:340</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:340</tt> by nedtool.
  * <pre>
  * message SCTPSetPrimaryIPParameter extends SCTPParameter
  * {
@@ -1973,7 +1973,7 @@ inline void doPacking(cCommBuffer *b, SCTPSetPrimaryIPParameter& obj) {obj.parsi
 inline void doUnpacking(cCommBuffer *b, SCTPSetPrimaryIPParameter& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:346</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:346</tt> by nedtool.
  * <pre>
  * message SCTPSupportedExtensionsParameter extends SCTPParameter
  * {
@@ -2014,7 +2014,7 @@ inline void doPacking(cCommBuffer *b, SCTPSupportedExtensionsParameter& obj) {ob
 inline void doUnpacking(cCommBuffer *b, SCTPSupportedExtensionsParameter& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:351</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:351</tt> by nedtool.
  * <pre>
  * message SCTPErrorCauseParameter extends SCTPParameter
  * {
@@ -2056,7 +2056,7 @@ inline void doPacking(cCommBuffer *b, SCTPErrorCauseParameter& obj) {obj.parsimP
 inline void doUnpacking(cCommBuffer *b, SCTPErrorCauseParameter& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:357</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:357</tt> by nedtool.
  * <pre>
  * message SCTPSimpleErrorCauseParameter extends SCTPParameter
  * {
@@ -2094,7 +2094,7 @@ inline void doPacking(cCommBuffer *b, SCTPSimpleErrorCauseParameter& obj) {obj.p
 inline void doUnpacking(cCommBuffer *b, SCTPSimpleErrorCauseParameter& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:362</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:362</tt> by nedtool.
  * <pre>
  * message SCTPSuccessIndication extends SCTPParameter
  * {
@@ -2132,7 +2132,7 @@ inline void doPacking(cCommBuffer *b, SCTPSuccessIndication& obj) {obj.parsimPac
 inline void doUnpacking(cCommBuffer *b, SCTPSuccessIndication& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/sctp/SCTPMessage.msg:367</tt> by nedtool.
+ * Class generated from <tt>inet/transport/sctp/SCTPMessage.msg:367</tt> by nedtool.
  * <pre>
  * message NatMessage extends cPacket
  * {

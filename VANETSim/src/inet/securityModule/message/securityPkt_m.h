@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from securityModule/message/securityPkt.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/securityModule/message/securityPkt.msg.
 //
 
 #ifndef _SECURITYPKT_M_H_
@@ -38,7 +38,7 @@ typedef SecurityKeys::unit64_t_ unit64_t_;
 // }}
 
 /**
- * Class generated from <tt>securityModule/message/securityPkt.msg:40</tt> by nedtool.
+ * Class generated from <tt>inet/securityModule/message/securityPkt.msg:40</tt> by nedtool.
  * <pre>
  * packet SecurityPkt //extends Ieee80211ManagementFrame
  * {
@@ -131,7 +131,7 @@ inline void doPacking(cCommBuffer *b, SecurityPkt& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SecurityPkt& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>securityModule/message/securityPkt.msg:60</tt> by nedtool.
+ * Class generated from <tt>inet/securityModule/message/securityPkt.msg:60</tt> by nedtool.
  * <pre>
  * // Ieee80211DataFrame
  * packet CCMPFrame //extends Ieee80211MeshFrame
@@ -177,7 +177,7 @@ inline void doPacking(cCommBuffer *b, CCMPFrame& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, CCMPFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>securityModule/message/securityPkt.msg:67</tt> by nedtool.
+ * Class generated from <tt>inet/securityModule/message/securityPkt.msg:67</tt> by nedtool.
  * <pre>
  * packet SAEMsg
  * {
@@ -231,7 +231,7 @@ inline void doPacking(cCommBuffer *b, SAEMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SAEMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>securityModule/message/securityPkt.msg:76</tt> by nedtool.
+ * Class generated from <tt>inet/securityModule/message/securityPkt.msg:76</tt> by nedtool.
  * <pre>
  * packet AMPEMsg //extends Ieee80211ManagementFrame
  * {

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from base/ByteArray.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/base/ByteArray.msg.
 //
 
 #ifndef _BYTEARRAY_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>base/ByteArray.msg:26</tt> by nedtool.
+ * Class generated from <tt>inet/base/ByteArray.msg:26</tt> by nedtool.
  * <pre>
  * //
  * // Class that carries raw bytes.

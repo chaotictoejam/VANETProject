@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/radio/IdealAirFrame.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/radio/IdealAirFrame.msg.
 //
 
 #ifndef _IDEALAIRFRAME_M_H_
@@ -22,7 +22,7 @@
 // }}
 
 /**
- * Class generated from <tt>linklayer/radio/IdealAirFrame.msg:34</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/radio/IdealAirFrame.msg:34</tt> by nedtool.
  * <pre>
  * //
  * // AirFrame used with ~IdealRadio and ~IdealChannelModel

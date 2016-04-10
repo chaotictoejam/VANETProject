@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/rsvp_te/RSVPPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/rsvp_te/RSVPPacket.msg.
 //
 
 #ifndef _RSVPPACKET_M_H_
@@ -28,7 +28,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/RSVPPacket.msg:56</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/RSVPPacket.msg:56</tt> by nedtool.
  * <pre>
  * //
  * // RSVP message common part
@@ -69,7 +69,7 @@ inline void doPacking(cCommBuffer *b, RSVPMessage& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RSVPMessage& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/RSVPPacket.msg:64</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/RSVPPacket.msg:64</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation

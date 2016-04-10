@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg.
 //
 
 #ifndef _IEEE80211MGMTFRAMES_M_H_
@@ -23,7 +23,7 @@
 // }}
 
 /**
- * Struct generated from linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:41 by nedtool.
+ * Struct generated from inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:41 by nedtool.
  */
 struct Ieee80211CapabilityInformation
 {
@@ -41,7 +41,7 @@ void doPacking(cCommBuffer *b, Ieee80211CapabilityInformation& a);
 void doUnpacking(cCommBuffer *b, Ieee80211CapabilityInformation& a);
 
 /**
- * Struct generated from linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:56 by nedtool.
+ * Struct generated from inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:56 by nedtool.
  */
 struct Ieee80211HandoverParameters
 {
@@ -56,7 +56,7 @@ void doPacking(cCommBuffer *b, Ieee80211HandoverParameters& a);
 void doUnpacking(cCommBuffer *b, Ieee80211HandoverParameters& a);
 
 /**
- * Enum generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:67</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:67</tt> by nedtool.
  * <pre>
  * //
  * // 802.11 reason code; values correspond to the standard.
@@ -119,7 +119,7 @@ enum Ieee80211ReasonCode {
 };
 
 /**
- * Enum generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:99</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:99</tt> by nedtool.
  * <pre>
  * //
  * // 802.11 status code; values correspond to the standard.
@@ -162,7 +162,7 @@ enum Ieee80211StatusCode {
 };
 
 /**
- * Enum generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:118</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:118</tt> by nedtool.
  * <pre>
  * enum Ieee80211HWMPCode
  * {
@@ -184,7 +184,7 @@ enum Ieee80211HWMPCode {
 };
 
 /**
- * Struct generated from linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:130 by nedtool.
+ * Struct generated from inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:130 by nedtool.
  */
 struct Ieee80211SupportedRatesElement
 {
@@ -197,7 +197,7 @@ void doPacking(cCommBuffer *b, Ieee80211SupportedRatesElement& a);
 void doUnpacking(cCommBuffer *b, Ieee80211SupportedRatesElement& a);
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:139</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:139</tt> by nedtool.
  * <pre>
  * //
  * // Frame body base class used to hide various frame body types
@@ -238,7 +238,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211FrameBody& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, Ieee80211FrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:154</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:154</tt> by nedtool.
  * <pre>
  * //
  * // Authentication frame body format.
@@ -295,7 +295,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211AuthenticationFrameBody& obj) {ob
 inline void doUnpacking(cCommBuffer *b, Ieee80211AuthenticationFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:165</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:165</tt> by nedtool.
  * <pre>
  * //
  * // De-authentication frame body format
@@ -337,7 +337,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211DeauthenticationFrameBody& obj) {
 inline void doUnpacking(cCommBuffer *b, Ieee80211DeauthenticationFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:174</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:174</tt> by nedtool.
  * <pre>
  * //
  * // Dis-association frame body format (same as De-authentication)
@@ -379,7 +379,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211DisassociationFrameBody& obj) {ob
 inline void doUnpacking(cCommBuffer *b, Ieee80211DisassociationFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:183</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:183</tt> by nedtool.
  * <pre>
  * //
  * // Probe request frame body format
@@ -426,7 +426,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ProbeRequestFrameBody& obj) {obj.
 inline void doUnpacking(cCommBuffer *b, Ieee80211ProbeRequestFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:193</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:193</tt> by nedtool.
  * <pre>
  * //
  * // Association request frame body format
@@ -473,7 +473,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211AssociationRequestFrameBody& obj)
 inline void doUnpacking(cCommBuffer *b, Ieee80211AssociationRequestFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:203</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:203</tt> by nedtool.
  * <pre>
  * //
  * // Re-association request frame body format (same as association)
@@ -516,7 +516,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ReassociationRequestFrameBody& ob
 inline void doUnpacking(cCommBuffer *b, Ieee80211ReassociationRequestFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:212</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:212</tt> by nedtool.
  * <pre>
  * //
  * // Association response frame body format
@@ -567,7 +567,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211AssociationResponseFrameBody& obj
 inline void doUnpacking(cCommBuffer *b, Ieee80211AssociationResponseFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:223</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:223</tt> by nedtool.
  * <pre>
  * //
  * // Re-association response frame body format (same as AssociationResponse)
@@ -604,7 +604,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ReassociationResponseFrameBody& o
 inline void doUnpacking(cCommBuffer *b, Ieee80211ReassociationResponseFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:230</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:230</tt> by nedtool.
  * <pre>
  * //
  * // Beacon frame body format.
@@ -664,7 +664,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211BeaconFrameBody& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, Ieee80211BeaconFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:243</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:243</tt> by nedtool.
  * <pre>
  * //
  * // Probe response frame body format (same as Beacon)
@@ -701,7 +701,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ProbeResponseFrameBody& obj) {obj
 inline void doUnpacking(cCommBuffer *b, Ieee80211ProbeResponseFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:247</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:247</tt> by nedtool.
  * <pre>
  * class Ieee80211ActionFrameBody extends Ieee80211FrameBody
  * {
@@ -735,7 +735,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionFrameBody& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:251</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:251</tt> by nedtool.
  * <pre>
  * class Ieee80211ActionHWMPFrameBody extends Ieee80211ActionFrameBody
  * {
@@ -786,7 +786,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionHWMPFrameBody& obj) {obj.pa
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionHWMPFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Struct generated from linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:261 by nedtool.
+ * Struct generated from inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:261 by nedtool.
  */
 struct PREQElem
 {
@@ -801,7 +801,7 @@ void doPacking(cCommBuffer *b, PREQElem& a);
 void doUnpacking(cCommBuffer *b, PREQElem& a);
 
 /**
- * Struct generated from linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:269 by nedtool.
+ * Struct generated from inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:269 by nedtool.
  */
 struct PERRElem
 {
@@ -818,7 +818,7 @@ void doPacking(cCommBuffer *b, PERRElem& a);
 void doUnpacking(cCommBuffer *b, PERRElem& a);
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:280</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:280</tt> by nedtool.
  * <pre>
  * class Ieee80211ActionRANNFrameBody extends Ieee80211ActionHWMPFrameBody
  * {
@@ -871,7 +871,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionRANNFrameBody& obj) {obj.pa
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionRANNFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:290</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:290</tt> by nedtool.
  * <pre>
  * class Ieee80211ActionPREQFrameBody extends Ieee80211ActionHWMPFrameBody
  * {
@@ -945,7 +945,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionPREQFrameBody& obj) {obj.pa
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionPREQFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:304</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:304</tt> by nedtool.
  * <pre>
  * class Ieee80211ActionPREPFrameBody extends Ieee80211ActionHWMPFrameBody
  * {
@@ -1012,7 +1012,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionPREPFrameBody& obj) {obj.pa
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionPREPFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:317</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:317</tt> by nedtool.
  * <pre>
  * class Ieee80211ActionPERRFrameBody extends Ieee80211ActionHWMPFrameBody
  * {
@@ -1060,7 +1060,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionPERRFrameBody& obj) {obj.pa
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionPERRFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:325</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:325</tt> by nedtool.
  * <pre>
  * class Ieee80211ActionGANNFrameBody extends Ieee80211ActionHWMPFrameBody
  * {
@@ -1107,7 +1107,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionGANNFrameBody& obj) {obj.pa
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionGANNFrameBody& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:339</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:339</tt> by nedtool.
  * <pre>
  * //
  * // Authentication frame format (management frame + body)
@@ -1151,7 +1151,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211AuthenticationFrame& obj) {obj.pa
 inline void doUnpacking(cCommBuffer *b, Ieee80211AuthenticationFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:349</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:349</tt> by nedtool.
  * <pre>
  * //
  * // De-authentication frame format (management frame + body)
@@ -1195,7 +1195,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211DeauthenticationFrame& obj) {obj.
 inline void doUnpacking(cCommBuffer *b, Ieee80211DeauthenticationFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:359</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:359</tt> by nedtool.
  * <pre>
  * //
  * // Dis-association frame format (management frame + body) (same as De-authentication)
@@ -1239,7 +1239,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211DisassociationFrame& obj) {obj.pa
 inline void doUnpacking(cCommBuffer *b, Ieee80211DisassociationFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:369</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:369</tt> by nedtool.
  * <pre>
  * //
  * // Probe request frame format (management frame + body)
@@ -1283,7 +1283,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ProbeRequestFrame& obj) {obj.pars
 inline void doUnpacking(cCommBuffer *b, Ieee80211ProbeRequestFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:379</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:379</tt> by nedtool.
  * <pre>
  * //
  * // Association request frame format (management frame + body)
@@ -1327,7 +1327,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211AssociationRequestFrame& obj) {ob
 inline void doUnpacking(cCommBuffer *b, Ieee80211AssociationRequestFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:389</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:389</tt> by nedtool.
  * <pre>
  * //
  * // Re-association request frame format (management frame + body) (same as association)
@@ -1371,7 +1371,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ReassociationRequestFrame& obj) {
 inline void doUnpacking(cCommBuffer *b, Ieee80211ReassociationRequestFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:399</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:399</tt> by nedtool.
  * <pre>
  * //
  * // Association response frame format (management frame + body)
@@ -1415,7 +1415,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211AssociationResponseFrame& obj) {o
 inline void doUnpacking(cCommBuffer *b, Ieee80211AssociationResponseFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:409</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:409</tt> by nedtool.
  * <pre>
  * //
  * // Re-association response frame format (management frame + body)
@@ -1459,7 +1459,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ReassociationResponseFrame& obj) 
 inline void doUnpacking(cCommBuffer *b, Ieee80211ReassociationResponseFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:419</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:419</tt> by nedtool.
  * <pre>
  * //
  * // Beacon frame format (management frame + body)
@@ -1503,7 +1503,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211BeaconFrame& obj) {obj.parsimPack
 inline void doUnpacking(cCommBuffer *b, Ieee80211BeaconFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:429</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:429</tt> by nedtool.
  * <pre>
  * //
  * // Probe response frame format (management frame + body); same as Beacon
@@ -1547,7 +1547,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ProbeResponseFrame& obj) {obj.par
 inline void doUnpacking(cCommBuffer *b, Ieee80211ProbeResponseFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:439</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:439</tt> by nedtool.
  * <pre>
  * //
  * // Action frames
@@ -1591,7 +1591,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionFrame& obj) {obj.parsimPack
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:449</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:449</tt> by nedtool.
  * <pre>
  * //
  * //  HWMP action frames
@@ -1645,7 +1645,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionHWMPFrame& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionHWMPFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:461</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:461</tt> by nedtool.
  * <pre>
  * packet Ieee80211ActionRANNFrame extends Ieee80211ActionHWMPFrame
  * {
@@ -1686,7 +1686,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionRANNFrame& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionRANNFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:468</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:468</tt> by nedtool.
  * <pre>
  * packet Ieee80211ActionPREQFrame extends Ieee80211ActionHWMPFrame
  * {
@@ -1727,7 +1727,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionPREQFrame& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionPREQFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:476</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:476</tt> by nedtool.
  * <pre>
  * packet Ieee80211ActionPREPFrame extends Ieee80211ActionHWMPFrame
  * {
@@ -1768,7 +1768,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionPREPFrame& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionPREPFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:483</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:483</tt> by nedtool.
  * <pre>
  * packet Ieee80211ActionPERRFrame extends Ieee80211ActionHWMPFrame
  * {
@@ -1809,7 +1809,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ActionPERRFrame& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, Ieee80211ActionPERRFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:491</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg:491</tt> by nedtool.
  * <pre>
  * packet Ieee80211ActionGANNFrame extends Ieee80211ActionHWMPFrame
  * {

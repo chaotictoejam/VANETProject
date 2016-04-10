@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/rtp/RTPPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/rtp/RTPPacket.msg.
 //
 
 #ifndef _RTPPACKET_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>transport/rtp/RTPPacket.msg:25</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/rtp/RTPPacket.msg:25</tt> by nedtool.
  * <pre>
  * enum RTPPacketEnums
  * {
@@ -34,7 +34,7 @@ enum RTPPacketEnums {
 };
 
 /**
- * Class generated from <tt>transport/rtp/RTPPacket.msg:38</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPPacket.msg:38</tt> by nedtool.
  * <pre>
  * //
  * // This class represents an RTP data packet. Real data can either

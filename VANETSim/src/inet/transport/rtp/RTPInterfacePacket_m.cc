@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/rtp/RTPInterfacePacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/rtp/RTPInterfacePacket.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

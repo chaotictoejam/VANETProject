@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/tcp_common/TCPSegment.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/tcp_common/TCPSegment.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

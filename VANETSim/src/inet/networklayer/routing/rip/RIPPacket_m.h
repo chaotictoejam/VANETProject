@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/routing/rip/RIPPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/routing/rip/RIPPacket.msg.
 //
 
 #ifndef _RIPPACKET_M_H_
@@ -23,7 +23,7 @@ const int RIP_RTE_SIZE = 20;
 // }}
 
 /**
- * Enum generated from <tt>networklayer/routing/rip/RIPPacket.msg:30</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/routing/rip/RIPPacket.msg:30</tt> by nedtool.
  * <pre>
  * //
  * // RIP commands
@@ -42,7 +42,7 @@ enum RIPCommand {
 };
 
 /**
- * Enum generated from <tt>networklayer/routing/rip/RIPPacket.msg:38</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/routing/rip/RIPPacket.msg:38</tt> by nedtool.
  * <pre>
  * //
  * // Address Family constants
@@ -62,7 +62,7 @@ enum RIP_AF {
 };
 
 /**
- * Struct generated from networklayer/routing/rip/RIPPacket.msg:50 by nedtool.
+ * Struct generated from inet/networklayer/routing/rip/RIPPacket.msg:50 by nedtool.
  */
 struct RIPEntry
 {
@@ -79,7 +79,7 @@ void doPacking(cCommBuffer *b, RIPEntry& a);
 void doUnpacking(cCommBuffer *b, RIPEntry& a);
 
 /**
- * Class generated from <tt>networklayer/routing/rip/RIPPacket.msg:64</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/routing/rip/RIPPacket.msg:64</tt> by nedtool.
  * <pre>
  * //
  * // RIPv2 packet

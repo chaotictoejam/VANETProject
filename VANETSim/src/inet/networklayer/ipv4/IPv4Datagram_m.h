@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/ipv4/IPv4Datagram.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/ipv4/IPv4Datagram.msg.
 //
 
 #ifndef _IPV4DATAGRAM_M_H_
@@ -36,7 +36,7 @@ const unsigned int MAX_TIMESTAMP_OPTION_ENTRIES = 4;
 // }}
 
 /**
- * Enum generated from <tt>networklayer/ipv4/IPv4Datagram.msg:49</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/ipv4/IPv4Datagram.msg:49</tt> by nedtool.
  * <pre>
  * //
  * // IPv4 options class
@@ -59,7 +59,7 @@ enum IPOptionClass {
 };
 
 /**
- * Enum generated from <tt>networklayer/ipv4/IPv4Datagram.msg:60</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/ipv4/IPv4Datagram.msg:60</tt> by nedtool.
  * <pre>
  * //
  * // IPv4 option types
@@ -94,7 +94,7 @@ enum IPOption {
 };
 
 /**
- * Enum generated from <tt>networklayer/ipv4/IPv4Datagram.msg:78</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/ipv4/IPv4Datagram.msg:78</tt> by nedtool.
  * <pre>
  * //
  * // The timestamp flag uses the same numeric values as the IPv4 Protocol
@@ -115,7 +115,7 @@ enum TimestampFlag {
 };
 
 /**
- * Class generated from <tt>networklayer/ipv4/IPv4Datagram.msg:89</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv4/IPv4Datagram.msg:89</tt> by nedtool.
  * <pre>
  * //
  * // Option structure: Record Route
@@ -162,7 +162,7 @@ inline void doPacking(cCommBuffer *b, IPv4RecordRouteOption& obj) {obj.parsimPac
 inline void doUnpacking(cCommBuffer *b, IPv4RecordRouteOption& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ipv4/IPv4Datagram.msg:98</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv4/IPv4Datagram.msg:98</tt> by nedtool.
  * <pre>
  * //
  * // Option structure: Timestamp
@@ -225,7 +225,7 @@ inline void doPacking(cCommBuffer *b, IPv4TimestampOption& obj) {obj.parsimPack(
 inline void doUnpacking(cCommBuffer *b, IPv4TimestampOption& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ipv4/IPv4Datagram.msg:113</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv4/IPv4Datagram.msg:113</tt> by nedtool.
  * <pre>
  * //
  * // Option Structure: Source Routing
@@ -276,7 +276,7 @@ inline void doPacking(cCommBuffer *b, IPv4SourceRoutingOption& obj) {obj.parsimP
 inline void doUnpacking(cCommBuffer *b, IPv4SourceRoutingOption& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ipv4/IPv4Datagram.msg:133</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv4/IPv4Datagram.msg:133</tt> by nedtool.
  * <pre>
  * //
  * // Represents an IPv4 datagram.

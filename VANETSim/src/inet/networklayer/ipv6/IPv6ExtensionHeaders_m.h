@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/ipv6/IPv6ExtensionHeaders.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/ipv6/IPv6ExtensionHeaders.msg.
 //
 
 #ifndef _IPV6EXTENSIONHEADERS_M_H_
@@ -24,7 +24,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/ipv6/IPv6ExtensionHeaders.msg:39</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv6/IPv6ExtensionHeaders.msg:39</tt> by nedtool.
  * <pre>
  * //
  * // Hop-by-Hop Options Header.
@@ -65,7 +65,7 @@ inline void doPacking(cCommBuffer *b, IPv6HopByHopOptionsHeader& obj) {obj.parsi
 inline void doUnpacking(cCommBuffer *b, IPv6HopByHopOptionsHeader& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ipv6/IPv6ExtensionHeaders.msg:50</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv6/IPv6ExtensionHeaders.msg:50</tt> by nedtool.
  * <pre>
  * //
  * // Routing Header
@@ -140,7 +140,7 @@ class IPv6RoutingHeader_Base : public ::IPv6ExtensionHeader
 };
 
 /**
- * Class generated from <tt>networklayer/ipv6/IPv6ExtensionHeaders.msg:66</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv6/IPv6ExtensionHeaders.msg:66</tt> by nedtool.
  * <pre>
  * //
  * // Fragment Header
@@ -193,7 +193,7 @@ inline void doPacking(cCommBuffer *b, IPv6FragmentHeader& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, IPv6FragmentHeader& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ipv6/IPv6ExtensionHeaders.msg:80</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv6/IPv6ExtensionHeaders.msg:80</tt> by nedtool.
  * <pre>
  * //
  * // Destination Options Header
@@ -235,7 +235,7 @@ inline void doPacking(cCommBuffer *b, IPv6DestinationOptionsHeader& obj) {obj.pa
 inline void doUnpacking(cCommBuffer *b, IPv6DestinationOptionsHeader& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ipv6/IPv6ExtensionHeaders.msg:92</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv6/IPv6ExtensionHeaders.msg:92</tt> by nedtool.
  * <pre>
  * //
  * // Authentication Header
@@ -276,7 +276,7 @@ inline void doPacking(cCommBuffer *b, IPv6AuthenticationHeader& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, IPv6AuthenticationHeader& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ipv6/IPv6ExtensionHeaders.msg:103</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv6/IPv6ExtensionHeaders.msg:103</tt> by nedtool.
  * <pre>
  * //
  * // Encapsulating Security Payload Header

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/rtp/RTPSenderStatusMessage.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/rtp/RTPSenderStatusMessage.msg.
 //
 
 #ifndef _RTPSENDERSTATUSMESSAGE_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>transport/rtp/RTPSenderStatusMessage.msg:33</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/rtp/RTPSenderStatusMessage.msg:33</tt> by nedtool.
  * <pre>
  * //
  * // Messages of type ~RTPSenderStatusMessage are used to send information
@@ -48,7 +48,7 @@ enum RTPSenderStatus {
 };
 
 /**
- * Class generated from <tt>transport/rtp/RTPSenderStatusMessage.msg:41</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPSenderStatusMessage.msg:41</tt> by nedtool.
  * <pre>
  * packet RTPSenderStatusMessage
  * {

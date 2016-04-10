@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/rtp/RTPInnerPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/rtp/RTPInnerPacket.msg.
 //
 
 #ifndef _RTPINNERPACKET_M_H_
@@ -24,7 +24,7 @@
 // }}
 
 /**
- * Enum generated from <tt>transport/rtp/RTPInnerPacket.msg:35</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/rtp/RTPInnerPacket.msg:35</tt> by nedtool.
  * <pre>
  * //
  * // This enumeration is a list of all possibly types of
@@ -74,7 +74,7 @@ enum RTP_INP_TYPE {
 };
 
 /**
- * Class generated from <tt>transport/rtp/RTPInnerPacket.msg:59</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInnerPacket.msg:59</tt> by nedtool.
  * <pre>
  * //
  * // This class is used for communication between submodules of the RTP layer module.

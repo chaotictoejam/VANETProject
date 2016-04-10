@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/channels/LinkFailureMessage.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/channels/LinkFailureMessage.msg.
 //
 
 #ifndef _LINKFAILUREMESSAGE_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>linklayer/channels/LinkFailureMessage.msg:22</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/channels/LinkFailureMessage.msg:22</tt> by nedtool.
  * <pre>
  * message LinkFailureMessage
  * {

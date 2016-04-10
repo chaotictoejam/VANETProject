@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/bgpv4/BGPMessage/BGPASPathSegment.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/bgpv4/BGPMessage/BGPASPathSegment.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

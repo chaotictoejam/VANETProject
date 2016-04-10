@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/ospfv2/OSPFPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/ospfv2/OSPFPacket.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

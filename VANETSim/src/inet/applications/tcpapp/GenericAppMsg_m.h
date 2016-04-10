@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/tcpapp/GenericAppMsg.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/tcpapp/GenericAppMsg.msg.
 //
 
 #ifndef _GENERICAPPMSG_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>applications/tcpapp/GenericAppMsg.msg:37</tt> by nedtool.
+ * Class generated from <tt>inet/applications/tcpapp/GenericAppMsg.msg:37</tt> by nedtool.
  * <pre>
  * //
  * // Message class for generic request-reply style applications.

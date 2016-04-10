@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/ieee80211/mgmt/Ieee80211Primitives.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg.
 //
 
 #ifndef _IEEE80211PRIMITIVES_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:38</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:38</tt> by nedtool.
  * <pre>
  * //
  * // IEEE 802.11 command codes, sent by the agent to the management entity.
@@ -50,7 +50,7 @@ enum Ieee80211PrimRequestCode {
 };
 
 /**
- * Enum generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:56</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:56</tt> by nedtool.
  * <pre>
  * //
  * // IEEE 802.11 confirm codes, sent by the management entity to the agent,
@@ -81,7 +81,7 @@ enum Ieee80211PrimConfirmCode {
 };
 
 /**
- * Enum generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:67</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:67</tt> by nedtool.
  * <pre>
  * enum Ieee80211BSSType
  * {
@@ -99,7 +99,7 @@ enum Ieee80211BSSType {
 };
 
 /**
- * Enum generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:81</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:81</tt> by nedtool.
  * <pre>
  * //
  * // Values for the resultCode field in confirm primitives, sent from
@@ -127,7 +127,7 @@ enum Ieee80211PrimResultCode {
 };
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:94</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:94</tt> by nedtool.
  * <pre>
  * //
  * // Base class for request primitives
@@ -164,7 +164,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211PrimRequest& obj) {obj.parsimPack
 inline void doUnpacking(cCommBuffer *b, Ieee80211PrimRequest& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:101</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:101</tt> by nedtool.
  * <pre>
  * //
  * // Base class for confirm primitives
@@ -205,7 +205,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211PrimConfirm& obj) {obj.parsimPack
 inline void doUnpacking(cCommBuffer *b, Ieee80211PrimConfirm& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:109</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:109</tt> by nedtool.
  * <pre>
  * //
  * // Losely based on MLME-SCAN.request.
@@ -278,7 +278,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211Prim_ScanRequest& obj) {obj.parsi
 inline void doUnpacking(cCommBuffer *b, Ieee80211Prim_ScanRequest& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:121</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:121</tt> by nedtool.
  * <pre>
  * class Ieee80211Prim_BSSDescription
  * {
@@ -339,7 +339,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211Prim_BSSDescription& obj) {obj.pa
 inline void doUnpacking(cCommBuffer *b, Ieee80211Prim_BSSDescription& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:136</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:136</tt> by nedtool.
  * <pre>
  * //
  * // Losely based on MLME-SCAN.confirm
@@ -385,7 +385,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211Prim_ScanConfirm& obj) {obj.parsi
 inline void doUnpacking(cCommBuffer *b, Ieee80211Prim_ScanConfirm& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:149</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:149</tt> by nedtool.
  * <pre>
  * //
  * // Losely based on MLME-AUTHENTICATE.request.
@@ -436,7 +436,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211Prim_AuthenticateRequest& obj) {o
 inline void doUnpacking(cCommBuffer *b, Ieee80211Prim_AuthenticateRequest& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:159</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:159</tt> by nedtool.
  * <pre>
  * //
  * // Losely based on MLME-AUTHENTICATE.confirm.
@@ -479,7 +479,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211Prim_AuthenticateConfirm& obj) {o
 inline void doUnpacking(cCommBuffer *b, Ieee80211Prim_AuthenticateConfirm& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:171</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:171</tt> by nedtool.
  * <pre>
  * //
  * // Losely based on MLME-DEAUTHENTICATE.request
@@ -529,7 +529,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211Prim_DeauthenticateRequest& obj) 
 inline void doUnpacking(cCommBuffer *b, Ieee80211Prim_DeauthenticateRequest& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:180</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:180</tt> by nedtool.
  * <pre>
  * //
  * // Losely based on MLME-ASSOCIATE.request
@@ -575,7 +575,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211Prim_AssociateRequest& obj) {obj.
 inline void doUnpacking(cCommBuffer *b, Ieee80211Prim_AssociateRequest& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:190</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:190</tt> by nedtool.
  * <pre>
  * //
  * // Losely based on MLME-ASSOCIATE.confirm
@@ -618,7 +618,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211Prim_AssociateConfirm& obj) {obj.
 inline void doUnpacking(cCommBuffer *b, Ieee80211Prim_AssociateConfirm& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:198</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:198</tt> by nedtool.
  * <pre>
  * //
  * // MLME-REASSOCIATE.request is very similar to MLME-ASSOCIATE.request
@@ -655,7 +655,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211Prim_ReassociateRequest& obj) {ob
 inline void doUnpacking(cCommBuffer *b, Ieee80211Prim_ReassociateRequest& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:205</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:205</tt> by nedtool.
  * <pre>
  * //
  * // MLME-REASSOCIATE.confirm is very similar to MLME-ASSOCIATE.confirm
@@ -692,7 +692,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211Prim_ReassociateConfirm& obj) {ob
 inline void doUnpacking(cCommBuffer *b, Ieee80211Prim_ReassociateConfirm& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:216</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/Ieee80211Primitives.msg:216</tt> by nedtool.
  * <pre>
  * //
  * // Losely based on MLME-DISASSOCIATE.request.

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/httptools/HttpMessages.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/httptools/HttpMessages.msg.
 //
 
 #ifndef _HTTPMESSAGES_M_H_
@@ -16,7 +16,7 @@
 
 
 /**
- * Class generated from <tt>applications/httptools/HttpMessages.msg:93</tt> by nedtool.
+ * Class generated from <tt>inet/applications/httptools/HttpMessages.msg:93</tt> by nedtool.
  * <pre>
  * //
  * // Base class for HTTP messages
@@ -87,7 +87,7 @@ inline void doPacking(cCommBuffer *b, HttpBaseMessage& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, HttpBaseMessage& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>applications/httptools/HttpMessages.msg:113</tt> by nedtool.
+ * Class generated from <tt>inet/applications/httptools/HttpMessages.msg:113</tt> by nedtool.
  * <pre>
  * //
  * // Message class for HTTP requests
@@ -134,7 +134,7 @@ inline void doPacking(cCommBuffer *b, HttpRequestMessage& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, HttpRequestMessage& obj) {obj.parsimUnpack(b);}
 
 /**
- * Enum generated from <tt>applications/httptools/HttpMessages.msg:123</tt> by nedtool.
+ * Enum generated from <tt>inet/applications/httptools/HttpMessages.msg:123</tt> by nedtool.
  * <pre>
  * //
  * // Content type of HTTP responses.
@@ -157,7 +157,7 @@ enum HttpContentType {
 };
 
 /**
- * Class generated from <tt>applications/httptools/HttpMessages.msg:140</tt> by nedtool.
+ * Class generated from <tt>inet/applications/httptools/HttpMessages.msg:140</tt> by nedtool.
  * <pre>
  * //
  * // Message class for HTTP replies

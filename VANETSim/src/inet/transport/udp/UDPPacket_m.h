@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/udp/UDPPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/udp/UDPPacket.msg.
 //
 
 #ifndef _UDPPACKET_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>transport/udp/UDPPacket.msg:29</tt> by nedtool.
+ * Class generated from <tt>inet/transport/udp/UDPPacket.msg:29</tt> by nedtool.
  * <pre>
  * //
  * // Represents an UDP packet, to be used with the ~UDP module.

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

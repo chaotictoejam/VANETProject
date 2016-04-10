@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/routing/dymo/DYMO.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/routing/dymo/DYMO.msg.
 //
 
 #ifndef _DYMO_DYMO_M_H_
@@ -22,7 +22,7 @@
 namespace DYMO {
 
 /**
- * Class generated from <tt>networklayer/routing/dymo/DYMO.msg:36</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/routing/dymo/DYMO.msg:36</tt> by nedtool.
  * <pre>
  * class AddressBlock
  * {
@@ -103,7 +103,7 @@ inline void doPacking(cCommBuffer *b, AddressBlock& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, AddressBlock& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/routing/dymo/DYMO.msg:53</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/routing/dymo/DYMO.msg:53</tt> by nedtool.
  * <pre>
  * message RREQTimer
  * {
@@ -142,7 +142,7 @@ inline void doPacking(cCommBuffer *b, RREQTimer& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RREQTimer& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/routing/dymo/DYMO.msg:57</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/routing/dymo/DYMO.msg:57</tt> by nedtool.
  * <pre>
  * message RREQWaitRREPTimer extends RREQTimer
  * {
@@ -180,7 +180,7 @@ inline void doPacking(cCommBuffer *b, RREQWaitRREPTimer& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, RREQWaitRREPTimer& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/routing/dymo/DYMO.msg:61</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/routing/dymo/DYMO.msg:61</tt> by nedtool.
  * <pre>
  * message RREQBackoffTimer extends RREQTimer
  * {
@@ -218,7 +218,7 @@ inline void doPacking(cCommBuffer *b, RREQBackoffTimer& obj) {obj.parsimPack(b);
 inline void doUnpacking(cCommBuffer *b, RREQBackoffTimer& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/routing/dymo/DYMO.msg:65</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/routing/dymo/DYMO.msg:65</tt> by nedtool.
  * <pre>
  * message RREQHolddownTimer extends RREQTimer
  * {
@@ -256,7 +256,7 @@ inline void doPacking(cCommBuffer *b, RREQHolddownTimer& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, RREQHolddownTimer& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/routing/dymo/DYMO.msg:72</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/routing/dymo/DYMO.msg:72</tt> by nedtool.
  * <pre>
  * packet DYMOPacket
  * {
@@ -294,7 +294,7 @@ inline void doPacking(cCommBuffer *b, DYMOPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, DYMOPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/routing/dymo/DYMO.msg:76</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/routing/dymo/DYMO.msg:76</tt> by nedtool.
  * <pre>
  * packet RteMsg extends DYMOPacket
  * {
@@ -350,7 +350,7 @@ inline void doPacking(cCommBuffer *b, RteMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RteMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/routing/dymo/DYMO.msg:86</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/routing/dymo/DYMO.msg:86</tt> by nedtool.
  * <pre>
  * //
  * // DYMO RREQ packet
@@ -387,7 +387,7 @@ inline void doPacking(cCommBuffer *b, RREQ& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RREQ& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/routing/dymo/DYMO.msg:92</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/routing/dymo/DYMO.msg:92</tt> by nedtool.
  * <pre>
  * //
  * // DYMO RREP packet
@@ -424,7 +424,7 @@ inline void doPacking(cCommBuffer *b, RREP& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RREP& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/routing/dymo/DYMO.msg:98</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/routing/dymo/DYMO.msg:98</tt> by nedtool.
  * <pre>
  * //
  * // DYMO RREP ACK packet
@@ -461,7 +461,7 @@ inline void doPacking(cCommBuffer *b, RREP_ACK& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RREP_ACK& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/routing/dymo/DYMO.msg:104</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/routing/dymo/DYMO.msg:104</tt> by nedtool.
  * <pre>
  * //
  * // DYMO RERR packet

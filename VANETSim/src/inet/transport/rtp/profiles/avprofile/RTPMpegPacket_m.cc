@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/rtp/profiles/avprofile/RTPMpegPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/rtp/profiles/avprofile/RTPMpegPacket.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

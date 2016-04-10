@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/ldp/LDPPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/ldp/LDPPacket.msg.
 //
 
 #ifndef _LDPPACKET_M_H_
@@ -27,7 +27,7 @@
 // }}
 
 /**
- * Enum generated from <tt>networklayer/ldp/LDPPacket.msg:32</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/ldp/LDPPacket.msg:32</tt> by nedtool.
  * <pre>
  * //
  * // LDP message types
@@ -64,7 +64,7 @@ enum LDP_MESSAGE_TYPES {
 };
 
 /**
- * Enum generated from <tt>networklayer/ldp/LDPPacket.msg:48</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/ldp/LDPPacket.msg:48</tt> by nedtool.
  * <pre>
  * enum LDP_STATUS_TYPES
  * {
@@ -78,7 +78,7 @@ enum LDP_STATUS_TYPES {
 };
 
 /**
- * Struct generated from networklayer/ldp/LDPPacket.msg:54 by nedtool.
+ * Struct generated from inet/networklayer/ldp/LDPPacket.msg:54 by nedtool.
  */
 struct FEC_TLV
 {
@@ -91,7 +91,7 @@ void doPacking(cCommBuffer *b, FEC_TLV& a);
 void doUnpacking(cCommBuffer *b, FEC_TLV& a);
 
 /**
- * Class generated from <tt>networklayer/ldp/LDPPacket.msg:63</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ldp/LDPPacket.msg:63</tt> by nedtool.
  * <pre>
  * //
  * // Base class for LDP packets
@@ -142,7 +142,7 @@ inline void doPacking(cCommBuffer *b, LDPPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, LDPPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ldp/LDPPacket.msg:74</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ldp/LDPPacket.msg:74</tt> by nedtool.
  * <pre>
  * //
  * // LDP Label Mapping Message
@@ -188,7 +188,7 @@ inline void doPacking(cCommBuffer *b, LDPLabelMapping& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, LDPLabelMapping& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ldp/LDPPacket.msg:83</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ldp/LDPPacket.msg:83</tt> by nedtool.
  * <pre>
  * //
  * // LDP Label Request Message
@@ -230,7 +230,7 @@ inline void doPacking(cCommBuffer *b, LDPLabelRequest& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, LDPLabelRequest& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ldp/LDPPacket.msg:92</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ldp/LDPPacket.msg:92</tt> by nedtool.
  * <pre>
  * //
  * // LDP Hello Message
@@ -279,7 +279,7 @@ inline void doPacking(cCommBuffer *b, LDPHello& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, LDPHello& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ldp/LDPPacket.msg:102</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ldp/LDPPacket.msg:102</tt> by nedtool.
  * <pre>
  * //
  * // LDP notification message
@@ -325,7 +325,7 @@ inline void doPacking(cCommBuffer *b, LDPNotify& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, LDPNotify& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ldp/LDPPacket.msg:112</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ldp/LDPPacket.msg:112</tt> by nedtool.
  * <pre>
  * //
  * // LDP Ini Message
@@ -383,7 +383,7 @@ inline void doPacking(cCommBuffer *b, LDPIni& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, LDPIni& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ldp/LDPPacket.msg:125</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ldp/LDPPacket.msg:125</tt> by nedtool.
  * <pre>
  * //
  * // LDP Address Message

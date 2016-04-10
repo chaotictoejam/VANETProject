@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/rtp/RTPParticipantInfo.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/rtp/RTPParticipantInfo.msg.
 //
 
 #ifndef _RTPPARTICIPANTINFO_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>transport/rtp/RTPParticipantInfo.msg:38</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPParticipantInfo.msg:38</tt> by nedtool.
  * <pre>
  * ///**
  * // * This class is a super class for classes intended for storing information

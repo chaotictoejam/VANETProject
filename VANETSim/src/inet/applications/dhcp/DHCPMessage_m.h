@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/dhcp/DHCPMessage.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/dhcp/DHCPMessage.msg.
 //
 
 #ifndef _DHCPMESSAGE_M_H_
@@ -21,7 +21,7 @@
 // }}
 
 /**
- * Enum generated from <tt>applications/dhcp/DHCPMessage.msg:30</tt> by nedtool.
+ * Enum generated from <tt>inet/applications/dhcp/DHCPMessage.msg:30</tt> by nedtool.
  * <pre>
  * enum DHCPOpcode
  * {
@@ -37,7 +37,7 @@ enum DHCPOpcode {
 };
 
 /**
- * Enum generated from <tt>applications/dhcp/DHCPMessage.msg:36</tt> by nedtool.
+ * Enum generated from <tt>inet/applications/dhcp/DHCPMessage.msg:36</tt> by nedtool.
  * <pre>
  * enum DHCPMessageType
  * {
@@ -65,7 +65,7 @@ enum DHCPMessageType {
 };
 
 /**
- * Enum generated from <tt>applications/dhcp/DHCPMessage.msg:48</tt> by nedtool.
+ * Enum generated from <tt>inet/applications/dhcp/DHCPMessage.msg:48</tt> by nedtool.
  * <pre>
  * enum DHCPOptionCode
  * {
@@ -103,7 +103,7 @@ enum DHCPOptionCode {
 };
 
 /**
- * Class generated from <tt>applications/dhcp/DHCPMessage.msg:73</tt> by nedtool.
+ * Class generated from <tt>inet/applications/dhcp/DHCPMessage.msg:73</tt> by nedtool.
  * <pre>
  * //
  * // Represents options in a DHCP message. In the DHCP protocol, options are
@@ -217,7 +217,7 @@ inline void doPacking(cCommBuffer *b, DHCPOptions& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, DHCPOptions& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>applications/dhcp/DHCPMessage.msg:96</tt> by nedtool.
+ * Class generated from <tt>inet/applications/dhcp/DHCPMessage.msg:96</tt> by nedtool.
  * <pre>
  * //
  * // Represents a DHCP message. DHCP (Dynamic Host Configuration Protocol, RFC 2131)

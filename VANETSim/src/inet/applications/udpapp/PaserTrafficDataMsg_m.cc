@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/udpapp/PaserTrafficDataMsg.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/udpapp/PaserTrafficDataMsg.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

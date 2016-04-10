@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/manetrouting/base/LocatorNotificationInfo.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/manetrouting/base/LocatorNotificationInfo.msg.
 //
 
 #ifndef _LOCATORNOTIFICATIONINFO_M_H_
@@ -21,7 +21,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/manetrouting/base/LocatorNotificationInfo.msg:30</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/manetrouting/base/LocatorNotificationInfo.msg:30</tt> by nedtool.
  * <pre>
  * class LocatorNotificationInfo
  * {

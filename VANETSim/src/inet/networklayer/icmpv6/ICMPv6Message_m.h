@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/icmpv6/ICMPv6Message.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/icmpv6/ICMPv6Message.msg.
 //
 
 #ifndef _ICMPV6MESSAGE_M_H_
@@ -21,7 +21,7 @@
 // }}
 
 /**
- * Enum generated from <tt>networklayer/icmpv6/ICMPv6Message.msg:30</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/icmpv6/ICMPv6Message.msg:30</tt> by nedtool.
  * <pre>
  * enum ICMPv6Type
  * {
@@ -72,7 +72,7 @@ enum ICMPv6Type {
 };
 
 /**
- * Enum generated from <tt>networklayer/icmpv6/ICMPv6Message.msg:61</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/icmpv6/ICMPv6Message.msg:61</tt> by nedtool.
  * <pre>
  * //
  * // ICMPv6 "codes" for type ICMPv6_DESTINATION_UNREACHABLE
@@ -96,7 +96,7 @@ enum ICMPv6DEST_UN {
 };
 
 /**
- * Enum generated from <tt>networklayer/icmpv6/ICMPv6Message.msg:75</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/icmpv6/ICMPv6Message.msg:75</tt> by nedtool.
  * <pre>
  * //
  * // ICMPv6 "codes" for type ICMPv6_TIME_EXCEEDED
@@ -115,7 +115,7 @@ enum ICMPv6_TIME_EX {
 };
 
 /**
- * Enum generated from <tt>networklayer/icmpv6/ICMPv6Message.msg:85</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/icmpv6/ICMPv6Message.msg:85</tt> by nedtool.
  * <pre>
  * //
  * // ICMPv6 "codes" for type ICMPv6_PARAMETER_PROBLEM
@@ -136,7 +136,7 @@ enum ICMPv6_PARAMETER_PROB {
 };
 
 /**
- * Class generated from <tt>networklayer/icmpv6/ICMPv6Message.msg:103</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/ICMPv6Message.msg:103</tt> by nedtool.
  * <pre>
  * //
  * // Represents an ICMPv6 packet.
@@ -184,7 +184,7 @@ inline void doPacking(cCommBuffer *b, ICMPv6Message& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, ICMPv6Message& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/ICMPv6Message.msg:113</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/ICMPv6Message.msg:113</tt> by nedtool.
  * <pre>
  * //
  * // Notes:
@@ -226,7 +226,7 @@ inline void doPacking(cCommBuffer *b, ICMPv6DestUnreachableMsg& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, ICMPv6DestUnreachableMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/ICMPv6Message.msg:118</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/ICMPv6Message.msg:118</tt> by nedtool.
  * <pre>
  * packet ICMPv6PacketTooBigMsg extends ICMPv6Message
  * {
@@ -268,7 +268,7 @@ inline void doPacking(cCommBuffer *b, ICMPv6PacketTooBigMsg& obj) {obj.parsimPac
 inline void doUnpacking(cCommBuffer *b, ICMPv6PacketTooBigMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/ICMPv6Message.msg:124</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/ICMPv6Message.msg:124</tt> by nedtool.
  * <pre>
  * packet ICMPv6TimeExceededMsg extends ICMPv6Message
  * {
@@ -306,7 +306,7 @@ inline void doPacking(cCommBuffer *b, ICMPv6TimeExceededMsg& obj) {obj.parsimPac
 inline void doUnpacking(cCommBuffer *b, ICMPv6TimeExceededMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/ICMPv6Message.msg:129</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/ICMPv6Message.msg:129</tt> by nedtool.
  * <pre>
  * packet ICMPv6ParamProblemMsg extends ICMPv6Message
  * {
@@ -344,7 +344,7 @@ inline void doPacking(cCommBuffer *b, ICMPv6ParamProblemMsg& obj) {obj.parsimPac
 inline void doUnpacking(cCommBuffer *b, ICMPv6ParamProblemMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/ICMPv6Message.msg:138</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/ICMPv6Message.msg:138</tt> by nedtool.
  * <pre>
  * //
  * // ICMPv6 Echo Request packet (RFC2463: Section 4).
@@ -395,7 +395,7 @@ inline void doPacking(cCommBuffer *b, ICMPv6EchoRequestMsg& obj) {obj.parsimPack
 inline void doUnpacking(cCommBuffer *b, ICMPv6EchoRequestMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/ICMPv6Message.msg:149</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/ICMPv6Message.msg:149</tt> by nedtool.
  * <pre>
  * //
  * // ICMPv6 Echo Reply packet. Data is attached through encapsulation (see ICMPv6.cc)

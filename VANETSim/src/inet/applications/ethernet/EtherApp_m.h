@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/ethernet/EtherApp.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/ethernet/EtherApp.msg.
 //
 
 #ifndef _ETHERAPP_M_H_
@@ -23,7 +23,7 @@
 // }}
 
 /**
- * Class generated from <tt>applications/ethernet/EtherApp.msg:33</tt> by nedtool.
+ * Class generated from <tt>inet/applications/ethernet/EtherApp.msg:33</tt> by nedtool.
  * <pre>
  * //
  * // Request packet sent by ~EtherAppCli. Contains the number of bytes to be
@@ -70,7 +70,7 @@ inline void doPacking(cCommBuffer *b, EtherAppReq& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, EtherAppReq& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>applications/ethernet/EtherApp.msg:42</tt> by nedtool.
+ * Class generated from <tt>inet/applications/ethernet/EtherApp.msg:42</tt> by nedtool.
  * <pre>
  * //
  * // Packet sent back by ~EtherAppSrv in response to an ~EtherAppReq.

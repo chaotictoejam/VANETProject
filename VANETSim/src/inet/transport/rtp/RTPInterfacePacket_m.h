@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/rtp/RTPInterfacePacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/rtp/RTPInterfacePacket.msg.
 //
 
 #ifndef _RTPINTERFACEPACKET_M_H_
@@ -23,7 +23,7 @@
 // }}
 
 /**
- * Enum generated from <tt>transport/rtp/RTPInterfacePacket.msg:38</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:38</tt> by nedtool.
  * <pre>
  * //
  * // An enumeration to distinguish the different functions of the
@@ -65,7 +65,7 @@ enum RTP_IFP_TYPE {
 };
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:58</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:58</tt> by nedtool.
  * <pre>
  * message RTPControlMsg
  * {
@@ -99,7 +99,7 @@ inline void doPacking(cCommBuffer *b, RTPControlMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RTPControlMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:63</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:63</tt> by nedtool.
  * <pre>
  * // base class
  * class RTPControlInfo
@@ -138,7 +138,7 @@ inline void doPacking(cCommBuffer *b, RTPControlInfo& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RTPControlInfo& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:69</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:69</tt> by nedtool.
  * <pre>
  * // base class
  * class RTPSessionControlInfo extends RTPControlInfo
@@ -177,7 +177,7 @@ inline void doPacking(cCommBuffer *b, RTPSessionControlInfo& obj) {obj.parsimPac
 inline void doUnpacking(cCommBuffer *b, RTPSessionControlInfo& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:76</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:76</tt> by nedtool.
  * <pre>
  * // App to ~RTP
  * class RTPCIEnterSession extends RTPControlInfo
@@ -234,7 +234,7 @@ inline void doPacking(cCommBuffer *b, RTPCIEnterSession& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, RTPCIEnterSession& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:87</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:87</tt> by nedtool.
  * <pre>
  * // ~RTP to App
  * class RTPCISessionEntered extends RTPSessionControlInfo
@@ -270,7 +270,7 @@ inline void doPacking(cCommBuffer *b, RTPCISessionEntered& obj) {obj.parsimPack(
 inline void doUnpacking(cCommBuffer *b, RTPCISessionEntered& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:93</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:93</tt> by nedtool.
  * <pre>
  * // App to ~RTP
  * class RTPCISenderControl extends RTPSessionControlInfo
@@ -319,7 +319,7 @@ inline void doPacking(cCommBuffer *b, RTPCISenderControl& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, RTPCISenderControl& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:103</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:103</tt> by nedtool.
  * <pre>
  * // ~RTP to App
  * class RTPCISenderStatus extends RTPSessionControlInfo
@@ -364,7 +364,7 @@ inline void doPacking(cCommBuffer *b, RTPCISenderStatus& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, RTPCISenderStatus& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:112</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:112</tt> by nedtool.
  * <pre>
  * // App to ~RTP
  * class RTPCILeaveSession extends RTPControlInfo
@@ -401,7 +401,7 @@ inline void doPacking(cCommBuffer *b, RTPCILeaveSession& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, RTPCILeaveSession& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:119</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:119</tt> by nedtool.
  * <pre>
  * // ~RTP to App
  * class RTPCISessionLeft extends RTPControlInfo
@@ -438,7 +438,7 @@ inline void doPacking(cCommBuffer *b, RTPCISessionLeft& obj) {obj.parsimPack(b);
 inline void doUnpacking(cCommBuffer *b, RTPCISessionLeft& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:126</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:126</tt> by nedtool.
  * <pre>
  * // App to ~RTP
  * class RTPCICreateSenderModule extends RTPSessionControlInfo
@@ -482,7 +482,7 @@ inline void doPacking(cCommBuffer *b, RTPCICreateSenderModule& obj) {obj.parsimP
 inline void doUnpacking(cCommBuffer *b, RTPCICreateSenderModule& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:134</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:134</tt> by nedtool.
  * <pre>
  * // ~RTP to App
  * class RTPCISenderModuleCreated extends RTPSessionControlInfo
@@ -518,7 +518,7 @@ inline void doPacking(cCommBuffer *b, RTPCISenderModuleCreated& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, RTPCISenderModuleCreated& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:140</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:140</tt> by nedtool.
  * <pre>
  * // App to ~RTP
  * class RTPCIDeleteSenderModule extends RTPSessionControlInfo
@@ -554,7 +554,7 @@ inline void doPacking(cCommBuffer *b, RTPCIDeleteSenderModule& obj) {obj.parsimP
 inline void doUnpacking(cCommBuffer *b, RTPCIDeleteSenderModule& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/rtp/RTPInterfacePacket.msg:146</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTPInterfacePacket.msg:146</tt> by nedtool.
  * <pre>
  * // ~RTP to App
  * class RTPCISenderModuleDeleted extends RTPSessionControlInfo

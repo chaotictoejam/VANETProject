@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/contract/SCTPCommand.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/contract/SCTPCommand.msg.
 //
 
 #ifndef _SCTPCOMMAND_M_H_
@@ -25,7 +25,7 @@ typedef std::vector<IPvXAddress> AddressVector;
 // }}
 
 /**
- * Enum generated from <tt>transport/contract/SCTPCommand.msg:38</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/contract/SCTPCommand.msg:38</tt> by nedtool.
  * <pre>
  * //
  * // Currently not in use.
@@ -40,7 +40,7 @@ enum SCTPErrorCode {
 };
 
 /**
- * Class generated from <tt>transport/contract/SCTPCommand.msg:56</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/SCTPCommand.msg:56</tt> by nedtool.
  * <pre>
  * //
  * // Control info for SCTP connections. This class is to be set as control info
@@ -132,7 +132,7 @@ inline void doPacking(cCommBuffer *b, SCTPCommand& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/SCTPCommand.msg:74</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/SCTPCommand.msg:74</tt> by nedtool.
  * <pre>
  * //
  * // Currently not in use.
@@ -177,7 +177,7 @@ inline void doPacking(cCommBuffer *b, SCTPErrorInfo& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPErrorInfo& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/SCTPCommand.msg:106</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/SCTPCommand.msg:106</tt> by nedtool.
  * <pre>
  * //
  * // Control info to be used for active or passive ~SCTP open.
@@ -287,7 +287,7 @@ inline void doPacking(cCommBuffer *b, SCTPOpenCommand& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPOpenCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/SCTPCommand.msg:128</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/SCTPCommand.msg:128</tt> by nedtool.
  * <pre>
  * //
  * // Control info to be used with the SEND command.
@@ -346,7 +346,7 @@ inline void doPacking(cCommBuffer *b, SCTPSendCommand& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPSendCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/SCTPCommand.msg:144</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/SCTPCommand.msg:144</tt> by nedtool.
  * <pre>
  * //
  * // Sent with message kind SCTP_I_ESTABLISHED, to let the app know
@@ -403,7 +403,7 @@ inline void doPacking(cCommBuffer *b, SCTPConnectInfo& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPConnectInfo& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/SCTPCommand.msg:160</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/SCTPCommand.msg:160</tt> by nedtool.
  * <pre>
  * //
  * // Sent with message kind SCTP_I_STATUS, in response to command SCTP_C_STATUS.
@@ -461,7 +461,7 @@ inline void doPacking(cCommBuffer *b, SCTPStatusInfo& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPStatusInfo& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/SCTPCommand.msg:168</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/SCTPCommand.msg:168</tt> by nedtool.
  * <pre>
  * class SCTPPathInfo extends SCTPCommand
  * {
@@ -500,7 +500,7 @@ inline void doPacking(cCommBuffer *b, SCTPPathInfo& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPPathInfo& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/SCTPCommand.msg:173</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/SCTPCommand.msg:173</tt> by nedtool.
  * <pre>
  * class SCTPResetInfo extends SCTPCommand
  * {
@@ -550,7 +550,7 @@ inline void doPacking(cCommBuffer *b, SCTPResetInfo& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPResetInfo& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/SCTPCommand.msg:180</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/SCTPCommand.msg:180</tt> by nedtool.
  * <pre>
  * class SCTPInfo extends SCTPCommand
  * {
@@ -588,7 +588,7 @@ inline void doPacking(cCommBuffer *b, SCTPInfo& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPInfo& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/SCTPCommand.msg:185</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/SCTPCommand.msg:185</tt> by nedtool.
  * <pre>
  * class SCTPRcvCommand extends SCTPCommand
  * {
@@ -634,7 +634,7 @@ inline void doPacking(cCommBuffer *b, SCTPRcvCommand& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SCTPRcvCommand& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/contract/SCTPCommand.msg:192</tt> by nedtool.
+ * Class generated from <tt>inet/transport/contract/SCTPCommand.msg:192</tt> by nedtool.
  * <pre>
  * class SCTPSendQueueAbated extends SCTPCommand
  * {

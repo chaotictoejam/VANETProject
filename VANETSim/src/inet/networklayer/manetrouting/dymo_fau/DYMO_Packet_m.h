@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/manetrouting/dymo_fau/DYMO_Packet.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/manetrouting/dymo_fau/DYMO_Packet.msg.
 //
 
 #ifndef _DYMO_PACKET_M_H_
@@ -16,7 +16,7 @@
 
 
 /**
- * Class generated from <tt>networklayer/manetrouting/dymo_fau/DYMO_Packet.msg:21</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/manetrouting/dymo_fau/DYMO_Packet.msg:21</tt> by nedtool.
  * <pre>
  * message DYMO_Packet extends cPacket
  * {

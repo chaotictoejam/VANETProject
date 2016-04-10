@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/manetrouting/base/ControlInfoBreakLink.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/manetrouting/base/ControlInfoBreakLink.msg.
 //
 
 #ifndef _CONTROLINFOBREAKLINK_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/manetrouting/base/ControlInfoBreakLink.msg:28</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/manetrouting/base/ControlInfoBreakLink.msg:28</tt> by nedtool.
  * <pre>
  * class ControlInfoBreakLink
  * {

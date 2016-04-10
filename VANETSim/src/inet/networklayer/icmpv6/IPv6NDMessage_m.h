@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/icmpv6/IPv6NDMessage.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/icmpv6/IPv6NDMessage.msg.
 //
 
 #ifndef _IPV6NDMESSAGE_M_H_
@@ -22,7 +22,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/IPv6NDMessage.msg:38</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/IPv6NDMessage.msg:38</tt> by nedtool.
  * <pre>
  * //
  * // IPv6ND Prefix Information
@@ -90,7 +90,7 @@ inline void doPacking(cCommBuffer *b, IPv6NDPrefixInformation& obj) {obj.parsimP
 inline void doUnpacking(cCommBuffer *b, IPv6NDPrefixInformation& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/IPv6NDMessage.msg:52</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/IPv6NDMessage.msg:52</tt> by nedtool.
  * <pre>
  * // MIPv6 New Advertisement Interval Option
  * // RFC 3775 Section 7.3
@@ -131,7 +131,7 @@ inline void doPacking(cCommBuffer *b, MIPv6NDAdvertisementInterval& obj) {obj.pa
 inline void doUnpacking(cCommBuffer *b, MIPv6NDAdvertisementInterval& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/IPv6NDMessage.msg:59</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/IPv6NDMessage.msg:59</tt> by nedtool.
  * <pre>
  * //MIPv6 Home Agent Information Option
  * //RFC 3775 Section 7.4
@@ -175,7 +175,7 @@ inline void doPacking(cCommBuffer *b, MIPv6HAInformation& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, MIPv6HAInformation& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/IPv6NDMessage.msg:76</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/IPv6NDMessage.msg:76</tt> by nedtool.
  * <pre>
  * //
  * // Neighbour Discovery for IPv6.
@@ -225,7 +225,7 @@ inline void doPacking(cCommBuffer *b, IPv6NDMessage& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, IPv6NDMessage& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/IPv6NDMessage.msg:86</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/IPv6NDMessage.msg:86</tt> by nedtool.
  * <pre>
  * //
  * // Router Solicitation Message Format
@@ -269,7 +269,7 @@ inline void doPacking(cCommBuffer *b, IPv6RouterSolicitation& obj) {obj.parsimPa
 inline void doUnpacking(cCommBuffer *b, IPv6RouterSolicitation& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/IPv6NDMessage.msg:97</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/IPv6NDMessage.msg:97</tt> by nedtool.
  * <pre>
  * //
  * // Router Advertisement Message Format
@@ -366,7 +366,7 @@ inline void doPacking(cCommBuffer *b, IPv6RouterAdvertisement& obj) {obj.parsimP
 inline void doUnpacking(cCommBuffer *b, IPv6RouterAdvertisement& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/IPv6NDMessage.msg:120</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/IPv6NDMessage.msg:120</tt> by nedtool.
  * <pre>
  * //
  * // Neighbour Solicitation Message Format
@@ -417,7 +417,7 @@ inline void doPacking(cCommBuffer *b, IPv6NeighbourSolicitation& obj) {obj.parsi
 inline void doUnpacking(cCommBuffer *b, IPv6NeighbourSolicitation& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/IPv6NDMessage.msg:133</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/IPv6NDMessage.msg:133</tt> by nedtool.
  * <pre>
  * //
  * // Neighbour Advertisement Message Format
@@ -480,7 +480,7 @@ inline void doPacking(cCommBuffer *b, IPv6NeighbourAdvertisement& obj) {obj.pars
 inline void doUnpacking(cCommBuffer *b, IPv6NeighbourAdvertisement& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/icmpv6/IPv6NDMessage.msg:149</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/icmpv6/IPv6NDMessage.msg:149</tt> by nedtool.
  * <pre>
  * //
  * // Redirect Message Format

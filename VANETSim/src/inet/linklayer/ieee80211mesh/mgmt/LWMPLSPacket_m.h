@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/ieee80211mesh/mgmt/LWMPLSPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/ieee80211mesh/mgmt/LWMPLSPacket.msg.
 //
 
 #ifndef _LWMPLSPACKET_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>linklayer/ieee80211mesh/mgmt/LWMPLSPacket.msg:29</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/ieee80211mesh/mgmt/LWMPLSPacket.msg:29</tt> by nedtool.
  * <pre>
  * enum LwmplsType
  * {
@@ -63,7 +63,7 @@ enum LwmplsType {
 };
 
 /**
- * Class generated from <tt>linklayer/ieee80211mesh/mgmt/LWMPLSPacket.msg:56</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211mesh/mgmt/LWMPLSPacket.msg:56</tt> by nedtool.
  * <pre>
  * //
  * // Capability Information field format. This field is not used
@@ -148,7 +148,7 @@ inline void doPacking(cCommBuffer *b, LWMPLSPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, LWMPLSPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211mesh/mgmt/LWMPLSPacket.msg:71</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211mesh/mgmt/LWMPLSPacket.msg:71</tt> by nedtool.
  * <pre>
  * packet LWMPLSControl extends LWMPLSPacket
  * {

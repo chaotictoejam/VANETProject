@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/udpapp/VideoPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/udpapp/VideoPacket.msg.
 //
 
 #ifndef _VIDEOPACKET_M_H_
@@ -16,7 +16,7 @@
 
 
 /**
- * Class generated from <tt>applications/udpapp/VideoPacket.msg:19</tt> by nedtool.
+ * Class generated from <tt>inet/applications/udpapp/VideoPacket.msg:19</tt> by nedtool.
  * <pre>
  * //
  * // TODO generated message class

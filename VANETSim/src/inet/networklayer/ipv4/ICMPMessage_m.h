@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/ipv4/ICMPMessage.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/ipv4/ICMPMessage.msg.
 //
 
 #ifndef _ICMPMESSAGE_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>networklayer/ipv4/ICMPMessage.msg:31</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/ipv4/ICMPMessage.msg:31</tt> by nedtool.
  * <pre>
  * //
  * // Not the real ICMP codes; here it's set up so that codes above 128 are
@@ -82,7 +82,7 @@ enum ICMPDestinationUnreachableCodes
 // }}
 
 /**
- * Class generated from <tt>networklayer/ipv4/ICMPMessage.msg:82</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv4/ICMPMessage.msg:82</tt> by nedtool.
  * <pre>
  * //
  * // ICMP message class

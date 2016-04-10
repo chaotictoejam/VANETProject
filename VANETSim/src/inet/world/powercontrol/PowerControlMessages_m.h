@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from world/powercontrol/PowerControlMessages.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/world/powercontrol/PowerControlMessages.msg.
 //
 
 #ifndef _POWERCONTROLMESSAGES_M_H_
@@ -16,7 +16,7 @@
 
 
 /**
- * Class generated from <tt>world/powercontrol/PowerControlMessages.msg:18</tt> by nedtool.
+ * Class generated from <tt>inet/world/powercontrol/PowerControlMessages.msg:18</tt> by nedtool.
  * <pre>
  * message PowerControlMessage
  * {
@@ -54,7 +54,7 @@ inline void doPacking(cCommBuffer *b, PowerControlMessage& obj) {obj.parsimPack(
 inline void doUnpacking(cCommBuffer *b, PowerControlMessage& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>world/powercontrol/PowerControlMessages.msg:23</tt> by nedtool.
+ * Class generated from <tt>inet/world/powercontrol/PowerControlMessages.msg:23</tt> by nedtool.
  * <pre>
  * message EnableModuleMessage extends PowerControlMessage
  * {
@@ -88,7 +88,7 @@ inline void doPacking(cCommBuffer *b, EnableModuleMessage& obj) {obj.parsimPack(
 inline void doUnpacking(cCommBuffer *b, EnableModuleMessage& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>world/powercontrol/PowerControlMessages.msg:27</tt> by nedtool.
+ * Class generated from <tt>inet/world/powercontrol/PowerControlMessages.msg:27</tt> by nedtool.
  * <pre>
  * message DisableModuleMessage extends PowerControlMessage
  * {

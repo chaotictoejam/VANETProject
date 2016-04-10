@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/radio/Radio80211aControlInfo.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/radio/Radio80211aControlInfo.msg.
 //
 
 #ifndef _RADIO80211ACONTROLINFO_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>linklayer/radio/Radio80211aControlInfo.msg:28</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/radio/Radio80211aControlInfo.msg:28</tt> by nedtool.
  * <pre>
  * class Radio80211aControlInfo
  * {

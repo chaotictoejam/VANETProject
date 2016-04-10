@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/udpapp/UDPEchoAppMsg.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/udpapp/UDPEchoAppMsg.msg.
 //
 
 #ifndef _UDPECHOAPPMSG_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>applications/udpapp/UDPEchoAppMsg.msg:25</tt> by nedtool.
+ * Class generated from <tt>inet/applications/udpapp/UDPEchoAppMsg.msg:25</tt> by nedtool.
  * <pre>
  * //
  * // Message class used by ~UDPEchoApp.

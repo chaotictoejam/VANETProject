@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/ieee80211/mgmt/ETXPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/ieee80211/mgmt/ETXPacket.msg.
 //
 
 #ifndef _ETXPACKET_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/ETXPacket.msg:30</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/ETXPacket.msg:30</tt> by nedtool.
  * <pre>
  * packet ETXBasePacket
  * {
@@ -64,7 +64,7 @@ inline void doPacking(cCommBuffer *b, ETXBasePacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, ETXBasePacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/ETXPacket.msg:36</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/ETXPacket.msg:36</tt> by nedtool.
  * <pre>
  * packet MACETXPacket extends ETXBasePacket
  * {
@@ -114,7 +114,7 @@ inline void doPacking(cCommBuffer *b, MACETXPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, MACETXPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mgmt/ETXPacket.msg:43</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mgmt/ETXPacket.msg:43</tt> by nedtool.
  * <pre>
  * packet MACBwPacket extends ETXBasePacket
  * {

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/xmipv6/MobilityHeader.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/xmipv6/MobilityHeader.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/rsvp_te/RSVPPathMsg.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/rsvp_te/RSVPPathMsg.msg.
 //
 
 #ifndef _RSVPPATHMSG_M_H_
@@ -21,7 +21,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/RSVPPathMsg.msg:43</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/RSVPPathMsg.msg:43</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation
@@ -111,7 +111,7 @@ class RSVPPathMsg_Base : public ::RSVPPacket
 };
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/RSVPPathMsg.msg:58</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/RSVPPathMsg.msg:58</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation
@@ -190,7 +190,7 @@ class RSVPPathTear_Base : public ::RSVPPacket
 };
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/RSVPPathMsg.msg:71</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/RSVPPathMsg.msg:71</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/ipv6/IPv6ExtensionHeaders.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/ipv6/IPv6ExtensionHeaders.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

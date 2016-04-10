@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/rsvp_te/RSVPPathMsg.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/rsvp_te/RSVPPathMsg.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

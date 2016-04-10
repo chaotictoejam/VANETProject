@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from world/powercontrol/PowerControlMessages.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/world/powercontrol/PowerControlMessages.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

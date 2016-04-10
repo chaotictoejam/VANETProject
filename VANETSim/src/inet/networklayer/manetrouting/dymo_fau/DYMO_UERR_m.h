@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/manetrouting/dymo_fau/DYMO_UERR.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/manetrouting/dymo_fau/DYMO_UERR.msg.
 //
 
 #ifndef _DYMO_UERR_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/manetrouting/dymo_fau/DYMO_UERR.msg:30</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/manetrouting/dymo_fau/DYMO_UERR.msg:30</tt> by nedtool.
  * <pre>
  * message DYMO_UERR extends DYMO_PacketBBMessage
  * {

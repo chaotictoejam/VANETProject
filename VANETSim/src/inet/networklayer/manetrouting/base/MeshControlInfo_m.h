@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/manetrouting/base/MeshControlInfo.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/manetrouting/base/MeshControlInfo.msg.
 //
 
 #ifndef _MESHCONTROLINFO_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/manetrouting/base/MeshControlInfo.msg:32</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/manetrouting/base/MeshControlInfo.msg:32</tt> by nedtool.
  * <pre>
  * //
  * // Control structure for communication between LLC and higher layers

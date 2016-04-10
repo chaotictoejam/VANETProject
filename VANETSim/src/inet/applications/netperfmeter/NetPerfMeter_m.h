@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/netperfmeter/NetPerfMeter.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/netperfmeter/NetPerfMeter.msg.
 //
 
 #ifndef _NETPERFMETER_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>applications/netperfmeter/NetPerfMeter.msg:37</tt> by nedtool.
+ * Class generated from <tt>inet/applications/netperfmeter/NetPerfMeter.msg:37</tt> by nedtool.
  * <pre>
  * message NetPerfMeterTransmitTimer
  * {
@@ -58,7 +58,7 @@ inline void doPacking(cCommBuffer *b, NetPerfMeterTransmitTimer& obj) {obj.parsi
 inline void doUnpacking(cCommBuffer *b, NetPerfMeterTransmitTimer& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>applications/netperfmeter/NetPerfMeter.msg:43</tt> by nedtool.
+ * Class generated from <tt>inet/applications/netperfmeter/NetPerfMeter.msg:43</tt> by nedtool.
  * <pre>
  * message NetPerfMeterDataMessage extends SCTPSimpleMessage
  * {

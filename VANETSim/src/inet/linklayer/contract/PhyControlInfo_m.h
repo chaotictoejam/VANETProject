@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/contract/PhyControlInfo.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/contract/PhyControlInfo.msg.
 //
 
 #ifndef _PHYCONTROLINFO_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>linklayer/contract/PhyControlInfo.msg:31</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/contract/PhyControlInfo.msg:31</tt> by nedtool.
  * <pre>
  * //
  * // Command codes for controlling the physical layer (the radio). These constants
@@ -42,7 +42,7 @@ enum PhyCommandCode {
 };
 
 /**
- * Class generated from <tt>linklayer/contract/PhyControlInfo.msg:40</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/contract/PhyControlInfo.msg:40</tt> by nedtool.
  * <pre>
  * //
  * // Control info for controlling the physical layer (the radio).
@@ -95,7 +95,7 @@ inline void doPacking(cCommBuffer *b, PhyControlInfo& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, PhyControlInfo& obj) {obj.parsimUnpack(b);}
 
 /**
- * Enum generated from <tt>linklayer/contract/PhyControlInfo.msg:53</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/contract/PhyControlInfo.msg:53</tt> by nedtool.
  * <pre>
  * //
  * // Sent up from the radio as message kind value

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/contract/IPv6ControlInfo.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/contract/IPv6ControlInfo.msg.
 //
 
 #ifndef _IPV6CONTROLINFO_M_H_
@@ -29,7 +29,7 @@ inline std::ostream& operator<<(std::ostream& os, IPv6ExtensionHeaderPtr eh) {re
 // }}
 
 /**
- * Class generated from <tt>networklayer/contract/IPv6ControlInfo.msg:64</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/contract/IPv6ControlInfo.msg:64</tt> by nedtool.
  * <pre>
  * //
  * // Control information for sending/receiving packets over IPv6.

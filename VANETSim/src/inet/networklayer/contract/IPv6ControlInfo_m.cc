@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/contract/IPv6ControlInfo.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/contract/IPv6ControlInfo.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

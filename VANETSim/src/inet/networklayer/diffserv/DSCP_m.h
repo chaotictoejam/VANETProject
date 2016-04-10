@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/diffserv/DSCP.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/diffserv/DSCP.msg.
 //
 
 #ifndef _DSCP_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>networklayer/diffserv/DSCP.msg:28</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/diffserv/DSCP.msg:28</tt> by nedtool.
  * <pre>
  * //
  * // DiffServ code points.

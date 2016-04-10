@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/bgpv4/BGPMessage/BGPUpdate.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/bgpv4/BGPMessage/BGPUpdate.msg.
 //
 
 #ifndef _BGPUPDATE_M_H_
@@ -24,7 +24,7 @@ const int BGP_EMPTY_UPDATE_OCTETS = 4; // UnfeasibleRoutesLength (2) + TotalPath
 // }}
 
 /**
- * Struct generated from networklayer/bgpv4/BGPMessage/BGPUpdate.msg:37 by nedtool.
+ * Struct generated from inet/networklayer/bgpv4/BGPMessage/BGPUpdate.msg:37 by nedtool.
  */
 struct BGPUpdateWithdrawnRoutes
 {
@@ -37,7 +37,7 @@ void doPacking(cCommBuffer *b, BGPUpdateWithdrawnRoutes& a);
 void doUnpacking(cCommBuffer *b, BGPUpdateWithdrawnRoutes& a);
 
 /**
- * Struct generated from networklayer/bgpv4/BGPMessage/BGPUpdate.msg:43 by nedtool.
+ * Struct generated from inet/networklayer/bgpv4/BGPMessage/BGPUpdate.msg:43 by nedtool.
  */
 struct BGPUpdateNLRI
 {
@@ -50,7 +50,7 @@ void doPacking(cCommBuffer *b, BGPUpdateNLRI& a);
 void doUnpacking(cCommBuffer *b, BGPUpdateNLRI& a);
 
 /**
- * Class generated from <tt>networklayer/bgpv4/BGPMessage/BGPUpdate.msg:53</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPUpdate.msg:53</tt> by nedtool.
  * <pre>
  * //
  * // Represents the list of path attributes in a BGPv4 UPDATE message.
@@ -122,7 +122,7 @@ inline void doPacking(cCommBuffer *b, BGPUpdatePathAttributeList& obj) {obj.pars
 inline void doUnpacking(cCommBuffer *b, BGPUpdatePathAttributeList& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/bgpv4/BGPMessage/BGPUpdate.msg:77</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPUpdate.msg:77</tt> by nedtool.
  * <pre>
  * //
  * // Represents a BGPv4 UPDATE message.

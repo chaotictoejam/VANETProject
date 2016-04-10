@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/manetrouting/aodv-uu/aodv_msg_struct.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/manetrouting/aodv-uu/aodv_msg_struct.msg.
 //
 
 #ifndef _AODV_MSG_STRUCT_M_H_

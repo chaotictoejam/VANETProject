@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/contract/Ieee802Ctrl.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/contract/Ieee802Ctrl.msg.
 //
 
 #ifndef _IEEE802CTRL_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>linklayer/contract/Ieee802Ctrl.msg:30</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/contract/Ieee802Ctrl.msg:30</tt> by nedtool.
  * <pre>
  * //
  * // Message kind values used with in communication between L3 and IEEE 802 L2
@@ -43,7 +43,7 @@ enum Ieee802MessageKind {
 };
 
 /**
- * Enum generated from <tt>linklayer/contract/Ieee802Ctrl.msg:42</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/contract/Ieee802Ctrl.msg:42</tt> by nedtool.
  * <pre>
  * //
  * // Some 8-bit SAP values for IEEE 802.x LLC headers.
@@ -76,7 +76,7 @@ enum SAPCode {
 };
 
 /**
- * Enum generated from <tt>linklayer/contract/Ieee802Ctrl.msg:59</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/contract/Ieee802Ctrl.msg:59</tt> by nedtool.
  * <pre>
  * //
  * // Some EtherType values (Ethernet II).
@@ -107,7 +107,7 @@ enum EtherType {
 };
 
 /**
- * Class generated from <tt>linklayer/contract/Ieee802Ctrl.msg:75</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/contract/Ieee802Ctrl.msg:75</tt> by nedtool.
  * <pre>
  * //
  * // Control structure for communication between LLC and higher layers

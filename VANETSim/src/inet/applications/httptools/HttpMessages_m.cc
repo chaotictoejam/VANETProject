@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/httptools/HttpMessages.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/httptools/HttpMessages.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

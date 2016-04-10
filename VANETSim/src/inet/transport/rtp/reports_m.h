@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/rtp/reports.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/rtp/reports.msg.
 //
 
 #ifndef _REPORTS_M_H_
@@ -16,7 +16,7 @@
 
 
 /**
- * Class generated from <tt>transport/rtp/reports.msg:15</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/reports.msg:15</tt> by nedtool.
  * <pre>
  * //
  * // Represents an RTP sender report as contained
@@ -102,7 +102,7 @@ class SenderReport_Base : public ::cObject
 };
 
 /**
- * Class generated from <tt>transport/rtp/reports.msg:36</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/reports.msg:36</tt> by nedtool.
  * <pre>
  * //
  * // Rrepresents an RTP receiver report stored

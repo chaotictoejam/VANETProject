@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/ipv6/IPv6Datagram.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/ipv6/IPv6Datagram.msg.
 //
 
 #ifndef _IPV6DATAGRAM_M_H_
@@ -27,7 +27,7 @@ const int IPv6_HEADER_BYTES = 40;
 // }}
 
 /**
- * Class generated from <tt>networklayer/ipv6/IPv6Datagram.msg:47</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv6/IPv6Datagram.msg:47</tt> by nedtool.
  * <pre>
  * //
  * // IPv6 datagram. RFC 2460 Section 3.
@@ -133,7 +133,7 @@ class IPv6Datagram_Base : public ::cPacket
 };
 
 /**
- * Class generated from <tt>networklayer/ipv6/IPv6Datagram.msg:67</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv6/IPv6Datagram.msg:67</tt> by nedtool.
  * <pre>
  * //
  * // This serves as the base class for all the other extension headers.

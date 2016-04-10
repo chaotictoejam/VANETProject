@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from base/ByteArray.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/base/ByteArray.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

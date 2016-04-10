@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/ieee80211/mac/Ieee80211Frame.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/ieee80211/mac/Ieee80211Frame.msg.
 //
 
 #ifndef _IEEE80211FRAME_M_H_
@@ -22,7 +22,7 @@
 // }}
 
 /**
- * Enum generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:35</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:35</tt> by nedtool.
  * <pre>
  * //
  * // 802.11 frame type constants (type+subtype), for the "type" field of
@@ -88,7 +88,7 @@ enum Ieee80211FrameType {
 };
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:76</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:76</tt> by nedtool.
  * <pre>
  * //
  * // The common part of 802.11 frames.
@@ -168,7 +168,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211Frame& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, Ieee80211Frame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:93</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:93</tt> by nedtool.
  * <pre>
  * //
  * // Format of a 802.11 frame with address1 present, like ACK and CTS
@@ -205,7 +205,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211OneAddressFrame& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, Ieee80211OneAddressFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:100</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:100</tt> by nedtool.
  * <pre>
  * //
  * // Format of the 802.11 ACK frame
@@ -244,7 +244,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ACKFrame& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, Ieee80211ACKFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:109</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:109</tt> by nedtool.
  * <pre>
  * //
  * // Format of a 802.11 frame with address1 and address2 present
@@ -287,7 +287,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211TwoAddressFrame& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, Ieee80211TwoAddressFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:118</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:118</tt> by nedtool.
  * <pre>
  * //
  * // Format of the 802.11 RTS frame
@@ -326,7 +326,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211RTSFrame& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, Ieee80211RTSFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:127</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:127</tt> by nedtool.
  * <pre>
  * //
  * // Format of the 802.11 CTS frame
@@ -365,7 +365,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211CTSFrame& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, Ieee80211CTSFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:136</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:136</tt> by nedtool.
  * <pre>
  * //
  * // Common base class for 802.11 data and management frames
@@ -416,7 +416,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211DataOrMgmtFrame& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, Ieee80211DataOrMgmtFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:147</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:147</tt> by nedtool.
  * <pre>
  * //
  * // Format of the 802.11 data frame
@@ -460,7 +460,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211DataFrame& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, Ieee80211DataFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:157</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:157</tt> by nedtool.
  * <pre>
  * //
  * // 802.11 data frame with the 8-byte SNAP header (AA AA 03, 00 00 00, <2-byte ~EtherType>)
@@ -502,7 +502,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211DataFrameWithSNAP& obj) {obj.pars
 inline void doUnpacking(cCommBuffer *b, Ieee80211DataFrameWithSNAP& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:166</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:166</tt> by nedtool.
  * <pre>
  * //
  * // Base class for 802.11 management frames (subclasses will add frame body contents)
@@ -544,7 +544,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211ManagementFrame& obj) {obj.parsim
 inline void doUnpacking(cCommBuffer *b, Ieee80211ManagementFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Enum generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:172</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:172</tt> by nedtool.
  * <pre>
  * enum MeshType
  * {
@@ -560,7 +560,7 @@ enum MeshType {
 };
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:178</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:178</tt> by nedtool.
  * <pre>
  * packet Ieee80211MeshFrame extends Ieee80211DataFrame
  * {
@@ -641,7 +641,7 @@ inline void doPacking(cCommBuffer *b, Ieee80211MeshFrame& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, Ieee80211MeshFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:198</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:198</tt> by nedtool.
  * <pre>
  * packet Ieee80211BlockAckFrameReq extends Ieee80211TwoAddressFrame
  * {
@@ -725,7 +725,7 @@ class Ieee80211BlockAckFrameReq_Base : public ::Ieee80211TwoAddressFrame
 };
 
 /**
- * Class generated from <tt>linklayer/ieee80211/mac/Ieee80211Frame.msg:211</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211/mac/Ieee80211Frame.msg:211</tt> by nedtool.
  * <pre>
  * packet Ieee80211BlockAckFrame extends Ieee80211TwoAddressFrame
  * {

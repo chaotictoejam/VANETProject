@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/ospfv2/OSPFPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/ospfv2/OSPFPacket.msg.
 //
 
 #ifndef _OSPFPACKET_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>networklayer/ospfv2/OSPFPacket.msg:26</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:26</tt> by nedtool.
  * <pre>
  * enum OSPFPacketType
  * {
@@ -42,7 +42,7 @@ enum OSPFPacketType {
 };
 
 /**
- * Struct generated from networklayer/ospfv2/OSPFPacket.msg:36 by nedtool.
+ * Struct generated from inet/networklayer/ospfv2/OSPFPacket.msg:36 by nedtool.
  */
 struct OSPFOptions
 {
@@ -61,7 +61,7 @@ void doPacking(cCommBuffer *b, OSPFOptions& a);
 void doUnpacking(cCommBuffer *b, OSPFOptions& a);
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:51</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:51</tt> by nedtool.
  * <pre>
  * //
  * // Represents an OSPF packet header
@@ -127,7 +127,7 @@ inline void doPacking(cCommBuffer *b, OSPFPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OSPFPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:66</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:66</tt> by nedtool.
  * <pre>
  * //
  * // Represents an OSPF Hello packet
@@ -208,7 +208,7 @@ inline void doPacking(cCommBuffer *b, OSPFHelloPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OSPFHelloPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Enum generated from <tt>networklayer/ospfv2/OSPFPacket.msg:83</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:83</tt> by nedtool.
  * <pre>
  * enum LSAType
  * {
@@ -230,7 +230,7 @@ enum LSAType {
 };
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:95</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:95</tt> by nedtool.
  * <pre>
  * //
  * // Represents an OSPF LSA header
@@ -298,7 +298,7 @@ inline void doPacking(cCommBuffer *b, OSPFLSAHeader& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OSPFLSAHeader& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:109</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:109</tt> by nedtool.
  * <pre>
  * //
  * // common ancestor type for all LSAs
@@ -340,7 +340,7 @@ inline void doPacking(cCommBuffer *b, OSPFLSA& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OSPFLSA& obj) {obj.parsimUnpack(b);}
 
 /**
- * Enum generated from <tt>networklayer/ospfv2/OSPFPacket.msg:114</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:114</tt> by nedtool.
  * <pre>
  * enum LinkType
  * {
@@ -360,7 +360,7 @@ enum LinkType {
 };
 
 /**
- * Struct generated from networklayer/ospfv2/OSPFPacket.msg:122 by nedtool.
+ * Struct generated from inet/networklayer/ospfv2/OSPFPacket.msg:122 by nedtool.
  */
 struct TOSData
 {
@@ -373,7 +373,7 @@ void doPacking(cCommBuffer *b, TOSData& a);
 void doUnpacking(cCommBuffer *b, TOSData& a);
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:128</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:128</tt> by nedtool.
  * <pre>
  * class Link
  * {
@@ -436,7 +436,7 @@ inline void doPacking(cCommBuffer *b, Link& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, Link& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:141</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:141</tt> by nedtool.
  * <pre>
  * //
  * // Represents an OSPF Router LSA
@@ -497,7 +497,7 @@ inline void doPacking(cCommBuffer *b, OSPFRouterLSA& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OSPFRouterLSA& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:153</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:153</tt> by nedtool.
  * <pre>
  * //
  * // Represents an OSPF Network LSA
@@ -547,7 +547,7 @@ inline void doPacking(cCommBuffer *b, OSPFNetworkLSA& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OSPFNetworkLSA& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:162</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:162</tt> by nedtool.
  * <pre>
  * //
  * // Represents an OSPF Summary LSA
@@ -601,7 +601,7 @@ inline void doPacking(cCommBuffer *b, OSPFSummaryLSA& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OSPFSummaryLSA& obj) {obj.parsimUnpack(b);}
 
 /**
- * Struct generated from networklayer/ospfv2/OSPFPacket.msg:169 by nedtool.
+ * Struct generated from inet/networklayer/ospfv2/OSPFPacket.msg:169 by nedtool.
  */
 struct ExternalTOSInfo
 {
@@ -616,7 +616,7 @@ void doPacking(cCommBuffer *b, ExternalTOSInfo& a);
 void doUnpacking(cCommBuffer *b, ExternalTOSInfo& a);
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:180</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:180</tt> by nedtool.
  * <pre>
  * //
  * // Represents the contents of an OSPF AS External LSA
@@ -683,7 +683,7 @@ inline void doPacking(cCommBuffer *b, OSPFASExternalLSAContents& obj) {obj.parsi
 inline void doUnpacking(cCommBuffer *b, OSPFASExternalLSAContents& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:193</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:193</tt> by nedtool.
  * <pre>
  * //
  * // Represents an OSPF AS External LSA
@@ -725,7 +725,7 @@ inline void doPacking(cCommBuffer *b, OSPFASExternalLSA& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, OSPFASExternalLSA& obj) {obj.parsimUnpack(b);}
 
 /**
- * Struct generated from networklayer/ospfv2/OSPFPacket.msg:200 by nedtool.
+ * Struct generated from inet/networklayer/ospfv2/OSPFPacket.msg:200 by nedtool.
  */
 struct OSPFDDOptions
 {
@@ -744,7 +744,7 @@ void doPacking(cCommBuffer *b, OSPFDDOptions& a);
 void doUnpacking(cCommBuffer *b, OSPFDDOptions& a);
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:215</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:215</tt> by nedtool.
  * <pre>
  * //
  * // Represents an OSPF Database Description packet
@@ -807,7 +807,7 @@ inline void doPacking(cCommBuffer *b, OSPFDatabaseDescriptionPacket& obj) {obj.p
 inline void doUnpacking(cCommBuffer *b, OSPFDatabaseDescriptionPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Struct generated from networklayer/ospfv2/OSPFPacket.msg:224 by nedtool.
+ * Struct generated from inet/networklayer/ospfv2/OSPFPacket.msg:224 by nedtool.
  */
 struct LSARequest
 {
@@ -821,7 +821,7 @@ void doPacking(cCommBuffer *b, LSARequest& a);
 void doUnpacking(cCommBuffer *b, LSARequest& a);
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:234</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:234</tt> by nedtool.
  * <pre>
  * //
  * // Represents an OSPF Link State Request packet
@@ -866,7 +866,7 @@ inline void doPacking(cCommBuffer *b, OSPFLinkStateRequestPacket& obj) {obj.pars
 inline void doUnpacking(cCommBuffer *b, OSPFLinkStateRequestPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:242</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:242</tt> by nedtool.
  * <pre>
  * //
  * // Represents an OSPF Link State Update packet
@@ -939,7 +939,7 @@ inline void doPacking(cCommBuffer *b, OSPFLinkStateUpdatePacket& obj) {obj.parsi
 inline void doUnpacking(cCommBuffer *b, OSPFLinkStateUpdatePacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/ospfv2/OSPFPacket.msg:254</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ospfv2/OSPFPacket.msg:254</tt> by nedtool.
  * <pre>
  * //
  * // Represents an OSPF Link State Acknowledgement packet

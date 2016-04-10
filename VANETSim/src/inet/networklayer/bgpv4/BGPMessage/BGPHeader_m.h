@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/bgpv4/BGPMessage/BGPHeader.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/bgpv4/BGPMessage/BGPHeader.msg.
 //
 
 #ifndef _BGPHEADER_M_H_
@@ -20,7 +20,7 @@ const int BGP_HEADER_OCTETS = 19;
 // }}
 
 /**
- * Enum generated from <tt>networklayer/bgpv4/BGPMessage/BGPHeader.msg:26</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPHeader.msg:26</tt> by nedtool.
  * <pre>
  * //
  * // BGPv4 message types
@@ -43,7 +43,7 @@ enum BGPType {
 };
 
 /**
- * Class generated from <tt>networklayer/bgpv4/BGPMessage/BGPHeader.msg:42</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPHeader.msg:42</tt> by nedtool.
  * <pre>
  * //
  * // Represents a BGPv4 message header.

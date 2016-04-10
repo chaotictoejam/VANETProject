@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/contract/IPProtocolId.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/contract/IPProtocolId.msg.
 //
 
 #ifndef _IPPROTOCOLID_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>networklayer/contract/IPProtocolId.msg:31</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/contract/IPProtocolId.msg:31</tt> by nedtool.
  * <pre>
  * //
  * // Protocol field: taken from RFC 1700.
@@ -86,7 +86,7 @@ enum IPProtocolId {
 };
 
 /**
- * Class generated from <tt>networklayer/contract/IPProtocolId.msg:62</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/contract/IPProtocolId.msg:62</tt> by nedtool.
  * <pre>
  * class IPRegisterProtocolCommand
  * {

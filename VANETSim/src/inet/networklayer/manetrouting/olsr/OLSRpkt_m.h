@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/manetrouting/olsr/OLSRpkt.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/manetrouting/olsr/OLSRpkt.msg.
 //
 
 #ifndef _OLSRPKT_M_H_
@@ -379,7 +379,7 @@ typedef struct OLSR_msg {
 // }}
 
 /**
- * Class generated from <tt>networklayer/manetrouting/olsr/OLSRpkt.msg:402</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/manetrouting/olsr/OLSRpkt.msg:402</tt> by nedtool.
  * <pre>
  * //
  * // Represents an OLSR packet

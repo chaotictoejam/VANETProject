@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/xmipv6/MobilityHeader.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/xmipv6/MobilityHeader.msg.
 //
 
 #ifndef _MOBILITYHEADER_M_H_
@@ -23,7 +23,7 @@
 // }}
 
 /**
- * Enum generated from <tt>networklayer/xmipv6/MobilityHeader.msg:39</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:39</tt> by nedtool.
  * <pre>
  * enum MobilityHeaderType
  * {
@@ -51,7 +51,7 @@ enum MobilityHeaderType {
 };
 
 /**
- * Class generated from <tt>networklayer/xmipv6/MobilityHeader.msg:52</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:52</tt> by nedtool.
  * <pre>
  * packet MobilityHeader // extends IPv6ExtensionHeader // TODO check how to define MobilityHeader as subclass of IPv6ExtensionHeader
  * {
@@ -89,7 +89,7 @@ inline void doPacking(cCommBuffer *b, MobilityHeader& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, MobilityHeader& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/xmipv6/MobilityHeader.msg:58</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:58</tt> by nedtool.
  * <pre>
  * packet BindingUpdate extends MobilityHeader
  * {
@@ -162,7 +162,7 @@ inline void doPacking(cCommBuffer *b, BindingUpdate& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, BindingUpdate& obj) {obj.parsimUnpack(b);}
 
 /**
- * Enum generated from <tt>networklayer/xmipv6/MobilityHeader.msg:76</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:76</tt> by nedtool.
  * <pre>
  * enum BAStatus
  * {
@@ -204,7 +204,7 @@ enum BAStatus {
 };
 
 /**
- * Class generated from <tt>networklayer/xmipv6/MobilityHeader.msg:97</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:97</tt> by nedtool.
  * <pre>
  * packet BindingAcknowledgement extends MobilityHeader
  * {
@@ -263,7 +263,7 @@ inline void doPacking(cCommBuffer *b, BindingAcknowledgement& obj) {obj.parsimPa
 inline void doUnpacking(cCommBuffer *b, BindingAcknowledgement& obj) {obj.parsimUnpack(b);}
 
 /**
- * Enum generated from <tt>networklayer/xmipv6/MobilityHeader.msg:111</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:111</tt> by nedtool.
  * <pre>
  * enum BEStatus
  * {
@@ -281,7 +281,7 @@ enum BEStatus {
 };
 
 /**
- * Class generated from <tt>networklayer/xmipv6/MobilityHeader.msg:120</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:120</tt> by nedtool.
  * <pre>
  * packet BindingError extends MobilityHeader
  * {
@@ -328,7 +328,7 @@ inline void doPacking(cCommBuffer *b, BindingError& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, BindingError& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/xmipv6/MobilityHeader.msg:130</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:130</tt> by nedtool.
  * <pre>
  * packet HomeTestInit extends MobilityHeader
  * {
@@ -368,7 +368,7 @@ inline void doPacking(cCommBuffer *b, HomeTestInit& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, HomeTestInit& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/xmipv6/MobilityHeader.msg:137</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:137</tt> by nedtool.
  * <pre>
  * packet HomeTest extends MobilityHeader
  * {
@@ -413,7 +413,7 @@ inline void doPacking(cCommBuffer *b, HomeTest& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, HomeTest& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/xmipv6/MobilityHeader.msg:146</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:146</tt> by nedtool.
  * <pre>
  * packet CareOfTestInit extends MobilityHeader
  * {
@@ -453,7 +453,7 @@ inline void doPacking(cCommBuffer *b, CareOfTestInit& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, CareOfTestInit& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/xmipv6/MobilityHeader.msg:153</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:153</tt> by nedtool.
  * <pre>
  * packet CareOfTest extends MobilityHeader
  * {
@@ -496,7 +496,7 @@ inline void doPacking(cCommBuffer *b, CareOfTest& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, CareOfTest& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/xmipv6/MobilityHeader.msg:164</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:164</tt> by nedtool.
  * <pre>
  * ///////////////////////////////////////////
  * // 18.09.07 - CB
@@ -533,7 +533,7 @@ inline void doPacking(cCommBuffer *b, BindingRefreshRequest& obj) {obj.parsimPac
 inline void doUnpacking(cCommBuffer *b, BindingRefreshRequest& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/xmipv6/MobilityHeader.msg:172</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/xmipv6/MobilityHeader.msg:172</tt> by nedtool.
  * <pre>
  * ///////////////////////////////////////////
  * // 17.10.07 - CB

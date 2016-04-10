@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/bgpv4/BGPMessage/BGPKeepAlive.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/bgpv4/BGPMessage/BGPKeepAlive.msg.
 //
 
 #ifndef _BGPKEEPALIVE_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/bgpv4/BGPMessage/BGPKeepAlive.msg:31</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPKeepAlive.msg:31</tt> by nedtool.
  * <pre>
  * //
  * // Represents a BGPv4 KEEPALIVE message.

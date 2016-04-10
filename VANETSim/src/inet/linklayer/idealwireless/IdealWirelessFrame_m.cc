@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/idealwireless/IdealWirelessFrame.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/idealwireless/IdealWirelessFrame.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

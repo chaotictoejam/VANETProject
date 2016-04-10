@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/contract/IPv4ControlInfo.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/contract/IPv4ControlInfo.msg.
 //
 
 #ifndef _IPV4CONTROLINFO_M_H_
@@ -22,7 +22,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/contract/IPv4ControlInfo.msg:64</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/contract/IPv4ControlInfo.msg:64</tt> by nedtool.
  * <pre>
  * //
  * // Control information for sending/receiving packets over IPv4.
@@ -172,7 +172,7 @@ class IPv4ControlInfo_Base : public ::cObject
 };
 
 /**
- * Class generated from <tt>networklayer/contract/IPv4ControlInfo.msg:94</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/contract/IPv4ControlInfo.msg:94</tt> by nedtool.
  * <pre>
  * //
  * // Control info attached to packets sent from ~IPv4 to ~ARP.

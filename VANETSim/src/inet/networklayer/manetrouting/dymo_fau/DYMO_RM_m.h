@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/manetrouting/dymo_fau/DYMO_RM.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/manetrouting/dymo_fau/DYMO_RM.msg.
 //
 
 #ifndef _DYMO_RM_M_H_
@@ -27,7 +27,7 @@ typedef std::vector<DYMO_AddressBlock> VectorOfDYMOAddressBlocks;
 // }}
 
 /**
- * Class generated from <tt>networklayer/manetrouting/dymo_fau/DYMO_RM.msg:41</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/manetrouting/dymo_fau/DYMO_RM.msg:41</tt> by nedtool.
  * <pre>
  * message DYMO_RM extends DYMO_PacketBBMessage
  * {

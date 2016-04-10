@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/netperfmeter/NetPerfMeter.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/netperfmeter/NetPerfMeter.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

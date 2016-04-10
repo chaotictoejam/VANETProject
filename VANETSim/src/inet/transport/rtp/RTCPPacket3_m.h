@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/rtp/RTCPPacket3.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/rtp/RTCPPacket3.msg.
 //
 
 #ifndef _RTCPPACKET3_M_H_
@@ -22,7 +22,7 @@
 // }}
 
 /**
- * Class generated from <tt>transport/rtp/RTCPPacket3.msg:30</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTCPPacket3.msg:30</tt> by nedtool.
  * <pre>
  * packet RTCPSenderReportPacket extends RTCPReceiverReportPacket
  * {

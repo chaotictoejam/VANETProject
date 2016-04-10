@@ -1,4 +1,4 @@
 # Partial OMNeT++/Tkenv config file -- see $HOME/.tkenvrc as well
-config default-configname	{GPSR}
+config default-configname	{GPSR-Simple-100}
 config default-runnumber	{0}
 

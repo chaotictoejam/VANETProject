@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/rsvp_te/SignallingMsg.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/rsvp_te/SignallingMsg.msg.
 //
 
 #ifndef _SIGNALLINGMSG_M_H_
@@ -39,7 +39,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/SignallingMsg.msg:50</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/SignallingMsg.msg:50</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation
@@ -80,7 +80,7 @@ inline void doPacking(cCommBuffer *b, SignallingMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, SignallingMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/SignallingMsg.msg:58</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/SignallingMsg.msg:58</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation
@@ -126,7 +126,7 @@ inline void doPacking(cCommBuffer *b, PsbTimerMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, PsbTimerMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/SignallingMsg.msg:68</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/SignallingMsg.msg:68</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation
@@ -172,7 +172,7 @@ inline void doPacking(cCommBuffer *b, PsbTimeoutMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, PsbTimeoutMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/SignallingMsg.msg:78</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/SignallingMsg.msg:78</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation
@@ -218,7 +218,7 @@ inline void doPacking(cCommBuffer *b, RsbRefreshTimerMsg& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, RsbRefreshTimerMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/SignallingMsg.msg:88</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/SignallingMsg.msg:88</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation
@@ -264,7 +264,7 @@ inline void doPacking(cCommBuffer *b, RsbCommitTimerMsg& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, RsbCommitTimerMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/SignallingMsg.msg:98</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/SignallingMsg.msg:98</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation
@@ -310,7 +310,7 @@ inline void doPacking(cCommBuffer *b, RsbTimeoutMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, RsbTimeoutMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/SignallingMsg.msg:108</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/SignallingMsg.msg:108</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation
@@ -357,7 +357,7 @@ inline void doPacking(cCommBuffer *b, HelloTimerMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, HelloTimerMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/SignallingMsg.msg:118</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/SignallingMsg.msg:118</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation
@@ -404,7 +404,7 @@ inline void doPacking(cCommBuffer *b, HelloTimeoutMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, HelloTimeoutMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/rsvp_te/SignallingMsg.msg:128</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/rsvp_te/SignallingMsg.msg:128</tt> by nedtool.
  * <pre>
  * //
  * // FIXME missing documentation

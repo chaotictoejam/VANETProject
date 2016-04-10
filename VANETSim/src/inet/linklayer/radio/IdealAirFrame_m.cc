@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/radio/IdealAirFrame.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/radio/IdealAirFrame.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

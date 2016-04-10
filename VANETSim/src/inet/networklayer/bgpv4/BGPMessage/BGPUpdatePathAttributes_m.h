@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg.
 //
 
 #ifndef _BGPUPDATEPATHATTRIBUTES_M_H_
@@ -21,7 +21,7 @@
 // }}
 
 /**
- * Enum generated from <tt>networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:28</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:28</tt> by nedtool.
  * <pre>
  * enum BGPUpdateAttributeTypeCode
  * {
@@ -43,7 +43,7 @@ enum BGPUpdateAttributeTypeCode {
 };
 
 /**
- * Struct generated from networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:37 by nedtool.
+ * Struct generated from inet/networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:37 by nedtool.
  */
 struct BGPUpdateAttributeFlags
 {
@@ -58,7 +58,7 @@ void doPacking(cCommBuffer *b, BGPUpdateAttributeFlags& a);
 void doUnpacking(cCommBuffer *b, BGPUpdateAttributeFlags& a);
 
 /**
- * Struct generated from networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:45 by nedtool.
+ * Struct generated from inet/networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:45 by nedtool.
  */
 struct BGPUpdateAttributeType
 {
@@ -71,7 +71,7 @@ void doPacking(cCommBuffer *b, BGPUpdateAttributeType& a);
 void doUnpacking(cCommBuffer *b, BGPUpdateAttributeType& a);
 
 /**
- * Class generated from <tt>networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:51</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:51</tt> by nedtool.
  * <pre>
  * class BGPUpdatePathAttributes
  * {
@@ -114,7 +114,7 @@ inline void doPacking(cCommBuffer *b, BGPUpdatePathAttributes& obj) {obj.parsimP
 inline void doUnpacking(cCommBuffer *b, BGPUpdatePathAttributes& obj) {obj.parsimUnpack(b);}
 
 /**
- * Enum generated from <tt>networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:58</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:58</tt> by nedtool.
  * <pre>
  * // ORIGIN (RFC4271 Section 4.3, Type code 1):
  * enum BGPUpdateOriginValues
@@ -133,7 +133,7 @@ enum BGPUpdateOriginValues {
 };
 
 /**
- * Class generated from <tt>networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:65</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:65</tt> by nedtool.
  * <pre>
  * class BGPUpdatePathAttributesOrigin extends BGPUpdatePathAttributes
  * {
@@ -171,7 +171,7 @@ inline void doPacking(cCommBuffer *b, BGPUpdatePathAttributesOrigin& obj) {obj.p
 inline void doUnpacking(cCommBuffer *b, BGPUpdatePathAttributesOrigin& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:71</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:71</tt> by nedtool.
  * <pre>
  * // AS_PATH (RFC4271 Section 4.3, Type code 2):
  * class BGPUpdatePathAttributesASPath extends BGPUpdatePathAttributes
@@ -214,7 +214,7 @@ inline void doPacking(cCommBuffer *b, BGPUpdatePathAttributesASPath& obj) {obj.p
 inline void doUnpacking(cCommBuffer *b, BGPUpdatePathAttributesASPath& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:77</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:77</tt> by nedtool.
  * <pre>
  * //NEXT_HOP (RFC4271 Section 4.3, Type code 3):
  * class BGPUpdatePathAttributesNextHop extends BGPUpdatePathAttributes
@@ -254,7 +254,7 @@ inline void doPacking(cCommBuffer *b, BGPUpdatePathAttributesNextHop& obj) {obj.
 inline void doUnpacking(cCommBuffer *b, BGPUpdatePathAttributesNextHop& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:83</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:83</tt> by nedtool.
  * <pre>
  * //LOCAL_PREF (RFC4271 Section 4.3, Type code 5):
  * class BGPUpdatePathAttributesLocalPref extends BGPUpdatePathAttributes
@@ -293,7 +293,7 @@ inline void doPacking(cCommBuffer *b, BGPUpdatePathAttributesLocalPref& obj) {ob
 inline void doUnpacking(cCommBuffer *b, BGPUpdatePathAttributesLocalPref& obj) {obj.parsimUnpack(b);}
 
 /**
- * Enum generated from <tt>networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:89</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:89</tt> by nedtool.
  * <pre>
  * //ATOMIC_AGGREGATE (RFC4271 Section 4.3, Type code 6):
  * enum BGPUpdateAtomicAggregateValues
@@ -310,7 +310,7 @@ enum BGPUpdateAtomicAggregateValues {
 };
 
 /**
- * Class generated from <tt>networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:95</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPUpdatePathAttributes.msg:95</tt> by nedtool.
  * <pre>
  * class BGPUpdatePathAttributesAtomicAggregate extends BGPUpdatePathAttributes
  * {

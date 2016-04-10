@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/ethernet/EtherFrame.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/ethernet/EtherFrame.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

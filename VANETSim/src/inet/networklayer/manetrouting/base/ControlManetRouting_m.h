@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/manetrouting/base/ControlManetRouting.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/manetrouting/base/ControlManetRouting.msg.
 //
 
 #ifndef _CONTROLMANETROUTING_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Enum generated from <tt>networklayer/manetrouting/base/ControlManetRouting.msg:27</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/manetrouting/base/ControlManetRouting.msg:27</tt> by nedtool.
  * <pre>
  * enum ManetControlType
  * {
@@ -38,7 +38,7 @@ enum ManetControlType {
 };
 
 /**
- * Class generated from <tt>networklayer/manetrouting/base/ControlManetRouting.msg:38</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/manetrouting/base/ControlManetRouting.msg:38</tt> by nedtool.
  * <pre>
  * //
  * // ICMP message class

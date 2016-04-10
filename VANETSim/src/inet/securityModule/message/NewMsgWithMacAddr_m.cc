@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from securityModule/message/NewMsgWithMacAddr.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/securityModule/message/NewMsgWithMacAddr.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

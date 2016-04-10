@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/ipv4/IGMPMessage.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/ipv4/IGMPMessage.msg.
 //
 
 #ifndef _IGMPMESSAGE_M_H_
@@ -21,7 +21,7 @@
 // }}
 
 /**
- * Enum generated from <tt>networklayer/ipv4/IGMPMessage.msg:27</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/ipv4/IGMPMessage.msg:27</tt> by nedtool.
  * <pre>
  * enum IGMPType
  * {
@@ -43,7 +43,7 @@ enum IGMPType {
 };
 
 /**
- * Class generated from <tt>networklayer/ipv4/IGMPMessage.msg:36</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ipv4/IGMPMessage.msg:36</tt> by nedtool.
  * <pre>
  * packet IGMPMessage
  * {

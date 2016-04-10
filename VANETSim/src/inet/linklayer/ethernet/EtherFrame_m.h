@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/ethernet/EtherFrame.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/ethernet/EtherFrame.msg.
 //
 
 #ifndef _ETHERFRAME_M_H_
@@ -22,7 +22,7 @@
 // }}
 
 /**
- * Class generated from <tt>linklayer/ethernet/EtherFrame.msg:39</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ethernet/EtherFrame.msg:39</tt> by nedtool.
  * <pre>
  * //
  * // This class should never be instantiated by the models, only specific
@@ -60,7 +60,7 @@ inline void doPacking(cCommBuffer *b, EtherTraffic& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, EtherTraffic& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ethernet/EtherFrame.msg:46</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ethernet/EtherFrame.msg:46</tt> by nedtool.
  * <pre>
  * //
  * // Represents jam on the Ethernet.
@@ -101,7 +101,7 @@ inline void doPacking(cCommBuffer *b, EtherJam& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, EtherJam& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ethernet/EtherFrame.msg:55</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ethernet/EtherFrame.msg:55</tt> by nedtool.
  * <pre>
  * //
  * // Represents a filled inter-frame gap in burst mode.
@@ -140,7 +140,7 @@ inline void doPacking(cCommBuffer *b, EtherIFG& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, EtherIFG& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ethernet/EtherFrame.msg:76</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ethernet/EtherFrame.msg:76</tt> by nedtool.
  * <pre>
  * //
  * // Common base class for classes representing Ethernet II and 802.3 frame types,
@@ -204,7 +204,7 @@ inline void doPacking(cCommBuffer *b, EtherFrame& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, EtherFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ethernet/EtherFrame.msg:90</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ethernet/EtherFrame.msg:90</tt> by nedtool.
  * <pre>
  * //
  * // Ethernet II headers contain a 16-bit ~EtherType to identify
@@ -252,7 +252,7 @@ inline void doPacking(cCommBuffer *b, EthernetIIFrame& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, EthernetIIFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ethernet/EtherFrame.msg:102</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ethernet/EtherFrame.msg:102</tt> by nedtool.
  * <pre>
  * //
  * // Ethernet frame with 802.3 LLC header.
@@ -303,7 +303,7 @@ inline void doPacking(cCommBuffer *b, EtherFrameWithLLC& obj) {obj.parsimPack(b)
 inline void doUnpacking(cCommBuffer *b, EtherFrameWithLLC& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ethernet/EtherFrame.msg:119</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ethernet/EtherFrame.msg:119</tt> by nedtool.
  * <pre>
  * //
  * // Ethernet frame with 802.3 LLC and SNAP headers.
@@ -357,7 +357,7 @@ inline void doPacking(cCommBuffer *b, EtherFrameWithSNAP& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, EtherFrameWithSNAP& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ethernet/EtherFrame.msg:132</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ethernet/EtherFrame.msg:132</tt> by nedtool.
  * <pre>
  * //
  * // Ethernet frame used by the PAUSE protocol
@@ -398,7 +398,7 @@ inline void doPacking(cCommBuffer *b, EtherPauseFrame& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, EtherPauseFrame& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ethernet/EtherFrame.msg:141</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ethernet/EtherFrame.msg:141</tt> by nedtool.
  * <pre>
  * // Mod1
  * // Ethernet 802.1Q Tag. VLAN
@@ -457,7 +457,7 @@ inline void doPacking(cCommBuffer *b, Ethernet1QTag& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, Ethernet1QTag& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>linklayer/ethernet/EtherFrame.msg:159</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ethernet/EtherFrame.msg:159</tt> by nedtool.
  * <pre>
  * // Mod1
  * // Ethernet 802.1ah header.

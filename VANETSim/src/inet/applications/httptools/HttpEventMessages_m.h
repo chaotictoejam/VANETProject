@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/httptools/HttpEventMessages.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/httptools/HttpEventMessages.msg.
 //
 
 #ifndef _HTTPEVENTMESSAGES_M_H_
@@ -16,7 +16,7 @@
 
 
 /**
- * Class generated from <tt>applications/httptools/HttpEventMessages.msg:43</tt> by nedtool.
+ * Class generated from <tt>inet/applications/httptools/HttpEventMessages.msg:43</tt> by nedtool.
  * <pre>
  * //
  * // Server status update event

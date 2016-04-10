@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/contract/IPProtocolId.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/contract/IPProtocolId.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/routing/rip/RIPPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/routing/rip/RIPPacket.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/udpapp/UDPVideoData.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/udpapp/UDPVideoData.msg.
 //
 
 #ifndef _UDPVIDEODATA_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>applications/udpapp/UDPVideoData.msg:25</tt> by nedtool.
+ * Class generated from <tt>inet/applications/udpapp/UDPVideoData.msg:25</tt> by nedtool.
  * <pre>
  * //
  * // Message class used by ~        

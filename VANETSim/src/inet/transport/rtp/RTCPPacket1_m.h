@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/rtp/RTCPPacket1.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/rtp/RTCPPacket1.msg.
 //
 
 #ifndef _RTCPPACKET1_M_H_
@@ -16,7 +16,7 @@
 
 
 /**
- * Enum generated from <tt>transport/rtp/RTCPPacket1.msg:23</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/rtp/RTCPPacket1.msg:23</tt> by nedtool.
  * <pre>
  * enum RTCPPacketType
  * {
@@ -38,7 +38,7 @@ enum RTCPPacketType {
 };
 
 /**
- * Class generated from <tt>transport/rtp/RTCPPacket1.msg:32</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTCPPacket1.msg:32</tt> by nedtool.
  * <pre>
  * packet RTCPPacket
  * {
@@ -116,7 +116,7 @@ class RTCPPacket_Base : public ::cPacket
 };
 
 /**
- * Class generated from <tt>transport/rtp/RTCPPacket1.msg:43</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/RTCPPacket1.msg:43</tt> by nedtool.
  * <pre>
  * packet RTCPCompoundPacket
  * {

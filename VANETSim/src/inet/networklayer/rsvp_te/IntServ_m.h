@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/rsvp_te/IntServ.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/rsvp_te/IntServ.msg.
 //
 
 #ifndef _INTSERV_M_H_
@@ -23,7 +23,7 @@ typedef std::vector<struct FlowDescriptor_t> FlowDescriptorVector;
 // }}
 
 /**
- * Struct generated from networklayer/rsvp_te/IntServ.msg:39 by nedtool.
+ * Struct generated from inet/networklayer/rsvp_te/IntServ.msg:39 by nedtool.
  */
 struct SessionObj_t
 {
@@ -39,7 +39,7 @@ void doPacking(cCommBuffer *b, SessionObj_t& a);
 void doUnpacking(cCommBuffer *b, SessionObj_t& a);
 
 /**
- * Struct generated from networklayer/rsvp_te/IntServ.msg:51 by nedtool.
+ * Struct generated from inet/networklayer/rsvp_te/IntServ.msg:51 by nedtool.
  */
 struct RsvpHopObj_t
 {
@@ -52,7 +52,7 @@ void doPacking(cCommBuffer *b, RsvpHopObj_t& a);
 void doUnpacking(cCommBuffer *b, RsvpHopObj_t& a);
 
 /**
- * Struct generated from networklayer/rsvp_te/IntServ.msg:60 by nedtool.
+ * Struct generated from inet/networklayer/rsvp_te/IntServ.msg:60 by nedtool.
  */
 struct SenderTemplateObj_t
 {
@@ -65,7 +65,7 @@ void doPacking(cCommBuffer *b, SenderTemplateObj_t& a);
 void doUnpacking(cCommBuffer *b, SenderTemplateObj_t& a);
 
 /**
- * Struct generated from networklayer/rsvp_te/IntServ.msg:70 by nedtool.
+ * Struct generated from inet/networklayer/rsvp_te/IntServ.msg:70 by nedtool.
  */
 struct SenderTspecObj_t
 {
@@ -77,7 +77,7 @@ void doPacking(cCommBuffer *b, SenderTspecObj_t& a);
 void doUnpacking(cCommBuffer *b, SenderTspecObj_t& a);
 
 /**
- * Struct generated from networklayer/rsvp_te/IntServ.msg:78 by nedtool.
+ * Struct generated from inet/networklayer/rsvp_te/IntServ.msg:78 by nedtool.
  */
 struct FlowSpecObj_t : public ::SenderTspecObj_t
 {
@@ -88,7 +88,7 @@ void doPacking(cCommBuffer *b, FlowSpecObj_t& a);
 void doUnpacking(cCommBuffer *b, FlowSpecObj_t& a);
 
 /**
- * Struct generated from networklayer/rsvp_te/IntServ.msg:85 by nedtool.
+ * Struct generated from inet/networklayer/rsvp_te/IntServ.msg:85 by nedtool.
  */
 struct FilterSpecObj_t : public ::SenderTemplateObj_t
 {
@@ -99,7 +99,7 @@ void doPacking(cCommBuffer *b, FilterSpecObj_t& a);
 void doUnpacking(cCommBuffer *b, FilterSpecObj_t& a);
 
 /**
- * Struct generated from networklayer/rsvp_te/IntServ.msg:92 by nedtool.
+ * Struct generated from inet/networklayer/rsvp_te/IntServ.msg:92 by nedtool.
  */
 struct LabelRequestObj_t
 {
@@ -111,7 +111,7 @@ void doPacking(cCommBuffer *b, LabelRequestObj_t& a);
 void doUnpacking(cCommBuffer *b, LabelRequestObj_t& a);
 
 /**
- * Struct generated from networklayer/rsvp_te/IntServ.msg:101 by nedtool.
+ * Struct generated from inet/networklayer/rsvp_te/IntServ.msg:101 by nedtool.
  */
 struct SenderDescriptor_t
 {
@@ -124,7 +124,7 @@ void doPacking(cCommBuffer *b, SenderDescriptor_t& a);
 void doUnpacking(cCommBuffer *b, SenderDescriptor_t& a);
 
 /**
- * Struct generated from networklayer/rsvp_te/IntServ.msg:110 by nedtool.
+ * Struct generated from inet/networklayer/rsvp_te/IntServ.msg:110 by nedtool.
  */
 struct EroObj_t
 {
@@ -137,7 +137,7 @@ void doPacking(cCommBuffer *b, EroObj_t& a);
 void doUnpacking(cCommBuffer *b, EroObj_t& a);
 
 /**
- * Struct generated from networklayer/rsvp_te/IntServ.msg:119 by nedtool.
+ * Struct generated from inet/networklayer/rsvp_te/IntServ.msg:119 by nedtool.
  */
 struct FlowDescriptor_t
 {

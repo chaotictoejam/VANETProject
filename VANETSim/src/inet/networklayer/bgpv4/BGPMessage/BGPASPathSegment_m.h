@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/bgpv4/BGPMessage/BGPASPathSegment.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/bgpv4/BGPMessage/BGPASPathSegment.msg.
 //
 
 #ifndef _BGPASPATHSEGMENT_M_H_
@@ -16,7 +16,7 @@
 
 
 /**
- * Enum generated from <tt>networklayer/bgpv4/BGPMessage/BGPASPathSegment.msg:19</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPASPathSegment.msg:19</tt> by nedtool.
  * <pre>
  * enum BGPPathSegmentType
  * {
@@ -32,7 +32,7 @@ enum BGPPathSegmentType {
 };
 
 /**
- * Class generated from <tt>networklayer/bgpv4/BGPMessage/BGPASPathSegment.msg:28</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPASPathSegment.msg:28</tt> by nedtool.
  * <pre>
  * //
  * // Represents a BGPv4 AS_PATH path attribute (RFC 4271 Section 4.3)

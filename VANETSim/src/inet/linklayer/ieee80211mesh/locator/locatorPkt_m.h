@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/ieee80211mesh/locator/locatorPkt.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/ieee80211mesh/locator/locatorPkt.msg.
 //
 
 #ifndef _LOCATORPKT_M_H_
@@ -22,7 +22,7 @@
 // }}
 
 /**
- * Enum generated from <tt>linklayer/ieee80211mesh/locator/locatorPkt.msg:32</tt> by nedtool.
+ * Enum generated from <tt>inet/linklayer/ieee80211mesh/locator/locatorPkt.msg:32</tt> by nedtool.
  * <pre>
  * enum LocatorOpcode
  * {
@@ -46,7 +46,7 @@ enum LocatorOpcode {
 };
 
 /**
- * Class generated from <tt>linklayer/ieee80211mesh/locator/locatorPkt.msg:42</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/ieee80211mesh/locator/locatorPkt.msg:42</tt> by nedtool.
  * <pre>
  * packet LocatorPkt
  * {

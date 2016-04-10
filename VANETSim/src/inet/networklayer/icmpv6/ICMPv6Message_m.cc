@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/icmpv6/ICMPv6Message.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/icmpv6/ICMPv6Message.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

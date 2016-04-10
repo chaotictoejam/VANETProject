@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/ted/TED.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/ted/TED.msg.
 //
 
 #ifndef _TED_M_H_
@@ -24,7 +24,7 @@ typedef std::vector<struct TELinkStateInfo> TELinkStateInfoVector;
 // }}
 
 /**
- * Struct generated from networklayer/ted/TED.msg:31 by nedtool.
+ * Struct generated from inet/networklayer/ted/TED.msg:31 by nedtool.
  */
 struct TELinkStateInfo
 {
@@ -46,7 +46,7 @@ void doPacking(cCommBuffer *b, TELinkStateInfo& a);
 void doUnpacking(cCommBuffer *b, TELinkStateInfo& a);
 
 /**
- * Class generated from <tt>networklayer/ted/TED.msg:53</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ted/TED.msg:53</tt> by nedtool.
  * <pre>
  * //
  * // Data structure supplied with NF_TED_CHANGE ~NotificationBoard notifications.

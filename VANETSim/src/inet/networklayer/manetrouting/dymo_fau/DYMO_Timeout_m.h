@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/manetrouting/dymo_fau/DYMO_Timeout.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/manetrouting/dymo_fau/DYMO_Timeout.msg.
 //
 
 #ifndef _DYMO_TIMEOUT_M_H_
@@ -16,7 +16,7 @@
 
 
 /**
- * Class generated from <tt>networklayer/manetrouting/dymo_fau/DYMO_Timeout.msg:23</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/manetrouting/dymo_fau/DYMO_Timeout.msg:23</tt> by nedtool.
  * <pre>
  * //
  * // Signals some kind of timeout.

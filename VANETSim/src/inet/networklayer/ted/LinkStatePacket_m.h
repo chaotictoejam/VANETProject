@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/ted/LinkStatePacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/ted/LinkStatePacket.msg.
 //
 
 #ifndef _LINKSTATEPACKET_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>networklayer/ted/LinkStatePacket.msg:32</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/ted/LinkStatePacket.msg:32</tt> by nedtool.
  * <pre>
  * //
  * // Packet for disseminating link state information (~TELinkStateInfo[]) by the

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from securityModule/message/NewMsgWithMacAddr.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/securityModule/message/NewMsgWithMacAddr.msg.
 //
 
 #ifndef _NEWMSGWITHMACADDR_M_H_
@@ -21,7 +21,7 @@
 // }}
 
 /**
- * Class generated from <tt>securityModule/message/NewMsgWithMacAddr.msg:9</tt> by nedtool.
+ * Class generated from <tt>inet/securityModule/message/NewMsgWithMacAddr.msg:9</tt> by nedtool.
  * <pre>
  * // For Timeouts
  * packet newcMessage extends cMessage

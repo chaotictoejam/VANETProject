@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from linklayer/idealwireless/IdealWirelessFrame.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/linklayer/idealwireless/IdealWirelessFrame.msg.
 //
 
 #ifndef _IDEALWIRELESSFRAME_M_H_
@@ -22,7 +22,7 @@
 // }}
 
 /**
- * Class generated from <tt>linklayer/idealwireless/IdealWirelessFrame.msg:33</tt> by nedtool.
+ * Class generated from <tt>inet/linklayer/idealwireless/IdealWirelessFrame.msg:33</tt> by nedtool.
  * <pre>
  * //
  * // Packet for ~IdealWirelessMac. Packet size is configurable

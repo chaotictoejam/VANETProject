@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/bgpv4/BGPMessage/BGPOpen.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/bgpv4/BGPMessage/BGPOpen.msg.
 //
 
 #ifndef _BGPOPEN_M_H_
@@ -23,7 +23,7 @@ const int BGP_OPEN_OCTETS = 10;
 // }}
 
 /**
- * Struct generated from networklayer/bgpv4/BGPMessage/BGPOpen.msg:31 by nedtool.
+ * Struct generated from inet/networklayer/bgpv4/BGPMessage/BGPOpen.msg:31 by nedtool.
  */
 struct BGPParameterValues
 {
@@ -36,7 +36,7 @@ void doPacking(cCommBuffer *b, BGPParameterValues& a);
 void doUnpacking(cCommBuffer *b, BGPParameterValues& a);
 
 /**
- * Struct generated from networklayer/bgpv4/BGPMessage/BGPOpen.msg:37 by nedtool.
+ * Struct generated from inet/networklayer/bgpv4/BGPMessage/BGPOpen.msg:37 by nedtool.
  */
 struct BGPOptionalParameters
 {
@@ -50,7 +50,7 @@ void doPacking(cCommBuffer *b, BGPOptionalParameters& a);
 void doUnpacking(cCommBuffer *b, BGPOptionalParameters& a);
 
 /**
- * Class generated from <tt>networklayer/bgpv4/BGPMessage/BGPOpen.msg:61</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/bgpv4/BGPMessage/BGPOpen.msg:61</tt> by nedtool.
  * <pre>
  * //
  * // Represents a BGPv4 OPEN message.

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/arp/ARPPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/arp/ARPPacket.msg.
 //
 
 #ifndef _ARPPACKET_M_H_
@@ -24,7 +24,7 @@
 // }}
 
 /**
- * Enum generated from <tt>networklayer/arp/ARPPacket.msg:37</tt> by nedtool.
+ * Enum generated from <tt>inet/networklayer/arp/ARPPacket.msg:37</tt> by nedtool.
  * <pre>
  * //
  * // The list of practically important ARP opcodes
@@ -47,7 +47,7 @@ enum ARPOpcode {
 };
 
 /**
- * Class generated from <tt>networklayer/arp/ARPPacket.msg:57</tt> by nedtool.
+ * Class generated from <tt>inet/networklayer/arp/ARPPacket.msg:57</tt> by nedtool.
  * <pre>
  * //
  * // ARP packet. This is a specialized version: prepared for IEEE 802 hardware

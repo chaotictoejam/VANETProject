@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from applications/pingapp/PingPayload.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/applications/pingapp/PingPayload.msg.
 //
 
 #ifndef _PINGPAYLOAD_M_H_
@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>applications/pingapp/PingPayload.msg:30</tt> by nedtool.
+ * Class generated from <tt>inet/applications/pingapp/PingPayload.msg:30</tt> by nedtool.
  * <pre>
  * //
  * // Represents payload in an ICMP/ICMPv6 Echo Request/Reply.

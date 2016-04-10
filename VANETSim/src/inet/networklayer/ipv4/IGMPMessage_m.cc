@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from networklayer/ipv4/IGMPMessage.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/networklayer/ipv4/IGMPMessage.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:

@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/tcp_common/TCPSegment.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/tcp_common/TCPSegment.msg.
 //
 
 #ifndef _TCPSEGMENT_M_H_
@@ -41,7 +41,7 @@
 // }}
 
 /**
- * Struct generated from transport/tcp_common/TCPSegment.msg:50 by nedtool.
+ * Struct generated from inet/transport/tcp_common/TCPSegment.msg:50 by nedtool.
  */
 struct TCPPayloadMessage
 {
@@ -54,7 +54,7 @@ void doPacking(cCommBuffer *b, TCPPayloadMessage& a);
 void doUnpacking(cCommBuffer *b, TCPPayloadMessage& a);
 
 /**
- * Enum generated from <tt>transport/tcp_common/TCPSegment.msg:63</tt> by nedtool.
+ * Enum generated from <tt>inet/transport/tcp_common/TCPSegment.msg:63</tt> by nedtool.
  * <pre>
  * //
  * // TCP Option Numbers
@@ -89,7 +89,7 @@ enum TCPOptionNumbers {
 };
 
 /**
- * Class generated from <tt>transport/tcp_common/TCPSegment.msg:103</tt> by nedtool.
+ * Class generated from <tt>inet/transport/tcp_common/TCPSegment.msg:103</tt> by nedtool.
  * <pre>
  * //
  * // This structure represents a single SACK (selective acknowledgment):
@@ -158,7 +158,7 @@ class Sack_Base : public ::cObject
 };
 
 /**
- * Class generated from <tt>transport/tcp_common/TCPSegment.msg:111</tt> by nedtool.
+ * Class generated from <tt>inet/transport/tcp_common/TCPSegment.msg:111</tt> by nedtool.
  * <pre>
  * // Header Options (optional):
  * class TCPOption
@@ -208,7 +208,7 @@ inline void doPacking(cCommBuffer *b, TCPOption& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, TCPOption& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>transport/tcp_common/TCPSegment.msg:132</tt> by nedtool.
+ * Class generated from <tt>inet/transport/tcp_common/TCPSegment.msg:132</tt> by nedtool.
  * <pre>
  * //
  * // Represents a TCP segment, to be used with the ~TCP module.

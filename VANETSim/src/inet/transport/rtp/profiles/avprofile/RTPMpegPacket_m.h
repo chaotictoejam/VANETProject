@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from transport/rtp/profiles/avprofile/RTPMpegPacket.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from inet/transport/rtp/profiles/avprofile/RTPMpegPacket.msg.
 //
 
 #ifndef _RTPMPEGPACKET_M_H_
@@ -16,7 +16,7 @@
 
 
 /**
- * Class generated from <tt>transport/rtp/profiles/avprofile/RTPMpegPacket.msg:33</tt> by nedtool.
+ * Class generated from <tt>inet/transport/rtp/profiles/avprofile/RTPMpegPacket.msg:33</tt> by nedtool.
  * <pre>
  * //
  * // An ~RTPMpegPacket is intended to be capsulated into an ~RTPPacket when
