@@ -1,2 +1,9 @@
 src
 simulations
+-inet.transportlayer.tcp_lwip
+-inet.examples.manetrouting
+-inet.transportlayer.tcp_nsc
+-inet.examples.emulation
+-inet.applications.voipstream
+-inet.examples.voipstream
+-inet.linklayer.ext
