@@ -1,32 +1,43 @@
 package vanetsim.simulations._nodes;
 
-import vanetsim.inet.applications.traci.TraCIDemo;
-import vanetsim.inet.base.NotificationBoard;
-import vanetsim.inet.linklayer.ieee80211.Ieee80211Nic;
-import vanetsim.inet.mobility.contract.IMobility;
-import vanetsim.inet.networklayer.IManetRouting;
-import vanetsim.inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
-import vanetsim.inet.networklayer.common.InterfaceTable;
-import vanetsim.inet.networklayer.ipv4.RoutingTable;
-import vanetsim.inet.nodes.inet.NetworkLayer;
-import vanetsim.inet.transport.udp.UDP;
 import vanetsim.inet.applications.udpapp.UDPBasicBurst;
+import vanetsim.inet.networklayer.common.InterfaceTable;
+import vanetsim.inet.networklayer.configurator.ipv4.HostAutoConfigurator;
+import vanetsim.inet.networklayer.contract.IManetRouting;
+import vanetsim.inet.networklayer.ipv4.IPv4NetworkLayer;
+import vanetsim.inet.networklayer.ipv4.IPv4RoutingTable;
+import vanetsim.inet.transportlayer.udp.UDP;
 
 
 module Car
 {
     parameters:
-        @node();
-        string mobilityType = default("TraCIMobility");
+        string applType; //type of the application layer
+        string nicType = default("Nic80211p"); // type of network interface card
+        string veinsmobilityType; //type of the mobility module
+        
         networkLayer.configurator.networkConfiguratorModule = "";
         string routingProtocol @enum("AODVUU","DYMOUM","DYMO","DSRUU","OLSR","OLSR_ETX","DSDV_2","Batman","GPSR") = default("");  // used mobile routing protocol
     gates:
-        input radioIn @directIn;
+        input veinsradioIn @directIn; // gate for sendDirect
     submodules:
-        notificationBoard: NotificationBoard {
+        //Start Veins Submodules
+        appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
             parameters:
-                @display("p=140,462");
+                @display("p=60,50");
         }
+
+        nic: <nicType> like vanetsim.veins.modules.nic.INic80211p {
+            parameters:
+                @display("p=60,166");
+        }
+
+        veinsmobility: <veinsmobilityType> like vanetsim.veins.base.modules.IMobility {
+            parameters:
+                @display("p=130,172;i=block/cogwheel");
+        }
+        //End Veins Submodules
+
         ac_wlan: HostAutoConfigurator {
             @display("p=296,402");
         }
@@ -34,9 +45,9 @@ module Car
             parameters:
                 @display("p=140,326");
         }
-        routingTable: RoutingTable {
+        routingTable: IPv4RoutingTable {
             parameters:
-                IPForward = true;
+                forwarding = true;
                 routerId = "";
                 routingFile = "";
                 @display("p=60,326");
@@ -45,7 +56,7 @@ module Car
             parameters:
                 @display("p=384,146");
         }
-        networkLayer: NetworkLayer {
+        networkLayer: IPv4NetworkLayer {
             parameters:
                 proxyARP = false;
                 @display("p=304,327;q=queue");
@@ -57,14 +68,7 @@ module Car
             parameters:
                 @display("p=384,46");
         }
-        mobility: <mobilityType> like IMobility {
-            parameters:
-                @display("p=60,459");
-        }
-        wlan: Ieee80211Nic {
-            parameters:
-                @display("p=304,461;q=queue");
-        }
+
         manetrouting: <routingProtocol> like IManetRouting if routingProtocol != "" {
             @display("p=522,307");
         }
@@ -75,10 +79,12 @@ module Car
         udp.ipOut --> networkLayer.transportIn++;
         udp.ipIn <-- networkLayer.transportOut++;
 
-        wlan.upperLayerOut --> networkLayer.ifIn[0];
-        wlan.upperLayerIn <-- networkLayer.ifOut[0];
+        nic.upperLayerOut --> appl.lowerLayerIn;
+        nic.upperLayerIn <-- appl.lowerLayerOut;
+        nic.upperControlOut --> appl.lowerControlIn;
+        nic.upperControlIn <-- appl.lowerControlOut;
 
-        radioIn --> wlan.radioIn;
+        veinsradioIn --> nic.radioIn;
 
         networkLayer.transportOut++ --> manetrouting.from_ip if routingProtocol != "";
         networkLayer.transportIn++ <-- manetrouting.to_ip if routingProtocol != "";
