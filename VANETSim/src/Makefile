@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -O out -Xdissertation -Xinet/applications/voipstream -Xinet/linklayer/ext -Xinet/routing/extras -Xinet/transportlayer/tcp_lwip -Xinet/transportlayer/tcp_nsc -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6 -DWITH_TRACI -DWITH_PACKETDRILL
+#  opp_makemake -f --deep -O out -Xdissertation -Xinet/linklayer/ext -Xinet/routing/extras -Xold -DWITH_TCP_COMMON -DWITH_TCP_INET -DWITH_IPv4 -DWITH_IPv6 -DWITH_GENERIC -DWITH_FLOOD -DWITH_UDP -DWITH_RTP -DWITH_SCTP -DWITH_DHCP -DWITH_ETHERNET -DWITH_PPP -DWITH_MPLS -DWITH_OSPFv2 -DWITH_BGPv4 -DWITH_PIM -DWITH_AODV -DWITH_RIP -DWITH_MANET -DWITH_POWER -DWITH_RADIO -DWITH_IEEE80211 -DWITH_IEEE802154 -DWITH_APSKRADIO -DWITH_IDEALWIRELESS -DWITH_TUN -DWITH_BMAC -DWITH_LMAC -DWITH_CSMA -DWITH_XMAC -DWITH_80211MESH -DWITH_xMIPv6 -DWITH_TRACI -DWITH_PACKETDRILL
 #
 
 # Name of target to be created (-o option)
@@ -23,11 +23,6 @@ INCLUDE_PATH = \
     -Iinet/applications/dhcp \
     -Iinet/applications/ethernet \
     -Iinet/applications/generic \
-    -Iinet/applications/httptools \
-    -Iinet/applications/httptools/browser \
-    -Iinet/applications/httptools/common \
-    -Iinet/applications/httptools/configurator \
-    -Iinet/applications/httptools/server \
     -Iinet/applications/netperfmeter \
     -Iinet/applications/packetdrill \
     -Iinet/applications/pingapp \
@@ -36,7 +31,6 @@ INCLUDE_PATH = \
     -Iinet/applications/tcpapp \
     -Iinet/applications/tunapp \
     -Iinet/applications/udpapp \
-    -Iinet/applications/voip \
     -Iinet/common \
     -Iinet/common/figures \
     -Iinet/common/geometry \
@@ -142,7 +136,6 @@ INCLUDE_PATH = \
     -Iinet/node/dymo \
     -Iinet/node/ethernet \
     -Iinet/node/gpsr \
-    -Iinet/node/httptools \
     -Iinet/node/inet \
     -Iinet/node/internetcloud \
     -Iinet/node/ipv6 \
@@ -278,20 +271,6 @@ OBJS = \
     $O/inet/applications/ethernet/EtherTrafGen.o \
     $O/inet/applications/generic/IPvXTrafGen.o \
     $O/inet/applications/generic/IPvXTrafSink.o \
-    $O/inet/applications/httptools/browser/HttpBrowser.o \
-    $O/inet/applications/httptools/browser/HttpBrowserBase.o \
-    $O/inet/applications/httptools/browser/HttpBrowserDirect.o \
-    $O/inet/applications/httptools/common/HttpNodeBase.o \
-    $O/inet/applications/httptools/common/HttpRandom.o \
-    $O/inet/applications/httptools/common/HttpUtils.o \
-    $O/inet/applications/httptools/configurator/HttpController.o \
-    $O/inet/applications/httptools/server/HttpServer.o \
-    $O/inet/applications/httptools/server/HttpServerBase.o \
-    $O/inet/applications/httptools/server/HttpServerDirect.o \
-    $O/inet/applications/httptools/server/HttpServerDirectEvilA.o \
-    $O/inet/applications/httptools/server/HttpServerDirectEvilB.o \
-    $O/inet/applications/httptools/server/HttpServerEvilA.o \
-    $O/inet/applications/httptools/server/HttpServerEvilB.o \
     $O/inet/applications/netperfmeter/NetPerfMeter.o \
     $O/inet/applications/packetdrill/lexer.o \
     $O/inet/applications/packetdrill/PacketDrill.o \
@@ -321,8 +300,6 @@ OBJS = \
     $O/inet/applications/udpapp/UDPSink.o \
     $O/inet/applications/udpapp/UDPVideoStreamCli.o \
     $O/inet/applications/udpapp/UDPVideoStreamSvr.o \
-    $O/inet/applications/voip/SimpleVoIPReceiver.o \
-    $O/inet/applications/voip/SimpleVoIPSender.o \
     $O/inet/common/BitVector.o \
     $O/inet/common/ByteArray.o \
     $O/inet/common/ByteArrayBuffer.o \
@@ -1002,13 +979,10 @@ OBJS = \
     $O/veins/modules/world/annotations/AnnotationManager.o \
     $O/inet/applications/dhcp/DHCPMessage_m.o \
     $O/inet/applications/ethernet/EtherApp_m.o \
-    $O/inet/applications/httptools/common/HttpEventMessages_m.o \
-    $O/inet/applications/httptools/common/HttpMessages_m.o \
     $O/inet/applications/netperfmeter/NetPerfMeter_m.o \
     $O/inet/applications/packetdrill/PacketDrillInfo_m.o \
     $O/inet/applications/pingapp/PingPayload_m.o \
     $O/inet/applications/tcpapp/GenericAppMsg_m.o \
-    $O/inet/applications/voip/SimpleVoIPPacket_m.o \
     $O/inet/common/ByteArray_m.o \
     $O/inet/common/RawPacket_m.o \
     $O/inet/common/TLVOption_m.o \
@@ -1104,13 +1078,10 @@ OBJS = \
 MSGFILES = \
     inet/applications/dhcp/DHCPMessage.msg \
     inet/applications/ethernet/EtherApp.msg \
-    inet/applications/httptools/common/HttpEventMessages.msg \
-    inet/applications/httptools/common/HttpMessages.msg \
     inet/applications/netperfmeter/NetPerfMeter.msg \
     inet/applications/packetdrill/PacketDrillInfo.msg \
     inet/applications/pingapp/PingPayload.msg \
     inet/applications/tcpapp/GenericAppMsg.msg \
-    inet/applications/voip/SimpleVoIPPacket.msg \
     inet/common/ByteArray.msg \
     inet/common/RawPacket.msg \
     inet/common/TLVOption.msg \
@@ -1315,11 +1286,6 @@ clean:
 	$(Q)-rm -f inet/applications/dhcp/*_m.cc inet/applications/dhcp/*_m.h
 	$(Q)-rm -f inet/applications/ethernet/*_m.cc inet/applications/ethernet/*_m.h
 	$(Q)-rm -f inet/applications/generic/*_m.cc inet/applications/generic/*_m.h
-	$(Q)-rm -f inet/applications/httptools/*_m.cc inet/applications/httptools/*_m.h
-	$(Q)-rm -f inet/applications/httptools/browser/*_m.cc inet/applications/httptools/browser/*_m.h
-	$(Q)-rm -f inet/applications/httptools/common/*_m.cc inet/applications/httptools/common/*_m.h
-	$(Q)-rm -f inet/applications/httptools/configurator/*_m.cc inet/applications/httptools/configurator/*_m.h
-	$(Q)-rm -f inet/applications/httptools/server/*_m.cc inet/applications/httptools/server/*_m.h
 	$(Q)-rm -f inet/applications/netperfmeter/*_m.cc inet/applications/netperfmeter/*_m.h
 	$(Q)-rm -f inet/applications/packetdrill/*_m.cc inet/applications/packetdrill/*_m.h
 	$(Q)-rm -f inet/applications/pingapp/*_m.cc inet/applications/pingapp/*_m.h
@@ -1328,7 +1294,6 @@ clean:
 	$(Q)-rm -f inet/applications/tcpapp/*_m.cc inet/applications/tcpapp/*_m.h
 	$(Q)-rm -f inet/applications/tunapp/*_m.cc inet/applications/tunapp/*_m.h
 	$(Q)-rm -f inet/applications/udpapp/*_m.cc inet/applications/udpapp/*_m.h
-	$(Q)-rm -f inet/applications/voip/*_m.cc inet/applications/voip/*_m.h
 	$(Q)-rm -f inet/common/*_m.cc inet/common/*_m.h
 	$(Q)-rm -f inet/common/figures/*_m.cc inet/common/figures/*_m.h
 	$(Q)-rm -f inet/common/geometry/*_m.cc inet/common/geometry/*_m.h
@@ -1434,7 +1399,6 @@ clean:
 	$(Q)-rm -f inet/node/dymo/*_m.cc inet/node/dymo/*_m.h
 	$(Q)-rm -f inet/node/ethernet/*_m.cc inet/node/ethernet/*_m.h
 	$(Q)-rm -f inet/node/gpsr/*_m.cc inet/node/gpsr/*_m.h
-	$(Q)-rm -f inet/node/httptools/*_m.cc inet/node/httptools/*_m.h
 	$(Q)-rm -f inet/node/inet/*_m.cc inet/node/inet/*_m.h
 	$(Q)-rm -f inet/node/internetcloud/*_m.cc inet/node/internetcloud/*_m.h
 	$(Q)-rm -f inet/node/ipv6/*_m.cc inet/node/ipv6/*_m.h
@@ -1553,7 +1517,7 @@ cleanall: clean
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc inet/*.cc inet/applications/*.cc inet/applications/base/*.cc inet/applications/contract/*.cc inet/applications/dhcp/*.cc inet/applications/ethernet/*.cc inet/applications/generic/*.cc inet/applications/httptools/*.cc inet/applications/httptools/browser/*.cc inet/applications/httptools/common/*.cc inet/applications/httptools/configurator/*.cc inet/applications/httptools/server/*.cc inet/applications/netperfmeter/*.cc inet/applications/packetdrill/*.cc inet/applications/pingapp/*.cc inet/applications/rtpapp/*.cc inet/applications/sctpapp/*.cc inet/applications/tcpapp/*.cc inet/applications/tunapp/*.cc inet/applications/udpapp/*.cc inet/applications/voip/*.cc inet/common/*.cc inet/common/figures/*.cc inet/common/geometry/*.cc inet/common/geometry/base/*.cc inet/common/geometry/common/*.cc inet/common/geometry/container/*.cc inet/common/geometry/object/*.cc inet/common/geometry/shape/*.cc inet/common/geometry/shape/polyhedron/*.cc inet/common/lifecycle/*.cc inet/common/mapping/*.cc inet/common/misc/*.cc inet/common/packet/*.cc inet/common/queue/*.cc inet/common/scenario/*.cc inet/common/serializer/*.cc inet/common/serializer/headers/*.cc inet/common/serializer/headerserializers/*.cc inet/common/serializer/headerserializers/arp/*.cc inet/common/serializer/headerserializers/ethernet/*.cc inet/common/serializer/headerserializers/ieee80211/*.cc inet/common/serializer/headerserializers/ieee80211/headers/*.cc inet/common/serializer/ipv4/*.cc inet/common/serializer/ipv4/headers/*.cc inet/common/serializer/ipv6/*.cc inet/common/serializer/ipv6/headers/*.cc inet/common/serializer/sctp/*.cc inet/common/serializer/sctp/headers/*.cc inet/common/serializer/tcp/*.cc inet/common/serializer/tcp/headers/*.cc inet/common/serializer/udp/*.cc inet/common/serializer/udp/headers/*.cc inet/environment/*.cc inet/environment/common/*.cc inet/environment/contract/*.cc inet/environment/objectcache/*.cc inet/linklayer/*.cc inet/linklayer/base/*.cc inet/linklayer/bmac/*.cc inet/linklayer/common/*.cc inet/linklayer/configurator/*.cc inet/linklayer/contract/*.cc inet/linklayer/csma/*.cc inet/linklayer/ethernet/*.cc inet/linklayer/ethernet/switch/*.cc inet/linklayer/ideal/*.cc inet/linklayer/ieee80211/*.cc inet/linklayer/ieee80211/mac/*.cc inet/linklayer/ieee80211/mgmt/*.cc inet/linklayer/ieee80211/oldmac/*.cc inet/linklayer/ieee802154/*.cc inet/linklayer/ieee8021d/*.cc inet/linklayer/ieee8021d/common/*.cc inet/linklayer/ieee8021d/relay/*.cc inet/linklayer/ieee8021d/rstp/*.cc inet/linklayer/ieee8021d/stp/*.cc inet/linklayer/ieee8021d/tester/*.cc inet/linklayer/lmac/*.cc inet/linklayer/loopback/*.cc inet/linklayer/ppp/*.cc inet/linklayer/tun/*.cc inet/mobility/*.cc inet/mobility/base/*.cc inet/mobility/contract/*.cc inet/mobility/group/*.cc inet/mobility/single/*.cc inet/mobility/static/*.cc inet/networklayer/*.cc inet/networklayer/arp/*.cc inet/networklayer/arp/generic/*.cc inet/networklayer/arp/ipv4/*.cc inet/networklayer/base/*.cc inet/networklayer/common/*.cc inet/networklayer/configurator/*.cc inet/networklayer/configurator/base/*.cc inet/networklayer/configurator/contract/*.cc inet/networklayer/configurator/generic/*.cc inet/networklayer/configurator/ipv4/*.cc inet/networklayer/configurator/ipv6/*.cc inet/networklayer/contract/*.cc inet/networklayer/contract/generic/*.cc inet/networklayer/contract/ipv4/*.cc inet/networklayer/contract/ipv6/*.cc inet/networklayer/diffserv/*.cc inet/networklayer/flood/*.cc inet/networklayer/generic/*.cc inet/networklayer/icmpv6/*.cc inet/networklayer/internetcloud/*.cc inet/networklayer/ipv4/*.cc inet/networklayer/ipv6/*.cc inet/networklayer/ipv6tunneling/*.cc inet/networklayer/ldp/*.cc inet/networklayer/mpls/*.cc inet/networklayer/multi/*.cc inet/networklayer/probabilistic/*.cc inet/networklayer/rsvp_te/*.cc inet/networklayer/ted/*.cc inet/networklayer/wiseroute/*.cc inet/networklayer/xmipv6/*.cc inet/node/*.cc inet/node/aodv/*.cc inet/node/bgp/*.cc inet/node/dymo/*.cc inet/node/ethernet/*.cc inet/node/gpsr/*.cc inet/node/httptools/*.cc inet/node/inet/*.cc inet/node/internetcloud/*.cc inet/node/ipv6/*.cc inet/node/mpls/*.cc inet/node/ospfv2/*.cc inet/node/packetdrill/*.cc inet/node/rip/*.cc inet/node/rtp/*.cc inet/node/wireless/*.cc inet/node/xmipv6/*.cc inet/physicallayer/*.cc inet/physicallayer/analogmodel/*.cc inet/physicallayer/analogmodel/bitlevel/*.cc inet/physicallayer/analogmodel/packetlevel/*.cc inet/physicallayer/antenna/*.cc inet/physicallayer/apskradio/*.cc inet/physicallayer/apskradio/bitlevel/*.cc inet/physicallayer/apskradio/bitlevel/errormodel/*.cc inet/physicallayer/apskradio/packetlevel/*.cc inet/physicallayer/apskradio/packetlevel/errormodel/*.cc inet/physicallayer/backgroundnoise/*.cc inet/physicallayer/base/*.cc inet/physicallayer/base/bitlevel/*.cc inet/physicallayer/base/packetlevel/*.cc inet/physicallayer/common/*.cc inet/physicallayer/common/bitlevel/*.cc inet/physicallayer/common/packetlevel/*.cc inet/physicallayer/communicationcache/*.cc inet/physicallayer/contract/*.cc inet/physicallayer/contract/bitlevel/*.cc inet/physicallayer/contract/packetlevel/*.cc inet/physicallayer/energyconsumer/*.cc inet/physicallayer/errormodel/*.cc inet/physicallayer/errormodel/bitlevel/*.cc inet/physicallayer/errormodel/packetlevel/*.cc inet/physicallayer/idealradio/*.cc inet/physicallayer/ieee80211/*.cc inet/physicallayer/ieee80211/bitlevel/*.cc inet/physicallayer/ieee80211/bitlevel/errormodel/*.cc inet/physicallayer/ieee80211/mode/*.cc inet/physicallayer/ieee80211/packetlevel/*.cc inet/physicallayer/ieee80211/packetlevel/errormodel/*.cc inet/physicallayer/ieee802154/*.cc inet/physicallayer/ieee802154/bitlevel/*.cc inet/physicallayer/ieee802154/packetlevel/*.cc inet/physicallayer/modulation/*.cc inet/physicallayer/neighborcache/*.cc inet/physicallayer/obstacleloss/*.cc inet/physicallayer/pathloss/*.cc inet/physicallayer/propagation/*.cc inet/power/*.cc inet/power/base/*.cc inet/power/consumer/*.cc inet/power/contract/*.cc inet/power/generator/*.cc inet/power/storage/*.cc inet/routing/*.cc inet/routing/aodv/*.cc inet/routing/bgpv4/*.cc inet/routing/bgpv4/BGPMessage/*.cc inet/routing/contract/*.cc inet/routing/dymo/*.cc inet/routing/gpsr/*.cc inet/routing/ospfv2/*.cc inet/routing/ospfv2/interface/*.cc inet/routing/ospfv2/messagehandler/*.cc inet/routing/ospfv2/neighbor/*.cc inet/routing/ospfv2/router/*.cc inet/routing/pim/*.cc inet/routing/pim/modes/*.cc inet/routing/pim/tables/*.cc inet/routing/rip/*.cc inet/transportlayer/*.cc inet/transportlayer/base/*.cc inet/transportlayer/contract/*.cc inet/transportlayer/contract/sctp/*.cc inet/transportlayer/contract/tcp/*.cc inet/transportlayer/contract/udp/*.cc inet/transportlayer/rtp/*.cc inet/transportlayer/rtp/profiles/*.cc inet/transportlayer/rtp/profiles/avprofile/*.cc inet/transportlayer/sctp/*.cc inet/transportlayer/tcp/*.cc inet/transportlayer/tcp/flavours/*.cc inet/transportlayer/tcp/queues/*.cc inet/transportlayer/tcp_common/*.cc inet/transportlayer/udp/*.cc scripts/*.cc veins/*.cc veins/base/*.cc veins/base/connectionManager/*.cc veins/base/messages/*.cc veins/base/modules/*.cc veins/base/phyLayer/*.cc veins/base/utils/*.cc veins/modules/*.cc veins/modules/analogueModel/*.cc veins/modules/application/*.cc veins/modules/application/ieee80211p/*.cc veins/modules/application/traci/*.cc veins/modules/mac/*.cc veins/modules/mac/ieee80211p/*.cc veins/modules/messages/*.cc veins/modules/mobility/*.cc veins/modules/mobility/traci/*.cc veins/modules/nic/*.cc veins/modules/obstacle/*.cc veins/modules/phy/*.cc veins/modules/utility/*.cc veins/modules/world/*.cc veins/modules/world/annotations/*.cc veins/nodes/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc inet/*.cc inet/applications/*.cc inet/applications/base/*.cc inet/applications/contract/*.cc inet/applications/dhcp/*.cc inet/applications/ethernet/*.cc inet/applications/generic/*.cc inet/applications/netperfmeter/*.cc inet/applications/packetdrill/*.cc inet/applications/pingapp/*.cc inet/applications/rtpapp/*.cc inet/applications/sctpapp/*.cc inet/applications/tcpapp/*.cc inet/applications/tunapp/*.cc inet/applications/udpapp/*.cc inet/common/*.cc inet/common/figures/*.cc inet/common/geometry/*.cc inet/common/geometry/base/*.cc inet/common/geometry/common/*.cc inet/common/geometry/container/*.cc inet/common/geometry/object/*.cc inet/common/geometry/shape/*.cc inet/common/geometry/shape/polyhedron/*.cc inet/common/lifecycle/*.cc inet/common/mapping/*.cc inet/common/misc/*.cc inet/common/packet/*.cc inet/common/queue/*.cc inet/common/scenario/*.cc inet/common/serializer/*.cc inet/common/serializer/headers/*.cc inet/common/serializer/headerserializers/*.cc inet/common/serializer/headerserializers/arp/*.cc inet/common/serializer/headerserializers/ethernet/*.cc inet/common/serializer/headerserializers/ieee80211/*.cc inet/common/serializer/headerserializers/ieee80211/headers/*.cc inet/common/serializer/ipv4/*.cc inet/common/serializer/ipv4/headers/*.cc inet/common/serializer/ipv6/*.cc inet/common/serializer/ipv6/headers/*.cc inet/common/serializer/sctp/*.cc inet/common/serializer/sctp/headers/*.cc inet/common/serializer/tcp/*.cc inet/common/serializer/tcp/headers/*.cc inet/common/serializer/udp/*.cc inet/common/serializer/udp/headers/*.cc inet/environment/*.cc inet/environment/common/*.cc inet/environment/contract/*.cc inet/environment/objectcache/*.cc inet/linklayer/*.cc inet/linklayer/base/*.cc inet/linklayer/bmac/*.cc inet/linklayer/common/*.cc inet/linklayer/configurator/*.cc inet/linklayer/contract/*.cc inet/linklayer/csma/*.cc inet/linklayer/ethernet/*.cc inet/linklayer/ethernet/switch/*.cc inet/linklayer/ideal/*.cc inet/linklayer/ieee80211/*.cc inet/linklayer/ieee80211/mac/*.cc inet/linklayer/ieee80211/mgmt/*.cc inet/linklayer/ieee80211/oldmac/*.cc inet/linklayer/ieee802154/*.cc inet/linklayer/ieee8021d/*.cc inet/linklayer/ieee8021d/common/*.cc inet/linklayer/ieee8021d/relay/*.cc inet/linklayer/ieee8021d/rstp/*.cc inet/linklayer/ieee8021d/stp/*.cc inet/linklayer/ieee8021d/tester/*.cc inet/linklayer/lmac/*.cc inet/linklayer/loopback/*.cc inet/linklayer/ppp/*.cc inet/linklayer/tun/*.cc inet/mobility/*.cc inet/mobility/base/*.cc inet/mobility/contract/*.cc inet/mobility/group/*.cc inet/mobility/single/*.cc inet/mobility/static/*.cc inet/networklayer/*.cc inet/networklayer/arp/*.cc inet/networklayer/arp/generic/*.cc inet/networklayer/arp/ipv4/*.cc inet/networklayer/base/*.cc inet/networklayer/common/*.cc inet/networklayer/configurator/*.cc inet/networklayer/configurator/base/*.cc inet/networklayer/configurator/contract/*.cc inet/networklayer/configurator/generic/*.cc inet/networklayer/configurator/ipv4/*.cc inet/networklayer/configurator/ipv6/*.cc inet/networklayer/contract/*.cc inet/networklayer/contract/generic/*.cc inet/networklayer/contract/ipv4/*.cc inet/networklayer/contract/ipv6/*.cc inet/networklayer/diffserv/*.cc inet/networklayer/flood/*.cc inet/networklayer/generic/*.cc inet/networklayer/icmpv6/*.cc inet/networklayer/internetcloud/*.cc inet/networklayer/ipv4/*.cc inet/networklayer/ipv6/*.cc inet/networklayer/ipv6tunneling/*.cc inet/networklayer/ldp/*.cc inet/networklayer/mpls/*.cc inet/networklayer/multi/*.cc inet/networklayer/probabilistic/*.cc inet/networklayer/rsvp_te/*.cc inet/networklayer/ted/*.cc inet/networklayer/wiseroute/*.cc inet/networklayer/xmipv6/*.cc inet/node/*.cc inet/node/aodv/*.cc inet/node/bgp/*.cc inet/node/dymo/*.cc inet/node/ethernet/*.cc inet/node/gpsr/*.cc inet/node/inet/*.cc inet/node/internetcloud/*.cc inet/node/ipv6/*.cc inet/node/mpls/*.cc inet/node/ospfv2/*.cc inet/node/packetdrill/*.cc inet/node/rip/*.cc inet/node/rtp/*.cc inet/node/wireless/*.cc inet/node/xmipv6/*.cc inet/physicallayer/*.cc inet/physicallayer/analogmodel/*.cc inet/physicallayer/analogmodel/bitlevel/*.cc inet/physicallayer/analogmodel/packetlevel/*.cc inet/physicallayer/antenna/*.cc inet/physicallayer/apskradio/*.cc inet/physicallayer/apskradio/bitlevel/*.cc inet/physicallayer/apskradio/bitlevel/errormodel/*.cc inet/physicallayer/apskradio/packetlevel/*.cc inet/physicallayer/apskradio/packetlevel/errormodel/*.cc inet/physicallayer/backgroundnoise/*.cc inet/physicallayer/base/*.cc inet/physicallayer/base/bitlevel/*.cc inet/physicallayer/base/packetlevel/*.cc inet/physicallayer/common/*.cc inet/physicallayer/common/bitlevel/*.cc inet/physicallayer/common/packetlevel/*.cc inet/physicallayer/communicationcache/*.cc inet/physicallayer/contract/*.cc inet/physicallayer/contract/bitlevel/*.cc inet/physicallayer/contract/packetlevel/*.cc inet/physicallayer/energyconsumer/*.cc inet/physicallayer/errormodel/*.cc inet/physicallayer/errormodel/bitlevel/*.cc inet/physicallayer/errormodel/packetlevel/*.cc inet/physicallayer/idealradio/*.cc inet/physicallayer/ieee80211/*.cc inet/physicallayer/ieee80211/bitlevel/*.cc inet/physicallayer/ieee80211/bitlevel/errormodel/*.cc inet/physicallayer/ieee80211/mode/*.cc inet/physicallayer/ieee80211/packetlevel/*.cc inet/physicallayer/ieee80211/packetlevel/errormodel/*.cc inet/physicallayer/ieee802154/*.cc inet/physicallayer/ieee802154/bitlevel/*.cc inet/physicallayer/ieee802154/packetlevel/*.cc inet/physicallayer/modulation/*.cc inet/physicallayer/neighborcache/*.cc inet/physicallayer/obstacleloss/*.cc inet/physicallayer/pathloss/*.cc inet/physicallayer/propagation/*.cc inet/power/*.cc inet/power/base/*.cc inet/power/consumer/*.cc inet/power/contract/*.cc inet/power/generator/*.cc inet/power/storage/*.cc inet/routing/*.cc inet/routing/aodv/*.cc inet/routing/bgpv4/*.cc inet/routing/bgpv4/BGPMessage/*.cc inet/routing/contract/*.cc inet/routing/dymo/*.cc inet/routing/gpsr/*.cc inet/routing/ospfv2/*.cc inet/routing/ospfv2/interface/*.cc inet/routing/ospfv2/messagehandler/*.cc inet/routing/ospfv2/neighbor/*.cc inet/routing/ospfv2/router/*.cc inet/routing/pim/*.cc inet/routing/pim/modes/*.cc inet/routing/pim/tables/*.cc inet/routing/rip/*.cc inet/transportlayer/*.cc inet/transportlayer/base/*.cc inet/transportlayer/contract/*.cc inet/transportlayer/contract/sctp/*.cc inet/transportlayer/contract/tcp/*.cc inet/transportlayer/contract/udp/*.cc inet/transportlayer/rtp/*.cc inet/transportlayer/rtp/profiles/*.cc inet/transportlayer/rtp/profiles/avprofile/*.cc inet/transportlayer/sctp/*.cc inet/transportlayer/tcp/*.cc inet/transportlayer/tcp/flavours/*.cc inet/transportlayer/tcp/queues/*.cc inet/transportlayer/tcp_common/*.cc inet/transportlayer/udp/*.cc scripts/*.cc veins/*.cc veins/base/*.cc veins/base/connectionManager/*.cc veins/base/messages/*.cc veins/base/modules/*.cc veins/base/phyLayer/*.cc veins/base/utils/*.cc veins/modules/*.cc veins/modules/analogueModel/*.cc veins/modules/application/*.cc veins/modules/application/ieee80211p/*.cc veins/modules/application/traci/*.cc veins/modules/mac/*.cc veins/modules/mac/ieee80211p/*.cc veins/modules/messages/*.cc veins/modules/mobility/*.cc veins/modules/mobility/traci/*.cc veins/modules/nic/*.cc veins/modules/obstacle/*.cc veins/modules/phy/*.cc veins/modules/utility/*.cc veins/modules/world/*.cc veins/modules/world/annotations/*.cc veins/nodes/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/inet/applications/base/ApplicationBase.o: inet/applications/base/ApplicationBase.cc \
@@ -1790,298 +1754,6 @@ $O/inet/applications/generic/IPvXTrafSink.o: inet/applications/generic/IPvXTrafS
 	inet/networklayer/contract/IRoutingTable.h \
 	inet/networklayer/contract/ipv4/IPv4Address.h \
 	inet/networklayer/contract/ipv6/IPv6Address.h
-$O/inet/applications/httptools/browser/HttpBrowser.o: inet/applications/httptools/browser/HttpBrowser.cc \
-	inet/applications/httptools/browser/HttpBrowser.h \
-	inet/applications/httptools/browser/HttpBrowserBase.h \
-	inet/applications/httptools/common/HttpEventMessages_m.h \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpNodeBase.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/applications/httptools/configurator/HttpController.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/common/NotifierConsts.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/features.h \
-	inet/linklayer/common/MACAddress.h \
-	inet/networklayer/common/InterfaceEntry.h \
-	inet/networklayer/common/InterfaceToken.h \
-	inet/networklayer/common/L3Address.h \
-	inet/networklayer/common/L3AddressResolver.h \
-	inet/networklayer/common/ModuleIdAddress.h \
-	inet/networklayer/common/ModulePathAddress.h \
-	inet/networklayer/contract/IRoute.h \
-	inet/networklayer/contract/IRoutingTable.h \
-	inet/networklayer/contract/ipv4/IPv4Address.h \
-	inet/networklayer/contract/ipv6/IPv6Address.h \
-	inet/transportlayer/contract/tcp/TCPCommand_m.h \
-	inet/transportlayer/contract/tcp/TCPSocket.h \
-	inet/transportlayer/contract/tcp/TCPSocketMap.h
-$O/inet/applications/httptools/browser/HttpBrowserBase.o: inet/applications/httptools/browser/HttpBrowserBase.cc \
-	inet/applications/httptools/browser/HttpBrowserBase.h \
-	inet/applications/httptools/common/HttpEventMessages_m.h \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpNodeBase.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/applications/httptools/configurator/HttpController.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/common/ModuleAccess.h \
-	inet/common/NotifierConsts.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/common/lifecycle/NodeStatus.h \
-	inet/features.h \
-	inet/linklayer/common/MACAddress.h \
-	inet/networklayer/common/InterfaceEntry.h \
-	inet/networklayer/common/InterfaceToken.h \
-	inet/networklayer/common/L3Address.h \
-	inet/networklayer/common/ModuleIdAddress.h \
-	inet/networklayer/common/ModulePathAddress.h \
-	inet/networklayer/contract/IInterfaceTable.h \
-	inet/networklayer/contract/ipv4/IPv4Address.h \
-	inet/networklayer/contract/ipv6/IPv6Address.h
-$O/inet/applications/httptools/browser/HttpBrowserDirect.o: inet/applications/httptools/browser/HttpBrowserDirect.cc \
-	inet/applications/httptools/browser/HttpBrowserBase.h \
-	inet/applications/httptools/browser/HttpBrowserDirect.h \
-	inet/applications/httptools/common/HttpEventMessages_m.h \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpNodeBase.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/applications/httptools/configurator/HttpController.h \
-	inet/applications/httptools/server/HttpServerBase.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/features.h
-$O/inet/applications/httptools/common/HttpEventMessages_m.o: inet/applications/httptools/common/HttpEventMessages_m.cc \
-	inet/applications/httptools/common/HttpEventMessages_m.h
-$O/inet/applications/httptools/common/HttpMessages_m.o: inet/applications/httptools/common/HttpMessages_m.cc \
-	inet/applications/httptools/common/HttpMessages_m.h
-$O/inet/applications/httptools/common/HttpNodeBase.o: inet/applications/httptools/common/HttpNodeBase.cc \
-	inet/applications/httptools/common/HttpEventMessages_m.h \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpNodeBase.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/applications/httptools/configurator/HttpController.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/common/ModuleAccess.h \
-	inet/common/NotifierConsts.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/features.h \
-	inet/linklayer/common/MACAddress.h \
-	inet/networklayer/common/InterfaceEntry.h \
-	inet/networklayer/common/InterfaceToken.h \
-	inet/networklayer/common/L3Address.h \
-	inet/networklayer/common/ModuleIdAddress.h \
-	inet/networklayer/common/ModulePathAddress.h \
-	inet/networklayer/contract/IInterfaceTable.h \
-	inet/networklayer/contract/ipv4/IPv4Address.h \
-	inet/networklayer/contract/ipv6/IPv6Address.h
-$O/inet/applications/httptools/common/HttpRandom.o: inet/applications/httptools/common/HttpRandom.cc \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/features.h
-$O/inet/applications/httptools/common/HttpUtils.o: inet/applications/httptools/common/HttpUtils.cc \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpUtils.h
-$O/inet/applications/httptools/configurator/HttpController.o: inet/applications/httptools/configurator/HttpController.cc \
-	inet/applications/httptools/common/HttpEventMessages_m.h \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/applications/httptools/configurator/HttpController.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/features.h
-$O/inet/applications/httptools/server/HttpServer.o: inet/applications/httptools/server/HttpServer.cc \
-	inet/applications/httptools/common/HttpEventMessages_m.h \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpNodeBase.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/applications/httptools/configurator/HttpController.h \
-	inet/applications/httptools/server/HttpServer.h \
-	inet/applications/httptools/server/HttpServerBase.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/features.h \
-	inet/linklayer/common/MACAddress.h \
-	inet/networklayer/common/L3Address.h \
-	inet/networklayer/common/ModuleIdAddress.h \
-	inet/networklayer/common/ModulePathAddress.h \
-	inet/networklayer/contract/ipv4/IPv4Address.h \
-	inet/networklayer/contract/ipv6/IPv6Address.h \
-	inet/transportlayer/contract/tcp/TCPCommand_m.h \
-	inet/transportlayer/contract/tcp/TCPSocket.h \
-	inet/transportlayer/contract/tcp/TCPSocketMap.h
-$O/inet/applications/httptools/server/HttpServerBase.o: inet/applications/httptools/server/HttpServerBase.cc \
-	inet/applications/httptools/common/HttpEventMessages_m.h \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpNodeBase.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/applications/httptools/configurator/HttpController.h \
-	inet/applications/httptools/server/HttpServerBase.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/common/ModuleAccess.h \
-	inet/common/NotifierConsts.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/common/lifecycle/NodeStatus.h \
-	inet/features.h \
-	inet/linklayer/common/MACAddress.h \
-	inet/networklayer/common/InterfaceEntry.h \
-	inet/networklayer/common/InterfaceToken.h \
-	inet/networklayer/common/L3Address.h \
-	inet/networklayer/common/ModuleIdAddress.h \
-	inet/networklayer/common/ModulePathAddress.h \
-	inet/networklayer/contract/IInterfaceTable.h \
-	inet/networklayer/contract/ipv4/IPv4Address.h \
-	inet/networklayer/contract/ipv6/IPv6Address.h
-$O/inet/applications/httptools/server/HttpServerDirect.o: inet/applications/httptools/server/HttpServerDirect.cc \
-	inet/applications/httptools/common/HttpEventMessages_m.h \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpNodeBase.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/applications/httptools/configurator/HttpController.h \
-	inet/applications/httptools/server/HttpServerBase.h \
-	inet/applications/httptools/server/HttpServerDirect.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/common/ModuleAccess.h \
-	inet/common/NotifierConsts.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/features.h \
-	inet/linklayer/common/MACAddress.h \
-	inet/networklayer/common/InterfaceEntry.h \
-	inet/networklayer/common/InterfaceToken.h \
-	inet/networklayer/common/L3Address.h \
-	inet/networklayer/common/ModuleIdAddress.h \
-	inet/networklayer/common/ModulePathAddress.h \
-	inet/networklayer/contract/IInterfaceTable.h \
-	inet/networklayer/contract/ipv4/IPv4Address.h \
-	inet/networklayer/contract/ipv6/IPv6Address.h
-$O/inet/applications/httptools/server/HttpServerDirectEvilA.o: inet/applications/httptools/server/HttpServerDirectEvilA.cc \
-	inet/applications/httptools/common/HttpEventMessages_m.h \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpNodeBase.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/applications/httptools/configurator/HttpController.h \
-	inet/applications/httptools/server/HttpServerBase.h \
-	inet/applications/httptools/server/HttpServerDirect.h \
-	inet/applications/httptools/server/HttpServerDirectEvilA.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/features.h
-$O/inet/applications/httptools/server/HttpServerDirectEvilB.o: inet/applications/httptools/server/HttpServerDirectEvilB.cc \
-	inet/applications/httptools/common/HttpEventMessages_m.h \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpNodeBase.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/applications/httptools/configurator/HttpController.h \
-	inet/applications/httptools/server/HttpServerBase.h \
-	inet/applications/httptools/server/HttpServerDirect.h \
-	inet/applications/httptools/server/HttpServerDirectEvilB.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/features.h
-$O/inet/applications/httptools/server/HttpServerEvilA.o: inet/applications/httptools/server/HttpServerEvilA.cc \
-	inet/applications/httptools/common/HttpEventMessages_m.h \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpNodeBase.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/applications/httptools/configurator/HttpController.h \
-	inet/applications/httptools/server/HttpServer.h \
-	inet/applications/httptools/server/HttpServerBase.h \
-	inet/applications/httptools/server/HttpServerEvilA.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/features.h \
-	inet/linklayer/common/MACAddress.h \
-	inet/networklayer/common/L3Address.h \
-	inet/networklayer/common/ModuleIdAddress.h \
-	inet/networklayer/common/ModulePathAddress.h \
-	inet/networklayer/contract/ipv4/IPv4Address.h \
-	inet/networklayer/contract/ipv6/IPv6Address.h \
-	inet/transportlayer/contract/tcp/TCPCommand_m.h \
-	inet/transportlayer/contract/tcp/TCPSocket.h \
-	inet/transportlayer/contract/tcp/TCPSocketMap.h
-$O/inet/applications/httptools/server/HttpServerEvilB.o: inet/applications/httptools/server/HttpServerEvilB.cc \
-	inet/applications/httptools/common/HttpEventMessages_m.h \
-	inet/applications/httptools/common/HttpMessages_m.h \
-	inet/applications/httptools/common/HttpNodeBase.h \
-	inet/applications/httptools/common/HttpRandom.h \
-	inet/applications/httptools/common/HttpUtils.h \
-	inet/applications/httptools/configurator/HttpController.h \
-	inet/applications/httptools/server/HttpServer.h \
-	inet/applications/httptools/server/HttpServerBase.h \
-	inet/applications/httptools/server/HttpServerEvilB.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/features.h \
-	inet/linklayer/common/MACAddress.h \
-	inet/networklayer/common/L3Address.h \
-	inet/networklayer/common/ModuleIdAddress.h \
-	inet/networklayer/common/ModulePathAddress.h \
-	inet/networklayer/contract/ipv4/IPv4Address.h \
-	inet/networklayer/contract/ipv6/IPv6Address.h \
-	inet/transportlayer/contract/tcp/TCPCommand_m.h \
-	inet/transportlayer/contract/tcp/TCPSocket.h \
-	inet/transportlayer/contract/tcp/TCPSocketMap.h
 $O/inet/applications/netperfmeter/NetPerfMeter.o: inet/applications/netperfmeter/NetPerfMeter.cc \
 	inet/applications/netperfmeter/NetPerfMeter.h \
 	inet/applications/netperfmeter/NetPerfMeter_m.h \
@@ -2954,63 +2626,6 @@ $O/inet/applications/udpapp/UDPVideoStreamSvr.o: inet/applications/udpapp/UDPVid
 	inet/networklayer/common/ModuleIdAddress.h \
 	inet/networklayer/common/ModulePathAddress.h \
 	inet/networklayer/contract/IInterfaceTable.h \
-	inet/networklayer/contract/ipv4/IPv4Address.h \
-	inet/networklayer/contract/ipv6/IPv6Address.h \
-	inet/transportlayer/contract/udp/UDPControlInfo.h \
-	inet/transportlayer/contract/udp/UDPControlInfo_m.h \
-	inet/transportlayer/contract/udp/UDPSocket.h
-$O/inet/applications/voip/SimpleVoIPPacket_m.o: inet/applications/voip/SimpleVoIPPacket_m.cc \
-	inet/applications/voip/SimpleVoIPPacket_m.h
-$O/inet/applications/voip/SimpleVoIPReceiver.o: inet/applications/voip/SimpleVoIPReceiver.cc \
-	inet/applications/voip/SimpleVoIPPacket_m.h \
-	inet/applications/voip/SimpleVoIPReceiver.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/INETMath.h \
-	inet/common/InitStages.h \
-	inet/common/ModuleAccess.h \
-	inet/common/NotifierConsts.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/common/lifecycle/NodeStatus.h \
-	inet/features.h \
-	inet/linklayer/common/MACAddress.h \
-	inet/networklayer/common/InterfaceEntry.h \
-	inet/networklayer/common/InterfaceToken.h \
-	inet/networklayer/common/L3Address.h \
-	inet/networklayer/common/L3AddressResolver.h \
-	inet/networklayer/common/ModuleIdAddress.h \
-	inet/networklayer/common/ModulePathAddress.h \
-	inet/networklayer/contract/IInterfaceTable.h \
-	inet/networklayer/contract/IRoute.h \
-	inet/networklayer/contract/IRoutingTable.h \
-	inet/networklayer/contract/ipv4/IPv4Address.h \
-	inet/networklayer/contract/ipv6/IPv6Address.h \
-	inet/transportlayer/contract/udp/UDPControlInfo.h \
-	inet/transportlayer/contract/udp/UDPControlInfo_m.h \
-	inet/transportlayer/contract/udp/UDPSocket.h
-$O/inet/applications/voip/SimpleVoIPSender.o: inet/applications/voip/SimpleVoIPSender.cc \
-	inet/applications/voip/SimpleVoIPPacket_m.h \
-	inet/applications/voip/SimpleVoIPSender.h \
-	inet/common/Compat.h \
-	inet/common/INETDefs.h \
-	inet/common/InitStages.h \
-	inet/common/ModuleAccess.h \
-	inet/common/NotifierConsts.h \
-	inet/common/lifecycle/ILifecycle.h \
-	inet/common/lifecycle/LifecycleOperation.h \
-	inet/common/lifecycle/NodeStatus.h \
-	inet/features.h \
-	inet/linklayer/common/MACAddress.h \
-	inet/networklayer/common/InterfaceEntry.h \
-	inet/networklayer/common/InterfaceToken.h \
-	inet/networklayer/common/L3Address.h \
-	inet/networklayer/common/L3AddressResolver.h \
-	inet/networklayer/common/ModuleIdAddress.h \
-	inet/networklayer/common/ModulePathAddress.h \
-	inet/networklayer/contract/IInterfaceTable.h \
-	inet/networklayer/contract/IRoute.h \
-	inet/networklayer/contract/IRoutingTable.h \
 	inet/networklayer/contract/ipv4/IPv4Address.h \
 	inet/networklayer/contract/ipv6/IPv6Address.h \
 	inet/transportlayer/contract/udp/UDPControlInfo.h \
