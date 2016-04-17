@@ -18,10 +18,10 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package vanetsim.simulations.traci_launchd;
+package vanetsim.simulations.old.traci_launchd;
 
-import vanetsim.inet.world.radio.ChannelControl;
-import vanetsim.inet.world.traci.TraCIScenarioManagerLaunchd;
+import vanetsim.old.inet.world.radio.ChannelControl;
+import vanetsim.old.inet.world.traci.TraCIScenarioManagerLaunchd;
 
 module Highway
 {

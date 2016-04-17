@@ -18,17 +18,17 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-package vanetsim.simulations.traci_launchd;
+package vanetsim.simulations.old.traci_launchd;
 
-import vanetsim.inet.base.NotificationBoard;
-import vanetsim.inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
-import vanetsim.inet.networklayer.common.InterfaceTable;
-import vanetsim.inet.applications.traci.TraCIDemo;
-import vanetsim.inet.mobility.single.TraCIMobility;
-import vanetsim.inet.networklayer.ipv4.RoutingTable;
-import vanetsim.inet.transport.udp.UDP;
-import vanetsim.inet.nodes.inet.NetworkLayer;
-import vanetsim.inet.linklayer.ieee80211.Ieee80211Nic;
+import vanetsim.old.inet.base.NotificationBoard;
+import vanetsim.old.inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
+import vanetsim.old.inet.networklayer.common.InterfaceTable;
+import vanetsim.old.inet.applications.traci.TraCIDemo;
+import vanetsim.old.inet.mobility.single.TraCIMobility;
+import vanetsim.old.inet.networklayer.ipv4.RoutingTable;
+import vanetsim.old.inet.transport.udp.UDP;
+import vanetsim.old.inet.nodes.inet.NetworkLayer;
+import vanetsim.old.inet.linklayer.ieee80211.Ieee80211Nic;
 
 module Car
 {

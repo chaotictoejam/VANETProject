@@ -1,8 +1,8 @@
-package vanetsim.simulations.dsr;
+package vanetsim.simulations.old.dsr;
 
-import vanetsim.simulations._nodes.RSU;
+import vanetsim.simulations.old._nodes.RSU;
 
-network DSRSim extends vanetsim.simulations._nodes.Scenario
+network DSRSim extends vanetsim.simulations.old._nodes.Scenario
 {
     submodules:
         rsu[1]: RSU {

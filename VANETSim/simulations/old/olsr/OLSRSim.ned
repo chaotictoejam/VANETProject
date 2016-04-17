@@ -16,11 +16,11 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-package vanetsim.simulations.olsr;
+package vanetsim.simulations.old.olsr;
 
-import vanetsim.simulations._nodes.RSU;
+import vanetsim.simulations.old._nodes.RSU;
 
-network OLSRSim extends vanetsim.simulations._nodes.Scenario
+network OLSRSim extends vanetsim.simulations.old._nodes.Scenario
 {
     submodules:
         rsu[1]: RSU {

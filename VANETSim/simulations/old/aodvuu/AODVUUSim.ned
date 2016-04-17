@@ -1,9 +1,9 @@
 
-package vanetsim.simulations.aodvuu;
+package vanetsim.simulations.old.aodvuu;
 
-import  vanetsim.simulations._nodes.RSU;
+import  vanetsim.simulations.old._nodes.RSU;
 
-network AODVUUSim extends vanetsim.simulations._nodes.Scenario
+network AODVUUSim extends vanetsim.simulations.old._nodes.Scenario
 {
     submodules:
         rsu[1]: RSU {
