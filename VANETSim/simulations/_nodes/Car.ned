@@ -1,13 +1,11 @@
 package vanetsim.simulations._nodes;
 
-import vanetsim.inet.applications.udpapp.UDPBasicBurst;
-import vanetsim.inet.networklayer.common.InterfaceTable;
-import vanetsim.inet.networklayer.configurator.ipv4.HostAutoConfigurator;
-import vanetsim.inet.networklayer.contract.IManetRouting;
-import vanetsim.inet.networklayer.ipv4.IPv4NetworkLayer;
-import vanetsim.inet.networklayer.ipv4.IPv4RoutingTable;
-import vanetsim.inet.transportlayer.udp.UDP;
-
+import vanetsim.inet.common.lifecycle.LifecycleController;
+import vanetsim.inet.common.scenario.ScenarioManager;
+import vanetsim.inet.networklayer.configurator.ipv4.IPv4NetworkConfigurator;
+import vanetsim.inet.networklayer.ipv4.RoutingTableRecorder;
+import vanetsim.inet.node.inet.INetworkNode;
+import vanetsim.inet.physicallayer.idealradio.IdealRadioMedium;
 
 module Car
 {
@@ -15,9 +13,8 @@ module Car
         string applType; //type of the application layer
         string nicType = default("Nic80211p"); // type of network interface card
         string veinsmobilityType; //type of the mobility module
-        
-        networkLayer.configurator.networkConfiguratorModule = "";
-        string routingProtocol @enum("AODVUU","DYMOUM","DYMO","DSRUU","OLSR","OLSR_ETX","DSDV_2","Batman","GPSR") = default("");  // used mobile routing protocol
+
+        string routingProtocol @enum("AODVRouter", "OLSR","OLSR_ETX","DSDV_2","Batman","GPSR") = default("");  // used mobile routing protocol
     gates:
         input veinsradioIn @directIn; // gate for sendDirect
     submodules:
@@ -38,54 +35,37 @@ module Car
         }
         //End Veins Submodules
 
-        ac_wlan: HostAutoConfigurator {
-            @display("p=296,402");
-        }
-        interfaceTable: InterfaceTable {
+        radioMedium: IdealRadioMedium {
             parameters:
-                @display("p=140,326");
+                @display("p=50,50");
         }
-        routingTable: IPv4RoutingTable {
+        configurator: IPv4NetworkConfigurator {
             parameters:
-                forwarding = true;
-                routerId = "";
-                routingFile = "";
-                @display("p=60,326");
+                config = xml("<config><interface hosts='*' address='145.236.x.x' netmask='255.255.0.0'/></config>");
+                @display("p=50,100");
         }
-        udp: UDP {
+        routingTableRecorder: RoutingTableRecorder {
             parameters:
-                @display("p=384,146");
+                @display("p=50,150");
         }
-        networkLayer: IPv4NetworkLayer {
+        lifecycleController: LifecycleController {
             parameters:
-                proxyARP = false;
-                @display("p=304,327;q=queue");
-            gates:
-                ifIn[1];
-                ifOut[1];
+                @display("p=50,200");
         }
-        udpApp: UDPBasicBurst {
+        scenarioManager: ScenarioManager {
             parameters:
-                @display("p=384,46");
+                script = default(xml("<scenario/>"));
+                @display("p=50,250");
         }
-
-        manetrouting: <routingProtocol> like IManetRouting if routingProtocol != "" {
-            @display("p=522,307");
+        manetrouting: <routingProtocol> like INetworkNode if routingProtocol != "" {
+            parameters:
+                @display("i=device/pocketpc_s;r=,,#707070");
         }
     connections allowunconnected:
-        udp.appOut++ --> udpApp.udpIn;
-        udp.appIn++ <-- udpApp.udpOut;
-
-        udp.ipOut --> networkLayer.transportIn++;
-        udp.ipIn <-- networkLayer.transportOut++;
-
         nic.upperLayerOut --> appl.lowerLayerIn;
         nic.upperLayerIn <-- appl.lowerLayerOut;
         nic.upperControlOut --> appl.lowerControlIn;
         nic.upperControlIn <-- appl.lowerControlOut;
 
         veinsradioIn --> nic.radioIn;
-
-        networkLayer.transportOut++ --> manetrouting.from_ip if routingProtocol != "";
-        networkLayer.transportIn++ <-- manetrouting.to_ip if routingProtocol != "";
 }

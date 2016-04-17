@@ -3,7 +3,7 @@ package vanetsim.simulations.aodv;
 
 import  vanetsim.simulations._nodes.RSU;
 
-network AODVUUSim extends vanetsim.simulations._nodes.Scenario
+network AODVSim extends vanetsim.simulations._nodes.Scenario
 {
     submodules:
         rsu[1]: RSU {
