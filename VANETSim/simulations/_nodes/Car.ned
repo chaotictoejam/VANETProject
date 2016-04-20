@@ -4,37 +4,35 @@ import vanetsim.inet.common.lifecycle.LifecycleController;
 import vanetsim.inet.common.scenario.ScenarioManager;
 import vanetsim.inet.networklayer.configurator.ipv4.IPv4NetworkConfigurator;
 import vanetsim.inet.networklayer.ipv4.RoutingTableRecorder;
-import vanetsim.inet.node.inet.INetworkNode;
 import vanetsim.inet.physicallayer.idealradio.IdealRadioMedium;
 
 module Car
 {
     parameters:
+        string routingProtocol @enum("AODVRouter", "OLSR","OLSR_ETX","DSDV_2","Batman","GPSR") = default("");  // used mobile routing protocol
+
+        string veinsmobilityType; //type of the mobility module
         string applType; //type of the application layer
         string nicType = default("Nic80211p"); // type of network interface card
-        string veinsmobilityType; //type of the mobility module
-
-        string routingProtocol @enum("AODVRouter", "OLSR","OLSR_ETX","DSDV_2","Batman","GPSR") = default("");  // used mobile routing protocol
     gates:
         input veinsradioIn @directIn; // gate for sendDirect
     submodules:
+        
         //Start Veins Submodules
         appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
             parameters:
                 @display("p=60,50");
         }
-
         nic: <nicType> like vanetsim.veins.modules.nic.INic80211p {
             parameters:
-                @display("p=60,166");
+                @display("p=224,51");
         }
-
         veinsmobility: <veinsmobilityType> like vanetsim.veins.base.modules.IMobility {
             parameters:
-                @display("p=130,172;i=block/cogwheel");
+                @display("p=224,158;i=block/cogwheel");
         }
         //End Veins Submodules
-
+        
         radioMedium: IdealRadioMedium {
             parameters:
                 @display("p=50,50");
@@ -57,7 +55,7 @@ module Car
                 script = default(xml("<scenario/>"));
                 @display("p=50,250");
         }
-        manetrouting: <routingProtocol> like INetworkNode if routingProtocol != "" {
+        routing: AODVVehicleRouter {
             parameters:
                 @display("i=device/pocketpc_s;r=,,#707070");
         }
