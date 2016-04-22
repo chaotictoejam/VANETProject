@@ -25,7 +25,23 @@ import vanetsim.inet.transportlayer.contract.ITCP;
 import vanetsim.inet.transportlayer.contract.IUDP;
 import vanetsim.inet.applications.contract.ITunApp;
 
-
+//
+// IPv4 host with SCTP, TCP, UDP layers and applications.
+// IP forwarding is disabled by default (see forwarding).
+// - Can be connected via ethernet interface to other nodes using
+//   the ethg gate. By default full-duplex connections are supported
+//   only (twisted pair). Set **.eth[*].typename="EthernetInterface" for
+//   a full/half-duplex CSMA/CD implementation (coaxial cable)
+// - By default contains no wireless cards, however it can be configured
+//   by the numRadios parameter. Wirless card type is configured by the
+//   **.wlan[*].typename parameter. see:  inet.linklayer.ieee80211 or other
+//   modules implementing ~IWirelessNic
+// - Also external interfaces can be configured for HW in the loop simulation
+//   using the numExtInterfaces parameter and setting the type using
+//   **.ext[*].typename in the INI file. see: ~ExtInterface and ~IExternalNic
+// - If wireless card is present, node mobility can be set using **.mobilityType
+//   see: inet.mobility and ~IMobility
+//
 network VehicleHost extends VehicleBase
 {
     parameters:
@@ -102,10 +118,5 @@ network VehicleHost extends VehicleBase
         for i=0..numPingApps-1 {
             networkLayer.pingOut++ --> pingApp[i].pingIn;
             networkLayer.pingIn++ <-- pingApp[i].pingOut;
-        }
-
-        for i=0..numTunInterfaces-1 {
-            tunApp[i].tunOut --> tun[i].appIn if hasTun;
-            tunApp[i].tunIn <-- tun[i].appOut if hasTun;
         }
 }
