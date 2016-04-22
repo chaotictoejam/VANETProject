@@ -1,21 +1,18 @@
 package vanetsim.simulations._nodes;
 
-import vanetsim.inet.common.lifecycle.LifecycleController;
-import vanetsim.inet.common.scenario.ScenarioManager;
-import vanetsim.inet.networklayer.configurator.ipv4.IPv4NetworkConfigurator;
-import vanetsim.inet.networklayer.ipv4.RoutingTableRecorder;
-import vanetsim.inet.physicallayer.idealradio.IdealRadioMedium;
+import vanetsim.inet.node.inet.INetworkNode;
 
 module Car
 {
     parameters:
+        string routingProtocol;
         string applType; //type of the application layer
         string nicType = default("Nic80211p"); // type of network interface card
         string veinsmobilityType; //type of the mobility module
     gates:
         input veinsradioIn @directIn; // gate for sendDirect
     submodules:
-        
+
         //Start Veins Submodules
         appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
             parameters:
@@ -30,8 +27,8 @@ module Car
                 @display("p=130,172;i=block/cogwheel");
         }
         //End Veins Submodules
-        
-        routing: AODVVehicleRouter {
+
+        routing: <routingProtocol> like INetworkNode {
             parameters:
                 @display("i=device/pocketpc_s;r=,,#707070");
         }
