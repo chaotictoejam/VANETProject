@@ -1,9 +1,12 @@
 src
 simulations
 -inet.transportlayer.tcp_lwip
+-inet.examples.httptools.direct
+-inet.examples.httptools.socket
 -inet.examples.manetrouting
 -inet.transportlayer.tcp_nsc
 -inet.examples.emulation
 -inet.applications.voipstream
--inet.examples.voipstream
+-inet.examples.voip
 -inet.linklayer.ext
+-inet.examples.voipstream
