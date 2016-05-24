@@ -37,7 +37,7 @@ import vanetsim.inet.node.inet.INetworkNode;
 //    - forwarding is turned on by default.
 //    - use this model only as a base type. 
 //
-network VehicleBase like INetworkNode
+network VehicleBase like IVehicleNetworkNode
 {
     parameters:
         @display("bgb=,448");
