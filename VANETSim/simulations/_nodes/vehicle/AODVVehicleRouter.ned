@@ -13,7 +13,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package vanetsim.simulations._nodes;
+package vanetsim.simulations._nodes.vehicle;
 
 import vanetsim.inet.routing.aodv.AODVRouting;
 
@@ -40,6 +40,7 @@ network AODVVehicleRouter extends VehicleHost
         @display("i=device/cellphone");
         numRadios = default(1);
         forwarding = true;
+        wlan[*].mgmtType = default("Ieee80211MgmtAdhoc");
     submodules:
         aodv: AODVRouting {
             @display("p=558,307");

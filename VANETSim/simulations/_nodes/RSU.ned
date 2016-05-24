@@ -28,10 +28,10 @@ module RSU
         }
         //End Veins Submodules
 
-        routing: <routingProtocol> like INetworkNode {
-            parameters:
-                @display("i=device/pocketpc_s;r=,,#707070");
-        }
+        //routing: <routingProtocol> like INetworkNode {
+            //parameters:
+                //@display("i=device/pocketpc_s;r=,,#707070");
+        //}
     connections:
         nic.upperLayerOut --> appl.lowerLayerIn;
         nic.upperLayerIn <-- appl.lowerLayerOut;

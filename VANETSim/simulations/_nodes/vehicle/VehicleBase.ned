@@ -13,7 +13,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package vanetsim.simulations._nodes;
+package vanetsim.simulations._nodes.vehicle;
 
 import vanetsim.inet.common.lifecycle.NodeStatus;
 import vanetsim.inet.common.packet.PcapRecorder;
@@ -48,7 +48,6 @@ network VehicleBase like INetworkNode
         int numRadios = default(0);               // the number of radios in the router. by default no wireless
         int numPcapRecorders = default(0); // no of PcapRecorders.
         int numTunInterfaces = default(0);
-        string mobilityType = default(numRadios > 0 ? "StationaryMobility" : "");
         string networkLayerType = default("IPv4NetworkLayer");
         string routingTableType = default("IPv4RoutingTable");
         bool forwarding = default(true);
@@ -59,13 +58,12 @@ network VehicleBase like INetworkNode
         routingTable.multicastForwarding = multicastForwarding;   // for IPv4, IPv6, Generic
         *.interfaceTableModule = default(absPath(".interfaceTable"));
         *.routingTableModule = default(routingTableType != "" ? absPath(".routingTable") : "");
-        *.energySourceModule = default(energyStorageType != "" ? absPath(".energyStorage") : "");   
+        *.energySourceModule = default(energyStorageType != "" ? absPath(".energyStorage") : "");
     gates:
         input radioIn[numRadios] @directIn;
         inout pppg[] @labels(PPPFrame-conn);
         inout ethg[] @labels(EtherFrame-conn);
     submodules:
-        
         status: NodeStatus if hasStatus {
             @display("p=50,50");
         }
@@ -98,19 +96,56 @@ network VehicleBase like INetworkNode
         lo0: LoopbackInterface {
             @display("p=78,406");
         }
-        //wlan[numRadios]: <default("Ieee80211Nic")> like IWirelessNic {
-            //parameters:
-                //@display("p=216,406,row,60;q=queue");
-        //}
+        wlan[numRadios]: <default("Ieee80211Nic")> like IWirelessNic {
+            parameters:
+                @display("p=216,406,row,60;q=queue");
+        }
+        eth[sizeof(ethg)]: <default("EthernetInterface")> like IWiredNic {
+            parameters:
+                @display("p=368,406,row,60;q=txQueue");
+        }
+        ppp[sizeof(pppg)]: <default("PPPInterface")> like IWiredNic {
+            parameters:
+                @display("p=558,406,row,60;q=txQueue");
+        }
+        ext[numExtInterfaces]: <default("ExtInterface")> like IExternalNic {
+            parameters:
+                @display("p=149,406,row,10;q=txQueue;i=block/ifcard");
+        }
+        tun[numTunInterfaces]: <default("TunInterface")> like ITunNic {
+            parameters:
+                @display("p=213,406,row,10;q=txQueue;i=block/ifcard");
+        }
     connections allowunconnected:
         // connections to network outside
         networkLayer.ifOut++ --> lo0.upperLayerIn;
         lo0.upperLayerOut --> networkLayer.ifIn++;
 
-        //for i=0..sizeof(radioIn)-1 {
-            //radioIn[i] --> { @display("m=s"); } --> wlan[i].radioIn;
-            //wlan[i].upperLayerOut --> networkLayer.ifIn++;
-            //wlan[i].upperLayerIn <-- networkLayer.ifOut++;
-        //}
-        
+        for i=0..sizeof(radioIn)-1 {
+            radioIn[i] --> { @display("m=s"); } --> wlan[i].radioIn;
+            wlan[i].upperLayerOut --> networkLayer.ifIn++;
+            wlan[i].upperLayerIn <-- networkLayer.ifOut++;
+        }
+
+        for i=0..sizeof(ethg)-1 {
+            ethg[i] <--> { @display("m=s"); } <--> eth[i].phys;
+            eth[i].upperLayerOut --> networkLayer.ifIn++;
+            eth[i].upperLayerIn <-- networkLayer.ifOut++;
+        }
+
+        for i=0..sizeof(pppg)-1 {
+            pppg[i] <--> { @display("m=s"); } <--> ppp[i].phys;
+            ppp[i].upperLayerOut --> networkLayer.ifIn++;
+            ppp[i].upperLayerIn <-- networkLayer.ifOut++;
+        }
+
+        for i=0..numExtInterfaces-1 {
+            ext[i].upperLayerOut --> networkLayer.ifIn++;
+            ext[i].upperLayerIn <-- networkLayer.ifOut++;
+        }
+
+        for i=0..numTunInterfaces-1 {
+            tun[i].upperLayerOut --> networkLayer.ifIn++;
+            tun[i].upperLayerIn <-- networkLayer.ifOut++;
+        }
 }

@@ -1,6 +1,6 @@
 package vanetsim.simulations._nodes;
 
-import vanetsim.inet.node.inet.INetworkNode;
+import vanetsim.simulations._nodes.vehicle.IVehicleNetworkNode;
 
 module Car
 {
@@ -28,7 +28,7 @@ module Car
         }
         //End Veins Submodules
 
-        routing: <routingProtocol> like INetworkNode {
+        routing: <routingProtocol> like IVehicleNetworkNode {
             parameters:
                 @display("i=device/pocketpc_s;r=,,#707070");
         }

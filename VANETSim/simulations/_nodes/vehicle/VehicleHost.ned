@@ -13,7 +13,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package vanetsim.simulations._nodes;
+package vanetsim.simulations._nodes.vehicle;
 
 
 import vanetsim.inet.applications.contract.IPingApp;
@@ -44,7 +44,7 @@ import vanetsim.inet.applications.contract.ITunApp;
 //
 network VehicleHost extends VehicleBase
 {
-    parameters:
+ 	parameters:
         @display("i=device/pc2");
         int numTcpApps = default(0);  // no of TCP apps. Specify the app types in INI file with tcpApp[0..1].typename="TCPEchoApp" syntax
         int numUdpApps = default(0);  // no of UDP apps. Specify the app types in INI file with udpApp[0..1].typename="UDPVideoStreamCli" syntax
@@ -118,5 +118,10 @@ network VehicleHost extends VehicleBase
         for i=0..numPingApps-1 {
             networkLayer.pingOut++ --> pingApp[i].pingIn;
             networkLayer.pingIn++ <-- pingApp[i].pingOut;
+        }
+
+        for i=0..numTunInterfaces-1 {
+            tunApp[i].tunOut --> tun[i].appIn if hasTun;
+            tunApp[i].tunIn <-- tun[i].appOut if hasTun;
         }
 }
