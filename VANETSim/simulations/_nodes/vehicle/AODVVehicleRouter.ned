@@ -40,7 +40,6 @@ network AODVVehicleRouter extends VehicleHost
         @display("i=device/cellphone");
         numRadios = default(1);
         forwarding = true;
-        wlan[*].mgmtType = default("Ieee80211MgmtAdhoc");
     submodules:
         aodv: AODVRouting {
             @display("p=558,307");

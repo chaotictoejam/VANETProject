@@ -1,19 +1,4 @@
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-// 
-// You should have received a copy of the GNU Lesser General Public License
-// along with this program.  If not, see http://www.gnu.org/licenses/.
-// 
-
-package vanetsim.simulations._nodes.vehicle;
+package vanetsim.simulations._nodes;
 
 import vanetsim.inet.common.lifecycle.NodeStatus;
 import vanetsim.inet.common.packet.PcapRecorder;
@@ -30,27 +15,29 @@ import vanetsim.inet.power.contract.IEnergyStorage;
 import vanetsim.inet.power.contract.IEnergyGenerator;
 import vanetsim.inet.node.inet.INetworkNode;
 
-//
-// Contains the common lower layers (linklayer and networklayer) of VehicleHost
-//
-// NOTE:
-//    - forwarding is turned on by default.
-//    - use this model only as a base type. 
-//
-network VehicleBase like IVehicleNetworkNode
+import vanetsim.inet.applications.contract.IPingApp;
+import vanetsim.inet.applications.contract.ISCTPApp;
+import vanetsim.inet.applications.contract.ITCPApp;
+import vanetsim.inet.applications.contract.IUDPApp;
+import vanetsim.inet.transportlayer.contract.ISCTP;
+import vanetsim.inet.transportlayer.contract.ITCP;
+import vanetsim.inet.transportlayer.contract.IUDP;
+import vanetsim.inet.applications.contract.ITunApp;
+
+import vanetsim.inet.routing.aodv.AODVRouting;
+
+module AODVCar
 {
     parameters:
-        @display("bgb=,448");
+        @display("i=device/pc2");
         @networkNode;
         @labels(node,ethernet-node,wireless-node);
         bool hasStatus = default(false);
         int numExtInterfaces = default(0);
-        int numRadios = default(0);
         int numPcapRecorders = default(0); // no of PcapRecorders.
         int numTunInterfaces = default(0);
         string networkLayerType = default("IPv4NetworkLayer");
         string routingTableType = default("IPv4RoutingTable");
-        bool forwarding = default(true);
         bool multicastForwarding = default(false);
         string energyStorageType = default("");
         string energyGeneratorType = default("");
@@ -64,7 +51,22 @@ network VehicleBase like IVehicleNetworkNode
         string applType; //type of the application layer
         string nicType = default("Nic80211p"); // type of network interface card
         string veinsmobilityType; //type of the mobility module
+
+        int numTcpApps = default(0);  // no of TCP apps. Specify the app types in INI file with tcpApp[0..1].typename="TCPEchoApp" syntax
+        int numUdpApps = default(0);  // no of UDP apps. Specify the app types in INI file with udpApp[0..1].typename="UDPVideoStreamCli" syntax
+        int numSctpApps = default(0); // no of SCTP apps. Specify the app types in INI file with sctpApp[0..1].typename="SCTPServer" syntax
+        int numPingApps = default(0);  // no of PING apps. Specify the app types in INI file with pingApp[0..1].typename="PingApp" syntax
+        bool hasTcp = default(numTcpApps > 0);
+        bool hasUdp = default(numUdpApps > 0);
+        bool hasSctp = default(numSctpApps > 0);
+        bool hasTun = default(numTunInterfaces > 0);
+        string tcpType = default(firstAvailableOrEmpty("TCP", "TCP_lwIP", "TCP_NSC"));  // tcp implementation (e.g. ~TCP, ~TCP_lwIP, ~TCP_NSC) or ~TCPSpoof
+        string udpType = default(firstAvailableOrEmpty("UDP"));
+        string sctpType = default(firstAvailableOrEmpty("SCTP"));
+        networkLayer.proxyARP = default(false);
         
+        int numRadios = default(1);
+        bool forwarding = true;
     gates:
         input radioIn[numRadios] @directIn;
         inout pppg[] @labels(PPPFrame-conn);
@@ -139,6 +141,42 @@ network VehicleBase like IVehicleNetworkNode
         }
         //End Veins Submodules
         
+        tunApp[numTunInterfaces]: <> like ITunApp {
+            parameters:
+                @display("p=280,40");
+        }
+        tcpApp[numTcpApps]: <> like ITCPApp {
+            parameters:
+                @display("p=147,54,row,60");
+        }
+        tcp: <tcpType> like ITCP if hasTcp {
+            parameters:
+                @display("p=147,141");
+        }
+        udpApp[numUdpApps]: <> like IUDPApp {
+            parameters:
+                @display("p=329,54,row,60");
+        }
+        udp: <udpType> like IUDP if hasUdp {
+            parameters:
+                @display("p=329,141");
+        }
+        sctpApp[numSctpApps]: <> like ISCTPApp {
+            parameters:
+                @display("p=527,54,row,60");
+        }
+        sctp: <sctpType> like ISCTP if hasSctp {
+            @display("p=527,141");
+        }
+        pingApp[numPingApps]: <default("PingApp")> like IPingApp {
+            parameters:
+                @display("p=635,141,row,60");
+        }
+        
+        aodv: AODVRouting {
+            @display("p=558,307");
+        }
+        
     connections allowunconnected:
         // connections to network outside
         networkLayer.ifOut++ --> lo0.upperLayerIn;
@@ -173,4 +211,40 @@ network VehicleBase like IVehicleNetworkNode
             tun[i].upperLayerOut --> networkLayer.ifIn++;
             tun[i].upperLayerIn <-- networkLayer.ifOut++;
         }
+        for i=0..numTcpApps-1 {
+            tcpApp[i].tcpOut --> tcp.appIn++;
+            tcpApp[i].tcpIn <-- tcp.appOut++;
+        }
+
+        tcp.ipOut --> networkLayer.transportIn++ if hasTcp;
+        tcp.ipIn <-- networkLayer.transportOut++ if hasTcp;
+
+        for i=0..numUdpApps-1 {
+            udpApp[i].udpOut --> udp.appIn++;
+            udpApp[i].udpIn <-- udp.appOut++;
+        }
+
+        udp.ipOut --> networkLayer.transportIn++ if hasUdp;
+        udp.ipIn <-- networkLayer.transportOut++ if hasUdp;
+
+        for i=0..numSctpApps-1 {
+            sctpApp[i].sctpOut --> sctp.from_appl++;
+            sctp.to_appl++ --> sctpApp[i].sctpIn;
+        }
+        sctp.to_ip --> networkLayer.transportIn++ if hasSctp;
+        networkLayer.transportOut++ --> sctp.from_ip if hasSctp;
+
+        for i=0..numPingApps-1 {
+            networkLayer.pingOut++ --> pingApp[i].pingIn;
+            networkLayer.pingIn++ <-- pingApp[i].pingOut;
+        }
+
+        for i=0..numTunInterfaces-1 {
+            tunApp[i].tunOut --> tun[i].appIn if hasTun;
+            tunApp[i].tunIn <-- tun[i].appOut if hasTun;
+        }
+        
+        aodv.ipOut --> networkLayer.transportIn++;
+        aodv.ipIn <-- networkLayer.transportOut++;
+
 }

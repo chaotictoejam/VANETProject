@@ -5,9 +5,11 @@ import vanetsim.inet.common.scenario.ScenarioManager;
 import vanetsim.inet.networklayer.configurator.ipv4.IPv4NetworkConfigurator;
 import vanetsim.inet.networklayer.ipv4.RoutingTableRecorder;
 import vanetsim.inet.physicallayer.contract.packetlevel.IRadioMedium;
-import vanetsim.simulations._nodes.RSU;
+import vanetsim.veins.base.modules.BaseMobility;
 
-network AODVSim extends vanetsim.simulations._nodes.Scenario
+import  vanetsim.simulations._nodes.AODVRSU;
+
+network AODVSim_AODVRSU extends vanetsim.simulations._nodes.Scenario
 {
     string radioMediumType;
     submodules:
@@ -33,7 +35,7 @@ network AODVSim extends vanetsim.simulations._nodes.Scenario
                 script = default(xml("<scenario/>"));
                 @display("p=50,250");
         }
-        rsu[1]: RSU {
+        rsu[1]: AODVRSU {
             @display("p=150,140;b=10,10,oval");
         }
 }
