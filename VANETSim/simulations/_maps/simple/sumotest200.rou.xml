@@ -129,12 +129,6 @@
     <vehicle id="104" depart="198.00"><route edges="e13 e14 e5 e20 e21 e10"/></vehicle>
     <vehicle id="105" depart="200.00"><route edges="e1 e18 e19 e20"/></vehicle>
     <vehicle id="106" depart="202.00"><route edges="e1 e18 e19 e20 e21 e22"/></vehicle>
-    <vehicle id="100" depart="204.00"><route edges="e19 e20 e8 e26"/></vehicle>
-    <vehicle id="102" depart="206.00"><route edges="e11"/></vehicle>
-    <vehicle id="103" depart="208.00"><route edges="e13 e14 e15"/></vehicle>
-    <vehicle id="104" depart="210.00"><route edges="e15 e16 e9 e10"/></vehicle>
-    <vehicle id="105" depart="212.00"><route edges="e18 e19 e20 e21 e10"/></vehicle>
-    <vehicle id="106" depart="214.00"><route edges="e4 e24 e25 e26 e27"/></vehicle>
     <vehicle id="107" depart="216.00"><route edges="e4 e24 e25 e26"/></vehicle>
     <vehicle id="108" depart="218.00"><route edges="e5 e20"/></vehicle>
     <vehicle id="109" depart="220.00"><route edges="e13 e3"/></vehicle>

@@ -225,3 +225,7 @@ VANETSim/simulations/dissertation/
 VANETSim/src/dissertation/
 VANETSim/simulations/old/dissertation/
 VANETSim/src/old/dissertation/
+VANETSim/src/VANETSim.exe
+*.dat
+*.tkenvlog
+*.tkenvrc
