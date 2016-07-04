@@ -36,7 +36,8 @@ void NicEntryDirect::connectTo(NicEntry* other)
     nicEV <<"connecting nic #"<<nicId<< " and #"<<other->nicId<<endl;
 
     cGate *radioGate=NULL;
-    if( (radioGate = otherPtr->gate("radioIn")) == NULL )
+    radioGate = otherPtr->gate("radioIn");
+    if(radioGate == NULL )
 		throw cRuntimeError("Nic has no radioIn gate!");
 
     outConns[other] = radioGate->getPathStartGate();
