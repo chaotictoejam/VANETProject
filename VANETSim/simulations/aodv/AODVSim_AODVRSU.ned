@@ -1,10 +1,10 @@
 
 package vanetsim.simulations.aodv;
-import vanetsim.inet.common.lifecycle.LifecycleController;
-import vanetsim.inet.common.scenario.ScenarioManager;
-import vanetsim.inet.networklayer.configurator.ipv4.IPv4NetworkConfigurator;
-import vanetsim.inet.networklayer.ipv4.RoutingTableRecorder;
-import vanetsim.inet.physicallayer.contract.packetlevel.IRadioMedium;
+import vanetsim.inetveins.common.lifecycle.LifecycleController;
+import vanetsim.inetveins.common.scenario.ScenarioManager;
+import vanetsim.inetveins.networklayer.configurator.ipv4.IPv4NetworkConfigurator;
+import vanetsim.inetveins.networklayer.ipv4.RoutingTableRecorder;
+import vanetsim.inetveins.physicallayer.contract.packetlevel.IRadioMedium;
 import vanetsim.veins.base.modules.BaseMobility;
 
 import  vanetsim.simulations._nodes.AODVRSU;

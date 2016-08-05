@@ -46,7 +46,7 @@ module AODVCar
         *.interfaceTableModule = default(absPath(".interfaceTable"));
         *.routingTableModule = default(routingTableType != "" ? absPath(".routingTable") : "");
         *.energySourceModule = default(energyStorageType != "" ? absPath(".energyStorage") : "");
-        
+
         string routingProtocol;
         string applType; //type of the application layer
         string nicType = default("Nic80211p"); // type of network interface card
@@ -64,7 +64,7 @@ module AODVCar
         string udpType = default(firstAvailableOrEmpty("UDP"));
         string sctpType = default(firstAvailableOrEmpty("SCTP"));
         networkLayer.proxyARP = default(false);
-        
+
         int numRadios = default(1);
         bool forwarding = true;
     gates:
@@ -120,7 +120,7 @@ module AODVCar
             parameters:
                 @display("p=213,406,row,10;q=txQueue;i=block/ifcard");
         }
-        
+
 
         //Start Veins Submodules
         appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
@@ -137,10 +137,10 @@ module AODVCar
         //}
         veinsmobility: <veinsmobilityType> like vanetsim.veins.base.modules.IMobility {
             parameters:
-                @display("p=130,172;i=block/cogwheel");
+                @display("p=662,406;i=block/cogwheel");
         }
         //End Veins Submodules
-        
+
         tunApp[numTunInterfaces]: <> like ITunApp {
             parameters:
                 @display("p=280,40");
@@ -172,11 +172,11 @@ module AODVCar
             parameters:
                 @display("p=635,141,row,60");
         }
-        
+
         aodv: AODVRouting {
             @display("p=558,307");
         }
-        
+
     connections allowunconnected:
         // connections to network outside
         networkLayer.ifOut++ --> lo0.upperLayerIn;
@@ -243,7 +243,7 @@ module AODVCar
             tunApp[i].tunOut --> tun[i].appIn if hasTun;
             tunApp[i].tunIn <-- tun[i].appOut if hasTun;
         }
-        
+
         aodv.ipOut --> networkLayer.transportIn++;
         aodv.ipIn <-- networkLayer.transportOut++;
 

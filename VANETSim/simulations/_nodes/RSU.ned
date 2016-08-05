@@ -1,6 +1,6 @@
 package vanetsim.simulations._nodes;
 
-import vanetsim.inet.node.inet.INetworkNode;
+import vanetsim.inetveins.node.inet.INetworkNode;
 import vanetsim.veins.base.modules.BaseMobility;
 
 module RSU
