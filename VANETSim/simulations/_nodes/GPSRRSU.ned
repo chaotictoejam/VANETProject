@@ -1,32 +1,32 @@
 package vanetsim.simulations._nodes;
 
-import vanetsim.inet.common.lifecycle.NodeStatus;
-import vanetsim.inet.common.packet.PcapRecorder;
-import vanetsim.inet.linklayer.contract.IExternalNic;
-import vanetsim.inet.linklayer.contract.ITunNic;
-import vanetsim.inet.linklayer.contract.IWiredNic;
-import vanetsim.inet.linklayer.contract.IWirelessNic;
-import vanetsim.inet.linklayer.loopback.LoopbackInterface;
-import vanetsim.inet.mobility.contract.IMobility;
-import vanetsim.inet.networklayer.contract.IRoutingTable;
-import vanetsim.inet.networklayer.common.InterfaceTable;
-import vanetsim.inet.networklayer.contract.INetworkLayer;
-import vanetsim.inet.power.contract.IEnergyStorage;
-import vanetsim.inet.power.contract.IEnergyGenerator;
-import vanetsim.inet.node.inet.INetworkNode;
+import vanetsim.inetveins.common.lifecycle.NodeStatus;
+import vanetsim.inetveins.common.packet.PcapRecorder;
+import vanetsim.inetveins.linklayer.contract.IExternalNic;
+import vanetsim.inetveins.linklayer.contract.ITunNic;
+import vanetsim.inetveins.linklayer.contract.IWiredNic;
+import vanetsim.inetveins.linklayer.contract.IWirelessNic;
+import vanetsim.inetveins.linklayer.loopback.LoopbackInterface;
+import vanetsim.inetveins.mobility.contract.IMobility;
+import vanetsim.inetveins.networklayer.contract.IRoutingTable;
+import vanetsim.inetveins.networklayer.common.InterfaceTable;
+import vanetsim.inetveins.networklayer.contract.INetworkLayer;
+import vanetsim.inetveins.power.contract.IEnergyStorage;
+import vanetsim.inetveins.power.contract.IEnergyGenerator;
+import vanetsim.inetveins.node.inet.INetworkNode;
 
-import vanetsim.inet.applications.contract.IPingApp;
-import vanetsim.inet.applications.contract.ISCTPApp;
-import vanetsim.inet.applications.contract.ITCPApp;
-import vanetsim.inet.applications.contract.IUDPApp;
-import vanetsim.inet.transportlayer.contract.ISCTP;
-import vanetsim.inet.transportlayer.contract.ITCP;
-import vanetsim.inet.transportlayer.contract.IUDP;
-import vanetsim.inet.applications.contract.ITunApp;
+import vanetsim.inetveins.applications.contract.IPingApp;
+import vanetsim.inetveins.applications.contract.ISCTPApp;
+import vanetsim.inetveins.applications.contract.ITCPApp;
+import vanetsim.inetveins.applications.contract.IUDPApp;
+import vanetsim.inetveins.transportlayer.contract.ISCTP;
+import vanetsim.inetveins.transportlayer.contract.ITCP;
+import vanetsim.inetveins.transportlayer.contract.IUDP;
+import vanetsim.inetveins.applications.contract.ITunApp;
 
 import vanetsim.veins.base.modules.BaseMobility;
 
-import vanetsim.inet.routing.gpsr.GPSR;
+import vanetsim.inetveins.routing.gpsr.GPSR;
 
 module GPSRRSU
 {
