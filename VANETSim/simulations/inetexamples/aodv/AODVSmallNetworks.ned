@@ -17,12 +17,12 @@
 
 package vanetsim.simulations.inetexamples.aodv;
 
-import vanetsim.inet.common.lifecycle.LifecycleController;
-import vanetsim.inet.common.scenario.ScenarioManager;
-import vanetsim.inet.networklayer.configurator.ipv4.IPv4NetworkConfigurator;
-import vanetsim.inet.networklayer.ipv4.RoutingTableRecorder;
-import vanetsim.inet.node.aodv.AODVRouter;
-import vanetsim.inet.physicallayer.idealradio.IdealRadioMedium;
+import vanetsim.inetveins.common.lifecycle.LifecycleController;
+import vanetsim.inetveins.common.scenario.ScenarioManager;
+import vanetsim.inetveins.networklayer.configurator.ipv4.IPv4NetworkConfigurator;
+import vanetsim.inetveins.networklayer.ipv4.RoutingTableRecorder;
+import vanetsim.inetveins.node.aodv.AODVRouter;
+import vanetsim.inetveins.physicallayer.idealradio.IdealRadioMedium;
 
 
 network SimpleRREQ

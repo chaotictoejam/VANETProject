@@ -1,12 +1,12 @@
 
 package vanetsim.simulations.inetexamples.gpsr;
 
-import vanetsim.inet.common.lifecycle.LifecycleController;
-import vanetsim.inet.common.scenario.ScenarioManager;
-import vanetsim.inet.networklayer.configurator.ipv4.IPv4NetworkConfigurator;
-import vanetsim.inet.networklayer.ipv4.RoutingTableRecorder;
-import vanetsim.inet.node.gpsr.GPSRRouter;
-import vanetsim.inet.physicallayer.ieee80211.packetlevel.Ieee80211ScalarRadioMedium;
+import vanetsim.inetveins.common.lifecycle.LifecycleController;
+import vanetsim.inetveins.common.scenario.ScenarioManager;
+import vanetsim.inetveins.networklayer.configurator.ipv4.IPv4NetworkConfigurator;
+import vanetsim.inetveins.networklayer.ipv4.RoutingTableRecorder;
+import vanetsim.inetveins.node.gpsr.GPSRRouter;
+import vanetsim.inetveins.physicallayer.ieee80211.packetlevel.Ieee80211ScalarRadioMedium;
 
 network GPSRNetworkRandom
 {

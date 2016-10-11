@@ -36,8 +36,8 @@ module GPSRCar
         int numExtInterfaces = default(0);
         int numPcapRecorders = default(0); // no of PcapRecorders.
         int numTunInterfaces = default(0);
-        string networkLayerType = default("IPv4NetworkLayer");
-        string routingTableType = default("IPv4RoutingTable");
+        string networkLayerType = default("vanetsim.inetveins.networklayer.ipv4.IPv4NetworkLayer");
+        string routingTableType = default("vanetsim.inetveins.networklayer.ipv4.IPv4RoutingTable");
         bool multicastForwarding = default(false);
         string energyStorageType = default("");
         string energyGeneratorType = default("");
