@@ -53,5 +53,5 @@ double Coord::sqrTorusDist(const Coord& b, const Coord& size) const
     return xDist * xDist + yDist * yDist + zDist * zDist;
 }
 
-} // namespace inet
+} // namespace inetveins
 

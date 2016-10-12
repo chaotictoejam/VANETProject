@@ -16,11 +16,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TOKENBUCKETMETER_H
-#define __INET_TOKENBUCKETMETER_H
+#ifndef __INETVEINS_TOKENBUCKETMETER_H
+#define __INETVEINS_TOKENBUCKETMETER_H
 
-#include "inetveins/common/INETDefs.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSDefs.h"
+#include "inetveins/common/INETVEINSMath.h"
 
 namespace inetveins {
 
@@ -53,7 +53,7 @@ class INETVEINS_API TokenBucketMeter : public cSimpleModule
     virtual int meterPacket(cPacket *packet);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TOKENBUCKETMETER_H
+#endif // ifndef __INETVEINS_TOKENBUCKETMETER_H
 

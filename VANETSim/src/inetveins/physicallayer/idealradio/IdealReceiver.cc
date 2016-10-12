@@ -115,5 +115,5 @@ const IListeningDecision *IdealReceiver::computeListeningDecision(const IListeni
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

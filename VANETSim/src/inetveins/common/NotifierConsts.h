@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_NOTIFIERCONSTS_H
-#define __INET_NOTIFIERCONSTS_H
+#ifndef __INETVEINS_NOTIFIERCONSTS_H
+#define __INETVEINS_NOTIFIERCONSTS_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -126,7 +126,7 @@ const char *notificationCategoryName(simsignal_t signalID);
  */
 void printNotificationBanner(simsignal_t signalID, const cObject *obj);
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NOTIFIERCONSTS_H
+#endif // ifndef __INETVEINS_NOTIFIERCONSTS_H
 

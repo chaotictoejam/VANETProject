@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DHCPLEASE_H
-#define __INET_DHCPLEASE_H
+#ifndef __INETVEINS_DHCPLEASE_H
+#define __INETVEINS_DHCPLEASE_H
 
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
 #include "inetveins/linklayer/common/MACAddress.h"
@@ -53,7 +53,7 @@ inline std::ostream& operator<<(std::ostream& os, DHCPLease obj)
     return os;
 }
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DHCPLEASE_H
+#endif // ifndef __INETVEINS_DHCPLEASE_H
 

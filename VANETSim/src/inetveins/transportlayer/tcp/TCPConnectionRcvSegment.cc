@@ -1366,5 +1366,5 @@ void TCPConnection::process_TIMEOUT_SYN_REXMIT(TCPEventCode& event)
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

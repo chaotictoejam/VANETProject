@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SIGNALBITMODEL_H
-#define __INET_SIGNALBITMODEL_H
+#ifndef __INETVEINS_SIGNALBITMODEL_H
+#define __INETVEINS_SIGNALBITMODEL_H
 
 #include <vector>
 #include "inetveins/common/BitVector.h"
@@ -71,7 +71,7 @@ class INETVEINS_API ReceptionBitModel : public SignalBitModel, public virtual IR
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SIGNALBITMODEL_H
+#endif // ifndef __INETVEINS_SIGNALBITMODEL_H
 

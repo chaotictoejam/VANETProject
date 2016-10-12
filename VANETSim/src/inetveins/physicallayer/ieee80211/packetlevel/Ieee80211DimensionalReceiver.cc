@@ -44,5 +44,5 @@ bool Ieee80211DimensionalReceiver::computeIsReceptionPossible(const IListening *
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

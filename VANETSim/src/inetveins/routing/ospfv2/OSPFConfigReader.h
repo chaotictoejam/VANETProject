@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_OSPFCONFIGREADER_H
-#define __INET_OSPFCONFIGREADER_H
+#ifndef __INETVEINS_OSPFCONFIGREADER_H
+#define __INETVEINS_OSPFCONFIGREADER_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/networklayer/ipv4/IIPv4RoutingTable.h"
@@ -112,7 +112,7 @@ class INETVEINS_API OSPFConfigReader
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_OSPFCONFIGREADER_H
+#endif // ifndef __INETVEINS_OSPFCONFIGREADER_H
 

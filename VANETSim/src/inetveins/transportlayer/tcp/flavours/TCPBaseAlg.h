@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPBASEALG_H
-#define __INET_TCPBASEALG_H
+#ifndef __INETVEINS_TCPBASEALG_H
+#define __INETVEINS_TCPBASEALG_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/tcp/TCPAlgorithm.h"
 
@@ -203,7 +203,7 @@ class INETVEINS_API TCPBaseAlg : public TCPAlgorithm
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPBASEALG_H
+#endif // ifndef __INETVEINS_TCPBASEALG_H
 

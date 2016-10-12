@@ -15,12 +15,12 @@
 *                                                                         *
 ***************************************************************************/
 
-#ifndef __INET_RTPPAYLOADRECEIVER_H
-#define __INET_RTPPAYLOADRECEIVER_H
+#ifndef __INETVEINS_RTPPAYLOADRECEIVER_H
+#define __INETVEINS_RTPPAYLOADRECEIVER_H
 
 #include <fstream>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -97,7 +97,7 @@ class INETVEINS_API RTPPayloadReceiver : public cSimpleModule
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RTPPAYLOADRECEIVER_H
+#endif // ifndef __INETVEINS_RTPPAYLOADRECEIVER_H
 

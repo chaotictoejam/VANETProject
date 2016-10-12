@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_POLYGON_H
-#define __INET_POLYGON_H
+#ifndef __INETVEINS_POLYGON_H
+#define __INETVEINS_POLYGON_H
 
 #include "inetveins/common/geometry/base/GeometricObjectBase.h"
 #include "inetveins/common/geometry/common/Coord.h"
@@ -50,7 +50,7 @@ class INETVEINS_API Polygon : public GeometricObjectBase
     virtual bool computeIntersection(const LineSegment& lineSegment, Coord& intersection1, Coord& intersection2, Coord& normal1, Coord& normal2) const;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_POLYGON_H
+#endif // ifndef __INETVEINS_POLYGON_H
 

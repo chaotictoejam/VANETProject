@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211MGMTSTA_H
-#define __INET_IEEE80211MGMTSTA_H
+#ifndef __INETVEINS_IEEE80211MGMTSTA_H
+#define __INETVEINS_IEEE80211MGMTSTA_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtBase.h"
 #include "inetveins/linklayer/ieee80211/mgmt/Ieee80211Primitives_m.h"
@@ -216,7 +216,7 @@ class INETVEINS_API Ieee80211MgmtSTA : public Ieee80211MgmtBase, protected cList
 
 } // namespace ieee80211
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE80211MGMTSTA_H
+#endif // ifndef __INETVEINS_IEEE80211MGMTSTA_H
 

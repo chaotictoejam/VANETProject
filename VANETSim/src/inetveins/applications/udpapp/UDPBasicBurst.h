@@ -18,13 +18,13 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_UDPBASICBURST_H
-#define __INET_UDPBASICBURST_H
+#ifndef __INETVEINS_UDPBASICBURST_H
+#define __INETVEINS_UDPBASICBURST_H
 
 #include <vector>
 #include <map>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/applications/base/ApplicationBase.h"
 #include "inetveins/transportlayer/contract/udp/UDPSocket.h"
@@ -110,7 +110,7 @@ class INETVEINS_API UDPBasicBurst : public ApplicationBase
     ~UDPBasicBurst();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_UDPBASICBURST_H
+#endif // ifndef __INETVEINS_UDPBASICBURST_H
 

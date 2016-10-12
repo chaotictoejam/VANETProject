@@ -247,5 +247,5 @@ bool RTPApplication::handleOperationStage(LifecycleOperation *operation, int sta
     return true;
 }
 
-} // namespace inet
+} // namespace inetveins
 

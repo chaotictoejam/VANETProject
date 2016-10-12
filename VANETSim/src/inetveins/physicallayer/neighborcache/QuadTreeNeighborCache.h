@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_QUADTREENEIGHBORCACHE_H
-#define __INET_QUADTREENEIGHBORCACHE_H
+#ifndef __INETVEINS_QUADTREENEIGHBORCACHE_H
+#define __INETVEINS_QUADTREENEIGHBORCACHE_H
 
 #include "inetveins/physicallayer/common/packetlevel/RadioMedium.h"
 #include "inetveins/common/geometry/container/QuadTree.h"
@@ -73,7 +73,7 @@ class INETVEINS_API QuadTreeNeighborCache : public cSimpleModule, public INeighb
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_QUADTREENEIGHBORCACHE_H
+#endif // ifndef __INETVEINS_QUADTREENEIGHBORCACHE_H
 

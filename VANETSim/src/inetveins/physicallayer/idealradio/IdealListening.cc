@@ -34,5 +34,5 @@ std::ostream& IdealListening::printToStream(std::ostream& stream, int level) con
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IANTENNA_H
-#define __INET_IANTENNA_H
+#ifndef __INETVEINS_IANTENNA_H
+#define __INETVEINS_IANTENNA_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IPrintableObject.h"
 #include "inetveins/mobility/contract/IMobility.h"
@@ -61,7 +61,7 @@ class INETVEINS_API IAntenna : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IANTENNA_H
+#endif // ifndef __INETVEINS_IANTENNA_H
 

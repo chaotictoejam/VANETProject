@@ -17,10 +17,10 @@
 // Authors: Veronika Rybova, Vladimir Vesely (ivesely@fit.vutbr.cz),
 //          Tamas Borbely (tomi@omnetpp.org)
 
-#ifndef __INET_PIMBASE_H
-#define __INET_PIMBASE_H
+#ifndef __INETVEINS_PIMBASE_H
+#define __INETVEINS_PIMBASE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/networklayer/ipv4/IIPv4RoutingTable.h"
@@ -198,7 +198,7 @@ class INETVEINS_API PIMBase : public OperationalBase
     virtual void handleNodeCrash() override;
 };
 
-}    // namespace inet
+}    // namespace inetveins
 
-#endif // ifndef __INET_PIMBASE_H
+#endif // ifndef __INETVEINS_PIMBASE_H
 

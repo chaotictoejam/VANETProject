@@ -25,8 +25,8 @@
 // *
 // *   Contact: dreibh@iem.uni-due.de
 
-#ifndef __INET_NETPERFMETER_H
-#define __INET_NETPERFMETER_H
+#ifndef __INETVEINS_NETPERFMETER_H
+#define __INETVEINS_NETPERFMETER_H
 
 #include <assert.h>
 #include <fstream>
@@ -219,6 +219,6 @@ class INETVEINS_API NetPerfMeter : public cSimpleModule
    void handleTimer(cMessage* msg);
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif

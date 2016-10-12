@@ -95,5 +95,5 @@ MACAddress GenericARP::mapMulticastAddress(L3Address addr)
     return macAddr;
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -11,8 +11,8 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_SCTPNATSERVER_H
-#define __INET_SCTPNATSERVER_H
+#ifndef __INETVEINS_SCTPNATSERVER_H
+#define __INETVEINS_SCTPNATSERVER_H
 
 #include <omnetpp.h>
 #include "inetveins/transportlayer/sctp/SCTPAssociation.h"
@@ -82,7 +82,7 @@ class INETVEINS_API SCTPNatServer : public cSimpleModule
     void printNatVector();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPNATSERVER_H
+#endif // ifndef __INETVEINS_SCTPNATSERVER_H
 

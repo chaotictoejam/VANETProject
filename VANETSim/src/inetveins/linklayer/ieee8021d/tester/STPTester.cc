@@ -167,5 +167,5 @@ bool STPTester::isForwarding(Topology::Node *node, unsigned int portNum)
     return portData->isForwarding();
 }
 
-} // namespace inet
+} // namespace inetveins
 

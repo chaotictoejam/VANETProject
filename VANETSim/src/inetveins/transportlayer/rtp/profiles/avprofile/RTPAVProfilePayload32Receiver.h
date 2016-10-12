@@ -19,10 +19,10 @@
  * This file declares the class RTPAVProfilePayload32Receiver.
  */
 
-#ifndef __INET_RTPAVPROFILEPAYLOAD32RECEIVER_H
-#define __INET_RTPAVPROFILEPAYLOAD32RECEIVER_H
+#ifndef __INETVEINS_RTPAVPROFILEPAYLOAD32RECEIVER_H
+#define __INETVEINS_RTPAVPROFILEPAYLOAD32RECEIVER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/rtp/RTPPayloadReceiver.h"
 
@@ -78,7 +78,7 @@ class INETVEINS_API RTPAVProfilePayload32Receiver : public RTPPayloadReceiver
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RTPAVPROFILEPAYLOAD32RECEIVER_H
+#endif // ifndef __INETVEINS_RTPAVPROFILEPAYLOAD32RECEIVER_H
 

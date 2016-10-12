@@ -17,8 +17,8 @@
 // author: Zoltan Bojthe
 //
 
-#ifndef __INET_INITSTAGES
-#define __INET_INITSTAGES
+#ifndef __INETVEINS_INITSTAGES
+#define __INETVEINS_INITSTAGES
 
 namespace inetveins {
 
@@ -116,7 +116,7 @@ enum InitStages {
     NUM_INIT_STAGES,
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif    // __INET_INITSTAGES
+#endif    // __INETVEINS_INITSTAGES
 

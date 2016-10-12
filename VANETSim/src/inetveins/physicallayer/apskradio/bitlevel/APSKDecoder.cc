@@ -82,5 +82,5 @@ const IReceptionPacketModel *APSKDecoder::decode(const IReceptionBitModel *bitMo
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

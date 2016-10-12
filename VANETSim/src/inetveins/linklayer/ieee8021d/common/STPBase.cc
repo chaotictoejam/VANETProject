@@ -209,5 +209,5 @@ bool STPBase::handleOperationStage(LifecycleOperation *operation, int stage, IDo
     return true;
 }
 
-} // namespace inet
+} // namespace inetveins
 

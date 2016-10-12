@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCHEDULERBASE_H
-#define __INET_SCHEDULERBASE_H
+#ifndef __INETVEINS_SCHEDULERBASE_H
+#define __INETVEINS_SCHEDULERBASE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/queue/IPassiveQueue.h"
 
 namespace inetveins {
@@ -70,7 +70,7 @@ class INETVEINS_API SchedulerBase : public cSimpleModule, public IPassiveQueue, 
     virtual void removeListener(IPassiveQueueListener *listener) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif /* SCHEDULERBASE_H_ */
 

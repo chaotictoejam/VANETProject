@@ -85,5 +85,5 @@ const IReceptionSymbolModel *LayeredErrorModelBase::computeSymbolModel(const Lay
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -17,10 +17,10 @@
 // Authors: Veronika Rybova, Tomas Prochazka (xproch21@stud.fit.vutbr.cz),
 //          Vladimir Vesely (ivesely@fit.vutbr.cz), Tamas Borbely (tomi@omnetpp.org)
 
-#ifndef __INET_PIMSM_H
-#define __INET_PIMSM_H
+#ifndef __INETVEINS_PIMSM_H
+#define __INETVEINS_PIMSM_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/ipv4/IPv4Route.h"
 #include "inetveins/routing/pim/modes/PIMBase.h"
@@ -321,7 +321,7 @@ class INETVEINS_API PIMSM : public PIMBase, protected cListener
     IPv4MulticastRoute *findIPv4Route(IPv4Address source, IPv4Address group);
 };
 
-}    // namespace inet
+}    // namespace inetveins
 
-#endif // ifndef __INET_PIMSM_H
+#endif // ifndef __INETVEINS_PIMSM_H
 

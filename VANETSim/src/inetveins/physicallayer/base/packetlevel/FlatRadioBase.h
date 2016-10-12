@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_FLATRADIOBASE_H
-#define __INET_FLATRADIOBASE_H
+#ifndef __INETVEINS_FLATRADIOBASE_H
+#define __INETVEINS_FLATRADIOBASE_H
 
 #include "inetveins/physicallayer/base/packetlevel/NarrowbandRadioBase.h"
 
@@ -38,7 +38,7 @@ class INETVEINS_API FlatRadioBase : public NarrowbandRadioBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_FLATRADIOBASE_H
+#endif // ifndef __INETVEINS_FLATRADIOBASE_H
 

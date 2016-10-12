@@ -17,8 +17,8 @@
 // Author: Levente Meszaros (levy@omnetpp.org)
 //
 
-#ifndef __INET_NODESTATUS_H
-#define __INET_NODESTATUS_H
+#ifndef __INETVEINS_NODESTATUS_H
+#define __INETVEINS_NODESTATUS_H
 
 #include "inetveins/common/lifecycle/ILifecycle.h"
 
@@ -57,7 +57,7 @@ class INETVEINS_API NodeStatus : public cSimpleModule, public ILifecycle
     static State getStateByName(const char *name);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NODESTATUS_H
+#endif // ifndef __INETVEINS_NODESTATUS_H
 

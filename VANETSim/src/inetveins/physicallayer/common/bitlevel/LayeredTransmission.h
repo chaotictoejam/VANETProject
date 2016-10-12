@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_LAYEREDTRANSMISSION_H
-#define __INET_LAYEREDTRANSMISSION_H
+#ifndef __INETVEINS_LAYEREDTRANSMISSION_H
+#define __INETVEINS_LAYEREDTRANSMISSION_H
 
 #include "inetveins/physicallayer/contract/bitlevel/ISignalPacketModel.h"
 #include "inetveins/physicallayer/contract/bitlevel/ISignalBitModel.h"
@@ -56,7 +56,7 @@ class INETVEINS_API LayeredTransmission : public TransmissionBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LAYEREDTRANSMISSION_H
+#endif // ifndef __INETVEINS_LAYEREDTRANSMISSION_H
 

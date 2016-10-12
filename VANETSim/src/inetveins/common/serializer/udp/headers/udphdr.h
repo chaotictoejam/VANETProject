@@ -33,8 +33,8 @@
  *      @(#)udp.h       8.1 (Berkeley) 6/10/93
  */
 
-#ifndef __INET_UDPHDR_H
-#define __INET_UDPHDR_H
+#ifndef __INETVEINS_UDPHDR_H
+#define __INETVEINS_UDPHDR_H
 
 namespace inetveins {
 
@@ -54,7 +54,7 @@ struct udphdr
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_UDPHDR_H
+#endif // ifndef __INETVEINS_UDPHDR_H
 

@@ -83,5 +83,5 @@ void RTPPayloadReceiver::closeOutputFile()
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

@@ -16,8 +16,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_SCTPNATTABLE_H
-#define __INET_SCTPNATTABLE_H
+#ifndef __INETVEINS_SCTPNATTABLE_H
+#define __INETVEINS_SCTPNATTABLE_H
 
 #include <vector>
 #include <omnetpp.h>
@@ -100,7 +100,7 @@ class INETVEINS_API SCTPNatTable : public cSimpleModule
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPNATTABLE_H
+#endif // ifndef __INETVEINS_SCTPNATTABLE_H
 

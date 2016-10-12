@@ -39,5 +39,5 @@ const char *IRadioSignal::getSignalPartName(SignalPart signalPart)
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

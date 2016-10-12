@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MEDIUMVISUALIZER_H
-#define __INET_MEDIUMVISUALIZER_H
+#ifndef __INETVEINS_MEDIUMVISUALIZER_H
+#define __INETVEINS_MEDIUMVISUALIZER_H
 
 #include "inetveins/common/figures/HeatMapFigure.h"
 #include "inetveins/common/figures/TrailFigure.h"
@@ -131,7 +131,7 @@ class INETVEINS_API MediumVisualizer : public cSimpleModule
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MEDIUMVISUALIZER_H
+#endif // ifndef __INETVEINS_MEDIUMVISUALIZER_H
 

@@ -9,5 +9,5 @@ namespace inetveins {
 const EulerAngles EulerAngles::ZERO = EulerAngles(0.0, 0.0, 0.0);
 const EulerAngles EulerAngles::NIL = EulerAngles(NaN, NaN, NaN);
 
-} // namespace inet
+} // namespace inetveins
 

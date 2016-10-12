@@ -497,5 +497,5 @@ bool OSPFConfigReader::loadConfigFromXML(cXMLElement *asConfig, Router *ospfRout
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

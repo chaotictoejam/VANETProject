@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IANALOGMODEL_H
-#define __INET_IANALOGMODEL_H
+#ifndef __INETVEINS_IANALOGMODEL_H
+#define __INETVEINS_IANALOGMODEL_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IRadio.h"
 #include "inetveins/physicallayer/contract/packetlevel/IListening.h"
@@ -60,7 +60,7 @@ class INETVEINS_API IAnalogModel : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IANALOGMODEL_H
+#endif // ifndef __INETVEINS_IANALOGMODEL_H
 

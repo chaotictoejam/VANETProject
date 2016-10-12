@@ -25,5 +25,5 @@ simsignal_t IEnergySource::powerConsumptionChangedSignal = cComponent::registerS
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 

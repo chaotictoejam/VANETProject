@@ -102,5 +102,5 @@ double StochasticErrorModel::computeSymbolErrorRate(const ISNIR *snir, IRadioSig
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

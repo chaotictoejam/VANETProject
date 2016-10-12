@@ -27,7 +27,7 @@ import vanetsim.inetveins.networklayer.configurator.base.NetworkConfiguratorBase
 // It assigns per-interface IP addresses, strives to take subnets into account,
 // and can also optimize the generated routing tables by merging routing entries.
 //
-// IMPORTANT: as of INET 2.2, this module does NOT assign addresses or add
+// IMPORTANT: as of INETVEINS 2.2, this module does NOT assign addresses or add
 // routes directly, just stores them in its internal data structures.
 // Network nodes are supposed to contain an instance of ~IPv4NodeConfigurator
 // (normally part of the network layer compound module) that actually

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ISIGNALBITMODEL_H
-#define __INET_ISIGNALBITMODEL_H
+#ifndef __INETVEINS_ISIGNALBITMODEL_H
+#define __INETVEINS_ISIGNALBITMODEL_H
 
 #include "inetveins/physicallayer/contract/bitlevel/IFECCoder.h"
 #include "inetveins/physicallayer/contract/bitlevel/IScrambler.h"
@@ -62,7 +62,7 @@ class INETVEINS_API IReceptionBitModel : public virtual ISignalBitModel
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ISIGNALBITMODEL_H
+#endif // ifndef __INETVEINS_ISIGNALBITMODEL_H
 

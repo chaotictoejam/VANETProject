@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCALARSIGNALANALOGMODEL_H
-#define __INET_SCALARSIGNALANALOGMODEL_H
+#ifndef __INETVEINS_SCALARSIGNALANALOGMODEL_H
+#define __INETVEINS_SCALARSIGNALANALOGMODEL_H
 
 #include "inetveins/physicallayer/analogmodel/bitlevel/SignalAnalogModel.h"
 
@@ -52,7 +52,7 @@ class INETVEINS_API ScalarReceptionSignalAnalogModel : public ScalarSignalAnalog
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCALARSIGNALANALOGMODEL_H
+#endif // ifndef __INETVEINS_SCALARSIGNALANALOGMODEL_H
 

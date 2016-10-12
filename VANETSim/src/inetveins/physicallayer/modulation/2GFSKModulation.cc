@@ -30,5 +30,5 @@ _2GFSKModulation::_2GFSKModulation() :
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

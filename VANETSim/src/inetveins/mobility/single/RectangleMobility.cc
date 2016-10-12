@@ -16,7 +16,7 @@
 //
 
 #include "inetveins/mobility/single/RectangleMobility.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 
 namespace inetveins {
 
@@ -104,5 +104,5 @@ void RectangleMobility::move()
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

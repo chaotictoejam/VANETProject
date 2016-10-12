@@ -99,5 +99,5 @@ APSKPhyFrame *APSKPhyFrameSerializer::deserialize(const BitVector *bits) const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

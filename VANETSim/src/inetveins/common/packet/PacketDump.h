@@ -18,10 +18,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PACKETDUMP_H
-#define __INET_PACKETDUMP_H
+#ifndef __INETVEINS_PACKETDUMP_H
+#define __INETVEINS_PACKETDUMP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -120,7 +120,7 @@ class INETVEINS_API PacketDump
             const std::string& destAddr, const char *comment);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PACKETDUMP_H
+#endif // ifndef __INETVEINS_PACKETDUMP_H
 

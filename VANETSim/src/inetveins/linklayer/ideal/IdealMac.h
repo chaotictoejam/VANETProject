@@ -17,10 +17,10 @@
 // author: Zoltan Bojthe
 //
 
-#ifndef __INET_IDEALMAC_H
-#define __INET_IDEALMAC_H
+#ifndef __INETVEINS_IDEALMAC_H
+#define __INETVEINS_IDEALMAC_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/physicallayer/contract/packetlevel/IRadio.h"
 #include "inetveins/linklayer/common/MACAddress.h"
 #include "inetveins/linklayer/base/MACProtocolBase.h"
@@ -96,7 +96,7 @@ class INETVEINS_API IdealMac : public MACProtocolBase
     virtual void initialize(int stage) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IDEALMAC_H
+#endif // ifndef __INETVEINS_IDEALMAC_H
 

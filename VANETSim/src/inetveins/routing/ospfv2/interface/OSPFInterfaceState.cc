@@ -387,5 +387,5 @@ void InterfaceState::calculateDesignatedRouter(Interface *intf)
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

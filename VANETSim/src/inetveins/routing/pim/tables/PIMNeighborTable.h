@@ -17,10 +17,10 @@
 // Authors: Veronika Rybova, Vladimir Vesely (ivesely@fit.vutbr.cz),
 //          Tamas Borbely (tomi@omnetpp.org)
 
-#ifndef __INET_PIMNEIGHBORTABLE_H
-#define __INET_PIMNEIGHBORTABLE_H
+#ifndef __INETVEINS_PIMNEIGHBORTABLE_H
+#define __INETVEINS_PIMNEIGHBORTABLE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 
 namespace inetveins {
@@ -135,7 +135,7 @@ class INETVEINS_API PIMNeighborTable : public cSimpleModule
     virtual void processLivenessTimer(cMessage *timer);
 };
 
-}    // namespace inet
+}    // namespace inetveins
 
-#endif // ifndef __INET_PIMNEIGHBORTABLE_H
+#endif // ifndef __INETVEINS_PIMNEIGHBORTABLE_H
 

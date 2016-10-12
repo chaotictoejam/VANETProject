@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IIEEE80211MODE_H
-#define __INET_IIEEE80211MODE_H
+#ifndef __INETVEINS_IIEEE80211MODE_H
+#define __INETVEINS_IIEEE80211MODE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IModulation.h"
 
@@ -74,7 +74,7 @@ class INETVEINS_API IIeee80211Mode : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IIEEE80211MODE_H
+#endif // ifndef __INETVEINS_IIEEE80211MODE_H
 

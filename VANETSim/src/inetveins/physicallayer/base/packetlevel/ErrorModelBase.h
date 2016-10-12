@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ERRORMODELBASE_H
-#define __INET_ERRORMODELBASE_H
+#ifndef __INETVEINS_ERRORMODELBASE_H
+#define __INETVEINS_ERRORMODELBASE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IErrorModel.h"
 
@@ -30,7 +30,7 @@ class INETVEINS_API ErrorModelBase : public cModule, public IErrorModel
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ERRORMODELBASE_H
+#endif // ifndef __INETVEINS_ERRORMODELBASE_H
 

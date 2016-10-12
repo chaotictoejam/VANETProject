@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BEHAVIORAGGREGATECLASSIFIER_H
-#define __INET_BEHAVIORAGGREGATECLASSIFIER_H
+#ifndef __INETVEINS_BEHAVIORAGGREGATECLASSIFIER_H
+#define __INETVEINS_BEHAVIORAGGREGATECLASSIFIER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -49,7 +49,7 @@ class INETVEINS_API BehaviorAggregateClassifier : public cSimpleModule
     int getDscpFromPacket(cPacket *packet);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BEHAVIORAGGREGATECLASSIFIER_H
+#endif // ifndef __INETVEINS_BEHAVIORAGGREGATECLASSIFIER_H
 

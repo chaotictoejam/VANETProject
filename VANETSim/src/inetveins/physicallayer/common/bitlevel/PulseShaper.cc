@@ -34,5 +34,5 @@ const ITransmissionSampleModel *PulseShaper::shape(const ITransmissionSymbolMode
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

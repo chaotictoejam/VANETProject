@@ -19,7 +19,7 @@
  */
 
 #include <math.h>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/physicallayer/ieee80211/packetlevel/errormodel/dsss-error-rate-model.h"
 
 namespace inetveins {
@@ -161,5 +161,5 @@ double DsssErrorRateModel::SymbolErrorProb256Cck(double e1)
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

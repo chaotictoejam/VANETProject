@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IARRIVAL_H
-#define __INET_IARRIVAL_H
+#ifndef __INETVEINS_IARRIVAL_H
+#define __INETVEINS_IARRIVAL_H
 
 #include "inetveins/common/geometry/common/Coord.h"
 #include "inetveins/common/geometry/common/EulerAngles.h"
@@ -61,7 +61,7 @@ class INETVEINS_API IArrival : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IARRIVAL_H
+#endif // ifndef __INETVEINS_IARRIVAL_H
 

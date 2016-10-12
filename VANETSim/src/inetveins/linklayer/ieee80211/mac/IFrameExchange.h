@@ -17,10 +17,10 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_IFRAMEEXCHANGE_H
-#define __INET_IFRAMEEXCHANGE_H
+#ifndef __INETVEINS_IFRAMEEXCHANGE_H
+#define __INETVEINS_IFRAMEEXCHANGE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 namespace ieee80211 {
@@ -50,7 +50,7 @@ class INETVEINS_API IFrameExchange
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

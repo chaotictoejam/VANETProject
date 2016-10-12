@@ -16,7 +16,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/queue/FIFOQueue.h"
 
@@ -63,5 +63,5 @@ bool FIFOQueue::isEmpty()
     return queue.isEmpty();
 }
 
-} // namespace inet
+} // namespace inetveins
 

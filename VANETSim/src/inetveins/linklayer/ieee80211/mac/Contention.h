@@ -17,8 +17,8 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_CONTENTION_H
-#define __INET_CONTENTION_H
+#ifndef __INETVEINS_CONTENTION_H
+#define __INETVEINS_CONTENTION_H
 
 #include "IContention.h"
 #include "ICollisionController.h"
@@ -105,7 +105,7 @@ class INETVEINS_API Contention : public cSimpleModule, public IContention, prote
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

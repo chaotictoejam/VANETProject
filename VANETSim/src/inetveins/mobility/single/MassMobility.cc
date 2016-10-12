@@ -18,7 +18,7 @@
 //
 
 #include "inetveins/mobility/single/MassMobility.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 
 namespace inetveins {
 
@@ -84,5 +84,5 @@ double MassMobility::getMaxSpeed() const
     return NaN;
 }
 
-} // namespace inet
+} // namespace inetveins
 

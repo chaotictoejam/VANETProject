@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_OSPFNEIGHBOR_H
-#define __INET_OSPFNEIGHBOR_H
+#ifndef __INETVEINS_OSPFNEIGHBOR_H
+#define __INETVEINS_OSPFNEIGHBOR_H
 
 #include <list>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/routing/ospfv2/router/LSA.h"
 #include "inetveins/routing/ospfv2/router/OSPFcommon.h"
 #include "inetveins/routing/ospfv2/OSPFPacket_m.h"
@@ -216,7 +216,7 @@ inline bool operator!=(Neighbor::DDPacketID leftID, Neighbor::DDPacketID rightID
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_OSPFNEIGHBOR_H
+#endif // ifndef __INETVEINS_OSPFNEIGHBOR_H
 

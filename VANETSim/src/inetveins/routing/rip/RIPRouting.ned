@@ -17,7 +17,7 @@
 
 package vanetsim.inetveins.routing.rip;
 
-import vanetsim.inet.applications.contract.IUDPApp;
+import vanetsim.inetveins.applications.contract.IUDPApp;
 
 
 //

@@ -44,5 +44,5 @@ bool Ieee80211ScalarReceiver::computeIsReceptionPossible(const IListening *liste
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV6ROUTE_H
-#define __INET_IPV6ROUTE_H
+#ifndef __INETVEINS_IPV6ROUTE_H
+#define __INETVEINS_IPV6ROUTE_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/IRoute.h"
 #include "inetveins/networklayer/contract/ipv6/IPv6Address.h"
@@ -128,7 +128,7 @@ class INETVEINS_API IPv6Route : public cObject, public IRoute
     virtual void setProtocolData(cObject *protocolData) override { _protocolData = protocolData; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV6ROUTE_H
+#endif // ifndef __INETVEINS_IPV6ROUTE_H
 

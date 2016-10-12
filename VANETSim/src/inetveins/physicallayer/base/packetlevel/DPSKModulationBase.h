@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DPSKMODULATIONBASE_H
-#define __INET_DPSKMODULATIONBASE_H
+#ifndef __INETVEINS_DPSKMODULATIONBASE_H
+#define __INETVEINS_DPSKMODULATIONBASE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IModulation.h"
 
@@ -40,7 +40,7 @@ class INETVEINS_API DPSKModulationBase : public IModulation
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DPSKMODULATIONBASE_H
+#endif // ifndef __INETVEINS_DPSKMODULATIONBASE_H
 

@@ -72,5 +72,5 @@ const ISNIR *IdealAnalogModel::computeSNIR(const IReception *reception, const IN
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

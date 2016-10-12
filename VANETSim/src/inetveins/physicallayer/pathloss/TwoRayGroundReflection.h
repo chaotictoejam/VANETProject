@@ -15,8 +15,8 @@
 *              in the top level directory
 ***************************************************************************/
 
-#ifndef __INET_TWORAYGROUNDREFLECTION_H
-#define __INET_TWORAYGROUNDREFLECTION_H
+#ifndef __INETVEINS_TWORAYGROUNDREFLECTION_H
+#define __INETVEINS_TWORAYGROUNDREFLECTION_H
 
 #include "inetveins/physicallayer/pathloss/FreeSpacePathLoss.h"
 
@@ -44,7 +44,7 @@ class INETVEINS_API TwoRayGroundReflection : public FreeSpacePathLoss
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TWORAYGROUNDREFLECTION_H
+#endif // ifndef __INETVEINS_TWORAYGROUNDREFLECTION_H
 

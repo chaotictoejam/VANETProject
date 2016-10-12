@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_APSKCODE_H
-#define __INET_APSKCODE_H
+#ifndef __INETVEINS_APSKCODE_H
+#define __INETVEINS_APSKCODE_H
 
 #include "inetveins/physicallayer/contract/bitlevel/IScrambler.h"
 #include "inetveins/physicallayer/contract/bitlevel/IInterleaver.h"
@@ -47,5 +47,5 @@ class INETVEINS_API APSKCode : public ICode
 } /* namespace physicallayer */
 } /* namespace inetveins */
 
-#endif /* __INET_APSKCODE_H */
+#endif /* __INETVEINS_APSKCODE_H */
 

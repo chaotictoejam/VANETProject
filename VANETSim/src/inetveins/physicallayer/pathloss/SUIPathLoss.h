@@ -14,8 +14,8 @@
 *              in the top level directory
 ***************************************************************************/
 
-#ifndef __INET_SUIPATHLOSS_H
-#define __INET_SUIPATHLOSS_H
+#ifndef __INETVEINS_SUIPATHLOSS_H
+#define __INETVEINS_SUIPATHLOSS_H
 
 #include <string>
 #include "inetveins/physicallayer/contract/packetlevel/IPathLoss.h"
@@ -52,7 +52,7 @@ class INETVEINS_API SUIPathLoss : public cModule, public IPathLoss
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SUIPATHLOSS_H
+#endif // ifndef __INETVEINS_SUIPATHLOSS_H
 

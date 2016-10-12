@@ -47,5 +47,5 @@ void StaticGridMobility::setInitialPosition()
     recordScalar("z", lastPosition.z);
 }
 
-} // namespace inet
+} // namespace inetveins
 

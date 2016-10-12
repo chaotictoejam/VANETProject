@@ -80,4 +80,4 @@ const IIeee80211Mode *BasicRateSelection::getResponseControlFrameMode()
 }
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins

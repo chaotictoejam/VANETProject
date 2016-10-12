@@ -15,7 +15,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/linklayer/ethernet/EtherBus.h"
 
 namespace inetveins {
@@ -268,5 +268,5 @@ void EtherBus::finish()
         recordScalar("messages/sec", numMessages / t);
 }
 
-} // namespace inet
+} // namespace inetveins
 

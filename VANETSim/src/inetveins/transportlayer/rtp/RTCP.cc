@@ -542,5 +542,5 @@ bool RTCP::handleOperationStage(LifecycleOperation *operation, int stage, IDoneC
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

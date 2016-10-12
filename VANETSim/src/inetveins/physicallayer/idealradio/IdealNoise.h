@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IDEALNOISE_H
-#define __INET_IDEALNOISE_H
+#ifndef __INETVEINS_IDEALNOISE_H
+#define __INETVEINS_IDEALNOISE_H
 
 #include "inetveins/physicallayer/base/packetlevel/NoiseBase.h"
 
@@ -39,7 +39,7 @@ class INETVEINS_API IdealNoise : public NoiseBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IDEALNOISE_H
+#endif // ifndef __INETVEINS_IDEALNOISE_H
 

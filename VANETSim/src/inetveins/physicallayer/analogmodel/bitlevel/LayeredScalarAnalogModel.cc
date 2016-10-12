@@ -52,5 +52,5 @@ const IReception *LayeredScalarAnalogModel::computeReception(const IRadio *recei
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -74,5 +74,5 @@ void ErrorHandling::handleMessage(cMessage *msg)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

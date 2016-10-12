@@ -16,13 +16,13 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCP_H
-#define __INET_TCP_H
+#ifndef __INETVEINS_TCP_H
+#define __INETVEINS_TCP_H
 
 #include <map>
 #include <set>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/networklayer/common/L3Address.h"
@@ -210,7 +210,7 @@ class INETVEINS_API TCP : public cSimpleModule, public ILifecycle
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCP_H
+#endif // ifndef __INETVEINS_TCP_H
 

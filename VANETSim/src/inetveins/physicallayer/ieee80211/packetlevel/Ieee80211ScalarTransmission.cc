@@ -38,5 +38,5 @@ std::ostream& Ieee80211ScalarTransmission::printToStream(std::ostream& stream, i
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

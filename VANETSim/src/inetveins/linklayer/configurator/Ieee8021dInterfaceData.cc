@@ -105,5 +105,5 @@ const char *Ieee8021dInterfaceData::getStateName(PortState state)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -82,5 +82,5 @@ double ConvolutionalCode::computeNetBitErrorRate(double grossBitErrorRate) const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

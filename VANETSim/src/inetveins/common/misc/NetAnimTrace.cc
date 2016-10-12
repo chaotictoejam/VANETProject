@@ -212,5 +212,5 @@ void NetAnimTrace::resolveNodeCoordinates(cModule *submod, double& x, double& y)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

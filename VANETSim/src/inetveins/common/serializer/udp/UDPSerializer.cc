@@ -101,5 +101,5 @@ cPacket *UDPSerializer::deserialize(const Buffer &b, Context& c)
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 

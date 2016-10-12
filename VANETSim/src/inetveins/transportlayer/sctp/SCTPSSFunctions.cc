@@ -502,5 +502,5 @@ int32 SCTPAssociation::pathStreamSchedulerMapToPath(SCTPPathVariables *path, boo
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

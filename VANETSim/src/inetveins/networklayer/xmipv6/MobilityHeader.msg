@@ -22,7 +22,7 @@
 
 
 cplusplus {{
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/ipv6/IPv6Address.h"
 #include "inetveins/networklayer/ipv6/IPv6Datagram.h" // added by CB
 #include "inetveins/networklayer/ipv6/IPv6ExtensionHeaders.h" // 17.10.07 - CB

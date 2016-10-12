@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-// This file is based on the PPP.h of INET written by Andras Varga.
+// This file is based on the PPP.h of INETVEINS written by Andras Varga.
 
-#ifndef __TUNINTERFACE_H
-#define __TUNINTERFACE_H
+#ifndef __INETVEINS_TUNINTERFACE_H
+#define __INETVEINS_TUNINTERFACE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/linklayer/base/MACBase.h"
 
 namespace inetveins {
@@ -52,7 +52,7 @@ class INETVEINS_API TunInterface : public MACBase
         virtual void finish() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif // ifndef __TUNINTERFACE_H
 

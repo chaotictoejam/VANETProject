@@ -17,12 +17,12 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_POSITIONTABLE_H
-#define __INET_POSITIONTABLE_H
+#ifndef __INETVEINS_POSITIONTABLE_H
+#define __INETVEINS_POSITIONTABLE_H
 
 #include <vector>
 #include <map>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/common/geometry/common/Coord.h"
 
@@ -57,7 +57,7 @@ class INETVEINS_API PositionTable
     friend std::ostream& operator << (std::ostream& o, const PositionTable& t);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_POSITIONTABLE_H
+#endif // ifndef __INETVEINS_POSITIONTABLE_H
 

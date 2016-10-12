@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BOX_H
-#define __INET_BOX_H
+#ifndef __INETVEINS_BOX_H
+#define __INETVEINS_BOX_H
 
 #include "inetveins/common/geometry/base/GeometricObjectBase.h"
 #include "inetveins/common/geometry/common/Coord.h"
@@ -45,4 +45,4 @@ class INETVEINS_API Box : public GeometricObjectBase
 };
 } /* namespace inetveins */
 
-#endif // ifndef __INET_BOX_H
+#endif // ifndef __INETVEINS_BOX_H

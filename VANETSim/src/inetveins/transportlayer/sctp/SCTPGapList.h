@@ -16,12 +16,12 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_SCTPGAPLIST_H
-#define __INET_SCTPGAPLIST_H
+#ifndef __INETVEINS_SCTPGAPLIST_H
+#define __INETVEINS_SCTPGAPLIST_H
 
 #include <omnetpp.h>
 #include <assert.h>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -185,7 +185,7 @@ inline std::ostream& operator<<(std::ostream& ostr, const SCTPGapList& gapList) 
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPGAPLIST_H
+#endif // ifndef __INETVEINS_SCTPGAPLIST_H
 

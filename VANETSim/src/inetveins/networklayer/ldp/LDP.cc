@@ -17,7 +17,7 @@
 #include <fstream>
 #include <algorithm>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/ldp/LDP.h"
 
@@ -1236,5 +1236,5 @@ void LDP::announceLinkChange(int tedlinkindex)
     emit(NF_TED_CHANGED, &d);
 }
 
-} // namespace inet
+} // namespace inetveins
 

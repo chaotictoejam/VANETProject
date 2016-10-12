@@ -15,7 +15,7 @@
 
 #include <string.h>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/mpls/MPLS.h"
 #include "inetveins/networklayer/rsvp_te/Utils.h"
@@ -262,5 +262,5 @@ void MPLS::processMPLSPacketFromL2(MPLSPacket *mplsPacket)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

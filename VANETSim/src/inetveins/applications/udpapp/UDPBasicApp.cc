@@ -246,5 +246,5 @@ void UDPBasicApp::handleNodeCrash()
         cancelEvent(selfMsg);
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPALGORITHM_H
-#define __INET_TCPALGORITHM_H
+#ifndef __INETVEINS_TCPALGORITHM_H
+#define __INETVEINS_TCPALGORITHM_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/tcp/TCPConnection.h"
 #include "inetveins/transportlayer/tcp_common/TCPSegment.h"
@@ -188,7 +188,7 @@ class INETVEINS_API TCPAlgorithm : public cObject
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPALGORITHM_H
+#endif // ifndef __INETVEINS_TCPALGORITHM_H
 

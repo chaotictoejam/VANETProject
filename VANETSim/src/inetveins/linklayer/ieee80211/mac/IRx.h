@@ -17,10 +17,10 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_IRX_H
-#define __INET_IRX_H
+#ifndef __INETVEINS_IRX_H
+#define __INETVEINS_IRX_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/physicallayer/contract/packetlevel/IRadio.h"
 
 namespace inetveins {
@@ -62,7 +62,7 @@ class INETVEINS_API IRx
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

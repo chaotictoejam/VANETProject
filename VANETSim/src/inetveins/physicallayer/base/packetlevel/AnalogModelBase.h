@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ANALOGMODELBASE_H
-#define __INET_ANALOGMODELBASE_H
+#ifndef __INETVEINS_ANALOGMODELBASE_H
+#define __INETVEINS_ANALOGMODELBASE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IAnalogModel.h"
 #include "inetveins/physicallayer/contract/packetlevel/IArrival.h"
@@ -34,7 +34,7 @@ class INETVEINS_API AnalogModelBase : public cModule, public virtual IAnalogMode
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ANALOGMODELBASE_H
+#endif // ifndef __INETVEINS_ANALOGMODELBASE_H
 

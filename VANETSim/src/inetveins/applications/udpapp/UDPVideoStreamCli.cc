@@ -109,5 +109,5 @@ void UDPVideoStreamCli::handleNodeCrash()
     cancelEvent(selfMsg);
 }
 
-} // namespace inet
+} // namespace inetveins
 

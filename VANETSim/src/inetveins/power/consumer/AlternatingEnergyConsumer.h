@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ALTERNATINGENERGYCONSUMER_H
-#define __INET_ALTERNATINGENERGYCONSUMER_H
+#ifndef __INETVEINS_ALTERNATINGENERGYCONSUMER_H
+#define __INETVEINS_ALTERNATINGENERGYCONSUMER_H
 
 #include "inetveins/power/contract/IEnergyConsumer.h"
 #include "inetveins/power/contract/IEnergySource.h"
@@ -59,7 +59,7 @@ class INETVEINS_API AlternatingEnergyConsumer : public cSimpleModule, public IEn
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ALTERNATINGENERGYCONSUMER_H
+#endif // ifndef __INETVEINS_ALTERNATINGENERGYCONSUMER_H
 

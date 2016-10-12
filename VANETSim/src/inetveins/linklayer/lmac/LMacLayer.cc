@@ -11,8 +11,8 @@
 
 #include "inetveins/linklayer/lmac/LMacLayer.h"
 
-#include "inetveins/common/INETUtils.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSUtils.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/common/ModuleAccess.h"
 #include "inetveins/linklayer/lmac/LMacFrame_m.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"
@@ -699,5 +699,5 @@ cObject *LMacLayer::setUpControlInfo(cMessage *const pMsg, const MACAddress& pSr
     return cCtrlInfo;
 }
 
-} // namespace inet
+} // namespace inetveins
 

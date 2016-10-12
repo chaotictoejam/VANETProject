@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ANALOGDIGITALCONVERTER_H
-#define __INET_ANALOGDIGITALCONVERTER_H
+#ifndef __INETVEINS_ANALOGDIGITALCONVERTER_H
+#define __INETVEINS_ANALOGDIGITALCONVERTER_H
 
 #include "inetveins/physicallayer/contract/bitlevel/IAnalogDigitalConverter.h"
 #include "inetveins/physicallayer/common/bitlevel/SignalSampleModel.h"
@@ -43,7 +43,7 @@ class INETVEINS_API ScalarAnalogDigitalConverter : public IAnalogDigitalConverte
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ANALOGDIGITALCONVERTER_H
+#endif // ifndef __INETVEINS_ANALOGDIGITALCONVERTER_H
 

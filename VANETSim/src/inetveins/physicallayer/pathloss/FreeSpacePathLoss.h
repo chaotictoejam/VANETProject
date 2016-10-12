@@ -15,8 +15,8 @@
 *              in the top level directory
 ***************************************************************************/
 
-#ifndef __INET_FREESPACEPATHLOSS_H
-#define __INET_FREESPACEPATHLOSS_H
+#ifndef __INETVEINS_FREESPACEPATHLOSS_H
+#define __INETVEINS_FREESPACEPATHLOSS_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IPathLoss.h"
 
@@ -48,7 +48,7 @@ class INETVEINS_API FreeSpacePathLoss : public cModule, public IPathLoss
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_FREESPACEPATHLOSS_H
+#endif // ifndef __INETVEINS_FREESPACEPATHLOSS_H
 

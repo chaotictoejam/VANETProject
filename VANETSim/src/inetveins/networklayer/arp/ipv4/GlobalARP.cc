@@ -266,5 +266,5 @@ void GlobalARP::receiveSignal(cComponent *source, simsignal_t signalID, cObject 
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

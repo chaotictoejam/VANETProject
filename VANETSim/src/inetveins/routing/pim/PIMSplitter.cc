@@ -112,5 +112,5 @@ void PIMSplitter::processPIMPacket(PIMPacket *pkt)
             throw cRuntimeError("PIMSplitter: PIM mode of interface '%s' is invalid.", ie->getName());
     }
 }
-}    // namespace inet
+}    // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SNIRBASE_H
-#define __INET_SNIRBASE_H
+#ifndef __INETVEINS_SNIRBASE_H
+#define __INETVEINS_SNIRBASE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/ISNIR.h"
 #include "inetveins/physicallayer/contract/packetlevel/IReception.h"
@@ -42,7 +42,7 @@ class INETVEINS_API SNIRBase : public virtual ISNIR
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SNIRBASE_H
+#endif // ifndef __INETVEINS_SNIRBASE_H
 

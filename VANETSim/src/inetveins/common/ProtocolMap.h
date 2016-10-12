@@ -15,11 +15,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PROTOCOLMAP_H
-#define __INET_PROTOCOLMAP_H
+#ifndef __INETVEINS_PROTOCOLMAP_H
+#define __INETVEINS_PROTOCOLMAP_H
 
 #include <vector>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -54,7 +54,7 @@ class INETVEINS_API ProtocolMapping
     int getOutputGateForProtocol(int protocol) const;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PROTOCOLMAP_H
+#endif // ifndef __INETVEINS_PROTOCOLMAP_H
 

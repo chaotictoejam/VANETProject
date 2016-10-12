@@ -82,5 +82,5 @@ const IReceptionBitModel *Ieee80211OFDMDemodulator::demodulate(const IReceptionS
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

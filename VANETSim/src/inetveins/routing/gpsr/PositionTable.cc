@@ -92,5 +92,5 @@ std::ostream& operator << (std::ostream& o, const PositionTable& t)
     return o;
 }
 
-} // namespace inet
+} // namespace inetveins
 

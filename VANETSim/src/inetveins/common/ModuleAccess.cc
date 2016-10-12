@@ -81,5 +81,5 @@ cModule *findModuleUnderContainingNode(cModule *from)
     return nullptr;
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -35,5 +35,5 @@ void NodeOperation::initialize(cModule *module, StringMap& params)
     LifecycleOperation::initialize(module, params);
 }
 
-} // namespace inet
+} // namespace inetveins
 

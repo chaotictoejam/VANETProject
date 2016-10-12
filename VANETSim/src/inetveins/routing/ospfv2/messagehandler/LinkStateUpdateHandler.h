@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_LINKSTATEUPDATEHANDLER_H
-#define __INET_LINKSTATEUPDATEHANDLER_H
+#ifndef __INETVEINS_LINKSTATEUPDATEHANDLER_H
+#define __INETVEINS_LINKSTATEUPDATEHANDLER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/routing/ospfv2/messagehandler/IMessageHandler.h"
 #include "inetveins/routing/ospfv2/router/OSPFcommon.h"
 
@@ -52,7 +52,7 @@ class INETVEINS_API LinkStateUpdateHandler : public IMessageHandler
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LINKSTATEUPDATEHANDLER_H
+#endif // ifndef __INETVEINS_LINKSTATEUPDATEHANDLER_H
 

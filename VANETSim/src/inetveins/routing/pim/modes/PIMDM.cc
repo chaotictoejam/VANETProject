@@ -1903,5 +1903,5 @@ bool PIMDM::DownstreamInterface::isInOlist() const
     bool hasNeighbors = pimdm()->pimNbt->getNumNeighbors(ie->getInterfaceId()) > 0;
     return ((hasNeighbors && pruneState != PRUNED) || hasConnectedReceivers()) && assertState != I_LOST_ASSERT;
 }
-}    // namespace inet
+}    // namespace inetveins
 

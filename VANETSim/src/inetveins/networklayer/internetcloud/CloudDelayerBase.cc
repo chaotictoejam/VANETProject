@@ -120,5 +120,5 @@ INetfilter::IHook::Result CloudDelayerBase::datagramLocalOutHook(INetworkDatagra
     return INetfilter::IHook::ACCEPT;
 }
 
-} // namespace inet
+} // namespace inetveins
 

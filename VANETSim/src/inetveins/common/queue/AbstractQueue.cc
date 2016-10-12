@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/queue/AbstractQueue.h"
 
@@ -90,5 +90,5 @@ cPacket *AbstractQueue::cancelService()
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

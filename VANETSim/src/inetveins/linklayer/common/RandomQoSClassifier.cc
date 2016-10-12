@@ -30,5 +30,5 @@ void RandomQoSClassifier::handleMessage(cMessage *msg)
     send(msg, "out");
 }
 
-} // namespace inet
+} // namespace inetveins
 

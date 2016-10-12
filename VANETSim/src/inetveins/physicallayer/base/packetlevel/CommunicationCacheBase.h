@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_COMMUNICATIONCACHEBASE_H
-#define __INET_COMMUNICATIONCACHEBASE_H
+#ifndef __INETVEINS_COMMUNICATIONCACHEBASE_H
+#define __INETVEINS_COMMUNICATIONCACHEBASE_H
 
 #include "inetveins/common/IntervalTree.h"
 #include "inetveins/physicallayer/contract/packetlevel/ICommunicationCache.h"
@@ -190,7 +190,7 @@ class INETVEINS_API CommunicationCacheBase : public cModule, public ICommunicati
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_COMMUNICATIONCACHEBASE_H
+#endif // ifndef __INETVEINS_COMMUNICATIONCACHEBASE_H
 

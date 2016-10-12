@@ -341,5 +341,5 @@ void ScenarioManager::updateDisplayString()
     getDisplayString().setTagArg("t", 0, buf);
 }
 
-} // namespace inet
+} // namespace inetveins
 

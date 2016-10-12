@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE802154UWBIRRECEIVER_H
-#define __INET_IEEE802154UWBIRRECEIVER_H
+#ifndef __INETVEINS_IEEE802154UWBIRRECEIVER_H
+#define __INETVEINS_IEEE802154UWBIRRECEIVER_H
 
 #include <vector>
 #include "inetveins/common/mapping/MappingBase.h"
@@ -54,7 +54,7 @@ class INETVEINS_API Ieee802154UWBIRReceiver : public ReceiverBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE802154UWBIRRECEIVER_H
+#endif // ifndef __INETVEINS_IEEE802154UWBIRRECEIVER_H
 

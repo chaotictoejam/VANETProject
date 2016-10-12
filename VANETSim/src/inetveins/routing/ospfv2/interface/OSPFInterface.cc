@@ -617,5 +617,5 @@ void Interface::ageTransmittedLSALists()
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

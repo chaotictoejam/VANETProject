@@ -12,10 +12,10 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_LINKSTATEROUTING_H
-#define __INET_LINKSTATEROUTING_H
+#ifndef __INETVEINS_LINKSTATEROUTING_H
+#define __INETVEINS_LINKSTATEROUTING_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/ted/LinkStatePacket_m.h"
 #include "inetveins/networklayer/rsvp_te/IntServ.h"
@@ -80,7 +80,7 @@ class INETVEINS_API LinkStateRouting : public cSimpleModule, public cListener
     virtual void sendToIP(LinkStateMsg *msg, IPv4Address destAddr);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LINKSTATEROUTING_H
+#endif // ifndef __INETVEINS_LINKSTATEROUTING_H
 

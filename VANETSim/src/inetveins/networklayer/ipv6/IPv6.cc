@@ -16,7 +16,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/ipv6/IPv6.h"
 
@@ -29,9 +29,9 @@
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/common/ModuleAccess.h"
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
 #include "inetveins/networklayer/xmipv6/MobilityHeader.h"
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
 #include "inetveins/networklayer/ipv6/IPv6ExtensionHeaders.h"
 #include "inetveins/networklayer/ipv6/IPv6InterfaceData.h"
@@ -53,7 +53,7 @@ IPv6::~IPv6()
 {
 }
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
 IPv6::ScheduledDatagram::ScheduledDatagram(IPv6Datagram *datagram, const InterfaceEntry *ie, MACAddress macAddr, bool fromHL) :
         datagram(datagram),
         ie(ie),
@@ -66,7 +66,7 @@ IPv6::ScheduledDatagram::~ScheduledDatagram()
 {
     delete datagram;
 }
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
 void IPv6::initialize(int stage)
 {
@@ -137,7 +137,7 @@ void IPv6::handleMessage(cMessage *msg)
 
 void IPv6::endService(cPacket *msg)
 {
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     // 28.09.07 - CB
     // support for rescheduling datagrams which are supposed to be sent over
     // a tentative address.
@@ -157,14 +157,14 @@ void IPv6::endService(cPacket *msg)
         }
     }
     else
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     if (msg->getArrivalGate()->isName("transportIn")
         || (msg->getArrivalGate()->isName("ndIn") && dynamic_cast<IPv6NDMessage *>(msg))
         || (msg->getArrivalGate()->isName("upperTunnelingIn"))    // for tunneling support-CB
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
         || (msg->getArrivalGate()->isName("xMIPv6In") && dynamic_cast<MobilityHeader *>(msg))    // Zarrar
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
         )
     {
         // packet from upper layers, tunnel link-layer output or ND: encapsulate and send out
@@ -252,13 +252,13 @@ void IPv6::handleMessageFromHL(cPacket *msg)
     IPv6Datagram *datagram = encapsulate(msg, controlInfo);
     delete controlInfo;
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     if (datagram == nullptr) {
         EV_WARN << "Encapsulation failed - dropping packet." << endl;
         delete msg;
         return;
     }
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     IPv6Address destAddress = datagram->getDestAddress();
 
@@ -341,7 +341,7 @@ void IPv6::routePacket(IPv6Datagram *datagram, const InterfaceEntry *destIE, IPv
     int interfaceId = -1;
     IPv6Address nextHop(requestedNextHopAddress);
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     // tunneling support - CB
     // check if destination is covered by tunnel lists
     if ((datagram->getTransportProtocol() != IP_PROT_IPv6) &&    // if datagram was already tunneled, don't tunnel again
@@ -361,11 +361,11 @@ void IPv6::routePacket(IPv6Datagram *datagram, const InterfaceEntry *destIE, IPv
             // otherwise we can search for everything
             interfaceId = tunneling->getVIfIndexForDest(destAddress);
     }
-#else // ifdef WITH_xMIPv6
-      // FIXME this is not the same as the code above (when WITH_xMIPv6 is defined),
+#else // ifdef WITH_INETVEINS_xMIPv6
+      // FIXME this is not the same as the code above (when WITH_INETVEINS_xMIPv6 is defined),
       // so tunneling examples could not work with xMIPv6
     interfaceId = tunneling->getVIfIndexForDest(destAddress, IPv6Tunneling::NORMAL);
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     if (interfaceId == -1 && destIE != nullptr)
         interfaceId = destIE->getInterfaceId();         // set interfaceId to destIE when not tunneling
@@ -395,7 +395,7 @@ void IPv6::resolveMACAddressAndSendPacket(IPv6Datagram *datagram, int interfaceI
     IPv6Address destAddress = datagram->getDestAddress();
     EV_INFO << "next hop for " << destAddress << " is " << nextHop << ", interface " << ie->getName() << "\n";
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     if (rt->isMobileNode()) {
         // if the source address is the HoA and we have a CoA then drop the packet
         // (address is topologically incorrect!)
@@ -408,7 +408,7 @@ void IPv6::resolveMACAddressAndSendPacket(IPv6Datagram *datagram, int interfaceI
             return;
         }
     }
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     MACAddress macAddr = nd->resolveNeighbour(nextHop, interfaceId);    // might initiate NUD
     if (macAddr.isUnspecified()) {
@@ -574,7 +574,7 @@ void IPv6::localDeliver(IPv6Datagram *datagram)
         EV_DETAIL << "This fragment completes the datagram.\n";
     }
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     // #### 29.08.07 - CB
     // check for extension headers
     if (!processExtensionHeaders(datagram)) {
@@ -584,7 +584,7 @@ void IPv6::localDeliver(IPv6Datagram *datagram)
         return;
     }
     // #### end CB
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     // decapsulate and send on appropriate output gate
     int protocol = datagram->getTransportProtocol();
@@ -596,7 +596,7 @@ void IPv6::localDeliver(IPv6Datagram *datagram)
         send(packet, "ndOut");
         packet = nullptr;
     }
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     else if (protocol == IP_PROT_IPv6EXT_MOB && dynamic_cast<MobilityHeader *>(packet)) {
         // added check for MIPv6 support to prevent nodes w/o the
         // xMIP module from processing related messages, 4.9.07 - CB
@@ -616,7 +616,7 @@ void IPv6::localDeliver(IPv6Datagram *datagram)
             packet = nullptr;
         }
     }
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
     else if (protocol == IP_PROT_IPv6_ICMP) {
         handleReceivedICMP(check_and_cast<ICMPv6Message *>(packet));
         packet = nullptr;
@@ -712,12 +712,12 @@ IPv6Datagram *IPv6::encapsulate(cPacket *transportPacket, IPv6ControlInfo *contr
         if (rt->getInterfaceByAddress(src) == nullptr) {
             delete datagram;
             delete controlInfo;
-#ifndef WITH_xMIPv6
+#ifndef WITH_INETVEINS_xMIPv6
             throw cRuntimeError("Wrong source address %s in (%s)%s: no interface with such address",
                     src.str().c_str(), transportPacket->getClassName(), transportPacket->getFullName());
-#else /* WITH_xMIPv6 */
+#else /* WITH_INETVEINS_xMIPv6 */
             return nullptr;
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
         }
         datagram->setSrcAddress(src);
     }
@@ -760,7 +760,7 @@ void IPv6::fragmentAndSend(IPv6Datagram *datagram, const InterfaceEntry *ie, con
         const IPv6Address& srcAddr = ie->ipv6Data()->getPreferredAddress();
         ASSERT(!srcAddr.isUnspecified());    // FIXME what if we don't have an address yet?
         datagram->setSrcAddress(srcAddr);
-    #ifdef WITH_xMIPv6
+    #ifdef WITH_INETVEINS_xMIPv6
         // if the datagram has a tentative address as source we have to reschedule it
         // as it can not be sent before the address' tentative status is cleared - CB
         if (ie->ipv6Data()->isTentativeAddress(srcAddr)) {
@@ -769,7 +769,7 @@ void IPv6::fragmentAndSend(IPv6Datagram *datagram, const InterfaceEntry *ie, con
             queue.insert(sDgram);
             return;
         }
-    #endif /* WITH_xMIPv6 */
+    #endif /* WITH_INETVEINS_xMIPv6 */
     }
 
     int mtu = ie->getMTU();
@@ -876,7 +876,7 @@ bool IPv6::determineOutputInterface(const IPv6Address& destAddress, IPv6Address&
     return true;
 }
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
 bool IPv6::processExtensionHeaders(IPv6Datagram *datagram)
 {
     int noExtHeaders = datagram->getExtensionHeaderArraySize();
@@ -930,7 +930,7 @@ bool IPv6::processExtensionHeaders(IPv6Datagram *datagram)
     return true;
 }
 
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
 bool IPv6::handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback)
 {
@@ -1136,5 +1136,5 @@ INetfilter::IHook::Result IPv6::datagramLocalOutHook(INetworkDatagram *datagram,
     return INetfilter::IHook::ACCEPT;
 }
 
-} // namespace inet
+} // namespace inetveins
 

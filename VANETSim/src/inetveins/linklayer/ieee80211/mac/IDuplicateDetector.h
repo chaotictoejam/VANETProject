@@ -17,10 +17,10 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_IDUPLICATEDETECTOR_H
-#define __INET_IDUPLICATEDETECTOR_H
+#ifndef __INETVEINS_IDUPLICATEDETECTOR_H
+#define __INETVEINS_IDUPLICATEDETECTOR_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 namespace ieee80211 {
@@ -42,6 +42,6 @@ class INETVEINS_API IDuplicateDetector
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif

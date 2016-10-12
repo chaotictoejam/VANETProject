@@ -39,5 +39,5 @@ bool LineSegment::computeIntersection(const LineSegment& lineSegment, Coord &int
     throw cRuntimeError("Not yet implemented");
 }
 
-} // namespace inet
+} // namespace inetveins
 

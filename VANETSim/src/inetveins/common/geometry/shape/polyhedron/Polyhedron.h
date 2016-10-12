@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_POLYHEDRON_H
-#define __INET_POLYHEDRON_H
+#ifndef __INETVEINS_POLYHEDRON_H
+#define __INETVEINS_POLYHEDRON_H
 
 #include "inetveins/common/geometry/shape/polyhedron/PolyhedronPoint.h"
 #include "inetveins/common/geometry/shape/polyhedron/PolyhedronEdge.h"
@@ -72,4 +72,4 @@ class INETVEINS_API Polyhedron : public ShapeBase
 
 } /* namespace inetveins */
 
-#endif // ifndef __INET_POLYHEDRON_H
+#endif // ifndef __INETVEINS_POLYHEDRON_H

@@ -17,10 +17,10 @@
 // Authors: Veronika Rybova, Vladimir Vesely (ivesely@fit.vutbr.cz),
 //          Tamas Borbely (tomi@omnetpp.org)
 
-#ifndef __INET_PIMSPLITTER_H
-#define __INET_PIMSPLITTER_H
+#ifndef __INETVEINS_PIMSPLITTER_H
+#define __INETVEINS_PIMSPLITTER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/routing/pim/tables/PIMInterfaceTable.h"
@@ -55,7 +55,7 @@ class INETVEINS_API PIMSplitter : public cSimpleModule
     virtual void processPIMPacket(PIMPacket *pkt);
 };
 
-}    // namespace inet
+}    // namespace inetveins
 
-#endif // ifndef __INET_PIMSPLITTER_H
+#endif // ifndef __INETVEINS_PIMSPLITTER_H
 

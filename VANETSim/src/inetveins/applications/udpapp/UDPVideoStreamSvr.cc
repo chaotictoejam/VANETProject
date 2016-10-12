@@ -165,5 +165,5 @@ void UDPVideoStreamSvr::handleNodeCrash()
     clearStreams();
 }
 
-} // namespace inet
+} // namespace inetveins
 

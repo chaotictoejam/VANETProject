@@ -26,13 +26,13 @@
 #include "inetveins/transportlayer/sctp/SCTPQueue.h"
 #include "inetveins/transportlayer/sctp/SCTPAlgorithm.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4InterfaceData.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6InterfaceData.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 namespace inetveins {
 
@@ -562,18 +562,18 @@ bool SCTPAssociation::processInitArrived(SCTPInitChunk *initchunk, int32 srcPort
             if (localAddressList.front().isUnspecified()) {
                 for (int32 i = 0; i < ift->getNumInterfaces(); ++i) {
                     if (ift->getInterface(i)->ipv4Data() != nullptr) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
                         adv.push_back(ift->getInterface(i)->ipv4Data()->getIPAddress());
-#else // ifdef WITH_IPv4
-                        throw cRuntimeError("INET was compiled without IPv4 support");
-#endif // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
+                        throw cRuntimeError("INETVEINS was compiled without IPv4 support");
+#endif // ifdef WITH_INETVEINS_IPv4
                     }
                     else if (ift->getInterface(i)->ipv6Data() != nullptr) {
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
                         adv.push_back(ift->getInterface(i)->ipv6Data()->getAddress(0));
-#else // ifdef WITH_IPv6
-                        throw cRuntimeError("INET was compiled without IPv6 support");
-#endif // ifdef WITH_IPv6
+#else // ifdef WITH_INETVEINS_IPv6
+                        throw cRuntimeError("INETVEINS was compiled without IPv6 support");
+#endif // ifdef WITH_INETVEINS_IPv6
                     }
                 }
             }
@@ -3259,5 +3259,5 @@ void SCTPAssociation::moveChunkToOtherPath(SCTPDataVariables *chunk,
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

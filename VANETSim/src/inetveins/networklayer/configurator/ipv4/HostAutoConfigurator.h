@@ -16,11 +16,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef __INET_HOSTAUTOCONFIGURATOR_H
-#define __INET_HOSTAUTOCONFIGURATOR_H
+#ifndef __INETVEINS_HOSTAUTOCONFIGURATOR_H
+#define __INETVEINS_HOSTAUTOCONFIGURATOR_H
 
 #include <omnetpp.h>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -42,7 +42,7 @@ class INETVEINS_API HostAutoConfigurator : public cSimpleModule
     void setupNetworkLayer();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_HOSTAUTOCONFIGURATOR_H
+#endif // ifndef __INETVEINS_HOSTAUTOCONFIGURATOR_H
 

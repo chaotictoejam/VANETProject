@@ -24,7 +24,7 @@
 #include "inetveins/common/NotifierConsts.h"
 #include "inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h"
 #include "inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 namespace inetveins {
 
@@ -853,5 +853,5 @@ void Ieee80211MgmtSTA::storeAPInfo(const MACAddress& address, const Ieee80211Bea
 
 } // namespace ieee80211
 
-} // namespace inet
+} // namespace inetveins
 

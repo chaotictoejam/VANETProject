@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_APSKDEMODULATOR_H
-#define __INET_APSKDEMODULATOR_H
+#ifndef __INETVEINS_APSKDEMODULATOR_H
+#define __INETVEINS_APSKDEMODULATOR_H
 
 #include "inetveins/physicallayer/contract/bitlevel/IDemodulator.h"
 #include "inetveins/physicallayer/contract/bitlevel/ISignalBitModel.h"
@@ -48,7 +48,7 @@ class INETVEINS_API APSKDemodulator : public IDemodulator, public cSimpleModule
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_APSKDEMODULATOR_H
+#endif // ifndef __INETVEINS_APSKDEMODULATOR_H
 

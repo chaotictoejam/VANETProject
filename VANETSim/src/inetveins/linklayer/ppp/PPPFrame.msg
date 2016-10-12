@@ -23,7 +23,7 @@
 // only one Flag is required between back-to-back frames.)
 //
 cplusplus {{
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 }}
 
 namespace inetveins;

@@ -50,5 +50,5 @@ std::ostream& NarrowbandTransmitterBase::printToStream(std::ostream& stream, int
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

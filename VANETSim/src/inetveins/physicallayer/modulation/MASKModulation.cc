@@ -59,5 +59,5 @@ double MASKModulation::calculateSER(double snir, Hz bandwidth, bps bitrate) cons
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

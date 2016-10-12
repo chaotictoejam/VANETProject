@@ -16,25 +16,25 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/networklayer/common/L3AddressResolver.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6Datagram.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
-#ifdef WITH_UDP
+#ifdef WITH_INETVEINS_UDP
 #include "inetveins/transportlayer/udp/UDPPacket.h"
-#endif // ifdef WITH_UDP
+#endif // ifdef WITH_INETVEINS_UDP
 
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
 #include "inetveins/transportlayer/tcp_common/TCPSegment.h"
-#endif // ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
 
 #include "inetveins/networklayer/diffserv/MultiFieldClassifier.h"
 #include "inetveins/networklayer/diffserv/DiffservUtil.h"
@@ -43,7 +43,7 @@ namespace inetveins {
 
 using namespace DiffservUtil;
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 bool MultiFieldClassifier::Filter::matches(IPv4Datagram *datagram)
 {
     if (srcPrefixLength > 0 && (srcAddr.getType() != L3Address::IPv4 || !datagram->getSrcAddress().prefixMatches(srcAddr.toIPv4(), srcPrefixLength)))
@@ -57,20 +57,20 @@ bool MultiFieldClassifier::Filter::matches(IPv4Datagram *datagram)
     if (srcPortMin >= 0 || destPortMin >= 0) {
         int srcPort = -1, destPort = -1;
         cPacket *packet = datagram->getEncapsulatedPacket();
-#ifdef WITH_UDP
+#ifdef WITH_INETVEINS_UDP
         UDPPacket *udpPacket = dynamic_cast<UDPPacket *>(packet);
         if (udpPacket) {
             srcPort = udpPacket->getSourcePort();
             destPort = udpPacket->getDestinationPort();
         }
-#endif // ifdef WITH_UDP
-#ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_UDP
+#ifdef WITH_INETVEINS_TCP_COMMON
         tcp::TCPSegment *tcpSegment = dynamic_cast<tcp::TCPSegment *>(packet);
         if (tcpSegment) {
             srcPort = tcpSegment->getSrcPort();
             destPort = tcpSegment->getDestPort();
         }
-#endif // ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
 
         if (srcPortMin >= 0 && (srcPort < srcPortMin || srcPort > srcPortMax))
             return false;
@@ -81,9 +81,9 @@ bool MultiFieldClassifier::Filter::matches(IPv4Datagram *datagram)
     return true;
 }
 
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 bool MultiFieldClassifier::Filter::matches(IPv6Datagram *datagram)
 {
     if (srcPrefixLength > 0 && (srcAddr.getType() != L3Address::IPv6 || !datagram->getSrcAddress().matches(srcAddr.toIPv6(), srcPrefixLength)))
@@ -97,20 +97,20 @@ bool MultiFieldClassifier::Filter::matches(IPv6Datagram *datagram)
     if (srcPortMin >= 0 || destPortMin >= 0) {
         int srcPort = -1, destPort = -1;
         cPacket *packet = datagram->getEncapsulatedPacket();
-#ifdef WITH_UDP
+#ifdef WITH_INETVEINS_UDP
         UDPPacket *udpPacket = dynamic_cast<UDPPacket *>(packet);
         if (udpPacket) {
             srcPort = udpPacket->getSourcePort();
             destPort = udpPacket->getDestinationPort();
         }
-#endif // ifdef WITH_UDP
-#ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_UDP
+#ifdef WITH_INETVEINS_TCP_COMMON
         tcp::TCPSegment *tcpSegment = dynamic_cast<tcp::TCPSegment *>(packet);
         if (tcpSegment) {
             srcPort = tcpSegment->getSrcPort();
             destPort = tcpSegment->getDestPort();
         }
-#endif // ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
 
         if (srcPortMin >= 0 && (srcPort < srcPortMin || srcPort > srcPortMax))
             return false;
@@ -121,7 +121,7 @@ bool MultiFieldClassifier::Filter::matches(IPv6Datagram *datagram)
     return true;
 }
 
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 Define_Module(MultiFieldClassifier);
 
@@ -167,7 +167,7 @@ void MultiFieldClassifier::handleMessage(cMessage *msg)
 int MultiFieldClassifier::classifyPacket(cPacket *packet)
 {
     for ( ; packet; packet = packet->getEncapsulatedPacket()) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         IPv4Datagram *ipv4Datagram = dynamic_cast<IPv4Datagram *>(packet);
         if (ipv4Datagram) {
             for (auto & elem : filters)
@@ -176,8 +176,8 @@ int MultiFieldClassifier::classifyPacket(cPacket *packet)
 
             return -1;
         }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
         IPv6Datagram *ipv6Datagram = dynamic_cast<IPv6Datagram *>(packet);
         if (ipv6Datagram) {
             for (auto & elem : filters)
@@ -186,7 +186,7 @@ int MultiFieldClassifier::classifyPacket(cPacket *packet)
 
             return -1;
         }
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
     }
 
     return -1;
@@ -287,5 +287,5 @@ void MultiFieldClassifier::configureFilters(cXMLElement *config)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

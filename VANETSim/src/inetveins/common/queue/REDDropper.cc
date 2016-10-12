@@ -18,7 +18,7 @@
 //
 
 #include "inetveins/common/queue/REDDropper.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 namespace inetveins {
 
@@ -137,5 +137,5 @@ void REDDropper::sendOut(cPacket *packet)
         q_time = simTime();
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,11 +15,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_NETANIMTRACE_H
-#define __INET_NETANIMTRACE_H
+#ifndef __INETVEINS_NETANIMTRACE_H
+#define __INETVEINS_NETANIMTRACE_H
 
 #include <fstream>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -47,7 +47,7 @@ class INETVEINS_API NetAnimTrace : public cSimpleModule, protected cListener
     virtual void addLink(cGate *gate);
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif    // header guard
 

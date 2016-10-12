@@ -16,7 +16,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/icmpv6/ICMPv6.h"
 #include "inetveins/networklayer/ipv6/IPv6InterfaceData.h"
@@ -335,5 +335,5 @@ bool ICMPv6::handleOperationStage(LifecycleOperation *operation, int stage, IDon
     throw cRuntimeError("Lifecycle operation support not implemented");
 }
 
-} // namespace inet
+} // namespace inetveins
 

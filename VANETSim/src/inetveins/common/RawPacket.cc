@@ -36,5 +36,5 @@ void RawPacket::removePrefix(unsigned int length)
     byteArray_var.truncateData(length, 0);
 }
 
-} // namespace inet
+} // namespace inetveins
 

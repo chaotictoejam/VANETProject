@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ECHOPROTOCOL_H
-#define __INET_ECHOPROTOCOL_H
+#ifndef __INETVEINS_ECHOPROTOCOL_H
+#define __INETVEINS_ECHOPROTOCOL_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/networklayer/common/EchoPacket_m.h"
 
@@ -47,7 +47,7 @@ class INETVEINS_API EchoProtocol : public cSimpleModule
     virtual void handleMessage(cMessage *msg) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ECHOPROTOCOL_H
+#endif // ifndef __INETVEINS_ECHOPROTOCOL_H
 

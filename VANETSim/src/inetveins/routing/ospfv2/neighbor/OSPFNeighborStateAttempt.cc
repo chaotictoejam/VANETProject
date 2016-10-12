@@ -54,5 +54,5 @@ void NeighborStateAttempt::processEvent(Neighbor *neighbor, Neighbor::NeighborEv
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

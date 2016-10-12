@@ -243,5 +243,5 @@ std::string MatrixCloudDelayer::getPathOfConnectedNodeOnIfaceID(int id)
     return connNode->getFullPath();
 }
 
-} // namespace inet
+} // namespace inetveins
 

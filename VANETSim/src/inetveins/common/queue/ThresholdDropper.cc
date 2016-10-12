@@ -39,5 +39,5 @@ bool ThresholdDropper::shouldDrop(cPacket *packet)
     return false;
 }
 
-} // namespace inet
+} // namespace inetveins
 

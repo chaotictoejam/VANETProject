@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IENERGYSINK_H
-#define __INET_IENERGYSINK_H
+#ifndef __INETVEINS_IENERGYSINK_H
+#define __INETVEINS_IENERGYSINK_H
 
 #include "IEnergyGenerator.h"
 
@@ -85,7 +85,7 @@ class INETVEINS_API IEnergySink
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IENERGYSINK_H
+#endif // ifndef __INETVEINS_IENERGYSINK_H
 

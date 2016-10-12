@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPBYTESTREAMSENDQUEUE_H
-#define __INET_TCPBYTESTREAMSENDQUEUE_H
+#ifndef __INETVEINS_TCPBYTESTREAMSENDQUEUE_H
+#define __INETVEINS_TCPBYTESTREAMSENDQUEUE_H
 
 #include <list>
 
@@ -68,7 +68,7 @@ class INETVEINS_API TCPByteStreamSendQueue : public TCPSendQueue
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPBYTESTREAMSENDQUEUE_H
+#endif // ifndef __INETVEINS_TCPBYTESTREAMSENDQUEUE_H
 

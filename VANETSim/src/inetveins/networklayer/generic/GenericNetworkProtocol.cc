@@ -468,7 +468,7 @@ void GenericNetworkProtocol::sendDatagramToOutput(GenericDatagram *datagram, con
         // add control info with MAC address
         Ieee802Ctrl *controlInfo = new Ieee802Ctrl();
         controlInfo->setDest(nextHopMAC);
-        controlInfo->setEtherType(ETHERTYPE_INET_GENERIC);
+        controlInfo->setEtherType(ETHERTYPE_INETVEINS_GENERIC);
         datagram->setControlInfo(controlInfo);
 
         // send out
@@ -694,5 +694,5 @@ INetfilter::IHook::Result GenericNetworkProtocol::datagramLocalOutHook(GenericDa
     return IHook::ACCEPT;
 }
 
-} // namespace inet
+} // namespace inetveins
 

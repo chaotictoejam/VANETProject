@@ -13,8 +13,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef __INET_ARPSERIALIZER_H
-#define __INET_ARPSERIALIZER_H
+#ifndef __INETVEINS_ARPSERIALIZER_H
+#define __INETVEINS_ARPSERIALIZER_H
 
 #include "inetveins/networklayer/arp/ipv4/ARPPacket_m.h"
 #include "inetveins/common/serializer/SerializerBase.h"
@@ -64,6 +64,6 @@ class INETVEINS_API ARPSerializer : public SerializerBase
 };
 
 } // namespace serializer
-} // namespace inet
+} // namespace inetveins
 
 #endif /* ARPSERIALIZER_H_ */

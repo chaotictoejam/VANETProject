@@ -278,5 +278,5 @@ IPv4Address IPv4Address::makeBroadcastAddress(IPv4Address netmask) const
     return br;
 }
 
-} // namespace inet
+} // namespace inetveins
 

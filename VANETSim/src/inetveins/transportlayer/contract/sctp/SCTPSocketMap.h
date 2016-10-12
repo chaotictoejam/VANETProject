@@ -16,12 +16,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTPSOCKETMAP_H
-#define __INET_SCTPSOCKETMAP_H
+#ifndef __INETVEINS_SCTPSOCKETMAP_H
+#define __INETVEINS_SCTPSOCKETMAP_H
 
 #include <map>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/contract/sctp/SCTPSocket.h"
 #include "inetveins/transportlayer/contract/sctp/SCTPCommand_m.h"
@@ -80,6 +80,6 @@ class INETVEINS_API SCTPSocketMap
     void deleteSockets();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPSOCKETMAP_H
+#endif // ifndef __INETVEINS_SCTPSOCKETMAP_H

@@ -69,5 +69,5 @@ void EnergyStorageBase::setPowerGeneration(int energyGeneratorId, W generatedPow
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 

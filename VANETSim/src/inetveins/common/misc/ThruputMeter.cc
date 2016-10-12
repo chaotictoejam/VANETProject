@@ -92,5 +92,5 @@ void ThruputMeter::finish()
     recordScalar("avg packets/s", numPackets / duration.dbl());
 }
 
-} // namespace inet
+} // namespace inetveins
 

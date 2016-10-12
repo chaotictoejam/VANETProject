@@ -817,5 +817,5 @@ SessionID BGPRouting::findNextSession(BGPSessionType type, bool startSession)
 
 } // namespace bgp
 
-} // namespace inet
+} // namespace inetveins
 

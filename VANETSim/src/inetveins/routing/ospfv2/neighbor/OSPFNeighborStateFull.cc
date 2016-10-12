@@ -80,5 +80,5 @@ void NeighborStateFull::processEvent(Neighbor *neighbor, Neighbor::NeighborEvent
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

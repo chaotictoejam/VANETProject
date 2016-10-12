@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TXNOTIFDETAILS_H
-#define __INET_TXNOTIFDETAILS_H
+#ifndef __INETVEINS_TXNOTIFDETAILS_H
+#define __INETVEINS_TXNOTIFDETAILS_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -45,7 +45,7 @@ class INETVEINS_API TxNotifDetails : public cObject
     void setInterfaceEntry(InterfaceEntry *e) { ie = e; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TXNOTIFDETAILS_H
+#endif // ifndef __INETVEINS_TXNOTIFDETAILS_H
 

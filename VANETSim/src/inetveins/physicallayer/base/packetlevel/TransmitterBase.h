@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TRANSMITTERBASE_H
-#define __INET_TRANSMITTERBASE_H
+#ifndef __INETVEINS_TRANSMITTERBASE_H
+#define __INETVEINS_TRANSMITTERBASE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/ITransmitter.h"
 
@@ -37,7 +37,7 @@ class INETVEINS_API TransmitterBase : public cModule, public virtual ITransmitte
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TRANSMITTERBASE_H
+#endif // ifndef __INETVEINS_TRANSMITTERBASE_H
 

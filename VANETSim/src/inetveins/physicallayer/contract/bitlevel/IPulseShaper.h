@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPULSESHAPER_H
-#define __INET_IPULSESHAPER_H
+#ifndef __INETVEINS_IPULSESHAPER_H
+#define __INETVEINS_IPULSESHAPER_H
 
 #include "inetveins/physicallayer/contract/bitlevel/ISignalSymbolModel.h"
 #include "inetveins/physicallayer/contract/bitlevel/ISignalSampleModel.h"
@@ -33,7 +33,7 @@ class INETVEINS_API IPulseShaper : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPULSESHAPER_H
+#endif // ifndef __INETVEINS_IPULSESHAPER_H
 

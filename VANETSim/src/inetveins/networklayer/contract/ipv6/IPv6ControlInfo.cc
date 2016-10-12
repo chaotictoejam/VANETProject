@@ -17,15 +17,15 @@
 
 #include "inetveins/networklayer/contract/ipv6/IPv6ControlInfo.h"
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6Datagram.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 namespace inetveins {
 
 void IPv6ControlInfo::copy(const IPv6ControlInfo& other)
 {
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     dgram = other.dgram;
     if (dgram) {
         dgram = dgram->dup();
@@ -34,7 +34,7 @@ void IPv6ControlInfo::copy(const IPv6ControlInfo& other)
 
     for (const auto & elem : other.extensionHeaders)
         extensionHeaders.push_back((elem)->dup());
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 }
 
 IPv6ControlInfo& IPv6ControlInfo::operator=(const IPv6ControlInfo& other)
@@ -49,7 +49,7 @@ IPv6ControlInfo& IPv6ControlInfo::operator=(const IPv6ControlInfo& other)
 
 void IPv6ControlInfo::clean()
 {
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     dropAndDelete(dgram);
 
     while (!extensionHeaders.empty()) {
@@ -57,7 +57,7 @@ void IPv6ControlInfo::clean()
         extensionHeaders.pop_back();
         delete eh;
     }
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 }
 
 IPv6ControlInfo::~IPv6ControlInfo()
@@ -67,20 +67,20 @@ IPv6ControlInfo::~IPv6ControlInfo()
 
 void IPv6ControlInfo::setOrigDatagram(IPv6Datagram *d)
 {
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     if (dgram)
         throw cRuntimeError(this, "IPv6ControlInfo::setOrigDatagram(): a datagram is already attached");
 
     dgram = d;
     take(dgram);
-#else // ifdef WITH_IPv6
-    throw cRuntimeError("INET was compiled without IPv6 support");
-#endif // ifdef WITH_IPv6
+#else // ifdef WITH_INETVEINS_IPv6
+    throw cRuntimeError("INETVEINS was compiled without IPv6 support");
+#endif // ifdef WITH_INETVEINS_IPv6
 }
 
 IPv6Datagram *IPv6ControlInfo::removeOrigDatagram()
 {
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     if (!dgram)
         throw cRuntimeError(this, "IPv6ControlInfo::removeOrigDatagram(): no datagram attached "
                                   "(already removed, or maybe this IPv6ControlInfo does not come "
@@ -90,9 +90,9 @@ IPv6Datagram *IPv6ControlInfo::removeOrigDatagram()
     drop(dgram);
     dgram = nullptr;
     return ret;
-#else // ifdef WITH_IPv6
-    throw cRuntimeError(this, "INET was compiled without IPv6 support");
-#endif // ifdef WITH_IPv6
+#else // ifdef WITH_INETVEINS_IPv6
+    throw cRuntimeError(this, "INETVEINS was compiled without IPv6 support");
+#endif // ifdef WITH_INETVEINS_IPv6
 }
 
 unsigned int IPv6ControlInfo::getExtensionHeaderArraySize() const
@@ -118,7 +118,7 @@ void IPv6ControlInfo::setExtensionHeader(unsigned int k, const IPv6ExtensionHead
 
 void IPv6ControlInfo::addExtensionHeader(IPv6ExtensionHeader *eh, int atPos)
 {
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     ASSERT(eh);
     if (atPos < 0 || (ExtensionHeaders::size_type)atPos >= extensionHeaders.size()) {
         extensionHeaders.push_back(eh);
@@ -127,9 +127,9 @@ void IPv6ControlInfo::addExtensionHeader(IPv6ExtensionHeader *eh, int atPos)
 
     // insert at position atPos, shift up the rest of the array
     extensionHeaders.insert(extensionHeaders.begin() + atPos, eh);
-#else // ifdef WITH_IPv6
-    throw cRuntimeError(this, "INET was compiled without IPv6 support");
-#endif // ifdef WITH_IPv6
+#else // ifdef WITH_INETVEINS_IPv6
+    throw cRuntimeError(this, "INETVEINS was compiled without IPv6 support");
+#endif // ifdef WITH_INETVEINS_IPv6
 }
 
 IPv6ExtensionHeader *IPv6ControlInfo::removeFirstExtensionHeader()
@@ -137,15 +137,15 @@ IPv6ExtensionHeader *IPv6ControlInfo::removeFirstExtensionHeader()
     if (extensionHeaders.empty())
         return nullptr;
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     auto first = extensionHeaders.begin();
     IPv6ExtensionHeader *ret = *first;
     extensionHeaders.erase(first);
     return ret;
-#else // ifdef WITH_IPv6
-    throw cRuntimeError(this, "INET was compiled without IPv6 support");
-#endif // ifdef WITH_IPv6
+#else // ifdef WITH_INETVEINS_IPv6
+    throw cRuntimeError(this, "INETVEINS was compiled without IPv6 support");
+#endif // ifdef WITH_INETVEINS_IPv6
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IENERGYSOURCE_H
-#define __INET_IENERGYSOURCE_H
+#ifndef __INETVEINS_IENERGYSOURCE_H
+#define __INETVEINS_IENERGYSOURCE_H
 
 #include "IEnergyConsumer.h"
 
@@ -84,7 +84,7 @@ class INETVEINS_API IEnergySource
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IENERGYSOURCE_H
+#endif // ifndef __INETVEINS_IENERGYSOURCE_H
 

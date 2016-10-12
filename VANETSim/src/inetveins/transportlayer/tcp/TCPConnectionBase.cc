@@ -781,5 +781,5 @@ void TCPConnection::stateEntered(int state, int oldState, TCPEventCode event)
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

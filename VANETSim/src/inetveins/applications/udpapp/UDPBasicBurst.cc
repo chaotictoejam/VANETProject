@@ -339,5 +339,5 @@ void UDPBasicBurst::handleNodeCrash()
     activeBurst = false;
 }
 
-} // namespace inet
+} // namespace inetveins
 

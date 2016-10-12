@@ -83,5 +83,5 @@ const char *IMulticastRoute::sourceTypeName(SourceType sourceType)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

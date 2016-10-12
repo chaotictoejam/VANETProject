@@ -2524,5 +2524,5 @@ void Area::recheckSummaryLSAs(std::vector<RoutingTableEntry *>& newRoutingTable)
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

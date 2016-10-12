@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PPP_H
-#define __INET_PPP_H
+#ifndef __INETVEINS_PPP_H
+#define __INETVEINS_PPP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/linklayer/ppp/PPPFrame_m.h"
 #include "inetveins/linklayer/common/TxNotifDetails.h"
@@ -91,7 +91,7 @@ class INETVEINS_API PPP : public MACBase
     virtual void handleMessage(cMessage *msg) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PPP_H
+#endif // ifndef __INETVEINS_PPP_H
 

@@ -343,5 +343,5 @@ void HelloHandler::processPacket(OSPFPacket *packet, Interface *intf, Neighbor *
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

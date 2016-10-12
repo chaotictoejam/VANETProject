@@ -92,5 +92,5 @@ std::string ModulePathAddress::str() const
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

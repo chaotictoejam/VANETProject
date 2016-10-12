@@ -25,10 +25,10 @@
 //  Cleanup and rewrite: Andras Varga, 2004
 //
 
-#ifndef __INET_ROUTINGTABLEPARSER_H
-#define __INET_ROUTINGTABLEPARSER_H
+#ifndef __INETVEINS_ROUTINGTABLEPARSER_H
+#define __INETVEINS_ROUTINGTABLEPARSER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/ipv4/IPv4RoutingTable.h"
 
@@ -97,7 +97,7 @@ class INETVEINS_API RoutingTableParser
     static int strcpyword(char *dest, const char *src);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ROUTINGTABLEPARSER_H
+#endif // ifndef __INETVEINS_ROUTINGTABLEPARSER_H
 

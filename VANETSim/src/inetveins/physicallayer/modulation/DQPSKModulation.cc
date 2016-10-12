@@ -30,5 +30,5 @@ DQPSKModulation::DQPSKModulation() :
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -17,8 +17,8 @@
 // @author Zoltan Bojthe
 //
 
-#ifndef __INET_TLVOPTION_H_
-#define __INET_TLVOPTION_H_
+#ifndef __INETVEINS_TLVOPTION_H_
+#define __INETVEINS_TLVOPTION_H_
 
 #include "TLVOption_m.h"
 
@@ -93,7 +93,7 @@ class INETVEINS_API TLVOptions : public TLVOptions_Base
     virtual void parsimUnpack(cCommBuffer *b) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // __INET_TLVOPTION_H_
+#endif // __INETVEINS_TLVOPTION_H_
 

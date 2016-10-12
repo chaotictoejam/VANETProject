@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_GRIDOBJECTCACHE_H
-#define __INET_GRIDOBJECTCACHE_H
+#ifndef __INETVEINS_GRIDOBJECTCACHE_H
+#define __INETVEINS_GRIDOBJECTCACHE_H
 
 #include "inetveins/common/IVisitor.h"
 #include "inetveins/common/geometry/container/SpatialGrid.h"
@@ -55,6 +55,6 @@ class INETVEINS_API GridObjectCache : public IObjectCache, public cModule
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GRIDOBJECTCACHE_H
+#endif // ifndef __INETVEINS_GRIDOBJECTCACHE_H

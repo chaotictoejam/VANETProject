@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCALARTRANSMISSION_H
-#define __INET_SCALARTRANSMISSION_H
+#ifndef __INETVEINS_SCALARTRANSMISSION_H
+#define __INETVEINS_SCALARTRANSMISSION_H
 
 #include "inetveins/physicallayer/base/packetlevel/FlatTransmissionBase.h"
 
@@ -40,7 +40,7 @@ class INETVEINS_API ScalarTransmission : public FlatTransmissionBase, public vir
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCALARTRANSMISSION_H
+#endif // ifndef __INETVEINS_SCALARTRANSMISSION_H
 

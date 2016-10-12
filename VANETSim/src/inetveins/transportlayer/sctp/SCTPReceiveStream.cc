@@ -156,5 +156,5 @@ uint32 SCTPReceiveStream::enqueueNewDataChunk(SCTPDataVariables *dchunk)
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

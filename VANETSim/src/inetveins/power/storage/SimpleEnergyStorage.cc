@@ -180,5 +180,5 @@ void SimpleEnergyStorage::scheduleTimer()
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 

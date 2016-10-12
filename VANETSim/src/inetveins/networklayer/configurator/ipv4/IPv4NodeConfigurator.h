@@ -18,10 +18,10 @@
 // Authors: Levente Meszaros
 //
 
-#ifndef __INET_IPV4NODECONFIGURATOR_H
-#define __INET_IPV4NODECONFIGURATOR_H
+#ifndef __INETVEINS_IPV4NODECONFIGURATOR_H
+#define __INETVEINS_IPV4NODECONFIGURATOR_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/common/lifecycle/NodeStatus.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
@@ -57,7 +57,7 @@ class INETVEINS_API IPv4NodeConfigurator : public cSimpleModule, public ILifecyc
     virtual void configureNode();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV4NODECONFIGURATOR_H
+#endif // ifndef __INETVEINS_IPV4NODECONFIGURATOR_H
 

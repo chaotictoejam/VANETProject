@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_COMMUNICATIONLOG_H
-#define __INET_COMMUNICATIONLOG_H
+#ifndef __INETVEINS_COMMUNICATIONLOG_H
+#define __INETVEINS_COMMUNICATIONLOG_H
 
 #include <fstream>
 #include "inetveins/physicallayer/contract/packetlevel/ITransmission.h"
@@ -41,7 +41,7 @@ class INETVEINS_API CommunicationLog
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_COMMUNICATIONLOG_H
+#endif // ifndef __INETVEINS_COMMUNICATIONLOG_H
 

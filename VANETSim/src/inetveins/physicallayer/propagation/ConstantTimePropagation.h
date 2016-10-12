@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_CONSTANTTIMEPROPAGATION_H
-#define __INET_CONSTANTTIMEPROPAGATION_H
+#ifndef __INETVEINS_CONSTANTTIMEPROPAGATION_H
+#define __INETVEINS_CONSTANTTIMEPROPAGATION_H
 
 #include "inetveins/physicallayer/base/packetlevel/PropagationBase.h"
 
@@ -42,7 +42,7 @@ class INETVEINS_API ConstantTimePropagation : public PropagationBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_CONSTANTTIMEPROPAGATION_H
+#endif // ifndef __INETVEINS_CONSTANTTIMEPROPAGATION_H
 

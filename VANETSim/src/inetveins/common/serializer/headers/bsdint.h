@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BSDINT_H
-#define __INET_BSDINT_H
+#ifndef __INETVEINS_BSDINT_H
+#define __INETVEINS_BSDINT_H
 
 namespace inetveins {
 
@@ -41,7 +41,7 @@ typedef unsigned long u_long;
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BSDINT_H
+#endif // ifndef __INETVEINS_BSDINT_H
 

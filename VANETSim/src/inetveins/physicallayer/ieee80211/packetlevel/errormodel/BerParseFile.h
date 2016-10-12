@@ -17,8 +17,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_BERPARSEFILE_H
-#define __INET_BERPARSEFILE_H
+#ifndef __INETVEINS_BERPARSEFILE_H
+#define __INETVEINS_BERPARSEFILE_H
 
 #include <vector>
 #include <math.h>
@@ -83,7 +83,7 @@ class INETVEINS_API BerParseFile
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BERPARSEFILE_H
+#endif // ifndef __INETVEINS_BERPARSEFILE_H
 

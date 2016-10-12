@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/contract/tcp/TCPSocketMap.h"
 
@@ -54,5 +54,5 @@ void TCPSocketMap::deleteSockets()
     socketMap.clear();
 }
 
-} // namespace inet
+} // namespace inetveins
 

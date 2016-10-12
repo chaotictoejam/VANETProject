@@ -18,8 +18,8 @@
 * description: This class implements a simple time-based constant mapping
 ***************************************************************************/
 
-#ifndef __INET_SIMPLETIMECONSTMAPPING_H
-#define __INET_SIMPLETIMECONSTMAPPING_H
+#ifndef __INETVEINS_SIMPLETIMECONSTMAPPING_H
+#define __INETVEINS_SIMPLETIMECONSTMAPPING_H
 
 #include "inetveins/common/mapping/MappingBase.h"
 
@@ -69,7 +69,7 @@ class INETVEINS_API SimpleTimeConstMapping : public SimpleConstMapping
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SIMPLETIMECONSTMAPPING_H
+#endif // ifndef __INETVEINS_SIMPLETIMECONSTMAPPING_H
 

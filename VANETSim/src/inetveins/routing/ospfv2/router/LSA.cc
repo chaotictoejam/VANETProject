@@ -254,5 +254,5 @@ std::ostream& operator<<(std::ostream& ostr, const OSPFASExternalLSA& lsa)
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

@@ -16,7 +16,7 @@
 //
 
 #include "inetveins/common/queue/WRRScheduler.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 namespace inetveins {
 
@@ -79,5 +79,5 @@ bool WRRScheduler::schedulePacket()
     return packetRequested;
 }
 
-} // namespace inet
+} // namespace inetveins
 

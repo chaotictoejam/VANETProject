@@ -36,5 +36,5 @@ std::ostream& IsotropicAntenna::printToStream(std::ostream& stream, int level) c
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

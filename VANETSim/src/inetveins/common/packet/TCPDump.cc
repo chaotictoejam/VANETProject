@@ -21,9 +21,9 @@
 
 #include "inetveins/common/packet/TCPDump.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
 namespace inetveins {
 
@@ -57,7 +57,7 @@ void TCPDump::handleMessage(cMessage *msg)
         tcpdump.dumpPacket(l2r, PK(msg));
     }
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     if (pcapDump.isOpen() && dynamic_cast<IPv4Datagram *>(msg)
         && (dumpBadFrames || !PK(msg)->hasBitError()))
     {
@@ -65,7 +65,7 @@ void TCPDump::handleMessage(cMessage *msg)
         IPv4Datagram *ipPacket = check_and_cast<IPv4Datagram *>(msg);
         pcapDump.writeFrame(stime, ipPacket);
     }
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
     if (PK(msg)->hasBitError() && dropBadFrames) {
         delete msg;
@@ -90,5 +90,5 @@ void TCPDump::finish()
     pcapDump.closePcap();
 }
 
-} // namespace inet
+} // namespace inetveins
 

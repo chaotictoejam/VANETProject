@@ -25,9 +25,9 @@
 #include "inetveins/common/ModuleAccess.h"
 #include "inetveins/common/serializer/sctp/SCTPSerializer.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
 #include "inetveins/transportlayer/contract/udp/UDPControlInfo_m.h"
 #include "inetveins/transportlayer/contract/udp/UDPSocket.h"
@@ -955,5 +955,5 @@ void SCTP::finish()
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

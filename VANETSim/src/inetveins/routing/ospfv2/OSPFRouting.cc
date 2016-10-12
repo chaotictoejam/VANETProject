@@ -154,5 +154,5 @@ bool OSPFRouting::checkExternalRoute(const IPv4Address& route)
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

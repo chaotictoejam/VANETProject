@@ -16,10 +16,10 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __INET_IARP_H
-#define __INET_IARP_H
+#ifndef __INETVEINS_IARP_H
+#define __INETVEINS_IARP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
@@ -75,7 +75,7 @@ class INETVEINS_API IARP
     virtual MACAddress resolveL3Address(const L3Address& address, const InterfaceEntry *ie) = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IARP_H
+#endif // ifndef __INETVEINS_IARP_H
 

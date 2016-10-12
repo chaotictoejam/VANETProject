@@ -28,17 +28,17 @@
 #include "inetveins/common/lifecycle/NodeStatus.h"
 #include "inetveins/common/lifecycle/NodeOperations.h"
 
-#ifdef WITH_GENERIC
+#ifdef WITH_INETVEINS_GENERIC
 #include "inetveins/networklayer/generic/GenericNetworkProtocolInterfaceData.h"
-#endif // ifdef WITH_GENERIC
+#endif // ifdef WITH_INETVEINS_GENERIC
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4InterfaceData.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6InterfaceData.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 namespace inetveins {
 
@@ -123,24 +123,24 @@ InterfaceEntry *InterfaceTable::findInterfaceByAddress(const L3Address& address)
         for (auto & elem : idToInterface) {
             InterfaceEntry *ie = elem;
             if (ie) {
-#ifdef WITH_GENERIC
+#ifdef WITH_INETVEINS_GENERIC
                 if (ie->getGenericNetworkProtocolData() && ie->getGenericNetworkProtocolData()->getAddress() == address)
                     return ie;
-#endif // ifdef WITH_GENERIC
+#endif // ifdef WITH_INETVEINS_GENERIC
                 switch (addrType) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
                     case L3Address::IPv4:
                         if (ie->ipv4Data() && ie->ipv4Data()->getIPAddress() == address.toIPv4())
                             return ie;
                         break;
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
                     case L3Address::IPv6:
                         if (ie->ipv6Data() && ie->ipv6Data()->hasAddress(address.toIPv6()))
                             return ie;
                         break;
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
                     case L3Address::MAC:
                         if (ie->getMacAddress() == address.toMAC())
@@ -173,7 +173,7 @@ bool InterfaceTable::isNeighborAddress(const L3Address& address) const
         return false;
 
     switch (address.getType()) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         case L3Address::IPv4:
             for (auto & elem : idToInterface) {
                 InterfaceEntry *ie = elem;
@@ -186,8 +186,8 @@ bool InterfaceTable::isNeighborAddress(const L3Address& address) const
             }
             break;
 
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
         case L3Address::IPv6:
             for (auto & elem : idToInterface) {
                 InterfaceEntry *ie = elem;
@@ -202,7 +202,7 @@ bool InterfaceTable::isNeighborAddress(const L3Address& address) const
             }
             break;
 
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
         case L3Address::MAC:
         case L3Address::MODULEPATH:
         case L3Address::MODULEID:
@@ -381,20 +381,20 @@ void InterfaceTable::updateLinkDisplayString(InterfaceEntry *entry)
             return;
         cDisplayString& displayString = outputGate->getDisplayString();
         char buf[128];
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         if (entry->ipv4Data()) {
             sprintf(buf, "%s\n%s/%d", entry->getFullName(), entry->ipv4Data()->getIPAddress().str().c_str(), entry->ipv4Data()->getNetmask().getNetmaskLength());
             displayString.setTagArg("t", 0, buf);
             displayString.setTagArg("t", 1, "l");
         }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
         if (entry->ipv6Data() && entry->ipv6Data()->getNumAddresses() > 0) {
             sprintf(buf, "%s\n%s", entry->getFullName(), entry->ipv6Data()->getPreferredAddress().str().c_str());
             displayString.setTagArg("t", 0, buf);
             displayString.setTagArg("t", 1, "l");
         }
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
     }
 }
 
@@ -533,20 +533,20 @@ MulticastGroupList InterfaceTable::collectMulticastGroups()
     for (int i = 0; i < getNumInterfaces(); ++i) {
         InterfaceEntry *ie = getInterface(i);
         int interfaceId = ie->getInterfaceId();
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         if (ie->ipv4Data()) {
             int numOfMulticastGroups = ie->ipv4Data()->getNumOfJoinedMulticastGroups();
             for (int j = 0; j < numOfMulticastGroups; ++j) {
                 mglist.push_back(MulticastGroup(ie->ipv4Data()->getJoinedMulticastGroup(j), interfaceId));
             }
         }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
         // TODO
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
     }
     return mglist;
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -16,10 +16,10 @@
 
 //TODO split it to more files
 
-#ifndef __INET_SERIALIZER_BUFFER_H_
-#define __INET_SERIALIZER_BUFFER_H_
+#ifndef __INETVEINS_SERIALIZER_BUFFER_H_
+#define __INETVEINS_SERIALIZER_BUFFER_H_
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/RawPacket.h"
 #include "inetveins/linklayer/common/MACAddress.h"
@@ -93,7 +93,7 @@ class INETVEINS_API Buffer
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif  // __INET_SERIALIZER_BUFFER_H_
+#endif  // __INETVEINS_SERIALIZER_BUFFER_H_
 

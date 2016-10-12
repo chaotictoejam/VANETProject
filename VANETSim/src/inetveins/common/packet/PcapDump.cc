@@ -26,19 +26,19 @@
 #include "inetveins/common/serializer/SerializerBase.h"
 #include "inetveins/networklayer/common/IPProtocolId_m.h"
 
-#ifdef WITH_UDP
+#ifdef WITH_INETVEINS_UDP
 #include "inetveins/transportlayer/udp/UDPPacket_m.h"
-#endif // ifdef WITH_UDP
+#endif // ifdef WITH_INETVEINS_UDP
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
 #include "inetveins/common/serializer/ipv4/IPv4Serializer.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6Datagram.h"
 #include "inetveins/common/serializer/ipv6/IPv6Serializer.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 namespace inetveins {
 
@@ -103,7 +103,7 @@ void PcapDump::writeFrame(simtime_t stime, const IPv4Datagram *ipPacket)
     if (!dumpfile)
         throw cRuntimeError("Cannot write frame: pcap output file is not open");
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     uint8 buf[MAXBUFLENGTH];
     memset((void *)&buf, 0, sizeof(buf));
 
@@ -111,7 +111,7 @@ void PcapDump::writeFrame(simtime_t stime, const IPv4Datagram *ipPacket)
     ph.ts_sec = (int32)stime.inUnit(SIMTIME_S);
     ph.ts_usec = (uint32)(stime.inUnit(SIMTIME_US) - (uint32)1000000 * stime.inUnit(SIMTIME_S));
     // Write Ethernet header
-    uint32 hdr = 2;    //AF_INET
+    uint32 hdr = 2;    //AF_INETVEINS
 
     serializer::Buffer b(buf, sizeof(buf));
     serializer::Context c;
@@ -127,9 +127,9 @@ void PcapDump::writeFrame(simtime_t stime, const IPv4Datagram *ipPacket)
     fwrite(buf, ph.incl_len - sizeof(uint32), 1, dumpfile);
     if (flush)
         fflush(dumpfile);
-#else // ifdef WITH_IPv4
-    throw cRuntimeError("Cannot write frame: INET compiled without IPv4 feature");
-#endif // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
+    throw cRuntimeError("Cannot write frame: INETVEINS compiled without IPv4 feature");
+#endif // ifdef WITH_INETVEINS_IPv4
 }
 
 void PcapDump::writeIPv6Frame(simtime_t stime, const IPv6Datagram *ipPacket)
@@ -137,7 +137,7 @@ void PcapDump::writeIPv6Frame(simtime_t stime, const IPv6Datagram *ipPacket)
     if (!dumpfile)
         throw cRuntimeError("Cannot write frame: pcap output file is not open");
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     uint8 buf[MAXBUFLENGTH];
     memset((void *)&buf, 0, sizeof(buf));
 
@@ -145,7 +145,7 @@ void PcapDump::writeIPv6Frame(simtime_t stime, const IPv6Datagram *ipPacket)
     ph.ts_sec = (int32)stime.inUnit(SIMTIME_S);
     ph.ts_usec = (uint32)(stime.inUnit(SIMTIME_US) - (uint32)1000000 * stime.inUnit(SIMTIME_S));
     // Write Ethernet header
-    uint32 hdr = 2;    //AF_INET
+    uint32 hdr = 2;    //AF_INETVEINS
 
     serializer::Buffer b(buf, sizeof(buf));
     serializer::Context c;
@@ -163,9 +163,9 @@ void PcapDump::writeIPv6Frame(simtime_t stime, const IPv6Datagram *ipPacket)
         if (flush)
             fflush(dumpfile);
     }
-#else // ifdef WITH_IPv6
-    throw cRuntimeError("Cannot write frame: INET compiled without IPv6 feature");
-#endif // ifdef WITH_IPv6
+#else // ifdef WITH_INETVEINS_IPv6
+    throw cRuntimeError("Cannot write frame: INETVEINS compiled without IPv6 feature");
+#endif // ifdef WITH_INETVEINS_IPv6
 }
 
 void PcapDump::closePcap()
@@ -176,5 +176,5 @@ void PcapDump::closePcap()
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

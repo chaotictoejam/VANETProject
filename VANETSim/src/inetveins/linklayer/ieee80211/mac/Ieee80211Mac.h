@@ -17,15 +17,15 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_IEEE80211MAC_H
-#define __INET_IEEE80211MAC_H
+#ifndef __INETVEINS_IEEE80211MAC_H
+#define __INETVEINS_IEEE80211MAC_H
 
 // uncomment this if you do not want to log state machine transitions
 #define FSM_DEBUG
 
 #include <list>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/physicallayer/contract/packetlevel/IRadio.h"
 #include "inetveins/linklayer/base/MACProtocolBase.h"
 #include "inetveins/physicallayer/ieee80211/mode/IIeee80211Mode.h" //TODO not needed here
@@ -106,7 +106,7 @@ class INETVEINS_API Ieee80211Mac : public MACProtocolBase, public IMacRadioInter
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

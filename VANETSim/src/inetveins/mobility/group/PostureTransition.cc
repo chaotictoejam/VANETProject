@@ -44,7 +44,7 @@
 #include <string.h>
 #include <assert.h>
 
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/mobility/group/PostureTransition.h"
 
 namespace inetveins {
@@ -549,5 +549,5 @@ double **PostureTransition::extractMatrixFromSteadyState(double *vec)
     return mat;
 }
 
-} // namespace inet
+} // namespace inetveins
 

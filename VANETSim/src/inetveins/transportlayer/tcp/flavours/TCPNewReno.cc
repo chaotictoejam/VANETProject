@@ -357,5 +357,5 @@ void TCPNewReno::receivedDuplicateAck()
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

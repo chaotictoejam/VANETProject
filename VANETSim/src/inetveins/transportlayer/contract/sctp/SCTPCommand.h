@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTPCOMMAND_H
-#define __INET_SCTPCOMMAND_H
+#ifndef __INETVEINS_SCTPCOMMAND_H
+#define __INETVEINS_SCTPCOMMAND_H
 
 namespace inetveins {
 
@@ -82,7 +82,7 @@ enum SCTPFlags {
     COMPLETE_MESG_ORDERED = 0
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPCOMMAND_H
+#endif // ifndef __INETVEINS_SCTPCOMMAND_H
 

@@ -12,13 +12,13 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_SIMPLECLASSIFIER_H
-#define __INET_SIMPLECLASSIFIER_H
+#ifndef __INETVEINS_SIMPLECLASSIFIER_H
+#define __INETVEINS_SIMPLECLASSIFIER_H
 
 #include <vector>
 #include <string>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/mpls/ConstType.h"
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
@@ -80,7 +80,7 @@ class INETVEINS_API SimpleClassifier : public cSimpleModule, public IScriptable,
     std::vector<FECEntry>::iterator findFEC(int fecid);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SIMPLECLASSIFIER_H
+#endif // ifndef __INETVEINS_SIMPLECLASSIFIER_H
 

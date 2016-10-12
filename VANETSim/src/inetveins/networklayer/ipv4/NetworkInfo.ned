@@ -29,7 +29,7 @@ package vanetsim.inetveins.networklayer.ipv4;
 // </scenario>
 // </nohtml></pre>
 //
-// It is currently only used in the Quagga/INET validation scenarios, and supports following
+// It is currently only used in the Quagga/INETVEINS validation scenarios, and supports following
 // commands:
 //
 // - <code>routing</code>: dumps routing table of the <tt>target</tt> node into

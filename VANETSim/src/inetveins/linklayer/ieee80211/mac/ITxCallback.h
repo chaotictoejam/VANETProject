@@ -17,10 +17,10 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_ITXCALLBACK_H
-#define __INET_ITXCALLBACK_H
+#ifndef __INETVEINS_ITXCALLBACK_H
+#define __INETVEINS_ITXCALLBACK_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 namespace ieee80211 {
@@ -50,7 +50,7 @@ class INETVEINS_API ITxCallback {
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_CONVOLUTIONALCODERMODULE_H
-#define __INET_CONVOLUTIONALCODERMODULE_H
+#ifndef __INETVEINS_CONVOLUTIONALCODERMODULE_H
+#define __INETVEINS_CONVOLUTIONALCODERMODULE_H
 
 #include "inetveins/physicallayer/common/bitlevel/ConvolutionalCoder.h"
 
@@ -45,5 +45,5 @@ class INETVEINS_API ConvolutionalCoderModule : public cSimpleModule, public IFEC
 } /* namespace physicallayer */
 } /* namespace inetveins */
 
-#endif // ifndef __INET_CONVOLUTIONALCODERMODULE_H
+#endif // ifndef __INETVEINS_CONVOLUTIONALCODERMODULE_H
 

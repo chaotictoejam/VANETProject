@@ -159,5 +159,5 @@ void PIMHello::setOptions(unsigned int k, const HelloOptionPtr& options)
     this->options_var[k] = options;
 }
 
-}    // namespace inet
+}    // namespace inetveins
 

@@ -170,5 +170,5 @@ void PIMInterfaceTable::removeInterface(InterfaceEntry *ie)
     if (it != pimInterfaces.end())
         pimInterfaces.erase(it);
 }
-}    //namespace inet
+}    //namespace inetveins
 

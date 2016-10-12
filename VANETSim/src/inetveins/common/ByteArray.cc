@@ -118,5 +118,5 @@ void ByteArray::expandData(unsigned int addleft, unsigned int addright)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -1323,5 +1323,5 @@ void IGMPv3::processRouterSourceTimer(cMessage *msg)
     }
 }
 
-}    // namespace inet
+}    // namespace inetveins
 

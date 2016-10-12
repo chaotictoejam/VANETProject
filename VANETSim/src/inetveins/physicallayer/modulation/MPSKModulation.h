@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MPSKMODULATION_H
-#define __INET_MPSKMODULATION_H
+#ifndef __INETVEINS_MPSKMODULATION_H
+#define __INETVEINS_MPSKMODULATION_H
 
 #include "inetveins/physicallayer/base/packetlevel/APSKModulationBase.h"
 
@@ -44,7 +44,7 @@ class INETVEINS_API MPSKModulation : public APSKModulationBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MPSKMODULATION_H
+#endif // ifndef __INETVEINS_MPSKMODULATION_H
 

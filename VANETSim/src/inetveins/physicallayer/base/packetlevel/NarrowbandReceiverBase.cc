@@ -93,5 +93,5 @@ const IReceptionDecision *NarrowbandReceiverBase::computeReceptionDecision(const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

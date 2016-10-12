@@ -658,5 +658,5 @@ TCPSegment TCPConnection::addSacks(TCPSegment *tcpseg)
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DIMENSIONALANALOGMODEL_H
-#define __INET_DIMENSIONALANALOGMODEL_H
+#ifndef __INETVEINS_DIMENSIONALANALOGMODEL_H
+#define __INETVEINS_DIMENSIONALANALOGMODEL_H
 
 #include "inetveins/physicallayer/base/packetlevel/DimensionalAnalogModelBase.h"
 #include "inetveins/common/mapping/MappingBase.h"
@@ -35,7 +35,7 @@ class INETVEINS_API DimensionalAnalogModel : public DimensionalAnalogModelBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DIMENSIONALANALOGMODEL_H
+#endif // ifndef __INETVEINS_DIMENSIONALANALOGMODEL_H
 

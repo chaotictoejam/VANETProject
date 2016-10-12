@@ -18,7 +18,7 @@
 //
 
 cplusplus {{
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/linklayer/common/MACAddress.h"
 }}
 

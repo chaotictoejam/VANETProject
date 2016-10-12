@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPBASICCLIENTAPP_H
-#define __INET_TCPBASICCLIENTAPP_H
+#ifndef __INETVEINS_TCPBASICCLIENTAPP_H
+#define __INETVEINS_TCPBASICCLIENTAPP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/applications/tcpapp/TCPAppBase.h"
 #include "inetveins/common/lifecycle/NodeStatus.h"
@@ -57,7 +57,7 @@ class INETVEINS_API TCPBasicClientApp : public TCPAppBase, public ILifecycle
     virtual ~TCPBasicClientApp();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPBASICCLIENTAPP_H
+#endif // ifndef __INETVEINS_TCPBASICCLIENTAPP_H
 

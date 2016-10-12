@@ -21,13 +21,13 @@
 
 #include "inetveins/common/packet/PcapRecorder.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6Datagram.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 namespace inetveins {
 
@@ -126,47 +126,47 @@ void PcapRecorder::recordPacket(cPacket *msg, bool l2r)
     EV << "PcapRecorder::recordPacket(" << msg->getFullPath() << ", " << l2r << ")\n";
     packetDumper.dumpPacket(l2r, msg);
 
-#if defined(WITH_IPv4) || defined(WITH_IPv6)
+#if defined(WITH_INETVEINS_IPv4) || defined(WITH_INETVEINS_IPv6)
     if (!pcapDumper.isOpen())
         return;
 
     bool hasBitError = false;
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     IPv4Datagram *ip4Packet = nullptr;
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
     IPv6Datagram *ip6Packet = nullptr;
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
     while (msg) {
         if (msg->hasBitError())
             hasBitError = true;
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         if (nullptr != (ip4Packet = dynamic_cast<IPv4Datagram *>(msg))) {
             break;
         }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
         if (nullptr != (ip6Packet = dynamic_cast<IPv6Datagram *>(msg))) {
             break;
         }
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
         msg = msg->getEncapsulatedPacket();
     }
-#endif // if defined(WITH_IPv4) || defined(WITH_IPv6)
-#ifdef WITH_IPv4
+#endif // if defined(WITH_INETVEINS_IPv4) || defined(WITH_INETVEINS_IPv6)
+#ifdef WITH_INETVEINS_IPv4
     if (ip4Packet && (dumpBadFrames || !hasBitError)) {
         const simtime_t stime = simTime();
         pcapDumper.writeFrame(stime, ip4Packet);
     }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
     if (ip6Packet && (dumpBadFrames || !hasBitError)) {
         const simtime_t stime = simTime();
         pcapDumper.writeIPv6Frame(stime, ip6Packet);
     }
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 }
 
 void PcapRecorder::finish()
@@ -175,5 +175,5 @@ void PcapRecorder::finish()
     pcapDumper.closePcap();
 }
 
-} // namespace inet
+} // namespace inetveins
 

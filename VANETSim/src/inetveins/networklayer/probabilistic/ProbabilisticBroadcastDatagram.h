@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PROBABILISTICBROADCASTDATAGRAM_H
-#define __INET_PROBABILISTICBROADCASTDATAGRAM_H
+#ifndef __INETVEINS_PROBABILISTICBROADCASTDATAGRAM_H
+#define __INETVEINS_PROBABILISTICBROADCASTDATAGRAM_H
 
 #include "inetveins/networklayer/contract/INetworkDatagram.h"
 #include "inetveins/networklayer/probabilistic/ProbabilisticBroadcastDatagram_m.h"
@@ -44,7 +44,7 @@ class INETVEINS_API ProbabilisticBroadcastDatagram : public ProbabilisticBroadca
     virtual void setTransportProtocol(int protocol) override { ProbabilisticBroadcastDatagram_Base::setTransportProtocol(protocol); };
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PROBABILISTICBROADCASTDATAGRAM_H
+#endif // ifndef __INETVEINS_PROBABILISTICBROADCASTDATAGRAM_H
 

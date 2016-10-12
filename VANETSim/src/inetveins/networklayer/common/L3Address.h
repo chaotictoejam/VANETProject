@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_L3ADDRESS_H
-#define __INET_L3ADDRESS_H
+#ifndef __INETVEINS_L3ADDRESS_H
+#define __INETVEINS_L3ADDRESS_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
 #include "inetveins/networklayer/contract/ipv6/IPv6Address.h"
@@ -111,7 +111,7 @@ inline std::ostream& operator<<(std::ostream& os, const L3Address& address)
     return os << address.str();
 }
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ADDRESS_H
+#endif // ifndef __INETVEINS_ADDRESS_H
 

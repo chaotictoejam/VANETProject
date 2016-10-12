@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_APSKMODULATOR_H
-#define __INET_APSKMODULATOR_H
+#ifndef __INETVEINS_APSKMODULATOR_H
+#define __INETVEINS_APSKMODULATOR_H
 
 #include "inetveins/physicallayer/contract/bitlevel/IModulator.h"
 #include "inetveins/physicallayer/common/bitlevel/SignalBitModel.h"
@@ -47,7 +47,7 @@ class INETVEINS_API APSKModulator : public IModulator, public cSimpleModule
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_APSKMODULATOR_H
+#endif // ifndef __INETVEINS_APSKMODULATOR_H
 

@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INETWORKPROTOCOL_H
-#define __INET_INETWORKPROTOCOL_H
+#ifndef __INETVEINS_INETVEINSWORKPROTOCOL_H
+#define __INETVEINS_INETVEINSWORKPROTOCOL_H
 
 #include "inetveins/networklayer/contract/INetworkProtocolControlInfo.h"
 #include "inetveins/networklayer/contract/NetworkProtocolCommand_m.h"
@@ -37,7 +37,7 @@ class INETVEINS_API INetworkProtocol
 //    virtual Address resolveAddress(const char * address) = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INETWORKPROTOCOL_H
+#endif // ifndef __INETVEINS_INETVEINSWORKPROTOCOL_H
 

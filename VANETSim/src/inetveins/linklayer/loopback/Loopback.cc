@@ -22,7 +22,7 @@
 
 #include "inetveins/linklayer/loopback/Loopback.h"
 
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/common/queue/IPassiveQueue.h"
 #include "inetveins/common/NotifierConsts.h"
@@ -121,4 +121,4 @@ void Loopback::updateDisplayString()
     getDisplayString().setTagArg("t", 0, buf);
 }
 
-} // namespace inet
+} // namespace inetveins

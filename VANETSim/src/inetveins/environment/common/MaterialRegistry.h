@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MATERIALREGISTRY_H
-#define __INET_MATERIALREGISTRY_H
+#ifndef __INETVEINS_MATERIALREGISTRY_H
+#define __INETVEINS_MATERIALREGISTRY_H
 
 #include <map>
 #include "inetveins/environment/contract/IMaterialRegistry.h"
@@ -45,7 +45,7 @@ class INETVEINS_API MaterialRegistry : public IMaterialRegistry
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MATERIALREGISTRY_H
+#endif // ifndef __INETVEINS_MATERIALREGISTRY_H
 

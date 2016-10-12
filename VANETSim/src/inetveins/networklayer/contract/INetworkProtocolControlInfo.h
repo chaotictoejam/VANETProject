@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INETWORKPROTOCOLCONTROLINFO_H
-#define __INET_INETWORKPROTOCOLCONTROLINFO_H
+#ifndef __INETVEINS_INETVEINSWORKPROTOCOLCONTROLINFO_H
+#define __INETVEINS_INETVEINSWORKPROTOCOLCONTROLINFO_H
 
 #include "inetveins/networklayer/common/L3Address.h"
 
@@ -39,7 +39,7 @@ class INETVEINS_API INetworkProtocolControlInfo
     virtual void setHopLimit(short hopLimit) = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INETWORKPROTOCOLCONTROLINFO_H
+#endif // ifndef __INETVEINS_INETVEINSWORKPROTOCOLCONTROLINFO_H
 

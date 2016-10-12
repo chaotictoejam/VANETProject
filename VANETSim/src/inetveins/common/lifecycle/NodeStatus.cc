@@ -139,5 +139,5 @@ void NodeStatus::updateDisplayString()
         node->getDisplayString().removeTag("i2");
 }
 
-} // namespace inet
+} // namespace inetveins
 

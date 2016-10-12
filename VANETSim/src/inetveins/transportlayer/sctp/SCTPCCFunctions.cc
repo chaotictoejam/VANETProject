@@ -996,5 +996,5 @@ void SCTPAssociation::cwndUpdateAfterCwndTimeout(SCTPPathVariables *path)
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

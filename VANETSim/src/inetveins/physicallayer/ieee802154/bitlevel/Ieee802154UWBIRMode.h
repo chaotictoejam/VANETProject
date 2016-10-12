@@ -20,8 +20,8 @@
  * 				Foundation under grant number 5005-67322.
  ***************************************************************************/
 
-#ifndef __INET_IEEE802154UWBIRMODE_H
-#define __INET_IEEE802154UWBIRMODE_H
+#ifndef __INETVEINS_IEEE802154UWBIRMODE_H
+#define __INETVEINS_IEEE802154UWBIRMODE_H
 
 #include "inetveins/physicallayer/base/packetlevel/PhysicalLayerDefs.h"
 
@@ -100,7 +100,7 @@ class INETVEINS_API Ieee802154UWBIRMode
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE802154UWBIRMODE_H
+#endif // ifndef __INETVEINS_IEEE802154UWBIRMODE_H
 

@@ -15,11 +15,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV6DATAGRAM_H
-#define __INET_IPV6DATAGRAM_H
+#ifndef __INETVEINS_IPV6DATAGRAM_H
+#define __INETVEINS_IPV6DATAGRAM_H
 
 #include <list>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/INetworkDatagram.h"
 #include "inetveins/networklayer/ipv6/IPv6Datagram_m.h"
 
@@ -138,7 +138,7 @@ class INETVEINS_API IPv6Datagram : public IPv6Datagram_Base, public INetworkData
 
 std::ostream& operator<<(std::ostream& out, const IPv6ExtensionHeader&);
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV6DATAGRAM_H
+#endif // ifndef __INETVEINS_IPV6DATAGRAM_H
 

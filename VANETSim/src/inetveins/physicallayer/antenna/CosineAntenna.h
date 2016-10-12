@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_COSINEANTENNA_H
-#define __INET_COSINEANTENNA_H
+#ifndef __INETVEINS_COSINEANTENNA_H
+#define __INETVEINS_COSINEANTENNA_H
 
 #include "inetveins/physicallayer/base/packetlevel/AntennaBase.h"
 
@@ -43,7 +43,7 @@ class INETVEINS_API CosineAntenna : public AntennaBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_COSINEANTENNA_H
+#endif // ifndef __INETVEINS_COSINEANTENNA_H
 

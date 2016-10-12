@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IGMPMESSAGE_H
-#define __INET_IGMPMESSAGE_H
+#ifndef __INETVEINS_IGMPMESSAGE_H
+#define __INETVEINS_IGMPMESSAGE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/ipv4/IGMPMessage_m.h"
 
 namespace inetveins {
@@ -37,7 +37,7 @@ class INETVEINS_API IGMPv3Query : public IGMPv3Query_Base
     virtual void setMaxRespCode(unsigned char maxRespCode) override { this->maxRespTime_var = maxRespCode; }
 };
 
-}    // namespace inet
+}    // namespace inetveins
 
 #endif // ifndef _IGMPMESSAGE_H_
 

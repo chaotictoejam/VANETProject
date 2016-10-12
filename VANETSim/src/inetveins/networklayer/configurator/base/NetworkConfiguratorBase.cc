@@ -25,7 +25,7 @@
 #include "inetveins/networklayer/configurator/base/NetworkConfiguratorBase.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 
-#ifdef WITH_RADIO
+#ifdef WITH_INETVEINS_RADIO
 #include "inetveins/physicallayer/contract/packetlevel/IRadio.h"
 #include "inetveins/physicallayer/contract/packetlevel/IRadioMedium.h"
 #include "inetveins/physicallayer/base/packetlevel/FlatTransmitterBase.h"
@@ -35,7 +35,7 @@
 
 namespace inetveins {
 
-#ifdef WITH_RADIO
+#ifdef WITH_INETVEINS_RADIO
 using namespace inetveins::physicallayer;
 #endif
 
@@ -353,7 +353,7 @@ double NetworkConfiguratorBase::computeWirelessLinkWeight(Link *link, const char
     else {
         if (!strcmp(metric, "hopCount"))
             return 1;
-#ifdef WITH_RADIO
+#ifdef WITH_INETVEINS_RADIO
         else if (!strcmp(metric, "delay")) {
             // compute the delay between the two interfaces using a dummy transmission
             const InterfaceInfo *transmitterInterfaceInfo = link->sourceInterfaceInfo;
@@ -460,7 +460,7 @@ const char *NetworkConfiguratorBase::getWirelessId(InterfaceEntry *interfaceEntr
         if (agentModule->hasPar("default_ssid") && *agentModule->par("default_ssid").stringValue())
             return agentModule->par("default_ssid");
     }
-#ifdef WITH_RADIO
+#ifdef WITH_INETVEINS_RADIO
     cModule *radioModule = interfaceModule->getSubmodule("radio");
     const IRadio *radio = dynamic_cast<const IRadio *>(radioModule);
     if (radio != nullptr) {
@@ -617,5 +617,5 @@ void NetworkConfiguratorBase::dumpTopology(Topology& topology)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

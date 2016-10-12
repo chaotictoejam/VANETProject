@@ -17,8 +17,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPVIRTUALDATARCVQUEUE_H
-#define __INET_TCPVIRTUALDATARCVQUEUE_H
+#ifndef __INETVEINS_TCPVIRTUALDATARCVQUEUE_H
+#define __INETVEINS_TCPVIRTUALDATARCVQUEUE_H
 
 #include <list>
 #include <string>
@@ -134,7 +134,7 @@ class INETVEINS_API TCPVirtualDataRcvQueue : public TCPReceiveQueue
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPVIRTUALDATARCVQUEUE_H
+#endif // ifndef __INETVEINS_TCPVIRTUALDATARCVQUEUE_H
 

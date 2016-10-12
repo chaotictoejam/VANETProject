@@ -16,10 +16,10 @@
 
 //TODO split it to more files
 
-#ifndef __INET_SERIALIZERBASE_H_
-#define __INET_SERIALIZERBASE_H_
+#ifndef __INETVEINS_SERIALIZERBASE_H_
+#define __INETVEINS_SERIALIZERBASE_H_
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/RawPacket.h"
 #include "inetveins/common/serializer/Buffer.h"
@@ -146,7 +146,7 @@ INETVEINS_API extern SerializerRegistrationList serializers; ///< List of packet
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif  // __INET_SERIALIZERBASE_H_
+#endif  // __INETVEINS_SERIALIZERBASE_H_
 

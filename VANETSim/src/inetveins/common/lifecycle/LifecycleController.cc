@@ -20,7 +20,7 @@
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 #include "inetveins/networklayer/common/L3AddressResolver.h"
 #include "inetveins/common/lifecycle/LifecycleOperation.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 namespace inetveins {
 
@@ -154,5 +154,5 @@ void LifecycleController::moduleOperationStageCompleted(Callback *callback)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

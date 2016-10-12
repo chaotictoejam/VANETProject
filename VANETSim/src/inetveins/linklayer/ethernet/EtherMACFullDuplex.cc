@@ -409,5 +409,5 @@ void EtherMACFullDuplex::beginSendFrames()
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

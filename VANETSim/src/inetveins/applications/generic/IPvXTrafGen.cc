@@ -225,5 +225,5 @@ void IPvXTrafGen::processPacket(cPacket *msg)
     numReceived++;
 }
 
-} // namespace inet
+} // namespace inetveins
 

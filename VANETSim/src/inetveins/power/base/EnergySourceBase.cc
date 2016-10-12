@@ -72,5 +72,5 @@ void EnergySourceBase::setPowerConsumption(int energyConsumerId, W consumedPower
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 

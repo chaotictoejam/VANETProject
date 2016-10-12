@@ -34,8 +34,8 @@
  * $FreeBSD: src/sys/netinet/ip.h,v 1.17 1999/12/22 19:13:20 shin Exp $
  */
 
-#ifndef __INET_IP_H
-#define __INET_IP_H
+#ifndef __INETVEINS_IP_H
+#define __INETVEINS_IP_H
 
 namespace inetveins {
 
@@ -196,7 +196,7 @@ struct  ip_timestamp
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IP_H
+#endif // ifndef __INETVEINS_IP_H
 

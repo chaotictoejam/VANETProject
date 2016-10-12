@@ -63,5 +63,5 @@ const IReceptionBitModel *APSKDemodulator::demodulate(const IReceptionSymbolMode
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

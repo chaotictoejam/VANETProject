@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PRIORITYSCHEDULER_H
-#define __INET_PRIORITYSCHEDULER_H
+#ifndef __INETVEINS_PRIORITYSCHEDULER_H
+#define __INETVEINS_PRIORITYSCHEDULER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/queue/SchedulerBase.h"
 
 namespace inetveins {
@@ -35,7 +35,7 @@ class INETVEINS_API PriorityScheduler : public SchedulerBase
     virtual bool schedulePacket() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PRIORITYSCHEDULER_H
+#endif // ifndef __INETVEINS_PRIORITYSCHEDULER_H
 

@@ -13,8 +13,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_ROTATINGMOBILITYBASE_H
-#define __INET_ROTATINGMOBILITYBASE_H
+#ifndef __INETVEINS_ROTATINGMOBILITYBASE_H
+#define __INETVEINS_ROTATINGMOBILITYBASE_H
 
 #include "inetveins/mobility/base/MovingMobilityBase.h"
 
@@ -79,7 +79,7 @@ class INETVEINS_API RotatingMobilityBase : public MobilityBase
     virtual EulerAngles getCurrentAngularSpeed() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif /* ROTATINGMOBILITYBASE_H_ */
 

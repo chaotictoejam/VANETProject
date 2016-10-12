@@ -13,10 +13,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_ETHERNETCRC_H
-#define __INET_ETHERNETCRC_H
+#ifndef __INETVEINS_ETHERNETCRC_H
+#define __INETVEINS_ETHERNETCRC_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 namespace serializer {
@@ -26,7 +26,7 @@ extern const uint32_t crc32_tab[];
 uint32_t ethernetCRC(const unsigned char *buf, unsigned int bufsize);
 
 } // namespace serializer
-} // namespace inet
+} // namespace inetveins
 
 #endif /* ETHERNETCRC_H_ */
 

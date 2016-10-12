@@ -20,10 +20,10 @@
 //  Cleanup and rewrite: Andras Varga, 2004
 //  Implementation of IPv6 version: Wei Yang, Ng, 2005
 
-#ifndef __INET_IPV6ERRORHANDLING_H
-#define __INET_IPV6ERRORHANDLING_H
+#ifndef __INETVEINS_IPV6ERRORHANDLING_H
+#define __INETVEINS_IPV6ERRORHANDLING_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/ipv6/IPv6ControlInfo.h"
 #include "inetveins/networklayer/icmpv6/ICMPv6Message_m.h"
@@ -47,7 +47,7 @@ class INETVEINS_API IPv6ErrorHandling : public cSimpleModule
     virtual void displayType4Msg(int code);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV6ERRORHANDLING_H
+#endif // ifndef __INETVEINS_IPV6ERRORHANDLING_H
 

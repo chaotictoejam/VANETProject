@@ -16,11 +16,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTPMESSAGE_H
-#define __INET_SCTPMESSAGE_H
+#ifndef __INETVEINS_SCTPMESSAGE_H
+#define __INETVEINS_SCTPMESSAGE_H
 
 #include <list>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/transportlayer/contract/ITransportPacket.h"
 #include "inetveins/transportlayer/sctp/SCTPMessage_m.h"
 
@@ -218,7 +218,7 @@ class INETVEINS_API SCTPAsconfAckChunk : public SCTPAsconfAckChunk_Base
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPMESSAGE_H
+#endif // ifndef __INETVEINS_SCTPMESSAGE_H
 

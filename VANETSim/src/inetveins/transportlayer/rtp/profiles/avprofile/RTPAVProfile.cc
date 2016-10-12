@@ -33,5 +33,5 @@ void RTPAVProfile::initialize()
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

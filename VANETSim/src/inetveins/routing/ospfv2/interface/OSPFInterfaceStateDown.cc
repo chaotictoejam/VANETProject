@@ -82,5 +82,5 @@ void InterfaceStateDown::processEvent(Interface *intf, Interface::InterfaceEvent
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

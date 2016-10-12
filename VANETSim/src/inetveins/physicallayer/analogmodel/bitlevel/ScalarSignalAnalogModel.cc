@@ -47,5 +47,5 @@ ScalarReceptionSignalAnalogModel::ScalarReceptionSignalAnalogModel(const simtime
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

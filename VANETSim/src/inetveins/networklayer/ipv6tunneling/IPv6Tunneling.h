@@ -24,10 +24,10 @@
  * @date 12.06.07
  */
 
-#ifndef __INET_IPV6TUNNELING_H
-#define __INET_IPV6TUNNELING_H
+#ifndef __INETVEINS_IPV6TUNNELING_H
+#define __INETVEINS_IPV6TUNNELING_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/ipv6/IPv6Address.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
@@ -266,7 +266,7 @@ class INETVEINS_API IPv6Tunneling : public cSimpleModule, public ILifecycle
     inline void resetVIfIndex() { if (tunnels.size() == 0) vIfIndexTop = INT_MAX; };
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV6TUNNELING_H
+#endif // ifndef __INETVEINS_IPV6TUNNELING_H
 

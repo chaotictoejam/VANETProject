@@ -28,5 +28,5 @@ PPMModulationBase::PPMModulationBase(unsigned int numberOfPulses) :
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

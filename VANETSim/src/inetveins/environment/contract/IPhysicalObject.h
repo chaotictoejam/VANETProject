@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPHYSICALOBJECT_H
-#define __INET_IPHYSICALOBJECT_H
+#ifndef __INETVEINS_IPHYSICALOBJECT_H
+#define __INETVEINS_IPHYSICALOBJECT_H
 
 #include "inetveins/common/geometry/common/EulerAngles.h"
 #include "inetveins/common/geometry/base/ShapeBase.h"
@@ -44,7 +44,7 @@ class INETVEINS_API IPhysicalObject
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPHYSICALOBJECT_H
+#endif // ifndef __INETVEINS_IPHYSICALOBJECT_H
 

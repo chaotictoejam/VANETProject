@@ -233,5 +233,5 @@ bool RTPReceiverInfo::toBeDeleted(simtime_t now)
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

@@ -490,5 +490,5 @@ void SCTPNatServer::finish()
     EV << getFullPath() << "Over all " << notifications << " notifications received\n ";
 }
 
-} // namespace inet
+} // namespace inetveins
 

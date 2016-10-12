@@ -37,5 +37,5 @@ std::string GenericNetworkProtocolInterfaceData::detailedInfo() const
     return out.str();
 }
 
-} // namespace inet
+} // namespace inetveins
 

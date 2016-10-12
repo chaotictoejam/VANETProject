@@ -135,5 +135,5 @@ void Ieee80211TransmitterBase::setChannelNumber(int channelNumber)
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ISIGNALANALOGMODEL_H
-#define __INET_ISIGNALANALOGMODEL_H
+#ifndef __INETVEINS_ISIGNALANALOGMODEL_H
+#define __INETVEINS_ISIGNALANALOGMODEL_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IPrintableObject.h"
 
@@ -44,7 +44,7 @@ class INETVEINS_API IReceptionAnalogModel : public virtual ISignalAnalogModel
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ISIGNALANALOGMODEL_H
+#endif // ifndef __INETVEINS_ISIGNALANALOGMODEL_H
 

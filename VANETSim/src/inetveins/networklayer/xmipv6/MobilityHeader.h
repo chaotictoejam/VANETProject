@@ -20,10 +20,10 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#ifndef __INET_MOBILITYHEADER_H
-#define __INET_MOBILITYHEADER_H
+#ifndef __INETVEINS_MOBILITYHEADER_H
+#define __INETVEINS_MOBILITYHEADER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/xmipv6/MobilityHeader_m.h"
 
@@ -43,7 +43,7 @@ class INETVEINS_API HomeAddressOption : public HomeAddressOption_Base
     virtual HomeAddressOption *dup() const override { return new HomeAddressOption(*this); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MOBILITYHEADER_H
+#endif // ifndef __INETVEINS_MOBILITYHEADER_H
 

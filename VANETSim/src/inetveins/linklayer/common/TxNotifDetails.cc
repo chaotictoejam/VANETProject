@@ -21,5 +21,5 @@ namespace inetveins {
 
 Register_Class(TxNotifDetails);
 
-} // namespace inet
+} // namespace inetveins
 

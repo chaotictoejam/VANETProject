@@ -50,5 +50,5 @@ void TrailFigure::addFigure(cFigure *figure)
 #endif
 }
 
-} // namespace inet
+} // namespace inetveins
 

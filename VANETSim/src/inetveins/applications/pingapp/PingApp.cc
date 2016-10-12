@@ -31,13 +31,13 @@
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/networklayer/contract/INetworkProtocolControlInfo.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4InterfaceData.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6InterfaceData.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 namespace inetveins {
 
@@ -356,14 +356,14 @@ std::vector<L3Address> PingApp::getAllAddresses()
             for (int j = 0; j < ift->getNumInterfaces(); j++) {
                 InterfaceEntry *ie = ift->getInterface(j);
                 if (ie && !ie->isLoopback()) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
                     if (ie->ipv4Data()) {
                         IPv4Address address = ie->ipv4Data()->getIPAddress();
                         if (!address.isUnspecified())
                             result.push_back(L3Address(address));
                     }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
                     if (ie->ipv6Data()) {
                         for (int k = 0; k < ie->ipv6Data()->getNumAddresses(); k++) {
                             IPv6Address address = ie->ipv6Data()->getAddress(k);
@@ -371,7 +371,7 @@ std::vector<L3Address> PingApp::getAllAddresses()
                                 result.push_back(L3Address(address));
                         }
                     }
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
                 }
             }
         }
@@ -436,5 +436,5 @@ void PingApp::sendPing()
     send(msg, "pingOut");
 }
 
-} // namespace inet
+} // namespace inetveins
 

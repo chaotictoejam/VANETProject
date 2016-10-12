@@ -15,10 +15,10 @@
 //
 // Author: Benjamin Martin Seregi
 
-#ifndef __INET_IEEE8021DRELAY_H
-#define __INET_IEEE8021DRELAY_H
+#ifndef __INETVEINS_IEEE8021DRELAY_H
+#define __INETVEINS_IEEE8021DRELAY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/common/InterfaceTable.h"
 #include "inetveins/linklayer/ethernet/switch/IMACAddressTable.h"
 #include "inetveins/linklayer/ethernet/EtherFrame_m.h"
@@ -101,7 +101,7 @@ class INETVEINS_API Ieee8021dRelay : public cSimpleModule, public ILifecycle
     virtual void finish() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE8021DRELAY_H
+#endif // ifndef __INETVEINS_IEEE8021DRELAY_H
 

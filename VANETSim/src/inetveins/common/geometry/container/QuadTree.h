@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_QUADTREE_H
-#define __INET_QUADTREE_H
+#ifndef __INETVEINS_QUADTREE_H
+#define __INETVEINS_QUADTREE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/geometry/common/Coord.h"
 #include "inetveins/common/IVisitor.h"
 #include <algorithm>
@@ -65,7 +65,7 @@ class INETVEINS_API QuadTree
     ~QuadTree();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_QUADTREE_H
+#endif // ifndef __INETVEINS_QUADTREE_H
 

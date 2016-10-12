@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_NETWORKPROTOCOLBASE_H
-#define __INET_NETWORKPROTOCOLBASE_H
+#ifndef __INETVEINS_NETWORKPROTOCOLBASE_H
+#define __INETVEINS_NETWORKPROTOCOLBASE_H
 
 #include "inetveins/common/LayeredProtocolBase.h"
 #include "inetveins/common/lifecycle/NodeOperations.h"
@@ -49,7 +49,7 @@ class INETVEINS_API NetworkProtocolBase : public LayeredProtocolBase
     virtual bool isNodeShutdownStage(int stage) override { return stage == NodeShutdownOperation::STAGE_NETWORK_LAYER; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NETWORKPROTOCOLBASE_H
+#endif // ifndef __INETVEINS_NETWORKPROTOCOLBASE_H
 

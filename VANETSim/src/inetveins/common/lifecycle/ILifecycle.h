@@ -14,10 +14,10 @@
 // Author: Andras Varga (andras@omnetpp.org)
 //
 
-#ifndef __INET_ILIFECYCLE_H
-#define __INET_ILIFECYCLE_H
+#ifndef __INETVEINS_ILIFECYCLE_H
+#define __INETVEINS_ILIFECYCLE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -58,7 +58,7 @@ class INETVEINS_API ILifecycle
     virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ILIFECYCLE_H
+#endif // ifndef __INETVEINS_ILIFECYCLE_H
 

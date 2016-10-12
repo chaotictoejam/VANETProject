@@ -17,8 +17,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_GPSRDEFS_H
-#define __INET_GPSRDEFS_H
+#ifndef __INETVEINS_GPSRDEFS_H
+#define __INETVEINS_GPSRDEFS_H
 
 #define GPSR_UDP_PORT    269
 
@@ -34,7 +34,7 @@ enum GPSRPlanarizationMode {
     GPSR_RNG_PLANARIZATION
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GPSRDEFS_H
+#endif // ifndef __INETVEINS_GPSRDEFS_H
 

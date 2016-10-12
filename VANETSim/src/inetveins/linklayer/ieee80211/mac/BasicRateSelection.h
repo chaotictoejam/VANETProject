@@ -17,8 +17,8 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_BASICRATESELECTION_H
-#define __INET_BASICRATESELECTION_H
+#ifndef __INETVEINS_BASICRATESELECTION_H
+#define __INETVEINS_BASICRATESELECTION_H
 
 #include "IRateSelection.h"
 #include "inetveins/physicallayer/ieee80211/mode/Ieee80211ModeSet.h"
@@ -48,6 +48,6 @@ class INETVEINS_API BasicRateSelection : public cSimpleModule, public IRateSelec
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif

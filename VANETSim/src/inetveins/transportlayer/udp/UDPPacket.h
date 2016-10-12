@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_UDPPACKET_H
-#define __INET_UDPPACKET_H
+#ifndef __INETVEINS_UDPPACKET_H
+#define __INETVEINS_UDPPACKET_H
 
 #include "inetveins/transportlayer/contract/ITransportPacket.h"
 #include "inetveins/transportlayer/udp/UDPPacket_m.h"
@@ -47,7 +47,7 @@ class INETVEINS_API UDPPacket : public UDPPacket_Base, public ITransportPacket
     virtual void setDestinationPort(unsigned int port) override { UDPPacket_Base::setDestPort(port); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPSEGMENT_H
+#endif // ifndef __INETVEINS_TCPSEGMENT_H
 

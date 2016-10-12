@@ -19,7 +19,7 @@
 #include "inetveins/linklayer/ieee80211/mgmt/Ieee80211Primitives_m.h"
 #include "inetveins/common/ModuleAccess.h"
 #include "inetveins/common/NotifierConsts.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 namespace inetveins {
 
@@ -332,5 +332,5 @@ void Ieee80211AgentSTA::processReassociateConfirm(Ieee80211Prim_ReassociateConfi
 
 } // namespace ieee80211
 
-} // namespace inet
+} // namespace inetveins
 

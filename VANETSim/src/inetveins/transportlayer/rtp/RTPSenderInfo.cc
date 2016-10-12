@@ -128,5 +128,5 @@ void RTPSenderInfo::setSequenceNumberBase(uint16 sequenceNumberBase)
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ORDINALBASEDDROPPER_H
-#define __INET_ORDINALBASEDDROPPER_H
+#ifndef __INETVEINS_ORDINALBASEDDROPPER_H
+#define __INETVEINS_ORDINALBASEDDROPPER_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -46,7 +46,7 @@ class INETVEINS_API OrdinalBasedDropper : public cSimpleModule
     virtual void finish() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ORDINALBASEDDROPPER_H
+#endif // ifndef __INETVEINS_ORDINALBASEDDROPPER_H
 

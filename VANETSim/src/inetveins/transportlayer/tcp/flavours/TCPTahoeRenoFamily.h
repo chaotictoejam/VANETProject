@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPTAHOERENOFAMILY_H
-#define __INET_TCPTAHOERENOFAMILY_H
+#ifndef __INETVEINS_TCPTAHOERENOFAMILY_H
+#define __INETVEINS_TCPTAHOERENOFAMILY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/tcp/flavours/TCPBaseAlg.h"
 
@@ -56,7 +56,7 @@ class INETVEINS_API TCPTahoeRenoFamily : public TCPBaseAlg
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPTAHOERENOFAMILY_H
+#endif // ifndef __INETVEINS_TCPTAHOERENOFAMILY_H
 

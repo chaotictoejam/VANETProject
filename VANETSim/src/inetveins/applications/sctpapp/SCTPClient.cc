@@ -644,5 +644,5 @@ void SCTPClient::finish()
     EV_INFO << "Client finished\n";
 }
 
-} // namespace inet
+} // namespace inetveins
 

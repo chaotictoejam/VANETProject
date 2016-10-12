@@ -45,5 +45,5 @@ void MacPlugin::cancelAndDelete(cMessage *msg)
 }
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 

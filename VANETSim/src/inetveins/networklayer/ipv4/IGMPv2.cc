@@ -850,5 +850,5 @@ void IGMPv2::processLeave(InterfaceEntry *ie, IGMPv2Leave *msg)
     delete msg;
 }
 
-}    // namespace inet
+}    // namespace inetveins
 

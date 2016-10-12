@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_VECTORCOMMUNICATIONCACHE_H
-#define __INET_VECTORCOMMUNICATIONCACHE_H
+#ifndef __INETVEINS_VECTORCOMMUNICATIONCACHE_H
+#define __INETVEINS_VECTORCOMMUNICATIONCACHE_H
 
 #include "inetveins/physicallayer/base/packetlevel/CommunicationCacheBase.h"
 
@@ -83,7 +83,7 @@ class INETVEINS_API VectorCommunicationCache : public CommunicationCacheBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_VECTORCOMMUNICATIONCACHE_H
+#endif // ifndef __INETVEINS_VECTORCOMMUNICATIONCACHE_H
 

@@ -17,11 +17,11 @@
 // author: Zoltan Bojthe
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
 // nothing to see here, please move along
 
-} // namespace inet
+} // namespace inetveins
 

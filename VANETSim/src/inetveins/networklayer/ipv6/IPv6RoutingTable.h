@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV6ROUTINGTABLE_H
-#define __INET_IPV6ROUTINGTABLE_H
+#ifndef __INETVEINS_IPV6ROUTINGTABLE_H
+#define __INETVEINS_IPV6ROUTINGTABLE_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/IRoutingTable.h"
 #include "inetveins/networklayer/ipv6/IPv6Route.h"
@@ -57,11 +57,11 @@ class INETVEINS_API IPv6RoutingTable : public cSimpleModule, public IRoutingTabl
     bool multicastForward = false;    //If node is forwarding multicast info
     bool useAdminDist = false;     // Use Cisco like administrative distances
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     bool ishome_agent = false;    //added by Zarrar Yousaf @ CNI, UniDortmund on 20.02.07
     bool ismobile_node = false;    //added by Zarrar Yousaf @ CNI, UniDortmund on 25.02.07
     bool mipv6Support = false;    // 4.9.07 - CB
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     // Destination Cache maps dest address to next hop and interfaceId.
     // NOTE: nextHop might be a link-local address from which interfaceId cannot be deduced
@@ -163,7 +163,7 @@ class INETVEINS_API IPv6RoutingTable : public cSimpleModule, public IRoutingTabl
      */
     virtual void routeChanged(IPv6Route *entry, int fieldCode);
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     /**
      * Determine whether normal Router or Home Agent
      */
@@ -185,7 +185,7 @@ class INETVEINS_API IPv6RoutingTable : public cSimpleModule, public IRoutingTabl
      * MN if TRUE or else a CN
      */
     void setIsMobileNode(bool value) { ismobile_node = value; }
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     /** @name Routing functions */
     //@{
@@ -330,7 +330,7 @@ class INETVEINS_API IPv6RoutingTable : public cSimpleModule, public IRoutingTabl
     virtual IPv6Route *getRoute(int i) const override;
     //@}
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     //================Added by Zarrar Yousaf ===================================
 
     //void updateHomeNetworkInfo(const IPv6Address& hoa, const IPv6Address& ha);//10.07.07 This updates the struct HomeNetwork Info{} with the MN's Home Address(HoA) and the global scope address of the MNs Home Agent (ha).
@@ -375,7 +375,7 @@ class INETVEINS_API IPv6RoutingTable : public cSimpleModule, public IRoutingTabl
      * with respect to the prefix advertisement list.
      */
     bool isOnLinkAddress(const IPv6Address& address);    // update 11.9.07 - CB
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     /**
      * ILifecycle method
@@ -412,7 +412,7 @@ class INETVEINS_API IPv6RoutingTable : public cSimpleModule, public IRoutingTabl
     virtual void printRoutingTable() const override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV6ROUTINGTABLE_H
+#endif // ifndef __INETVEINS_IPV6ROUTINGTABLE_H
 

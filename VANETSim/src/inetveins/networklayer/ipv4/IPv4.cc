@@ -1174,5 +1174,5 @@ void IPv4::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj 
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

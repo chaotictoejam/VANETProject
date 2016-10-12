@@ -18,20 +18,20 @@
 
 #include "inetveins/networklayer/multi/NetworkDatagramMultiplexer.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/contract/ipv4/IPv4ControlInfo.h"
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/contract/ipv6/IPv6ControlInfo.h"
 #include "inetveins/networklayer/ipv6/IPv6Datagram.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
-#ifdef WITH_GENERIC
+#ifdef WITH_INETVEINS_GENERIC
 #include "inetveins/networklayer/contract/generic/GenericNetworkProtocolControlInfo.h"
 #include "inetveins/networklayer/generic/GenericDatagram.h"
-#endif // ifdef WITH_GENERIC
+#endif // ifdef WITH_INETVEINS_GENERIC
 
 namespace inetveins {
 
@@ -56,21 +56,21 @@ int NetworkDatagramMultiplexer::getProtocolIndex(cMessage *message)
     // TODO: handle the case when some network protocols are disabled
     if (false)
         ;
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     else if (dynamic_cast<IPv4ControlInfo *>(controlInfo) || dynamic_cast<IPv4Datagram *>(message))
         return 0;
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
     else if (dynamic_cast<IPv6ControlInfo *>(controlInfo) || dynamic_cast<IPv6Datagram *>(message))
         return 1;
-#endif // ifdef WITH_IPv6
-#ifdef WITH_GENERIC
+#endif // ifdef WITH_INETVEINS_IPv6
+#ifdef WITH_INETVEINS_GENERIC
     else if (dynamic_cast<GenericNetworkProtocolControlInfo *>(controlInfo) || dynamic_cast<GenericDatagram *>(message))
         return 2;
-#endif // ifdef WITH_GENERIC
+#endif // ifdef WITH_INETVEINS_GENERIC
     else
         throw cRuntimeError("Unknown control info");
 }
 
-} // namespace inet
+} // namespace inetveins
 

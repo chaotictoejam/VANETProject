@@ -18,10 +18,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PCAPRECORDER_H
-#define __INET_PCAPRECORDER_H
+#ifndef __INETVEINS_PCAPRECORDER_H
+#define __INETVEINS_PCAPRECORDER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/packet/PacketDump.h"
 #include "inetveins/common/packet/PcapDump.h"
@@ -53,7 +53,7 @@ class INETVEINS_API PcapRecorder : public cSimpleModule, protected cListener
     virtual void recordPacket(cPacket *msg, bool l2r);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PCAPRECORDER_H
+#endif // ifndef __INETVEINS_PCAPRECORDER_H
 

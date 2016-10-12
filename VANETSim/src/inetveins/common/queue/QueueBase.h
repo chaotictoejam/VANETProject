@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_QUEUEBASE_H
-#define __INET_QUEUEBASE_H
+#ifndef __INETVEINS_QUEUEBASE_H
+#define __INETVEINS_QUEUEBASE_H
 
 #include "inetveins/common/queue/AbstractQueue.h"
 
@@ -41,7 +41,7 @@ class INETVEINS_API QueueBase : public AbstractQueue
     virtual simtime_t startService(cPacket *msg) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_QUEUEBASE_H
+#endif // ifndef __INETVEINS_QUEUEBASE_H
 

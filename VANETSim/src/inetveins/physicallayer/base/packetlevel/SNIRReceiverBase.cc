@@ -57,5 +57,5 @@ const ReceptionIndication *SNIRReceiverBase::computeReceptionIndication(const IS
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -17,15 +17,15 @@
 //
 
 #include "inetveins/networklayer/common/InterfaceEntry.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6Datagram.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 #include "inetveins/networklayer/diffserv/DiffservUtil.h"
 #include "inetveins/networklayer/diffserv/DSCP_m.h"
@@ -199,14 +199,14 @@ double getInterfaceDatarate(IInterfaceTable *ift, cSimpleModule *interfaceModule
 cPacket *findIPDatagramInPacket(cPacket *packet)
 {
     for ( ; packet; packet = packet->getEncapsulatedPacket()) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         if (dynamic_cast<IPv4Datagram *>(packet))
             return packet;
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
         if (dynamic_cast<IPv6Datagram *>(packet))
             return packet;
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
     }
 
     return nullptr;
@@ -241,5 +241,5 @@ void setColor(cPacket *packet, int color)
 
 } // namespace DiffservUtil
 
-} // namespace inet
+} // namespace inetveins
 

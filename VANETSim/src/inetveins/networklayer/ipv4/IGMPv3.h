@@ -20,10 +20,10 @@
  * @date 12.5.2013
  */
 
-#ifndef __INET_IGMPV3_H
-#define __INET_IGMPV3_H
+#ifndef __INETVEINS_IGMPV3_H
+#define __INETVEINS_IGMPV3_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
 #include "inetveins/networklayer/ipv4/IGMPMessage.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"
@@ -253,7 +253,7 @@ class INETVEINS_API IGMPv3 : public cSimpleModule, protected cListener
     virtual double decodeTime(unsigned char code);
 };
 
-}    // namespace inet
+}    // namespace inetveins
 
-#endif /* INET_IGMPV3_H */
+#endif /* INETVEINS_IGMPV3_H */
 

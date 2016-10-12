@@ -314,5 +314,5 @@ SCTPSuccessIndication *SCTPAssociation::createSuccessIndication(const uint32 cor
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

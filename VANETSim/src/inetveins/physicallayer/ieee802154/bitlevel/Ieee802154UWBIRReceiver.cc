@@ -196,5 +196,5 @@ std::pair<double, double> Ieee802154UWBIRReceiver::integrateWindow(simtime_t_cre
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

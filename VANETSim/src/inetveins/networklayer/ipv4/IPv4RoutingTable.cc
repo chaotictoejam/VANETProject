@@ -30,7 +30,7 @@
 #include "inetveins/networklayer/ipv4/RoutingTableParser.h"
 #include "inetveins/common/lifecycle/NodeOperations.h"
 #include "inetveins/common/lifecycle/NodeStatus.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 #include "inetveins/common/ModuleAccess.h"
 
 namespace inetveins {
@@ -858,5 +858,5 @@ IPv4Route *IPv4RoutingTable::createNewRoute()
     return new IPv4Route();
 }
 
-} // namespace inet
+} // namespace inetveins
 

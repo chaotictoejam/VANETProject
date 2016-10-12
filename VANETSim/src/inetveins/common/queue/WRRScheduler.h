@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_WRRSCHEDULER_H
-#define __INET_WRRSCHEDULER_H
+#ifndef __INETVEINS_WRRSCHEDULER_H
+#define __INETVEINS_WRRSCHEDULER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/queue/SchedulerBase.h"
 
 namespace inetveins {
@@ -43,7 +43,7 @@ class INETVEINS_API WRRScheduler : public SchedulerBase
     virtual bool schedulePacket() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_WRRSCHEDULER_H
+#endif // ifndef __INETVEINS_WRRSCHEDULER_H
 

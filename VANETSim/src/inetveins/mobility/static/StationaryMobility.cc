@@ -26,5 +26,5 @@ void StationaryMobility::handleSelfMessage(cMessage *msg)
     ASSERT(false);
 }
 
-} // namespace inet
+} // namespace inetveins
 

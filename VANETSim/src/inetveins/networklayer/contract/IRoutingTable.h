@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IROUTINGTABLE_H
-#define __INET_IROUTINGTABLE_H
+#ifndef __INETVEINS_IROUTINGTABLE_H
+#define __INETVEINS_IROUTINGTABLE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/networklayer/contract/IRoute.h"
 
@@ -179,7 +179,7 @@ class INETVEINS_API IRoutingTable
     virtual IRoute *createRoute() = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IROUTINGTABLE_H
+#endif // ifndef __INETVEINS_IROUTINGTABLE_H
 

@@ -40,5 +40,5 @@ QAM16Modulation::QAM16Modulation() : MQAMModulationBase(&constellation)
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

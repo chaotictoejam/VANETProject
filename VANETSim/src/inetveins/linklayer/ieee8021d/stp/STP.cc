@@ -680,5 +680,5 @@ void STP::initInterfacedata(unsigned int portNum)
     ifd->setLostBPDU(0);
 }
 
-} // namespace inet
+} // namespace inetveins
 

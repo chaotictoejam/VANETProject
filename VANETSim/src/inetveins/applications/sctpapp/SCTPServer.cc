@@ -564,5 +564,5 @@ SCTPServer::SCTPServer()
     numRequestsToSend = 0;
 }
 
-} // namespace inet
+} // namespace inetveins
 

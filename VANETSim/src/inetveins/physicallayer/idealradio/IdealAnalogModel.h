@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IDEALANALOGMODEL_H
-#define __INET_IDEALANALOGMODEL_H
+#ifndef __INETVEINS_IDEALANALOGMODEL_H
+#define __INETVEINS_IDEALANALOGMODEL_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IAnalogModel.h"
 
@@ -38,7 +38,7 @@ class INETVEINS_API IdealAnalogModel : public cModule, public IAnalogModel
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IDEALANALOGMODEL_H
+#endif // ifndef __INETVEINS_IDEALANALOGMODEL_H
 

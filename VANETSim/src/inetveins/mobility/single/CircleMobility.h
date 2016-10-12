@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_CIRCLEMOBILITY_H
-#define __INET_CIRCLEMOBILITY_H
+#ifndef __INETVEINS_CIRCLEMOBILITY_H
+#define __INETVEINS_CIRCLEMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/base/MovingMobilityBase.h"
 
@@ -62,7 +62,7 @@ class INETVEINS_API CircleMobility : public MovingMobilityBase
     CircleMobility();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_CIRCLEMOBILITY_H
+#endif // ifndef __INETVEINS_CIRCLEMOBILITY_H
 

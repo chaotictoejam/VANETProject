@@ -17,10 +17,10 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_ITX_H
-#define __INET_ITX_H
+#ifndef __INETVEINS_ITX_H
+#define __INETVEINS_ITX_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 namespace ieee80211 {
@@ -42,7 +42,7 @@ class INETVEINS_API ITx
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

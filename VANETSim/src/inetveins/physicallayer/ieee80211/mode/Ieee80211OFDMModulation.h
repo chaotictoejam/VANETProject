@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211OFDMMODULATION_H
-#define __INET_IEEE80211OFDMMODULATION_H
+#ifndef __INETVEINS_IEEE80211OFDMMODULATION_H
+#define __INETVEINS_IEEE80211OFDMMODULATION_H
 
 #include "inetveins/physicallayer/base/packetlevel/APSKModulationBase.h"
 
@@ -52,4 +52,4 @@ class INETVEINS_API Ieee80211OFDMCompliantModulations
 } /* namespace physicallayer */
 } /* namespace inetveins */
 
-#endif /* __INET_IEEE80211OFDMMODULATION_H */
+#endif /* __INETVEINS_IEEE80211OFDMMODULATION_H */

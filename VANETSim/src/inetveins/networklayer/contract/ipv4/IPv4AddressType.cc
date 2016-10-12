@@ -23,5 +23,5 @@ IPv4AddressType IPv4AddressType::INSTANCE;
 
 const IPv4Address IPv4AddressType::ALL_RIP_ROUTERS_MCAST("224.0.0.9");
 
-} // namespace inet
+} // namespace inetveins
 

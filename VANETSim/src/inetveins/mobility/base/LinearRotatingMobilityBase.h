@@ -13,8 +13,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_LINEARROTATINGMOBILITYBASE_H
-#define __INET_LINEARROTATINGMOBILITYBASE_H
+#ifndef __INETVEINS_LINEARROTATINGMOBILITYBASE_H
+#define __INETVEINS_LINEARROTATINGMOBILITYBASE_H
 
 #include "inetveins/mobility/base/RotatingMobilityBase.h"
 
@@ -45,7 +45,7 @@ class INETVEINS_API LinearRotatingMobilityBase : public RotatingMobilityBase
     LinearRotatingMobilityBase();
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif /* LINEARROTATINGMOBILITYBASE_H_ */
 

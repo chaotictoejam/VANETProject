@@ -55,5 +55,5 @@ void InterfaceStatePointToPoint::processEvent(Interface *intf, Interface::Interf
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

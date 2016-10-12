@@ -55,5 +55,5 @@ ReceptionSampleModel::ReceptionSampleModel(int sampleLength, double sampleRate, 
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

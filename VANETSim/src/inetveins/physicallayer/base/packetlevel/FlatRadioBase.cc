@@ -62,5 +62,5 @@ void FlatRadioBase::setBitrate(bps newBitrate)
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

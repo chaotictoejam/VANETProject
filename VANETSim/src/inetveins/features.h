@@ -1,120 +1,120 @@
-#ifndef WITH_TCP_COMMON
-#define WITH_TCP_COMMON
+#ifndef WITH_INETVEINS_TCP_COMMON
+#define WITH_INETVEINS_TCP_COMMON
 #endif
 
-#ifndef WITH_TCP_INET
-#define WITH_TCP_INET
+#ifndef WITH_INETVEINS_TCP_INET
+#define WITH_INETVEINS_TCP_INET
 #endif
 
-#ifndef WITH_IPv4
-#define WITH_IPv4
+#ifndef WITH_INETVEINS_IPv4
+#define WITH_INETVEINS_IPv4
 #endif
 
-#ifndef WITH_IPv6
-#define WITH_IPv6
+#ifndef WITH_INETVEINS_IPv6
+#define WITH_INETVEINS_IPv6
 #endif
 
-#ifndef WITH_xMIPv6
-#define WITH_xMIPv6
+#ifndef WITH_INETVEINS_xMIPv6
+#define WITH_INETVEINS_xMIPv6
 #endif
 
-#ifndef WITH_GENERIC
-#define WITH_GENERIC
+#ifndef WITH_INETVEINS_GENERIC
+#define WITH_INETVEINS_GENERIC
 #endif
 
-#ifndef WITH_FLOOD
-#define WITH_FLOOD
+#ifndef WITH_INETVEINS_FLOOD
+#define WITH_INETVEINS_FLOOD
 #endif
 
-#ifndef WITH_UDP
-#define WITH_UDP
+#ifndef WITH_INETVEINS_UDP
+#define WITH_INETVEINS_UDP
 #endif
 
-#ifndef WITH_RTP
-#define WITH_RTP
+#ifndef WITH_INETVEINS_RTP
+#define WITH_INETVEINS_RTP
 #endif
 
-#ifndef WITH_SCTP
-#define WITH_SCTP
+#ifndef WITH_INETVEINS_SCTP
+#define WITH_INETVEINS_SCTP
 #endif
 
-#ifndef WITH_DHCP
-#define WITH_DHCP
+#ifndef WITH_INETVEINS_DHCP
+#define WITH_INETVEINS_DHCP
 #endif
 
-#ifndef WITH_ETHERNET
-#define WITH_ETHERNET
+#ifndef WITH_INETVEINS_ETHERNET
+#define WITH_INETVEINS_ETHERNET
 #endif
 
-#ifndef WITH_PPP
-#define WITH_PPP
+#ifndef WITH_INETVEINS_PPP
+#define WITH_INETVEINS_PPP
 #endif
 
-#ifndef WITH_MPLS
-#define WITH_MPLS
+#ifndef WITH_INETVEINS_MPLS
+#define WITH_INETVEINS_MPLS
 #endif
 
-#ifndef WITH_OSPFv2
-#define WITH_OSPFv2
+#ifndef WITH_INETVEINS_OSPFv2
+#define WITH_INETVEINS_OSPFv2
 #endif
 
-#ifndef WITH_BGPv4
-#define WITH_BGPv4
+#ifndef WITH_INETVEINS_BGPv4
+#define WITH_INETVEINS_BGPv4
 #endif
 
-#ifndef WITH_PIM
-#define WITH_PIM
+#ifndef WITH_INETVEINS_PIM
+#define WITH_INETVEINS_PIM
 #endif
 
-#ifndef WITH_AODV
-#define WITH_AODV
+#ifndef WITH_INETVEINS_AODV
+#define WITH_INETVEINS_AODV
 #endif
 
-#ifndef WITH_RIP
-#define WITH_RIP
+#ifndef WITH_INETVEINS_RIP
+#define WITH_INETVEINS_RIP
 #endif
 
-#ifndef WITH_POWER
-#define WITH_POWER
+#ifndef WITH_INETVEINS_POWER
+#define WITH_INETVEINS_POWER
 #endif
 
-#ifndef WITH_RADIO
-#define WITH_RADIO
+#ifndef WITH_INETVEINS_RADIO
+#define WITH_INETVEINS_RADIO
 #endif
 
-#ifndef WITH_IEEE80211
-#define WITH_IEEE80211
+#ifndef WITH_INETVEINS_IEEE80211
+#define WITH_INETVEINS_IEEE80211
 #endif
 
-#ifndef WITH_IEEE802154
-#define WITH_IEEE802154
+#ifndef WITH_INETVEINS_IEEE802154
+#define WITH_INETVEINS_IEEE802154
 #endif
 
-#ifndef WITH_APSKRADIO
-#define WITH_APSKRADIO
+#ifndef WITH_INETVEINS_APSKRADIO
+#define WITH_INETVEINS_APSKRADIO
 #endif
 
-#ifndef WITH_IDEALWIRELESS
-#define WITH_IDEALWIRELESS
+#ifndef WITH_INETVEINS_IDEALWIRELESS
+#define WITH_INETVEINS_IDEALWIRELESS
 #endif
 
-#ifndef WITH_TUN
-#define WITH_TUN
+#ifndef WITH_INETVEINS_TUN
+#define WITH_INETVEINS_TUN
 #endif
 
-#ifndef WITH_PACKETDRILL
-#define WITH_PACKETDRILL
+#ifndef WITH_INETVEINS_PACKETDRILL
+#define WITH_INETVEINS_PACKETDRILL
 #endif
 
-#ifndef WITH_BMAC
-#define WITH_BMAC
+#ifndef WITH_INETVEINS_BMAC
+#define WITH_INETVEINS_BMAC
 #endif
 
-#ifndef WITH_LMAC
-#define WITH_LMAC
+#ifndef WITH_INETVEINS_LMAC
+#define WITH_INETVEINS_LMAC
 #endif
 
-#ifndef WITH_CSMA
-#define WITH_CSMA
+#ifndef WITH_INETVEINS_CSMA
+#define WITH_INETVEINS_CSMA
 #endif
 

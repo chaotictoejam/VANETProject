@@ -59,5 +59,5 @@ double LogNormalShadowing::computePathLoss(mps propagationSpeed, Hz frequency, m
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

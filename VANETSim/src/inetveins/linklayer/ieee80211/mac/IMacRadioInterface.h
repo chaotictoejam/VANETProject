@@ -17,10 +17,10 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_IMACRADIOINTERFACE_H
-#define __INET_IMACRADIOINTERFACE_H
+#ifndef __INETVEINS_IMACRADIOINTERFACE_H
+#define __INETVEINS_IMACRADIOINTERFACE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 namespace ieee80211 {
@@ -38,7 +38,7 @@ class INETVEINS_API IMacRadioInterface
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

@@ -17,8 +17,8 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_COLLISIONCONTROLLER_H
-#define __INET_COLLISIONCONTROLLER_H
+#ifndef __INETVEINS_COLLISIONCONTROLLER_H
+#define __INETVEINS_COLLISIONCONTROLLER_H
 
 #include "ICollisionController.h"
 
@@ -48,7 +48,7 @@ class INETVEINS_API CollisionController : public cSimpleModule, public ICollisio
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

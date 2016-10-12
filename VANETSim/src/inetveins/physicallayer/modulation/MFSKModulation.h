@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MFSKMODULATION_H
-#define __INET_MFSKMODULATION_H
+#ifndef __INETVEINS_MFSKMODULATION_H
+#define __INETVEINS_MFSKMODULATION_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IModulation.h"
 
@@ -45,7 +45,7 @@ class INETVEINS_API MFSKModulation : public IModulation
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MFSKMODULATION_H
+#endif // ifndef __INETVEINS_MFSKMODULATION_H
 

@@ -20,10 +20,10 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#ifndef __INET_BINDINGUPDATELIST_H
-#define __INET_BINDINGUPDATELIST_H
+#ifndef __INETVEINS_BINDINGUPDATELIST_H
+#define __INETVEINS_BINDINGUPDATELIST_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/ipv6/IPv6Address.h"
 
@@ -282,7 +282,7 @@ class INETVEINS_API BindingUpdateList : public cSimpleModule
     virtual void resetBindingCacheEntry(BindingUpdateListEntry& entry);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BINDINGUPDATELIST_H
+#endif // ifndef __INETVEINS_BINDINGUPDATELIST_H
 

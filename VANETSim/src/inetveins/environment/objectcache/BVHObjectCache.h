@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BVHOBJECTCACHE_H
-#define __INET_BVHOBJECTCACHE_H
+#ifndef __INETVEINS_BVHOBJECTCACHE_H
+#define __INETVEINS_BVHOBJECTCACHE_H
 
 #include "inetveins/common/IVisitor.h"
 #include "inetveins/common/geometry/container/BVHTree.h"
@@ -58,7 +58,7 @@ class INETVEINS_API BVHObjectCache : public IObjectCache, public cModule
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BVHOBJECTCACHE_H
+#endif // ifndef __INETVEINS_BVHOBJECTCACHE_H
 

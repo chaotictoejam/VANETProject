@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211PHYSERIALIZER_H
-#define __INET_IEEE80211PHYSERIALIZER_H
+#ifndef __INETVEINS_IEEE80211PHYSERIALIZER_H
+#define __INETVEINS_IEEE80211PHYSERIALIZER_H
 
 #include "inetveins/physicallayer/ieee80211/bitlevel/Ieee80211PLCPFrame_m.h"
 #include "inetveins/common/BitVector.h"
@@ -37,4 +37,4 @@ class INETVEINS_API Ieee80211PhySerializer
 } /* namespace serializer */
 } /* namespace inetveins */
 
-#endif /* __INET_IEEE80211PHYSERIALIZER_H */
+#endif /* __INETVEINS_IEEE80211PHYSERIALIZER_H */

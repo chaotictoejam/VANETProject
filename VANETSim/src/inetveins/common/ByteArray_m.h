@@ -14,7 +14,7 @@
 #endif
 
 // cplusplus {{
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 // }}
 
 

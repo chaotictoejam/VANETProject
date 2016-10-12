@@ -200,5 +200,5 @@ SerializerBase *SerializerRegistrationList::lookup(const char *name) const
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 

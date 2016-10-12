@@ -25,5 +25,5 @@ void IPv6RoutingHeader::setAddressArraySize(unsigned int size)
     setByteLength(8 + 16 * size);
 }
 
-} // namespace inet
+} // namespace inetveins
 

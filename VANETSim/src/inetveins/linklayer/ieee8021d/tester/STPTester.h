@@ -17,11 +17,11 @@
 // Author: Benjamin Martin Seregi
 //
 
-#ifndef __INET_STPTESTER_H
-#define __INET_STPTESTER_H
+#ifndef __INETVEINS_STPTESTER_H
+#define __INETVEINS_STPTESTER_H
 
 #include <map>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/Topology.h"
 #include "inetveins/linklayer/ieee8021d/stp/STP.h"
 
@@ -76,7 +76,7 @@ class INETVEINS_API STPTester : public cSimpleModule
     int getNumOfVisitedNodes();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_STPTESTER_H
+#endif // ifndef __INETVEINS_STPTESTER_H
 

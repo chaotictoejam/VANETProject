@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_APPLICATIONBASE_H
-#define __INET_APPLICATIONBASE_H
+#ifndef __INETVEINS_APPLICATIONBASE_H
+#define __INETVEINS_APPLICATIONBASE_H
 
 #include "inetveins/common/lifecycle/OperationalBase.h"
 #include "inetveins/common/lifecycle/NodeOperations.h"
@@ -34,7 +34,7 @@ class INETVEINS_API ApplicationBase : public OperationalBase
     virtual bool isNodeShutdownStage(int stage) override { return stage == NodeShutdownOperation::STAGE_APPLICATION_LAYER; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_APPLICATIONBASE_H
+#endif // ifndef __INETVEINS_APPLICATIONBASE_H
 

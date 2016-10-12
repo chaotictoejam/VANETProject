@@ -55,5 +55,5 @@ void IdealEnergyStorage::updateResidualCapacity()
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 

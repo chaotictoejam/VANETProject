@@ -232,5 +232,5 @@ void PIMBase::processHelloPacket(PIMHello *packet)
     delete packet;
 }
 
-}    // namespace inet
+}    // namespace inetveins
 

@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_FSMA_H
-#define __INET_FSMA_H
+#ifndef __INETVEINS_FSMA_H
+#define __INETVEINS_FSMA_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -164,7 +164,7 @@ namespace inetveins {
 #define E_INFLOOP    eINFLOOP
 #endif // if OMNETPP_VERSION < 0x500
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_FSMA_H
+#endif // ifndef __INETVEINS_FSMA_H
 

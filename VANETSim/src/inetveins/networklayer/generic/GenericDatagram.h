@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_GENERICDATAGRAM_H
-#define __INET_GENERICDATAGRAM_H
+#ifndef __INETVEINS_GENERICDATAGRAM_H
+#define __INETVEINS_GENERICDATAGRAM_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/INetworkDatagram.h"
 #include "inetveins/networklayer/generic/GenericDatagram_m.h"
 #include "inetveins/networklayer/common/IPProtocolId_m.h"
@@ -45,7 +45,7 @@ class INETVEINS_API GenericDatagram : public GenericDatagram_Base, public INetwo
     virtual void setTransportProtocol(int protocol) override { GenericDatagram_Base::setTransportProtocol(protocol); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GENERICDATAGRAM_H
+#endif // ifndef __INETVEINS_GENERICDATAGRAM_H
 

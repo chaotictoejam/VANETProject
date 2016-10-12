@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPIPCHECKSUM_H
-#define __INET_TCPIPCHECKSUM_H
+#ifndef __INETVEINS_TCPIPCHECKSUM_H
+#define __INETVEINS_TCPIPCHECKSUM_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 namespace serializer {
@@ -53,7 +53,7 @@ class INETVEINS_API TCPIPchecksum
 };
 
 } // namespace serializer
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPIPCHECKSUM_H
+#endif // ifndef __INETVEINS_TCPIPCHECKSUM_H
 

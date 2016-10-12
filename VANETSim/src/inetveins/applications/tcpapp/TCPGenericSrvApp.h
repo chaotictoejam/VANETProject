@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPGENERICSRVAPP_H
-#define __INET_TCPGENERICSRVAPP_H
+#ifndef __INETVEINS_TCPGENERICSRVAPP_H
+#define __INETVEINS_TCPGENERICSRVAPP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/common/lifecycle/LifecycleOperation.h"
 
@@ -57,7 +57,7 @@ class INETVEINS_API TCPGenericSrvApp : public cSimpleModule, public ILifecycle
     { Enter_Method_Silent(); throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName()); return true; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPGENERICSRVAPP_H
+#endif // ifndef __INETVEINS_TCPGENERICSRVAPP_H
 

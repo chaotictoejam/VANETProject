@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SIGNALANALOGMODEL_H
-#define __INET_SIGNALANALOGMODEL_H
+#ifndef __INETVEINS_SIGNALANALOGMODEL_H
+#define __INETVEINS_SIGNALANALOGMODEL_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IRadioSignal.h"
 #include "inetveins/physicallayer/contract/bitlevel/ISignalAnalogModel.h"
@@ -55,7 +55,7 @@ class INETVEINS_API NarrowbandSignalAnalogModel : public SignalAnalogModel, publ
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SIGNALANALOGMODEL_H
+#endif // ifndef __INETVEINS_SIGNALANALOGMODEL_H
 

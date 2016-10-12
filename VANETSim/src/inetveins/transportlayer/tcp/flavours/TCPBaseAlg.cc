@@ -681,5 +681,5 @@ void TCPBaseAlg::restartRexmitTimer()
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

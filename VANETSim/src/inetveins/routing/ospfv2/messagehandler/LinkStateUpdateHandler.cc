@@ -373,5 +373,5 @@ void LinkStateUpdateHandler::acknowledgeLSA(OSPFLSAHeader& lsaHeader,
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

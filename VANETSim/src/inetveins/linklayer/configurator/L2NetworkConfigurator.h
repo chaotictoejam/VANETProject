@@ -17,13 +17,13 @@
 // Author: Benjamin Seregi
 //
 
-#ifndef __INET_L2NETWORKCONFIGURATOR_H
-#define __INET_L2NETWORKCONFIGURATOR_H
+#ifndef __INETVEINS_L2NETWORKCONFIGURATOR_H
+#define __INETVEINS_L2NETWORKCONFIGURATOR_H
 
 #include <algorithm>
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/linklayer/configurator/Ieee8021dInterfaceData.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/common/PatternMatcher.h"
@@ -145,7 +145,7 @@ class INETVEINS_API L2NetworkConfigurator : public cSimpleModule
     virtual void configureInterface(InterfaceEntry *interfaceEntry);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_L2NETWORKCONFIGURATOR_H
+#endif // ifndef __INETVEINS_L2NETWORKCONFIGURATOR_H
 

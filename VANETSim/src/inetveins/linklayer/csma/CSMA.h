@@ -24,8 +24,8 @@
  * part of:    Modifications to the MF-2 framework by CSEM
  **************************************************************************/
 
-#ifndef __INET_CSMA_H
-#define __INET_CSMA_H
+#ifndef __INETVEINS_CSMA_H
+#define __INETVEINS_CSMA_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IRadio.h"
 #include "inetveins/linklayer/contract/IMACProtocol.h"
@@ -342,7 +342,7 @@ class INETVEINS_API CSMA : public MACProtocolBase, public IMACProtocol
     CSMA& operator=(const CSMA&);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_CSMA_H
+#endif // ifndef __INETVEINS_CSMA_H
 

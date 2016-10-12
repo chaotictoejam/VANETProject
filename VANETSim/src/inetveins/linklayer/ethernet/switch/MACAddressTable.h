@@ -14,8 +14,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_MACADDRESSTABLE_H
-#define __INET_MACADDRESSTABLE_H
+#ifndef __INETVEINS_MACADDRESSTABLE_H
+#define __INETVEINS_MACADDRESSTABLE_H
 
 #include "inetveins/linklayer/common/MACAddress.h"
 #include "inetveins/linklayer/ethernet/switch/IMACAddressTable.h"
@@ -133,7 +133,7 @@ class INETVEINS_API MACAddressTable : public cSimpleModule, public IMACAddressTa
     virtual void resetDefaultAging() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MACADDRESSTABLE_H
+#endif // ifndef __INETVEINS_MACADDRESSTABLE_H
 

@@ -13,14 +13,14 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_LDP_H
-#define __INET_LDP_H
+#ifndef __INETVEINS_LDP_H
+#define __INETVEINS_LDP_H
 
 #include <string>
 #include <iostream>
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/ldp/LDPPacket_m.h"
 #include "inetveins/transportlayer/contract/udp/UDPSocket.h"
@@ -215,7 +215,7 @@ class INETVEINS_API LDP : public cSimpleModule, public TCPSocket::CallbackInterf
     virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj DETAILS_ARG) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LDP_H
+#endif // ifndef __INETVEINS_LDP_H
 

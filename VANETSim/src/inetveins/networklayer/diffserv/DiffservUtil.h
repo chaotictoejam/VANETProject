@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DIFFSERVUTIL_H
-#define __INET_DIFFSERVUTIL_H
+#ifndef __INETVEINS_DIFFSERVUTIL_H
+#define __INETVEINS_DIFFSERVUTIL_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 
 namespace inetveins {
@@ -116,7 +116,7 @@ void setColor(cPacket *packet, int color);
 
 } // namespace DiffservUtil
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DIFFSERVUTIL_H
+#endif // ifndef __INETVEINS_DIFFSERVUTIL_H
 

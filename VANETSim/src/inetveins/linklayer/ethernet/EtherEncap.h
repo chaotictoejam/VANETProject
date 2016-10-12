@@ -15,10 +15,10 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __INET_ETHERENCAP_H
-#define __INET_ETHERENCAP_H
+#ifndef __INETVEINS_ETHERENCAP_H
+#define __INETVEINS_ETHERENCAP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/linklayer/ethernet/Ethernet.h"
 
@@ -55,7 +55,7 @@ class INETVEINS_API EtherEncap : public cSimpleModule
     virtual void updateDisplayString();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ETHERENCAP_H
+#endif // ifndef __INETVEINS_ETHERENCAP_H
 

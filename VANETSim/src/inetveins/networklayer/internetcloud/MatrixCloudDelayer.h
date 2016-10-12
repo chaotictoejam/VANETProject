@@ -17,10 +17,10 @@
 // @author Zoltan Bojthe
 //
 
-#ifndef __INET_MATRIXCLOUDDELAYER_H
-#define __INET_MATRIXCLOUDDELAYER_H
+#ifndef __INETVEINS_MATRIXCLOUDDELAYER_H
+#define __INETVEINS_MATRIXCLOUDDELAYER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/internetcloud/CloudDelayerBase.h"
 
@@ -104,7 +104,7 @@ class INETVEINS_API MatrixCloudDelayer : public CloudDelayerBase
     std::string getPathOfConnectedNodeOnIfaceID(int id);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MATRIXCLOUDDELAYER_H
+#endif // ifndef __INETVEINS_MATRIXCLOUDDELAYER_H
 

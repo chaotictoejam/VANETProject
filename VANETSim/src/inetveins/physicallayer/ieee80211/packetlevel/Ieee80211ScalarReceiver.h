@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211SCALARRECEIVER_H
-#define __INET_IEEE80211SCALARRECEIVER_H
+#ifndef __INETVEINS_IEEE80211SCALARRECEIVER_H
+#define __INETVEINS_IEEE80211SCALARRECEIVER_H
 
 #include "inetveins/physicallayer/ieee80211/mode/Ieee80211ModeSet.h"
 #include "inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ReceiverBase.h"
@@ -38,7 +38,7 @@ class INETVEINS_API Ieee80211ScalarReceiver : public Ieee80211ReceiverBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE80211SCALARRECEIVER_H
+#endif // ifndef __INETVEINS_IEEE80211SCALARRECEIVER_H
 

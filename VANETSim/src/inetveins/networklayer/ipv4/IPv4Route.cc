@@ -25,9 +25,9 @@
 
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 #include "inetveins/networklayer/ipv4/IIPv4RoutingTable.h"
-#ifdef WITH_AODV
+#ifdef WITH_INETVEINS_AODV
 #include "inetveins/routing/aodv/AODVRouteData.h"
-#endif // ifdef WITH_AODV
+#endif // ifdef WITH_INETVEINS_AODV
 
 namespace inetveins {
 
@@ -70,12 +70,12 @@ std::string IPv4Route::info() const
     out << (gateway.isUnspecified() ? "DIRECT" : "REMOTE");
     out << " " << IRoute::sourceTypeName(sourceType);
 
-#ifdef WITH_AODV
+#ifdef WITH_INETVEINS_AODV
     if (dynamic_cast<AODVRouteData *>(protocolData)) {
         AODVRouteData *data = (AODVRouteData *)protocolData;
         out << data;
     }
-#endif // ifdef WITH_AODV
+#endif // ifdef WITH_INETVEINS_AODV
     return out.str();
 }
 
@@ -229,5 +229,5 @@ void IPv4MulticastRoute::changed(int fieldCode)
         rt->multicastRouteChanged(this, fieldCode);
 }
 
-} // namespace inet
+} // namespace inetveins
 

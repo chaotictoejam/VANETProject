@@ -15,10 +15,10 @@
 *                                                                         *
 ***************************************************************************/
 
-#ifndef __INET_RTP_H
-#define __INET_RTP_H
+#ifndef __INETVEINS_RTP_H
+#define __INETVEINS_RTP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/transportlayer/rtp/RTPInnerPacket.h"
@@ -211,7 +211,7 @@ class INETVEINS_API RTP : public cSimpleModule, public ILifecycle
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RTP_H
+#endif // ifndef __INETVEINS_RTP_H
 

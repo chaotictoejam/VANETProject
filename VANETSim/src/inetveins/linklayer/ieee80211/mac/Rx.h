@@ -17,8 +17,8 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_RX_H
-#define __INET_RX_H
+#ifndef __INETVEINS_RX_H
+#define __INETVEINS_RX_H
 
 #include "IRx.h"
 #include "inetveins/physicallayer/contract/packetlevel/IRadio.h"
@@ -72,7 +72,7 @@ class INETVEINS_API Rx : public cSimpleModule, public IRx
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

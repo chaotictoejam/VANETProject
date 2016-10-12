@@ -51,5 +51,5 @@ std::ostream& NarrowbandSignalAnalogModel::printToStream(std::ostream& stream, i
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

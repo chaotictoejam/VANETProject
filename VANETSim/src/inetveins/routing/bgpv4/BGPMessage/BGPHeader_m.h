@@ -16,7 +16,7 @@
 // cplusplus {{
 namespace inetveins {
 const int BGP_HEADER_OCTETS = 19;
-} // namespace inet
+} // namespace inetveins
 // }}
 
 

@@ -28,8 +28,8 @@
 
 #include <cassert>
 
-#include "inetveins/common/INETUtils.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSUtils.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/common/ModuleAccess.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 #include "inetveins/linklayer/contract/IMACProtocolControlInfo.h"
@@ -950,5 +950,5 @@ cObject *CSMA::setUpControlInfo(cMessage *const pMsg, const MACAddress& pSrcAddr
     return cCtrlInfo;
 }
 
-} // namespace inet
+} // namespace inetveins
 

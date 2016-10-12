@@ -146,5 +146,5 @@ W StateBasedEnergyConsumer::getPowerConsumption() const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

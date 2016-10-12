@@ -275,5 +275,5 @@ QuadTree::~QuadTree()
         delete lastPosition;
 }
 
-} // namespace inet
+} // namespace inetveins
 

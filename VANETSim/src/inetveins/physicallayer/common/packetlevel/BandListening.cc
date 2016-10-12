@@ -39,5 +39,5 @@ std::ostream& BandListening::printToStream(std::ostream& stream, int level) cons
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

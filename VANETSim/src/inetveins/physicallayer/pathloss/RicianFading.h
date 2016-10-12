@@ -15,8 +15,8 @@
 *              in the top level directory
 ***************************************************************************/
 
-#ifndef __INET_RICIANFADING_H
-#define __INET_RICIANFADING_H
+#ifndef __INETVEINS_RICIANFADING_H
+#define __INETVEINS_RICIANFADING_H
 
 #include "inetveins/physicallayer/pathloss/FreeSpacePathLoss.h"
 
@@ -45,7 +45,7 @@ class INETVEINS_API RicianFading : public FreeSpacePathLoss
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RICIANFADING_H
+#endif // ifndef __INETVEINS_RICIANFADING_H
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ENERGYSINKBASE_H
-#define __INET_ENERGYSINKBASE_H
+#ifndef __INETVEINS_ENERGYSINKBASE_H
+#define __INETVEINS_ENERGYSINKBASE_H
 
 #include "inetveins/power/contract/IEnergySink.h"
 
@@ -86,7 +86,7 @@ class INETVEINS_API EnergySinkBase : public virtual IEnergySink
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ENERGYSINKBASE_H
+#endif // ifndef __INETVEINS_ENERGYSINKBASE_H
 

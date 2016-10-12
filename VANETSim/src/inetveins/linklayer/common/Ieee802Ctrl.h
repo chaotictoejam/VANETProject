@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE802CTRL_H
-#define __INET_IEEE802CTRL_H
+#ifndef __INETVEINS_IEEE802CTRL_H
+#define __INETVEINS_IEEE802CTRL_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/linklayer/contract/IMACProtocolControlInfo.h"
 #include "inetveins/linklayer/common/Ieee802Ctrl_m.h"
 
@@ -45,7 +45,7 @@ class INETVEINS_API Ieee802Ctrl : public Ieee802Ctrl_Base, public IMACProtocolCo
     virtual void setInterfaceId(int interfaceId) override { Ieee802Ctrl_Base::setInterfaceId(interfaceId); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE802CTRL_H
+#endif // ifndef __INETVEINS_IEEE802CTRL_H
 

@@ -216,5 +216,5 @@ cPacket *ICMPv6Serializer::deserialize(const Buffer &b, Context& context)
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 

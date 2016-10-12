@@ -88,5 +88,5 @@ const simtime_t Arrival::getEndTime(IRadioSignal::SignalPart part) const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

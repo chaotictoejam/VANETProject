@@ -205,5 +205,5 @@ void TelnetApp::socketFailure(int connId, void *ptr, int code)
     checkedScheduleAt(simTime() + (simtime_t)par("reconnectInterval"), timeoutMsg);
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,13 +15,13 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BONNMOTIONFILECACHE_H
-#define __INET_BONNMOTIONFILECACHE_H
+#ifndef __INETVEINS_BONNMOTIONFILECACHE_H
+#define __INETVEINS_BONNMOTIONFILECACHE_H
 
 #include <list>
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -80,7 +80,7 @@ class INETVEINS_API BonnMotionFileCache
     virtual const BonnMotionFile *getFile(const char *filename);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BONNMOTIONFILECACHE_H
+#endif // ifndef __INETVEINS_BONNMOTIONFILECACHE_H
 

@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/ReassemblyBuffer.h"
 
@@ -115,5 +115,5 @@ void ReassemblyBuffer::mergeFragments()
     } while (oncemore);
 }
 
-} // namespace inet
+} // namespace inetveins
 

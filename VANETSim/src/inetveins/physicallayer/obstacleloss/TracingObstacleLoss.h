@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TRACINGOBSTACLELOSS_H
-#define __INET_TRACINGOBSTACLELOSS_H
+#ifndef __INETVEINS_TRACINGOBSTACLELOSS_H
+#define __INETVEINS_TRACINGOBSTACLELOSS_H
 
 #include "inetveins/common/IVisitor.h"
 #include "inetveins/common/figures/TrailFigure.h"
@@ -109,7 +109,7 @@ class INETVEINS_API TracingObstacleLoss : public cModule, public IObstacleLoss
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TRACINGOBSTACLELOSS_H
+#endif // ifndef __INETVEINS_TRACINGOBSTACLELOSS_H
 

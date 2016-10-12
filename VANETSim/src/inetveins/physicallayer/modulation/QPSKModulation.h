@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_QPSKMODULATION_H
-#define __INET_QPSKMODULATION_H
+#ifndef __INETVEINS_QPSKMODULATION_H
+#define __INETVEINS_QPSKMODULATION_H
 
 #include "inetveins/physicallayer/base/packetlevel/MQAMModulationBase.h"
 
@@ -45,7 +45,7 @@ class INETVEINS_API QPSKModulation : public MQAMModulationBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_QPSKMODULATION_H
+#endif // ifndef __INETVEINS_QPSKMODULATION_H
 

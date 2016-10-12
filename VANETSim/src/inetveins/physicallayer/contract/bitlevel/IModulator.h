@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IMODULATOR_H
-#define __INET_IMODULATOR_H
+#ifndef __INETVEINS_IMODULATOR_H
+#define __INETVEINS_IMODULATOR_H
 
 #include "inetveins/physicallayer/contract/bitlevel/ISignalBitModel.h"
 #include "inetveins/physicallayer/contract/bitlevel/ISignalSymbolModel.h"
@@ -34,7 +34,7 @@ class INETVEINS_API IModulator : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IMODULATOR_H
+#endif // ifndef __INETVEINS_IMODULATOR_H
 

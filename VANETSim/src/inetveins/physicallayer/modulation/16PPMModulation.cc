@@ -30,5 +30,5 @@ _16PPMModulation::_16PPMModulation() :
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

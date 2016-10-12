@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ITRANSMISSION_H
-#define __INET_ITRANSMISSION_H
+#ifndef __INETVEINS_ITRANSMISSION_H
+#define __INETVEINS_ITRANSMISSION_H
 
 #include "inetveins/common/geometry/common/Coord.h"
 #include "inetveins/common/geometry/common/EulerAngles.h"
@@ -143,7 +143,7 @@ class INETVEINS_API ITransmission : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ITRANSMISSION_H
+#endif // ifndef __INETVEINS_ITRANSMISSION_H
 

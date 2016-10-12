@@ -34,8 +34,8 @@
  * $FreeBSD: src/sys/netinet/igmp.h,v 1.12 2004/08/16 18:32:07 rwatson Exp $
  */
 
-#ifndef __INET_IGMP_H
-#define __INET_IGMP_H
+#ifndef __INETVEINS_IGMP_H
+#define __INETVEINS_IGMP_H
 
 namespace inetveins {
 
@@ -96,7 +96,7 @@ struct igmp
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif /* _NETINET_IGMP_H_ */
+#endif /* _NETINETVEINS_IGMP_H_ */
 

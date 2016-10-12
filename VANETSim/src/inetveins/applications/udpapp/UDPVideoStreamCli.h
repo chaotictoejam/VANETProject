@@ -17,10 +17,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_UDPVIDEOSTREAMCLI_H
-#define __INET_UDPVIDEOSTREAMCLI_H
+#ifndef __INETVEINS_UDPVIDEOSTREAMCLI_H
+#define __INETVEINS_UDPVIDEOSTREAMCLI_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/applications/base/ApplicationBase.h"
 #include "inetveins/transportlayer/contract/udp/UDPSocket.h"
@@ -63,7 +63,7 @@ class INETVEINS_API UDPVideoStreamCli : public ApplicationBase
     virtual ~UDPVideoStreamCli() { cancelAndDelete(selfMsg); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_UDPVIDEOSTREAMCLI_H
+#endif // ifndef __INETVEINS_UDPVIDEOSTREAMCLI_H
 

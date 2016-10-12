@@ -5,8 +5,8 @@
  *      Author: Damien Piguet
  */
 
-#ifndef __INET_PROBABILISTICBROADCAST_H
-#define __INET_PROBABILISTICBROADCAST_H
+#ifndef __INETVEINS_PROBABILISTICBROADCAST_H
+#define __INETVEINS_PROBABILISTICBROADCAST_H
 
 #include <set>
 #include <map>
@@ -232,7 +232,7 @@ class INETVEINS_API ProbabilisticBroadcast : public NetworkProtocolBase, public 
     L3Address myNetwAddr;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PROBABILISTICBROADCAST_H
+#endif // ifndef __INETVEINS_PROBABILISTICBROADCAST_H
 

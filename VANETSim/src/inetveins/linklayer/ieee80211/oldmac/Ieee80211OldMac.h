@@ -19,15 +19,15 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_IEEE80211OLDMAC_H
-#define __INET_IEEE80211OLDMAC_H
+#ifndef __INETVEINS_IEEE80211OLDMAC_H
+#define __INETVEINS_IEEE80211OLDMAC_H
 
 // un-comment this if you do not want to log state machine transitions
 //#define FSM_DEBUG
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/FSMA.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/physicallayer/contract/packetlevel/IRadio.h"
 #include "inetveins/physicallayer/ieee80211/mode/IIeee80211Mode.h"
@@ -685,7 +685,7 @@ class INETVEINS_API Ieee80211OldMac : public MACProtocolBase
 
 } // namespace ieee80211
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE80211OLDMAC_H
+#endif // ifndef __INETVEINS_IEEE80211OLDMAC_H
 

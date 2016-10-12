@@ -22,7 +22,7 @@ cplusplus {{
 
 namespace inetveins {
 const int BGP_EMPTY_UPDATE_OCTETS = 4; // UnfeasibleRoutesLength (2) + TotalPathAttributeLength (2)
-} // namespace inet
+} // namespace inetveins
 
 }}
 

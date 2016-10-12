@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SIGNALSAMPLEMODEL_H
-#define __INET_SIGNALSAMPLEMODEL_H
+#ifndef __INETVEINS_SIGNALSAMPLEMODEL_H
+#define __INETVEINS_SIGNALSAMPLEMODEL_H
 
 #include "inetveins/physicallayer/contract/bitlevel/ISignalSampleModel.h"
 
@@ -60,7 +60,7 @@ class INETVEINS_API ReceptionSampleModel : public SignalSampleModel, public virt
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SIGNALSAMPLEMODEL_H
+#endif // ifndef __INETVEINS_SIGNALSAMPLEMODEL_H
 

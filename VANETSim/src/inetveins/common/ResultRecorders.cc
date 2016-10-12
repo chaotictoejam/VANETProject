@@ -70,5 +70,5 @@ void GroupCountRecorder::finish(cResultFilter *prev) {
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

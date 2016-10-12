@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_RECEIVERBASE_H
-#define __INET_RECEIVERBASE_H
+#ifndef __INETVEINS_RECEIVERBASE_H
+#define __INETVEINS_RECEIVERBASE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IReceiver.h"
 #include "inetveins/physicallayer/contract/packetlevel/IReception.h"
@@ -57,7 +57,7 @@ class INETVEINS_API ReceiverBase : public cModule, public virtual IReceiver
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RECEIVERBASE_H
+#endif // ifndef __INETVEINS_RECEIVERBASE_H
 

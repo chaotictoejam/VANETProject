@@ -13,8 +13,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef __INET_ETHERNETSERIALIZER_H
-#define __INET_ETHERNETSERIALIZER_H
+#ifndef __INETVEINS_ETHERNETSERIALIZER_H
+#define __INETVEINS_ETHERNETSERIALIZER_H
 
 #include "inetveins/common/serializer/headers/defs.h"
 #include "inetveins/common/serializer/SerializerBase.h"
@@ -46,6 +46,6 @@ class INETVEINS_API EthernetSerializer : public SerializerBase
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
 #endif /* ETHERNETSERIALIZER_H_ */

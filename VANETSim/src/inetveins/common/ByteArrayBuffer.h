@@ -12,8 +12,8 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_BYTEARRAYBUFFER_H
-#define __INET_BYTEARRAYBUFFER_H
+#ifndef __INETVEINS_BYTEARRAYBUFFER_H
+#define __INETVEINS_BYTEARRAYBUFFER_H
 
 #include "inetveins/common/ByteArray.h"
 
@@ -79,7 +79,7 @@ class INETVEINS_API ByteArrayBuffer : public cObject
     virtual unsigned int drop(unsigned int lengthP);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BYTEARRAYBUFFER_H
+#endif // ifndef __INETVEINS_BYTEARRAYBUFFER_H
 

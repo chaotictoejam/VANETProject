@@ -17,8 +17,8 @@
 //// Author: Levente Meszaros <levy@omnetpp.org>, Andras Varga (andras@omnetpp.org)
 ////
 //
-//#ifndef __INET_INTERFACEOPERATIONS_H_
-//#define __INET_INTERFACEOPERATIONS_H_
+//#ifndef __INETVEINS_INTERFACEOPERATIONS_H_
+//#define __INETVEINS_INTERFACEOPERATIONS_H_
 //
 //#include "inetveins/common/lifecycle/LifecycleOperation.h"
 //

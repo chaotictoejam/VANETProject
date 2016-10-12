@@ -15,8 +15,8 @@
  * description: this AnalogueModel models free-space pathloss
  ***************************************************************************/
 
-#ifndef __INET_UWBIRSTOCHASTICPATHLOSS_H
-#define __INET_UWBIRSTOCHASTICPATHLOSS_H
+#ifndef __INETVEINS_UWBIRSTOCHASTICPATHLOSS_H
+#define __INETVEINS_UWBIRSTOCHASTICPATHLOSS_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IPathLoss.h"
 
@@ -84,7 +84,7 @@ class INETVEINS_API UWBIRStochasticPathLoss : public cModule, public IPathLoss
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_UWBIRSTOCHASTICPATHLOSS_H
+#endif // ifndef __INETVEINS_UWBIRSTOCHASTICPATHLOSS_H
 

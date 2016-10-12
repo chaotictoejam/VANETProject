@@ -14,10 +14,10 @@
 // Author: Andras Varga (andras@omnetpp.org)
 //
 
-#ifndef __INET_LIFECYCLEOPERATION_H
-#define __INET_LIFECYCLEOPERATION_H
+#ifndef __INETVEINS_LIFECYCLEOPERATION_H
+#define __INETVEINS_LIFECYCLEOPERATION_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -86,7 +86,7 @@ class INETVEINS_API LifecycleOperation : public cObject, public noncopyable
     int getCurrentStage() const { return currentStage; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LIFECYCLEOPERATION_H
+#endif // ifndef __INETVEINS_LIFECYCLEOPERATION_H
 

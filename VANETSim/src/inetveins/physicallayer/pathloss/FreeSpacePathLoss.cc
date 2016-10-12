@@ -69,5 +69,5 @@ m FreeSpacePathLoss::computeRange(mps propagationSpeed, Hz frequency, double los
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

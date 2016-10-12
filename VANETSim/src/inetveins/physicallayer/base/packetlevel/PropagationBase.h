@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PROPAGATIONBASE_H
-#define __INET_PROPAGATIONBASE_H
+#ifndef __INETVEINS_PROPAGATIONBASE_H
+#define __INETVEINS_PROPAGATIONBASE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IPropagation.h"
 
@@ -43,7 +43,7 @@ class INETVEINS_API PropagationBase : public cModule, public IPropagation
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PROPAGATIONBASE_H
+#endif // ifndef __INETVEINS_PROPAGATIONBASE_H
 

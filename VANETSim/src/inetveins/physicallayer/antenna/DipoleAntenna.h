@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DIPOLEANTENNA_H
-#define __INET_DIPOLEANTENNA_H
+#ifndef __INETVEINS_DIPOLEANTENNA_H
+#define __INETVEINS_DIPOLEANTENNA_H
 
 #include "inetveins/physicallayer/base/packetlevel/AntennaBase.h"
 
@@ -43,7 +43,7 @@ class INETVEINS_API DipoleAntenna : public AntennaBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DIPOLEANTENNA_H
+#endif // ifndef __INETVEINS_DIPOLEANTENNA_H
 

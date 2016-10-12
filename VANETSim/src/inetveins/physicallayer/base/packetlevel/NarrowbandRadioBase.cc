@@ -77,5 +77,5 @@ void NarrowbandRadioBase::setBandwidth(Hz newBandwidth)
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

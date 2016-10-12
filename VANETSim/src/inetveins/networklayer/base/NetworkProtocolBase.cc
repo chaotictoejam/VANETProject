@@ -81,5 +81,5 @@ bool NetworkProtocolBase::isLowerMessage(cMessage *message)
     return message->getArrivalGate()->isName("lowerLayerIn");
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -19,10 +19,10 @@
  * part of:     framework implementation developed by tkn
  *************************************************************************/
 
-#ifndef __INET_IMOBILITY_H
-#define __INET_IMOBILITY_H
+#ifndef __INETVEINS_IMOBILITY_H
+#define __INETVEINS_IMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/geometry/common/Coord.h"
 #include "inetveins/common/geometry/common/EulerAngles.h"
@@ -69,7 +69,7 @@ class INETVEINS_API IMobility
     virtual Coord getConstraintAreaMin() const = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IMOBILITY_H
+#endif // ifndef __INETVEINS_IMOBILITY_H
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DIMENSIONALTRANSMITTERBASE_H
-#define __INET_DIMENSIONALTRANSMITTERBASE_H
+#ifndef __INETVEINS_DIMENSIONALTRANSMITTERBASE_H
+#define __INETVEINS_DIMENSIONALTRANSMITTERBASE_H
 
 #include "inetveins/common/mapping/MappingBase.h"
 #include "inetveins/physicallayer/base/packetlevel/PhysicalLayerDefs.h"
@@ -75,7 +75,7 @@ class INETVEINS_API DimensionalTransmitterBase : public virtual IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DIMENSIONALTRANSMITTERBASE_H
+#endif // ifndef __INETVEINS_DIMENSIONALTRANSMITTERBASE_H
 

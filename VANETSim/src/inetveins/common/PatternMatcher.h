@@ -19,13 +19,13 @@
 // NOTE: This file is a near copy of the similar file in OMNeT++ 4.2, but under LGPL.
 // Added here until the same functionality becomes available in OMNeT++ as public API.
 
-#ifndef __INET_PATTERNMATCHER_H
-#define __INET_PATTERNMATCHER_H
+#ifndef __INETVEINS_PATTERNMATCHER_H
+#define __INETVEINS_PATTERNMATCHER_H
 
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -184,7 +184,7 @@ class INETVEINS_API PatternMatcher
     static bool containsWildcards(const char *pattern);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PATTERNMATCHER_H
+#endif // ifndef __INETVEINS_PATTERNMATCHER_H
 

@@ -1459,5 +1459,5 @@ uint32 SCTPAssociation::getAllTransQ()
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

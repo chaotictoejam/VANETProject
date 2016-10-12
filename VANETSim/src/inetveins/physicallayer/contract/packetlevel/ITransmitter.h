@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ITRANSMITTER_H
-#define __INET_ITRANSMITTER_H
+#ifndef __INETVEINS_ITRANSMITTER_H
+#define __INETVEINS_ITRANSMITTER_H
 
 #include "inetveins/physicallayer/contract/packetlevel/ITransmission.h"
 
@@ -59,7 +59,7 @@ class INETVEINS_API ITransmitter : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ITRANSMITTER_H
+#endif // ifndef __INETVEINS_ITRANSMITTER_H
 

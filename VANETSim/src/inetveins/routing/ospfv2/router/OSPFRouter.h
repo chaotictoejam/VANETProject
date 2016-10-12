@@ -15,13 +15,13 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_OSPFROUTER_H
-#define __INET_OSPFROUTER_H
+#ifndef __INETVEINS_OSPFROUTER_H
+#define __INETVEINS_OSPFROUTER_H
 
 #include <map>
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/routing/ospfv2/router/LSA.h"
 #include "inetveins/routing/ospfv2/messagehandler/MessageHandler.h"
 #include "inetveins/routing/ospfv2/router/OSPFArea.h"
@@ -374,7 +374,7 @@ class INETVEINS_API Router
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_OSPFROUTER_H
+#endif // ifndef __INETVEINS_OSPFROUTER_H
 

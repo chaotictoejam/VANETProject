@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ICOMMUNICATIONCACHE_H
-#define __INET_ICOMMUNICATIONCACHE_H
+#ifndef __INETVEINS_ICOMMUNICATIONCACHE_H
+#define __INETVEINS_ICOMMUNICATIONCACHE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/ISNIR.h"
 #include "inetveins/physicallayer/contract/packetlevel/IArrival.h"
@@ -114,7 +114,7 @@ class INETVEINS_API ICommunicationCache : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ICOMMUNICATIONCACHE_H
+#endif // ifndef __INETVEINS_ICOMMUNICATIONCACHE_H
 

@@ -17,7 +17,7 @@
 
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
 
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 namespace inetveins {
 
@@ -47,5 +47,5 @@ int IPv4Datagram::calculateHeaderByteLength() const
     return length;
 }
 
-} // namespace inet
+} // namespace inetveins
 

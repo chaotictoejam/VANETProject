@@ -44,5 +44,5 @@ double BPSKModulation::calculateBER(double snir, Hz bandwidth, bps bitrate) cons
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

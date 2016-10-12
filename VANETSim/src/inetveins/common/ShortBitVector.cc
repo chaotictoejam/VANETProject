@@ -83,5 +83,5 @@ std::string ShortBitVector::toString() const
     return str;
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SIMPLELINKLAYERCONTROLINFO_H
-#define __INET_SIMPLELINKLAYERCONTROLINFO_H
+#ifndef __INETVEINS_SIMPLELINKLAYERCONTROLINFO_H
+#define __INETVEINS_SIMPLELINKLAYERCONTROLINFO_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/linklayer/contract/IMACProtocolControlInfo.h"
 #include "inetveins/linklayer/common/SimpleLinkLayerControlInfo_m.h"
 
@@ -45,7 +45,7 @@ class INETVEINS_API SimpleLinkLayerControlInfo : public SimpleLinkLayerControlIn
     virtual void setInterfaceId(int interfaceId) override { SimpleLinkLayerControlInfo_Base::setInterfaceId(interfaceId); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SIMPLELINKLAYERCONTROLINFO_H
+#endif // ifndef __INETVEINS_SIMPLELINKLAYERCONTROLINFO_H
 

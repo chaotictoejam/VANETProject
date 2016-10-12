@@ -23,5 +23,5 @@ namespace power {
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 

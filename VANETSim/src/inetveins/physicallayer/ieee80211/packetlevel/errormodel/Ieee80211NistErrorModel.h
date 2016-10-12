@@ -18,8 +18,8 @@
 // Author: Gary Pei <guangyu.pei@boeing.com>
 //
 
-#ifndef __INET_IEEE80211NISTERRORMODEL_H
-#define __INET_IEEE80211NISTERRORMODEL_H
+#ifndef __INETVEINS_IEEE80211NISTERRORMODEL_H
+#define __INETVEINS_IEEE80211NISTERRORMODEL_H
 
 #include "inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211ErrorModelBase.h"
 #include "inetveins/physicallayer/ieee80211/packetlevel/errormodel/dsss-error-rate-model.h"
@@ -61,7 +61,7 @@ class INETVEINS_API Ieee80211NistErrorModel : public Ieee80211ErrorModelBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NISTERRORRATEMODEL_H
+#endif // ifndef __INETVEINS_NISTERRORRATEMODEL_H
 

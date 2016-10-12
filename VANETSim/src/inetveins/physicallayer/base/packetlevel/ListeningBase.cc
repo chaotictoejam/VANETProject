@@ -44,5 +44,5 @@ std::ostream& ListeningBase::printToStream(std::ostream& stream, int level) cons
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

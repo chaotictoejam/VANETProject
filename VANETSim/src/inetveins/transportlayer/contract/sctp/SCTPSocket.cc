@@ -16,7 +16,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/contract/sctp/SCTPSocket.h"
 #include "inetveins/transportlayer/contract/sctp/SCTPCommand_m.h"
@@ -496,4 +496,4 @@ void SCTPSocket::setStreamPriority(uint32 stream, uint32 priority)
     sendToSCTP(msg);
 }
 
-} // namespace inet
+} // namespace inetveins

@@ -34,12 +34,12 @@
 
 /** \author Jia Pan */
 
-#ifndef __INET_INTERVALTREE_H
-#define __INET_INTERVALTREE_H
+#ifndef __INETVEINS_INTERVALTREE_H
+#define __INETVEINS_INTERVALTREE_H
 
 #include <deque>
 #include <limits>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -184,7 +184,7 @@ class INETVEINS_API IntervalTree
     unsigned int recursion_node_stack_top = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INTERVAL_TREE_H
+#endif // ifndef __INETVEINS_INTERVAL_TREE_H
 

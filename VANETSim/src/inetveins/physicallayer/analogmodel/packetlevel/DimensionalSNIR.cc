@@ -79,5 +79,5 @@ double DimensionalSNIR::getMin() const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

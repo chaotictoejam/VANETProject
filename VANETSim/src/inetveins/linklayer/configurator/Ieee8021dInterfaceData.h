@@ -17,10 +17,10 @@
 // Author: Benjamin Martin Seregi
 //
 
-#ifndef __INET_IEEE8021DINTERFACEDATA_H
-#define __INET_IEEE8021DINTERFACEDATA_H
+#ifndef __INETVEINS_IEEE8021DINTERFACEDATA_H
+#define __INETVEINS_IEEE8021DINTERFACEDATA_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 #include "inetveins/linklayer/common/MACAddress.h"
 
@@ -180,7 +180,7 @@ class INETVEINS_API Ieee8021dInterfaceData : public InterfaceProtocolData
     void setNextUpgrade(simtime_t nextUpgrade) { portData.nextUpgrade = nextUpgrade; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE8021DINTERFACEDATA_H
+#endif // ifndef __INETVEINS_IEEE8021DINTERFACEDATA_H
 

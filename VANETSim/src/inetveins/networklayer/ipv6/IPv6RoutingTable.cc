@@ -18,7 +18,7 @@
 
 #include <algorithm>
 
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 #include "inetveins/networklayer/ipv6/IPv6RoutingTable.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
@@ -73,7 +73,7 @@ void IPv6RoutingTable::initialize(int stage)
 
         ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
         // the following MIPv6 related flags will be overridden by the MIPv6 module (if existing)
         ishome_agent = false;
         WATCH(ishome_agent);
@@ -82,7 +82,7 @@ void IPv6RoutingTable::initialize(int stage)
         WATCH(ismobile_node);
 
         mipv6Support = false;    // 4.9.07 - CB
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
         cModule *host = getContainingNode(this);
 
@@ -266,13 +266,13 @@ void IPv6RoutingTable::assignRequiredNodeAddresses(InterfaceEntry *ie)
     }
     //o  Its required Link-Local Address for each interface.
 
-#ifndef WITH_xMIPv6
+#ifndef WITH_INETVEINS_xMIPv6
     //IPv6Address linkLocalAddr = IPv6Address().formLinkLocalAddress(ie->getInterfaceToken());
     //ie->ipv6Data()->assignAddress(linkLocalAddr, true, 0, 0);
-#else /* WITH_xMIPv6 */
+#else /* WITH_INETVEINS_xMIPv6 */
     IPv6Address linkLocalAddr = IPv6Address().formLinkLocalAddress(ie->getInterfaceToken());
     ie->ipv6Data()->assignAddress(linkLocalAddr, true, SIMTIME_ZERO, SIMTIME_ZERO);
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     /*o  Any additional Unicast and Anycast Addresses that have been configured
        for the node's interfaces (manually or automatically).*/
@@ -664,9 +664,9 @@ void IPv6RoutingTable::addDefaultRoute(const IPv6Address& nextHop, unsigned int 
     route->setMetric(10);    //FIXME:should be filled from interface metric
     route->setAdminDist(IPv6Route::dStatic);
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     route->setExpiryTime(routerLifetime);    // lifetime useful after transitioning to new AR // 27.07.08 - CB
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     // then add it
     addRoute(route);
@@ -775,7 +775,7 @@ IPv6Route *IPv6RoutingTable::getRoute(int i) const
     return routeList[i];
 }
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
 //#####Added by Zarrar Yousaf##################################################################
 
 const IPv6Address& IPv6RoutingTable::getHomeAddress()
@@ -869,7 +869,7 @@ bool IPv6RoutingTable::isOnLinkAddress(const IPv6Address& address)
     return false;
 }
 
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
 void IPv6RoutingTable::deleteInterfaceRoutes(const InterfaceEntry *entry)
 {
@@ -924,5 +924,5 @@ void IPv6RoutingTable::printRoutingTable() const
         EV_INFO << (elem)->getInterface()->getFullPath() << " -> " << (elem)->getDestinationAsGeneric().str() << " as " << (elem)->info() << endl;
 }
 
-} // namespace inet
+} // namespace inetveins
 

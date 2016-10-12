@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_NETWORKDATAGRAMMULTIPLEXER_H
-#define __INET_NETWORKDATAGRAMMULTIPLEXER_H
+#ifndef __INETVEINS_NETWORKDATAGRAMMULTIPLEXER_H
+#define __INETVEINS_NETWORKDATAGRAMMULTIPLEXER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -38,7 +38,7 @@ class INETVEINS_API NetworkDatagramMultiplexer : public cSimpleModule
     int getProtocolIndex(cMessage *message);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NETWORKDATAGRAMMULTIPLEXER_H
+#endif // ifndef __INETVEINS_NETWORKDATAGRAMMULTIPLEXER_H
 

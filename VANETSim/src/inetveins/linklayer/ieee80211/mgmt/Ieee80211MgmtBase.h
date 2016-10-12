@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211MGMTBASE_H
-#define __INET_IEEE80211MGMTBASE_H
+#ifndef __INETVEINS_IEEE80211MGMTBASE_H
+#define __INETVEINS_IEEE80211MGMTBASE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/linklayer/common/MACAddress.h"
 #include "inetveins/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
@@ -103,7 +103,7 @@ class INETVEINS_API Ieee80211MgmtBase : public cSimpleModule, public ILifecycle
 
 } // namespace ieee80211
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE80211MGMTBASE_H
+#endif // ifndef __INETVEINS_IEEE80211MGMTBASE_H
 

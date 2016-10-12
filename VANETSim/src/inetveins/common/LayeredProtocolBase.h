@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_LAYEREDPROTOCOLBASE_H
-#define __INET_LAYEREDPROTOCOLBASE_H
+#ifndef __INETVEINS_LAYEREDPROTOCOLBASE_H
+#define __INETVEINS_LAYEREDPROTOCOLBASE_H
 
 #include "inetveins/common/lifecycle/OperationalBase.h"
 
@@ -47,7 +47,7 @@ class INETVEINS_API LayeredProtocolBase : public OperationalBase
     virtual bool isLowerMessage(cMessage *message) = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LAYEREDPROTOCOLBASE_H
+#endif // ifndef __INETVEINS_LAYEREDPROTOCOLBASE_H
 

@@ -21,5 +21,5 @@ namespace inetveins {
 
 ModuleIdAddressType ModuleIdAddressType::INSTANCE;
 
-} // namespace inet
+} // namespace inetveins
 

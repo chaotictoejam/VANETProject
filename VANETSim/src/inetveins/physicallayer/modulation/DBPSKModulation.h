@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DBPSKMODULATION_H
-#define __INET_DBPSKMODULATION_H
+#ifndef __INETVEINS_DBPSKMODULATION_H
+#define __INETVEINS_DBPSKMODULATION_H
 
 #include "inetveins/physicallayer/base/packetlevel/DPSKModulationBase.h"
 
@@ -37,7 +37,7 @@ class INETVEINS_API DBPSKModulation : public DPSKModulationBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DBPSKMODULATION_H
+#endif // ifndef __INETVEINS_DBPSKMODULATION_H
 

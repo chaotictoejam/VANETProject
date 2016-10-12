@@ -86,5 +86,5 @@ void StaticConcentricMobility::setInitialPosition()
     recordScalar("z", lastPosition.z);
 }
 
-} // namespace inet
+} // namespace inetveins
 

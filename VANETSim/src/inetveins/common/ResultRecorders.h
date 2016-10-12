@@ -15,11 +15,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_RESULTRECORDERS_H
-#define __INET_RESULTRECORDERS_H
+#ifndef __INETVEINS_RESULTRECORDERS_H
+#define __INETVEINS_RESULTRECORDERS_H
 
 #include <string>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -45,6 +45,6 @@ class INETVEINS_API GroupCountRecorder : public cResultRecorder
         virtual void finish(cResultFilter *prev) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif

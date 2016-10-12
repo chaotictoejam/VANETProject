@@ -174,7 +174,7 @@ int32 SCTPSerializer::serialize(const SCTPMessage *msg, unsigned char *buf, uint
                 }
                 int32 numaddr = initChunk->getAddressesArraySize();
                 for (int32 i = 0; i < numaddr; i++) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
                     if (initChunk->getAddresses(i).getType() == L3Address::IPv4) {
                         struct init_ipv4_address_parameter *ipv4addr = (struct init_ipv4_address_parameter *)(((unsigned char *)ic) + size_init_chunk + parPtr);
                         ipv4addr->type = htons(INIT_PARAM_IPV4);
@@ -182,8 +182,8 @@ int32 SCTPSerializer::serialize(const SCTPMessage *msg, unsigned char *buf, uint
                         ipv4addr->address = htonl(initChunk->getAddresses(i).toIPv4().getInt());
                         parPtr += sizeof(struct init_ipv4_address_parameter);
                     }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
                     if (initChunk->getAddresses(i).getType() == L3Address::IPv6) {
                         struct init_ipv6_address_parameter *ipv6addr = (struct init_ipv6_address_parameter *)(((unsigned char *)ic) + size_init_chunk + parPtr);
                         ipv6addr->type = htons(INIT_PARAM_IPV6);
@@ -193,7 +193,7 @@ int32 SCTPSerializer::serialize(const SCTPMessage *msg, unsigned char *buf, uint
                         }
                         parPtr += sizeof(struct init_ipv6_address_parameter);
                     }
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
                 }
                 int chunkcount = initChunk->getSepChunksArraySize();
                 if (chunkcount > 0) {
@@ -301,7 +301,7 @@ int32 SCTPSerializer::serialize(const SCTPMessage *msg, unsigned char *buf, uint
 
                 int32 numaddr = initAckChunk->getAddressesArraySize();
                 for (int32 i = 0; i < numaddr; i++) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
                     if (initAckChunk->getAddresses(i).getType() == L3Address::IPv4) {
                         struct init_ipv4_address_parameter *ipv4addr = (struct init_ipv4_address_parameter *)(((unsigned char *)iac) + size_init_chunk + parPtr);
                         ipv4addr->type = htons(INIT_PARAM_IPV4);
@@ -309,8 +309,8 @@ int32 SCTPSerializer::serialize(const SCTPMessage *msg, unsigned char *buf, uint
                         ipv4addr->address = htonl(initAckChunk->getAddresses(i).toIPv4().getInt());
                         parPtr += sizeof(struct init_ipv4_address_parameter);
                     }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
                     if (initAckChunk->getAddresses(i).getType() == L3Address::IPv6) {
                         struct init_ipv6_address_parameter *ipv6addr = (struct init_ipv6_address_parameter *)(((unsigned char *)iac) + size_init_chunk + parPtr);
                         ipv6addr->type = htons(INIT_PARAM_IPV6);
@@ -320,7 +320,7 @@ int32 SCTPSerializer::serialize(const SCTPMessage *msg, unsigned char *buf, uint
                         }
                         parPtr += sizeof(struct init_ipv6_address_parameter);
                     }
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
                 }
                 int chunkcount = initAckChunk->getSepChunksArraySize();
                 if (chunkcount > 0) {
@@ -520,7 +520,7 @@ int32 SCTPSerializer::serialize(const SCTPMessage *msg, unsigned char *buf, uint
                     L3Address addr = heartbeatChunk->getRemoteAddr();
                     simtime_t time = heartbeatChunk->getTimeField();
                     int32 infolen = 0;
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
                     if (addr.getType() == L3Address::IPv4) {
                         infolen = sizeof(addr.toIPv4().getInt()) + sizeof(uint32);
                         hbi->type = htons(1);    // mandatory
@@ -531,8 +531,8 @@ int32 SCTPSerializer::serialize(const SCTPMessage *msg, unsigned char *buf, uint
                         ipv4addr->address = htonl(addr.toIPv4().getInt());
                         HBI_ADDR(hbi).v4addr = *ipv4addr;
                     }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
                     if (addr.getType() == L3Address::IPv6) {
                         infolen = 20 + sizeof(uint32);
                         hbi->type = htons(1);    // mandatory
@@ -545,7 +545,7 @@ int32 SCTPSerializer::serialize(const SCTPMessage *msg, unsigned char *buf, uint
                         }
                         HBI_ADDR(hbi).v6addr = *ipv6addr;
                     }
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
                     ASSERT(infolen != 0);
                     HBI_TIME(hbi) = htonl((uint32)time.dbl());
                     hbc->length = htons(sizeof(struct heartbeat_chunk) + infolen + 4);
@@ -578,7 +578,7 @@ int32 SCTPSerializer::serialize(const SCTPMessage *msg, unsigned char *buf, uint
                         L3Address addr = heartbeatAckChunk->getRemoteAddr();
                         simtime_t time = heartbeatAckChunk->getTimeField();
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
                         if (addr.getType() == L3Address::IPv4) {
                             infolen = sizeof(addr.toIPv4().getInt()) + sizeof(uint32);
                             hbi->type = htons(1);    // mandatory
@@ -589,8 +589,8 @@ int32 SCTPSerializer::serialize(const SCTPMessage *msg, unsigned char *buf, uint
                             ipv4addr->address = htonl(addr.toIPv4().getInt());
                             HBI_ADDR(hbi).v4addr = *ipv4addr;
                         }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
                         if (addr.getType() == L3Address::IPv6) {
                             infolen = 20 + sizeof(uint32);
                             hbi->type = htons(1);    // mandatory
@@ -603,7 +603,7 @@ int32 SCTPSerializer::serialize(const SCTPMessage *msg, unsigned char *buf, uint
                             }
                             HBI_ADDR(hbi).v6addr = *ipv6addr;
                         }
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
                         HBI_TIME(hbi) = htonl((uint32)time.dbl());
                     }
                     hbac->length = htons(sizeof(struct heartbeat_ack_chunk) + infolen + 4);
@@ -2198,5 +2198,5 @@ void SCTPSerializer::calculateSharedKey()
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_LAYEREDSCALARANALOGMODEL_H
-#define __INET_LAYEREDSCALARANALOGMODEL_H
+#ifndef __INETVEINS_LAYEREDSCALARANALOGMODEL_H
+#define __INETVEINS_LAYEREDSCALARANALOGMODEL_H
 
 #include "inetveins/physicallayer/base/packetlevel/ScalarAnalogModelBase.h"
 #include "inetveins/physicallayer/analogmodel/bitlevel/ScalarSignalAnalogModel.h"
@@ -36,7 +36,7 @@ class INETVEINS_API LayeredScalarAnalogModel : public ScalarAnalogModelBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LAYEREDSCALARANALOGMODEL_H
+#endif // ifndef __INETVEINS_LAYEREDSCALARANALOGMODEL_H
 

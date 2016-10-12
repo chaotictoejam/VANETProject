@@ -167,5 +167,5 @@ void TCPGenericSrvApp::finish()
     EV_INFO << getFullPath() << ": received " << bytesRcvd << " bytes in " << msgsRcvd << " packets\n";
 }
 
-} // namespace inet
+} // namespace inetveins
 

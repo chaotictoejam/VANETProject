@@ -16,12 +16,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTPSENDSTREAM_H
-#define __INET_SCTPSENDSTREAM_H
+#ifndef __INETVEINS_SCTPSENDSTREAM_H
+#define __INETVEINS_SCTPSENDSTREAM_H
 
 #include <list>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/sctp/SCTPAssociation.h"
 #include "inetveins/transportlayer/sctp/SCTPQueue.h"
@@ -59,7 +59,7 @@ class INETVEINS_API SCTPSendStream : public cObject
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPSENDSTREAM_H
+#endif // ifndef __INETVEINS_SCTPSENDSTREAM_H
 

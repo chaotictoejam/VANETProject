@@ -103,5 +103,5 @@ double SUIPathLoss::computePathLoss(mps propagationSpeed, Hz frequency, m distan
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

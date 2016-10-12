@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DIMENSIONALTRANSMISSION_H
-#define __INET_DIMENSIONALTRANSMISSION_H
+#ifndef __INETVEINS_DIMENSIONALTRANSMISSION_H
+#define __INETVEINS_DIMENSIONALTRANSMISSION_H
 
 #include "inetveins/physicallayer/base/packetlevel/FlatTransmissionBase.h"
 #include "inetveins/common/mapping/MappingBase.h"
@@ -43,7 +43,7 @@ class INETVEINS_API DimensionalTransmission : public FlatTransmissionBase, publi
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DIMENSIONALTRANSMISSION_H
+#endif // ifndef __INETVEINS_DIMENSIONALTRANSMISSION_H
 

@@ -28,7 +28,7 @@
 #include "IRx.h"
 #include "ITx.h"
 #include "IContention.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 #include "inetveins/common/ModuleAccess.h"
 
 namespace inetveins {
@@ -260,5 +260,5 @@ void Ieee80211Mac::handleNodeCrash()
 }
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 

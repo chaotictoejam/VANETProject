@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_LAYEREDERRORMODELBASE_H
-#define __INET_LAYEREDERRORMODELBASE_H
+#ifndef __INETVEINS_LAYEREDERRORMODELBASE_H
+#define __INETVEINS_LAYEREDERRORMODELBASE_H
 
 #include "inetveins/physicallayer/contract/bitlevel/ILayeredErrorModel.h"
 
@@ -34,7 +34,7 @@ class INETVEINS_API LayeredErrorModelBase : public cModule, public ILayeredError
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LAYEREDERRORMODELBASE_H
+#endif // ifndef __INETVEINS_LAYEREDERRORMODELBASE_H
 

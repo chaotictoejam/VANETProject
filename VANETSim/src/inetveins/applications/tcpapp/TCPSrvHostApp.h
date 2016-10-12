@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPSRVHOSTAPP_H
-#define __INET_TCPSRVHOSTAPP_H
+#ifndef __INETVEINS_TCPSRVHOSTAPP_H
+#define __INETVEINS_TCPSRVHOSTAPP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/transportlayer/contract/tcp/TCPSocket.h"
 #include "inetveins/transportlayer/contract/tcp/TCPSocketMap.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
@@ -143,7 +143,7 @@ class INETVEINS_API TCPServerThreadBase : public cObject, public TCPSocket::Call
     virtual void statusArrived(TCPStatusInfo *status) { delete status; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPSRVHOSTAPP_H
+#endif // ifndef __INETVEINS_TCPSRVHOSTAPP_H
 

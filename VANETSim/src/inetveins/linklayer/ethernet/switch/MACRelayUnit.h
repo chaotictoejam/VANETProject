@@ -13,10 +13,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_MACRELAYUNIT_H
-#define __INET_MACRELAYUNIT_H
+#ifndef __INETVEINS_MACRELAYUNIT_H
+#define __INETVEINS_MACRELAYUNIT_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/linklayer/ethernet/switch/IMACAddressTable.h"
@@ -76,7 +76,7 @@ class INETVEINS_API MACRelayUnit : public cSimpleModule, public ILifecycle
     virtual void stop();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MACRELAYUNIT_H
+#endif // ifndef __INETVEINS_MACRELAYUNIT_H
 

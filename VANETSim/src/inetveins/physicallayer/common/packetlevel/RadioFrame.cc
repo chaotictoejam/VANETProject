@@ -73,5 +73,5 @@ const IReception *RadioFrame::getReception() const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

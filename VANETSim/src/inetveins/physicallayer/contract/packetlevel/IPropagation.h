@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPROPAGATION_H
-#define __INET_IPROPAGATION_H
+#ifndef __INETVEINS_IPROPAGATION_H
+#define __INETVEINS_IPROPAGATION_H
 
 #include "inetveins/mobility/contract/IMobility.h"
 #include "inetveins/physicallayer/contract/packetlevel/IArrival.h"
@@ -50,7 +50,7 @@ class INETVEINS_API IPropagation : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPROPAGATION_H
+#endif // ifndef __INETVEINS_IPROPAGATION_H
 

@@ -72,5 +72,5 @@ bool SummaryLSA::differsFrom(const OSPFSummaryLSA *summaryLSA) const
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

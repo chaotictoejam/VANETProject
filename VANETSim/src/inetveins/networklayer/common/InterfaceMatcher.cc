@@ -178,5 +178,5 @@ void InterfaceMatcher::collectNeighbors(cGate *outGate, std::vector<cModule *>& 
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -19,7 +19,7 @@
 
 cplusplus {{
 #include <iostream>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/ByteArray.h"
 
 namespace inetveins {

@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_UDPECHOAPP_H
-#define __INET_UDPECHOAPP_H
+#ifndef __INETVEINS_UDPECHOAPP_H
+#define __INETVEINS_UDPECHOAPP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/applications/base/ApplicationBase.h"
 #include "inetveins/transportlayer/contract/udp/UDPSocket.h"
@@ -47,7 +47,7 @@ class INETVEINS_API UDPEchoApp : public ApplicationBase
     virtual void handleNodeCrash() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_UDPECHOAPP_H
+#endif // ifndef __INETVEINS_UDPECHOAPP_H
 

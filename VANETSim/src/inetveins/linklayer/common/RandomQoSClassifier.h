@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_RANDOMQOSCLASSIFIER_H
-#define __INET_RANDOMQOSCLASSIFIER_H
+#ifndef __INETVEINS_RANDOMQOSCLASSIFIER_H
+#define __INETVEINS_RANDOMQOSCLASSIFIER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -32,7 +32,7 @@ class INETVEINS_API RandomQoSClassifier : public cSimpleModule
     void handleMessage(cMessage *msg) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

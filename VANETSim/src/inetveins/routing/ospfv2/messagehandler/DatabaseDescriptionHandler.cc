@@ -257,5 +257,5 @@ bool DatabaseDescriptionHandler::processDDPacket(OSPFDatabaseDescriptionPacket *
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

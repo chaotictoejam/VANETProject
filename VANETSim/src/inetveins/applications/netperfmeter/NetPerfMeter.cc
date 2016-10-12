@@ -1248,4 +1248,4 @@ opp_string NetPerfMeter::format(const char* formatString, ...)
    return(opp_string(str));
 }
 
-}  // namespace inet
+}  // namespace inetveins

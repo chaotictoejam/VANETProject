@@ -43,5 +43,5 @@ std::ostream& IdealReception::printToStream(std::ostream& stream, int level) con
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

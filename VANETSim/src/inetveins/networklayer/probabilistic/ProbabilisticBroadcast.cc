@@ -353,5 +353,5 @@ cObject *ProbabilisticBroadcast::setDownControlInfo(cMessage *const pMsg, const 
     return cCtrlInfo;
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -16,14 +16,14 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __INET_IPV6NEIGHBOURDISCOVERY_H
-#define __INET_IPV6NEIGHBOURDISCOVERY_H
+#ifndef __INETVEINS_IPV6NEIGHBOURDISCOVERY_H
+#define __INETVEINS_IPV6NEIGHBOURDISCOVERY_H
 
 #include <vector>
 #include <set>
 #include <map>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/ipv6/IPv6Address.h"
 #include "inetveins/networklayer/icmpv6/IPv6NDMessage_m.h"
@@ -40,9 +40,9 @@ class IPv6ControlInfo;
 class IPv6Datagram;
 class IPv6RoutingTable;
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
 class xMIPv6;
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
 /**
  * Implements RFC 2461 Neighbor Discovery for IPv6.
@@ -101,9 +101,9 @@ class INETVEINS_API IPv6NeighbourDiscovery : public cSimpleModule, public ILifec
     IPv6RoutingTable *rt6 = nullptr;
     ICMPv6 *icmpv6 = nullptr;
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     xMIPv6 *mipv6 = nullptr;    // in case the node has MIP support
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     IPv6NeighbourCache neighbourCache;
     typedef std::set<cMessage *> RATimerList;    //FIXME add comparator for stable fingerprints!
@@ -150,7 +150,7 @@ class INETVEINS_API IPv6NeighbourDiscovery : public cSimpleModule, public ILifec
     //List of Advertising Interfaces
     AdvIfList advIfList;
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     // An entry that stores information for configuring the global unicast
     // address, after DAD was succesfully performed
     struct DADGlobalEntry
@@ -165,7 +165,7 @@ class INETVEINS_API IPv6NeighbourDiscovery : public cSimpleModule, public ILifec
     };
     typedef std::map<InterfaceEntry *, DADGlobalEntry> DADGlobalList;    //FIXME add comparator for stable fingerprints!
     DADGlobalList dadGlobalList;
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
   protected:
     /************************Miscellaneous Stuff***************************/
@@ -315,13 +315,13 @@ class INETVEINS_API IPv6NeighbourDiscovery : public cSimpleModule, public ILifec
        operate independently on the prefixes that have the appropriate flag set.*/
     virtual void processRAPrefixInfo(IPv6RouterAdvertisement *ra, InterfaceEntry *ie);
 
-#ifndef WITH_xMIPv6
+#ifndef WITH_INETVEINS_xMIPv6
     virtual void processRAPrefixInfoForAddrAutoConf(IPv6NDPrefixInformation& prefixInfo,
             InterfaceEntry *ie);
-#else /* WITH_xMIPv6 */
+#else /* WITH_INETVEINS_xMIPv6 */
     virtual void processRAPrefixInfoForAddrAutoConf(IPv6NDPrefixInformation& prefixInfo,
             InterfaceEntry *ie, bool hFlag = false);    // overloaded method - 3.9.07 CB
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     /**
      *  Create a timer for the given interface entry that sends periodic
@@ -356,24 +356,24 @@ class INETVEINS_API IPv6NeighbourDiscovery : public cSimpleModule, public ILifec
 
     /************Neighbour Advertisment Stuff)*****************************/
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     IPv6NeighbourAdvertisement *createAndSendNAPacket(IPv6NeighbourSolicitation *ns,
             const IPv6Address& nsSrcAddr, const IPv6Address& nsDestAddr, InterfaceEntry *ie);
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     virtual void sendSolicitedNA(IPv6NeighbourSolicitation *ns,
             IPv6ControlInfo *nsCtrlInfo, InterfaceEntry *ie);
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
 
   public:    // update 12.9.07 - CB
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
     virtual void sendUnsolicitedNA(InterfaceEntry *ie);
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
 
   protected:    // update 12.9.07 - CB
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     virtual void processNAPacket(IPv6NeighbourAdvertisement *na, IPv6ControlInfo *naCtrlInfo);
     virtual bool validateNAPacket(IPv6NeighbourAdvertisement *na, IPv6ControlInfo *naCtrlInfo);
@@ -388,7 +388,7 @@ class INETVEINS_API IPv6NeighbourDiscovery : public cSimpleModule, public ILifec
     virtual void processRedirectPacket(IPv6Redirect *redirect, IPv6ControlInfo *ctrlInfo);
     /************End Of Redirect Message Stuff*****************************/
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     /* Determine that this router can communicate with wireless nodes
      * on the LAN connected to the given interface.
      * The result is true if the interface is a wireless interface
@@ -399,7 +399,7 @@ class INETVEINS_API IPv6NeighbourDiscovery : public cSimpleModule, public ILifec
      * (RFC 3775 7.5.).
      */
     virtual bool canServeWirelessNodes(InterfaceEntry *ie);
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     /**
      *  RFC2463 Section 3.1: Destination Unreachable Message
@@ -409,7 +409,7 @@ class INETVEINS_API IPv6NeighbourDiscovery : public cSimpleModule, public ILifec
     /*ICMPv6DestUnreachableMsg *createAndSendUnreachableMessage(
         const IPv6Address& destAddress, InterfaceEntry *ie);*/
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
 
   public:
     void invalidateNeigbourCache();
@@ -418,10 +418,10 @@ class INETVEINS_API IPv6NeighbourDiscovery : public cSimpleModule, public ILifec
     void routersUnreachabilityDetection(const InterfaceEntry *ie);    // 3.9.07 - CB
     bool isWirelessInterface(const InterfaceEntry *ie);
     bool isWirelessAccessPoint(cModule *module);
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif    //IPV6NEIGHBOURDISCOVERY_H
 

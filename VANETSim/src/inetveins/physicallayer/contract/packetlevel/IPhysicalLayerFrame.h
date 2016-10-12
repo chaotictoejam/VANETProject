@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPHYSICALLAYERFRAME_H
-#define __INET_IPHYSICALLAYERFRAME_H
+#ifndef __INETVEINS_IPHYSICALLAYERFRAME_H
+#define __INETVEINS_IPHYSICALLAYERFRAME_H
 
 #include "inetveins/physicallayer/base/packetlevel/PhysicalLayerDefs.h"
 
@@ -31,7 +31,7 @@ class INETVEINS_API IPhysicalLayerFrame
     virtual ~IPhysicalLayerFrame() {}
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPHYSICALLAYERFRAME_H
+#endif // ifndef __INETVEINS_IPHYSICALLAYERFRAME_H
 

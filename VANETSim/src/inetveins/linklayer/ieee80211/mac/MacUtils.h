@@ -17,10 +17,10 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_MACUTILS_H
-#define __INET_MACUTILS_H
+#ifndef __INETVEINS_MACUTILS_H
+#define __INETVEINS_MACUTILS_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/physicallayer/ieee80211/mode/IIeee80211Mode.h"
 #include "inetveins/linklayer/common/MACAddress.h"
 #include "inetveins/linklayer/ieee80211/mac/AccessCategory.h"
@@ -85,6 +85,6 @@ class INETVEINS_API MacUtils
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif

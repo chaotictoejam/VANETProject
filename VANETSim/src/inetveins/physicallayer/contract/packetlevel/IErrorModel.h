@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IERRORMODEL_H
-#define __INET_IERRORMODEL_H
+#ifndef __INETVEINS_IERRORMODEL_H
+#define __INETVEINS_IERRORMODEL_H
 
 #include "inetveins/physicallayer/contract/packetlevel/ISNIR.h"
 
@@ -57,7 +57,7 @@ class INETVEINS_API IErrorModel : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IERRORMODEL_H
+#endif // ifndef __INETVEINS_IERRORMODEL_H
 

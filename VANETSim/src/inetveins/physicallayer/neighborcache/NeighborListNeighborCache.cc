@@ -154,5 +154,5 @@ NeighborListNeighborCache::~NeighborListNeighborCache()
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

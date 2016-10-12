@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MAPPINGBASE_H
-#define __INET_MAPPINGBASE_H
+#ifndef __INETVEINS_MAPPINGBASE_H
+#define __INETVEINS_MAPPINGBASE_H
 
 #include <omnetpp.h>
 #include <map>
@@ -27,7 +27,7 @@
 #include <sstream>
 #include <iomanip>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/mapping/Interpolation.h"
 
 namespace inetveins {
@@ -1749,7 +1749,7 @@ class INETVEINS_API SimpleConstMapping : public ConstMapping
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MAPPINGBASE_H
+#endif // ifndef __INETVEINS_MAPPINGBASE_H
 

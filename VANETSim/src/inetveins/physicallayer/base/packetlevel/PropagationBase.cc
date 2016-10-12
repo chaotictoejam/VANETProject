@@ -48,5 +48,5 @@ void PropagationBase::finish()
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

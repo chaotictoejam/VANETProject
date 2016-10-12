@@ -25,5 +25,5 @@ namespace inetveins {
 
 simsignal_t IMobility::mobilityStateChangedSignal = cComponent::registerSignal("mobilityStateChanged");
 
-} // namespace inet
+} // namespace inetveins
 

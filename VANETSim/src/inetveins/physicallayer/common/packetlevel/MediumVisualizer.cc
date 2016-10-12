@@ -305,5 +305,5 @@ void MediumVisualizer::scheduleUpdateCanvasTimer()
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

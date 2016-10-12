@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_POLYHEDRONPOINT_H
-#define __INET_POLYHEDRONPOINT_H
+#ifndef __INETVEINS_POLYHEDRONPOINT_H
+#define __INETVEINS_POLYHEDRONPOINT_H
 
 #include <vector>
 #include <map>
@@ -48,4 +48,4 @@ class INETVEINS_API PolyhedronPoint : public Coord
 
 } /* namespace inetveins */
 
-#endif // ifndef __INET_POLYHEDRONPOINT_H
+#endif // ifndef __INETVEINS_POLYHEDRONPOINT_H

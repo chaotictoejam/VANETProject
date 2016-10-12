@@ -14,7 +14,7 @@
 
 #include <algorithm>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/ted/LinkStateRouting.h"
 #include "inetveins/networklayer/common/IPSocket.h"
@@ -231,5 +231,5 @@ void LinkStateRouting::sendToIP(LinkStateMsg *msg, IPv4Address destAddr)
     send(msg, "ipOut");
 }
 
-} // namespace inet
+} // namespace inetveins
 

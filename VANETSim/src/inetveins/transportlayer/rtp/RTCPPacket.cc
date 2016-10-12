@@ -79,5 +79,5 @@ RTCPByePacket::RTCPByePacket(const char *name, int kind)
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

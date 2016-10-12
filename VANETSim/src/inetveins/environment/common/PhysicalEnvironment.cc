@@ -742,5 +742,5 @@ cFigure::Point PhysicalEnvironment::computeViewTranslation(const char* viewTrans
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 

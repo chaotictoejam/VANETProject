@@ -225,5 +225,5 @@ bool APSKLayeredReceiver::computeIsReceptionPossible(const IListening *listening
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

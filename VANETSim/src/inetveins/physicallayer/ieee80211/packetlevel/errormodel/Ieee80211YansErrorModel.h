@@ -18,8 +18,8 @@
 // Author: Mathieu Lacage <mathieu.lacage@sophia.inria.fr>
 //
 
-#ifndef __INET_IEEE80211YANSERRORMODEL_H
-#define __INET_IEEE80211YANSERRORMODEL_H
+#ifndef __INETVEINS_IEEE80211YANSERRORMODEL_H
+#define __INETVEINS_IEEE80211YANSERRORMODEL_H
 
 #include "inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211ErrorModelBase.h"
 #include "inetveins/physicallayer/ieee80211/packetlevel/errormodel/dsss-error-rate-model.h"
@@ -77,7 +77,7 @@ class INETVEINS_API Ieee80211YansErrorModel : public Ieee80211ErrorModelBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_YANSERRORRATEMODEL_H
+#endif // ifndef __INETVEINS_YANSERRORRATEMODEL_H
 

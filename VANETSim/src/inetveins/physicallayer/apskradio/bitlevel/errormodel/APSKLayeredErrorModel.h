@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_APSKLAYEREDERRORMODEL_H
-#define __INET_APSKLAYEREDERRORMODEL_H
+#ifndef __INETVEINS_APSKLAYEREDERRORMODEL_H
+#define __INETVEINS_APSKLAYEREDERRORMODEL_H
 
 #include "inetveins/physicallayer/base/bitlevel/LayeredErrorModelBase.h"
 
@@ -39,7 +39,7 @@ class INETVEINS_API APSKLayeredErrorModel : public LayeredErrorModelBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LAYEREDAPSKERRORMODEL_H
+#endif // ifndef __INETVEINS_LAYEREDAPSKERRORMODEL_H
 

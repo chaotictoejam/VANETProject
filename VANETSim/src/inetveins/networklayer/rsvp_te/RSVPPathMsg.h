@@ -13,8 +13,8 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_RSVPPATHMSG_H
-#define __INET_RSVPPATHMSG_H
+#ifndef __INETVEINS_RSVPPATHMSG_H
+#define __INETVEINS_RSVPPATHMSG_H
 
 #include "RSVPPathMsg_m.h"
 
@@ -89,7 +89,7 @@ class INETVEINS_API RSVPPathError : public RSVPPathError_Base
     inline void setSenderTspec(const SenderTspecObj_t& s) { getSender_descriptor().Sender_Tspec_Object = s; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RSVPPATHMSG_H
+#endif // ifndef __INETVEINS_RSVPPATHMSG_H
 

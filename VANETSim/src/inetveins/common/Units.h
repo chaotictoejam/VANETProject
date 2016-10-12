@@ -19,8 +19,8 @@
         units.
  */
 
-#ifndef __INET_UNITS_H
-#define __INET_UNITS_H
+#ifndef __INETVEINS_UNITS_H
+#define __INETVEINS_UNITS_H
 
 #include <cmath>
 #include <iostream>
@@ -1205,7 +1205,7 @@ Value tan(const value<Value, Unit>& angle)
 
 } // namespace units
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_UNITS_H
+#endif // ifndef __INETVEINS_UNITS_H
 

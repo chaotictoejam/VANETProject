@@ -23,8 +23,8 @@
  * last modification: 06/02/11
  **************************************************************************/
 
-#ifndef __INET_WISEROUTE_H
-#define __INET_WISEROUTE_H
+#ifndef __INETVEINS_WISEROUTE_H
+#define __INETVEINS_WISEROUTE_H
 
 #include "inetveins/networklayer/contract/INetworkProtocol.h"
 #include "inetveins/networklayer/contract/IARP.h"
@@ -197,7 +197,7 @@ class INETVEINS_API WiseRoute : public NetworkProtocolBase, public INetworkProto
     virtual cObject *setDownControlInfo(cMessage *const pMsg, const MACAddress& pDestAddr);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_WISEROUTE_H
+#endif // ifndef __INETVEINS_WISEROUTE_H
 

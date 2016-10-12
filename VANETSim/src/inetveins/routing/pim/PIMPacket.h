@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PIMPACKET_H
-#define __INET_PIMPACKET_H
+#ifndef __INETVEINS_PIMPACKET_H
+#define __INETVEINS_PIMPACKET_H
 
 #include "inetveins/routing/pim/PIMPacket_m.h"
 
@@ -52,7 +52,7 @@ class INETVEINS_API PIMHello : public PIMHello_Base
     virtual void setOptions(unsigned int k, const HelloOptionPtr& options) override;
 };
 
-}    // namespace inet
+}    // namespace inetveins
 
 #endif    // _PIMPACKET_H_
 

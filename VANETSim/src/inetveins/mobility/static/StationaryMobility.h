@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_STATIONARYMOBILITY_H
-#define __INET_STATIONARYMOBILITY_H
+#ifndef __INETVEINS_STATIONARYMOBILITY_H
+#define __INETVEINS_STATIONARYMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/base/MobilityBase.h"
 
@@ -55,7 +55,7 @@ class INETVEINS_API StationaryMobility : public MobilityBase
     virtual Coord getConstraintAreaMin() const override { return lastPosition; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_STATIONARYMOBILITY_H
+#endif // ifndef __INETVEINS_STATIONARYMOBILITY_H
 

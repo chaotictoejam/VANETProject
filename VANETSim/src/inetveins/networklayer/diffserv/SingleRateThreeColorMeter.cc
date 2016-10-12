@@ -124,5 +124,5 @@ int SingleRateThreeColorMeter::meterPacket(cPacket *packet)
     return newColor;
 }
 
-} // namespace inet
+} // namespace inetveins
 

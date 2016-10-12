@@ -16,7 +16,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/mobility/single/TractorMobility.h"
 
 namespace inetveins {
@@ -80,5 +80,5 @@ void TractorMobility::setTargetPosition()
     nextChange = simTime() + positionDelta.length() / speed;
 }
 
-} // namespace inet
+} // namespace inetveins
 

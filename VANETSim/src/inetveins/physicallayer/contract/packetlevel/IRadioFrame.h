@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IRADIOFRAME_H
-#define __INET_IRADIOFRAME_H
+#ifndef __INETVEINS_IRADIOFRAME_H
+#define __INETVEINS_IRADIOFRAME_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IArrival.h"
 #include "inetveins/physicallayer/contract/packetlevel/IListening.h"
@@ -58,7 +58,7 @@ class INETVEINS_API IRadioFrame : public IPhysicalLayerFrame, public IPrintableO
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IRADIOFRAME_H
+#endif // ifndef __INETVEINS_IRADIOFRAME_H
 

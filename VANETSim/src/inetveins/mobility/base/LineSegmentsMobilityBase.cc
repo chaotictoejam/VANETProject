@@ -16,7 +16,7 @@
 //
 
 #include "inetveins/mobility/base/LineSegmentsMobilityBase.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 
 namespace inetveins {
 
@@ -53,5 +53,5 @@ void LineSegmentsMobilityBase::move()
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BVHTREE_H
-#define __INET_BVHTREE_H
+#ifndef __INETVEINS_BVHTREE_H
+#define __INETVEINS_BVHTREE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/IVisitor.h"
 #include "inetveins/common/geometry/object/LineSegment.h"
 #include "inetveins/environment/contract/IPhysicalObject.h"
@@ -102,4 +102,4 @@ class INETVEINS_API BVHTree
 
 } /* namespace inetveins */
 
-#endif // ifndef __INET_BVHTREE_H
+#endif // ifndef __INETVEINS_BVHTREE_H

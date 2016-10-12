@@ -106,5 +106,5 @@ const simtime_t TransmissionBase::getDuration(IRadioSignal::SignalPart part) con
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

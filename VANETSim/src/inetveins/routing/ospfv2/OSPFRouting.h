@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_OSPFROUTING_H
-#define __INET_OSPFROUTING_H
+#ifndef __INETVEINS_OSPFROUTING_H
+#define __INETVEINS_OSPFROUTING_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/networklayer/ipv4/IIPv4RoutingTable.h"
@@ -72,7 +72,7 @@ class OSPFRouting : public cSimpleModule, public ILifecycle
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_OSPFROUTING_H
+#endif // ifndef __INETVEINS_OSPFROUTING_H
 

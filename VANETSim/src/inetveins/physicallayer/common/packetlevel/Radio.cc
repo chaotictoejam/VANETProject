@@ -628,5 +628,5 @@ void Radio::updateDisplayString()
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

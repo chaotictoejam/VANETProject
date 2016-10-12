@@ -399,5 +399,5 @@ const char *L3Address::getTypeName(AddressType t)
 #undef CASE
 }
 
-} // namespace inet
+} // namespace inetveins
 

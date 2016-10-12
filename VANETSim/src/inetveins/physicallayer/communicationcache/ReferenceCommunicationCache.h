@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_REFERENCECOMMUNICATIONCACHE_H
-#define __INET_REFERENCECOMMUNICATIONCACHE_H
+#ifndef __INETVEINS_REFERENCECOMMUNICATIONCACHE_H
+#define __INETVEINS_REFERENCECOMMUNICATIONCACHE_H
 
 #include "inetveins/physicallayer/base/packetlevel/CommunicationCacheBase.h"
 
@@ -71,7 +71,7 @@ class INETVEINS_API ReferenceCommunicationCache : public CommunicationCacheBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_REFERENCECOMMUNICATIONCACHE_H
+#endif // ifndef __INETVEINS_REFERENCECOMMUNICATIONCACHE_H
 

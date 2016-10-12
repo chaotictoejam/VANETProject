@@ -271,5 +271,5 @@ void FlatNetworkConfigurator6::addStaticRoutes(cTopology& topo)
     setDisplayString(numIPNodes, topo.getNumNodes() - numIPNodes);
 }
 
-} // namespace inet
+} // namespace inetveins
 

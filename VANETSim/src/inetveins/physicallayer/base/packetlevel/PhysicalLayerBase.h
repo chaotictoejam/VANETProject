@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PHYSICALLAYERBASE_H
-#define __INET_PHYSICALLAYERBASE_H
+#ifndef __INETVEINS_PHYSICALLAYERBASE_H
+#define __INETVEINS_PHYSICALLAYERBASE_H
 
 #include "inetveins/common/lifecycle/OperationalBase.h"
 #include "inetveins/common/lifecycle/NodeOperations.h"
@@ -35,7 +35,7 @@ class INETVEINS_API PhysicalLayerBase : public OperationalBase, public IPhysical
     virtual bool isNodeShutdownStage(int stage) override { return stage == NodeShutdownOperation::STAGE_PHYSICAL_LAYER; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PHYSICALLAYERBASE_H
+#endif // ifndef __INETVEINS_PHYSICALLAYERBASE_H
 

@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPASSIVEQUEUE_H
-#define __INET_IPASSIVEQUEUE_H
+#ifndef __INETVEINS_IPASSIVEQUEUE_H
+#define __INETVEINS_IPASSIVEQUEUE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -91,7 +91,7 @@ class INETVEINS_API IPassiveQueueListener
     virtual void packetEnqueued(IPassiveQueue *queue) = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPASSIVEQUEUE_H
+#endif // ifndef __INETVEINS_IPASSIVEQUEUE_H
 

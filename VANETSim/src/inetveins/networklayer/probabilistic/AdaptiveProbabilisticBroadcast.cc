@@ -123,5 +123,5 @@ void AdaptiveProbabilisticBroadcast::updateBeta()
     bvec.record(beta);
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -778,5 +778,5 @@ void Neighbor::deleteLastSentDDPacket()
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

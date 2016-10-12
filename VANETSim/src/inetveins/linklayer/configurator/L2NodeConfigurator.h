@@ -13,10 +13,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_L2NODECONFIGURATOR_H
-#define __INET_L2NODECONFIGURATOR_H
+#ifndef __INETVEINS_L2NODECONFIGURATOR_H
+#define __INETVEINS_L2NODECONFIGURATOR_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/common/lifecycle/NodeStatus.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
@@ -52,7 +52,7 @@ class INETVEINS_API L2NodeConfigurator : public cSimpleModule, public ILifecycle
     virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj DETAILS_ARG) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_L2NODECONFIGURATOR_H
+#endif // ifndef __INETVEINS_L2NODECONFIGURATOR_H
 

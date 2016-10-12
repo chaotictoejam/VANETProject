@@ -15,11 +15,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPSEGMENT_H
-#define __INET_TCPSEGMENT_H
+#ifndef __INETVEINS_TCPSEGMENT_H
+#define __INETVEINS_TCPSEGMENT_H
 
 #include <list>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/transportlayer/contract/ITransportPacket.h"
 #include "inetveins/transportlayer/tcp_common/TCPSegment_m.h"
 
@@ -162,7 +162,7 @@ class INETVEINS_API TCPSegment : public TCPSegment_Base, public ITransportPacket
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPSEGMENT_H
+#endif // ifndef __INETVEINS_TCPSEGMENT_H
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MEDIUMLIMITCACHE_H
-#define __INET_MEDIUMLIMITCACHE_H
+#ifndef __INETVEINS_MEDIUMLIMITCACHE_H
+#define __INETVEINS_MEDIUMLIMITCACHE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IRadioMedium.h"
 #include "inetveins/physicallayer/contract/packetlevel/IMediumLimitCache.h"
@@ -159,7 +159,7 @@ class INETVEINS_API MediumLimitCache : public cModule, public IMediumLimitCache
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MEDIUMLIMITCACHE_H
+#endif // ifndef __INETVEINS_MEDIUMLIMITCACHE_H
 

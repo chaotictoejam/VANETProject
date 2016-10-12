@@ -146,5 +146,5 @@ bool Polygon::computeIntersection(const LineSegment& lineSegment, Coord& interse
     return true;
 }
 
-} // namespace inet
+} // namespace inetveins
 

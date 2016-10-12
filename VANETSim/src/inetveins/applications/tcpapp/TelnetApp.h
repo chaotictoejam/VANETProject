@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TELNETAPP_H
-#define __INET_TELNETAPP_H
+#ifndef __INETVEINS_TELNETAPP_H
+#define __INETVEINS_TELNETAPP_H
 
 #include "inetveins/applications/tcpapp/TCPAppBase.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
@@ -53,7 +53,7 @@ class INETVEINS_API TelnetApp : public TCPAppBase, public ILifecycle
     virtual ~TelnetApp();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TELNETAPP_H
+#endif // ifndef __INETVEINS_TELNETAPP_H
 

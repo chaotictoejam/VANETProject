@@ -17,10 +17,10 @@
 // @author: Zoltan Bojthe
 //
 
-#ifndef __INET_DELAYER_H
-#define __INET_DELAYER_H
+#ifndef __INETVEINS_DELAYER_H
+#define __INETVEINS_DELAYER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -43,7 +43,7 @@ class INETVEINS_API Delayer : public cSimpleModule
     static simsignal_t delaySignal;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DELAYER_H
+#endif // ifndef __INETVEINS_DELAYER_H
 

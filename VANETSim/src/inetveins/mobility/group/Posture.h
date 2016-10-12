@@ -40,13 +40,13 @@
  *
  **************************************************************************/
 
-#ifndef __INET_POSTURE_H
-#define __INET_POSTURE_H
+#ifndef __INETVEINS_POSTURE_H
+#define __INETVEINS_POSTURE_H
 
 #include <string.h>
 
-#include "inetveins/common/INETDefs.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSDefs.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/common/geometry/common/Coord.h"
 
 namespace inetveins {
@@ -156,7 +156,7 @@ class INETVEINS_API Posture
     double getAlphaSD(unsigned int, unsigned int);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_POSTURE_H
+#endif // ifndef __INETVEINS_POSTURE_H
 

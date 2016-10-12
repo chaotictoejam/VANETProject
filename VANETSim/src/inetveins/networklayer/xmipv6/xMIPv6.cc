@@ -2721,5 +2721,5 @@ void xMIPv6::handleTokenExpiry(cMessage *msg)
     //delete msg;
 }
 
-} // namespace inet
+} // namespace inetveins
 

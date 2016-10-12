@@ -367,5 +367,5 @@ Ieee80211LayeredOFDMTransmitter::~Ieee80211LayeredOFDMTransmitter()
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

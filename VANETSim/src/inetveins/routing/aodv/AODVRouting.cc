@@ -19,25 +19,25 @@
 #include "inetveins/routing/aodv/AODVRouting.h"
 #include "inetveins/networklayer/ipv4/IPv4Route.h"
 
-#ifdef WITH_IDEALWIRELESS
+#ifdef WITH_INETVEINS_IDEALWIRELESS
 #include "inetveins/linklayer/ideal/IdealMacFrame_m.h"
-#endif // ifdef WITH_IDEALWIRELESS
+#endif // ifdef WITH_INETVEINS_IDEALWIRELESS
 
-#ifdef WITH_IEEE80211
+#ifdef WITH_INETVEINS_IEEE80211
 #include "inetveins/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
-#endif // ifdef WITH_IEEE80211
+#endif // ifdef WITH_INETVEINS_IEEE80211
 
-#ifdef WITH_CSMA
+#ifdef WITH_INETVEINS_CSMA
 #include "inetveins/linklayer/csma/CSMAFrame_m.h"
-#endif // ifdef WITH_CSMA
+#endif // ifdef WITH_INETVEINS_CSMA
 
-#ifdef WITH_LMAC
+#ifdef WITH_INETVEINS_LMAC
 #include "inetveins/linklayer/lmac/LMacFrame_m.h"
-#endif // ifdef WITH_LMAC
+#endif // ifdef WITH_INETVEINS_LMAC
 
-#ifdef WITH_BMAC
+#ifdef WITH_INETVEINS_BMAC
 #include "inetveins/linklayer/bmac/BMacFrame_m.h"
-#endif // ifdef WITH_BMAC
+#endif // ifdef WITH_INETVEINS_BMAC
 
 #include "inetveins/networklayer/common/IPSocket.h"
 #include "inetveins/transportlayer/contract/udp/UDPControlInfo.h"
@@ -1003,21 +1003,21 @@ void AODVRouting::receiveSignal(cComponent *source, simsignal_t signalID, cObjec
         cPacket *frame = check_and_cast<cPacket *>(obj);
         INetworkDatagram *datagram = nullptr;
         if (false
-#ifdef WITH_IEEE80211
+#ifdef WITH_INETVEINS_IEEE80211
             || dynamic_cast<ieee80211::Ieee80211Frame *>(frame)
-#endif // ifdef WITH_IEEE80211
-#ifdef WITH_IDEALWIRELESS
+#endif // ifdef WITH_INETVEINS_IEEE80211
+#ifdef WITH_INETVEINS_IDEALWIRELESS
             || dynamic_cast<IdealMacFrame *>(frame)
-#endif // ifdef WITH_IDEALWIRELESS
-#ifdef WITH_CSMA
+#endif // ifdef WITH_INETVEINS_IDEALWIRELESS
+#ifdef WITH_INETVEINS_CSMA
             || dynamic_cast<CSMAFrame *>(frame)
-#endif // ifdef WITH_CSMA
-#ifdef WITH_LMAC
+#endif // ifdef WITH_INETVEINS_CSMA
+#ifdef WITH_INETVEINS_LMAC
             || dynamic_cast<LMacFrame *>(frame)
-#endif // ifdef WITH_LMAC
-#ifdef WITH_BMAC
+#endif // ifdef WITH_INETVEINS_LMAC
+#ifdef WITH_INETVEINS_BMAC
             || dynamic_cast<BMacFrame *>(frame)
-#endif // ifdef WITH_BMAC
+#endif // ifdef WITH_INETVEINS_BMAC
             )
             datagram = dynamic_cast<INetworkDatagram *>(frame->getEncapsulatedPacket());
         else
@@ -1696,5 +1696,5 @@ AODVRouting::~AODVRouting()
     delete blacklistTimer;
 }
 
-} // namespace inet
+} // namespace inetveins
 

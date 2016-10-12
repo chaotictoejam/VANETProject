@@ -16,12 +16,12 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_AODVROUTEDATA_H
-#define __INET_AODVROUTEDATA_H
+#ifndef __INETVEINS_AODVROUTEDATA_H
+#define __INETVEINS_AODVROUTEDATA_H
 
 #include <set>
 #include "inetveins/networklayer/common/L3Address.h"
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -68,7 +68,7 @@ class INETVEINS_API AODVRouteData : public cObject
 
 std::ostream& operator<<(std::ostream& out, const AODVRouteData *data);
 
-} // namespace inet
+} // namespace inetveins
 
 #endif    // ifndef AODVROUTEDATA_H_
 

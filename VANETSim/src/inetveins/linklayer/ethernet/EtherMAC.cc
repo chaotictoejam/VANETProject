@@ -926,5 +926,5 @@ void EtherMAC::beginSendFrames()
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

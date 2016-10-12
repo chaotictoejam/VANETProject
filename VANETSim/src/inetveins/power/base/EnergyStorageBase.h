@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ENERGYSTORAGEBASE_H
-#define __INET_ENERGYSTORAGEBASE_H
+#ifndef __INETVEINS_ENERGYSTORAGEBASE_H
+#define __INETVEINS_ENERGYSTORAGEBASE_H
 
 #include "inetveins/power/contract/IEnergyStorage.h"
 #include "inetveins/power/base/EnergySourceBase.h"
@@ -48,7 +48,7 @@ class INETVEINS_API EnergyStorageBase : public cSimpleModule, public EnergySourc
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ENERGYSINKBASE_H
+#endif // ifndef __INETVEINS_ENERGYSINKBASE_H
 

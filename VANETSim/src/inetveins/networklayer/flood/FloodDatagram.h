@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_FLOODDATAGRAM_H
-#define __INET_FLOODDATAGRAM_H
+#ifndef __INETVEINS_FLOODDATAGRAM_H
+#define __INETVEINS_FLOODDATAGRAM_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/INetworkDatagram.h"
 #include "inetveins/networklayer/flood/FloodDatagram_m.h"
 
@@ -45,7 +45,7 @@ class INETVEINS_API FloodDatagram : public FloodDatagram_Base, public INetworkDa
     virtual void setTransportProtocol(int protocol) override { FloodDatagram_Base::setTransportProtocol(protocol); };
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_FLOODDATAGRAM_H
+#endif // ifndef __INETVEINS_FLOODDATAGRAM_H
 

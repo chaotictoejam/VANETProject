@@ -326,5 +326,5 @@ void TCPReno::receivedDuplicateAck()
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

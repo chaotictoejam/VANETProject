@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TUNLOOPBACKAPP_H
-#define __INET_TUNLOOPBACKAPP_H
+#ifndef __INETVEINS_TUNLOOPBACKAPP_H
+#define __INETVEINS_TUNLOOPBACKAPP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -41,7 +41,7 @@ class INETVEINS_API TunLoopbackApp : public cSimpleModule
         void finish() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
 # endif
 

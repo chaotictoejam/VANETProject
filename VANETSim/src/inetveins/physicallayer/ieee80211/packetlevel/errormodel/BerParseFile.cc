@@ -22,7 +22,7 @@
 #include <string>
 #include <algorithm>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/physicallayer/ieee80211/packetlevel/errormodel/BerParseFile.h"
 
 namespace inetveins {
@@ -360,5 +360,5 @@ BerParseFile::~BerParseFile()
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

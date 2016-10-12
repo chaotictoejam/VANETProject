@@ -249,5 +249,5 @@ uint32 SCTPQueue::getSizeOfFirstChunk(const L3Address& remoteAddress)
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

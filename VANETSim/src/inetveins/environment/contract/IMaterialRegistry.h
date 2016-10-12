@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IMATERIALREGISTRY_H
-#define __INET_IMATERIALREGISTRY_H
+#ifndef __INETVEINS_IMATERIALREGISTRY_H
+#define __INETVEINS_IMATERIALREGISTRY_H
 
 #include "inetveins/environment/common/Material.h"
 
@@ -32,7 +32,7 @@ class INETVEINS_API IMaterialRegistry
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IMATERIALREGISTRY_H
+#endif // ifndef __INETVEINS_IMATERIALREGISTRY_H
 

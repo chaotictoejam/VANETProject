@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_POWERDEFS_H
-#define __INET_POWERDEFS_H
+#ifndef __INETVEINS_POWERDEFS_H
+#define __INETVEINS_POWERDEFS_H
 
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/common/Units.h"
 
 namespace inetveins {
@@ -29,7 +29,7 @@ using namespace units::values;
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_POWERDEFS_H
+#endif // ifndef __INETVEINS_POWERDEFS_H
 

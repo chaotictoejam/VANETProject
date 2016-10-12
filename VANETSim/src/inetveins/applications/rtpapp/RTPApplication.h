@@ -14,10 +14,10 @@
 // GNU General Public License for more details.
 //
 
-#ifndef __INET_RTPAPPLICATION_H
-#define __INET_RTPAPPLICATION_H
+#ifndef __INETVEINS_RTPAPPLICATION_H
+#define __INETVEINS_RTPAPPLICATION_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
 
@@ -60,7 +60,7 @@ class INETVEINS_API RTPApplication : public cSimpleModule, public ILifecycle
     RTPApplication() {}
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RTPAPPLICATION_H
+#endif // ifndef __INETVEINS_RTPAPPLICATION_H
 

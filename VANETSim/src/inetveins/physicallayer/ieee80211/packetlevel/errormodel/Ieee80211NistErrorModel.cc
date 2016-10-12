@@ -227,5 +227,5 @@ double Ieee80211NistErrorModel::getDataSuccessRate(const IIeee80211Mode* mode, u
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211CONSTS_H
-#define __INET_IEEE80211CONSTS_H
+#ifndef __INETVEINS_IEEE80211CONSTS_H
+#define __INETVEINS_IEEE80211CONSTS_H
 
 namespace inetveins {
 
@@ -56,7 +56,7 @@ const double PHY_HEADER_LENGTH = 192;
 
 } // namespace ieee80211
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE80211CONSTS_H
+#endif // ifndef __INETVEINS_IEEE80211CONSTS_H
 

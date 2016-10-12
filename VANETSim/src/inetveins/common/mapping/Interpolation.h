@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INTERPOLATION_H
-#define __INET_INTERPOLATION_H
+#ifndef __INETVEINS_INTERPOLATION_H
+#define __INETVEINS_INTERPOLATION_H
 
 #include <limits>
 #include <map>
@@ -924,7 +924,7 @@ class InterpolateableMap : public TContainer
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INTERPOLATION_H
+#endif // ifndef __INETVEINS_INTERPOLATION_H
 

@@ -34,5 +34,5 @@ bool PriorityScheduler::schedulePacket()
     return false;
 }
 
-} // namespace inet
+} // namespace inetveins
 

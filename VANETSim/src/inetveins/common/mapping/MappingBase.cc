@@ -398,5 +398,5 @@ void SimpleConstMapping::initializeArguments(const Argument& min,
         createKeyEntries(min, max, interval, dimIt, pos);
 }
 } // namespace physicallayer
-} // namespace inet
+} // namespace inetveins
 

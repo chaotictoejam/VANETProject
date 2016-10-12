@@ -226,5 +226,5 @@ IPv6Address Buffer::readIPv6Address() const
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 

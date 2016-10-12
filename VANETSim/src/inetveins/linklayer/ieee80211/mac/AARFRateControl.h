@@ -15,8 +15,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_AARFRATECONTROL_H
-#define __INET_AARFRATECONTROL_H
+#ifndef __INETVEINS_AARFRATECONTROL_H
+#define __INETVEINS_AARFRATECONTROL_H
 
 #include "RateControlBase.h"
 
@@ -60,4 +60,4 @@ class INETVEINS_API AARFRateControl : public RateControlBase, public cSimpleModu
 } /* namespace ieee80211 */
 } /* namespace inetveins */
 
-#endif // infndef __INET_AARFRATECONTROL_H
+#endif // infndef __INETVEINS_AARFRATECONTROL_H

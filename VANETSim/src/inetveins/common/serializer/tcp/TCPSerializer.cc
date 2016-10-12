@@ -37,7 +37,7 @@ Register_Serializer(tcp::TCPSegment, IP_PROT, IP_PROT_TCP, TCPSerializer);
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
 #if !defined(_WIN32) && !defined(__WIN32__) && !defined(WIN32) && !defined(__CYGWIN__) && !defined(_WIN64)
 #include <netinet/in.h>    // htonl, ntohl, ...
@@ -340,5 +340,5 @@ cPacket* TCPSerializer::deserialize(const Buffer &b, Context& c)
     return tcpseg;
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_APSKSCALARRECEIVER_H
-#define __INET_APSKSCALARRECEIVER_H
+#ifndef __INETVEINS_APSKSCALARRECEIVER_H
+#define __INETVEINS_APSKSCALARRECEIVER_H
 
 #include "inetveins/physicallayer/base/packetlevel/FlatReceiverBase.h"
 #include "inetveins/physicallayer/contract/packetlevel/IModulation.h"
@@ -35,7 +35,7 @@ class INETVEINS_API APSKScalarReceiver : public FlatReceiverBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_APSKSCALARRECEIVER_H
+#endif // ifndef __INETVEINS_APSKSCALARRECEIVER_H
 

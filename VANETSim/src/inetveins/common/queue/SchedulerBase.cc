@@ -140,5 +140,5 @@ void SchedulerBase::notifyListeners()
         (elem)->packetEnqueued(this);
 }
 
-} // namespace inet
+} // namespace inetveins
 

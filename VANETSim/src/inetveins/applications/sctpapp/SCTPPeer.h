@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTPPEER_H
-#define __INET_SCTPPEER_H
+#ifndef __INETVEINS_SCTPPEER_H
+#define __INETVEINS_SCTPPEER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/transportlayer/sctp/SCTPAssociation.h"
 #include "inetveins/transportlayer/contract/sctp/SCTPSocket.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
@@ -127,7 +127,7 @@ class INETVEINS_API SCTPPeer : public cSimpleModule, public SCTPSocket::Callback
     ~SCTPPeer();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPPEER_H
+#endif // ifndef __INETVEINS_SCTPPEER_H
 

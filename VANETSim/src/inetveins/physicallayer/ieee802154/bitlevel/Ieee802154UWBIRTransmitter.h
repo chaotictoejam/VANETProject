@@ -20,8 +20,8 @@
  * 				Foundation under grant number 5005-67322.
  ***************************************************************************/
 
-#ifndef __INET_IEEE802154UWBIRTRANSMITTER_H
-#define __INET_IEEE802154UWBIRTRANSMITTER_H
+#ifndef __INETVEINS_IEEE802154UWBIRTRANSMITTER_H
+#define __INETVEINS_IEEE802154UWBIRTRANSMITTER_H
 
 #include <vector>
 #include "inetveins/common/mapping/MappingBase.h"
@@ -69,7 +69,7 @@ class INETVEINS_API Ieee802154UWBIRTransmitter : public TransmitterBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE802154UWBIRTRANSMITTER_H
+#endif // ifndef __INETVEINS_IEEE802154UWBIRTRANSMITTER_H
 

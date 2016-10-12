@@ -302,5 +302,5 @@ RTPProfile::SSRCGate *RTPProfile::newSSRCGate(uint32 ssrc)
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

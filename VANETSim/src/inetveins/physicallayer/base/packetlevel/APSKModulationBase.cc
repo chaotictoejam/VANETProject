@@ -97,5 +97,5 @@ ShortBitVector APSKModulationBase::demapToBitRepresentation(const APSKSymbol *sy
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

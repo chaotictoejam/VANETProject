@@ -20,12 +20,12 @@
 //  Author: Andras Varga
 //
 
-#ifndef __INET_IPV4INTERFACEDATA_H
-#define __INET_IPV4INTERFACEDATA_H
+#ifndef __INETVEINS_IPV4INTERFACEDATA_H
+#define __INETVEINS_IPV4INTERFACEDATA_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
@@ -208,7 +208,7 @@ class INETVEINS_API IPv4InterfaceData : public InterfaceProtocolData
     //@}
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV4INTERFACEDATA_H
+#endif // ifndef __INETVEINS_IPV4INTERFACEDATA_H
 

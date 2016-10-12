@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_OSPFNEIGHBORSTATETWOWAY_H
-#define __INET_OSPFNEIGHBORSTATETWOWAY_H
+#ifndef __INETVEINS_OSPFNEIGHBORSTATETWOWAY_H
+#define __INETVEINS_OSPFNEIGHBORSTATETWOWAY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/routing/ospfv2/neighbor/OSPFNeighborState.h"
 
 namespace inetveins {
@@ -34,7 +34,7 @@ class INETVEINS_API NeighborStateTwoWay : public NeighborState
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_OSPFNEIGHBORSTATETWOWAY_H
+#endif // ifndef __INETVEINS_OSPFNEIGHBORSTATETWOWAY_H
 

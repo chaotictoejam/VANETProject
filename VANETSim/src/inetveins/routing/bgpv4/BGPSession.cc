@@ -146,5 +146,5 @@ void BGPSession::getStatistics(unsigned int *statTab)
 
 } // namespace bgp
 
-} // namespace inet
+} // namespace inetveins
 

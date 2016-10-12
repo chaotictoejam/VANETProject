@@ -33,7 +33,7 @@ class IPv6ExtensionHeader;
 typedef IPv6ExtensionHeader *IPv6ExtensionHeaderPtr;
 std::ostream& operator<<(std::ostream& os, IPv6ExtensionHeaderPtr eh);
 
-#ifndef WITH_IPv6
+#ifndef WITH_INETVEINS_IPv6
 inline std::ostream& operator<<(std::ostream& os, IPv6ExtensionHeaderPtr eh) {return os;}
 #endif
 }}

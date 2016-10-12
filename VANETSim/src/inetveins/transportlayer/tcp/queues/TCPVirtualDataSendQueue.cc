@@ -90,5 +90,5 @@ void TCPVirtualDataSendQueue::discardUpTo(uint32 seqNum)
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

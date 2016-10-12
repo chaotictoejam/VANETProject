@@ -16,12 +16,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPVXTRAFGEN_H
-#define __INET_IPVXTRAFGEN_H
+#ifndef __INETVEINS_IPVXTRAFGEN_H
+#define __INETVEINS_IPVXTRAFGEN_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/applications/generic/IPvXTrafSink.h"
@@ -82,7 +82,7 @@ class INETVEINS_API IPvXTrafGen : public cSimpleModule, public ILifecycle
     virtual ~IPvXTrafGen();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPVXTRAFGEN_H
+#endif // ifndef __INETVEINS_IPVXTRAFGEN_H
 

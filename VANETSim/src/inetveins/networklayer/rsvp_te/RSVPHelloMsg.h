@@ -13,8 +13,8 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_RSVPHELLOMSG_H
-#define __INET_RSVPHELLOMSG_H
+#ifndef __INETVEINS_RSVPHELLOMSG_H
+#define __INETVEINS_RSVPHELLOMSG_H
 
 #include "inetveins/networklayer/rsvp_te/RSVPHello_m.h"
 
@@ -45,7 +45,7 @@ class INETVEINS_API RSVPHelloMsg : public RSVPHelloMsg_Base
     virtual RSVPHelloMsg *dup() const override { return new RSVPHelloMsg(*this); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RSVPHELLOMSG_H
+#endif // ifndef __INETVEINS_RSVPHELLOMSG_H
 

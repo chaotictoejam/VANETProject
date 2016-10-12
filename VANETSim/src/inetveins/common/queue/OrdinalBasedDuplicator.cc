@@ -107,5 +107,5 @@ void OrdinalBasedDuplicator::finish()
 {
 }
 
-} // namespace inet
+} // namespace inetveins
 

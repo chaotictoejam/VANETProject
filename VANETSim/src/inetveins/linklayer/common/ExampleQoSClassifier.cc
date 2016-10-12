@@ -19,18 +19,18 @@
 #include "ExampleQoSClassifier.h"
 #include "UserPriority.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #  include "inetveins/networklayer/ipv4/IPv4Datagram.h"
 #  include "inetveins/networklayer/ipv4/ICMPMessage_m.h"
 #endif
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #  include "inetveins/networklayer/ipv6/IPv6Datagram.h"
 #  include "inetveins/networklayer/icmpv6/ICMPv6Message_m.h"
 #endif
-#ifdef WITH_UDP
+#ifdef WITH_INETVEINS_UDP
 #  include "inetveins/transportlayer/udp/UDPPacket.h"
 #endif
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
 #  include "inetveins/transportlayer/tcp_common/TCPSegment.h"
 #endif
 
@@ -55,13 +55,13 @@ int ExampleQoSClassifier::getUserPriority(cMessage *msg)
 {
     cPacket *ipData = nullptr;
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     ipData = dynamic_cast<IPv4Datagram *>(msg);
     if (ipData && dynamic_cast<ICMPMessage *>(ipData->getEncapsulatedPacket()))
         return UP_BE; // ICMP class
 #endif
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     if (!ipData) {
         ipData = dynamic_cast<IPv6Datagram *>(msg);
         if (ipData && dynamic_cast<ICMPv6Message *>(ipData->getEncapsulatedPacket()))
@@ -72,7 +72,7 @@ int ExampleQoSClassifier::getUserPriority(cMessage *msg)
     if (!ipData)
         return UP_BE;
 
-#ifdef WITH_UDP
+#ifdef WITH_INETVEINS_UDP
     UDPPacket *udp = dynamic_cast<UDPPacket *>(ipData->getEncapsulatedPacket());
     if (udp) {
         if (udp->getDestinationPort() == 21 || udp->getSourcePort() == 21)
@@ -86,7 +86,7 @@ int ExampleQoSClassifier::getUserPriority(cMessage *msg)
     }
 #endif
 
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
     tcp::TCPSegment *tcp = dynamic_cast<tcp::TCPSegment *>(ipData->getEncapsulatedPacket());
     if (tcp) {
         if (tcp->getDestPort() == 21 || tcp->getSrcPort() == 21)
@@ -103,5 +103,5 @@ int ExampleQoSClassifier::getUserPriority(cMessage *msg)
     return UP_BE;
 }
 
-} // namespace inet
+} // namespace inetveins
 

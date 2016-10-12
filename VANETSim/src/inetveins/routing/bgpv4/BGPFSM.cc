@@ -531,5 +531,5 @@ void Established::UpdateMsgEvent()
 
 } // namespace bgp
 
-} // namespace inet
+} // namespace inetveins
 

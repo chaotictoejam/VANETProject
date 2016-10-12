@@ -17,10 +17,10 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_NS2MOTIONMOBILITY_H
-#define __INET_NS2MOTIONMOBILITY_H
+#ifndef __INETVEINS_NS2MOTIONMOBILITY_H
+#define __INETVEINS_NS2MOTIONMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/base/LineSegmentsMobilityBase.h"
 
@@ -85,7 +85,7 @@ class INETVEINS_API Ns2MotionMobility : public LineSegmentsMobilityBase
     virtual double getMaxSpeed() const override { return maxSpeed; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NS2MOTIONMOBILITY_H
+#endif // ifndef __INETVEINS_NS2MOTIONMOBILITY_H
 

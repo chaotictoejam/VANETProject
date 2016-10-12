@@ -338,5 +338,5 @@ void MACAddressTable::resetDefaultAging()
     agingTime = par("agingTime");
 }
 
-} // namespace inet
+} // namespace inetveins
 

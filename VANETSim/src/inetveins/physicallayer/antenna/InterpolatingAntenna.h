@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INTERPOLATINGANTENNA_H
-#define __INET_INTERPOLATINGANTENNA_H
+#ifndef __INETVEINS_INTERPOLATINGANTENNA_H
+#define __INETVEINS_INTERPOLATINGANTENNA_H
 
 #include "inetveins/physicallayer/base/packetlevel/AntennaBase.h"
 
@@ -49,7 +49,7 @@ class INETVEINS_API InterpolatingAntenna : public AntennaBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INTERPOLATINGANTENNA_H
+#endif // ifndef __INETVEINS_INTERPOLATINGANTENNA_H
 

@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPRECEIVEQUEUE_H
-#define __INET_TCPRECEIVEQUEUE_H
+#ifndef __INETVEINS_TCPRECEIVEQUEUE_H
+#define __INETVEINS_TCPRECEIVEQUEUE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/tcp/TCPConnection.h"
 
@@ -127,7 +127,7 @@ class INETVEINS_API TCPReceiveQueue : public cObject
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPRECEIVEQUEUE_H
+#endif // ifndef __INETVEINS_TCPRECEIVEQUEUE_H
 

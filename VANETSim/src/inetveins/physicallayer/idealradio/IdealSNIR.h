@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IDEALSNIR_H
-#define __INET_IDEALSNIR_H
+#ifndef __INETVEINS_IDEALSNIR_H
+#define __INETVEINS_IDEALSNIR_H
 
 #include "inetveins/physicallayer/base/packetlevel/SNIRBase.h"
 
@@ -36,7 +36,7 @@ class INETVEINS_API IdealSNIR : public SNIRBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IDEALSNIR_H
+#endif // ifndef __INETVEINS_IDEALSNIR_H
 

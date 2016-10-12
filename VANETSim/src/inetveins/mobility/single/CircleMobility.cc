@@ -16,7 +16,7 @@
 //
 
 #include "inetveins/mobility/single/CircleMobility.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 
 namespace inetveins {
 
@@ -72,5 +72,5 @@ void CircleMobility::move()
     handleIfOutside(REFLECT, dummyCoord, dummyCoord, dummyAngle);
 }
 
-} // namespace inet
+} // namespace inetveins
 

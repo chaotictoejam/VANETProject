@@ -487,5 +487,5 @@ bool IPv4InterfaceData::removeHostGroupData(IPv4Address multicastAddress)
     return false;
 }
 
-} // namespace inet
+} // namespace inetveins
 

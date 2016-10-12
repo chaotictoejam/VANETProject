@@ -11,8 +11,8 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_SCTPNATPEER_H
-#define __INET_SCTPNATPEER_H
+#ifndef __INETVEINS_SCTPNATPEER_H
+#define __INETVEINS_SCTPNATPEER_H
 #include <omnetpp.h>
 #include "inetveins/transportlayer/sctp/SCTPAssociation.h"
 #include "inetveins/transportlayer/contract/sctp/SCTPCommand_m.h"
@@ -134,7 +134,7 @@ class INETVEINS_API SCTPNatPeer : public cSimpleModule, public SCTPSocket::Callb
     void setStatusString(const char *s);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPNATPEER_H
+#endif // ifndef __INETVEINS_SCTPNATPEER_H
 

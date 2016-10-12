@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IOBSTACLELOSS_H
-#define __INET_IOBSTACLELOSS_H
+#ifndef __INETVEINS_IOBSTACLELOSS_H
+#define __INETVEINS_IOBSTACLELOSS_H
 
 #include "inetveins/common/geometry/common/Coord.h"
 #include "inetveins/physicallayer/contract/packetlevel/IPrintableObject.h"
@@ -43,7 +43,7 @@ class INETVEINS_API IObstacleLoss : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IOBSTACLELOSS_H
+#endif // ifndef __INETVEINS_IOBSTACLELOSS_H
 

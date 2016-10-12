@@ -159,4 +159,4 @@ bool QoSDuplicateDetector::isDuplicate(Ieee80211DataOrMgmtFrame *frame)
 }
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins

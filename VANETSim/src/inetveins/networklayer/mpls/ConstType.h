@@ -13,10 +13,10 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_CONSTTYPE_H
-#define __INET_CONSTTYPE_H
+#ifndef __INETVEINS_CONSTTYPE_H
+#define __INETVEINS_CONSTTYPE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -43,7 +43,7 @@ const int HOW_KIND = 50;
 
 } // namespace mpls_constants
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_CONSTTYPE_H
+#endif // ifndef __INETVEINS_CONSTTYPE_H
 

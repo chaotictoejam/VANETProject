@@ -17,10 +17,10 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_MACPLUGIN_H
-#define __INET_MACPLUGIN_H
+#ifndef __INETVEINS_MACPLUGIN_H
+#define __INETVEINS_MACPLUGIN_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 namespace ieee80211 {
@@ -49,7 +49,7 @@ class INETVEINS_API MacPlugin : public cOwnedObject
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

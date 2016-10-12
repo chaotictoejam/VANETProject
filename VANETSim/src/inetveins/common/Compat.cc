@@ -64,5 +64,5 @@ double INETVEINS_API erfc(double x)
 
 #endif // ifdef _MSC_VER
 
-} // namespace inet
+} // namespace inetveins
 

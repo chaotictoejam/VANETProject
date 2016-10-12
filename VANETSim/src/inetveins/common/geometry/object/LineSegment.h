@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_LINESEGMENT_H
-#define __INET_LINESEGMENT_H
+#ifndef __INETVEINS_LINESEGMENT_H
+#define __INETVEINS_LINESEGMENT_H
 
 #include "inetveins/common/geometry/base/GeometricObjectBase.h"
 #include "inetveins/common/geometry/common/Coord.h"
@@ -51,7 +51,7 @@ class INETVEINS_API LineSegment : public GeometricObjectBase
     bool computeIntersection(const LineSegment &lineSegment, Coord &intersection1, Coord &intersection2);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LINESEGMENT_H
+#endif // ifndef __INETVEINS_LINESEGMENT_H
 

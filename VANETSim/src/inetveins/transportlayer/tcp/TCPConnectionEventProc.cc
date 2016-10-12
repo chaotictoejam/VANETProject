@@ -311,5 +311,5 @@ void TCPConnection::process_QUEUE_BYTES_LIMIT(TCPEventCode& event, TCPCommand *t
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

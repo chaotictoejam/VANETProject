@@ -16,7 +16,7 @@
 //
 
 #include "inetveins/mobility/single/TurtleMobility.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 
 namespace inetveins {
 
@@ -358,5 +358,5 @@ void TurtleMobility::computeMaxSpeed(cXMLElement *nodes)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

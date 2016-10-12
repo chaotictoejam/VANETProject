@@ -59,5 +59,5 @@ std::ostream& ConstantTimePropagation::printToStream(std::ostream& stream, int l
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

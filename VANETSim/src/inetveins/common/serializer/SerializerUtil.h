@@ -14,13 +14,13 @@
 //
 
 
-#ifndef __INET_SERIALIZERUTIL_H_
-#define __INET_SERIALIZERUTIL_H_
+#ifndef __INETVEINS_SERIALIZERUTIL_H_
+#define __INETVEINS_SERIALIZERUTIL_H_
 
 // Includes sockets.h for htonl, ntohl, etc. on Windows.
 // This header needs to be included before <omnetpp.h> (i.e. practically before any other header)
 
 #include <platdep/sockets.h>  //TODO should be <omnetpp/platdep/sockets.h> when OMNeT++ 4.x compatibility is no longer needed
 
-#endif  // __INET_SERIALIZERUTIL_H_
+#endif  // __INETVEINS_SERIALIZERUTIL_H_
 

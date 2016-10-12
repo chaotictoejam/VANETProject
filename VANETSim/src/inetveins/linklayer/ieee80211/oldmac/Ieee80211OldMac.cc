@@ -22,7 +22,7 @@
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h"
 #include "inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 #include "inetveins/common/ModuleAccess.h"
 
 namespace inetveins {
@@ -2677,5 +2677,5 @@ void Ieee80211OldMac::configureRadioMode(IRadio::RadioMode radioMode)
 
 } // namespace ieee80211
 
-} // namespace inet
+} // namespace inetveins
 

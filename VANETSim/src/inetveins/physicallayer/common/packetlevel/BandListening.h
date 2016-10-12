@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BANDLISTENING_H
-#define __INET_BANDLISTENING_H
+#ifndef __INETVEINS_BANDLISTENING_H
+#define __INETVEINS_BANDLISTENING_H
 
 #include "inetveins/physicallayer/base/packetlevel/ListeningBase.h"
 
@@ -41,7 +41,7 @@ class INETVEINS_API BandListening : public ListeningBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BANDLISTENING_H
+#endif // ifndef __INETVEINS_BANDLISTENING_H
 

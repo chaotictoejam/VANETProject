@@ -12,10 +12,10 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_ICLASSIFIER_H
-#define __INET_ICLASSIFIER_H
+#ifndef __INETVEINS_ICLASSIFIER_H
+#define __INETVEINS_ICLASSIFIER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
 #include "inetveins/networklayer/mpls/LIBTable.h"
@@ -51,7 +51,7 @@ class INETVEINS_API IClassifier
     virtual bool lookupLabel(IPv4Datagram *ipdatagram, LabelOpVector& outLabel, std::string& outInterface, int& color) = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ICLASSIFIER_H
+#endif // ifndef __INETVEINS_ICLASSIFIER_H
 

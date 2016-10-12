@@ -87,5 +87,5 @@ void ChiangMobility::move()
     handleIfOutside(REFLECT, dummyPosition, lastSpeed, dummyAngle);
 }
 
-} // namespace inet
+} // namespace inetveins
 

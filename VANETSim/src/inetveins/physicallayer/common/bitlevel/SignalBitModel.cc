@@ -69,5 +69,5 @@ ReceptionBitModel::ReceptionBitModel(int headerBitLength, bps headerBitRate, int
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

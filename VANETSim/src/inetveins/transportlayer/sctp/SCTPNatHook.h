@@ -1,9 +1,9 @@
-#ifndef __INET_SCTPNATHOOK_H
-#define __INET_SCTPNATHOOK_H
+#ifndef __INETVEINS_SCTPNATHOOK_H
+#define __INETVEINS_SCTPNATHOOK_H
 
 #include "inetveins/networklayer/contract/INetfilter.h"
 #include "inetveins/transportlayer/sctp/SCTPNatTable.h"
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -37,7 +37,7 @@ class INETVEINS_API SCTPNatHook : public cSimpleModule, INetfilter::IHook
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPNATHOOK_H
+#endif // ifndef __INETVEINS_SCTPNATHOOK_H
 

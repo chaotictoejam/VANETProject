@@ -132,5 +132,5 @@ int Ieee802154UWBIRMode::getHoppingPos(int sym) const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

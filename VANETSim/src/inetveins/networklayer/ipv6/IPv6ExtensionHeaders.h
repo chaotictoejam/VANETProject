@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV6EXTENSIONHEADERS_H
-#define __INET_IPV6EXTENSIONHEADERS_H
+#ifndef __INETVEINS_IPV6EXTENSIONHEADERS_H
+#define __INETVEINS_IPV6EXTENSIONHEADERS_H
 
 #include "inetveins/networklayer/ipv6/IPv6ExtensionHeaders_m.h"
 
@@ -33,7 +33,7 @@ class INETVEINS_API IPv6RoutingHeader : public IPv6RoutingHeader_Base
     virtual void setAddressArraySize(unsigned int size) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif    // __INET_IPV6EXTENSIONHEADERS_H_
+#endif    // __INETVEINS_IPV6EXTENSIONHEADERS_H_
 

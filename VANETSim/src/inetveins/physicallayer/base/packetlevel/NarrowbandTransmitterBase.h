@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_NARROWBANDTRANSMITTERBASE_H
-#define __INET_NARROWBANDTRANSMITTERBASE_H
+#ifndef __INETVEINS_NARROWBANDTRANSMITTERBASE_H
+#define __INETVEINS_NARROWBANDTRANSMITTERBASE_H
 
 #include "inetveins/physicallayer/base/packetlevel/TransmitterBase.h"
 #include "inetveins/physicallayer/contract/packetlevel/IModulation.h"
@@ -52,7 +52,7 @@ class INETVEINS_API NarrowbandTransmitterBase : public TransmitterBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NARROWBANDTRANSMITTERBASE_H
+#endif // ifndef __INETVEINS_NARROWBANDTRANSMITTERBASE_H
 

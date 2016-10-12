@@ -20,7 +20,7 @@
 
 #include "inetveins/linklayer/ppp/PPP.h"
 
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 #include "inetveins/common/ModuleAccess.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/common/queue/IPassiveQueue.h"
@@ -454,4 +454,4 @@ void PPP::clearQueue()
     }
 }
 
-} // namespace inet
+} // namespace inetveins

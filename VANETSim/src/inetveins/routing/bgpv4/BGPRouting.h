@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BGPROUTING_H
-#define __INET_BGPROUTING_H
+#ifndef __INETVEINS_BGPROUTING_H
+#define __INETVEINS_BGPROUTING_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/contract/tcp/TCPSocket.h"
 #include "inetveins/transportlayer/contract/tcp/TCPSocketMap.h"
@@ -153,7 +153,7 @@ class INETVEINS_API BGPRouting : public cSimpleModule, public ILifecycle, public
 
 } // namespace bgp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BGPROUTING_H
+#endif // ifndef __INETVEINS_BGPROUTING_H
 

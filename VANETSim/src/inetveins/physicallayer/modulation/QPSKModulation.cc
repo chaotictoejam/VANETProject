@@ -35,5 +35,5 @@ QPSKModulation::QPSKModulation() : MQAMModulationBase(&constellation)
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

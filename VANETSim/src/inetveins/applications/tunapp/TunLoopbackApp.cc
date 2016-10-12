@@ -73,4 +73,4 @@ void TunLoopbackApp::finish()
     EV_INFO << "packets received: " << packetsReceived << endl;
 }
 
-} // namespace inet
+} // namespace inetveins

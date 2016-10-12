@@ -91,5 +91,5 @@ void NeighborState::changeState(Neighbor *neighbor, NeighborState *newState, Nei
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

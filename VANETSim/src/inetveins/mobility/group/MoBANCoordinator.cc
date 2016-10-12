@@ -43,7 +43,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/mobility/group/MoBANCoordinator.h"
 #include "inetveins/mobility/group/MoBANLocal.h"
 
@@ -748,5 +748,5 @@ void MoBANCoordinator::computeMaxSpeed()
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

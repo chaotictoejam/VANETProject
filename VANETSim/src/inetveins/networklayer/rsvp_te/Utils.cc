@@ -147,5 +147,5 @@ cModule *getPayloadOwner(cPacket *msg)
    }
  */
 
-} // namespace inet
+} // namespace inetveins
 

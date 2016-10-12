@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IRADIOSIGNAL_H
-#define __INET_IRADIOSIGNAL_H
+#ifndef __INETVEINS_IRADIOSIGNAL_H
+#define __INETVEINS_IRADIOSIGNAL_H
 
 #include "inetveins/common/geometry/common/Coord.h"
 #include "inetveins/physicallayer/contract/packetlevel/IPrintableObject.h"
@@ -98,7 +98,7 @@ class INETVEINS_API IDimensionalSignal
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IRADIOSIGNAL_H
+#endif // ifndef __INETVEINS_IRADIOSIGNAL_H
 

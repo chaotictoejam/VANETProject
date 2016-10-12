@@ -15,10 +15,10 @@
 // License along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IINTERFACETABLE_H
-#define __INET_IINTERFACETABLE_H
+#ifndef __INETVEINS_IINTERFACETABLE_H
+#define __INETVEINS_IINTERFACETABLE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"    // not strictly required, but clients will need it anyway
@@ -39,7 +39,7 @@ typedef std::vector<MulticastGroup> MulticastGroupList;
  * A C++ interface to abstract the functionality of InterfaceTable.
  * Referring to InterfaceTable via this interface makes it possible to
  * transparently replace InterfaceTable with a different implementation,
- * without any change to the base INET.
+ * without any change to the base INETVEINS.
  *
  * @see InterfaceTable, InterfaceEntry
  */
@@ -172,7 +172,7 @@ class INETVEINS_API IInterfaceTable
     virtual MulticastGroupList collectMulticastGroups() = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IINTERFACETABLE_H
+#endif // ifndef __INETVEINS_IINTERFACETABLE_H
 

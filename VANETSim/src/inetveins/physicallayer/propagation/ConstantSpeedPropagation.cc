@@ -96,5 +96,5 @@ const IArrival *ConstantSpeedPropagation::computeArrival(const ITransmission *tr
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

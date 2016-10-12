@@ -37,5 +37,5 @@ const IReceptionSampleModel *ScalarAnalogDigitalConverter::convertAnalogToDigita
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

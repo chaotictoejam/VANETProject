@@ -20,8 +20,8 @@
  *              the user can decide whether to use plain flooding or not
  **************************************************************************/
 
-#ifndef __INET_FLOOD_H
-#define __INET_FLOOD_H
+#ifndef __INETVEINS_FLOOD_H
+#define __INETVEINS_FLOOD_H
 
 #include <list>
 #include "inetveins/networklayer/contract/INetworkProtocol.h"
@@ -145,7 +145,7 @@ class INETVEINS_API Flood : public NetworkProtocolBase, public INetworkProtocol
     virtual cObject *setDownControlInfo(cMessage *const pMsg, const MACAddress& pDestAddr);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_FLOOD_H
+#endif // ifndef __INETVEINS_FLOOD_H
 

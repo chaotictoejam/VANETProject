@@ -177,5 +177,5 @@ void TCPEchoApp::finish()
     recordScalar("bytesSent", bytesSent);
 }
 
-} // namespace inet
+} // namespace inetveins
 

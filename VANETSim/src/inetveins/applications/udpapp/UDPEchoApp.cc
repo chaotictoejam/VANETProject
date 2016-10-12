@@ -102,5 +102,5 @@ void UDPEchoApp::handleNodeCrash()
 {
 }
 
-} // namespace inet
+} // namespace inetveins
 

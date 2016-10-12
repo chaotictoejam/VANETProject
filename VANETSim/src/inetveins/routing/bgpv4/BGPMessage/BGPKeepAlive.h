@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BGPKEEPALIVE_H
-#define __INET_BGPKEEPALIVE_H
+#ifndef __INETVEINS_BGPKEEPALIVE_H
+#define __INETVEINS_BGPKEEPALIVE_H
 
 #include "inetveins/routing/bgpv4/BGPMessage/BGPKeepAlive_m.h"
 
@@ -26,7 +26,7 @@ namespace bgp {
 
 } // namespace bgp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BGPKEEPALIVE_H
+#endif // ifndef __INETVEINS_BGPKEEPALIVE_H
 

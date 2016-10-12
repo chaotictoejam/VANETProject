@@ -494,5 +494,5 @@ bool DHCPServer::handleOperationStage(LifecycleOperation *operation, int stage, 
     return true;
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_NARROWBANDRECEPTIONBASE_H
-#define __INET_NARROWBANDRECEPTIONBASE_H
+#ifndef __INETVEINS_NARROWBANDRECEPTIONBASE_H
+#define __INETVEINS_NARROWBANDRECEPTIONBASE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IRadioSignal.h"
 #include "inetveins/physicallayer/base/packetlevel/ReceptionBase.h"
@@ -42,7 +42,7 @@ class INETVEINS_API NarrowbandReceptionBase : public ReceptionBase, public virtu
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NARROWBANDRECEPTIONBASE_H
+#endif // ifndef __INETVEINS_NARROWBANDRECEPTIONBASE_H
 

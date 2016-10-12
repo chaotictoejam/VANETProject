@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211TRANSMITTERBASE_H
-#define __INET_IEEE80211TRANSMITTERBASE_H
+#ifndef __INETVEINS_IEEE80211TRANSMITTERBASE_H
+#define __INETVEINS_IEEE80211TRANSMITTERBASE_H
 
 #include "inetveins/physicallayer/base/packetlevel/FlatTransmitterBase.h"
 #include "inetveins/physicallayer/ieee80211/mode/IIeee80211Mode.h"
@@ -59,7 +59,7 @@ class INETVEINS_API Ieee80211TransmitterBase : public FlatTransmitterBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE80211TRANSMITTERBASE_H
+#endif // ifndef __INETVEINS_IEEE80211TRANSMITTERBASE_H
 

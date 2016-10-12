@@ -34,8 +34,8 @@
  * $FreeBSD: src/sys/netinet/in_systm.h,v 1.9 1999/12/29 04:41:00 peter Exp $
  */
 
-#ifndef __INET_IN_SYSTM_H
-#define __INET_IN_SYSTM_H
+#ifndef __INETVEINS_IN_SYSTM_H
+#define __INETVEINS_IN_SYSTM_H
 
 namespace inetveins {
 
@@ -63,7 +63,7 @@ typedef u_int32_t n_time;    /* ms since 00:00 GMT, byte rev */
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IN_SYSTM_H
+#endif // ifndef __INETVEINS_IN_SYSTM_H
 

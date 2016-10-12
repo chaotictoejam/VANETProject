@@ -158,5 +158,5 @@ GridNeighborCache::~GridNeighborCache()
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

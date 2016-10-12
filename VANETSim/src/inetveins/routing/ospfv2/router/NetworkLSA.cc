@@ -65,5 +65,5 @@ bool NetworkLSA::differsFrom(const OSPFNetworkLSA *networkLSA) const
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

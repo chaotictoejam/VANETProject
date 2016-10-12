@@ -97,5 +97,5 @@ const IIeee80211Band *Ieee80211CompliantBands::getBand(const char *name)
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

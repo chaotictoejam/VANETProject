@@ -18,7 +18,7 @@
 //
 
 cplusplus {{
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
 #include "inetveins/transportlayer/rtp/RTPPacket.h"
 #include "inetveins/transportlayer/rtp/RTPSenderControlMessage_m.h"

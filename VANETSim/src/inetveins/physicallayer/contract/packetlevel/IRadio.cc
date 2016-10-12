@@ -76,5 +76,5 @@ const char *IRadio::getRadioTransmissionStateName(TransmissionState transmission
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

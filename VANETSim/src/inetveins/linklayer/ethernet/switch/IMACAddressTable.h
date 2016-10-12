@@ -15,10 +15,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_IMACADDRESSTABLE_H
-#define __INET_IMACADDRESSTABLE_H
+#ifndef __INETVEINS_IMACADDRESSTABLE_H
+#define __INETVEINS_IMACADDRESSTABLE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/linklayer/common/MACAddress.h"
 
 namespace inetveins {
@@ -90,7 +90,7 @@ class INETVEINS_API IMACAddressTable
     virtual void resetDefaultAging() = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IMACADDRESSTABLE_H
+#endif // ifndef __INETVEINS_IMACADDRESSTABLE_H
 

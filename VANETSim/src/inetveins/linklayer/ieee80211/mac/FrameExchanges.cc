@@ -18,7 +18,7 @@
 //
 
 #include "FrameExchanges.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 #include "inetveins/common/FSMA.h"
 #include "IContention.h"
 #include "ITx.h"
@@ -406,5 +406,5 @@ void SendMulticastDataFrameExchange::transmissionComplete()
 
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 

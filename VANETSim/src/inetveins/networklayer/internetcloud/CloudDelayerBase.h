@@ -17,10 +17,10 @@
 // @author Zoltan Bojthe
 //
 
-#ifndef __INET_CLOUDDELAYERBASE_H
-#define __INET_CLOUDDELAYERBASE_H
+#ifndef __INETVEINS_CLOUDDELAYERBASE_H
+#define __INETVEINS_CLOUDDELAYERBASE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/INetfilter.h"
 
@@ -57,7 +57,7 @@ class INETVEINS_API CloudDelayerBase : public cSimpleModule, public INetfilter::
     IPv4 *ipv4Layer;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_CLOUDDELAYERBASE_H
+#endif // ifndef __INETVEINS_CLOUDDELAYERBASE_H
 

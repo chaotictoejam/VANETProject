@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IENERGYSTORAGE_H
-#define __INET_IENERGYSTORAGE_H
+#ifndef __INETVEINS_IENERGYSTORAGE_H
+#define __INETVEINS_IENERGYSTORAGE_H
 
 #include "IEnergySource.h"
 #include "IEnergySink.h"
@@ -60,7 +60,7 @@ class INETVEINS_API IEnergyStorage : public virtual IEnergySource, public virtua
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IENERGYSTORAGE_H
+#endif // ifndef __INETVEINS_IENERGYSTORAGE_H
 

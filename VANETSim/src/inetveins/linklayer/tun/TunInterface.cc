@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 #include "inetveins/linklayer/tun/TunInterface.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 
@@ -74,5 +74,5 @@ void TunInterface::clearQueue()
     // does not have a queue, do nothing
 }
 
-} // namespace inet
+} // namespace inetveins
 

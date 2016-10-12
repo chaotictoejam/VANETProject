@@ -44,10 +44,10 @@
 #include "inetveins/common/ModuleAccess.h"
 #include "inetveins/common/lifecycle/NodeStatus.h"
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
 #include "inetveins/networklayer/xmipv6/xMIPv6.h"
 #include "inetveins/networklayer/xmipv6/MobilityHeader_m.h"    // for HA Option header
-#endif // ifdef WITH_xMIPv6
+#endif // ifdef WITH_INETVEINS_xMIPv6
 
 #include <algorithm>
 
@@ -157,7 +157,7 @@ int IPv6Tunneling::createTunnel(TunnelType tunnelType,
         // The tunnel hop limit default value for hosts is the IPv6 Neighbor
         // Discovery advertised hop limit [ND-Spec].
         if (rt->isRouter())
-            tunnels[vIfIndexTop].hopLimit = IPv6__INET_DEFAULT_ROUTER_HOPLIMIT;
+            tunnels[vIfIndexTop].hopLimit = IPv6__INETVEINS_DEFAULT_ROUTER_HOPLIMIT;
         else
             tunnels[vIfIndexTop].hopLimit = 255;
 
@@ -379,7 +379,7 @@ void IPv6Tunneling::encapsulateDatagram(IPv6Datagram *dgram)
     // TODO copy information from old ctrlInfo into new one (Traffic Class, Flow label, etc.)
     delete dgram->removeControlInfo();
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     if ((tunnels[vIfIndex].tunnelType == T2RH) || (tunnels[vIfIndex].tunnelType == HA_OPT)) {
         // pseudo-tunnel for Type 2 Routing Header
         // or Home Address Option
@@ -457,7 +457,7 @@ void IPv6Tunneling::encapsulateDatagram(IPv6Datagram *dgram)
         send(packet, "upperLayerOut");
     }
     else {
-#endif    // WITH_xMIPv6
+#endif    // WITH_INETVEINS_xMIPv6
           // normal tunnel - just modify controlInfo and send
           // datagram back to IPv6 module for encapsulation
 
@@ -469,10 +469,10 @@ void IPv6Tunneling::encapsulateDatagram(IPv6Datagram *dgram)
 
     dgram->setControlInfo(controlInfo);
     send(dgram, "upperLayerOut");
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
 }
 
-#endif // ifdef WITH_xMIPv6
+#endif // ifdef WITH_INETVEINS_xMIPv6
 }
 
 void IPv6Tunneling::decapsulateDatagram(IPv6Datagram *dgram)
@@ -481,7 +481,7 @@ void IPv6Tunneling::decapsulateDatagram(IPv6Datagram *dgram)
     // just update controlInfo
     IPv6ControlInfo *controlInfo = check_and_cast<IPv6ControlInfo *>(dgram->removeControlInfo());
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     // we only decapsulate packets for which we have a tunnel
     // where the exit point is equal to the packets source
     // 11.9.07 - CB
@@ -501,7 +501,7 @@ void IPv6Tunneling::decapsulateDatagram(IPv6Datagram *dgram)
         delete dgram;
         return;
     }
-#endif // ifdef WITH_xMIPv6
+#endif // ifdef WITH_INETVEINS_xMIPv6
 
     // FIX: we leave the interface Id to it's previous value to make sure
     // that later processing knowns from which interface the datagram came from
@@ -511,7 +511,7 @@ void IPv6Tunneling::decapsulateDatagram(IPv6Datagram *dgram)
 
     send(dgram, "linkLayerOut");
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     // Alain Tigyo, 21.03.2008
     // The following code is used for triggering RO to a CN
     InterfaceEntry *ie = ift->getInterfaceById(controlInfo->getInterfaceId());
@@ -523,7 +523,7 @@ void IPv6Tunneling::decapsulateDatagram(IPv6Datagram *dgram)
         if (mipv6)
             mipv6->triggerRouteOptimization(dgram->getSrcAddress(), ie->ipv6Data()->getMNHomeAddress(), ie);
     }
-#endif // ifdef WITH_xMIPv6
+#endif // ifdef WITH_INETVEINS_xMIPv6
 }
 
 int IPv6Tunneling::lookupTunnels(const IPv6Address& dest)
@@ -618,5 +618,5 @@ std::ostream& operator<<(std::ostream& os, const IPv6Tunneling::Tunnel& tun)
     return os;
 }
 
-} // namespace inet
+} // namespace inetveins
 

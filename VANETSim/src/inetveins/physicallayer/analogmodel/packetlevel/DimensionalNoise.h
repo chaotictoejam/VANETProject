@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DIMENSIONALNOISE_H
-#define __INET_DIMENSIONALNOISE_H
+#ifndef __INETVEINS_DIMENSIONALNOISE_H
+#define __INETVEINS_DIMENSIONALNOISE_H
 
 #include "inetveins/physicallayer/base/packetlevel/NarrowbandNoiseBase.h"
 #include "inetveins/common/mapping/MappingBase.h"
@@ -42,7 +42,7 @@ class INETVEINS_API DimensionalNoise : public NarrowbandNoiseBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DIMENSIONALNOISE_H
+#endif // ifndef __INETVEINS_DIMENSIONALNOISE_H
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IMEDIUMLIMITCACHE_H
-#define __INET_IMEDIUMLIMITCACHE_H
+#ifndef __INETVEINS_IMEDIUMLIMITCACHE_H
+#define __INETVEINS_IMEDIUMLIMITCACHE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IPrintableObject.h"
 
@@ -121,7 +121,7 @@ class INETVEINS_API IMediumLimitCache : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IMEDIUMLIMITCACHE_H
+#endif // ifndef __INETVEINS_IMEDIUMLIMITCACHE_H
 

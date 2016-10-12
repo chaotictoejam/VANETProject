@@ -66,5 +66,5 @@ void BVHObjectCache::visitObjects(const IVisitor *visitor, const LineSegment& li
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 

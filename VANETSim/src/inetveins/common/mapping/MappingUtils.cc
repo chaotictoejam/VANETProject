@@ -490,5 +490,5 @@ LinearIntplMappingIterator::~LinearIntplMappingIterator()
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -69,5 +69,5 @@ void BGPUpdateMessage::setNLRI(const BGPUpdateNLRI& NLRI_var)
 
 } // namespace bgp
 
-} // namespace inet
+} // namespace inetveins
 

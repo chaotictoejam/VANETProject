@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_REASSEMBLYBUFFER_H
-#define __INET_REASSEMBLYBUFFER_H
+#ifndef __INETVEINS_REASSEMBLYBUFFER_H
+#define __INETVEINS_REASSEMBLYBUFFER_H
 
 #include <map>
 #include <vector>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -82,7 +82,7 @@ class INETVEINS_API ReassemblyBuffer
     ushort getTotalLength() const { return main.end; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_REASSEMBLYBUFFER_H
+#endif // ifndef __INETVEINS_REASSEMBLYBUFFER_H
 

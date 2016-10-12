@@ -25,5 +25,5 @@ simsignal_t IEnergyStorage::residualCapacityChangedSignal = cComponent::register
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 

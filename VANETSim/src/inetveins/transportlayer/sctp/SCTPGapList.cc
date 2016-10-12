@@ -385,5 +385,5 @@ bool SCTPGapList::updateGapList(const uint32 receivedTSN,
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

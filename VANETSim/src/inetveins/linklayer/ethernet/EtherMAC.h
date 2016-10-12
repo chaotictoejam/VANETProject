@@ -15,10 +15,10 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __INET_ETHERMAC_H
-#define __INET_ETHERMAC_H
+#ifndef __INETVEINS_ETHERMAC_H
+#define __INETVEINS_ETHERMAC_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/linklayer/ethernet/EtherMACBase.h"
 
@@ -119,7 +119,7 @@ class INETVEINS_API EtherMAC : public EtherMACBase
     virtual void printState();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ETHERMAC_H
+#endif // ifndef __INETVEINS_ETHERMAC_H
 

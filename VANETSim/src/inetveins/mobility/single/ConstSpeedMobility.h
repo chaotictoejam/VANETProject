@@ -17,10 +17,10 @@
  * part of:     framework implementation developed by tkn
  **************************************************************************/
 
-#ifndef __INET_CONSTSPEEDMOBILITY_H
-#define __INET_CONSTSPEEDMOBILITY_H
+#ifndef __INETVEINS_CONSTSPEEDMOBILITY_H
+#define __INETVEINS_CONSTSPEEDMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/base/LineSegmentsMobilityBase.h"
 
@@ -53,7 +53,7 @@ class INETVEINS_API ConstSpeedMobility : public LineSegmentsMobilityBase
     ConstSpeedMobility();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_CONSTSPEEDMOBILITY_H
+#endif // ifndef __INETVEINS_CONSTSPEEDMOBILITY_H
 

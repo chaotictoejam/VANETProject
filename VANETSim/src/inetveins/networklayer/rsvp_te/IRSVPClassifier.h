@@ -12,10 +12,10 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_IRSVPCLASSIFIER_H
-#define __INET_IRSVPCLASSIFIER_H
+#ifndef __INETVEINS_IRSVPCLASSIFIER_H
+#define __INETVEINS_IRSVPCLASSIFIER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/rsvp_te/IntServ.h"
 #include "inetveins/networklayer/mpls/IClassifier.h"
@@ -33,7 +33,7 @@ class INETVEINS_API IRSVPClassifier : public IClassifier
     virtual void bind(const SessionObj_t& session, const SenderTemplateObj_t& sender, int inLabel) = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IRSVPCLASSIFIER_H
+#endif // ifndef __INETVEINS_IRSVPCLASSIFIER_H
 

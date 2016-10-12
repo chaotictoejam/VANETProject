@@ -77,5 +77,5 @@ const IReceptionSampleModel *StochasticLayeredErrorModel::computeSampleModel(con
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

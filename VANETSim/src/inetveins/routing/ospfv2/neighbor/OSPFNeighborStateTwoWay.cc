@@ -72,5 +72,5 @@ void NeighborStateTwoWay::processEvent(Neighbor *neighbor, Neighbor::NeighborEve
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

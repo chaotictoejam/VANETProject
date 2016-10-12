@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IIPV4ROUTINGTABLE_H
-#define __INET_IIPV4ROUTINGTABLE_H
+#ifndef __INETVEINS_IIPV4ROUTINGTABLE_H
+#define __INETVEINS_IIPV4ROUTINGTABLE_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
 #include "inetveins/networklayer/ipv4/IPv4Route.h"    // not strictly required, but most clients will need it anyway
@@ -32,7 +32,7 @@ namespace inetveins {
  * A C++ interface to abstract the functionality of IIPv4RoutingTable.
  * Referring to IIPv4RoutingTable via this interface makes it possible to
  * transparently replace IIPv4RoutingTable with a different implementation,
- * without any change to the base INET.
+ * without any change to the base INETVEINS.
  *
  * @see IIPv4RoutingTable, IPv4Route
  */
@@ -242,7 +242,7 @@ class INETVEINS_API IIPv4RoutingTable : public IRoutingTable
     //@}
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IIPV4ROUTINGTABLE_H
+#endif // ifndef __INETVEINS_IIPV4ROUTINGTABLE_H
 

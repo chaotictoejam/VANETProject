@@ -17,8 +17,8 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_MACTIMINGPARAMETERS_H
-#define __INET_MACTIMINGPARAMETERS_H
+#ifndef __INETVEINS_MACTIMINGPARAMETERS_H
+#define __INETVEINS_MACTIMINGPARAMETERS_H
 
 #include "IMacParameters.h"
 
@@ -95,7 +95,7 @@ class INETVEINS_API MacParameters : public IMacParameters
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

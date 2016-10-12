@@ -60,5 +60,5 @@ const cPacket* inetveins::physicallayer::ReceptionResult::getMacFrame() const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

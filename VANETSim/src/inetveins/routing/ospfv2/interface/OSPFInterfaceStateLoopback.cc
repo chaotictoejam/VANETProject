@@ -36,5 +36,5 @@ void InterfaceStateLoopback::processEvent(Interface *intf, Interface::InterfaceE
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

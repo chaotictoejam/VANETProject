@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 namespace inetveins {
 
@@ -114,5 +114,5 @@ cObject *createOne(const char *className, const char *defaultNamespace)
 
 } // namespace utils
 
-} // namespace inet
+} // namespace inetveins
 

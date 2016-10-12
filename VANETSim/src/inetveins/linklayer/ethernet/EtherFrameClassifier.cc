@@ -31,5 +31,5 @@ void EtherFrameClassifier::handleMessage(cMessage *msg)
         send(msg, "defaultOut");
 }
 
-} // namespace inet
+} // namespace inetveins
 

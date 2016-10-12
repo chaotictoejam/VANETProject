@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INETFILTER_H
-#define __INET_INETFILTER_H
+#ifndef __INETVEINS_INETVEINSFILTER_H
+#define __INETVEINS_INETVEINSFILTER_H
 
 #include <omnetpp.h>
 #include "inetveins/networklayer/common/InterfaceEntry.h"
@@ -118,7 +118,7 @@ class INETVEINS_API INetfilter
     virtual void reinjectQueuedDatagram(const INetworkDatagram *datagram) = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INETFILTER_H
+#endif // ifndef __INETVEINS_INETVEINSFILTER_H
 

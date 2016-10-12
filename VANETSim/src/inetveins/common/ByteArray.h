@@ -13,8 +13,8 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_BYTEARRAY_H
-#define __INET_BYTEARRAY_H
+#ifndef __INETVEINS_BYTEARRAY_H
+#define __INETVEINS_BYTEARRAY_H
 
 #include "inetveins/common/ByteArray_m.h"
 
@@ -120,7 +120,7 @@ class INETVEINS_API ByteArray : public ByteArray_Base
     virtual char *getDataPtr()  { return data_var; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BYTEARRAY_H
+#endif // ifndef __INETVEINS_BYTEARRAY_H
 

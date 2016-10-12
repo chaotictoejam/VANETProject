@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPHDR_H
-#define __INET_TCPHDR_H
+#ifndef __INETVEINS_TCPHDR_H
+#define __INETVEINS_TCPHDR_H
 
 namespace inetveins {
 
@@ -57,7 +57,7 @@ struct tcphdr
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPHDR_H
+#endif // ifndef __INETVEINS_TCPHDR_H
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DIMENSIONALSIGNALANALOGMODEL_H
-#define __INET_DIMENSIONALSIGNALANALOGMODEL_H
+#ifndef __INETVEINS_DIMENSIONALSIGNALANALOGMODEL_H
+#define __INETVEINS_DIMENSIONALSIGNALANALOGMODEL_H
 
 #include "inetveins/physicallayer/analogmodel/bitlevel/SignalAnalogModel.h"
 #include "inetveins/common/mapping/MappingBase.h"
@@ -55,7 +55,7 @@ class INETVEINS_API DimensionalReceptionSignalAnalogModel : public DimensionalSi
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DIMENSIONALSIGNALANALOGMODEL_H
+#endif // ifndef __INETVEINS_DIMENSIONALSIGNALANALOGMODEL_H
 

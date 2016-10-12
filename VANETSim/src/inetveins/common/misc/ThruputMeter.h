@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_THRUPUTMETER_H
-#define __INET_THRUPUTMETER_H
+#ifndef __INETVEINS_THRUPUTMETER_H
+#define __INETVEINS_THRUPUTMETER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -61,7 +61,7 @@ class INETVEINS_API ThruputMeter : public cSimpleModule
     virtual void finish() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_THRUPUTMETER_H
+#endif // ifndef __INETVEINS_THRUPUTMETER_H
 

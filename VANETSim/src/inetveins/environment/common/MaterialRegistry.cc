@@ -16,7 +16,7 @@
 //
 
 #include "inetveins/environment/common/MaterialRegistry.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 
 namespace inetveins {
 
@@ -59,5 +59,5 @@ const Material *MaterialRegistry::getMaterial(const char *name) const
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 

@@ -188,5 +188,5 @@ void TracingObstacleLoss::TotalObstacleLossComputation::visit(const cObject *obj
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCALARSNIR_H
-#define __INET_SCALARSNIR_H
+#ifndef __INETVEINS_SCALARSNIR_H
+#define __INETVEINS_SCALARSNIR_H
 
 #include "inetveins/physicallayer/base/packetlevel/SNIRBase.h"
 
@@ -42,7 +42,7 @@ class INETVEINS_API ScalarSNIR : public SNIRBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCALARSNIR_H
+#endif // ifndef __INETVEINS_SCALARSNIR_H
 

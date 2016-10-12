@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_CHIANGMOBILITY_H
-#define __INET_CHIANGMOBILITY_H
+#ifndef __INETVEINS_CHIANGMOBILITY_H
+#define __INETVEINS_CHIANGMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/base/LineSegmentsMobilityBase.h"
 
@@ -57,7 +57,7 @@ class INETVEINS_API ChiangMobility : public LineSegmentsMobilityBase
     ChiangMobility();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_CHIANGMOBILITY_H
+#endif // ifndef __INETVEINS_CHIANGMOBILITY_H
 

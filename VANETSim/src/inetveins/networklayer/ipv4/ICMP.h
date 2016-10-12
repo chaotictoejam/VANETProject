@@ -16,12 +16,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ICMP_H
-#define __INET_ICMP_H
+#ifndef __INETVEINS_ICMP_H
+#define __INETVEINS_ICMP_H
 
 //  Cleanup and rewrite: Andras Varga, 2004
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/ipv4/IIPv4RoutingTable.h"
 
 #include "inetveins/networklayer/ipv4/ICMPMessage.h"
@@ -79,7 +79,7 @@ class INETVEINS_API ICMP : public cSimpleModule
     virtual void handleMessage(cMessage *msg) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ICMP_H
+#endif // ifndef __INETVEINS_ICMP_H
 

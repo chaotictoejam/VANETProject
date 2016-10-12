@@ -566,5 +566,5 @@ void MessageHandler::printLinkStateAcknowledgementPacket(const OSPFLinkStateAckn
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

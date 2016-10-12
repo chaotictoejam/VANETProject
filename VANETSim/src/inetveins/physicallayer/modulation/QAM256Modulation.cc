@@ -291,5 +291,5 @@ QAM256Modulation::QAM256Modulation() : MQAMModulationBase(&constellation)
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

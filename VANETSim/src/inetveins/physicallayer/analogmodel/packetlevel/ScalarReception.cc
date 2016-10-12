@@ -37,5 +37,5 @@ std::ostream& ScalarReception::printToStream(std::ostream& stream, int level) co
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

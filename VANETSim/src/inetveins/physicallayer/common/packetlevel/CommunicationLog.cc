@@ -55,5 +55,5 @@ void CommunicationLog::writeReception(const IRadio *receiver, const IRadioFrame 
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -105,5 +105,5 @@ void OrdinalBasedDropper::finish()
 {
 }
 
-} // namespace inet
+} // namespace inetveins
 

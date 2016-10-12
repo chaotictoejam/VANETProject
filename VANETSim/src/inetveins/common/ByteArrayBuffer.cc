@@ -108,5 +108,5 @@ void ByteArrayBuffer::clear()
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PULSEFILTER_H
-#define __INET_PULSEFILTER_H
+#ifndef __INETVEINS_PULSEFILTER_H
+#define __INETVEINS_PULSEFILTER_H
 
 #include "inetveins/physicallayer/contract/bitlevel/IPulseFilter.h"
 #include "inetveins/physicallayer/common/bitlevel/SignalSymbolModel.h"
@@ -39,7 +39,7 @@ class INETVEINS_API PulseFilter : public IPulseFilter
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PULSEFILTER_H
+#endif // ifndef __INETVEINS_PULSEFILTER_H
 

@@ -13,8 +13,8 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_RSVPRESVMSG_H
-#define __INET_RSVPRESVMSG_H
+#ifndef __INETVEINS_RSVPRESVMSG_H
+#define __INETVEINS_RSVPRESVMSG_H
 
 #include "RSVPResvMsg_m.h"
 
@@ -74,7 +74,7 @@ class INETVEINS_API RSVPResvError : public RSVPResvError_Base
     inline IPv4Address getLIH() { return getHop().Logical_Interface_Handle; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RSVPRESVMSG_H
+#endif // ifndef __INETVEINS_RSVPRESVMSG_H
 

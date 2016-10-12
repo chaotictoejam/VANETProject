@@ -257,5 +257,5 @@ void TCPSessionApp::finish()
     recordScalar("bytesSent", bytesSent);
 }
 
-} // namespace inet
+} // namespace inetveins
 

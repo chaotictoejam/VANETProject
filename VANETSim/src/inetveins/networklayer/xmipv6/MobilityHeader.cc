@@ -26,5 +26,5 @@ namespace inetveins {
 
 Register_Class(HomeAddressOption);
 
-} // namespace inet
+} // namespace inetveins
 

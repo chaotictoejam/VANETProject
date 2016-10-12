@@ -422,5 +422,5 @@ Key _AdaptingInitializer::adapt(Key key)
 _DefaultInitializer _theDefaultInitializer;
 _HistoryInitializer _theHistoryInitializer;
 
-} // namespace inet
+} // namespace inetveins
 

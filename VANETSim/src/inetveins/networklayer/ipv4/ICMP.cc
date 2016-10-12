@@ -294,5 +294,5 @@ void ICMP::sendToIP(ICMPMessage *msg)
     send(msg, "sendOut");
 }
 
-} // namespace inet
+} // namespace inetveins
 

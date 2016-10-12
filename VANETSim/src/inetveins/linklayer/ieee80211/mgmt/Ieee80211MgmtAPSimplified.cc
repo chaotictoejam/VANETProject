@@ -18,9 +18,9 @@
 #include "inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAPSimplified.h"
 #include "inetveins/linklayer/common/Ieee802Ctrl.h"
 
-#ifdef WITH_ETHERNET
+#ifdef WITH_INETVEINS_ETHERNET
 #include "inetveins/linklayer/ethernet/EtherFrame.h"
-#endif // ifdef WITH_ETHERNET
+#endif // ifdef WITH_INETVEINS_ETHERNET
 
 namespace inetveins {
 
@@ -119,5 +119,5 @@ void Ieee80211MgmtAPSimplified::handleProbeResponseFrame(Ieee80211ProbeResponseF
 
 } // namespace ieee80211
 
-} // namespace inet
+} // namespace inetveins
 

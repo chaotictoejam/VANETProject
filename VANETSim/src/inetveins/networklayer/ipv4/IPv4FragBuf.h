@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV4FRAGBUF_H
-#define __INET_IPV4FRAGBUF_H
+#ifndef __INETVEINS_IPV4FRAGBUF_H
+#define __INETVEINS_IPV4FRAGBUF_H
 
 #include <map>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
 #include "inetveins/common/ReassemblyBuffer.h"
@@ -106,7 +106,7 @@ class INETVEINS_API IPv4FragBuf
     void purgeStaleFragments(simtime_t lastupdate);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV4FRAGBUF_H
+#endif // ifndef __INETVEINS_IPV4FRAGBUF_H
 

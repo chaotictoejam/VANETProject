@@ -17,9 +17,9 @@
 
 #include "inetveins/networklayer/contract/ipv6/IPv6AddressType.h"
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6InterfaceData.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 namespace inetveins {
 
@@ -29,12 +29,12 @@ const IPv6Address IPv6AddressType::ALL_RIP_ROUTERS_MCAST("FF02::9");
 
 L3Address IPv6AddressType::getLinkLocalAddress(const InterfaceEntry *ie) const
 {
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     if (ie->ipv6Data())
         return ie->ipv6Data()->getLinkLocalAddress();
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
     return IPv6Address::UNSPECIFIED_ADDRESS;
 }
 
-} // namespace inet
+} // namespace inetveins
 

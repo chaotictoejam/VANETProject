@@ -112,5 +112,5 @@ const ReceptionIndication *FlatReceiverBase::computeReceptionIndication(const IS
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

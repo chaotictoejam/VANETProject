@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_GRIDNEIGHBORCACHE_H
-#define __INET_GRIDNEIGHBORCACHE_H
+#ifndef __INETVEINS_GRIDNEIGHBORCACHE_H
+#define __INETVEINS_GRIDNEIGHBORCACHE_H
 
 #include "inetveins/physicallayer/common/packetlevel/RadioMedium.h"
 #include "inetveins/common/geometry/container/SpatialGrid.h"
@@ -72,7 +72,7 @@ class INETVEINS_API GridNeighborCache : public cSimpleModule, public INeighborCa
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GRIDNEIGHBORCACHE_H
+#endif // ifndef __INETVEINS_GRIDNEIGHBORCACHE_H
 

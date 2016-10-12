@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PASSIVEQUEUEBASE_H
-#define __INET_PASSIVEQUEUEBASE_H
+#ifndef __INETVEINS_PASSIVEQUEUEBASE_H
+#define __INETVEINS_PASSIVEQUEUEBASE_H
 
 #include <map>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/queue/IPassiveQueue.h"
 
@@ -112,7 +112,7 @@ class INETVEINS_API PassiveQueueBase : public cSimpleModule, public IPassiveQueu
     virtual void removeListener(IPassiveQueueListener *listener) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PASSIVEQUEUEBASE_H
+#endif // ifndef __INETVEINS_PASSIVEQUEUEBASE_H
 

@@ -187,5 +187,5 @@ void Rx::updateDisplayString()
 }
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IRADIOMEDIUM_H
-#define __INET_IRADIOMEDIUM_H
+#ifndef __INETVEINS_IRADIOMEDIUM_H
+#define __INETVEINS_IRADIOMEDIUM_H
 
 #include "inetveins/environment/contract/IMaterial.h"
 #include "inetveins/environment/contract/IPhysicalEnvironment.h"
@@ -196,7 +196,7 @@ class INETVEINS_API IRadioMedium : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IRADIOMEDIUM_H
+#endif // ifndef __INETVEINS_IRADIOMEDIUM_H
 

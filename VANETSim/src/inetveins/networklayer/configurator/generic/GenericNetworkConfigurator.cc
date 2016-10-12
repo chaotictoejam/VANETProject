@@ -134,5 +134,5 @@ void GenericNetworkConfigurator::dumpRoutes(Topology& topology)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

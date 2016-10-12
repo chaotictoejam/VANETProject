@@ -896,5 +896,5 @@ void RSTP::stop()
     cancelEvent(upgradeTimer);
 }
 
-} // namespace inet
+} // namespace inetveins
 

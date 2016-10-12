@@ -425,5 +425,5 @@ void GenericRoutingTable::printRoutingTable() const
         EV_INFO << (elem)->getInterface()->getFullPath() << " -> " << (elem)->getDestinationAsGeneric().str() << " as " << (elem)->info() << endl;
 }
 
-} // namespace inet
+} // namespace inetveins
 

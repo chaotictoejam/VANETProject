@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_OSPFCOMMON_H
-#define __INET_OSPFCOMMON_H
+#ifndef __INETVEINS_OSPFCOMMON_H
+#define __INETVEINS_OSPFCOMMON_H
 
 #include <ctype.h>
 #include <functional>
@@ -295,7 +295,7 @@ inline char hexPairToByte(char upperHex, char lowerHex)
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
 #endif    // __COMMON_HPP__
 

@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTPCLIENT_H
-#define __INET_SCTPCLIENT_H
+#ifndef __INETVEINS_SCTPCLIENT_H
+#define __INETVEINS_SCTPCLIENT_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/transportlayer/contract/sctp/SCTPSocket.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/common/lifecycle/LifecycleOperation.h"
@@ -119,7 +119,7 @@ class INETVEINS_API SCTPClient : public cSimpleModule, public SCTPSocket::Callba
     virtual ~SCTPClient();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPCLIENT_H
+#endif // ifndef __INETVEINS_SCTPCLIENT_H
 

@@ -71,5 +71,5 @@ DimensionalReceptionSignalAnalogModel::DimensionalReceptionSignalAnalogModel(con
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

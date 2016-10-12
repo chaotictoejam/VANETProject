@@ -42,5 +42,5 @@ std::ostream& IdealTransmission::printToStream(std::ostream& stream, int level) 
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

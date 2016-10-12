@@ -40,5 +40,5 @@ simtime_t QueueBase::startService(cPacket *msg)
     return delay;
 }
 
-} // namespace inet
+} // namespace inetveins
 

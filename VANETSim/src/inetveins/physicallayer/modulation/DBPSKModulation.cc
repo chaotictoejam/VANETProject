@@ -30,5 +30,5 @@ DBPSKModulation::DBPSKModulation() :
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

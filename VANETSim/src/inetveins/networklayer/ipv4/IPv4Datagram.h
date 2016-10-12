@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV4DATAGRAM_H
-#define __INET_IPV4DATAGRAM_H
+#ifndef __INETVEINS_IPV4DATAGRAM_H
+#define __INETVEINS_IPV4DATAGRAM_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/INetworkDatagram.h"
 #include "inetveins/networklayer/ipv4/IPv4Datagram_m.h"
 
@@ -106,7 +106,7 @@ class INETVEINS_API IPv4Datagram : public IPv4Datagram_Base, public INetworkData
     virtual void setTransportProtocol(int protocol) override { IPv4Datagram_Base::setTransportProtocol(protocol); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV4DATAGRAM_H
+#endif // ifndef __INETVEINS_IPV4DATAGRAM_H
 

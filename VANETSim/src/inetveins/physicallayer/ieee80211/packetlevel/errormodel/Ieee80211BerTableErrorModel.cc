@@ -85,5 +85,5 @@ double Ieee80211BerTableErrorModel::computeSymbolErrorRate(const ISNIR *snir, IR
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -391,5 +391,5 @@ bool operator<(const Int128& a, const Int128& b)
         return a.hi < b.hi;
 }
 
-} // namespace inet
+} // namespace inetveins
 

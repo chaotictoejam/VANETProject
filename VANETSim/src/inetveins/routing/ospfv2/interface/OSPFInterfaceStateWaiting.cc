@@ -65,5 +65,5 @@ void InterfaceStateWaiting::processEvent(Interface *intf, Interface::InterfaceEv
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

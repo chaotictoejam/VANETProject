@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_NETWORKINFO_H
-#define __INET_NETWORKINFO_H
+#ifndef __INETVEINS_NETWORKINFO_H
+#define __INETVEINS_NETWORKINFO_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/scenario/IScriptable.h"
 
@@ -40,7 +40,7 @@ class INETVEINS_API NetworkInfo : public cSimpleModule, public IScriptable
     virtual void dumpRoutingInfo(cModule *target, const char *filename, bool append, bool compat);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NETWORKINFO_H
+#endif // ifndef __INETVEINS_NETWORKINFO_H
 

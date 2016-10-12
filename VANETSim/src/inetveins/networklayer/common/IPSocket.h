@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPSOCKET_H
-#define __INET_IPSOCKET_H
+#ifndef __INETVEINS_IPSOCKET_H
+#define __INETVEINS_IPSOCKET_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/common/IPProtocolId_m.h"
 
 namespace inetveins {
@@ -50,7 +50,7 @@ class INETVEINS_API IPSocket
     void registerProtocol(int protocol);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPSOCKET_H
+#endif // ifndef __INETVEINS_IPSOCKET_H
 

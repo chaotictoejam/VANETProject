@@ -57,5 +57,5 @@ uint16_t TCPIPchecksum::checksum(unsigned int protocolId, const void *packet, un
 
 
 } // namespace serializer
-} // namespace inet
+} // namespace inetveins
 

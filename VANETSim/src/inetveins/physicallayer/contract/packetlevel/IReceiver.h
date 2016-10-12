@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IRECEIVER_H
-#define __INET_IRECEIVER_H
+#ifndef __INETVEINS_IRECEIVER_H
+#define __INETVEINS_IRECEIVER_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IInterference.h"
 #include "inetveins/physicallayer/contract/packetlevel/IListening.h"
@@ -153,7 +153,7 @@ class INETVEINS_API IReceiver : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IRECEIVER_H
+#endif // ifndef __INETVEINS_IRECEIVER_H
 

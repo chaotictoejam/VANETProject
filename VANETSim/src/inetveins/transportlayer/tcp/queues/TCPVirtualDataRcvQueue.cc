@@ -275,5 +275,5 @@ uint32 TCPVirtualDataRcvQueue::getFirstSeqNo()
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

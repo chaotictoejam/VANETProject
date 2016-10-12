@@ -294,7 +294,7 @@ OBJS = \
     $O/inetveins/common/ByteArray.o \
     $O/inetveins/common/ByteArrayBuffer.o \
     $O/inetveins/common/Compat.o \
-    $O/inetveins/common/INETUtils.o \
+    $O/inetveins/common/INETVEINSUtils.o \
     $O/inetveins/common/InitStages.o \
     $O/inetveins/common/int128.o \
     $O/inetveins/common/IntervalTree.o \
@@ -1501,7 +1501,7 @@ depend:
 $O/inetveins/applications/base/ApplicationBase.o: inetveins/applications/base/ApplicationBase.cc \
 	inetveins/applications/base/ApplicationBase.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/common/lifecycle/LifecycleOperation.h \
@@ -1513,7 +1513,7 @@ $O/inetveins/applications/dhcp/DHCPClient.o: inetveins/applications/dhcp/DHCPCli
 	inetveins/applications/dhcp/DHCPLease.h \
 	inetveins/applications/dhcp/DHCPMessage_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -1546,7 +1546,7 @@ $O/inetveins/applications/dhcp/DHCPClient.o: inetveins/applications/dhcp/DHCPCli
 $O/inetveins/applications/dhcp/DHCPMessage_m.o: inetveins/applications/dhcp/DHCPMessage_m.cc \
 	inetveins/applications/dhcp/DHCPMessage_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -1556,7 +1556,7 @@ $O/inetveins/applications/dhcp/DHCPServer.o: inetveins/applications/dhcp/DHCPSer
 	inetveins/applications/dhcp/DHCPMessage_m.h \
 	inetveins/applications/dhcp/DHCPServer.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -1588,7 +1588,7 @@ $O/inetveins/applications/ethernet/EtherAppCli.o: inetveins/applications/etherne
 	inetveins/applications/ethernet/EtherAppCli.h \
 	inetveins/applications/ethernet/EtherApp_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -1613,7 +1613,7 @@ $O/inetveins/applications/ethernet/EtherAppSrv.o: inetveins/applications/etherne
 	inetveins/applications/ethernet/EtherAppSrv.h \
 	inetveins/applications/ethernet/EtherApp_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -1637,13 +1637,13 @@ $O/inetveins/applications/ethernet/EtherAppSrv.o: inetveins/applications/etherne
 $O/inetveins/applications/ethernet/EtherApp_m.o: inetveins/applications/ethernet/EtherApp_m.cc \
 	inetveins/applications/ethernet/EtherApp_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h
 $O/inetveins/applications/ethernet/EtherTrafGen.o: inetveins/applications/ethernet/EtherTrafGen.cc \
 	inetveins/applications/ethernet/EtherTrafGen.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -1668,7 +1668,7 @@ $O/inetveins/applications/ethernet/EthernetApplication.o: inetveins/applications
 	inetveins/applications/ethernet/EtherApp_m.h \
 	inetveins/applications/ethernet/EthernetApplication.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/Ieee802Ctrl.h \
@@ -1679,7 +1679,7 @@ $O/inetveins/applications/generic/IPvXTrafGen.o: inetveins/applications/generic/
 	inetveins/applications/generic/IPvXTrafGen.h \
 	inetveins/applications/generic/IPvXTrafSink.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -1708,7 +1708,7 @@ $O/inetveins/applications/generic/IPvXTrafSink.o: inetveins/applications/generic
 	inetveins/applications/generic/IPvXTrafGen.h \
 	inetveins/applications/generic/IPvXTrafSink.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -1736,7 +1736,7 @@ $O/inetveins/applications/netperfmeter/NetPerfMeter.o: inetveins/applications/ne
 	inetveins/applications/netperfmeter/NetPerfMeter.h \
 	inetveins/applications/netperfmeter/NetPerfMeter_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -1763,7 +1763,7 @@ $O/inetveins/applications/netperfmeter/NetPerfMeter.o: inetveins/applications/ne
 $O/inetveins/applications/netperfmeter/NetPerfMeter_m.o: inetveins/applications/netperfmeter/NetPerfMeter_m.cc \
 	inetveins/applications/netperfmeter/NetPerfMeter_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -1778,7 +1778,7 @@ $O/inetveins/applications/pingapp/PingApp.o: inetveins/applications/pingapp/Ping
 	inetveins/applications/pingapp/PingApp.h \
 	inetveins/applications/pingapp/PingPayload_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -1806,13 +1806,13 @@ $O/inetveins/applications/pingapp/PingApp.o: inetveins/applications/pingapp/Ping
 $O/inetveins/applications/pingapp/PingPayload_m.o: inetveins/applications/pingapp/PingPayload_m.cc \
 	inetveins/applications/pingapp/PingPayload_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h
 $O/inetveins/applications/rtpapp/RTPApplication.o: inetveins/applications/rtpapp/RTPApplication.cc \
 	inetveins/applications/rtpapp/RTPApplication.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -1838,7 +1838,7 @@ $O/inetveins/applications/rtpapp/RTPApplication.o: inetveins/applications/rtpapp
 $O/inetveins/applications/sctpapp/SCTPClient.o: inetveins/applications/sctpapp/SCTPClient.cc \
 	inetveins/applications/sctpapp/SCTPClient.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -1880,7 +1880,7 @@ $O/inetveins/applications/sctpapp/SCTPClient.o: inetveins/applications/sctpapp/S
 $O/inetveins/applications/sctpapp/SCTPNatPeer.o: inetveins/applications/sctpapp/SCTPNatPeer.cc \
 	inetveins/applications/sctpapp/SCTPNatPeer.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -1920,7 +1920,7 @@ $O/inetveins/applications/sctpapp/SCTPNatPeer.o: inetveins/applications/sctpapp/
 $O/inetveins/applications/sctpapp/SCTPNatServer.o: inetveins/applications/sctpapp/SCTPNatServer.cc \
 	inetveins/applications/sctpapp/SCTPNatServer.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -1960,7 +1960,7 @@ $O/inetveins/applications/sctpapp/SCTPNatServer.o: inetveins/applications/sctpap
 $O/inetveins/applications/sctpapp/SCTPPeer.o: inetveins/applications/sctpapp/SCTPPeer.cc \
 	inetveins/applications/sctpapp/SCTPPeer.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2002,7 +2002,7 @@ $O/inetveins/applications/sctpapp/SCTPPeer.o: inetveins/applications/sctpapp/SCT
 $O/inetveins/applications/sctpapp/SCTPServer.o: inetveins/applications/sctpapp/SCTPServer.cc \
 	inetveins/applications/sctpapp/SCTPServer.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2044,13 +2044,13 @@ $O/inetveins/applications/sctpapp/SCTPServer.o: inetveins/applications/sctpapp/S
 $O/inetveins/applications/tcpapp/GenericAppMsg_m.o: inetveins/applications/tcpapp/GenericAppMsg_m.cc \
 	inetveins/applications/tcpapp/GenericAppMsg_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h
 $O/inetveins/applications/tcpapp/TCPAppBase.o: inetveins/applications/tcpapp/TCPAppBase.cc \
 	inetveins/applications/tcpapp/TCPAppBase.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -2072,7 +2072,7 @@ $O/inetveins/applications/tcpapp/TCPBasicClientApp.o: inetveins/applications/tcp
 	inetveins/applications/tcpapp/TCPAppBase.h \
 	inetveins/applications/tcpapp/TCPBasicClientApp.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2097,8 +2097,8 @@ $O/inetveins/applications/tcpapp/TCPEchoApp.o: inetveins/applications/tcpapp/TCP
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2124,7 +2124,7 @@ $O/inetveins/applications/tcpapp/TCPGenericSrvApp.o: inetveins/applications/tcpa
 	inetveins/applications/tcpapp/GenericAppMsg_m.h \
 	inetveins/applications/tcpapp/TCPGenericSrvApp.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2151,7 +2151,7 @@ $O/inetveins/applications/tcpapp/TCPGenericSrvThread.o: inetveins/applications/t
 	inetveins/applications/tcpapp/TCPGenericSrvThread.h \
 	inetveins/applications/tcpapp/TCPSrvHostApp.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/common/lifecycle/LifecycleOperation.h \
@@ -2171,7 +2171,7 @@ $O/inetveins/applications/tcpapp/TCPSessionApp.o: inetveins/applications/tcpapp/
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2199,7 +2199,7 @@ $O/inetveins/applications/tcpapp/TCPSessionApp.o: inetveins/applications/tcpapp/
 $O/inetveins/applications/tcpapp/TCPSinkApp.o: inetveins/applications/tcpapp/TCPSinkApp.cc \
 	inetveins/applications/tcpapp/TCPSinkApp.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2224,8 +2224,8 @@ $O/inetveins/applications/tcpapp/TCPSinkApp.o: inetveins/applications/tcpapp/TCP
 $O/inetveins/applications/tcpapp/TCPSrvHostApp.o: inetveins/applications/tcpapp/TCPSrvHostApp.cc \
 	inetveins/applications/tcpapp/TCPSrvHostApp.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2253,7 +2253,7 @@ $O/inetveins/applications/tcpapp/TelnetApp.o: inetveins/applications/tcpapp/Teln
 	inetveins/applications/tcpapp/TCPAppBase.h \
 	inetveins/applications/tcpapp/TelnetApp.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2276,7 +2276,7 @@ $O/inetveins/applications/tcpapp/TelnetApp.o: inetveins/applications/tcpapp/Teln
 $O/inetveins/applications/tunapp/TunLoopbackApp.o: inetveins/applications/tunapp/TunLoopbackApp.cc \
 	inetveins/applications/tunapp/TunLoopbackApp.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -2291,7 +2291,7 @@ $O/inetveins/applications/udpapp/UDPBasicApp.o: inetveins/applications/udpapp/UD
 	inetveins/applications/base/ApplicationBase.h \
 	inetveins/applications/udpapp/UDPBasicApp.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2319,7 +2319,7 @@ $O/inetveins/applications/udpapp/UDPBasicBurst.o: inetveins/applications/udpapp/
 	inetveins/applications/base/ApplicationBase.h \
 	inetveins/applications/udpapp/UDPBasicBurst.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2347,7 +2347,7 @@ $O/inetveins/applications/udpapp/UDPEchoApp.o: inetveins/applications/udpapp/UDP
 	inetveins/applications/base/ApplicationBase.h \
 	inetveins/applications/udpapp/UDPEchoApp.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2372,7 +2372,7 @@ $O/inetveins/applications/udpapp/UDPSink.o: inetveins/applications/udpapp/UDPSin
 	inetveins/applications/base/ApplicationBase.h \
 	inetveins/applications/udpapp/UDPSink.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2400,7 +2400,7 @@ $O/inetveins/applications/udpapp/UDPVideoStreamCli.o: inetveins/applications/udp
 	inetveins/applications/base/ApplicationBase.h \
 	inetveins/applications/udpapp/UDPVideoStreamCli.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -2427,7 +2427,7 @@ $O/inetveins/applications/udpapp/UDPVideoStreamSvr.o: inetveins/applications/udp
 	inetveins/applications/base/ApplicationBase.h \
 	inetveins/applications/udpapp/UDPVideoStreamSvr.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -2450,14 +2450,14 @@ $O/inetveins/applications/udpapp/UDPVideoStreamSvr.o: inetveins/applications/udp
 $O/inetveins/common/BitVector.o: inetveins/common/BitVector.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h
 $O/inetveins/common/ByteArray.o: inetveins/common/ByteArray.cc \
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h
 $O/inetveins/common/ByteArrayBuffer.o: inetveins/common/ByteArrayBuffer.cc \
@@ -2465,37 +2465,37 @@ $O/inetveins/common/ByteArrayBuffer.o: inetveins/common/ByteArrayBuffer.cc \
 	inetveins/common/ByteArrayBuffer.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h
 $O/inetveins/common/ByteArray_m.o: inetveins/common/ByteArray_m.cc \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h
 $O/inetveins/common/Compat.o: inetveins/common/Compat.cc \
 	inetveins/common/Compat.h
-$O/inetveins/common/INETUtils.o: inetveins/common/INETUtils.cc \
+$O/inetveins/common/INETVEINSUtils.o: inetveins/common/INETVEINSUtils.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h
 $O/inetveins/common/InitStages.o: inetveins/common/InitStages.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h
 $O/inetveins/common/IntervalTree.o: inetveins/common/IntervalTree.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/IntervalTree.h \
 	inetveins/features.h
 $O/inetveins/common/LayeredProtocolBase.o: inetveins/common/LayeredProtocolBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -2505,7 +2505,7 @@ $O/inetveins/common/Macho.o: inetveins/common/Macho.cc \
 	inetveins/common/Macho.h
 $O/inetveins/common/ModuleAccess.o: inetveins/common/ModuleAccess.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2521,24 +2521,24 @@ $O/inetveins/common/ModuleAccess.o: inetveins/common/ModuleAccess.cc \
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/common/NedFunctions.o: inetveins/common/NedFunctions.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h
 $O/inetveins/common/NotifierConsts.o: inetveins/common/NotifierConsts.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h
 $O/inetveins/common/PatternMatcher.o: inetveins/common/PatternMatcher.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/PatternMatcher.h \
 	inetveins/features.h
 $O/inetveins/common/ProtocolMap.o: inetveins/common/ProtocolMap.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ProtocolMap.h \
 	inetveins/features.h
@@ -2546,7 +2546,7 @@ $O/inetveins/common/RawPacket.o: inetveins/common/RawPacket.cc \
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -2555,20 +2555,20 @@ $O/inetveins/common/RawPacket_m.o: inetveins/common/RawPacket_m.cc \
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket_m.h \
 	inetveins/features.h
 $O/inetveins/common/ReassemblyBuffer.o: inetveins/common/ReassemblyBuffer.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ReassemblyBuffer.h \
 	inetveins/features.h
 $O/inetveins/common/ResultFilters.o: inetveins/common/ResultFilters.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ResultFilters.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -2584,32 +2584,32 @@ $O/inetveins/common/ResultFilters.o: inetveins/common/ResultFilters.cc \
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/common/ResultRecorders.o: inetveins/common/ResultRecorders.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ResultRecorders.h \
 	inetveins/features.h
 $O/inetveins/common/ShortBitVector.o: inetveins/common/ShortBitVector.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/features.h
 $O/inetveins/common/TLVOption.o: inetveins/common/TLVOption.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
 	inetveins/features.h
 $O/inetveins/common/TLVOption_m.o: inetveins/common/TLVOption_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption_m.h \
 	inetveins/features.h
 $O/inetveins/common/Topology.o: inetveins/common/Topology.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/PatternMatcher.h \
 	inetveins/common/Topology.h \
@@ -2617,7 +2617,7 @@ $O/inetveins/common/Topology.o: inetveins/common/Topology.cc \
 	inetveins/features.h
 $O/inetveins/common/XMLUtils.o: inetveins/common/XMLUtils.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/XMLUtils.h \
@@ -2635,38 +2635,38 @@ $O/inetveins/common/XMLUtils.o: inetveins/common/XMLUtils.cc \
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/common/int128.o: inetveins/common/int128.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/int128.h \
 	inetveins/features.h
 $O/inetveins/common/figures/GaugeFigure.o: inetveins/common/figures/GaugeFigure.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/figures/GaugeFigure.h \
 	inetveins/features.h
 $O/inetveins/common/figures/HeatMapFigure.o: inetveins/common/figures/HeatMapFigure.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/figures/HeatMapFigure.h \
 	inetveins/features.h
 $O/inetveins/common/figures/TrailFigure.o: inetveins/common/figures/TrailFigure.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/figures/TrailFigure.h \
 	inetveins/features.h
 $O/inetveins/common/geometry/base/GeometricObjectBase.o: inetveins/common/geometry/base/GeometricObjectBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/base/GeometricObjectBase.h \
 	inetveins/features.h
 $O/inetveins/common/geometry/base/ShapeBase.o: inetveins/common/geometry/base/ShapeBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/base/GeometricObjectBase.h \
 	inetveins/common/geometry/base/ShapeBase.h \
@@ -2675,30 +2675,30 @@ $O/inetveins/common/geometry/base/ShapeBase.o: inetveins/common/geometry/base/Sh
 	inetveins/features.h
 $O/inetveins/common/geometry/common/Coord.o: inetveins/common/geometry/common/Coord.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/Coord.h \
 	inetveins/features.h
 $O/inetveins/common/geometry/common/EulerAngles.o: inetveins/common/geometry/common/EulerAngles.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/EulerAngles.h \
 	inetveins/features.h
 $O/inetveins/common/geometry/common/Quaternion.o: inetveins/common/geometry/common/Quaternion.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/Coord.h \
 	inetveins/common/geometry/common/Quaternion.h \
 	inetveins/features.h
 $O/inetveins/common/geometry/common/Rotation.o: inetveins/common/geometry/common/Rotation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/Coord.h \
 	inetveins/common/geometry/common/EulerAngles.h \
@@ -2706,8 +2706,8 @@ $O/inetveins/common/geometry/common/Rotation.o: inetveins/common/geometry/common
 	inetveins/features.h
 $O/inetveins/common/geometry/container/BVHTree.o: inetveins/common/geometry/container/BVHTree.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -2724,8 +2724,8 @@ $O/inetveins/common/geometry/container/BVHTree.o: inetveins/common/geometry/cont
 	inetveins/features.h
 $O/inetveins/common/geometry/container/QuadTree.o: inetveins/common/geometry/container/QuadTree.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -2733,8 +2733,8 @@ $O/inetveins/common/geometry/container/QuadTree.o: inetveins/common/geometry/con
 	inetveins/features.h
 $O/inetveins/common/geometry/container/SpatialGrid.o: inetveins/common/geometry/container/SpatialGrid.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/base/GeometricObjectBase.h \
@@ -2744,8 +2744,8 @@ $O/inetveins/common/geometry/container/SpatialGrid.o: inetveins/common/geometry/
 	inetveins/features.h
 $O/inetveins/common/geometry/object/Box.o: inetveins/common/geometry/object/Box.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/base/GeometricObjectBase.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -2753,8 +2753,8 @@ $O/inetveins/common/geometry/object/Box.o: inetveins/common/geometry/object/Box.
 	inetveins/features.h
 $O/inetveins/common/geometry/object/LineSegment.o: inetveins/common/geometry/object/LineSegment.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/base/GeometricObjectBase.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -2762,8 +2762,8 @@ $O/inetveins/common/geometry/object/LineSegment.o: inetveins/common/geometry/obj
 	inetveins/features.h
 $O/inetveins/common/geometry/object/Plane.o: inetveins/common/geometry/object/Plane.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/base/GeometricObjectBase.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -2772,8 +2772,8 @@ $O/inetveins/common/geometry/object/Plane.o: inetveins/common/geometry/object/Pl
 	inetveins/features.h
 $O/inetveins/common/geometry/object/Polygon.o: inetveins/common/geometry/object/Polygon.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/base/GeometricObjectBase.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -2782,8 +2782,8 @@ $O/inetveins/common/geometry/object/Polygon.o: inetveins/common/geometry/object/
 	inetveins/features.h
 $O/inetveins/common/geometry/shape/Cuboid.o: inetveins/common/geometry/shape/Cuboid.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/base/GeometricObjectBase.h \
 	inetveins/common/geometry/base/ShapeBase.h \
@@ -2798,8 +2798,8 @@ $O/inetveins/common/geometry/shape/Cuboid.o: inetveins/common/geometry/shape/Cub
 	inetveins/features.h
 $O/inetveins/common/geometry/shape/Prism.o: inetveins/common/geometry/shape/Prism.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/base/GeometricObjectBase.h \
 	inetveins/common/geometry/base/ShapeBase.h \
@@ -2812,8 +2812,8 @@ $O/inetveins/common/geometry/shape/Prism.o: inetveins/common/geometry/shape/Pris
 	inetveins/features.h
 $O/inetveins/common/geometry/shape/Sphere.o: inetveins/common/geometry/shape/Sphere.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/base/GeometricObjectBase.h \
 	inetveins/common/geometry/base/ShapeBase.h \
@@ -2824,8 +2824,8 @@ $O/inetveins/common/geometry/shape/Sphere.o: inetveins/common/geometry/shape/Sph
 	inetveins/features.h
 $O/inetveins/common/geometry/shape/polyhedron/Polyhedron.o: inetveins/common/geometry/shape/polyhedron/Polyhedron.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/base/GeometricObjectBase.h \
 	inetveins/common/geometry/base/ShapeBase.h \
@@ -2840,8 +2840,8 @@ $O/inetveins/common/geometry/shape/polyhedron/Polyhedron.o: inetveins/common/geo
 	inetveins/features.h
 $O/inetveins/common/geometry/shape/polyhedron/PolyhedronEdge.o: inetveins/common/geometry/shape/polyhedron/PolyhedronEdge.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/Coord.h \
 	inetveins/common/geometry/shape/polyhedron/PolyhedronEdge.h \
@@ -2850,8 +2850,8 @@ $O/inetveins/common/geometry/shape/polyhedron/PolyhedronEdge.o: inetveins/common
 	inetveins/features.h
 $O/inetveins/common/geometry/shape/polyhedron/PolyhedronFace.o: inetveins/common/geometry/shape/polyhedron/PolyhedronFace.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/Coord.h \
 	inetveins/common/geometry/shape/polyhedron/PolyhedronEdge.h \
@@ -2860,8 +2860,8 @@ $O/inetveins/common/geometry/shape/polyhedron/PolyhedronFace.o: inetveins/common
 	inetveins/features.h
 $O/inetveins/common/geometry/shape/polyhedron/PolyhedronPoint.o: inetveins/common/geometry/shape/polyhedron/PolyhedronPoint.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/Coord.h \
 	inetveins/common/geometry/shape/polyhedron/PolyhedronEdge.h \
@@ -2871,8 +2871,8 @@ $O/inetveins/common/geometry/shape/polyhedron/PolyhedronPoint.o: inetveins/commo
 $O/inetveins/common/lifecycle/InterfaceOperations.o: inetveins/common/lifecycle/InterfaceOperations.cc
 $O/inetveins/common/lifecycle/LifecycleController.o: inetveins/common/lifecycle/LifecycleController.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -2894,7 +2894,7 @@ $O/inetveins/common/lifecycle/LifecycleController.o: inetveins/common/lifecycle/
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/common/lifecycle/NodeOperations.o: inetveins/common/lifecycle/NodeOperations.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2912,7 +2912,7 @@ $O/inetveins/common/lifecycle/NodeOperations.o: inetveins/common/lifecycle/NodeO
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/common/lifecycle/NodeStatus.o: inetveins/common/lifecycle/NodeStatus.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2932,7 +2932,7 @@ $O/inetveins/common/lifecycle/NodeStatus.o: inetveins/common/lifecycle/NodeStatu
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/common/lifecycle/OperationalBase.o: inetveins/common/lifecycle/OperationalBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2953,14 +2953,14 @@ $O/inetveins/common/lifecycle/OperationalBase.o: inetveins/common/lifecycle/Oper
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/common/mapping/MappingBase.o: inetveins/common/mapping/MappingBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/mapping/Interpolation.h \
 	inetveins/common/mapping/MappingBase.h \
 	inetveins/features.h
 $O/inetveins/common/mapping/MappingUtils.o: inetveins/common/mapping/MappingUtils.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/mapping/Interpolation.h \
 	inetveins/common/mapping/MappingBase.h \
@@ -2968,14 +2968,14 @@ $O/inetveins/common/mapping/MappingUtils.o: inetveins/common/mapping/MappingUtil
 	inetveins/features.h
 $O/inetveins/common/misc/MessageChecker.o: inetveins/common/misc/MessageChecker.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/misc/MessageChecker.h \
 	inetveins/features.h
 $O/inetveins/common/misc/NetAnimTrace.o: inetveins/common/misc/NetAnimTrace.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -2995,19 +2995,19 @@ $O/inetveins/common/misc/NetAnimTrace.o: inetveins/common/misc/NetAnimTrace.cc \
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/common/misc/ThruputMeter.o: inetveins/common/misc/ThruputMeter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/misc/ThruputMeter.h \
 	inetveins/features.h
 $O/inetveins/common/misc/ThruputMeteringChannel.o: inetveins/common/misc/ThruputMeteringChannel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/misc/ThruputMeteringChannel.h \
 	inetveins/features.h
 $O/inetveins/common/packet/InetPacketBytesPrinter.o: inetveins/common/packet/InetPacketBytesPrinter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h
 $O/inetveins/common/packet/InetPacketPrinter.o: inetveins/common/packet/InetPacketPrinter.cc \
@@ -3015,7 +3015,7 @@ $O/inetveins/common/packet/InetPacketPrinter.o: inetveins/common/packet/InetPack
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -3042,8 +3042,8 @@ $O/inetveins/common/packet/InetPacketPrinter2.o: inetveins/common/packet/InetPac
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -3111,7 +3111,7 @@ $O/inetveins/common/packet/PacketDump.o: inetveins/common/packet/PacketDump.cc \
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/TLVOption.h \
@@ -3163,7 +3163,7 @@ $O/inetveins/common/packet/PcapDump.o: inetveins/common/packet/PcapDump.cc \
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3190,7 +3190,7 @@ $O/inetveins/common/packet/PcapDump.o: inetveins/common/packet/PcapDump.cc \
 	inetveins/transportlayer/udp/UDPPacket_m.h
 $O/inetveins/common/packet/PcapRecorder.o: inetveins/common/packet/PcapRecorder.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -3212,7 +3212,7 @@ $O/inetveins/common/packet/PcapRecorder.o: inetveins/common/packet/PcapRecorder.
 	inetveins/networklayer/ipv6/IPv6Datagram_m.h
 $O/inetveins/common/packet/TCPDump.o: inetveins/common/packet/TCPDump.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -3232,26 +3232,26 @@ $O/inetveins/common/packet/TCPDump.o: inetveins/common/packet/TCPDump.cc \
 	inetveins/networklayer/ipv4/IPv4Datagram_m.h
 $O/inetveins/common/queue/AbstractQueue.o: inetveins/common/queue/AbstractQueue.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/AbstractQueue.h \
 	inetveins/features.h
 $O/inetveins/common/queue/AlgorithmicDropperBase.o: inetveins/common/queue/AlgorithmicDropperBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/AlgorithmicDropperBase.h \
 	inetveins/common/queue/IQueueAccess.h \
 	inetveins/features.h
 $O/inetveins/common/queue/Delayer.o: inetveins/common/queue/Delayer.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/Delayer.h \
 	inetveins/features.h
 $O/inetveins/common/queue/DropTailQueue.o: inetveins/common/queue/DropTailQueue.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/DropTailQueue.h \
 	inetveins/common/queue/IPassiveQueue.h \
@@ -3259,7 +3259,7 @@ $O/inetveins/common/queue/DropTailQueue.o: inetveins/common/queue/DropTailQueue.
 	inetveins/features.h
 $O/inetveins/common/queue/FIFOQueue.o: inetveins/common/queue/FIFOQueue.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/FIFOQueue.h \
 	inetveins/common/queue/IPassiveQueue.h \
@@ -3268,31 +3268,31 @@ $O/inetveins/common/queue/FIFOQueue.o: inetveins/common/queue/FIFOQueue.cc \
 	inetveins/features.h
 $O/inetveins/common/queue/Join.o: inetveins/common/queue/Join.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h
 $O/inetveins/common/queue/OrdinalBasedDropper.o: inetveins/common/queue/OrdinalBasedDropper.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/OrdinalBasedDropper.h \
 	inetveins/features.h
 $O/inetveins/common/queue/OrdinalBasedDuplicator.o: inetveins/common/queue/OrdinalBasedDuplicator.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/OrdinalBasedDuplicator.h \
 	inetveins/features.h
 $O/inetveins/common/queue/PassiveQueueBase.o: inetveins/common/queue/PassiveQueueBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/IPassiveQueue.h \
 	inetveins/common/queue/PassiveQueueBase.h \
 	inetveins/features.h
 $O/inetveins/common/queue/PriorityScheduler.o: inetveins/common/queue/PriorityScheduler.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/IPassiveQueue.h \
 	inetveins/common/queue/PriorityScheduler.h \
@@ -3300,15 +3300,15 @@ $O/inetveins/common/queue/PriorityScheduler.o: inetveins/common/queue/PrioritySc
 	inetveins/features.h
 $O/inetveins/common/queue/QueueBase.o: inetveins/common/queue/QueueBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/AbstractQueue.h \
 	inetveins/common/queue/QueueBase.h \
 	inetveins/features.h
 $O/inetveins/common/queue/REDDropper.o: inetveins/common/queue/REDDropper.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/AlgorithmicDropperBase.h \
 	inetveins/common/queue/IQueueAccess.h \
@@ -3316,20 +3316,20 @@ $O/inetveins/common/queue/REDDropper.o: inetveins/common/queue/REDDropper.cc \
 	inetveins/features.h
 $O/inetveins/common/queue/SchedulerBase.o: inetveins/common/queue/SchedulerBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/IPassiveQueue.h \
 	inetveins/common/queue/SchedulerBase.h \
 	inetveins/features.h
 $O/inetveins/common/queue/Sink.o: inetveins/common/queue/Sink.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/Sink.h \
 	inetveins/features.h
 $O/inetveins/common/queue/ThresholdDropper.o: inetveins/common/queue/ThresholdDropper.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/AlgorithmicDropperBase.h \
 	inetveins/common/queue/IQueueAccess.h \
@@ -3337,8 +3337,8 @@ $O/inetveins/common/queue/ThresholdDropper.o: inetveins/common/queue/ThresholdDr
 	inetveins/features.h
 $O/inetveins/common/queue/WRRScheduler.o: inetveins/common/queue/WRRScheduler.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/queue/IPassiveQueue.h \
 	inetveins/common/queue/SchedulerBase.h \
@@ -3346,7 +3346,7 @@ $O/inetveins/common/queue/WRRScheduler.o: inetveins/common/queue/WRRScheduler.cc
 	inetveins/features.h
 $O/inetveins/common/scenario/ScenarioManager.o: inetveins/common/scenario/ScenarioManager.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/scenario/IScriptable.h \
 	inetveins/common/scenario/ScenarioManager.h \
@@ -3355,7 +3355,7 @@ $O/inetveins/common/serializer/Buffer.o: inetveins/common/serializer/Buffer.cc \
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3368,7 +3368,7 @@ $O/inetveins/common/serializer/SerializerBase.o: inetveins/common/serializer/Ser
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3380,13 +3380,13 @@ $O/inetveins/common/serializer/SerializerBase.o: inetveins/common/serializer/Ser
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/common/serializer/TCPIPchecksum.o: inetveins/common/serializer/TCPIPchecksum.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/serializer/TCPIPchecksum.h \
 	inetveins/features.h
 $O/inetveins/common/serializer/headerserializers/EthernetCRC.o: inetveins/common/serializer/headerserializers/EthernetCRC.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/serializer/headerserializers/EthernetCRC.h \
 	inetveins/features.h
@@ -3394,7 +3394,7 @@ $O/inetveins/common/serializer/headerserializers/arp/ARPSerializer.o: inetveins/
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3416,7 +3416,7 @@ $O/inetveins/common/serializer/headerserializers/ethernet/EthernetSerializer.o: 
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3443,7 +3443,7 @@ $O/inetveins/common/serializer/headerserializers/ieee80211/Ieee80211PhySerialize
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3466,7 +3466,7 @@ $O/inetveins/common/serializer/headerserializers/ieee80211/Ieee80211Serializer.o
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3489,7 +3489,7 @@ $O/inetveins/common/serializer/ipv4/ICMPSerializer.o: inetveins/common/serialize
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3514,7 +3514,7 @@ $O/inetveins/common/serializer/ipv4/IGMPSerializer.o: inetveins/common/serialize
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3549,7 +3549,7 @@ $O/inetveins/common/serializer/ipv4/IPv4Serializer.o: inetveins/common/serialize
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3584,7 +3584,7 @@ $O/inetveins/common/serializer/ipv6/ICMPv6Serializer.o: inetveins/common/seriali
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3605,7 +3605,7 @@ $O/inetveins/common/serializer/ipv6/IPv6Serializer.o: inetveins/common/serialize
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3643,7 +3643,7 @@ $O/inetveins/common/serializer/sctp/SCTPSerializer.o: inetveins/common/serialize
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/RawPacket.h \
@@ -3700,7 +3700,7 @@ $O/inetveins/common/serializer/tcp/TCPSerializer.o: inetveins/common/serializer/
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3729,7 +3729,7 @@ $O/inetveins/common/serializer/udp/UDPSerializer.o: inetveins/common/serializer/
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -3753,8 +3753,8 @@ $O/inetveins/common/serializer/udp/UDPSerializer.o: inetveins/common/serializer/
 	inetveins/transportlayer/udp/UDPPacket_m.h
 $O/inetveins/environment/common/Material.o: inetveins/environment/common/Material.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/environment/common/Material.h \
@@ -3762,8 +3762,8 @@ $O/inetveins/environment/common/Material.o: inetveins/environment/common/Materia
 	inetveins/features.h
 $O/inetveins/environment/common/MaterialRegistry.o: inetveins/environment/common/MaterialRegistry.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/environment/common/Material.h \
@@ -3773,8 +3773,8 @@ $O/inetveins/environment/common/MaterialRegistry.o: inetveins/environment/common
 	inetveins/features.h
 $O/inetveins/environment/common/PhysicalEnvironment.o: inetveins/environment/common/PhysicalEnvironment.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -3805,8 +3805,8 @@ $O/inetveins/environment/common/PhysicalEnvironment.o: inetveins/environment/com
 	inetveins/features.h
 $O/inetveins/environment/common/PhysicalObject.o: inetveins/environment/common/PhysicalObject.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/base/GeometricObjectBase.h \
@@ -3821,8 +3821,8 @@ $O/inetveins/environment/common/PhysicalObject.o: inetveins/environment/common/P
 	inetveins/features.h
 $O/inetveins/environment/objectcache/BVHObjectCache.o: inetveins/environment/objectcache/BVHObjectCache.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
@@ -3857,8 +3857,8 @@ $O/inetveins/environment/objectcache/BVHObjectCache.o: inetveins/environment/obj
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/environment/objectcache/GridObjectCache.o: inetveins/environment/objectcache/GridObjectCache.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
@@ -3893,7 +3893,7 @@ $O/inetveins/environment/objectcache/GridObjectCache.o: inetveins/environment/ob
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/base/MACBase.o: inetveins/linklayer/base/MACBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -3914,14 +3914,14 @@ $O/inetveins/linklayer/base/MACBase.o: inetveins/linklayer/base/MACBase.cc \
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/base/MACFrameBase_m.o: inetveins/linklayer/base/MACFrameBase_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/base/MACFrameBase_m.h \
 	inetveins/linklayer/common/MACAddress.h
 $O/inetveins/linklayer/base/MACProtocolBase.o: inetveins/linklayer/base/MACProtocolBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/ModuleAccess.h \
@@ -3943,7 +3943,7 @@ $O/inetveins/linklayer/base/MACProtocolBase.o: inetveins/linklayer/base/MACProto
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/bmac/BMacFrame_m.o: inetveins/linklayer/bmac/BMacFrame_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/base/MACFrameBase_m.h \
@@ -3951,9 +3951,9 @@ $O/inetveins/linklayer/bmac/BMacFrame_m.o: inetveins/linklayer/bmac/BMacFrame_m.
 	inetveins/linklayer/common/MACAddress.h
 $O/inetveins/linklayer/bmac/BMacLayer.o: inetveins/linklayer/bmac/BMacLayer.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/ModuleAccess.h \
@@ -4014,7 +4014,7 @@ $O/inetveins/linklayer/common/ExampleQoSClassifier.o: inetveins/linklayer/common
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -4045,14 +4045,14 @@ $O/inetveins/linklayer/common/ExampleQoSClassifier.o: inetveins/linklayer/common
 	inetveins/transportlayer/udp/UDPPacket_m.h
 $O/inetveins/linklayer/common/Ieee802Ctrl_m.o: inetveins/linklayer/common/Ieee802Ctrl_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/Ieee802Ctrl_m.h \
 	inetveins/linklayer/common/MACAddress.h
 $O/inetveins/linklayer/common/MACAddress.o: inetveins/linklayer/common/MACAddress.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -4060,7 +4060,7 @@ $O/inetveins/linklayer/common/MACAddress.o: inetveins/linklayer/common/MACAddres
 	inetveins/networklayer/contract/ipv4/IPv4Address.h
 $O/inetveins/linklayer/common/MACAddressType.o: inetveins/linklayer/common/MACAddressType.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -4080,7 +4080,7 @@ $O/inetveins/linklayer/common/MACAddressType.o: inetveins/linklayer/common/MACAd
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/common/RandomQoSClassifier.o: inetveins/linklayer/common/RandomQoSClassifier.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/Ieee802Ctrl.h \
@@ -4090,20 +4090,20 @@ $O/inetveins/linklayer/common/RandomQoSClassifier.o: inetveins/linklayer/common/
 	inetveins/linklayer/contract/IMACProtocolControlInfo.h
 $O/inetveins/linklayer/common/SimpleLinkLayerControlInfo_m.o: inetveins/linklayer/common/SimpleLinkLayerControlInfo_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
 	inetveins/linklayer/common/SimpleLinkLayerControlInfo_m.h
 $O/inetveins/linklayer/common/TxNotifDetails.o: inetveins/linklayer/common/TxNotifDetails.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/TxNotifDetails.h
 $O/inetveins/linklayer/configurator/Ieee8021dInterfaceData.o: inetveins/linklayer/configurator/Ieee8021dInterfaceData.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -4118,7 +4118,7 @@ $O/inetveins/linklayer/configurator/Ieee8021dInterfaceData.o: inetveins/linklaye
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/configurator/L2NetworkConfigurator.o: inetveins/linklayer/configurator/L2NetworkConfigurator.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -4139,7 +4139,7 @@ $O/inetveins/linklayer/configurator/L2NetworkConfigurator.o: inetveins/linklayer
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/configurator/L2NodeConfigurator.o: inetveins/linklayer/configurator/L2NodeConfigurator.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -4165,9 +4165,9 @@ $O/inetveins/linklayer/configurator/L2NodeConfigurator.o: inetveins/linklayer/co
 $O/inetveins/linklayer/csma/CSMA.o: inetveins/linklayer/csma/CSMA.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/FindModule.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/ModuleAccess.h \
@@ -4226,7 +4226,7 @@ $O/inetveins/linklayer/csma/CSMA.o: inetveins/linklayer/csma/CSMA.cc \
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/linklayer/csma/CSMAFrame_m.o: inetveins/linklayer/csma/CSMAFrame_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/base/MACFrameBase_m.h \
@@ -4234,14 +4234,14 @@ $O/inetveins/linklayer/csma/CSMAFrame_m.o: inetveins/linklayer/csma/CSMAFrame_m.
 	inetveins/linklayer/csma/CSMAFrame_m.h
 $O/inetveins/linklayer/ethernet/EtherBus.o: inetveins/linklayer/ethernet/EtherBus.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/ethernet/EtherBus.h
 $O/inetveins/linklayer/ethernet/EtherEncap.o: inetveins/linklayer/ethernet/EtherEncap.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -4263,7 +4263,7 @@ $O/inetveins/linklayer/ethernet/EtherEncap.o: inetveins/linklayer/ethernet/Ether
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/ethernet/EtherFrameClassifier.o: inetveins/linklayer/ethernet/EtherFrameClassifier.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/Ieee802Ctrl_m.h \
@@ -4274,7 +4274,7 @@ $O/inetveins/linklayer/ethernet/EtherFrameClassifier.o: inetveins/linklayer/ethe
 	inetveins/linklayer/ethernet/Ethernet.h
 $O/inetveins/linklayer/ethernet/EtherFrame_m.o: inetveins/linklayer/ethernet/EtherFrame_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/Ieee802Ctrl_m.h \
@@ -4283,13 +4283,13 @@ $O/inetveins/linklayer/ethernet/EtherFrame_m.o: inetveins/linklayer/ethernet/Eth
 	inetveins/linklayer/ethernet/Ethernet.h
 $O/inetveins/linklayer/ethernet/EtherHub.o: inetveins/linklayer/ethernet/EtherHub.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/ethernet/EtherHub.h
 $O/inetveins/linklayer/ethernet/EtherLLC.o: inetveins/linklayer/ethernet/EtherLLC.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -4318,8 +4318,8 @@ $O/inetveins/linklayer/ethernet/EtherMAC.o: inetveins/linklayer/ethernet/EtherMA
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/RawPacket.h \
@@ -4349,9 +4349,9 @@ $O/inetveins/linklayer/ethernet/EtherMAC.o: inetveins/linklayer/ethernet/EtherMA
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/ethernet/EtherMACBase.o: inetveins/linklayer/ethernet/EtherMACBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -4380,8 +4380,8 @@ $O/inetveins/linklayer/ethernet/EtherMACFullDuplex.o: inetveins/linklayer/ethern
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/RawPacket.h \
@@ -4411,7 +4411,7 @@ $O/inetveins/linklayer/ethernet/EtherMACFullDuplex.o: inetveins/linklayer/ethern
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/ethernet/switch/MACAddressTable.o: inetveins/linklayer/ethernet/switch/MACAddressTable.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -4419,8 +4419,8 @@ $O/inetveins/linklayer/ethernet/switch/MACAddressTable.o: inetveins/linklayer/et
 	inetveins/linklayer/ethernet/switch/MACAddressTable.h
 $O/inetveins/linklayer/ethernet/switch/MACRelayUnit.o: inetveins/linklayer/ethernet/switch/MACRelayUnit.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -4449,9 +4449,9 @@ $O/inetveins/linklayer/ethernet/switch/MACRelayUnit.o: inetveins/linklayer/ether
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/ideal/IdealMac.o: inetveins/linklayer/ideal/IdealMac.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/NotifierConsts.h \
@@ -4508,7 +4508,7 @@ $O/inetveins/linklayer/ideal/IdealMac.o: inetveins/linklayer/ideal/IdealMac.cc \
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/linklayer/ideal/IdealMacFrame_m.o: inetveins/linklayer/ideal/IdealMacFrame_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -4516,8 +4516,8 @@ $O/inetveins/linklayer/ideal/IdealMacFrame_m.o: inetveins/linklayer/ideal/IdealM
 $O/inetveins/linklayer/ieee80211/mac/AARFRateControl.o: inetveins/linklayer/ieee80211/mac/AARFRateControl.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -4539,8 +4539,8 @@ $O/inetveins/linklayer/ieee80211/mac/AARFRateControl.o: inetveins/linklayer/ieee
 $O/inetveins/linklayer/ieee80211/mac/BasicRateSelection.o: inetveins/linklayer/ieee80211/mac/BasicRateSelection.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -4562,8 +4562,8 @@ $O/inetveins/linklayer/ieee80211/mac/BasicRateSelection.o: inetveins/linklayer/i
 $O/inetveins/linklayer/ieee80211/mac/BasicStatistics.o: inetveins/linklayer/ieee80211/mac/BasicStatistics.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -4586,7 +4586,7 @@ $O/inetveins/linklayer/ieee80211/mac/BasicStatistics.o: inetveins/linklayer/ieee
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.h
 $O/inetveins/linklayer/ieee80211/mac/CollisionController.o: inetveins/linklayer/ieee80211/mac/CollisionController.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/ieee80211/mac/CollisionController.h \
@@ -4594,8 +4594,8 @@ $O/inetveins/linklayer/ieee80211/mac/CollisionController.o: inetveins/linklayer/
 $O/inetveins/linklayer/ieee80211/mac/Contention.o: inetveins/linklayer/ieee80211/mac/Contention.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/FSMA.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -4641,9 +4641,9 @@ $O/inetveins/linklayer/ieee80211/mac/Contention.o: inetveins/linklayer/ieee80211
 $O/inetveins/linklayer/ieee80211/mac/DcfUpperMac.o: inetveins/linklayer/ieee80211/mac/DcfUpperMac.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/ModuleAccess.h \
@@ -4725,7 +4725,7 @@ $O/inetveins/linklayer/ieee80211/mac/DcfUpperMac.o: inetveins/linklayer/ieee8021
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.h
 $O/inetveins/linklayer/ieee80211/mac/DuplicateDetectors.o: inetveins/linklayer/ieee80211/mac/DuplicateDetectors.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/stlutils.h \
 	inetveins/features.h \
@@ -4737,9 +4737,9 @@ $O/inetveins/linklayer/ieee80211/mac/DuplicateDetectors.o: inetveins/linklayer/i
 $O/inetveins/linklayer/ieee80211/mac/EdcaUpperMac.o: inetveins/linklayer/ieee80211/mac/EdcaUpperMac.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/ModuleAccess.h \
@@ -4821,7 +4821,7 @@ $O/inetveins/linklayer/ieee80211/mac/EdcaUpperMac.o: inetveins/linklayer/ieee802
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.h
 $O/inetveins/linklayer/ieee80211/mac/Fragmentation.o: inetveins/linklayer/ieee80211/mac/Fragmentation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/Ieee802Ctrl_m.h \
@@ -4831,8 +4831,8 @@ $O/inetveins/linklayer/ieee80211/mac/Fragmentation.o: inetveins/linklayer/ieee80
 	inetveins/linklayer/ieee80211/mac/Ieee80211Frame_m.h
 $O/inetveins/linklayer/ieee80211/mac/FrameExchange.o: inetveins/linklayer/ieee80211/mac/FrameExchange.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -4880,9 +4880,9 @@ $O/inetveins/linklayer/ieee80211/mac/FrameExchange.o: inetveins/linklayer/ieee80
 $O/inetveins/linklayer/ieee80211/mac/FrameExchanges.o: inetveins/linklayer/ieee80211/mac/FrameExchanges.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/FSMA.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -4933,7 +4933,7 @@ $O/inetveins/linklayer/ieee80211/mac/FrameExchanges.o: inetveins/linklayer/ieee8
 	inetveins/physicallayer/ieee80211/mode/IIeee80211Mode.h
 $O/inetveins/linklayer/ieee80211/mac/Ieee80211Frame_m.o: inetveins/linklayer/ieee80211/mac/Ieee80211Frame_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/Ieee802Ctrl_m.h \
@@ -4942,9 +4942,9 @@ $O/inetveins/linklayer/ieee80211/mac/Ieee80211Frame_m.o: inetveins/linklayer/iee
 $O/inetveins/linklayer/ieee80211/mac/Ieee80211Mac.o: inetveins/linklayer/ieee80211/mac/Ieee80211Mac.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/ModuleAccess.h \
@@ -5009,7 +5009,7 @@ $O/inetveins/linklayer/ieee80211/mac/Ieee80211Mac.o: inetveins/linklayer/ieee802
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.h
 $O/inetveins/linklayer/ieee80211/mac/MacParameters.o: inetveins/linklayer/ieee80211/mac/MacParameters.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -5018,7 +5018,7 @@ $O/inetveins/linklayer/ieee80211/mac/MacParameters.o: inetveins/linklayer/ieee80
 	inetveins/linklayer/ieee80211/mac/MacParameters.h
 $O/inetveins/linklayer/ieee80211/mac/MacPlugin.o: inetveins/linklayer/ieee80211/mac/MacPlugin.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/ieee80211/mac/MacPlugin.h
@@ -5026,8 +5026,8 @@ $O/inetveins/linklayer/ieee80211/mac/MacUtils.o: inetveins/linklayer/ieee80211/m
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -5077,8 +5077,8 @@ $O/inetveins/linklayer/ieee80211/mac/MacUtils.o: inetveins/linklayer/ieee80211/m
 $O/inetveins/linklayer/ieee80211/mac/OnoeRateControl.o: inetveins/linklayer/ieee80211/mac/OnoeRateControl.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -5099,7 +5099,7 @@ $O/inetveins/linklayer/ieee80211/mac/OnoeRateControl.o: inetveins/linklayer/ieee
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.h
 $O/inetveins/linklayer/ieee80211/mac/OptimizedCollisionController.o: inetveins/linklayer/ieee80211/mac/OptimizedCollisionController.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/ieee80211/mac/ICollisionController.h \
@@ -5107,8 +5107,8 @@ $O/inetveins/linklayer/ieee80211/mac/OptimizedCollisionController.o: inetveins/l
 $O/inetveins/linklayer/ieee80211/mac/RateControlBase.o: inetveins/linklayer/ieee80211/mac/RateControlBase.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -5128,8 +5128,8 @@ $O/inetveins/linklayer/ieee80211/mac/RateControlBase.o: inetveins/linklayer/ieee
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.h
 $O/inetveins/linklayer/ieee80211/mac/Rx.o: inetveins/linklayer/ieee80211/mac/Rx.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -5173,8 +5173,8 @@ $O/inetveins/linklayer/ieee80211/mac/Rx.o: inetveins/linklayer/ieee80211/mac/Rx.
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/linklayer/ieee80211/mac/Tx.o: inetveins/linklayer/ieee80211/mac/Tx.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -5218,8 +5218,8 @@ $O/inetveins/linklayer/ieee80211/mac/Tx.o: inetveins/linklayer/ieee80211/mac/Tx.
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211AgentSTA.o: inetveins/linklayer/ieee80211/mgmt/Ieee80211AgentSTA.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -5243,8 +5243,8 @@ $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211AgentSTA.o: inetveins/linklayer/i
 $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAP.o: inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAP.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
@@ -5342,7 +5342,7 @@ $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAP.o: inetveins/linklayer/iee
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211TransmitterBase.h
 $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAPBase.o: inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAPBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -5359,7 +5359,7 @@ $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAPBase.o: inetveins/linklayer
 	inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h
 $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAPSimplified.o: inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAPSimplified.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -5377,7 +5377,7 @@ $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAPSimplified.o: inetveins/lin
 	inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h
 $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhoc.o: inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhoc.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -5391,7 +5391,7 @@ $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAdhoc.o: inetveins/linklayer/
 	inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.h
 $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtBase.o: inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -5417,7 +5417,7 @@ $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtBase.o: inetveins/linklayer/i
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.o: inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/Ieee802Ctrl_m.h \
@@ -5427,9 +5427,9 @@ $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtFrames_m.o: inetveins/linklay
 $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtSTA.o: inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtSTA.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
@@ -5505,7 +5505,7 @@ $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtSTA.o: inetveins/linklayer/ie
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.h
 $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtSTASimplified.o: inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtSTASimplified.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -5519,7 +5519,7 @@ $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtSTASimplified.o: inetveins/li
 	inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtSTASimplified.h
 $O/inetveins/linklayer/ieee80211/mgmt/Ieee80211Primitives_m.o: inetveins/linklayer/ieee80211/mgmt/Ieee80211Primitives_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/Ieee802Ctrl_m.h \
@@ -5531,9 +5531,9 @@ $O/inetveins/linklayer/ieee80211/oldmac/Ieee80211OldMac.o: inetveins/linklayer/i
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
 	inetveins/common/FSMA.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/ModuleAccess.h \
@@ -5595,14 +5595,14 @@ $O/inetveins/linklayer/ieee80211/oldmac/Ieee80211OldMac.o: inetveins/linklayer/i
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.h
 $O/inetveins/linklayer/ieee8021d/common/Ieee8021dBPDU_m.o: inetveins/linklayer/ieee8021d/common/Ieee8021dBPDU_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
 	inetveins/linklayer/ieee8021d/common/Ieee8021dBPDU_m.h
 $O/inetveins/linklayer/ieee8021d/common/STPBase.o: inetveins/linklayer/ieee8021d/common/STPBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -5626,7 +5626,7 @@ $O/inetveins/linklayer/ieee8021d/common/STPBase.o: inetveins/linklayer/ieee8021d
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/ieee8021d/relay/Ieee8021dRelay.o: inetveins/linklayer/ieee8021d/relay/Ieee8021dRelay.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -5656,7 +5656,7 @@ $O/inetveins/linklayer/ieee8021d/relay/Ieee8021dRelay.o: inetveins/linklayer/iee
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/ieee8021d/rstp/RSTP.o: inetveins/linklayer/ieee8021d/rstp/RSTP.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -5689,7 +5689,7 @@ $O/inetveins/linklayer/ieee8021d/rstp/RSTP.o: inetveins/linklayer/ieee8021d/rstp
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/ieee8021d/stp/STP.o: inetveins/linklayer/ieee8021d/stp/STP.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -5720,7 +5720,7 @@ $O/inetveins/linklayer/ieee8021d/stp/STP.o: inetveins/linklayer/ieee8021d/stp/ST
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/ieee8021d/tester/STPTester.o: inetveins/linklayer/ieee8021d/tester/STPTester.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/Topology.h \
@@ -5747,7 +5747,7 @@ $O/inetveins/linklayer/ieee8021d/tester/STPTester.o: inetveins/linklayer/ieee802
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/lmac/LMacFrame_m.o: inetveins/linklayer/lmac/LMacFrame_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/base/MACFrameBase_m.h \
@@ -5756,9 +5756,9 @@ $O/inetveins/linklayer/lmac/LMacFrame_m.o: inetveins/linklayer/lmac/LMacFrame_m.
 $O/inetveins/linklayer/lmac/LMacLayer.o: inetveins/linklayer/lmac/LMacLayer.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/FindModule.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/ModuleAccess.h \
@@ -5817,8 +5817,8 @@ $O/inetveins/linklayer/lmac/LMacLayer.o: inetveins/linklayer/lmac/LMacLayer.cc \
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/linklayer/loopback/Loopback.o: inetveins/linklayer/loopback/Loopback.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -5838,8 +5838,8 @@ $O/inetveins/linklayer/loopback/Loopback.o: inetveins/linklayer/loopback/Loopbac
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/ppp/PPP.o: inetveins/linklayer/ppp/PPP.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -5864,14 +5864,14 @@ $O/inetveins/linklayer/ppp/PPP.o: inetveins/linklayer/ppp/PPP.cc \
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/linklayer/ppp/PPPFrame_m.o: inetveins/linklayer/ppp/PPPFrame_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/ppp/PPPFrame_m.h
 $O/inetveins/linklayer/tun/TunInterface.o: inetveins/linklayer/tun/TunInterface.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -5888,8 +5888,8 @@ $O/inetveins/linklayer/tun/TunInterface.o: inetveins/linklayer/tun/TunInterface.
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/base/LineSegmentsMobilityBase.o: inetveins/mobility/base/LineSegmentsMobilityBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -5912,8 +5912,8 @@ $O/inetveins/mobility/base/LineSegmentsMobilityBase.o: inetveins/mobility/base/L
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/base/LinearRotatingMobilityBase.o: inetveins/mobility/base/LinearRotatingMobilityBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -5937,8 +5937,8 @@ $O/inetveins/mobility/base/LinearRotatingMobilityBase.o: inetveins/mobility/base
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/base/MobilityBase.o: inetveins/mobility/base/MobilityBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
@@ -5969,8 +5969,8 @@ $O/inetveins/mobility/base/MobilityBase.o: inetveins/mobility/base/MobilityBase.
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/base/MovingMobilityBase.o: inetveins/mobility/base/MovingMobilityBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
@@ -6003,8 +6003,8 @@ $O/inetveins/mobility/base/MovingMobilityBase.o: inetveins/mobility/base/MovingM
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/base/RotatingMobilityBase.o: inetveins/mobility/base/RotatingMobilityBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6027,8 +6027,8 @@ $O/inetveins/mobility/base/RotatingMobilityBase.o: inetveins/mobility/base/Rotat
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/contract/IMobility.o: inetveins/mobility/contract/IMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/Coord.h \
 	inetveins/common/geometry/common/EulerAngles.h \
@@ -6036,8 +6036,8 @@ $O/inetveins/mobility/contract/IMobility.o: inetveins/mobility/contract/IMobilit
 	inetveins/mobility/contract/IMobility.h
 $O/inetveins/mobility/group/MoBANCoordinator.o: inetveins/mobility/group/MoBANCoordinator.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6064,8 +6064,8 @@ $O/inetveins/mobility/group/MoBANCoordinator.o: inetveins/mobility/group/MoBANCo
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/group/MoBANLocal.o: inetveins/mobility/group/MoBANLocal.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6092,24 +6092,24 @@ $O/inetveins/mobility/group/MoBANLocal.o: inetveins/mobility/group/MoBANLocal.cc
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/group/Posture.o: inetveins/mobility/group/Posture.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/Coord.h \
 	inetveins/features.h \
 	inetveins/mobility/group/Posture.h
 $O/inetveins/mobility/group/PostureTransition.o: inetveins/mobility/group/PostureTransition.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/Coord.h \
 	inetveins/features.h \
 	inetveins/mobility/group/PostureTransition.h
 $O/inetveins/mobility/single/ANSimMobility.o: inetveins/mobility/single/ANSimMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6133,14 +6133,14 @@ $O/inetveins/mobility/single/ANSimMobility.o: inetveins/mobility/single/ANSimMob
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/BonnMotionFileCache.o: inetveins/mobility/single/BonnMotionFileCache.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/mobility/single/BonnMotionFileCache.h
 $O/inetveins/mobility/single/BonnMotionMobility.o: inetveins/mobility/single/BonnMotionMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6165,8 +6165,8 @@ $O/inetveins/mobility/single/BonnMotionMobility.o: inetveins/mobility/single/Bon
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/ChiangMobility.o: inetveins/mobility/single/ChiangMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6190,8 +6190,8 @@ $O/inetveins/mobility/single/ChiangMobility.o: inetveins/mobility/single/ChiangM
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/CircleMobility.o: inetveins/mobility/single/CircleMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6214,8 +6214,8 @@ $O/inetveins/mobility/single/CircleMobility.o: inetveins/mobility/single/CircleM
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/ConstSpeedMobility.o: inetveins/mobility/single/ConstSpeedMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6239,8 +6239,8 @@ $O/inetveins/mobility/single/ConstSpeedMobility.o: inetveins/mobility/single/Con
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/GaussMarkovMobility.o: inetveins/mobility/single/GaussMarkovMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6264,8 +6264,8 @@ $O/inetveins/mobility/single/GaussMarkovMobility.o: inetveins/mobility/single/Ga
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/LinearMobility.o: inetveins/mobility/single/LinearMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6288,8 +6288,8 @@ $O/inetveins/mobility/single/LinearMobility.o: inetveins/mobility/single/LinearM
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/LinearNodeDistributionMobility.o: inetveins/mobility/single/LinearNodeDistributionMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6311,8 +6311,8 @@ $O/inetveins/mobility/single/LinearNodeDistributionMobility.o: inetveins/mobilit
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/MassMobility.o: inetveins/mobility/single/MassMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6336,8 +6336,8 @@ $O/inetveins/mobility/single/MassMobility.o: inetveins/mobility/single/MassMobil
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/Ns2MotionMobility.o: inetveins/mobility/single/Ns2MotionMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6361,8 +6361,8 @@ $O/inetveins/mobility/single/Ns2MotionMobility.o: inetveins/mobility/single/Ns2M
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/RandomWPMobility.o: inetveins/mobility/single/RandomWPMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6386,8 +6386,8 @@ $O/inetveins/mobility/single/RandomWPMobility.o: inetveins/mobility/single/Rando
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/RectangleMobility.o: inetveins/mobility/single/RectangleMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6410,8 +6410,8 @@ $O/inetveins/mobility/single/RectangleMobility.o: inetveins/mobility/single/Rect
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/TractorMobility.o: inetveins/mobility/single/TractorMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6435,8 +6435,8 @@ $O/inetveins/mobility/single/TractorMobility.o: inetveins/mobility/single/Tracto
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/single/TurtleMobility.o: inetveins/mobility/single/TurtleMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6460,8 +6460,8 @@ $O/inetveins/mobility/single/TurtleMobility.o: inetveins/mobility/single/TurtleM
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/static/StaticConcentricMobility.o: inetveins/mobility/static/StaticConcentricMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6483,8 +6483,8 @@ $O/inetveins/mobility/static/StaticConcentricMobility.o: inetveins/mobility/stat
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/static/StaticGridMobility.o: inetveins/mobility/static/StaticGridMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6506,8 +6506,8 @@ $O/inetveins/mobility/static/StaticGridMobility.o: inetveins/mobility/static/Sta
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/mobility/static/StationaryMobility.o: inetveins/mobility/static/StationaryMobility.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6528,7 +6528,7 @@ $O/inetveins/mobility/static/StationaryMobility.o: inetveins/mobility/static/Sta
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/arp/generic/GenericARP.o: inetveins/networklayer/arp/generic/GenericARP.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6554,7 +6554,7 @@ $O/inetveins/networklayer/arp/generic/GenericARP.o: inetveins/networklayer/arp/g
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/arp/ipv4/ARP.o: inetveins/networklayer/arp/ipv4/ARP.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6594,7 +6594,7 @@ $O/inetveins/networklayer/arp/ipv4/ARP.o: inetveins/networklayer/arp/ipv4/ARP.cc
 	inetveins/networklayer/ipv4/IPv4Route.h
 $O/inetveins/networklayer/arp/ipv4/ARPPacket_m.o: inetveins/networklayer/arp/ipv4/ARPPacket_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -6602,7 +6602,7 @@ $O/inetveins/networklayer/arp/ipv4/ARPPacket_m.o: inetveins/networklayer/arp/ipv
 	inetveins/networklayer/contract/ipv4/IPv4Address.h
 $O/inetveins/networklayer/arp/ipv4/GlobalARP.o: inetveins/networklayer/arp/ipv4/GlobalARP.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6642,7 +6642,7 @@ $O/inetveins/networklayer/arp/ipv4/GlobalARP.o: inetveins/networklayer/arp/ipv4/
 	inetveins/networklayer/ipv4/IPv4Route.h
 $O/inetveins/networklayer/base/NetworkDatagramBase_m.o: inetveins/networklayer/base/NetworkDatagramBase_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -6654,7 +6654,7 @@ $O/inetveins/networklayer/base/NetworkDatagramBase_m.o: inetveins/networklayer/b
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/base/NetworkProtocolBase.o: inetveins/networklayer/base/NetworkProtocolBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/ModuleAccess.h \
@@ -6678,14 +6678,14 @@ $O/inetveins/networklayer/base/NetworkProtocolBase.o: inetveins/networklayer/bas
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/common/EchoPacket_m.o: inetveins/networklayer/common/EchoPacket_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/common/EchoPacket_m.h
 $O/inetveins/networklayer/common/EchoProtocol.o: inetveins/networklayer/common/EchoProtocol.cc \
 	inetveins/applications/pingapp/PingPayload_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -6701,13 +6701,13 @@ $O/inetveins/networklayer/common/EchoProtocol.o: inetveins/networklayer/common/E
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/common/IPProtocolId_m.o: inetveins/networklayer/common/IPProtocolId_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/common/IPProtocolId_m.h
 $O/inetveins/networklayer/common/IPSocket.o: inetveins/networklayer/common/IPSocket.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/common/IPProtocolId_m.h \
@@ -6715,8 +6715,8 @@ $O/inetveins/networklayer/common/IPSocket.o: inetveins/networklayer/common/IPSoc
 	inetveins/networklayer/contract/NetworkProtocolCommand_m.h
 $O/inetveins/networklayer/common/InterfaceEntry.o: inetveins/networklayer/common/InterfaceEntry.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6735,7 +6735,7 @@ $O/inetveins/networklayer/common/InterfaceEntry.o: inetveins/networklayer/common
 	inetveins/networklayer/ipv6/IPv6InterfaceData.h
 $O/inetveins/networklayer/common/InterfaceMatcher.o: inetveins/networklayer/common/InterfaceMatcher.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6757,7 +6757,7 @@ $O/inetveins/networklayer/common/InterfaceMatcher.o: inetveins/networklayer/comm
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/common/InterfaceTable.o: inetveins/networklayer/common/InterfaceTable.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6781,7 +6781,7 @@ $O/inetveins/networklayer/common/InterfaceTable.o: inetveins/networklayer/common
 	inetveins/networklayer/ipv6/IPv6InterfaceData.h
 $O/inetveins/networklayer/common/L3Address.o: inetveins/networklayer/common/L3Address.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -6809,8 +6809,8 @@ $O/inetveins/networklayer/common/L3Address.o: inetveins/networklayer/common/L3Ad
 	inetveins/networklayer/contract/ipv6/IPv6ControlInfo_m.h
 $O/inetveins/networklayer/common/L3AddressResolver.o: inetveins/networklayer/common/L3AddressResolver.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/PatternMatcher.h \
@@ -6842,13 +6842,13 @@ $O/inetveins/networklayer/common/L3AddressResolver.o: inetveins/networklayer/com
 	inetveins/networklayer/ipv6/IPv6RoutingTable.h
 $O/inetveins/networklayer/common/ModuleIdAddress.o: inetveins/networklayer/common/ModuleIdAddress.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/common/ModuleIdAddress.h
 $O/inetveins/networklayer/common/ModuleIdAddressType.o: inetveins/networklayer/common/ModuleIdAddressType.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -6868,7 +6868,7 @@ $O/inetveins/networklayer/common/ModuleIdAddressType.o: inetveins/networklayer/c
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/common/ModulePathAddress.o: inetveins/networklayer/common/ModulePathAddress.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6887,7 +6887,7 @@ $O/inetveins/networklayer/common/ModulePathAddress.o: inetveins/networklayer/com
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/common/ModulePathAddressType.o: inetveins/networklayer/common/ModulePathAddressType.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -6907,7 +6907,7 @@ $O/inetveins/networklayer/common/ModulePathAddressType.o: inetveins/networklayer
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/common/NetfilterInfoHook.o: inetveins/networklayer/common/NetfilterInfoHook.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -6925,7 +6925,7 @@ $O/inetveins/networklayer/common/NetfilterInfoHook.o: inetveins/networklayer/com
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/common/SimpleNetworkProtocolControlInfo_m.o: inetveins/networklayer/common/SimpleNetworkProtocolControlInfo_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -6937,8 +6937,8 @@ $O/inetveins/networklayer/common/SimpleNetworkProtocolControlInfo_m.o: inetveins
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/configurator/base/NetworkConfiguratorBase.o: inetveins/networklayer/configurator/base/NetworkConfiguratorBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
@@ -7017,8 +7017,8 @@ $O/inetveins/networklayer/configurator/base/NetworkConfiguratorBase.o: inetveins
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/networklayer/configurator/generic/GenericNetworkConfigurator.o: inetveins/networklayer/configurator/generic/GenericNetworkConfigurator.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/PatternMatcher.h \
@@ -7043,7 +7043,7 @@ $O/inetveins/networklayer/configurator/generic/GenericNetworkConfigurator.o: ine
 	inetveins/networklayer/generic/GenericRoutingTable.h
 $O/inetveins/networklayer/configurator/ipv4/FlatNetworkConfigurator.o: inetveins/networklayer/configurator/ipv4/FlatNetworkConfigurator.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -7065,7 +7065,7 @@ $O/inetveins/networklayer/configurator/ipv4/FlatNetworkConfigurator.o: inetveins
 	inetveins/networklayer/ipv4/IPv4Route.h
 $O/inetveins/networklayer/configurator/ipv4/HostAutoConfigurator.o: inetveins/networklayer/configurator/ipv4/HostAutoConfigurator.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7088,8 +7088,8 @@ $O/inetveins/networklayer/configurator/ipv4/HostAutoConfigurator.o: inetveins/ne
 	inetveins/networklayer/ipv4/IPv4Route.h
 $O/inetveins/networklayer/configurator/ipv4/IPv4NetworkConfigurator.o: inetveins/networklayer/configurator/ipv4/IPv4NetworkConfigurator.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7117,8 +7117,8 @@ $O/inetveins/networklayer/configurator/ipv4/IPv4NetworkConfigurator.o: inetveins
 	inetveins/networklayer/ipv4/IPv4Route.h
 $O/inetveins/networklayer/configurator/ipv4/IPv4NodeConfigurator.o: inetveins/networklayer/configurator/ipv4/IPv4NodeConfigurator.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7149,7 +7149,7 @@ $O/inetveins/networklayer/configurator/ipv4/IPv4NodeConfigurator.o: inetveins/ne
 	inetveins/networklayer/ipv4/IPv4Route.h
 $O/inetveins/networklayer/configurator/ipv6/FlatNetworkConfigurator6.o: inetveins/networklayer/configurator/ipv6/FlatNetworkConfigurator6.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -7172,7 +7172,7 @@ $O/inetveins/networklayer/configurator/ipv6/FlatNetworkConfigurator6.o: inetvein
 	inetveins/networklayer/ipv6/IPv6RoutingTable.h
 $O/inetveins/networklayer/contract/IARP.o: inetveins/networklayer/contract/IARP.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7189,7 +7189,7 @@ $O/inetveins/networklayer/contract/IARP.o: inetveins/networklayer/contract/IARP.
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/contract/INetworkDatagram.o: inetveins/networklayer/contract/INetworkDatagram.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -7201,7 +7201,7 @@ $O/inetveins/networklayer/contract/INetworkDatagram.o: inetveins/networklayer/co
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/contract/IRoute.o: inetveins/networklayer/contract/IRoute.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -7218,7 +7218,7 @@ $O/inetveins/networklayer/contract/NetworkProtocolCommand_m.o: inetveins/network
 	inetveins/networklayer/contract/NetworkProtocolCommand_m.h
 $O/inetveins/networklayer/contract/generic/GenericNetworkProtocolControlInfo_m.o: inetveins/networklayer/contract/generic/GenericNetworkProtocolControlInfo_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -7231,13 +7231,13 @@ $O/inetveins/networklayer/contract/generic/GenericNetworkProtocolControlInfo_m.o
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/contract/ipv4/IPv4Address.o: inetveins/networklayer/contract/ipv4/IPv4Address.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h
 $O/inetveins/networklayer/contract/ipv4/IPv4AddressType.o: inetveins/networklayer/contract/ipv4/IPv4AddressType.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -7257,7 +7257,7 @@ $O/inetveins/networklayer/contract/ipv4/IPv4AddressType.o: inetveins/networklaye
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/contract/ipv4/IPv4ControlInfo.o: inetveins/networklayer/contract/ipv4/IPv4ControlInfo.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -7277,7 +7277,7 @@ $O/inetveins/networklayer/contract/ipv4/IPv4ControlInfo.o: inetveins/networklaye
 	inetveins/networklayer/ipv4/IPv4Datagram_m.h
 $O/inetveins/networklayer/contract/ipv4/IPv4ControlInfo_m.o: inetveins/networklayer/contract/ipv4/IPv4ControlInfo_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -7286,14 +7286,14 @@ $O/inetveins/networklayer/contract/ipv4/IPv4ControlInfo_m.o: inetveins/networkla
 	inetveins/networklayer/contract/ipv4/IPv4ControlInfo_m.h
 $O/inetveins/networklayer/contract/ipv6/IPv6Address.o: inetveins/networklayer/contract/ipv6/IPv6Address.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/common/InterfaceToken.h \
 	inetveins/networklayer/contract/ipv6/IPv6Address.h
 $O/inetveins/networklayer/contract/ipv6/IPv6AddressType.o: inetveins/networklayer/contract/ipv6/IPv6AddressType.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -7314,7 +7314,7 @@ $O/inetveins/networklayer/contract/ipv6/IPv6AddressType.o: inetveins/networklaye
 	inetveins/networklayer/ipv6/IPv6InterfaceData.h
 $O/inetveins/networklayer/contract/ipv6/IPv6ControlInfo.o: inetveins/networklayer/contract/ipv6/IPv6ControlInfo.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -7332,7 +7332,7 @@ $O/inetveins/networklayer/contract/ipv6/IPv6ControlInfo.o: inetveins/networklaye
 	inetveins/networklayer/ipv6/IPv6Datagram_m.h
 $O/inetveins/networklayer/contract/ipv6/IPv6ControlInfo_m.o: inetveins/networklayer/contract/ipv6/IPv6ControlInfo_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/common/IPProtocolId_m.h \
@@ -7342,7 +7342,7 @@ $O/inetveins/networklayer/diffserv/BehaviorAggregateClassifier.o: inetveins/netw
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/TLVOption.h \
@@ -7375,7 +7375,7 @@ $O/inetveins/networklayer/diffserv/BehaviorAggregateClassifier.o: inetveins/netw
 	inetveins/transportlayer/udp/UDPPacket_m.h
 $O/inetveins/networklayer/diffserv/DSCPMarker.o: inetveins/networklayer/diffserv/DSCPMarker.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/TLVOption.h \
@@ -7401,14 +7401,14 @@ $O/inetveins/networklayer/diffserv/DSCPMarker.o: inetveins/networklayer/diffserv
 	inetveins/networklayer/ipv6/IPv6Datagram_m.h
 $O/inetveins/networklayer/diffserv/DSCP_m.o: inetveins/networklayer/diffserv/DSCP_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/diffserv/DSCP_m.h
 $O/inetveins/networklayer/diffserv/DiffservUtil.o: inetveins/networklayer/diffserv/DiffservUtil.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/TLVOption.h \
@@ -7435,7 +7435,7 @@ $O/inetveins/networklayer/diffserv/MultiFieldClassifier.o: inetveins/networklaye
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/TLVOption.h \
@@ -7468,8 +7468,8 @@ $O/inetveins/networklayer/diffserv/MultiFieldClassifier.o: inetveins/networklaye
 	inetveins/transportlayer/udp/UDPPacket_m.h
 $O/inetveins/networklayer/diffserv/SingleRateThreeColorMeter.o: inetveins/networklayer/diffserv/SingleRateThreeColorMeter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7487,8 +7487,8 @@ $O/inetveins/networklayer/diffserv/SingleRateThreeColorMeter.o: inetveins/networ
 	inetveins/networklayer/diffserv/SingleRateThreeColorMeter.h
 $O/inetveins/networklayer/diffserv/TokenBucketMeter.o: inetveins/networklayer/diffserv/TokenBucketMeter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7506,8 +7506,8 @@ $O/inetveins/networklayer/diffserv/TokenBucketMeter.o: inetveins/networklayer/di
 	inetveins/networklayer/diffserv/TokenBucketMeter.h
 $O/inetveins/networklayer/diffserv/TwoRateThreeColorMeter.o: inetveins/networklayer/diffserv/TwoRateThreeColorMeter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7525,7 +7525,7 @@ $O/inetveins/networklayer/diffserv/TwoRateThreeColorMeter.o: inetveins/networkla
 	inetveins/networklayer/diffserv/TwoRateThreeColorMeter.h
 $O/inetveins/networklayer/flood/Flood.o: inetveins/networklayer/flood/Flood.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/NotifierConsts.h \
@@ -7561,7 +7561,7 @@ $O/inetveins/networklayer/flood/Flood.o: inetveins/networklayer/flood/Flood.cc \
 	inetveins/networklayer/flood/FloodDatagram_m.h
 $O/inetveins/networklayer/flood/FloodDatagram_m.o: inetveins/networklayer/flood/FloodDatagram_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -7574,7 +7574,7 @@ $O/inetveins/networklayer/flood/FloodDatagram_m.o: inetveins/networklayer/flood/
 	inetveins/networklayer/flood/FloodDatagram_m.h
 $O/inetveins/networklayer/generic/GenericDatagram_m.o: inetveins/networklayer/generic/GenericDatagram_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -7589,7 +7589,7 @@ $O/inetveins/networklayer/generic/GenericDatagram_m.o: inetveins/networklayer/ge
 	inetveins/networklayer/generic/GenericDatagram_m.h
 $O/inetveins/networklayer/generic/GenericNetworkProtocol.o: inetveins/networklayer/generic/GenericNetworkProtocol.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7631,7 +7631,7 @@ $O/inetveins/networklayer/generic/GenericNetworkProtocol.o: inetveins/networklay
 	inetveins/networklayer/generic/GenericRoutingTable.h
 $O/inetveins/networklayer/generic/GenericNetworkProtocolInterfaceData.o: inetveins/networklayer/generic/GenericNetworkProtocolInterfaceData.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -7646,7 +7646,7 @@ $O/inetveins/networklayer/generic/GenericNetworkProtocolInterfaceData.o: inetvei
 	inetveins/networklayer/generic/GenericNetworkProtocolInterfaceData.h
 $O/inetveins/networklayer/generic/GenericRoute.o: inetveins/networklayer/generic/GenericRoute.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -7665,7 +7665,7 @@ $O/inetveins/networklayer/generic/GenericRoute.o: inetveins/networklayer/generic
 	inetveins/networklayer/generic/GenericRoutingTable.h
 $O/inetveins/networklayer/generic/GenericRoutingTable.o: inetveins/networklayer/generic/GenericRoutingTable.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7687,7 +7687,7 @@ $O/inetveins/networklayer/generic/GenericRoutingTable.o: inetveins/networklayer/
 $O/inetveins/networklayer/icmpv6/ICMPv6.o: inetveins/networklayer/icmpv6/ICMPv6.cc \
 	inetveins/applications/pingapp/PingPayload_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7716,13 +7716,13 @@ $O/inetveins/networklayer/icmpv6/ICMPv6.o: inetveins/networklayer/icmpv6/ICMPv6.
 	inetveins/networklayer/ipv6/IPv6InterfaceData.h
 $O/inetveins/networklayer/icmpv6/ICMPv6Message_m.o: inetveins/networklayer/icmpv6/ICMPv6Message_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/icmpv6/ICMPv6Message_m.h
 $O/inetveins/networklayer/icmpv6/IPv6NDMessage_m.o: inetveins/networklayer/icmpv6/IPv6NDMessage_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -7731,7 +7731,7 @@ $O/inetveins/networklayer/icmpv6/IPv6NDMessage_m.o: inetveins/networklayer/icmpv
 	inetveins/networklayer/icmpv6/IPv6NDMessage_m.h
 $O/inetveins/networklayer/icmpv6/IPv6NeighbourCache.o: inetveins/networklayer/icmpv6/IPv6NeighbourCache.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -7739,7 +7739,7 @@ $O/inetveins/networklayer/icmpv6/IPv6NeighbourCache.o: inetveins/networklayer/ic
 	inetveins/networklayer/icmpv6/IPv6NeighbourCache.h
 $O/inetveins/networklayer/icmpv6/IPv6NeighbourDiscovery.o: inetveins/networklayer/icmpv6/IPv6NeighbourDiscovery.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7783,7 +7783,7 @@ $O/inetveins/networklayer/icmpv6/IPv6NeighbourDiscovery.o: inetveins/networklaye
 	inetveins/networklayer/xmipv6/xMIPv6.h
 $O/inetveins/networklayer/internetcloud/CloudDelayerBase.o: inetveins/networklayer/internetcloud/CloudDelayerBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7825,7 +7825,7 @@ $O/inetveins/networklayer/internetcloud/CloudDelayerBase.o: inetveins/networklay
 	inetveins/networklayer/ipv4/IPv4Route.h
 $O/inetveins/networklayer/internetcloud/MatrixCloudDelayer.o: inetveins/networklayer/internetcloud/MatrixCloudDelayer.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7847,7 +7847,7 @@ $O/inetveins/networklayer/internetcloud/MatrixCloudDelayer.o: inetveins/networkl
 	inetveins/networklayer/internetcloud/MatrixCloudDelayer.h
 $O/inetveins/networklayer/ipv4/ErrorHandling.o: inetveins/networklayer/ipv4/ErrorHandling.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -7868,7 +7868,7 @@ $O/inetveins/networklayer/ipv4/ErrorHandling.o: inetveins/networklayer/ipv4/Erro
 $O/inetveins/networklayer/ipv4/ICMP.o: inetveins/networklayer/ipv4/ICMP.cc \
 	inetveins/applications/pingapp/PingPayload_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7902,20 +7902,20 @@ $O/inetveins/networklayer/ipv4/ICMP.o: inetveins/networklayer/ipv4/ICMP.cc \
 	inetveins/networklayer/ipv4/IPv4Route.h
 $O/inetveins/networklayer/ipv4/ICMPMessage_m.o: inetveins/networklayer/ipv4/ICMPMessage_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/ipv4/ICMPMessage_m.h
 $O/inetveins/networklayer/ipv4/IGMPMessage_m.o: inetveins/networklayer/ipv4/IGMPMessage_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
 	inetveins/networklayer/ipv4/IGMPMessage_m.h
 $O/inetveins/networklayer/ipv4/IGMPv2.o: inetveins/networklayer/ipv4/IGMPv2.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7945,7 +7945,7 @@ $O/inetveins/networklayer/ipv4/IGMPv2.o: inetveins/networklayer/ipv4/IGMPv2.cc \
 	inetveins/networklayer/ipv4/IPv4RoutingTable.h
 $O/inetveins/networklayer/ipv4/IGMPv3.o: inetveins/networklayer/ipv4/IGMPv3.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -7976,7 +7976,7 @@ $O/inetveins/networklayer/ipv4/IGMPv3.o: inetveins/networklayer/ipv4/IGMPv3.cc \
 	inetveins/networklayer/ipv4/IPv4RoutingTable.h
 $O/inetveins/networklayer/ipv4/IPv4.o: inetveins/networklayer/ipv4/IPv4.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -8028,8 +8028,8 @@ $O/inetveins/networklayer/ipv4/IPv4.o: inetveins/networklayer/ipv4/IPv4.cc \
 	inetveins/networklayer/ipv4/IPv4Route.h
 $O/inetveins/networklayer/ipv4/IPv4Datagram.o: inetveins/networklayer/ipv4/IPv4Datagram.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -8046,7 +8046,7 @@ $O/inetveins/networklayer/ipv4/IPv4Datagram.o: inetveins/networklayer/ipv4/IPv4D
 	inetveins/networklayer/ipv4/IPv4Datagram_m.h
 $O/inetveins/networklayer/ipv4/IPv4Datagram_m.o: inetveins/networklayer/ipv4/IPv4Datagram_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -8058,7 +8058,7 @@ $O/inetveins/networklayer/ipv4/IPv4FragBuf.o: inetveins/networklayer/ipv4/IPv4Fr
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/RawPacket.h \
@@ -8091,7 +8091,7 @@ $O/inetveins/networklayer/ipv4/IPv4FragBuf.o: inetveins/networklayer/ipv4/IPv4Fr
 	inetveins/networklayer/ipv4/IPv4Route.h
 $O/inetveins/networklayer/ipv4/IPv4InterfaceData.o: inetveins/networklayer/ipv4/IPv4InterfaceData.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -8107,7 +8107,7 @@ $O/inetveins/networklayer/ipv4/IPv4InterfaceData.o: inetveins/networklayer/ipv4/
 	inetveins/networklayer/ipv4/IPv4InterfaceData.h
 $O/inetveins/networklayer/ipv4/IPv4Route.o: inetveins/networklayer/ipv4/IPv4Route.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -8129,8 +8129,8 @@ $O/inetveins/networklayer/ipv4/IPv4Route.o: inetveins/networklayer/ipv4/IPv4Rout
 	inetveins/routing/aodv/AODVRouteData.h
 $O/inetveins/networklayer/ipv4/IPv4RoutingTable.o: inetveins/networklayer/ipv4/IPv4RoutingTable.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -8158,7 +8158,7 @@ $O/inetveins/networklayer/ipv4/IPv4RoutingTable.o: inetveins/networklayer/ipv4/I
 	inetveins/networklayer/ipv4/RoutingTableParser.h
 $O/inetveins/networklayer/ipv4/NetworkInfo.o: inetveins/networklayer/ipv4/NetworkInfo.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/scenario/IScriptable.h \
@@ -8179,7 +8179,7 @@ $O/inetveins/networklayer/ipv4/NetworkInfo.o: inetveins/networklayer/ipv4/Networ
 	inetveins/networklayer/ipv4/NetworkInfo.h
 $O/inetveins/networklayer/ipv4/RoutingTableParser.o: inetveins/networklayer/ipv4/RoutingTableParser.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -8202,7 +8202,7 @@ $O/inetveins/networklayer/ipv4/RoutingTableParser.o: inetveins/networklayer/ipv4
 	inetveins/networklayer/ipv4/RoutingTableParser.h
 $O/inetveins/networklayer/ipv4/RoutingTableRecorder.o: inetveins/networklayer/ipv4/RoutingTableRecorder.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -8224,7 +8224,7 @@ $O/inetveins/networklayer/ipv4/RoutingTableRecorder.o: inetveins/networklayer/ip
 	inetveins/networklayer/ipv4/RoutingTableRecorder.h
 $O/inetveins/networklayer/ipv6/IPv6.o: inetveins/networklayer/ipv6/IPv6.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -8279,7 +8279,7 @@ $O/inetveins/networklayer/ipv6/IPv6.o: inetveins/networklayer/ipv6/IPv6.cc \
 	inetveins/networklayer/xmipv6/MobilityHeader_m.h
 $O/inetveins/networklayer/ipv6/IPv6Datagram.o: inetveins/networklayer/ipv6/IPv6Datagram.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -8298,7 +8298,7 @@ $O/inetveins/networklayer/ipv6/IPv6Datagram.o: inetveins/networklayer/ipv6/IPv6D
 	inetveins/networklayer/ipv6/IPv6ExtensionHeaders_m.h
 $O/inetveins/networklayer/ipv6/IPv6Datagram_m.o: inetveins/networklayer/ipv6/IPv6Datagram_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/common/IPProtocolId_m.h \
@@ -8306,7 +8306,7 @@ $O/inetveins/networklayer/ipv6/IPv6Datagram_m.o: inetveins/networklayer/ipv6/IPv
 	inetveins/networklayer/ipv6/IPv6Datagram_m.h
 $O/inetveins/networklayer/ipv6/IPv6ErrorHandling.o: inetveins/networklayer/ipv6/IPv6ErrorHandling.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -8326,7 +8326,7 @@ $O/inetveins/networklayer/ipv6/IPv6ErrorHandling.o: inetveins/networklayer/ipv6/
 	inetveins/networklayer/ipv6/IPv6ErrorHandling.h
 $O/inetveins/networklayer/ipv6/IPv6ExtensionHeaders.o: inetveins/networklayer/ipv6/IPv6ExtensionHeaders.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -8345,7 +8345,7 @@ $O/inetveins/networklayer/ipv6/IPv6ExtensionHeaders.o: inetveins/networklayer/ip
 	inetveins/networklayer/ipv6/IPv6ExtensionHeaders_m.h
 $O/inetveins/networklayer/ipv6/IPv6ExtensionHeaders_m.o: inetveins/networklayer/ipv6/IPv6ExtensionHeaders_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -8363,7 +8363,7 @@ $O/inetveins/networklayer/ipv6/IPv6ExtensionHeaders_m.o: inetveins/networklayer/
 	inetveins/networklayer/ipv6/IPv6ExtensionHeaders_m.h
 $O/inetveins/networklayer/ipv6/IPv6FragBuf.o: inetveins/networklayer/ipv6/IPv6FragBuf.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ReassemblyBuffer.h \
 	inetveins/common/TLVOption.h \
@@ -8387,7 +8387,7 @@ $O/inetveins/networklayer/ipv6/IPv6FragBuf.o: inetveins/networklayer/ipv6/IPv6Fr
 	inetveins/networklayer/ipv6/IPv6FragBuf.h
 $O/inetveins/networklayer/ipv6/IPv6InterfaceData.o: inetveins/networklayer/ipv6/IPv6InterfaceData.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -8403,7 +8403,7 @@ $O/inetveins/networklayer/ipv6/IPv6InterfaceData.o: inetveins/networklayer/ipv6/
 	inetveins/networklayer/ipv6/IPv6InterfaceData.h
 $O/inetveins/networklayer/ipv6/IPv6Route.o: inetveins/networklayer/ipv6/IPv6Route.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -8422,8 +8422,8 @@ $O/inetveins/networklayer/ipv6/IPv6Route.o: inetveins/networklayer/ipv6/IPv6Rout
 	inetveins/networklayer/ipv6/IPv6RoutingTable.h
 $O/inetveins/networklayer/ipv6/IPv6RoutingTable.o: inetveins/networklayer/ipv6/IPv6RoutingTable.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -8448,7 +8448,7 @@ $O/inetveins/networklayer/ipv6/IPv6RoutingTable.o: inetveins/networklayer/ipv6/I
 	inetveins/networklayer/ipv6tunneling/IPv6Tunneling.h
 $O/inetveins/networklayer/ipv6tunneling/IPv6Tunneling.o: inetveins/networklayer/ipv6tunneling/IPv6Tunneling.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -8489,7 +8489,7 @@ $O/inetveins/networklayer/ldp/LDP.o: inetveins/networklayer/ldp/LDP.cc \
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -8540,14 +8540,14 @@ $O/inetveins/networklayer/ldp/LDP.o: inetveins/networklayer/ldp/LDP.cc \
 	inetveins/transportlayer/udp/UDPPacket_m.h
 $O/inetveins/networklayer/ldp/LDPPacket_m.o: inetveins/networklayer/ldp/LDPPacket_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
 	inetveins/networklayer/ldp/LDPPacket_m.h
 $O/inetveins/networklayer/mpls/LIBTable.o: inetveins/networklayer/mpls/LIBTable.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -8569,7 +8569,7 @@ $O/inetveins/networklayer/mpls/MPLS.o: inetveins/networklayer/mpls/MPLS.cc \
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -8612,13 +8612,13 @@ $O/inetveins/networklayer/mpls/MPLS.o: inetveins/networklayer/mpls/MPLS.cc \
 	inetveins/transportlayer/tcp_common/TCPSegment_m.h
 $O/inetveins/networklayer/mpls/MPLSPacket.o: inetveins/networklayer/mpls/MPLSPacket.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/mpls/MPLSPacket.h
 $O/inetveins/networklayer/multi/MultiNetworkLayerLowerMultiplexer.o: inetveins/networklayer/multi/MultiNetworkLayerLowerMultiplexer.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -8641,7 +8641,7 @@ $O/inetveins/networklayer/multi/MultiNetworkLayerLowerMultiplexer.o: inetveins/n
 	inetveins/networklayer/multi/MultiNetworkLayerLowerMultiplexer.h
 $O/inetveins/networklayer/multi/MultiNetworkLayerUpperMultiplexer.o: inetveins/networklayer/multi/MultiNetworkLayerUpperMultiplexer.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -8661,7 +8661,7 @@ $O/inetveins/networklayer/multi/MultiNetworkLayerUpperMultiplexer.o: inetveins/n
 	inetveins/networklayer/multi/MultiNetworkLayerUpperMultiplexer.h
 $O/inetveins/networklayer/multi/NetworkDatagramMultiplexer.o: inetveins/networklayer/multi/NetworkDatagramMultiplexer.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -8690,7 +8690,7 @@ $O/inetveins/networklayer/multi/NetworkDatagramMultiplexer.o: inetveins/networkl
 	inetveins/networklayer/multi/NetworkDatagramMultiplexer.h
 $O/inetveins/networklayer/probabilistic/AdaptiveProbabilisticBroadcast.o: inetveins/networklayer/probabilistic/AdaptiveProbabilisticBroadcast.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/NotifierConsts.h \
@@ -8721,7 +8721,7 @@ $O/inetveins/networklayer/probabilistic/AdaptiveProbabilisticBroadcast.o: inetve
 	inetveins/networklayer/probabilistic/ProbabilisticBroadcastDatagram_m.h
 $O/inetveins/networklayer/probabilistic/ProbabilisticBroadcast.o: inetveins/networklayer/probabilistic/ProbabilisticBroadcast.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/NotifierConsts.h \
@@ -8757,7 +8757,7 @@ $O/inetveins/networklayer/probabilistic/ProbabilisticBroadcast.o: inetveins/netw
 	inetveins/networklayer/probabilistic/ProbabilisticBroadcastDatagram_m.h
 $O/inetveins/networklayer/probabilistic/ProbabilisticBroadcastDatagram_m.o: inetveins/networklayer/probabilistic/ProbabilisticBroadcastDatagram_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -8770,14 +8770,14 @@ $O/inetveins/networklayer/probabilistic/ProbabilisticBroadcastDatagram_m.o: inet
 	inetveins/networklayer/probabilistic/ProbabilisticBroadcastDatagram_m.h
 $O/inetveins/networklayer/rsvp_te/IntServ_m.o: inetveins/networklayer/rsvp_te/IntServ_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
 	inetveins/networklayer/rsvp_te/IntServ_m.h
 $O/inetveins/networklayer/rsvp_te/RSVP.o: inetveins/networklayer/rsvp_te/RSVP.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -8834,7 +8834,7 @@ $O/inetveins/networklayer/rsvp_te/RSVP.o: inetveins/networklayer/rsvp_te/RSVP.cc
 	inetveins/networklayer/ted/TED_m.h
 $O/inetveins/networklayer/rsvp_te/RSVPHello_m.o: inetveins/networklayer/rsvp_te/RSVPHello_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -8844,7 +8844,7 @@ $O/inetveins/networklayer/rsvp_te/RSVPHello_m.o: inetveins/networklayer/rsvp_te/
 	inetveins/networklayer/rsvp_te/RSVPPacket_m.h
 $O/inetveins/networklayer/rsvp_te/RSVPPacket_m.o: inetveins/networklayer/rsvp_te/RSVPPacket_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -8852,7 +8852,7 @@ $O/inetveins/networklayer/rsvp_te/RSVPPacket_m.o: inetveins/networklayer/rsvp_te
 	inetveins/networklayer/rsvp_te/RSVPPacket_m.h
 $O/inetveins/networklayer/rsvp_te/RSVPPathMsg_m.o: inetveins/networklayer/rsvp_te/RSVPPathMsg_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -8863,7 +8863,7 @@ $O/inetveins/networklayer/rsvp_te/RSVPPathMsg_m.o: inetveins/networklayer/rsvp_t
 	inetveins/networklayer/rsvp_te/RSVPPathMsg_m.h
 $O/inetveins/networklayer/rsvp_te/RSVPResvMsg_m.o: inetveins/networklayer/rsvp_te/RSVPResvMsg_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -8874,7 +8874,7 @@ $O/inetveins/networklayer/rsvp_te/RSVPResvMsg_m.o: inetveins/networklayer/rsvp_t
 	inetveins/networklayer/rsvp_te/RSVPResvMsg_m.h
 $O/inetveins/networklayer/rsvp_te/SignallingMsg_m.o: inetveins/networklayer/rsvp_te/SignallingMsg_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -8883,7 +8883,7 @@ $O/inetveins/networklayer/rsvp_te/SignallingMsg_m.o: inetveins/networklayer/rsvp
 	inetveins/networklayer/rsvp_te/SignallingMsg_m.h
 $O/inetveins/networklayer/rsvp_te/SimpleClassifier.o: inetveins/networklayer/rsvp_te/SimpleClassifier.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -8929,7 +8929,7 @@ $O/inetveins/networklayer/rsvp_te/SimpleClassifier.o: inetveins/networklayer/rsv
 	inetveins/networklayer/rsvp_te/SimpleClassifier.h
 $O/inetveins/networklayer/rsvp_te/Utils.o: inetveins/networklayer/rsvp_te/Utils.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -8938,7 +8938,7 @@ $O/inetveins/networklayer/rsvp_te/Utils.o: inetveins/networklayer/rsvp_te/Utils.
 	inetveins/networklayer/rsvp_te/Utils.h
 $O/inetveins/networklayer/ted/LinkStatePacket_m.o: inetveins/networklayer/ted/LinkStatePacket_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -8946,7 +8946,7 @@ $O/inetveins/networklayer/ted/LinkStatePacket_m.o: inetveins/networklayer/ted/Li
 	inetveins/networklayer/ted/TED_m.h
 $O/inetveins/networklayer/ted/LinkStateRouting.o: inetveins/networklayer/ted/LinkStateRouting.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -8979,7 +8979,7 @@ $O/inetveins/networklayer/ted/LinkStateRouting.o: inetveins/networklayer/ted/Lin
 	inetveins/networklayer/ted/TED_m.h
 $O/inetveins/networklayer/ted/TED.o: inetveins/networklayer/ted/TED.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -9009,7 +9009,7 @@ $O/inetveins/networklayer/ted/TED.o: inetveins/networklayer/ted/TED.cc \
 	inetveins/networklayer/ted/TED_m.h
 $O/inetveins/networklayer/ted/TED_m.o: inetveins/networklayer/ted/TED_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -9017,8 +9017,8 @@ $O/inetveins/networklayer/ted/TED_m.o: inetveins/networklayer/ted/TED_m.cc \
 $O/inetveins/networklayer/wiseroute/WiseRoute.o: inetveins/networklayer/wiseroute/WiseRoute.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/FindModule.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/ModuleAccess.h \
@@ -9059,7 +9059,7 @@ $O/inetveins/networklayer/wiseroute/WiseRoute.o: inetveins/networklayer/wiserout
 	inetveins/networklayer/wiseroute/WiseRouteDatagram_m.h
 $O/inetveins/networklayer/wiseroute/WiseRouteDatagram_m.o: inetveins/networklayer/wiseroute/WiseRouteDatagram_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -9072,14 +9072,14 @@ $O/inetveins/networklayer/wiseroute/WiseRouteDatagram_m.o: inetveins/networklaye
 	inetveins/networklayer/wiseroute/WiseRouteDatagram_m.h
 $O/inetveins/networklayer/xmipv6/BindingCache.o: inetveins/networklayer/xmipv6/BindingCache.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv6/IPv6Address.h \
 	inetveins/networklayer/xmipv6/BindingCache.h
 $O/inetveins/networklayer/xmipv6/BindingUpdateList.o: inetveins/networklayer/xmipv6/BindingUpdateList.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -9095,7 +9095,7 @@ $O/inetveins/networklayer/xmipv6/BindingUpdateList.o: inetveins/networklayer/xmi
 	inetveins/networklayer/xmipv6/BindingUpdateList.h
 $O/inetveins/networklayer/xmipv6/MobilityHeader.o: inetveins/networklayer/xmipv6/MobilityHeader.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -9116,7 +9116,7 @@ $O/inetveins/networklayer/xmipv6/MobilityHeader.o: inetveins/networklayer/xmipv6
 	inetveins/networklayer/xmipv6/MobilityHeader_m.h
 $O/inetveins/networklayer/xmipv6/MobilityHeader_m.o: inetveins/networklayer/xmipv6/MobilityHeader_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -9136,7 +9136,7 @@ $O/inetveins/networklayer/xmipv6/MobilityHeader_m.o: inetveins/networklayer/xmip
 	inetveins/networklayer/xmipv6/MobilityHeader_m.h
 $O/inetveins/networklayer/xmipv6/xMIPv6.o: inetveins/networklayer/xmipv6/xMIPv6.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -9180,8 +9180,8 @@ $O/inetveins/networklayer/xmipv6/xMIPv6.o: inetveins/networklayer/xmipv6/xMIPv6.
 	inetveins/networklayer/xmipv6/xMIPv6.h
 $O/inetveins/physicallayer/analogmodel/bitlevel/DimensionalSignalAnalogModel.o: inetveins/physicallayer/analogmodel/bitlevel/DimensionalSignalAnalogModel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9198,8 +9198,8 @@ $O/inetveins/physicallayer/analogmodel/bitlevel/DimensionalSignalAnalogModel.o: 
 $O/inetveins/physicallayer/analogmodel/bitlevel/LayeredDimensionalAnalogModel.o: inetveins/physicallayer/analogmodel/bitlevel/LayeredDimensionalAnalogModel.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
@@ -9282,8 +9282,8 @@ $O/inetveins/physicallayer/analogmodel/bitlevel/LayeredDimensionalAnalogModel.o:
 $O/inetveins/physicallayer/analogmodel/bitlevel/LayeredScalarAnalogModel.o: inetveins/physicallayer/analogmodel/bitlevel/LayeredScalarAnalogModel.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
@@ -9365,8 +9365,8 @@ $O/inetveins/physicallayer/analogmodel/bitlevel/LayeredScalarAnalogModel.o: inet
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/analogmodel/bitlevel/ScalarSignalAnalogModel.o: inetveins/physicallayer/analogmodel/bitlevel/ScalarSignalAnalogModel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9382,8 +9382,8 @@ $O/inetveins/physicallayer/analogmodel/bitlevel/ScalarSignalAnalogModel.o: inetv
 	inetveins/physicallayer/contract/packetlevel/IRadioSignal.h
 $O/inetveins/physicallayer/analogmodel/bitlevel/SignalAnalogModel.o: inetveins/physicallayer/analogmodel/bitlevel/SignalAnalogModel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9398,8 +9398,8 @@ $O/inetveins/physicallayer/analogmodel/bitlevel/SignalAnalogModel.o: inetveins/p
 	inetveins/physicallayer/contract/packetlevel/IRadioSignal.h
 $O/inetveins/physicallayer/analogmodel/packetlevel/DimensionalAnalogModel.o: inetveins/physicallayer/analogmodel/packetlevel/DimensionalAnalogModel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -9468,8 +9468,8 @@ $O/inetveins/physicallayer/analogmodel/packetlevel/DimensionalAnalogModel.o: ine
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/analogmodel/packetlevel/DimensionalNoise.o: inetveins/physicallayer/analogmodel/packetlevel/DimensionalNoise.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/mapping/Interpolation.h \
@@ -9484,8 +9484,8 @@ $O/inetveins/physicallayer/analogmodel/packetlevel/DimensionalNoise.o: inetveins
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/analogmodel/packetlevel/DimensionalReception.o: inetveins/physicallayer/analogmodel/packetlevel/DimensionalReception.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9524,8 +9524,8 @@ $O/inetveins/physicallayer/analogmodel/packetlevel/DimensionalReception.o: inetv
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/analogmodel/packetlevel/DimensionalSNIR.o: inetveins/physicallayer/analogmodel/packetlevel/DimensionalSNIR.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9569,8 +9569,8 @@ $O/inetveins/physicallayer/analogmodel/packetlevel/DimensionalSNIR.o: inetveins/
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/analogmodel/packetlevel/DimensionalTransmission.o: inetveins/physicallayer/analogmodel/packetlevel/DimensionalTransmission.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9609,8 +9609,8 @@ $O/inetveins/physicallayer/analogmodel/packetlevel/DimensionalTransmission.o: in
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/analogmodel/packetlevel/ScalarAnalogModel.o: inetveins/physicallayer/analogmodel/packetlevel/ScalarAnalogModel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -9668,8 +9668,8 @@ $O/inetveins/physicallayer/analogmodel/packetlevel/ScalarAnalogModel.o: inetvein
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/analogmodel/packetlevel/ScalarNoise.o: inetveins/physicallayer/analogmodel/packetlevel/ScalarNoise.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -9681,8 +9681,8 @@ $O/inetveins/physicallayer/analogmodel/packetlevel/ScalarNoise.o: inetveins/phys
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/analogmodel/packetlevel/ScalarReception.o: inetveins/physicallayer/analogmodel/packetlevel/ScalarReception.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9721,8 +9721,8 @@ $O/inetveins/physicallayer/analogmodel/packetlevel/ScalarReception.o: inetveins/
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/analogmodel/packetlevel/ScalarSNIR.o: inetveins/physicallayer/analogmodel/packetlevel/ScalarSNIR.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9746,8 +9746,8 @@ $O/inetveins/physicallayer/analogmodel/packetlevel/ScalarSNIR.o: inetveins/physi
 	inetveins/physicallayer/contract/packetlevel/ITransmission.h
 $O/inetveins/physicallayer/analogmodel/packetlevel/ScalarTransmission.o: inetveins/physicallayer/analogmodel/packetlevel/ScalarTransmission.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9786,8 +9786,8 @@ $O/inetveins/physicallayer/analogmodel/packetlevel/ScalarTransmission.o: inetvei
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/antenna/ConstantGainAntenna.o: inetveins/physicallayer/antenna/ConstantGainAntenna.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9801,8 +9801,8 @@ $O/inetveins/physicallayer/antenna/ConstantGainAntenna.o: inetveins/physicallaye
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/antenna/CosineAntenna.o: inetveins/physicallayer/antenna/CosineAntenna.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9816,8 +9816,8 @@ $O/inetveins/physicallayer/antenna/CosineAntenna.o: inetveins/physicallayer/ante
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/antenna/DipoleAntenna.o: inetveins/physicallayer/antenna/DipoleAntenna.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9831,8 +9831,8 @@ $O/inetveins/physicallayer/antenna/DipoleAntenna.o: inetveins/physicallayer/ante
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/antenna/InterpolatingAntenna.o: inetveins/physicallayer/antenna/InterpolatingAntenna.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9846,8 +9846,8 @@ $O/inetveins/physicallayer/antenna/InterpolatingAntenna.o: inetveins/physicallay
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/antenna/IsotropicAntenna.o: inetveins/physicallayer/antenna/IsotropicAntenna.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9861,8 +9861,8 @@ $O/inetveins/physicallayer/antenna/IsotropicAntenna.o: inetveins/physicallayer/a
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/antenna/ParabolicAntenna.o: inetveins/physicallayer/antenna/ParabolicAntenna.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -9877,8 +9877,8 @@ $O/inetveins/physicallayer/antenna/ParabolicAntenna.o: inetveins/physicallayer/a
 $O/inetveins/physicallayer/apskradio/bitlevel/APSKCode.o: inetveins/physicallayer/apskradio/bitlevel/APSKCode.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -9894,8 +9894,8 @@ $O/inetveins/physicallayer/apskradio/bitlevel/APSKCode.o: inetveins/physicallaye
 $O/inetveins/physicallayer/apskradio/bitlevel/APSKDecoder.o: inetveins/physicallayer/apskradio/bitlevel/APSKDecoder.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -9917,8 +9917,8 @@ $O/inetveins/physicallayer/apskradio/bitlevel/APSKDecoder.o: inetveins/physicall
 $O/inetveins/physicallayer/apskradio/bitlevel/APSKDemodulator.o: inetveins/physicallayer/apskradio/bitlevel/APSKDemodulator.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -9946,8 +9946,8 @@ $O/inetveins/physicallayer/apskradio/bitlevel/APSKDemodulator.o: inetveins/physi
 $O/inetveins/physicallayer/apskradio/bitlevel/APSKEncoder.o: inetveins/physicallayer/apskradio/bitlevel/APSKEncoder.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -9976,8 +9976,8 @@ $O/inetveins/physicallayer/apskradio/bitlevel/APSKEncoder.o: inetveins/physicall
 $O/inetveins/physicallayer/apskradio/bitlevel/APSKLayeredReceiver.o: inetveins/physicallayer/apskradio/bitlevel/APSKLayeredReceiver.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
@@ -10077,8 +10077,8 @@ $O/inetveins/physicallayer/apskradio/bitlevel/APSKLayeredReceiver.o: inetveins/p
 $O/inetveins/physicallayer/apskradio/bitlevel/APSKLayeredTransmitter.o: inetveins/physicallayer/apskradio/bitlevel/APSKLayeredTransmitter.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -10146,8 +10146,8 @@ $O/inetveins/physicallayer/apskradio/bitlevel/APSKLayeredTransmitter.o: inetvein
 $O/inetveins/physicallayer/apskradio/bitlevel/APSKModulator.o: inetveins/physicallayer/apskradio/bitlevel/APSKModulator.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -10178,7 +10178,7 @@ $O/inetveins/physicallayer/apskradio/bitlevel/APSKPhyFrameSerializer.o: inetvein
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -10201,8 +10201,8 @@ $O/inetveins/physicallayer/apskradio/bitlevel/APSKPhyFrame_m.o: inetveins/physic
 $O/inetveins/physicallayer/apskradio/bitlevel/errormodel/APSKLayeredErrorModel.o: inetveins/physicallayer/apskradio/bitlevel/errormodel/APSKLayeredErrorModel.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -10262,8 +10262,8 @@ $O/inetveins/physicallayer/apskradio/bitlevel/errormodel/APSKLayeredErrorModel.o
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/apskradio/packetlevel/APSKDimensionalReceiver.o: inetveins/physicallayer/apskradio/packetlevel/APSKDimensionalReceiver.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -10315,8 +10315,8 @@ $O/inetveins/physicallayer/apskradio/packetlevel/APSKDimensionalReceiver.o: inet
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/apskradio/packetlevel/APSKDimensionalTransmitter.o: inetveins/physicallayer/apskradio/packetlevel/APSKDimensionalTransmitter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -10360,8 +10360,8 @@ $O/inetveins/physicallayer/apskradio/packetlevel/APSKDimensionalTransmitter.o: i
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/apskradio/packetlevel/APSKRadio.o: inetveins/physicallayer/apskradio/packetlevel/APSKRadio.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -10422,8 +10422,8 @@ $O/inetveins/physicallayer/apskradio/packetlevel/APSKRadio.o: inetveins/physical
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/apskradio/packetlevel/APSKScalarReceiver.o: inetveins/physicallayer/apskradio/packetlevel/APSKScalarReceiver.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -10475,8 +10475,8 @@ $O/inetveins/physicallayer/apskradio/packetlevel/APSKScalarReceiver.o: inetveins
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/apskradio/packetlevel/APSKScalarTransmitter.o: inetveins/physicallayer/apskradio/packetlevel/APSKScalarTransmitter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -10519,8 +10519,8 @@ $O/inetveins/physicallayer/apskradio/packetlevel/APSKScalarTransmitter.o: inetve
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/apskradio/packetlevel/errormodel/APSKErrorModel.o: inetveins/physicallayer/apskradio/packetlevel/errormodel/APSKErrorModel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -10566,8 +10566,8 @@ $O/inetveins/physicallayer/apskradio/packetlevel/errormodel/APSKErrorModel.o: in
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/backgroundnoise/IsotropicDimensionalBackgroundNoise.o: inetveins/physicallayer/backgroundnoise/IsotropicDimensionalBackgroundNoise.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -10593,8 +10593,8 @@ $O/inetveins/physicallayer/backgroundnoise/IsotropicDimensionalBackgroundNoise.o
 	inetveins/physicallayer/contract/packetlevel/ITransmission.h
 $O/inetveins/physicallayer/backgroundnoise/IsotropicScalarBackgroundNoise.o: inetveins/physicallayer/backgroundnoise/IsotropicScalarBackgroundNoise.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -10621,8 +10621,8 @@ $O/inetveins/physicallayer/backgroundnoise/IsotropicScalarBackgroundNoise.o: ine
 $O/inetveins/physicallayer/base/bitlevel/LayeredErrorModelBase.o: inetveins/physicallayer/base/bitlevel/LayeredErrorModelBase.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -10677,8 +10677,8 @@ $O/inetveins/physicallayer/base/bitlevel/LayeredErrorModelBase.o: inetveins/phys
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/APSKModulationBase.o: inetveins/physicallayer/base/packetlevel/APSKModulationBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -10701,8 +10701,8 @@ $O/inetveins/physicallayer/base/packetlevel/APSKModulationBase.o: inetveins/phys
 	inetveins/physicallayer/modulation/QPSKModulation.h
 $O/inetveins/physicallayer/base/packetlevel/AnalogModelBase.o: inetveins/physicallayer/base/packetlevel/AnalogModelBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -10739,8 +10739,8 @@ $O/inetveins/physicallayer/base/packetlevel/AnalogModelBase.o: inetveins/physica
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/AntennaBase.o: inetveins/physicallayer/base/packetlevel/AntennaBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -10764,8 +10764,8 @@ $O/inetveins/physicallayer/base/packetlevel/AntennaBase.o: inetveins/physicallay
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/base/packetlevel/CommunicationCacheBase.o: inetveins/physicallayer/base/packetlevel/CommunicationCacheBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/IntervalTree.h \
 	inetveins/common/Units.h \
@@ -10804,8 +10804,8 @@ $O/inetveins/physicallayer/base/packetlevel/CommunicationCacheBase.o: inetveins/
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/DPSKModulationBase.o: inetveins/physicallayer/base/packetlevel/DPSKModulationBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -10815,8 +10815,8 @@ $O/inetveins/physicallayer/base/packetlevel/DPSKModulationBase.o: inetveins/phys
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/base/packetlevel/DimensionalAnalogModelBase.o: inetveins/physicallayer/base/packetlevel/DimensionalAnalogModelBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -10880,8 +10880,8 @@ $O/inetveins/physicallayer/base/packetlevel/DimensionalAnalogModelBase.o: inetve
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/DimensionalTransmitterBase.o: inetveins/physicallayer/base/packetlevel/DimensionalTransmitterBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -10921,8 +10921,8 @@ $O/inetveins/physicallayer/base/packetlevel/DimensionalTransmitterBase.o: inetve
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/ErrorModelBase.o: inetveins/physicallayer/base/packetlevel/ErrorModelBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -10943,8 +10943,8 @@ $O/inetveins/physicallayer/base/packetlevel/ErrorModelBase.o: inetveins/physical
 	inetveins/physicallayer/contract/packetlevel/ITransmission.h
 $O/inetveins/physicallayer/base/packetlevel/FlatRadioBase.o: inetveins/physicallayer/base/packetlevel/FlatRadioBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -11012,8 +11012,8 @@ $O/inetveins/physicallayer/base/packetlevel/FlatRadioBase.o: inetveins/physicall
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/FlatReceiverBase.o: inetveins/physicallayer/base/packetlevel/FlatReceiverBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
@@ -11084,8 +11084,8 @@ $O/inetveins/physicallayer/base/packetlevel/FlatReceiverBase.o: inetveins/physic
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/FlatReceptionBase.o: inetveins/physicallayer/base/packetlevel/FlatReceptionBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11123,8 +11123,8 @@ $O/inetveins/physicallayer/base/packetlevel/FlatReceptionBase.o: inetveins/physi
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/FlatTransmissionBase.o: inetveins/physicallayer/base/packetlevel/FlatTransmissionBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11162,8 +11162,8 @@ $O/inetveins/physicallayer/base/packetlevel/FlatTransmissionBase.o: inetveins/ph
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/FlatTransmitterBase.o: inetveins/physicallayer/base/packetlevel/FlatTransmitterBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11184,8 +11184,8 @@ $O/inetveins/physicallayer/base/packetlevel/FlatTransmitterBase.o: inetveins/phy
 	inetveins/physicallayer/contract/packetlevel/ITransmitter.h
 $O/inetveins/physicallayer/base/packetlevel/GFSKModulationBase.o: inetveins/physicallayer/base/packetlevel/GFSKModulationBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -11195,8 +11195,8 @@ $O/inetveins/physicallayer/base/packetlevel/GFSKModulationBase.o: inetveins/phys
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/base/packetlevel/ListeningBase.o: inetveins/physicallayer/base/packetlevel/ListeningBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11232,8 +11232,8 @@ $O/inetveins/physicallayer/base/packetlevel/ListeningBase.o: inetveins/physicall
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/MQAMModulationBase.o: inetveins/physicallayer/base/packetlevel/MQAMModulationBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -11248,8 +11248,8 @@ $O/inetveins/physicallayer/base/packetlevel/MQAMModulationBase.o: inetveins/phys
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/base/packetlevel/NarrowbandNoiseBase.o: inetveins/physicallayer/base/packetlevel/NarrowbandNoiseBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -11260,8 +11260,8 @@ $O/inetveins/physicallayer/base/packetlevel/NarrowbandNoiseBase.o: inetveins/phy
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/base/packetlevel/NarrowbandRadioBase.o: inetveins/physicallayer/base/packetlevel/NarrowbandRadioBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -11326,8 +11326,8 @@ $O/inetveins/physicallayer/base/packetlevel/NarrowbandRadioBase.o: inetveins/phy
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/NarrowbandReceiverBase.o: inetveins/physicallayer/base/packetlevel/NarrowbandReceiverBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
@@ -11397,8 +11397,8 @@ $O/inetveins/physicallayer/base/packetlevel/NarrowbandReceiverBase.o: inetveins/
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/NarrowbandReceptionBase.o: inetveins/physicallayer/base/packetlevel/NarrowbandReceptionBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11435,8 +11435,8 @@ $O/inetveins/physicallayer/base/packetlevel/NarrowbandReceptionBase.o: inetveins
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/NarrowbandTransmissionBase.o: inetveins/physicallayer/base/packetlevel/NarrowbandTransmissionBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11473,8 +11473,8 @@ $O/inetveins/physicallayer/base/packetlevel/NarrowbandTransmissionBase.o: inetve
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/NarrowbandTransmitterBase.o: inetveins/physicallayer/base/packetlevel/NarrowbandTransmitterBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -11499,8 +11499,8 @@ $O/inetveins/physicallayer/base/packetlevel/NarrowbandTransmitterBase.o: inetvei
 	inetveins/physicallayer/contract/packetlevel/ITransmitter.h
 $O/inetveins/physicallayer/base/packetlevel/NoiseBase.o: inetveins/physicallayer/base/packetlevel/NoiseBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -11510,8 +11510,8 @@ $O/inetveins/physicallayer/base/packetlevel/NoiseBase.o: inetveins/physicallayer
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/base/packetlevel/PPMModulationBase.o: inetveins/physicallayer/base/packetlevel/PPMModulationBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -11521,8 +11521,8 @@ $O/inetveins/physicallayer/base/packetlevel/PPMModulationBase.o: inetveins/physi
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/base/packetlevel/PhysicalLayerBase.o: inetveins/physicallayer/base/packetlevel/PhysicalLayerBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -11535,8 +11535,8 @@ $O/inetveins/physicallayer/base/packetlevel/PhysicalLayerBase.o: inetveins/physi
 	inetveins/physicallayer/contract/packetlevel/IPhysicalLayer.h
 $O/inetveins/physicallayer/base/packetlevel/PropagationBase.o: inetveins/physicallayer/base/packetlevel/PropagationBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11556,8 +11556,8 @@ $O/inetveins/physicallayer/base/packetlevel/PropagationBase.o: inetveins/physica
 	inetveins/physicallayer/contract/packetlevel/ITransmission.h
 $O/inetveins/physicallayer/base/packetlevel/ReceiverBase.o: inetveins/physicallayer/base/packetlevel/ReceiverBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -11611,8 +11611,8 @@ $O/inetveins/physicallayer/base/packetlevel/ReceiverBase.o: inetveins/physicalla
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/ReceptionBase.o: inetveins/physicallayer/base/packetlevel/ReceptionBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11648,8 +11648,8 @@ $O/inetveins/physicallayer/base/packetlevel/ReceptionBase.o: inetveins/physicall
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/SNIRBase.o: inetveins/physicallayer/base/packetlevel/SNIRBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11669,8 +11669,8 @@ $O/inetveins/physicallayer/base/packetlevel/SNIRBase.o: inetveins/physicallayer/
 	inetveins/physicallayer/contract/packetlevel/ITransmission.h
 $O/inetveins/physicallayer/base/packetlevel/SNIRReceiverBase.o: inetveins/physicallayer/base/packetlevel/SNIRReceiverBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -11724,8 +11724,8 @@ $O/inetveins/physicallayer/base/packetlevel/SNIRReceiverBase.o: inetveins/physic
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/ScalarAnalogModelBase.o: inetveins/physicallayer/base/packetlevel/ScalarAnalogModelBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -11789,8 +11789,8 @@ $O/inetveins/physicallayer/base/packetlevel/ScalarAnalogModelBase.o: inetveins/p
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/TransmissionBase.o: inetveins/physicallayer/base/packetlevel/TransmissionBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11826,8 +11826,8 @@ $O/inetveins/physicallayer/base/packetlevel/TransmissionBase.o: inetveins/physic
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/base/packetlevel/TransmitterBase.o: inetveins/physicallayer/base/packetlevel/TransmitterBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11846,8 +11846,8 @@ $O/inetveins/physicallayer/base/packetlevel/TransmitterBase.o: inetveins/physica
 $O/inetveins/physicallayer/common/bitlevel/AdditiveScrambler.o: inetveins/physicallayer/common/bitlevel/AdditiveScrambler.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -11860,8 +11860,8 @@ $O/inetveins/physicallayer/common/bitlevel/AdditiveScrambler.o: inetveins/physic
 $O/inetveins/physicallayer/common/bitlevel/AdditiveScramblerModule.o: inetveins/physicallayer/common/bitlevel/AdditiveScramblerModule.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -11875,8 +11875,8 @@ $O/inetveins/physicallayer/common/bitlevel/AdditiveScramblerModule.o: inetveins/
 $O/inetveins/physicallayer/common/bitlevel/AdditiveScrambling.o: inetveins/physicallayer/common/bitlevel/AdditiveScrambling.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -11887,8 +11887,8 @@ $O/inetveins/physicallayer/common/bitlevel/AdditiveScrambling.o: inetveins/physi
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/common/bitlevel/AnalogDigitalConverter.o: inetveins/physicallayer/common/bitlevel/AnalogDigitalConverter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11908,8 +11908,8 @@ $O/inetveins/physicallayer/common/bitlevel/AnalogDigitalConverter.o: inetveins/p
 $O/inetveins/physicallayer/common/bitlevel/ConvolutionalCode.o: inetveins/physicallayer/common/bitlevel/ConvolutionalCode.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -11920,8 +11920,8 @@ $O/inetveins/physicallayer/common/bitlevel/ConvolutionalCode.o: inetveins/physic
 $O/inetveins/physicallayer/common/bitlevel/ConvolutionalCoder.o: inetveins/physicallayer/common/bitlevel/ConvolutionalCoder.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -11934,8 +11934,8 @@ $O/inetveins/physicallayer/common/bitlevel/ConvolutionalCoder.o: inetveins/physi
 $O/inetveins/physicallayer/common/bitlevel/ConvolutionalCoderModule.o: inetveins/physicallayer/common/bitlevel/ConvolutionalCoderModule.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -11948,8 +11948,8 @@ $O/inetveins/physicallayer/common/bitlevel/ConvolutionalCoderModule.o: inetveins
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/common/bitlevel/DigitalAnalogConverter.o: inetveins/physicallayer/common/bitlevel/DigitalAnalogConverter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -11970,8 +11970,8 @@ $O/inetveins/physicallayer/common/bitlevel/DigitalAnalogConverter.o: inetveins/p
 $O/inetveins/physicallayer/common/bitlevel/LayeredReception.o: inetveins/physicallayer/common/bitlevel/LayeredReception.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -12018,8 +12018,8 @@ $O/inetveins/physicallayer/common/bitlevel/LayeredReception.o: inetveins/physica
 $O/inetveins/physicallayer/common/bitlevel/LayeredReceptionResult.o: inetveins/physicallayer/common/bitlevel/LayeredReceptionResult.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -12052,8 +12052,8 @@ $O/inetveins/physicallayer/common/bitlevel/LayeredReceptionResult.o: inetveins/p
 $O/inetveins/physicallayer/common/bitlevel/LayeredTransmission.o: inetveins/physicallayer/common/bitlevel/LayeredTransmission.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -12099,8 +12099,8 @@ $O/inetveins/physicallayer/common/bitlevel/LayeredTransmission.o: inetveins/phys
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/common/bitlevel/PulseFilter.o: inetveins/physicallayer/common/bitlevel/PulseFilter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -12116,8 +12116,8 @@ $O/inetveins/physicallayer/common/bitlevel/PulseFilter.o: inetveins/physicallaye
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/common/bitlevel/PulseShaper.o: inetveins/physicallayer/common/bitlevel/PulseShaper.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -12134,8 +12134,8 @@ $O/inetveins/physicallayer/common/bitlevel/PulseShaper.o: inetveins/physicallaye
 $O/inetveins/physicallayer/common/bitlevel/SignalBitModel.o: inetveins/physicallayer/common/bitlevel/SignalBitModel.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -12151,8 +12151,8 @@ $O/inetveins/physicallayer/common/bitlevel/SignalBitModel.o: inetveins/physicall
 $O/inetveins/physicallayer/common/bitlevel/SignalPacketModel.o: inetveins/physicallayer/common/bitlevel/SignalPacketModel.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -12166,8 +12166,8 @@ $O/inetveins/physicallayer/common/bitlevel/SignalPacketModel.o: inetveins/physic
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/common/bitlevel/SignalSampleModel.o: inetveins/physicallayer/common/bitlevel/SignalSampleModel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -12177,8 +12177,8 @@ $O/inetveins/physicallayer/common/bitlevel/SignalSampleModel.o: inetveins/physic
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/common/bitlevel/SignalSymbolModel.o: inetveins/physicallayer/common/bitlevel/SignalSymbolModel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -12190,8 +12190,8 @@ $O/inetveins/physicallayer/common/bitlevel/SignalSymbolModel.o: inetveins/physic
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/common/packetlevel/Arrival.o: inetveins/physicallayer/common/packetlevel/Arrival.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -12207,8 +12207,8 @@ $O/inetveins/physicallayer/common/packetlevel/Arrival.o: inetveins/physicallayer
 	inetveins/physicallayer/contract/packetlevel/IRadioSignal.h
 $O/inetveins/physicallayer/common/packetlevel/BandListening.o: inetveins/physicallayer/common/packetlevel/BandListening.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -12220,8 +12220,8 @@ $O/inetveins/physicallayer/common/packetlevel/BandListening.o: inetveins/physica
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/common/packetlevel/CommunicationLog.o: inetveins/physicallayer/common/packetlevel/CommunicationLog.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -12280,8 +12280,8 @@ $O/inetveins/physicallayer/common/packetlevel/CommunicationLog.o: inetveins/phys
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/common/packetlevel/Interference.o: inetveins/physicallayer/common/packetlevel/Interference.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -12301,8 +12301,8 @@ $O/inetveins/physicallayer/common/packetlevel/Interference.o: inetveins/physical
 	inetveins/physicallayer/contract/packetlevel/ITransmission.h
 $O/inetveins/physicallayer/common/packetlevel/ListeningDecision.o: inetveins/physicallayer/common/packetlevel/ListeningDecision.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -12314,8 +12314,8 @@ $O/inetveins/physicallayer/common/packetlevel/ListeningDecision.o: inetveins/phy
 	inetveins/physicallayer/contract/packetlevel/IPrintableObject.h
 $O/inetveins/physicallayer/common/packetlevel/MediumLimitCache.o: inetveins/physicallayer/common/packetlevel/MediumLimitCache.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -12368,8 +12368,8 @@ $O/inetveins/physicallayer/common/packetlevel/MediumLimitCache.o: inetveins/phys
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/common/packetlevel/MediumVisualizer.o: inetveins/physicallayer/common/packetlevel/MediumVisualizer.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/IntervalTree.h \
@@ -12430,8 +12430,8 @@ $O/inetveins/physicallayer/common/packetlevel/MediumVisualizer.o: inetveins/phys
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/common/packetlevel/Radio.o: inetveins/physicallayer/common/packetlevel/Radio.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/IntervalTree.h \
@@ -12509,8 +12509,8 @@ $O/inetveins/physicallayer/common/packetlevel/Radio.o: inetveins/physicallayer/c
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/common/packetlevel/RadioFrame.o: inetveins/physicallayer/common/packetlevel/RadioFrame.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -12562,9 +12562,9 @@ $O/inetveins/physicallayer/common/packetlevel/RadioFrame.o: inetveins/physicalla
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/common/packetlevel/RadioMedium.o: inetveins/physicallayer/common/packetlevel/RadioMedium.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/IntervalTree.h \
@@ -12644,8 +12644,8 @@ $O/inetveins/physicallayer/common/packetlevel/RadioMedium.o: inetveins/physicall
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/common/packetlevel/ReceptionDecision.o: inetveins/physicallayer/common/packetlevel/ReceptionDecision.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -12664,8 +12664,8 @@ $O/inetveins/physicallayer/common/packetlevel/ReceptionDecision.o: inetveins/phy
 	inetveins/physicallayer/contract/packetlevel/ITransmission.h
 $O/inetveins/physicallayer/common/packetlevel/ReceptionResult.o: inetveins/physicallayer/common/packetlevel/ReceptionResult.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -12687,8 +12687,8 @@ $O/inetveins/physicallayer/common/packetlevel/ReceptionResult.o: inetveins/physi
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/communicationcache/MapCommunicationCache.o: inetveins/physicallayer/communicationcache/MapCommunicationCache.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/IntervalTree.h \
 	inetveins/common/Units.h \
@@ -12728,8 +12728,8 @@ $O/inetveins/physicallayer/communicationcache/MapCommunicationCache.o: inetveins
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/communicationcache/ReferenceCommunicationCache.o: inetveins/physicallayer/communicationcache/ReferenceCommunicationCache.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/IntervalTree.h \
 	inetveins/common/Units.h \
@@ -12769,8 +12769,8 @@ $O/inetveins/physicallayer/communicationcache/ReferenceCommunicationCache.o: ine
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/communicationcache/VectorCommunicationCache.o: inetveins/physicallayer/communicationcache/VectorCommunicationCache.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/IntervalTree.h \
 	inetveins/common/Units.h \
@@ -12810,8 +12810,8 @@ $O/inetveins/physicallayer/communicationcache/VectorCommunicationCache.o: inetve
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/contract/packetlevel/IRadio.o: inetveins/physicallayer/contract/packetlevel/IRadio.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -12846,8 +12846,8 @@ $O/inetveins/physicallayer/contract/packetlevel/IRadio.o: inetveins/physicallaye
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/contract/packetlevel/IRadioSignal.o: inetveins/physicallayer/contract/packetlevel/IRadioSignal.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -12860,8 +12860,8 @@ $O/inetveins/physicallayer/contract/packetlevel/IRadioSignal.o: inetveins/physic
 	inetveins/physicallayer/contract/packetlevel/IRadioSignal.h
 $O/inetveins/physicallayer/contract/packetlevel/ITransmission.o: inetveins/physicallayer/contract/packetlevel/ITransmission.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -12877,8 +12877,8 @@ $O/inetveins/physicallayer/contract/packetlevel/ITransmission.o: inetveins/physi
 	inetveins/physicallayer/contract/packetlevel/ITransmission.h
 $O/inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.o: inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -12888,8 +12888,8 @@ $O/inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.o: inetveins/
 	inetveins/physicallayer/contract/packetlevel/RadioControlInfo_m.h
 $O/inetveins/physicallayer/energyconsumer/StateBasedEnergyConsumer.o: inetveins/physicallayer/energyconsumer/StateBasedEnergyConsumer.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -12940,8 +12940,8 @@ $O/inetveins/physicallayer/energyconsumer/StateBasedEnergyConsumer.o: inetveins/
 $O/inetveins/physicallayer/errormodel/bitlevel/StochasticLayeredErrorModel.o: inetveins/physicallayer/errormodel/bitlevel/StochasticLayeredErrorModel.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -12997,8 +12997,8 @@ $O/inetveins/physicallayer/errormodel/bitlevel/StochasticLayeredErrorModel.o: in
 	inetveins/physicallayer/errormodel/bitlevel/StochasticLayeredErrorModel.h
 $O/inetveins/physicallayer/errormodel/packetlevel/StochasticErrorModel.o: inetveins/physicallayer/errormodel/packetlevel/StochasticErrorModel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -13039,8 +13039,8 @@ $O/inetveins/physicallayer/errormodel/packetlevel/StochasticErrorModel.o: inetve
 	inetveins/physicallayer/errormodel/packetlevel/StochasticErrorModel.h
 $O/inetveins/physicallayer/idealradio/IdealAnalogModel.o: inetveins/physicallayer/idealradio/IdealAnalogModel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -13100,8 +13100,8 @@ $O/inetveins/physicallayer/idealradio/IdealAnalogModel.o: inetveins/physicallaye
 	inetveins/physicallayer/idealradio/IdealTransmission.h
 $O/inetveins/physicallayer/idealradio/IdealListening.o: inetveins/physicallayer/idealradio/IdealListening.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -13113,8 +13113,8 @@ $O/inetveins/physicallayer/idealradio/IdealListening.o: inetveins/physicallayer/
 	inetveins/physicallayer/idealradio/IdealListening.h
 $O/inetveins/physicallayer/idealradio/IdealNoise.o: inetveins/physicallayer/idealradio/IdealNoise.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -13125,8 +13125,8 @@ $O/inetveins/physicallayer/idealradio/IdealNoise.o: inetveins/physicallayer/idea
 	inetveins/physicallayer/idealradio/IdealNoise.h
 $O/inetveins/physicallayer/idealradio/IdealReceiver.o: inetveins/physicallayer/idealradio/IdealReceiver.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -13171,8 +13171,8 @@ $O/inetveins/physicallayer/idealradio/IdealReceiver.o: inetveins/physicallayer/i
 	inetveins/physicallayer/idealradio/IdealReception.h
 $O/inetveins/physicallayer/idealradio/IdealReception.o: inetveins/physicallayer/idealradio/IdealReception.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -13209,8 +13209,8 @@ $O/inetveins/physicallayer/idealradio/IdealReception.o: inetveins/physicallayer/
 	inetveins/physicallayer/idealradio/IdealReception.h
 $O/inetveins/physicallayer/idealradio/IdealSNIR.o: inetveins/physicallayer/idealradio/IdealSNIR.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -13231,8 +13231,8 @@ $O/inetveins/physicallayer/idealradio/IdealSNIR.o: inetveins/physicallayer/ideal
 	inetveins/physicallayer/idealradio/IdealSNIR.h
 $O/inetveins/physicallayer/idealradio/IdealTransmission.o: inetveins/physicallayer/idealradio/IdealTransmission.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -13269,8 +13269,8 @@ $O/inetveins/physicallayer/idealradio/IdealTransmission.o: inetveins/physicallay
 	inetveins/physicallayer/idealradio/IdealTransmission.h
 $O/inetveins/physicallayer/idealradio/IdealTransmitter.o: inetveins/physicallayer/idealradio/IdealTransmitter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -13310,8 +13310,8 @@ $O/inetveins/physicallayer/idealradio/IdealTransmitter.o: inetveins/physicallaye
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211ConvolutionalCode.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211ConvolutionalCode.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -13325,8 +13325,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211ConvolutionalCode.o: inet
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211HTInterleaving.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211HTInterleaving.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -13337,8 +13337,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211HTInterleaving.o: inetvei
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211LayeredOFDMReceiver.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211LayeredOFDMReceiver.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
@@ -13458,8 +13458,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211LayeredOFDMTransmitter.o:
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -13557,8 +13557,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211LayeredOFDMTransmitter.o:
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMDecoder.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMDecoder.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -13596,8 +13596,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMDecoder.o: inetveins/
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMDecoderModule.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMDecoderModule.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -13634,8 +13634,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMDecoderModule.o: inet
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMDemodulator.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMDemodulator.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -13669,8 +13669,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMDemodulator.o: inetve
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMDemodulatorModule.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMDemodulatorModule.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -13704,8 +13704,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMDemodulatorModule.o: 
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMEncoder.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMEncoder.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -13745,8 +13745,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMEncoder.o: inetveins/
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMEncoderModule.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMEncoderModule.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -13778,8 +13778,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMEncoderModule.o: inet
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMInterleaver.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMInterleaver.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -13791,8 +13791,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMInterleaver.o: inetve
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMInterleaverModule.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMInterleaverModule.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -13805,8 +13805,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMInterleaverModule.o: 
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMInterleaving.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMInterleaving.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -13817,8 +13817,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMInterleaving.o: inetv
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMModulator.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMModulator.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -13851,8 +13851,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMModulator.o: inetvein
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMModulatorModule.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMModulatorModule.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -13886,7 +13886,7 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMPLCPFrame_m.o: inetve
 	inetveins/physicallayer/ieee80211/bitlevel/Ieee80211PLCPFrame_m.h
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMSymbol.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMSymbol.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/physicallayer/apskradio/bitlevel/APSKSymbol.h \
@@ -13894,8 +13894,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMSymbol.o: inetveins/p
 	inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMSymbol.h
 $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMSymbolModel.o: inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMSymbolModel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -13911,8 +13911,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/Ieee80211PLCPFrame_m.o: inetveins/
 $O/inetveins/physicallayer/ieee80211/bitlevel/errormodel/Ieee80211OFDMErrorModel.o: inetveins/physicallayer/ieee80211/bitlevel/errormodel/Ieee80211OFDMErrorModel.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -13973,8 +13973,8 @@ $O/inetveins/physicallayer/ieee80211/bitlevel/errormodel/Ieee80211OFDMErrorModel
 	inetveins/physicallayer/modulation/BPSKModulation.h
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211Band.o: inetveins/physicallayer/ieee80211/mode/Ieee80211Band.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -13983,8 +13983,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211Band.o: inetveins/physicallay
 	inetveins/physicallayer/ieee80211/mode/Ieee80211Band.h
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211Channel.o: inetveins/physicallayer/ieee80211/mode/Ieee80211Channel.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -13994,8 +13994,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211Channel.o: inetveins/physical
 	inetveins/physicallayer/ieee80211/mode/Ieee80211Channel.h
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211DSSSMode.o: inetveins/physicallayer/ieee80211/mode/Ieee80211DSSSMode.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -14011,8 +14011,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211DSSSMode.o: inetveins/physica
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211DSSSOFDMMode.o: inetveins/physicallayer/ieee80211/mode/Ieee80211DSSSOFDMMode.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -14046,8 +14046,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211DSSSOFDMMode.o: inetveins/phy
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211ERPOFDMMode.o: inetveins/physicallayer/ieee80211/mode/Ieee80211ERPOFDMMode.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -14076,8 +14076,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211ERPOFDMMode.o: inetveins/phys
 	inetveins/physicallayer/ieee80211/mode/Ieee80211OFDMModulation.h
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211FHSSMode.o: inetveins/physicallayer/ieee80211/mode/Ieee80211FHSSMode.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -14092,8 +14092,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211FHSSMode.o: inetveins/physica
 	inetveins/physicallayer/modulation/4GFSKModulation.h
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211HRDSSSMode.o: inetveins/physicallayer/ieee80211/mode/Ieee80211HRDSSSMode.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -14109,8 +14109,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211HRDSSSMode.o: inetveins/physi
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211HTCode.o: inetveins/physicallayer/ieee80211/mode/Ieee80211HTCode.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -14139,8 +14139,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211HTMode.o: inetveins/physicall
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -14173,8 +14173,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211HTMode.o: inetveins/physicall
 	inetveins/physicallayer/modulation/QBPSKModulation.h
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211IRMode.o: inetveins/physicallayer/ieee80211/mode/Ieee80211IRMode.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -14189,8 +14189,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211IRMode.o: inetveins/physicall
 	inetveins/physicallayer/modulation/4PPMModulation.h
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211ModeBase.o: inetveins/physicallayer/ieee80211/mode/Ieee80211ModeBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -14203,8 +14203,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211ModeSet.o: inetveins/physical
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -14247,8 +14247,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211ModeSet.o: inetveins/physical
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211OFDMCode.o: inetveins/physicallayer/ieee80211/mode/Ieee80211OFDMCode.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -14276,8 +14276,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211OFDMCode.o: inetveins/physica
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211OFDMMode.o: inetveins/physicallayer/ieee80211/mode/Ieee80211OFDMMode.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -14306,8 +14306,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211OFDMMode.o: inetveins/physica
 	inetveins/physicallayer/ieee80211/mode/Ieee80211OFDMModulation.h
 $O/inetveins/physicallayer/ieee80211/mode/Ieee80211OFDMModulation.o: inetveins/physicallayer/ieee80211/mode/Ieee80211OFDMModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -14329,8 +14329,8 @@ $O/inetveins/physicallayer/ieee80211/mode/Ieee80211OFDMModulation.o: inetveins/p
 $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.o: inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -14346,8 +14346,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.o: inetv
 $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211DimensionalReceiver.o: inetveins/physicallayer/ieee80211/packetlevel/Ieee80211DimensionalReceiver.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -14399,8 +14399,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211DimensionalReceiver.o:
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211TransmissionBase.h
 $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211DimensionalTransmission.o: inetveins/physicallayer/ieee80211/packetlevel/Ieee80211DimensionalTransmission.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -14445,8 +14445,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211DimensionalTransmissio
 $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211DimensionalTransmitter.o: inetveins/physicallayer/ieee80211/packetlevel/Ieee80211DimensionalTransmitter.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -14499,8 +14499,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211DimensionalTransmitter
 $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211IdealTransmitter.o: inetveins/physicallayer/ieee80211/packetlevel/Ieee80211IdealTransmitter.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -14548,8 +14548,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211IdealTransmitter.o: in
 $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211Radio.o: inetveins/physicallayer/ieee80211/packetlevel/Ieee80211Radio.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -14626,8 +14626,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211Radio.o: inetveins/phy
 $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ReceiverBase.o: inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ReceiverBase.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -14667,8 +14667,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ReceiverBase.o: inetve
 $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ScalarReceiver.o: inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ScalarReceiver.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -14720,8 +14720,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ScalarReceiver.o: inet
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211TransmissionBase.h
 $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ScalarTransmission.o: inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ScalarTransmission.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -14766,8 +14766,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ScalarTransmission.o: 
 $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ScalarTransmitter.o: inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ScalarTransmitter.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -14818,8 +14818,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ScalarTransmitter.o: i
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211TransmitterBase.h
 $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211TransmissionBase.o: inetveins/physicallayer/ieee80211/packetlevel/Ieee80211TransmissionBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -14833,8 +14833,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211TransmissionBase.o: in
 $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211TransmitterBase.o: inetveins/physicallayer/ieee80211/packetlevel/Ieee80211TransmitterBase.cc \
 	inetveins/common/Compat.h \
 	inetveins/common/DelayedInitializer.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -14862,15 +14862,15 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/Ieee80211TransmitterBase.o: ine
 	inetveins/physicallayer/ieee80211/packetlevel/Ieee80211TransmitterBase.h
 $O/inetveins/physicallayer/ieee80211/packetlevel/errormodel/BerParseFile.o: inetveins/physicallayer/ieee80211/packetlevel/errormodel/BerParseFile.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/physicallayer/ieee80211/packetlevel/errormodel/BerParseFile.h
 $O/inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211BerTableErrorModel.o: inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211BerTableErrorModel.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -14926,8 +14926,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211BerTableErr
 	inetveins/physicallayer/ieee80211/packetlevel/errormodel/dsss-error-rate-model.h
 $O/inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211ErrorModelBase.o: inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211ErrorModelBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -14973,8 +14973,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211ErrorModelB
 $O/inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211NistErrorModel.o: inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211NistErrorModel.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -15029,8 +15029,8 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211NistErrorMo
 $O/inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211YansErrorModel.o: inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211YansErrorModel.cc \
 	inetveins/common/BitVector.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -15084,14 +15084,14 @@ $O/inetveins/physicallayer/ieee80211/packetlevel/errormodel/Ieee80211YansErrorMo
 	inetveins/physicallayer/modulation/QPSKModulation.h
 $O/inetveins/physicallayer/ieee80211/packetlevel/errormodel/dsss-error-rate-model.o: inetveins/physicallayer/ieee80211/packetlevel/errormodel/dsss-error-rate-model.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/physicallayer/ieee80211/packetlevel/errormodel/dsss-error-rate-model.h
 $O/inetveins/physicallayer/ieee802154/bitlevel/Ieee802154UWBIRMode.o: inetveins/physicallayer/ieee802154/bitlevel/Ieee802154UWBIRMode.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15099,8 +15099,8 @@ $O/inetveins/physicallayer/ieee802154/bitlevel/Ieee802154UWBIRMode.o: inetveins/
 	inetveins/physicallayer/ieee802154/bitlevel/Ieee802154UWBIRMode.h
 $O/inetveins/physicallayer/ieee802154/bitlevel/Ieee802154UWBIRReceiver.o: inetveins/physicallayer/ieee802154/bitlevel/Ieee802154UWBIRReceiver.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -15149,8 +15149,8 @@ $O/inetveins/physicallayer/ieee802154/bitlevel/Ieee802154UWBIRReceiver.o: inetve
 	inetveins/physicallayer/ieee802154/bitlevel/Ieee802154UWBIRReceiver.h
 $O/inetveins/physicallayer/ieee802154/bitlevel/Ieee802154UWBIRTransmitter.o: inetveins/physicallayer/ieee802154/bitlevel/Ieee802154UWBIRTransmitter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -15192,8 +15192,8 @@ $O/inetveins/physicallayer/ieee802154/bitlevel/Ieee802154UWBIRTransmitter.o: ine
 	inetveins/physicallayer/ieee802154/bitlevel/Ieee802154UWBIRTransmitter.h
 $O/inetveins/physicallayer/ieee802154/packetlevel/Ieee802154NarrowbandScalarReceiver.o: inetveins/physicallayer/ieee802154/packetlevel/Ieee802154NarrowbandScalarReceiver.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -15226,8 +15226,8 @@ $O/inetveins/physicallayer/ieee802154/packetlevel/Ieee802154NarrowbandScalarRece
 	inetveins/physicallayer/ieee802154/packetlevel/Ieee802154NarrowbandScalarReceiver.h
 $O/inetveins/physicallayer/ieee802154/packetlevel/Ieee802154NarrowbandScalarTransmitter.o: inetveins/physicallayer/ieee802154/packetlevel/Ieee802154NarrowbandScalarTransmitter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -15270,8 +15270,8 @@ $O/inetveins/physicallayer/ieee802154/packetlevel/Ieee802154NarrowbandScalarTran
 	inetveins/physicallayer/ieee802154/packetlevel/Ieee802154NarrowbandScalarTransmitter.h
 $O/inetveins/physicallayer/modulation/16PPMModulation.o: inetveins/physicallayer/modulation/16PPMModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15282,8 +15282,8 @@ $O/inetveins/physicallayer/modulation/16PPMModulation.o: inetveins/physicallayer
 	inetveins/physicallayer/modulation/16PPMModulation.h
 $O/inetveins/physicallayer/modulation/2GFSKModulation.o: inetveins/physicallayer/modulation/2GFSKModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15294,8 +15294,8 @@ $O/inetveins/physicallayer/modulation/2GFSKModulation.o: inetveins/physicallayer
 	inetveins/physicallayer/modulation/2GFSKModulation.h
 $O/inetveins/physicallayer/modulation/4GFSKModulation.o: inetveins/physicallayer/modulation/4GFSKModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15306,8 +15306,8 @@ $O/inetveins/physicallayer/modulation/4GFSKModulation.o: inetveins/physicallayer
 	inetveins/physicallayer/modulation/4GFSKModulation.h
 $O/inetveins/physicallayer/modulation/4PPMModulation.o: inetveins/physicallayer/modulation/4PPMModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15318,8 +15318,8 @@ $O/inetveins/physicallayer/modulation/4PPMModulation.o: inetveins/physicallayer/
 	inetveins/physicallayer/modulation/4PPMModulation.h
 $O/inetveins/physicallayer/modulation/BPSKModulation.o: inetveins/physicallayer/modulation/BPSKModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -15335,8 +15335,8 @@ $O/inetveins/physicallayer/modulation/BPSKModulation.o: inetveins/physicallayer/
 	inetveins/physicallayer/modulation/BPSKModulation.h
 $O/inetveins/physicallayer/modulation/DBPSKModulation.o: inetveins/physicallayer/modulation/DBPSKModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15347,8 +15347,8 @@ $O/inetveins/physicallayer/modulation/DBPSKModulation.o: inetveins/physicallayer
 	inetveins/physicallayer/modulation/DBPSKModulation.h
 $O/inetveins/physicallayer/modulation/DQPSKModulation.o: inetveins/physicallayer/modulation/DQPSKModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15359,8 +15359,8 @@ $O/inetveins/physicallayer/modulation/DQPSKModulation.o: inetveins/physicallayer
 	inetveins/physicallayer/modulation/DQPSKModulation.h
 $O/inetveins/physicallayer/modulation/DSSSOQPSK16Modulation.o: inetveins/physicallayer/modulation/DSSSOQPSK16Modulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -15375,8 +15375,8 @@ $O/inetveins/physicallayer/modulation/DSSSOQPSK16Modulation.o: inetveins/physica
 	inetveins/physicallayer/modulation/DSSSOQPSK16Modulation.h
 $O/inetveins/physicallayer/modulation/MASKModulation.o: inetveins/physicallayer/modulation/MASKModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -15391,8 +15391,8 @@ $O/inetveins/physicallayer/modulation/MASKModulation.o: inetveins/physicallayer/
 	inetveins/physicallayer/modulation/MASKModulation.h
 $O/inetveins/physicallayer/modulation/MFSKModulation.o: inetveins/physicallayer/modulation/MFSKModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15402,8 +15402,8 @@ $O/inetveins/physicallayer/modulation/MFSKModulation.o: inetveins/physicallayer/
 	inetveins/physicallayer/modulation/MFSKModulation.h
 $O/inetveins/physicallayer/modulation/MPSKModulation.o: inetveins/physicallayer/modulation/MPSKModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -15418,8 +15418,8 @@ $O/inetveins/physicallayer/modulation/MPSKModulation.o: inetveins/physicallayer/
 	inetveins/physicallayer/modulation/MPSKModulation.h
 $O/inetveins/physicallayer/modulation/MQAMModulation.o: inetveins/physicallayer/modulation/MQAMModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -15435,8 +15435,8 @@ $O/inetveins/physicallayer/modulation/MQAMModulation.o: inetveins/physicallayer/
 	inetveins/physicallayer/modulation/MQAMModulation.h
 $O/inetveins/physicallayer/modulation/QAM16Modulation.o: inetveins/physicallayer/modulation/QAM16Modulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -15452,8 +15452,8 @@ $O/inetveins/physicallayer/modulation/QAM16Modulation.o: inetveins/physicallayer
 	inetveins/physicallayer/modulation/QAM16Modulation.h
 $O/inetveins/physicallayer/modulation/QAM256Modulation.o: inetveins/physicallayer/modulation/QAM256Modulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -15469,8 +15469,8 @@ $O/inetveins/physicallayer/modulation/QAM256Modulation.o: inetveins/physicallaye
 	inetveins/physicallayer/modulation/QAM256Modulation.h
 $O/inetveins/physicallayer/modulation/QAM64Modulation.o: inetveins/physicallayer/modulation/QAM64Modulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -15486,8 +15486,8 @@ $O/inetveins/physicallayer/modulation/QAM64Modulation.o: inetveins/physicallayer
 	inetveins/physicallayer/modulation/QAM64Modulation.h
 $O/inetveins/physicallayer/modulation/QBPSKModulation.o: inetveins/physicallayer/modulation/QBPSKModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -15503,8 +15503,8 @@ $O/inetveins/physicallayer/modulation/QBPSKModulation.o: inetveins/physicallayer
 	inetveins/physicallayer/modulation/QBPSKModulation.h
 $O/inetveins/physicallayer/modulation/QPSKModulation.o: inetveins/physicallayer/modulation/QPSKModulation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ShortBitVector.h \
 	inetveins/common/Units.h \
@@ -15520,8 +15520,8 @@ $O/inetveins/physicallayer/modulation/QPSKModulation.o: inetveins/physicallayer/
 	inetveins/physicallayer/modulation/QPSKModulation.h
 $O/inetveins/physicallayer/neighborcache/GridNeighborCache.o: inetveins/physicallayer/neighborcache/GridNeighborCache.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/IntervalTree.h \
@@ -15594,8 +15594,8 @@ $O/inetveins/physicallayer/neighborcache/GridNeighborCache.o: inetveins/physical
 	inetveins/physicallayer/neighborcache/GridNeighborCache.h
 $O/inetveins/physicallayer/neighborcache/NeighborListNeighborCache.o: inetveins/physicallayer/neighborcache/NeighborListNeighborCache.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/IntervalTree.h \
@@ -15667,8 +15667,8 @@ $O/inetveins/physicallayer/neighborcache/NeighborListNeighborCache.o: inetveins/
 	inetveins/physicallayer/neighborcache/NeighborListNeighborCache.h
 $O/inetveins/physicallayer/neighborcache/QuadTreeNeighborCache.o: inetveins/physicallayer/neighborcache/QuadTreeNeighborCache.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/IntervalTree.h \
@@ -15741,8 +15741,8 @@ $O/inetveins/physicallayer/neighborcache/QuadTreeNeighborCache.o: inetveins/phys
 	inetveins/physicallayer/neighborcache/QuadTreeNeighborCache.h
 $O/inetveins/physicallayer/obstacleloss/TracingObstacleLoss.o: inetveins/physicallayer/obstacleloss/TracingObstacleLoss.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/IVisitor.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
@@ -15795,8 +15795,8 @@ $O/inetveins/physicallayer/obstacleloss/TracingObstacleLoss.o: inetveins/physica
 	inetveins/physicallayer/obstacleloss/TracingObstacleLoss.h
 $O/inetveins/physicallayer/pathloss/BreakpointPathLoss.o: inetveins/physicallayer/pathloss/BreakpointPathLoss.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15806,8 +15806,8 @@ $O/inetveins/physicallayer/pathloss/BreakpointPathLoss.o: inetveins/physicallaye
 	inetveins/physicallayer/pathloss/BreakpointPathLoss.h
 $O/inetveins/physicallayer/pathloss/FreeSpacePathLoss.o: inetveins/physicallayer/pathloss/FreeSpacePathLoss.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15817,8 +15817,8 @@ $O/inetveins/physicallayer/pathloss/FreeSpacePathLoss.o: inetveins/physicallayer
 	inetveins/physicallayer/pathloss/FreeSpacePathLoss.h
 $O/inetveins/physicallayer/pathloss/LogNormalShadowing.o: inetveins/physicallayer/pathloss/LogNormalShadowing.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15829,8 +15829,8 @@ $O/inetveins/physicallayer/pathloss/LogNormalShadowing.o: inetveins/physicallaye
 	inetveins/physicallayer/pathloss/LogNormalShadowing.h
 $O/inetveins/physicallayer/pathloss/NakagamiFading.o: inetveins/physicallayer/pathloss/NakagamiFading.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15841,8 +15841,8 @@ $O/inetveins/physicallayer/pathloss/NakagamiFading.o: inetveins/physicallayer/pa
 	inetveins/physicallayer/pathloss/NakagamiFading.h
 $O/inetveins/physicallayer/pathloss/RayleighFading.o: inetveins/physicallayer/pathloss/RayleighFading.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15853,8 +15853,8 @@ $O/inetveins/physicallayer/pathloss/RayleighFading.o: inetveins/physicallayer/pa
 	inetveins/physicallayer/pathloss/RayleighFading.h
 $O/inetveins/physicallayer/pathloss/RicianFading.o: inetveins/physicallayer/pathloss/RicianFading.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15865,8 +15865,8 @@ $O/inetveins/physicallayer/pathloss/RicianFading.o: inetveins/physicallayer/path
 	inetveins/physicallayer/pathloss/RicianFading.h
 $O/inetveins/physicallayer/pathloss/SUIPathLoss.o: inetveins/physicallayer/pathloss/SUIPathLoss.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15876,8 +15876,8 @@ $O/inetveins/physicallayer/pathloss/SUIPathLoss.o: inetveins/physicallayer/pathl
 	inetveins/physicallayer/pathloss/SUIPathLoss.h
 $O/inetveins/physicallayer/pathloss/TwoRayGroundReflection.o: inetveins/physicallayer/pathloss/TwoRayGroundReflection.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15888,8 +15888,8 @@ $O/inetveins/physicallayer/pathloss/TwoRayGroundReflection.o: inetveins/physical
 	inetveins/physicallayer/pathloss/TwoRayGroundReflection.h
 $O/inetveins/physicallayer/pathloss/UWBIRStochasticPathLoss.o: inetveins/physicallayer/pathloss/UWBIRStochasticPathLoss.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15899,8 +15899,8 @@ $O/inetveins/physicallayer/pathloss/UWBIRStochasticPathLoss.o: inetveins/physica
 	inetveins/physicallayer/pathloss/UWBIRStochasticPathLoss.h
 $O/inetveins/physicallayer/propagation/ConstantSpeedPropagation.o: inetveins/physicallayer/propagation/ConstantSpeedPropagation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -15922,8 +15922,8 @@ $O/inetveins/physicallayer/propagation/ConstantSpeedPropagation.o: inetveins/phy
 	inetveins/physicallayer/propagation/ConstantSpeedPropagation.h
 $O/inetveins/physicallayer/propagation/ConstantTimePropagation.o: inetveins/physicallayer/propagation/ConstantTimePropagation.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/common/geometry/common/Coord.h \
@@ -15945,8 +15945,8 @@ $O/inetveins/physicallayer/propagation/ConstantTimePropagation.o: inetveins/phys
 	inetveins/physicallayer/propagation/ConstantTimePropagation.h
 $O/inetveins/power/base/EnergySinkBase.o: inetveins/power/base/EnergySinkBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15956,8 +15956,8 @@ $O/inetveins/power/base/EnergySinkBase.o: inetveins/power/base/EnergySinkBase.cc
 	inetveins/power/contract/IEnergySink.h
 $O/inetveins/power/base/EnergySourceBase.o: inetveins/power/base/EnergySourceBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15967,8 +15967,8 @@ $O/inetveins/power/base/EnergySourceBase.o: inetveins/power/base/EnergySourceBas
 	inetveins/power/contract/IEnergySource.h
 $O/inetveins/power/base/EnergyStorageBase.o: inetveins/power/base/EnergyStorageBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15983,8 +15983,8 @@ $O/inetveins/power/base/EnergyStorageBase.o: inetveins/power/base/EnergyStorageB
 	inetveins/power/contract/IEnergyStorage.h
 $O/inetveins/power/consumer/AlternatingEnergyConsumer.o: inetveins/power/consumer/AlternatingEnergyConsumer.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -15994,8 +15994,8 @@ $O/inetveins/power/consumer/AlternatingEnergyConsumer.o: inetveins/power/consume
 	inetveins/power/contract/IEnergySource.h
 $O/inetveins/power/contract/IEnergyConsumer.o: inetveins/power/contract/IEnergyConsumer.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -16003,8 +16003,8 @@ $O/inetveins/power/contract/IEnergyConsumer.o: inetveins/power/contract/IEnergyC
 	inetveins/power/contract/IEnergyConsumer.h
 $O/inetveins/power/contract/IEnergyGenerator.o: inetveins/power/contract/IEnergyGenerator.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -16012,8 +16012,8 @@ $O/inetveins/power/contract/IEnergyGenerator.o: inetveins/power/contract/IEnergy
 	inetveins/power/contract/IEnergyGenerator.h
 $O/inetveins/power/contract/IEnergySink.o: inetveins/power/contract/IEnergySink.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -16022,8 +16022,8 @@ $O/inetveins/power/contract/IEnergySink.o: inetveins/power/contract/IEnergySink.
 	inetveins/power/contract/IEnergySink.h
 $O/inetveins/power/contract/IEnergySource.o: inetveins/power/contract/IEnergySource.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -16032,8 +16032,8 @@ $O/inetveins/power/contract/IEnergySource.o: inetveins/power/contract/IEnergySou
 	inetveins/power/contract/IEnergySource.h
 $O/inetveins/power/contract/IEnergyStorage.o: inetveins/power/contract/IEnergyStorage.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -16045,8 +16045,8 @@ $O/inetveins/power/contract/IEnergyStorage.o: inetveins/power/contract/IEnergySt
 	inetveins/power/contract/IEnergyStorage.h
 $O/inetveins/power/generator/AlternatingEnergyGenerator.o: inetveins/power/generator/AlternatingEnergyGenerator.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -16056,8 +16056,8 @@ $O/inetveins/power/generator/AlternatingEnergyGenerator.o: inetveins/power/gener
 	inetveins/power/generator/AlternatingEnergyGenerator.h
 $O/inetveins/power/storage/IdealEnergyStorage.o: inetveins/power/storage/IdealEnergyStorage.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Units.h \
 	inetveins/features.h \
@@ -16073,8 +16073,8 @@ $O/inetveins/power/storage/IdealEnergyStorage.o: inetveins/power/storage/IdealEn
 	inetveins/power/storage/IdealEnergyStorage.h
 $O/inetveins/power/storage/SimpleEnergyStorage.o: inetveins/power/storage/SimpleEnergyStorage.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -16107,7 +16107,7 @@ $O/inetveins/power/storage/SimpleEnergyStorage.o: inetveins/power/storage/Simple
 	inetveins/power/storage/SimpleEnergyStorage.h
 $O/inetveins/routing/aodv/AODVControlPackets_m.o: inetveins/routing/aodv/AODVControlPackets_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -16119,7 +16119,7 @@ $O/inetveins/routing/aodv/AODVControlPackets_m.o: inetveins/routing/aodv/AODVCon
 	inetveins/routing/aodv/AODVControlPackets_m.h
 $O/inetveins/routing/aodv/AODVRouteData.o: inetveins/routing/aodv/AODVRouteData.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -16131,7 +16131,7 @@ $O/inetveins/routing/aodv/AODVRouteData.o: inetveins/routing/aodv/AODVRouteData.
 	inetveins/routing/aodv/AODVRouteData.h
 $O/inetveins/routing/aodv/AODVRouting.o: inetveins/routing/aodv/AODVRouting.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -16178,7 +16178,7 @@ $O/inetveins/routing/bgpv4/BGPCommon_m.o: inetveins/routing/bgpv4/BGPCommon_m.cc
 	inetveins/routing/bgpv4/BGPCommon_m.h
 $O/inetveins/routing/bgpv4/BGPFSM.o: inetveins/routing/bgpv4/BGPFSM.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Macho.h \
 	inetveins/common/NotifierConsts.h \
@@ -16224,7 +16224,7 @@ $O/inetveins/routing/bgpv4/BGPFSM.o: inetveins/routing/bgpv4/BGPFSM.cc \
 	inetveins/transportlayer/contract/tcp/TCPSocketMap.h
 $O/inetveins/routing/bgpv4/BGPRouting.o: inetveins/routing/bgpv4/BGPRouting.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Macho.h \
 	inetveins/common/ModuleAccess.h \
@@ -16294,7 +16294,7 @@ $O/inetveins/routing/bgpv4/BGPRouting.o: inetveins/routing/bgpv4/BGPRouting.cc \
 	inetveins/transportlayer/contract/tcp/TCPSocketMap.h
 $O/inetveins/routing/bgpv4/BGPSession.o: inetveins/routing/bgpv4/BGPSession.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/Macho.h \
 	inetveins/common/NotifierConsts.h \
@@ -16348,7 +16348,7 @@ $O/inetveins/routing/bgpv4/BGPMessage/BGPKeepAlive_m.o: inetveins/routing/bgpv4/
 	inetveins/routing/bgpv4/BGPMessage/BGPKeepAlive_m.h
 $O/inetveins/routing/bgpv4/BGPMessage/BGPOpen_m.o: inetveins/routing/bgpv4/BGPMessage/BGPOpen_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -16356,7 +16356,7 @@ $O/inetveins/routing/bgpv4/BGPMessage/BGPOpen_m.o: inetveins/routing/bgpv4/BGPMe
 	inetveins/routing/bgpv4/BGPMessage/BGPOpen_m.h
 $O/inetveins/routing/bgpv4/BGPMessage/BGPUpdate.o: inetveins/routing/bgpv4/BGPMessage/BGPUpdate.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -16368,7 +16368,7 @@ $O/inetveins/routing/bgpv4/BGPMessage/BGPUpdate.o: inetveins/routing/bgpv4/BGPMe
 	inetveins/routing/bgpv4/BGPMessage/BGPUpdate_m.h
 $O/inetveins/routing/bgpv4/BGPMessage/BGPUpdatePathAttributes_m.o: inetveins/routing/bgpv4/BGPMessage/BGPUpdatePathAttributes_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -16377,7 +16377,7 @@ $O/inetveins/routing/bgpv4/BGPMessage/BGPUpdatePathAttributes_m.o: inetveins/rou
 	inetveins/routing/bgpv4/BGPMessage/BGPUpdatePathAttributes_m.h
 $O/inetveins/routing/bgpv4/BGPMessage/BGPUpdate_m.o: inetveins/routing/bgpv4/BGPMessage/BGPUpdate_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -16388,9 +16388,9 @@ $O/inetveins/routing/bgpv4/BGPMessage/BGPUpdate_m.o: inetveins/routing/bgpv4/BGP
 	inetveins/routing/bgpv4/BGPMessage/BGPUpdate_m.h
 $O/inetveins/routing/gpsr/GPSR.o: inetveins/routing/gpsr/GPSR.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -16439,8 +16439,8 @@ $O/inetveins/routing/gpsr/GPSR.o: inetveins/routing/gpsr/GPSR.cc \
 	inetveins/transportlayer/udp/UDPPacket_m.h
 $O/inetveins/routing/gpsr/GPSR_m.o: inetveins/routing/gpsr/GPSR_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/TLVOption.h \
 	inetveins/common/TLVOption_m.h \
@@ -16456,8 +16456,8 @@ $O/inetveins/routing/gpsr/GPSR_m.o: inetveins/routing/gpsr/GPSR_m.cc \
 	inetveins/routing/gpsr/GPSR_m.h
 $O/inetveins/routing/gpsr/PositionTable.o: inetveins/routing/gpsr/PositionTable.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/Coord.h \
 	inetveins/features.h \
@@ -16470,7 +16470,7 @@ $O/inetveins/routing/gpsr/PositionTable.o: inetveins/routing/gpsr/PositionTable.
 	inetveins/routing/gpsr/PositionTable.h
 $O/inetveins/routing/ospfv2/OSPFConfigReader.o: inetveins/routing/ospfv2/OSPFConfigReader.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -16515,14 +16515,14 @@ $O/inetveins/routing/ospfv2/OSPFConfigReader.o: inetveins/routing/ospfv2/OSPFCon
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/OSPFPacket_m.o: inetveins/routing/ospfv2/OSPFPacket_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
 	inetveins/routing/ospfv2/OSPFPacket_m.h
 $O/inetveins/routing/ospfv2/OSPFRouting.o: inetveins/routing/ospfv2/OSPFRouting.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -16570,7 +16570,7 @@ $O/inetveins/routing/ospfv2/OSPFRouting.o: inetveins/routing/ospfv2/OSPFRouting.
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/interface/OSPFInterface.o: inetveins/routing/ospfv2/interface/OSPFInterface.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/TLVOption.h \
@@ -16616,7 +16616,7 @@ $O/inetveins/routing/ospfv2/interface/OSPFInterface.o: inetveins/routing/ospfv2/
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/interface/OSPFInterfaceState.o: inetveins/routing/ospfv2/interface/OSPFInterfaceState.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -16660,7 +16660,7 @@ $O/inetveins/routing/ospfv2/interface/OSPFInterfaceState.o: inetveins/routing/os
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStateBackup.o: inetveins/routing/ospfv2/interface/OSPFInterfaceStateBackup.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -16704,7 +16704,7 @@ $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStateBackup.o: inetveins/rout
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStateDesignatedRouter.o: inetveins/routing/ospfv2/interface/OSPFInterfaceStateDesignatedRouter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -16748,7 +16748,7 @@ $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStateDesignatedRouter.o: inet
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStateDown.o: inetveins/routing/ospfv2/interface/OSPFInterfaceStateDown.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -16794,7 +16794,7 @@ $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStateDown.o: inetveins/routin
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStateLoopback.o: inetveins/routing/ospfv2/interface/OSPFInterfaceStateLoopback.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -16821,7 +16821,7 @@ $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStateLoopback.o: inetveins/ro
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStateNotDesignatedRouter.o: inetveins/routing/ospfv2/interface/OSPFInterfaceStateNotDesignatedRouter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -16865,7 +16865,7 @@ $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStateNotDesignatedRouter.o: i
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStatePointToPoint.o: inetveins/routing/ospfv2/interface/OSPFInterfaceStatePointToPoint.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -16909,7 +16909,7 @@ $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStatePointToPoint.o: inetvein
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStateWaiting.o: inetveins/routing/ospfv2/interface/OSPFInterfaceStateWaiting.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -16953,7 +16953,7 @@ $O/inetveins/routing/ospfv2/interface/OSPFInterfaceStateWaiting.o: inetveins/rou
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/messagehandler/DatabaseDescriptionHandler.o: inetveins/routing/ospfv2/messagehandler/DatabaseDescriptionHandler.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -16993,7 +16993,7 @@ $O/inetveins/routing/ospfv2/messagehandler/DatabaseDescriptionHandler.o: inetvei
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/messagehandler/HelloHandler.o: inetveins/routing/ospfv2/messagehandler/HelloHandler.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17033,7 +17033,7 @@ $O/inetveins/routing/ospfv2/messagehandler/HelloHandler.o: inetveins/routing/osp
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/messagehandler/LinkStateAcknowledgementHandler.o: inetveins/routing/ospfv2/messagehandler/LinkStateAcknowledgementHandler.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17073,7 +17073,7 @@ $O/inetveins/routing/ospfv2/messagehandler/LinkStateAcknowledgementHandler.o: in
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/messagehandler/LinkStateRequestHandler.o: inetveins/routing/ospfv2/messagehandler/LinkStateRequestHandler.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17113,7 +17113,7 @@ $O/inetveins/routing/ospfv2/messagehandler/LinkStateRequestHandler.o: inetveins/
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/messagehandler/LinkStateUpdateHandler.o: inetveins/routing/ospfv2/messagehandler/LinkStateUpdateHandler.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17153,7 +17153,7 @@ $O/inetveins/routing/ospfv2/messagehandler/LinkStateUpdateHandler.o: inetveins/r
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/messagehandler/MessageHandler.o: inetveins/routing/ospfv2/messagehandler/MessageHandler.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17195,7 +17195,7 @@ $O/inetveins/routing/ospfv2/messagehandler/MessageHandler.o: inetveins/routing/o
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/neighbor/OSPFNeighbor.o: inetveins/routing/ospfv2/neighbor/OSPFNeighbor.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/TLVOption.h \
@@ -17240,7 +17240,7 @@ $O/inetveins/routing/ospfv2/neighbor/OSPFNeighbor.o: inetveins/routing/ospfv2/ne
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborState.o: inetveins/routing/ospfv2/neighbor/OSPFNeighborState.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17281,7 +17281,7 @@ $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborState.o: inetveins/routing/ospf
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateAttempt.o: inetveins/routing/ospfv2/neighbor/OSPFNeighborStateAttempt.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17325,7 +17325,7 @@ $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateAttempt.o: inetveins/routi
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateDown.o: inetveins/routing/ospfv2/neighbor/OSPFNeighborStateDown.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17369,7 +17369,7 @@ $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateDown.o: inetveins/routing/
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateExchange.o: inetveins/routing/ospfv2/neighbor/OSPFNeighborStateExchange.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17417,7 +17417,7 @@ $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateExchange.o: inetveins/rout
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateExchangeStart.o: inetveins/routing/ospfv2/neighbor/OSPFNeighborStateExchangeStart.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17463,7 +17463,7 @@ $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateExchangeStart.o: inetveins
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateFull.o: inetveins/routing/ospfv2/neighbor/OSPFNeighborStateFull.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17509,7 +17509,7 @@ $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateFull.o: inetveins/routing/
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateInit.o: inetveins/routing/ospfv2/neighbor/OSPFNeighborStateInit.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17554,7 +17554,7 @@ $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateInit.o: inetveins/routing/
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateLoading.o: inetveins/routing/ospfv2/neighbor/OSPFNeighborStateLoading.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17601,7 +17601,7 @@ $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateLoading.o: inetveins/routi
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateTwoWay.o: inetveins/routing/ospfv2/neighbor/OSPFNeighborStateTwoWay.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17646,7 +17646,7 @@ $O/inetveins/routing/ospfv2/neighbor/OSPFNeighborStateTwoWay.o: inetveins/routin
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/router/ASExternalLSA.o: inetveins/routing/ospfv2/router/ASExternalLSA.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17666,7 +17666,7 @@ $O/inetveins/routing/ospfv2/router/ASExternalLSA.o: inetveins/routing/ospfv2/rou
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/router/LSA.o: inetveins/routing/ospfv2/router/LSA.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17686,7 +17686,7 @@ $O/inetveins/routing/ospfv2/router/LSA.o: inetveins/routing/ospfv2/router/LSA.cc
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/router/NetworkLSA.o: inetveins/routing/ospfv2/router/NetworkLSA.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17706,7 +17706,7 @@ $O/inetveins/routing/ospfv2/router/NetworkLSA.o: inetveins/routing/ospfv2/router
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/router/OSPFArea.o: inetveins/routing/ospfv2/router/OSPFArea.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17746,7 +17746,7 @@ $O/inetveins/routing/ospfv2/router/OSPFArea.o: inetveins/routing/ospfv2/router/O
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/router/OSPFRouter.o: inetveins/routing/ospfv2/router/OSPFRouter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17786,7 +17786,7 @@ $O/inetveins/routing/ospfv2/router/OSPFRouter.o: inetveins/routing/ospfv2/router
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/router/OSPFRoutingTableEntry.o: inetveins/routing/ospfv2/router/OSPFRoutingTableEntry.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17810,7 +17810,7 @@ $O/inetveins/routing/ospfv2/router/OSPFRoutingTableEntry.o: inetveins/routing/os
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/router/RouterLSA.o: inetveins/routing/ospfv2/router/RouterLSA.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17830,7 +17830,7 @@ $O/inetveins/routing/ospfv2/router/RouterLSA.o: inetveins/routing/ospfv2/router/
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/ospfv2/router/SummaryLSA.o: inetveins/routing/ospfv2/router/SummaryLSA.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -17850,7 +17850,7 @@ $O/inetveins/routing/ospfv2/router/SummaryLSA.o: inetveins/routing/ospfv2/router
 	inetveins/routing/ospfv2/router/OSPFcommon.h
 $O/inetveins/routing/pim/PIMPacket.o: inetveins/routing/pim/PIMPacket.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -17858,14 +17858,14 @@ $O/inetveins/routing/pim/PIMPacket.o: inetveins/routing/pim/PIMPacket.cc \
 	inetveins/routing/pim/PIMPacket_m.h
 $O/inetveins/routing/pim/PIMPacket_m.o: inetveins/routing/pim/PIMPacket_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
 	inetveins/routing/pim/PIMPacket_m.h
 $O/inetveins/routing/pim/PIMSplitter.o: inetveins/routing/pim/PIMSplitter.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -17891,7 +17891,7 @@ $O/inetveins/routing/pim/PIMSplitter.o: inetveins/routing/pim/PIMSplitter.cc \
 	inetveins/routing/pim/tables/PIMInterfaceTable.h
 $O/inetveins/routing/pim/modes/PIMBase.o: inetveins/routing/pim/modes/PIMBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -17930,7 +17930,7 @@ $O/inetveins/routing/pim/modes/PIMBase.o: inetveins/routing/pim/modes/PIMBase.cc
 	inetveins/routing/pim/tables/PIMNeighborTable.h
 $O/inetveins/routing/pim/modes/PIMDM.o: inetveins/routing/pim/modes/PIMDM.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -17968,7 +17968,7 @@ $O/inetveins/routing/pim/modes/PIMDM.o: inetveins/routing/pim/modes/PIMDM.cc \
 	inetveins/routing/pim/tables/PIMNeighborTable.h
 $O/inetveins/routing/pim/modes/PIMSM.o: inetveins/routing/pim/modes/PIMSM.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -18006,7 +18006,7 @@ $O/inetveins/routing/pim/modes/PIMSM.o: inetveins/routing/pim/modes/PIMSM.cc \
 	inetveins/routing/pim/tables/PIMNeighborTable.h
 $O/inetveins/routing/pim/tables/PIMInterfaceTable.o: inetveins/routing/pim/tables/PIMInterfaceTable.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -18025,7 +18025,7 @@ $O/inetveins/routing/pim/tables/PIMInterfaceTable.o: inetveins/routing/pim/table
 	inetveins/routing/pim/tables/PIMInterfaceTable.h
 $O/inetveins/routing/pim/tables/PIMNeighborTable.o: inetveins/routing/pim/tables/PIMNeighborTable.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -18040,7 +18040,7 @@ $O/inetveins/routing/pim/tables/PIMNeighborTable.o: inetveins/routing/pim/tables
 	inetveins/routing/pim/tables/PIMNeighborTable.h
 $O/inetveins/routing/rip/RIPPacket_m.o: inetveins/routing/rip/RIPPacket_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -18052,7 +18052,7 @@ $O/inetveins/routing/rip/RIPPacket_m.o: inetveins/routing/rip/RIPPacket_m.cc \
 	inetveins/routing/rip/RIPPacket_m.h
 $O/inetveins/routing/rip/RIPRouting.o: inetveins/routing/rip/RIPRouting.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -18083,7 +18083,7 @@ $O/inetveins/routing/rip/RIPRouting.o: inetveins/routing/rip/RIPRouting.cc \
 	inetveins/transportlayer/udp/UDP.h
 $O/inetveins/transportlayer/base/TransportProtocolBase.o: inetveins/transportlayer/base/TransportProtocolBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/LayeredProtocolBase.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -18094,7 +18094,7 @@ $O/inetveins/transportlayer/base/TransportProtocolBase.o: inetveins/transportlay
 	inetveins/transportlayer/base/TransportProtocolBase.h
 $O/inetveins/transportlayer/contract/sctp/SCTPCommand_m.o: inetveins/transportlayer/contract/sctp/SCTPCommand_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -18107,7 +18107,7 @@ $O/inetveins/transportlayer/contract/sctp/SCTPCommand_m.o: inetveins/transportla
 	inetveins/transportlayer/contract/sctp/SCTPCommand_m.h
 $O/inetveins/transportlayer/contract/sctp/SCTPSocket.o: inetveins/transportlayer/contract/sctp/SCTPSocket.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -18121,7 +18121,7 @@ $O/inetveins/transportlayer/contract/sctp/SCTPSocket.o: inetveins/transportlayer
 	inetveins/transportlayer/contract/sctp/SCTPSocket.h
 $O/inetveins/transportlayer/contract/sctp/SCTPSocketMap.o: inetveins/transportlayer/contract/sctp/SCTPSocketMap.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -18136,7 +18136,7 @@ $O/inetveins/transportlayer/contract/sctp/SCTPSocketMap.o: inetveins/transportla
 	inetveins/transportlayer/contract/sctp/SCTPSocketMap.h
 $O/inetveins/transportlayer/contract/tcp/TCPCommand_m.o: inetveins/transportlayer/contract/tcp/TCPCommand_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -18148,7 +18148,7 @@ $O/inetveins/transportlayer/contract/tcp/TCPCommand_m.o: inetveins/transportlaye
 	inetveins/transportlayer/contract/tcp/TCPCommand_m.h
 $O/inetveins/transportlayer/contract/tcp/TCPSocket.o: inetveins/transportlayer/contract/tcp/TCPSocket.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -18161,7 +18161,7 @@ $O/inetveins/transportlayer/contract/tcp/TCPSocket.o: inetveins/transportlayer/c
 	inetveins/transportlayer/contract/tcp/TCPSocket.h
 $O/inetveins/transportlayer/contract/tcp/TCPSocketMap.o: inetveins/transportlayer/contract/tcp/TCPSocketMap.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -18175,7 +18175,7 @@ $O/inetveins/transportlayer/contract/tcp/TCPSocketMap.o: inetveins/transportlaye
 	inetveins/transportlayer/contract/tcp/TCPSocketMap.h
 $O/inetveins/transportlayer/contract/udp/UDPControlInfo_m.o: inetveins/transportlayer/contract/udp/UDPControlInfo_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -18187,7 +18187,7 @@ $O/inetveins/transportlayer/contract/udp/UDPControlInfo_m.o: inetveins/transport
 	inetveins/transportlayer/contract/udp/UDPControlInfo_m.h
 $O/inetveins/transportlayer/contract/udp/UDPSocket.o: inetveins/transportlayer/contract/udp/UDPSocket.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -18206,7 +18206,7 @@ $O/inetveins/transportlayer/contract/udp/UDPSocket.o: inetveins/transportlayer/c
 	inetveins/transportlayer/contract/udp/UDPSocket.h
 $O/inetveins/transportlayer/rtp/RTCP.o: inetveins/transportlayer/rtp/RTCP.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -18249,7 +18249,7 @@ $O/inetveins/transportlayer/rtp/RTCP.o: inetveins/transportlayer/rtp/RTCP.cc \
 	inetveins/transportlayer/rtp/sdes.h
 $O/inetveins/transportlayer/rtp/RTCPPacket.o: inetveins/transportlayer/rtp/RTCPPacket.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/rtp/RTCPPacket.h \
@@ -18264,13 +18264,13 @@ $O/inetveins/transportlayer/rtp/RTCPPacket.o: inetveins/transportlayer/rtp/RTCPP
 	inetveins/transportlayer/rtp/sdes.h
 $O/inetveins/transportlayer/rtp/RTCPPacket1_m.o: inetveins/transportlayer/rtp/RTCPPacket1_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/rtp/RTCPPacket1_m.h
 $O/inetveins/transportlayer/rtp/RTCPPacket2_m.o: inetveins/transportlayer/rtp/RTCPPacket2_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/rtp/RTCPPacket1.h \
@@ -18281,7 +18281,7 @@ $O/inetveins/transportlayer/rtp/RTCPPacket2_m.o: inetveins/transportlayer/rtp/RT
 	inetveins/transportlayer/rtp/sdes.h
 $O/inetveins/transportlayer/rtp/RTCPPacket3_m.o: inetveins/transportlayer/rtp/RTCPPacket3_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/rtp/RTCPPacket1.h \
@@ -18294,7 +18294,7 @@ $O/inetveins/transportlayer/rtp/RTCPPacket3_m.o: inetveins/transportlayer/rtp/RT
 	inetveins/transportlayer/rtp/sdes.h
 $O/inetveins/transportlayer/rtp/RTP.o: inetveins/transportlayer/rtp/RTP.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -18329,7 +18329,7 @@ $O/inetveins/transportlayer/rtp/RTP.o: inetveins/transportlayer/rtp/RTP.cc \
 	inetveins/transportlayer/rtp/RTPSenderStatusMessage_m.h
 $O/inetveins/transportlayer/rtp/RTPInnerPacket.o: inetveins/transportlayer/rtp/RTPInnerPacket.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -18341,7 +18341,7 @@ $O/inetveins/transportlayer/rtp/RTPInnerPacket.o: inetveins/transportlayer/rtp/R
 	inetveins/transportlayer/rtp/RTPSenderStatusMessage_m.h
 $O/inetveins/transportlayer/rtp/RTPInnerPacket_m.o: inetveins/transportlayer/rtp/RTPInnerPacket_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -18352,7 +18352,7 @@ $O/inetveins/transportlayer/rtp/RTPInnerPacket_m.o: inetveins/transportlayer/rtp
 	inetveins/transportlayer/rtp/RTPSenderStatusMessage_m.h
 $O/inetveins/transportlayer/rtp/RTPInterfacePacket_m.o: inetveins/transportlayer/rtp/RTPInterfacePacket_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -18361,20 +18361,20 @@ $O/inetveins/transportlayer/rtp/RTPInterfacePacket_m.o: inetveins/transportlayer
 	inetveins/transportlayer/rtp/RTPSenderStatusMessage_m.h
 $O/inetveins/transportlayer/rtp/RTPPacket.o: inetveins/transportlayer/rtp/RTPPacket.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/rtp/RTPPacket.h \
 	inetveins/transportlayer/rtp/RTPPacket_m.h
 $O/inetveins/transportlayer/rtp/RTPPacket_m.o: inetveins/transportlayer/rtp/RTPPacket_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/rtp/RTPPacket_m.h
 $O/inetveins/transportlayer/rtp/RTPParticipantInfo.o: inetveins/transportlayer/rtp/RTPParticipantInfo.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -18387,14 +18387,14 @@ $O/inetveins/transportlayer/rtp/RTPParticipantInfo.o: inetveins/transportlayer/r
 	inetveins/transportlayer/rtp/sdes.h
 $O/inetveins/transportlayer/rtp/RTPParticipantInfo_m.o: inetveins/transportlayer/rtp/RTPParticipantInfo_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
 	inetveins/transportlayer/rtp/RTPParticipantInfo_m.h
 $O/inetveins/transportlayer/rtp/RTPPayloadReceiver.o: inetveins/transportlayer/rtp/RTPPayloadReceiver.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -18407,7 +18407,7 @@ $O/inetveins/transportlayer/rtp/RTPPayloadReceiver.o: inetveins/transportlayer/r
 	inetveins/transportlayer/rtp/RTPSenderStatusMessage_m.h
 $O/inetveins/transportlayer/rtp/RTPPayloadSender.o: inetveins/transportlayer/rtp/RTPPayloadSender.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -18421,7 +18421,7 @@ $O/inetveins/transportlayer/rtp/RTPPayloadSender.o: inetveins/transportlayer/rtp
 	inetveins/transportlayer/rtp/RTPSenderStatusMessage_m.h
 $O/inetveins/transportlayer/rtp/RTPProfile.o: inetveins/transportlayer/rtp/RTPProfile.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -18436,7 +18436,7 @@ $O/inetveins/transportlayer/rtp/RTPProfile.o: inetveins/transportlayer/rtp/RTPPr
 	inetveins/transportlayer/rtp/RTPSenderStatusMessage_m.h
 $O/inetveins/transportlayer/rtp/RTPReceiverInfo.o: inetveins/transportlayer/rtp/RTPReceiverInfo.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -18450,13 +18450,13 @@ $O/inetveins/transportlayer/rtp/RTPReceiverInfo.o: inetveins/transportlayer/rtp/
 	inetveins/transportlayer/rtp/sdes.h
 $O/inetveins/transportlayer/rtp/RTPSenderControlMessage_m.o: inetveins/transportlayer/rtp/RTPSenderControlMessage_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/rtp/RTPSenderControlMessage_m.h
 $O/inetveins/transportlayer/rtp/RTPSenderInfo.o: inetveins/transportlayer/rtp/RTPSenderInfo.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -18470,13 +18470,13 @@ $O/inetveins/transportlayer/rtp/RTPSenderInfo.o: inetveins/transportlayer/rtp/RT
 	inetveins/transportlayer/rtp/sdes.h
 $O/inetveins/transportlayer/rtp/RTPSenderStatusMessage_m.o: inetveins/transportlayer/rtp/RTPSenderStatusMessage_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/rtp/RTPSenderStatusMessage_m.h
 $O/inetveins/transportlayer/rtp/reports.o: inetveins/transportlayer/rtp/reports.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/rtp/reports.h \
@@ -18485,20 +18485,20 @@ $O/inetveins/transportlayer/rtp/reports_m.o: inetveins/transportlayer/rtp/report
 	inetveins/transportlayer/rtp/reports_m.h
 $O/inetveins/transportlayer/rtp/sdes.o: inetveins/transportlayer/rtp/sdes.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/rtp/sdes.h
 $O/inetveins/transportlayer/rtp/profiles/avprofile/RTPAVProfile.o: inetveins/transportlayer/rtp/profiles/avprofile/RTPAVProfile.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/rtp/RTPProfile.h \
 	inetveins/transportlayer/rtp/profiles/avprofile/RTPAVProfile.h
 $O/inetveins/transportlayer/rtp/profiles/avprofile/RTPAVProfilePayload32Receiver.o: inetveins/transportlayer/rtp/profiles/avprofile/RTPAVProfilePayload32Receiver.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/rtp/RTPPacket.h \
@@ -18508,7 +18508,7 @@ $O/inetveins/transportlayer/rtp/profiles/avprofile/RTPAVProfilePayload32Receiver
 	inetveins/transportlayer/rtp/profiles/avprofile/RTPMpegPacket_m.h
 $O/inetveins/transportlayer/rtp/profiles/avprofile/RTPAVProfilePayload32Sender.o: inetveins/transportlayer/rtp/profiles/avprofile/RTPAVProfilePayload32Sender.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/networklayer/contract/ipv4/IPv4Address.h \
@@ -18527,7 +18527,7 @@ $O/inetveins/transportlayer/sctp/SCTP.o: inetveins/transportlayer/sctp/SCTP.cc \
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -18579,7 +18579,7 @@ $O/inetveins/transportlayer/sctp/SCTP.o: inetveins/transportlayer/sctp/SCTP.cc \
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPAlg.o: inetveins/transportlayer/sctp/SCTPAlg.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -18615,7 +18615,7 @@ $O/inetveins/transportlayer/sctp/SCTPAlg.o: inetveins/transportlayer/sctp/SCTPAl
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPAssociationAddIP.o: inetveins/transportlayer/sctp/SCTPAssociationAddIP.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -18650,7 +18650,7 @@ $O/inetveins/transportlayer/sctp/SCTPAssociationAddIP.o: inetveins/transportlaye
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPAssociationBase.o: inetveins/transportlayer/sctp/SCTPAssociationBase.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -18687,7 +18687,7 @@ $O/inetveins/transportlayer/sctp/SCTPAssociationBase.o: inetveins/transportlayer
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPAssociationEventProc.o: inetveins/transportlayer/sctp/SCTPAssociationEventProc.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -18724,7 +18724,7 @@ $O/inetveins/transportlayer/sctp/SCTPAssociationEventProc.o: inetveins/transport
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPAssociationRcvMessage.o: inetveins/transportlayer/sctp/SCTPAssociationRcvMessage.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -18763,7 +18763,7 @@ $O/inetveins/transportlayer/sctp/SCTPAssociationRcvMessage.o: inetveins/transpor
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPAssociationSendAll.o: inetveins/transportlayer/sctp/SCTPAssociationSendAll.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -18800,7 +18800,7 @@ $O/inetveins/transportlayer/sctp/SCTPAssociationSendAll.o: inetveins/transportla
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPAssociationStreamReset.o: inetveins/transportlayer/sctp/SCTPAssociationStreamReset.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -18836,8 +18836,8 @@ $O/inetveins/transportlayer/sctp/SCTPAssociationStreamReset.o: inetveins/transpo
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPAssociationUtil.o: inetveins/transportlayer/sctp/SCTPAssociationUtil.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -18881,7 +18881,7 @@ $O/inetveins/transportlayer/sctp/SCTPAssociationUtil.o: inetveins/transportlayer
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPCCFunctions.o: inetveins/transportlayer/sctp/SCTPCCFunctions.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -18915,7 +18915,7 @@ $O/inetveins/transportlayer/sctp/SCTPCCFunctions.o: inetveins/transportlayer/sct
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPGapList.o: inetveins/transportlayer/sctp/SCTPGapList.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -18949,7 +18949,7 @@ $O/inetveins/transportlayer/sctp/SCTPGapList.o: inetveins/transportlayer/sctp/SC
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPMessage.o: inetveins/transportlayer/sctp/SCTPMessage.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -18983,7 +18983,7 @@ $O/inetveins/transportlayer/sctp/SCTPMessage.o: inetveins/transportlayer/sctp/SC
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPMessage_m.o: inetveins/transportlayer/sctp/SCTPMessage_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/linklayer/common/MACAddress.h \
@@ -18995,7 +18995,7 @@ $O/inetveins/transportlayer/sctp/SCTPMessage_m.o: inetveins/transportlayer/sctp/
 	inetveins/transportlayer/sctp/SCTPMessage_m.h
 $O/inetveins/transportlayer/sctp/SCTPNatHook.o: inetveins/transportlayer/sctp/SCTPNatHook.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -19057,7 +19057,7 @@ $O/inetveins/transportlayer/sctp/SCTPNatHook.o: inetveins/transportlayer/sctp/SC
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPNatTable.o: inetveins/transportlayer/sctp/SCTPNatTable.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -19092,7 +19092,7 @@ $O/inetveins/transportlayer/sctp/SCTPNatTable.o: inetveins/transportlayer/sctp/S
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPQueue.o: inetveins/transportlayer/sctp/SCTPQueue.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -19126,7 +19126,7 @@ $O/inetveins/transportlayer/sctp/SCTPQueue.o: inetveins/transportlayer/sctp/SCTP
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPReceiveStream.o: inetveins/transportlayer/sctp/SCTPReceiveStream.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -19162,7 +19162,7 @@ $O/inetveins/transportlayer/sctp/SCTPReceiveStream.o: inetveins/transportlayer/s
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPSSFunctions.o: inetveins/transportlayer/sctp/SCTPSSFunctions.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -19198,7 +19198,7 @@ $O/inetveins/transportlayer/sctp/SCTPSSFunctions.o: inetveins/transportlayer/sct
 	inetveins/transportlayer/sctp/SCTPSendStream.h
 $O/inetveins/transportlayer/sctp/SCTPSendStream.o: inetveins/transportlayer/sctp/SCTPSendStream.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -19237,7 +19237,7 @@ $O/inetveins/transportlayer/tcp/TCP.o: inetveins/transportlayer/tcp/TCP.cc \
 	inetveins/common/ByteArrayBuffer.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -19278,7 +19278,7 @@ $O/inetveins/transportlayer/tcp/TCPConnectionBase.o: inetveins/transportlayer/tc
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19302,7 +19302,7 @@ $O/inetveins/transportlayer/tcp/TCPConnectionEventProc.o: inetveins/transportlay
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19325,7 +19325,7 @@ $O/inetveins/transportlayer/tcp/TCPConnectionRcvSegment.o: inetveins/transportla
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19349,7 +19349,7 @@ $O/inetveins/transportlayer/tcp/TCPConnectionSackUtil.o: inetveins/transportlaye
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19373,8 +19373,8 @@ $O/inetveins/transportlayer/tcp/TCPConnectionUtil.o: inetveins/transportlayer/tc
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETUtils.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSUtils.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/common/lifecycle/ILifecycle.h \
@@ -19404,7 +19404,7 @@ $O/inetveins/transportlayer/tcp/TCPSACKRexmitQueue.o: inetveins/transportlayer/t
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19425,7 +19425,7 @@ $O/inetveins/transportlayer/tcp/flavours/DumbTCP.o: inetveins/transportlayer/tcp
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19447,7 +19447,7 @@ $O/inetveins/transportlayer/tcp/flavours/TCPBaseAlg.o: inetveins/transportlayer/
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19470,7 +19470,7 @@ $O/inetveins/transportlayer/tcp/flavours/TCPNewReno.o: inetveins/transportlayer/
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19494,7 +19494,7 @@ $O/inetveins/transportlayer/tcp/flavours/TCPNoCongestionControl.o: inetveins/tra
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19517,7 +19517,7 @@ $O/inetveins/transportlayer/tcp/flavours/TCPReno.o: inetveins/transportlayer/tcp
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19541,7 +19541,7 @@ $O/inetveins/transportlayer/tcp/flavours/TCPSegmentTransmitInfoList.o: inetveins
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19564,7 +19564,7 @@ $O/inetveins/transportlayer/tcp/flavours/TCPTahoe.o: inetveins/transportlayer/tc
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19588,7 +19588,7 @@ $O/inetveins/transportlayer/tcp/flavours/TCPTahoeRenoFamily.o: inetveins/transpo
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19611,7 +19611,7 @@ $O/inetveins/transportlayer/tcp/flavours/TCPVegas.o: inetveins/transportlayer/tc
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19635,7 +19635,7 @@ $O/inetveins/transportlayer/tcp/flavours/TCPWestwood.o: inetveins/transportlayer
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19659,7 +19659,7 @@ $O/inetveins/transportlayer/tcp/queues/TCPByteStreamRcvQueue.o: inetveins/transp
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -19685,7 +19685,7 @@ $O/inetveins/transportlayer/tcp/queues/TCPByteStreamSendQueue.o: inetveins/trans
 	inetveins/common/ByteArrayBuffer.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/RawPacket.h \
 	inetveins/common/RawPacket_m.h \
@@ -19709,7 +19709,7 @@ $O/inetveins/transportlayer/tcp/queues/TCPMsgBasedRcvQueue.o: inetveins/transpor
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19732,7 +19732,7 @@ $O/inetveins/transportlayer/tcp/queues/TCPMsgBasedSendQueue.o: inetveins/transpo
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19754,7 +19754,7 @@ $O/inetveins/transportlayer/tcp/queues/TCPVirtualDataRcvQueue.o: inetveins/trans
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19776,7 +19776,7 @@ $O/inetveins/transportlayer/tcp/queues/TCPVirtualDataSendQueue.o: inetveins/tran
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/lifecycle/ILifecycle.h \
 	inetveins/features.h \
@@ -19798,7 +19798,7 @@ $O/inetveins/transportlayer/tcp_common/TCPSegment.o: inetveins/transportlayer/tc
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/contract/ITransportPacket.h \
@@ -19808,7 +19808,7 @@ $O/inetveins/transportlayer/tcp_common/TCPSegment_m.o: inetveins/transportlayer/
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/tcp_common/TCPSegment_m.h
@@ -19816,7 +19816,7 @@ $O/inetveins/transportlayer/tcp_common/TCPSpoof.o: inetveins/transportlayer/tcp_
 	inetveins/common/ByteArray.h \
 	inetveins/common/ByteArray_m.h \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/NotifierConsts.h \
 	inetveins/features.h \
@@ -19840,7 +19840,7 @@ $O/inetveins/transportlayer/tcp_common/TCPSpoof.o: inetveins/transportlayer/tcp_
 	inetveins/transportlayer/tcp_common/TCPSpoof.h
 $O/inetveins/transportlayer/udp/UDP.o: inetveins/transportlayer/udp/UDP.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/ModuleAccess.h \
 	inetveins/common/NotifierConsts.h \
@@ -19894,17 +19894,11 @@ $O/inetveins/transportlayer/udp/UDP.o: inetveins/transportlayer/udp/UDP.cc \
 	inetveins/transportlayer/udp/UDPPacket_m.h
 $O/inetveins/transportlayer/udp/UDPPacket_m.o: inetveins/transportlayer/udp/UDPPacket_m.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
+	inetveins/common/INETVEINSDefs.h \
 	inetveins/common/InitStages.h \
 	inetveins/features.h \
 	inetveins/transportlayer/udp/UDPPacket_m.h
 $O/veins/base/connectionManager/BaseConnectionManager.o: veins/base/connectionManager/BaseConnectionManager.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/NicEntry.h \
 	veins/base/connectionManager/NicEntryDebug.h \
@@ -19916,12 +19910,6 @@ $O/veins/base/connectionManager/BaseConnectionManager.o: veins/base/connectionMa
 	veins/base/utils/MiXiMDefs.h \
 	veins/base/utils/miximkerneldefs.h
 $O/veins/base/connectionManager/ChannelAccess.o: veins/base/connectionManager/ChannelAccess.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/ChannelAccess.h \
 	veins/base/connectionManager/NicEntry.h \
@@ -19938,12 +19926,6 @@ $O/veins/base/connectionManager/ChannelAccess.o: veins/base/connectionManager/Ch
 	veins/base/utils/Move.h \
 	veins/base/utils/miximkerneldefs.h
 $O/veins/base/connectionManager/ConnectionManager.o: veins/base/connectionManager/ConnectionManager.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/ConnectionManager.h \
 	veins/base/connectionManager/NicEntry.h \
@@ -19953,12 +19935,6 @@ $O/veins/base/connectionManager/ConnectionManager.o: veins/base/connectionManage
 	veins/base/utils/MiXiMDefs.h \
 	veins/base/utils/miximkerneldefs.h
 $O/veins/base/connectionManager/NicEntryDebug.o: veins/base/connectionManager/NicEntryDebug.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/ChannelAccess.h \
 	veins/base/connectionManager/NicEntry.h \
 	veins/base/connectionManager/NicEntryDebug.h \
@@ -19975,12 +19951,6 @@ $O/veins/base/connectionManager/NicEntryDebug.o: veins/base/connectionManager/Ni
 	veins/base/utils/Move.h \
 	veins/base/utils/miximkerneldefs.h
 $O/veins/base/connectionManager/NicEntryDirect.o: veins/base/connectionManager/NicEntryDirect.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/ChannelAccess.h \
 	veins/base/connectionManager/NicEntry.h \
 	veins/base/connectionManager/NicEntryDirect.h \
@@ -20006,12 +19976,6 @@ $O/veins/base/messages/AirFrame_m.o: veins/base/messages/AirFrame_m.cc \
 	veins/base/utils/MiXiMDefs.h \
 	veins/base/utils/miximkerneldefs.h
 $O/veins/base/messages/BorderMsg_m.o: veins/base/messages/BorderMsg_m.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/messages/BorderMsg_m.h \
 	veins/base/utils/Coord.h \
 	veins/base/utils/FWMath.h \
@@ -20054,12 +20018,6 @@ $O/veins/base/modules/BaseLayer.o: veins/base/modules/BaseLayer.cc \
 	veins/base/utils/PassedMessage.h \
 	veins/base/utils/miximkerneldefs.h
 $O/veins/base/modules/BaseMacLayer.o: veins/base/modules/BaseMacLayer.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/ChannelAccess.h \
 	veins/base/messages/MacPkt_m.h \
 	veins/base/modules/AddressingInterface.h \
@@ -20092,12 +20050,6 @@ $O/veins/base/modules/BaseMacLayer.o: veins/base/modules/BaseMacLayer.cc \
 	veins/base/utils/SimpleAddress.h \
 	veins/base/utils/miximkerneldefs.h
 $O/veins/base/modules/BaseMobility.o: veins/base/modules/BaseMobility.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/messages/BorderMsg_m.h \
 	veins/base/modules/BaseBattery.h \
 	veins/base/modules/BaseMobility.h \
@@ -20118,12 +20070,6 @@ $O/veins/base/modules/BaseModule.o: veins/base/modules/BaseModule.cc \
 	veins/base/utils/MiXiMDefs.h \
 	veins/base/utils/miximkerneldefs.h
 $O/veins/base/modules/BaseWorldUtility.o: veins/base/modules/BaseWorldUtility.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/NicEntry.h \
 	veins/base/modules/BaseWorldUtility.h \
@@ -20155,12 +20101,6 @@ $O/veins/base/phyLayer/BaseDecider.o: veins/base/phyLayer/BaseDecider.cc \
 	veins/base/utils/MiXiMDefs.h \
 	veins/base/utils/miximkerneldefs.h
 $O/veins/base/phyLayer/BasePhyLayer.o: veins/base/phyLayer/BasePhyLayer.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/ChannelAccess.h \
 	veins/base/connectionManager/NicEntry.h \
@@ -20226,12 +20166,6 @@ $O/veins/base/phyLayer/MappingUtils.o: veins/base/phyLayer/MappingUtils.cc \
 	veins/base/utils/MiXiMDefs.h \
 	veins/base/utils/miximkerneldefs.h
 $O/veins/base/phyLayer/PhyUtils.o: veins/base/phyLayer/PhyUtils.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/messages/AirFrame_m.h \
 	veins/base/phyLayer/AnalogueModel.h \
 	veins/base/phyLayer/Interpolation.h \
@@ -20254,8 +20188,8 @@ $O/veins/base/phyLayer/Signal.o: veins/base/phyLayer/Signal.cc \
 	veins/base/utils/miximkerneldefs.h
 $O/veins/base/utils/Coord.o: veins/base/utils/Coord.cc \
 	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
+	inetveins/common/INETVEINSDefs.h \
+	inetveins/common/INETVEINSMath.h \
 	inetveins/common/InitStages.h \
 	inetveins/common/geometry/common/Coord.h \
 	inetveins/features.h \
@@ -20277,12 +20211,6 @@ $O/veins/base/utils/asserts.o: veins/base/utils/asserts.cc \
 $O/veins/base/utils/winsupport.o: veins/base/utils/winsupport.cc \
 	veins/base/utils/winsupport.h
 $O/veins/modules/analogueModel/BreakpointPathlossModel.o: veins/modules/analogueModel/BreakpointPathlossModel.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/messages/AirFrame_m.h \
 	veins/base/phyLayer/AnalogueModel.h \
 	veins/base/phyLayer/Interpolation.h \
@@ -20296,12 +20224,6 @@ $O/veins/modules/analogueModel/BreakpointPathlossModel.o: veins/modules/analogue
 	veins/base/utils/miximkerneldefs.h \
 	veins/modules/analogueModel/BreakpointPathlossModel.h
 $O/veins/modules/analogueModel/JakesFading.o: veins/modules/analogueModel/JakesFading.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/ChannelAccess.h \
 	veins/base/messages/AirFrame_m.h \
 	veins/base/modules/BaseBattery.h \
@@ -20324,12 +20246,6 @@ $O/veins/modules/analogueModel/JakesFading.o: veins/modules/analogueModel/JakesF
 	veins/base/utils/miximkerneldefs.h \
 	veins/modules/analogueModel/JakesFading.h
 $O/veins/modules/analogueModel/LogNormalShadowing.o: veins/modules/analogueModel/LogNormalShadowing.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/messages/AirFrame_m.h \
 	veins/base/phyLayer/AnalogueModel.h \
 	veins/base/phyLayer/Interpolation.h \
@@ -20343,12 +20259,6 @@ $O/veins/modules/analogueModel/LogNormalShadowing.o: veins/modules/analogueModel
 	veins/base/utils/miximkerneldefs.h \
 	veins/modules/analogueModel/LogNormalShadowing.h
 $O/veins/modules/analogueModel/NakagamiFading.o: veins/modules/analogueModel/NakagamiFading.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/messages/AirFrame_m.h \
 	veins/base/modules/BaseWorldUtility.h \
 	veins/base/phyLayer/AnalogueModel.h \
@@ -20363,12 +20273,6 @@ $O/veins/modules/analogueModel/NakagamiFading.o: veins/modules/analogueModel/Nak
 	veins/base/utils/miximkerneldefs.h \
 	veins/modules/analogueModel/NakagamiFading.h
 $O/veins/modules/analogueModel/PERModel.o: veins/modules/analogueModel/PERModel.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/messages/AirFrame_m.h \
 	veins/base/phyLayer/AnalogueModel.h \
 	veins/base/phyLayer/Interpolation.h \
@@ -20382,12 +20286,6 @@ $O/veins/modules/analogueModel/PERModel.o: veins/modules/analogueModel/PERModel.
 	veins/base/utils/miximkerneldefs.h \
 	veins/modules/analogueModel/PERModel.h
 $O/veins/modules/analogueModel/SimpleObstacleShadowing.o: veins/modules/analogueModel/SimpleObstacleShadowing.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/messages/AirFrame_m.h \
 	veins/base/modules/BaseWorldUtility.h \
 	veins/base/phyLayer/AnalogueModel.h \
@@ -20407,12 +20305,6 @@ $O/veins/modules/analogueModel/SimpleObstacleShadowing.o: veins/modules/analogue
 	veins/modules/obstacle/ObstacleControl.h \
 	veins/modules/world/annotations/AnnotationManager.h
 $O/veins/modules/analogueModel/SimplePathlossModel.o: veins/modules/analogueModel/SimplePathlossModel.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/messages/AirFrame_m.h \
 	veins/base/modules/BaseWorldUtility.h \
 	veins/base/phyLayer/AnalogueModel.h \
@@ -20427,12 +20319,6 @@ $O/veins/modules/analogueModel/SimplePathlossModel.o: veins/modules/analogueMode
 	veins/base/utils/miximkerneldefs.h \
 	veins/modules/analogueModel/SimplePathlossModel.h
 $O/veins/modules/analogueModel/TwoRayInterferenceModel.o: veins/modules/analogueModel/TwoRayInterferenceModel.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/messages/AirFrame_m.h \
 	veins/base/modules/BaseWorldUtility.h \
 	veins/base/phyLayer/AnalogueModel.h \
@@ -20447,12 +20333,6 @@ $O/veins/modules/analogueModel/TwoRayInterferenceModel.o: veins/modules/analogue
 	veins/base/utils/miximkerneldefs.h \
 	veins/modules/analogueModel/TwoRayInterferenceModel.h
 $O/veins/modules/application/ieee80211p/BaseWaveApplLayer.o: veins/modules/application/ieee80211p/BaseWaveApplLayer.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/ChannelAccess.h \
 	veins/base/modules/BaseApplLayer.h \
 	veins/base/modules/BaseBattery.h \
@@ -20476,12 +20356,6 @@ $O/veins/modules/application/ieee80211p/BaseWaveApplLayer.o: veins/modules/appli
 	veins/modules/messages/WaveShortMessage_m.h \
 	veins/modules/utility/Consts80211p.h
 $O/veins/modules/application/traci/TraCIDemo11p.o: veins/modules/application/traci/TraCIDemo11p.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/ChannelAccess.h \
 	veins/base/connectionManager/NicEntry.h \
@@ -20518,12 +20392,6 @@ $O/veins/modules/application/traci/TraCIDemo11p.o: veins/modules/application/tra
 	veins/modules/utility/Consts80211p.h \
 	veins/modules/world/annotations/AnnotationManager.h
 $O/veins/modules/application/traci/TraCIDemoRSU11p.o: veins/modules/application/traci/TraCIDemoRSU11p.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/ChannelAccess.h \
 	veins/base/modules/BaseApplLayer.h \
 	veins/base/modules/BaseBattery.h \
@@ -20549,12 +20417,6 @@ $O/veins/modules/application/traci/TraCIDemoRSU11p.o: veins/modules/application/
 	veins/modules/utility/Consts80211p.h \
 	veins/modules/world/annotations/AnnotationManager.h
 $O/veins/modules/application/traci/TraCITestApp.o: veins/modules/application/traci/TraCITestApp.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/NicEntry.h \
 	veins/base/modules/BaseApplLayer.h \
@@ -20586,12 +20448,6 @@ $O/veins/modules/application/traci/TraCITestApp.o: veins/modules/application/tra
 	veins/modules/obstacle/ObstacleControl.h \
 	veins/modules/world/annotations/AnnotationManager.h
 $O/veins/modules/mac/ieee80211p/Mac1609_4.o: veins/modules/mac/ieee80211p/Mac1609_4.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/ChannelAccess.h \
 	veins/base/connectionManager/NicEntry.h \
@@ -20666,12 +20522,6 @@ $O/veins/modules/messages/Mac80211Pkt_m.o: veins/modules/messages/Mac80211Pkt_m.
 $O/veins/modules/messages/PhyControlMessage_m.o: veins/modules/messages/PhyControlMessage_m.cc \
 	veins/modules/messages/PhyControlMessage_m.h
 $O/veins/modules/messages/WaveShortMessage_m.o: veins/modules/messages/WaveShortMessage_m.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/utils/Coord.h \
 	veins/base/utils/FWMath.h \
 	veins/base/utils/MiXiMDefs.h \
@@ -20688,12 +20538,6 @@ $O/veins/modules/mobility/traci/TraCIColor.o: veins/modules/mobility/traci/TraCI
 	veins/base/utils/miximkerneldefs.h \
 	veins/modules/mobility/traci/TraCIColor.h
 $O/veins/modules/mobility/traci/TraCICommandInterface.o: veins/modules/mobility/traci/TraCICommandInterface.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/utils/Coord.h \
 	veins/base/utils/FWMath.h \
 	veins/base/utils/MiXiMDefs.h \
@@ -20705,12 +20549,6 @@ $O/veins/modules/mobility/traci/TraCICommandInterface.o: veins/modules/mobility/
 	veins/modules/mobility/traci/TraCIConstants.h \
 	veins/modules/mobility/traci/TraCICoord.h
 $O/veins/modules/mobility/traci/TraCIConnection.o: veins/modules/mobility/traci/TraCIConnection.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/utils/Coord.h \
 	veins/base/utils/FWMath.h \
 	veins/base/utils/MiXiMDefs.h \
@@ -20722,12 +20560,6 @@ $O/veins/modules/mobility/traci/TraCIConnection.o: veins/modules/mobility/traci/
 $O/veins/modules/mobility/traci/TraCILauncher.o: veins/modules/mobility/traci/TraCILauncher.cc \
 	veins/modules/mobility/traci/TraCILauncher.h
 $O/veins/modules/mobility/traci/TraCIMobility.o: veins/modules/mobility/traci/TraCIMobility.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/NicEntry.h \
 	veins/base/modules/BaseBattery.h \
@@ -20753,12 +20585,6 @@ $O/veins/modules/mobility/traci/TraCIMobility.o: veins/modules/mobility/traci/Tr
 	veins/modules/obstacle/ObstacleControl.h \
 	veins/modules/world/annotations/AnnotationManager.h
 $O/veins/modules/mobility/traci/TraCIScenarioManager.o: veins/modules/mobility/traci/TraCIScenarioManager.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/NicEntry.h \
 	veins/base/modules/BaseBattery.h \
@@ -20786,12 +20612,6 @@ $O/veins/modules/mobility/traci/TraCIScenarioManager.o: veins/modules/mobility/t
 	veins/modules/obstacle/ObstacleControl.h \
 	veins/modules/world/annotations/AnnotationManager.h
 $O/veins/modules/mobility/traci/TraCIScenarioManagerForker.o: veins/modules/mobility/traci/TraCIScenarioManagerForker.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/NicEntry.h \
 	veins/base/modules/BaseWorldUtility.h \
@@ -20813,23 +20633,11 @@ $O/veins/modules/mobility/traci/TraCIScenarioManagerForker.o: veins/modules/mobi
 	veins/modules/obstacle/ObstacleControl.h \
 	veins/modules/world/annotations/AnnotationManager.h
 $O/veins/modules/mobility/traci/TraCIScenarioManagerInet.o: veins/modules/mobility/traci/TraCIScenarioManagerInet.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/utils/Coord.h \
 	veins/base/utils/FWMath.h \
 	veins/base/utils/MiXiMDefs.h \
 	veins/base/utils/miximkerneldefs.h
 $O/veins/modules/mobility/traci/TraCIScenarioManagerLaunchd.o: veins/modules/mobility/traci/TraCIScenarioManagerLaunchd.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/NicEntry.h \
 	veins/base/modules/BaseWorldUtility.h \
@@ -20850,12 +20658,6 @@ $O/veins/modules/mobility/traci/TraCIScenarioManagerLaunchd.o: veins/modules/mob
 	veins/modules/obstacle/ObstacleControl.h \
 	veins/modules/world/annotations/AnnotationManager.h
 $O/veins/modules/mobility/traci/TraCIScreenRecorder.o: veins/modules/mobility/traci/TraCIScreenRecorder.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/NicEntry.h \
 	veins/base/modules/BaseWorldUtility.h \
@@ -20875,12 +20677,6 @@ $O/veins/modules/mobility/traci/TraCIScreenRecorder.o: veins/modules/mobility/tr
 	veins/modules/obstacle/ObstacleControl.h \
 	veins/modules/world/annotations/AnnotationManager.h
 $O/veins/modules/obstacle/Obstacle.o: veins/modules/obstacle/Obstacle.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/utils/Coord.h \
 	veins/base/utils/FWMath.h \
 	veins/base/utils/FindModule.h \
@@ -20889,12 +20685,6 @@ $O/veins/modules/obstacle/Obstacle.o: veins/modules/obstacle/Obstacle.cc \
 	veins/modules/obstacle/Obstacle.h \
 	veins/modules/world/annotations/AnnotationManager.h
 $O/veins/modules/obstacle/ObstacleControl.o: veins/modules/obstacle/ObstacleControl.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/utils/Coord.h \
 	veins/base/utils/FWMath.h \
 	veins/base/utils/FindModule.h \
@@ -20904,12 +20694,6 @@ $O/veins/modules/obstacle/ObstacleControl.o: veins/modules/obstacle/ObstacleCont
 	veins/modules/obstacle/ObstacleControl.h \
 	veins/modules/world/annotations/AnnotationManager.h
 $O/veins/modules/phy/Decider80211p.o: veins/modules/phy/Decider80211p.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/messages/AirFrame_m.h \
 	veins/base/messages/ChannelSenseRequest_m.h \
 	veins/base/messages/MacPkt_m.h \
@@ -20943,12 +20727,6 @@ $O/veins/modules/phy/NistErrorRate.o: veins/modules/phy/NistErrorRate.cc \
 	veins/modules/phy/NistErrorRate.h \
 	veins/modules/utility/ConstsPhy.h
 $O/veins/modules/phy/PhyLayer80211p.o: veins/modules/phy/PhyLayer80211p.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/ChannelAccess.h \
 	veins/base/connectionManager/NicEntry.h \
@@ -21019,12 +20797,6 @@ $O/veins/modules/world/annotations/AnnotationDummy.o: veins/modules/world/annota
 	veins/base/utils/miximkerneldefs.h \
 	veins/modules/world/annotations/AnnotationDummy.h
 $O/veins/modules/world/annotations/AnnotationManager.o: veins/modules/world/annotations/AnnotationManager.cc \
-	inetveins/common/Compat.h \
-	inetveins/common/INETDefs.h \
-	inetveins/common/INETMath.h \
-	inetveins/common/InitStages.h \
-	inetveins/common/geometry/common/Coord.h \
-	inetveins/features.h \
 	veins/base/connectionManager/BaseConnectionManager.h \
 	veins/base/connectionManager/NicEntry.h \
 	veins/base/modules/BaseWorldUtility.h \

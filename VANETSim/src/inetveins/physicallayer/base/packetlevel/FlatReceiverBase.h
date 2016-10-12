@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_FLATRECEIVERBASE_H
-#define __INET_FLATRECEIVERBASE_H
+#ifndef __INETVEINS_FLATRECEIVERBASE_H
+#define __INETVEINS_FLATRECEIVERBASE_H
 
 #include "inetveins/physicallayer/base/packetlevel/NarrowbandReceiverBase.h"
 #include "inetveins/physicallayer/contract/packetlevel/IErrorModel.h"
@@ -60,7 +60,7 @@ class INETVEINS_API FlatReceiverBase : public NarrowbandReceiverBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_FLATRECEIVERBASE_H
+#endif // ifndef __INETVEINS_FLATRECEIVERBASE_H
 

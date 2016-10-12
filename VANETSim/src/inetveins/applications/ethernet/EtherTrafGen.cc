@@ -209,5 +209,5 @@ void EtherTrafGen::finish()
     timerMsg = nullptr;
 }
 
-} // namespace inet
+} // namespace inetveins
 

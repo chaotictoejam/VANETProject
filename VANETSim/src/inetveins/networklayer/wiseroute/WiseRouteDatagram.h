@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_WISEROUTEDATAGRAM_H
-#define __INET_WISEROUTEDATAGRAM_H
+#ifndef __INETVEINS_WISEROUTEDATAGRAM_H
+#define __INETVEINS_WISEROUTEDATAGRAM_H
 
 #include "inetveins/networklayer/contract/INetworkDatagram.h"
 #include "inetveins/networklayer/wiseroute/WiseRouteDatagram_m.h"
@@ -44,7 +44,7 @@ class INETVEINS_API WiseRouteDatagram : public WiseRouteDatagram_Base, public IN
     virtual void setTransportProtocol(int protocol) override { WiseRouteDatagram_Base::setTransportProtocol(protocol); };
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_WISEROUTEDATAGRAM_H
+#endif // ifndef __INETVEINS_WISEROUTEDATAGRAM_H
 

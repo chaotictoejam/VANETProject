@@ -15,11 +15,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPECHOAPP_H
-#define __INET_TCPECHOAPP_H
+#ifndef __INETVEINS_TCPECHOAPP_H
+#define __INETVEINS_TCPECHOAPP_H
 
-#include "inetveins/common/INETDefs.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSDefs.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/common/lifecycle/NodeStatus.h"
 #include "inetveins/transportlayer/contract/tcp/TCPSocket.h"
@@ -61,7 +61,7 @@ class INETVEINS_API TCPEchoApp : public cSimpleModule, public ILifecycle
     TCPEchoApp() {}
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPECHOAPP_H
+#endif // ifndef __INETVEINS_TCPECHOAPP_H
 

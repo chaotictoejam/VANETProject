@@ -13,8 +13,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_BMACLAYER_H
-#define __INET_BMACLAYER_H
+#ifndef __INETVEINS_BMACLAYER_H
+#define __INETVEINS_BMACLAYER_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IRadio.h"
 #include "inetveins/linklayer/contract/IMACProtocol.h"
@@ -257,7 +257,7 @@ class INETVEINS_API BMacLayer : public MACProtocolBase, public IMACProtocol
     cObject *setUpControlInfo(cMessage *const pMsg, const MACAddress& pSrcAddr);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BMACLAYER_H
+#endif // ifndef __INETVEINS_BMACLAYER_H
 

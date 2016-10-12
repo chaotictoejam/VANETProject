@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IFECCODER_H
-#define __INET_IFECCODER_H
+#ifndef __INETVEINS_IFECCODER_H
+#define __INETVEINS_IFECCODER_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IPrintableObject.h"
 #include "inetveins/common/BitVector.h"
@@ -44,7 +44,7 @@ class INETVEINS_API IFECCoder : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IFECCODER_H
+#endif // ifndef __INETVEINS_IFECCODER_H
 

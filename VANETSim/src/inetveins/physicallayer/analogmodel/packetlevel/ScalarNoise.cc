@@ -49,5 +49,5 @@ W ScalarNoise::computeMaxPower(simtime_t startTime, simtime_t endTime) const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

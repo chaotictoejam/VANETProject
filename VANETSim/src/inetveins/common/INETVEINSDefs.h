@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INETDEFS_H
-#define __INET_INETDEFS_H
+#ifndef __INETVEINS_INETVEINSDEFS_H
+#define __INETVEINS_INETVEINSDEFS_H
 
 // feature defines generated based on the actual feature enablement
 #include "inetveins/features.h"
@@ -44,16 +44,16 @@ using namespace omnetpp;
 #  endif
 #endif
 
-#define INET_VERSION  0x0302
-#define INET_PATCH_LEVEL 0x04
+#define INETVEINS_VERSION  0x0302
+#define INETVEINS_PATCH_LEVEL 0x04
 
-#if defined(INET_EXPORT)
+#if defined(INETVEINS_EXPORT)
 #  define INETVEINS_API    OPP_DLLEXPORT
-#elif defined(INET_IMPORT)
+#elif defined(INETVEINS_IMPORT)
 #  define INETVEINS_API    OPP_DLLIMPORT
-#else // if defined(INET_EXPORT)
+#else // if defined(INETVEINS_EXPORT)
 #  define INETVEINS_API
-#endif // if defined(INET_EXPORT)
+#endif // if defined(INETVEINS_EXPORT)
 
 #include "inetveins/common/InitStages.h"
 
@@ -69,7 +69,7 @@ using namespace omnetpp;
 #define doParsimUnpacking doUnpacking
 #endif
 
-// main namespace of INET framework
+// main namespace of INETVEINS framework
 namespace inetveins {
 
 typedef unsigned short ushort;
@@ -106,7 +106,7 @@ inline void printElapsedTime(const char *name, long startTime)
 
 #define TIME(CODE)    { long startTime = clock(); CODE; printElapsedTime( #CODE, startTime); }
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INETDEFS_H
+#endif // ifndef __INETVEINS_INETVEINSDEFS_H
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211HTSIGNALCODE_H
-#define __INET_IEEE80211HTSIGNALCODE_H
+#ifndef __INETVEINS_IEEE80211HTSIGNALCODE_H
+#define __INETVEINS_IEEE80211HTSIGNALCODE_H
 
 #include "inetveins/physicallayer/contract/bitlevel/ICode.h"
 #include "inetveins/physicallayer/ieee80211/bitlevel/Ieee80211HTInterleaving.h"
@@ -59,4 +59,4 @@ class INETVEINS_API Ieee80211HTCompliantCodes
 } /* namespace physicallayer */
 } /* namespace inetveins */
 
-#endif // ifndef __INET_IEEE80211HTSIGNALCODE_H
+#endif // ifndef __INETVEINS_IEEE80211HTSIGNALCODE_H

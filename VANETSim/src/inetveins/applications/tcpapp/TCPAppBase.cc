@@ -160,5 +160,5 @@ void TCPAppBase::finish()
     EV_INFO << modulePath << ": received " << bytesRcvd << " bytes in " << packetsRcvd << " packets\n";
 }
 
-} // namespace inet
+} // namespace inetveins
 

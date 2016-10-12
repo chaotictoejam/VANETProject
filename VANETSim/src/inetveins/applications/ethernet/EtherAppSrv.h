@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ETHERAPPSRV_H
-#define __INET_ETHERAPPSRV_H
+#ifndef __INETVEINS_ETHERAPPSRV_H
+#define __INETVEINS_ETHERAPPSRV_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/linklayer/common/MACAddress.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
@@ -58,7 +58,7 @@ class INETVEINS_API EtherAppSrv : public cSimpleModule, public ILifecycle
     void sendPacket(cPacket *datapacket, const MACAddress& destAddr, int destSap);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ETHERAPPSRV_H
+#endif // ifndef __INETVEINS_ETHERAPPSRV_H
 

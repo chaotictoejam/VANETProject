@@ -18,10 +18,10 @@
 // Authors: ANSA Team, Benjamin Martin Seregi
 //
 
-#ifndef __INET_STP_H
-#define __INET_STP_H
+#ifndef __INETVEINS_STP_H
+#define __INETVEINS_STP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/linklayer/common/MACAddress.h"
 #include "inetveins/linklayer/ieee8021d/common/Ieee8021dBPDU_m.h"
 #include "inetveins/networklayer/common/InterfaceTable.h"
@@ -257,7 +257,7 @@ inline std::ostream& operator<<(std::ostream& os, STP i)
     return os;
 }
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_STP_H
+#endif // ifndef __INETVEINS_STP_H
 

@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211MGMTAP_H
-#define __INET_IEEE80211MGMTAP_H
+#ifndef __INETVEINS_IEEE80211MGMTAP_H
+#define __INETVEINS_IEEE80211MGMTAP_H
 
 #include <map>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/linklayer/ieee80211/mgmt/Ieee80211MgmtAPBase.h"
 
@@ -139,7 +139,7 @@ class INETVEINS_API Ieee80211MgmtAP : public Ieee80211MgmtAPBase, protected cLis
 
 } // namespace ieee80211
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE80211MGMTAP_H
+#endif // ifndef __INETVEINS_IEEE80211MGMTAP_H
 

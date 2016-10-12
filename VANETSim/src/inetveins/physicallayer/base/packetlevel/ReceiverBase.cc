@@ -99,5 +99,5 @@ const IReceptionResult *ReceiverBase::computeReceptionResult(const IListening *l
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

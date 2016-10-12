@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_LISTENINGDECISION_H
-#define __INET_LISTENINGDECISION_H
+#ifndef __INETVEINS_LISTENINGDECISION_H
+#define __INETVEINS_LISTENINGDECISION_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IListeningDecision.h"
 
@@ -42,7 +42,7 @@ class INETVEINS_API ListeningDecision : public IListeningDecision, public cObjec
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LISTENINGDECISION_H
+#endif // ifndef __INETVEINS_LISTENINGDECISION_H
 

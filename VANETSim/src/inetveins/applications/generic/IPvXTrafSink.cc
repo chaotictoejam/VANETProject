@@ -107,5 +107,5 @@ void IPvXTrafSink::processPacket(cPacket *msg)
     numReceived++;
 }
 
-} // namespace inet
+} // namespace inetveins
 

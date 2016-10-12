@@ -75,5 +75,5 @@ double APSKErrorModel::computeSymbolErrorRate(const ISNIR *snir, IRadioSignal::S
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

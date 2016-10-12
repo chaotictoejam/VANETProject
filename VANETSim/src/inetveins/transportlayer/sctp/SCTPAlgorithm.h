@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTPALGORITHM_H
-#define __INET_SCTPALGORITHM_H
+#ifndef __INETVEINS_SCTPALGORITHM_H
+#define __INETVEINS_SCTPALGORITHM_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/sctp/SCTPAssociation.h"
 #include "inetveins/transportlayer/sctp/SCTPQueue.h"
@@ -83,7 +83,7 @@ class INETVEINS_API SCTPAlgorithm : public cObject
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPALGORITHM_H
+#endif // ifndef __INETVEINS_SCTPALGORITHM_H
 

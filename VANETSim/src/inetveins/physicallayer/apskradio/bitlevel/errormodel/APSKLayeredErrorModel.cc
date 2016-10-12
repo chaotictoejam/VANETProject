@@ -84,5 +84,5 @@ const IReceptionSampleModel *APSKLayeredErrorModel::computeSampleModel(const Lay
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

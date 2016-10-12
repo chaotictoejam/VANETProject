@@ -63,5 +63,5 @@ double RandomWPMobility::getMaxSpeed() const
     return NaN;
 }
 
-} // namespace inet
+} // namespace inetveins
 

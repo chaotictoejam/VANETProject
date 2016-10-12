@@ -35,5 +35,5 @@ EulerAngles AnalogModelBase::computeTransmissionDirection(const ITransmission *t
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

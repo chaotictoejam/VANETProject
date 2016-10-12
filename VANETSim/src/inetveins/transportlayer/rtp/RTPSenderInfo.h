@@ -15,12 +15,12 @@
 *                                                                         *
 ***************************************************************************/
 
-#ifndef __INET_RTPSENDERINFO_H
-#define __INET_RTPSENDERINFO_H
+#ifndef __INETVEINS_RTPSENDERINFO_H
+#define __INETVEINS_RTPSENDERINFO_H
 
 #include "inetveins/transportlayer/rtp/RTPParticipantInfo.h"
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -134,7 +134,7 @@ class INETVEINS_API RTPSenderInfo : public RTPParticipantInfo
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RTPSENDERINFO_H
+#endif // ifndef __INETVEINS_RTPSENDERINFO_H
 

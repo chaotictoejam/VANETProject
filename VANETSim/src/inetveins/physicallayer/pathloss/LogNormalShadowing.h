@@ -15,8 +15,8 @@
  *              in the top level directory
  ***************************************************************************/
 
-#ifndef __INET_LOGNORMALSHADOWING_H
-#define __INET_LOGNORMALSHADOWING_H
+#ifndef __INETVEINS_LOGNORMALSHADOWING_H
+#define __INETVEINS_LOGNORMALSHADOWING_H
 
 #include "inetveins/physicallayer/pathloss/FreeSpacePathLoss.h"
 
@@ -43,7 +43,7 @@ class INETVEINS_API LogNormalShadowing : public FreeSpacePathLoss
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LOGNORMALSHADOWING_H
+#endif // ifndef __INETVEINS_LOGNORMALSHADOWING_H
 

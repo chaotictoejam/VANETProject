@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCENARIOMANAGER_H
-#define __INET_SCENARIOMANAGER_H
+#ifndef __INETVEINS_SCENARIOMANAGER_H
+#define __INETVEINS_SCENARIOMANAGER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/scenario/IScriptable.h"
 
@@ -73,7 +73,7 @@ class INETVEINS_API ScenarioManager : public cSimpleModule
     virtual void updateDisplayString();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCENARIOMANAGER_H
+#endif // ifndef __INETVEINS_SCENARIOMANAGER_H
 

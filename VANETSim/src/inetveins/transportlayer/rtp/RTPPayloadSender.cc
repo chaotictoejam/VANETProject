@@ -212,5 +212,5 @@ bool RTPPayloadSender::sendPacket()
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

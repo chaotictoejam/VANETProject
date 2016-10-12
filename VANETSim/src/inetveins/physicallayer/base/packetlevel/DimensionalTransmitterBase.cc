@@ -238,5 +238,5 @@ ConstMapping *DimensionalTransmitterBase::createPowerMapping(const simtime_t sta
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

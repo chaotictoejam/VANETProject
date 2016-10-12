@@ -113,7 +113,7 @@ void NetworkInfo::dumpRoutingInfo(cModule *target, const char *filename, bool ap
 
             if (compat) {
                 int pad = 3;
-                line << "U";    // routes in INET are always up
+                line << "U";    // routes in INETVEINS are always up
                 if (!gateway.isUnspecified())
                     line << "G";
                 else
@@ -156,5 +156,5 @@ void NetworkInfo::dumpRoutingInfo(cModule *target, const char *filename, bool ap
     s.close();
 }
 
-} // namespace inet
+} // namespace inetveins
 

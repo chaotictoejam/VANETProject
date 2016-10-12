@@ -230,5 +230,5 @@ std::ostream& operator<<(std::ostream& os, const LIBTable::LIBEntry& lib)
     return os;
 }
 
-} // namespace inet
+} // namespace inetveins
 

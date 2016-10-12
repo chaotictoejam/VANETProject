@@ -61,8 +61,8 @@
  *    @(#)ip.h    8.1 (Berkeley) 6/10/93
  */
 
-#ifndef __INET_IP6_H
-#define __INET_IP6_H
+#ifndef __INETVEINS_IP6_H
+#define __INETVEINS_IP6_H
 
 namespace inetveins {
 
@@ -309,7 +309,7 @@ struct ip6_frag
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif /* not _NETINET_IP6_H_ */
+#endif /* not _NETINETVEINS_IP6_H_ */
 

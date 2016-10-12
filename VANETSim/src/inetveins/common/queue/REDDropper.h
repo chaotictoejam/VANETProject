@@ -17,10 +17,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_REDDROPPER_H
-#define __INET_REDDROPPER_H
+#ifndef __INETVEINS_REDDROPPER_H
+#define __INETVEINS_REDDROPPER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/queue/AlgorithmicDropperBase.h"
 
 namespace inetveins {
@@ -51,7 +51,7 @@ class INETVEINS_API REDDropper : public AlgorithmicDropperBase
     virtual void sendOut(cPacket *packet) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_REDDROPPER_H
+#endif // ifndef __INETVEINS_REDDROPPER_H
 

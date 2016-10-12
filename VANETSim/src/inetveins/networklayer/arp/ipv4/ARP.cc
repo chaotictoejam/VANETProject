@@ -482,5 +482,5 @@ L3Address ARP::getL3AddressFor(const MACAddress& macAddr) const
     return IPv4Address::UNSPECIFIED_ADDRESS;
 }
 
-} // namespace inet
+} // namespace inetveins
 

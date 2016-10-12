@@ -84,5 +84,5 @@ void TCPSinkApp::finish()
 {
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ADDITIVESCRAMBLING_H
-#define __INET_ADDITIVESCRAMBLING_H
+#ifndef __INETVEINS_ADDITIVESCRAMBLING_H
+#define __INETVEINS_ADDITIVESCRAMBLING_H
 
 #include "inetveins/physicallayer/contract/bitlevel/IScrambler.h"
 #include "inetveins/common/ShortBitVector.h"
@@ -44,5 +44,5 @@ class INETVEINS_API AdditiveScrambling : public IScrambling
 
 } /* namespace inetveins */
 
-#endif // ifndef __INET_ADDITIVESCRAMBLING_H
+#endif // ifndef __INETVEINS_ADDITIVESCRAMBLING_H
 

@@ -38,5 +38,5 @@ void IPSocket::sendToIP(cMessage *message)
     check_and_cast<cSimpleModule *>(gateToIP->getOwnerModule())->send(message, gateToIP);
 }
 
-} // namespace inet
+} // namespace inetveins
 

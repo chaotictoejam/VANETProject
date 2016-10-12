@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BGPUPDATE_H
-#define __INET_BGPUPDATE_H
+#ifndef __INETVEINS_BGPUPDATE_H
+#define __INETVEINS_BGPUPDATE_H
 
 #include "inetveins/routing/bgpv4/BGPMessage/BGPUpdate_m.h"
 
@@ -39,7 +39,7 @@ class INETVEINS_API BGPUpdateMessage : public BGPUpdateMessage_Base
 
 } // namespace bgp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BGPUPDATE_H
+#endif // ifndef __INETVEINS_BGPUPDATE_H
 

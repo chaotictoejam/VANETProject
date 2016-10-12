@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IDIGITALANALOGCONVERTER_H
-#define __INET_IDIGITALANALOGCONVERTER_H
+#ifndef __INETVEINS_IDIGITALANALOGCONVERTER_H
+#define __INETVEINS_IDIGITALANALOGCONVERTER_H
 
 #include "inetveins/physicallayer/contract/bitlevel/ISignalSampleModel.h"
 #include "inetveins/physicallayer/contract/bitlevel/ISignalAnalogModel.h"
@@ -33,7 +33,7 @@ class INETVEINS_API IDigitalAnalogConverter : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IDIGITALANALOGCONVERTER_H
+#endif // ifndef __INETVEINS_IDIGITALANALOGCONVERTER_H
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_APSKENCODER_H
-#define __INET_APSKENCODER_H
+#ifndef __INETVEINS_APSKENCODER_H
+#define __INETVEINS_APSKENCODER_H
 
 #include "inetveins/physicallayer/contract/bitlevel/IEncoder.h"
 #include "inetveins/physicallayer/contract/bitlevel/IFECCoder.h"
@@ -54,7 +54,7 @@ class INETVEINS_API APSKEncoder : public IEncoder, public cSimpleModule
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_APSKENCODER_H
+#endif // ifndef __INETVEINS_APSKENCODER_H
 

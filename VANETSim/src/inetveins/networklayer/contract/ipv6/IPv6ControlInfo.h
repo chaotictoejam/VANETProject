@@ -15,8 +15,8 @@
 // License along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV6CONTROLINFO_H
-#define __INET_IPV6CONTROLINFO_H
+#ifndef __INETVEINS_IPV6CONTROLINFO_H
+#define __INETVEINS_IPV6CONTROLINFO_H
 
 #include "inetveins/networklayer/contract/INetworkProtocolControlInfo.h"
 #include "inetveins/networklayer/contract/ipv6/IPv6ControlInfo_m.h"
@@ -112,7 +112,7 @@ class INETVEINS_API IPv6ControlInfo : public IPv6ControlInfo_Base, public INetwo
     virtual void setHopLimit(short hopLimit) override { IPv6ControlInfo_Base::setHopLimit(hopLimit); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV6CONTROLINFO_H
+#endif // ifndef __INETVEINS_IPV6CONTROLINFO_H
 

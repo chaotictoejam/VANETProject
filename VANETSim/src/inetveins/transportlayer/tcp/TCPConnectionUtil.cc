@@ -32,7 +32,7 @@
 #include "inetveins/transportlayer/tcp/TCPSACKRexmitQueue.h"
 #include "inetveins/transportlayer/tcp/TCPReceiveQueue.h"
 #include "inetveins/transportlayer/tcp/TCPAlgorithm.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 namespace inetveins {
 
@@ -1432,5 +1432,5 @@ bool TCPConnection::isSendQueueEmpty()
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

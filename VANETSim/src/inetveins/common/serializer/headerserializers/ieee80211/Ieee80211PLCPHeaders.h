@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211PLCPHEADERS_H
-#define __INET_IEEE80211PLCPHEADERS_H
+#ifndef __INETVEINS_IEEE80211PLCPHEADERS_H
+#define __INETVEINS_IEEE80211PLCPHEADERS_H
 
 namespace inetveins {
 namespace serializer {
@@ -49,4 +49,4 @@ struct Ieee80211OFDMPLCPHeader
 } /* namespace serializer */
 } /* namespace inetveins */
 
-#endif /* __INET_IEEE80211PLCPHEADERS_H */
+#endif /* __INETVEINS_IEEE80211PLCPHEADERS_H */

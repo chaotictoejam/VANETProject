@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ICODE_H
-#define __INET_ICODE_H
+#ifndef __INETVEINS_ICODE_H
+#define __INETVEINS_ICODE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IPrintableObject.h"
 
@@ -30,4 +30,4 @@ class INETVEINS_API ICode : public IPrintableObject
 } /* namespace physicallayer */
 } /* namespace inetveins */
 
-#endif // ifndef __INET_ICODE_H
+#endif // ifndef __INETVEINS_ICODE_H

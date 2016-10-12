@@ -17,8 +17,8 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_EDCAUPPERMAC_H
-#define __INET_EDCAUPPERMAC_H
+#ifndef __INETVEINS_EDCAUPPERMAC_H
+#define __INETVEINS_EDCAUPPERMAC_H
 
 #include "IUpperMac.h"
 #include "IFrameExchange.h"
@@ -105,7 +105,7 @@ class INETVEINS_API EdcaUpperMac : public cSimpleModule, public IUpperMac, prote
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
-#ifndef __INET_TCPSESSIONAPP_H
-#define __INET_TCPSESSIONAPP_H
+#ifndef __INETVEINS_TCPSESSIONAPP_H
+#define __INETVEINS_TCPSESSIONAPP_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/lifecycle/LifecycleOperation.h"
 #include "inetveins/applications/tcpapp/TCPAppBase.h"
 #include "inetveins/common/lifecycle/NodeStatus.h"
@@ -76,7 +76,7 @@ class INETVEINS_API TCPSessionApp : public TCPAppBase
     virtual ~TCPSessionApp();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPSESSIONAPP_H
+#endif // ifndef __INETVEINS_TCPSESSIONAPP_H
 

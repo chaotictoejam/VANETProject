@@ -17,8 +17,8 @@
 // Author: Zoltan Bojthe
 //
 
-#ifndef __INET_FRAGMENTATION_H
-#define __INET_FRAGMENTATION_H
+#ifndef __INETVEINS_FRAGMENTATION_H
+#define __INETVEINS_FRAGMENTATION_H
 
 #include "IFragmentation.h"
 
@@ -68,6 +68,6 @@ class INETVEINS_API BasicReassembly : public IReassembly, public cObject
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif

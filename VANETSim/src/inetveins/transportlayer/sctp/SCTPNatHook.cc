@@ -307,5 +307,5 @@ void SCTPNatHook::finish()
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

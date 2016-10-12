@@ -100,5 +100,5 @@ cPacket* ARPSerializer::deserialize(const Buffer &b, Context& context)
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 

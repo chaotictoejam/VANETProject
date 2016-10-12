@@ -26,22 +26,22 @@
 
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 #include "inetveins/common/ModuleAccess.h"
 
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4InterfaceData.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6InterfaceData.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
-#ifdef WITH_GENERIC
+#ifdef WITH_INETVEINS_GENERIC
 #include "inetveins/networklayer/generic/GenericNetworkProtocolInterfaceData.h"
-#endif // ifdef WITH_GENERIC
+#endif // ifdef WITH_INETVEINS_GENERIC
 
 namespace inetveins {
 
@@ -108,14 +108,14 @@ std::string InterfaceEntry::info() const
     else
         out << getMacAddress();
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     if (ipv4data)
         out << " " << ipv4data->info();
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
     if (ipv6data)
         out << " " << ipv6data->info();
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
     if (isisdata)
         out << " " << ((InterfaceProtocolData *)isisdata)->info(); // Khmm...
     if (trilldata)
@@ -151,18 +151,18 @@ std::string InterfaceEntry::detailedInfo() const
     else
         out << getMacAddress();
     out << "\n";
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     if (ipv4data)
         out << " " << ipv4data->detailedInfo() << "\n";
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
     if (ipv6data)
         out << " " << ipv6data->detailedInfo() << "\n";
-#endif // ifdef WITH_IPv6
-#ifdef WITH_GENERIC
+#endif // ifdef WITH_INETVEINS_IPv6
+#ifdef WITH_INETVEINS_GENERIC
     if (genericNetworkProtocolData)
         out << " " << genericNetworkProtocolData->detailedInfo() << "\n";
-#endif // ifdef WITH_GENERIC
+#endif // ifdef WITH_INETVEINS_GENERIC
     if (isisdata)
         out << " " << ((InterfaceProtocolData *)isisdata)->detailedInfo() << "\n"; // Khmm...
     if (trilldata)
@@ -187,30 +187,30 @@ void InterfaceEntry::changed(simsignal_t signalID, int fieldId)
 
 void InterfaceEntry::resetInterface()
 {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     if (ipv4data && ipv4data->ownerp == this)
         delete ipv4data;
     ipv4data = nullptr;
-#else // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
     if (ipv4data)
-        throw cRuntimeError(this, "Model error: ipv4data filled, but INET was compiled without IPv4 support");
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+        throw cRuntimeError(this, "Model error: ipv4data filled, but INETVEINS was compiled without IPv4 support");
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
     if (ipv6data && ipv6data->ownerp == this)
         delete ipv6data;
     ipv6data = nullptr;
-#else // ifdef WITH_IPv6
+#else // ifdef WITH_INETVEINS_IPv6
     if (ipv6data)
-        throw cRuntimeError(this, "Model error: ipv6data filled, but INET was compiled without IPv6 support");
-#endif // ifdef WITH_IPv6
-#ifdef WITH_GENERIC
+        throw cRuntimeError(this, "Model error: ipv6data filled, but INETVEINS was compiled without IPv6 support");
+#endif // ifdef WITH_INETVEINS_IPv6
+#ifdef WITH_INETVEINS_GENERIC
     if (genericNetworkProtocolData && genericNetworkProtocolData->ownerp == this)
         delete genericNetworkProtocolData;
     genericNetworkProtocolData = nullptr;
-#else // ifdef WITH_GENERIC
+#else // ifdef WITH_INETVEINS_GENERIC
     if (genericNetworkProtocolData)
-        throw cRuntimeError(this, "Model error: genericNetworkProtocolData filled, but INET was compiled without Generic Network Layer support");
-#endif // ifdef WITH_GENERIC
+        throw cRuntimeError(this, "Model error: genericNetworkProtocolData filled, but INETVEINS was compiled without Generic Network Layer support");
+#endif // ifdef WITH_INETVEINS_GENERIC
     if (isisdata && ((InterfaceProtocolData *)isisdata)->ownerp == this)
         delete (InterfaceProtocolData *)isisdata;
     isisdata = nullptr;
@@ -224,58 +224,58 @@ void InterfaceEntry::resetInterface()
 
 void InterfaceEntry::setGenericNetworkProtocolData(GenericNetworkProtocolInterfaceData *p)
 {
-#ifdef WITH_GENERIC
+#ifdef WITH_INETVEINS_GENERIC
     if (genericNetworkProtocolData && genericNetworkProtocolData->ownerp == this)
         delete ipv4data;
     genericNetworkProtocolData = p;
     p->ownerp = this;
     configChanged(F_GENERIC_DATA);
-#else // ifdef WITH_GENERIC
-    throw cRuntimeError(this, "setGenericNetworkProtocolData(): INET was compiled without Generic Network Layer support");
-#endif // ifdef WITH_GENERIC
+#else // ifdef WITH_INETVEINS_GENERIC
+    throw cRuntimeError(this, "setGenericNetworkProtocolData(): INETVEINS was compiled without Generic Network Layer support");
+#endif // ifdef WITH_INETVEINS_GENERIC
 }
 
 const L3Address InterfaceEntry::getNetworkAddress() const
 {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     if (ipv4data)
         return ipv4data->getIPAddress();
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
     if (ipv6data)
         return ipv6data->getPreferredAddress();
-#endif // ifdef WITH_IPv6
-#ifdef WITH_GENERIC
+#endif // ifdef WITH_INETVEINS_IPv6
+#ifdef WITH_INETVEINS_GENERIC
     if (genericNetworkProtocolData)
         return genericNetworkProtocolData->getAddress();
-#endif // ifdef WITH_GENERIC
+#endif // ifdef WITH_INETVEINS_GENERIC
     return getModulePathAddress();
 }
 
 void InterfaceEntry::setIPv4Data(IPv4InterfaceData *p)
 {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     if (ipv4data && ipv4data->ownerp == this)
         delete ipv4data;
     ipv4data = p;
     p->ownerp = this;
     configChanged(F_IPV4_DATA);
-#else // ifdef WITH_IPv4
-    throw cRuntimeError(this, "setIPv4Data(): INET was compiled without IPv4 support");
-#endif // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
+    throw cRuntimeError(this, "setIPv4Data(): INETVEINS was compiled without IPv4 support");
+#endif // ifdef WITH_INETVEINS_IPv4
 }
 
 void InterfaceEntry::setIPv6Data(IPv6InterfaceData *p)
 {
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     if (ipv6data && ipv6data->ownerp == this)
         delete ipv6data;
     ipv6data = p;
     p->ownerp = this;
     configChanged(F_IPV6_DATA);
-#else // ifdef WITH_IPv6
-    throw cRuntimeError(this, "setIPv6Data(): INET was compiled without IPv6 support");
-#endif // ifdef WITH_IPv6
+#else // ifdef WITH_INETVEINS_IPv6
+    throw cRuntimeError(this, "setIPv6Data(): INETVEINS was compiled without IPv6 support");
+#endif // ifdef WITH_INETVEINS_IPv6
 }
 
 void InterfaceEntry::setTRILLInterfaceData(TRILLInterfaceData *p)
@@ -329,26 +329,26 @@ MacEstimateCostProcess *InterfaceEntry::getEstimateCostProcess(int position)
 void InterfaceEntry::joinMulticastGroup(const L3Address& address) const
 {
     switch (address.getType()) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         case L3Address::IPv4:
             ipv4Data()->joinMulticastGroup(address.toIPv4());
             break;
 
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
         case L3Address::IPv6:
             ipv6Data()->joinMulticastGroup(address.toIPv6());
             break;
 
-#endif // ifdef WITH_IPv6
-#ifdef WITH_GENERIC
+#endif // ifdef WITH_INETVEINS_IPv6
+#ifdef WITH_INETVEINS_GENERIC
         case L3Address::MAC:
         case L3Address::MODULEID:
         case L3Address::MODULEPATH:
             getGenericNetworkProtocolData()->joinMulticastGroup(address);
             break;
 
-#endif // ifdef WITH_GENERIC
+#endif // ifdef WITH_INETVEINS_GENERIC
         default:
             throw cRuntimeError("Unknown address type");
     }
@@ -366,7 +366,7 @@ void InterfaceEntry::changeMulticastGroupMembership(const L3Address& multicastAd
         McastSourceFilterMode newFilterMode, const std::vector<L3Address>& newSourceList)
 {
     switch (multicastAddress.getType()) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         case L3Address::IPv4: {
             std::vector<IPv4Address> oldIPv4SourceList, newIPv4SourceList;
             toIPv4AddressVector(oldSourceList, oldIPv4SourceList);
@@ -376,14 +376,14 @@ void InterfaceEntry::changeMulticastGroupMembership(const L3Address& multicastAd
             break;
         }
 
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
         case L3Address::IPv6:
             // TODO
             throw cRuntimeError("changeMulticastGroupMembership() not implemented for type %s", L3Address::getTypeName(multicastAddress.getType()));
             break;
 
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
         case L3Address::MAC:
         case L3Address::MODULEID:
         case L3Address::MODULEPATH:
@@ -396,5 +396,5 @@ void InterfaceEntry::changeMulticastGroupMembership(const L3Address& multicastAd
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

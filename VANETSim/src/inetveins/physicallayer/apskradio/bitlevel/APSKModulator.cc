@@ -65,5 +65,5 @@ const ITransmissionSymbolModel *APSKModulator::modulate(const ITransmissionBitMo
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

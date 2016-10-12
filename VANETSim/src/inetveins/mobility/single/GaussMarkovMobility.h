@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_GAUSSMARKOVMOBILITY_H
-#define __INET_GAUSSMARKOVMOBILITY_H
+#ifndef __INETVEINS_GAUSSMARKOVMOBILITY_H
+#define __INETVEINS_GAUSSMARKOVMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/base/LineSegmentsMobilityBase.h"
 
@@ -60,7 +60,7 @@ class INETVEINS_API GaussMarkovMobility : public LineSegmentsMobilityBase
     GaussMarkovMobility();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GAUSSMARKOVMOBILITY_H
+#endif // ifndef __INETVEINS_GAUSSMARKOVMOBILITY_H
 

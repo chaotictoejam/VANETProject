@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_FLATTRANSMISSIONBASE_H
-#define __INET_FLATTRANSMISSIONBASE_H
+#ifndef __INETVEINS_FLATTRANSMISSIONBASE_H
+#define __INETVEINS_FLATTRANSMISSIONBASE_H
 
 #include "inetveins/physicallayer/base/packetlevel/NarrowbandTransmissionBase.h"
 
@@ -43,7 +43,7 @@ class INETVEINS_API FlatTransmissionBase : public NarrowbandTransmissionBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_FLATTRANSMISSIONBASE_H
+#endif // ifndef __INETVEINS_FLATTRANSMISSIONBASE_H
 

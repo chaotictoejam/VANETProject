@@ -54,5 +54,5 @@ int RTPPacket::getPayloadLength() const
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

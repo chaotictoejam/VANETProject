@@ -21,5 +21,5 @@ namespace inetveins {
 
 MACAddressType MACAddressType::INSTANCE;
 
-} // namespace inet
+} // namespace inetveins
 

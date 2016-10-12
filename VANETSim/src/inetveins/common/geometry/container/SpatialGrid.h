@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SPATIALGRID_H
-#define __INET_SPATIALGRID_H
+#ifndef __INETVEINS_SPATIALGRID_H
+#define __INETVEINS_SPATIALGRID_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/geometry/common/Coord.h"
 #include "inetveins/common/geometry/object/LineSegment.h"
 #include "inetveins/common/IVisitor.h"
@@ -123,4 +123,4 @@ class INETVEINS_API SpatialGrid
 
 } /* namespace inetveins */
 
-#endif // ifndef __INET_SPATIALGRID_H
+#endif // ifndef __INETVEINS_SPATIALGRID_H

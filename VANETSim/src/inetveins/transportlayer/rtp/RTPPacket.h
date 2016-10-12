@@ -15,8 +15,8 @@
 *                                                                         *
 ***************************************************************************/
 
-#ifndef __INET_RTPPACKET_H
-#define __INET_RTPPACKET_H
+#ifndef __INETVEINS_RTPPACKET_H
+#define __INETVEINS_RTPPACKET_H
 
 #include "inetveins/transportlayer/rtp/RTPPacket_m.h"
 
@@ -66,7 +66,7 @@ class INETVEINS_API RTPPacket : public RTPPacket_Base
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RTPPACKET_H
+#endif // ifndef __INETVEINS_RTPPACKET_H
 

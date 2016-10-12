@@ -15,8 +15,8 @@
 *              in the top level directory
 ***************************************************************************/
 
-#ifndef __INET_RAYLEIGHFADING_H
-#define __INET_RAYLEIGHFADING_H
+#ifndef __INETVEINS_RAYLEIGHFADING_H
+#define __INETVEINS_RAYLEIGHFADING_H
 
 #include "inetveins/physicallayer/pathloss/FreeSpacePathLoss.h"
 
@@ -39,7 +39,7 @@ class INETVEINS_API RayleighFading : public FreeSpacePathLoss
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RAYLEIGHFADING_H
+#endif // ifndef __INETVEINS_RAYLEIGHFADING_H
 

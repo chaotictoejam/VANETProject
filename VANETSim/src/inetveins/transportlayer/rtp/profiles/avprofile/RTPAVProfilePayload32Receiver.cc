@@ -161,5 +161,5 @@ void RTPAVProfilePayload32Receiver::processPacket(RTPPacket *rtpPacket)
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

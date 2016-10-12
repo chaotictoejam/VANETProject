@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ISOTROPICDIMENSIONALBACKGROUNDNOISE_H
-#define __INET_ISOTROPICDIMENSIONALBACKGROUNDNOISE_H
+#ifndef __INETVEINS_ISOTROPICDIMENSIONALBACKGROUNDNOISE_H
+#define __INETVEINS_ISOTROPICDIMENSIONALBACKGROUNDNOISE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IBackgroundNoise.h"
 #include "inetveins/common/mapping/MappingBase.h"
@@ -45,7 +45,7 @@ class INETVEINS_API IsotropicDimensionalBackgroundNoise : public cModule, public
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ISOTROPICDIMENSIONALBACKGROUNDNOISE_H
+#endif // ifndef __INETVEINS_ISOTROPICDIMENSIONALBACKGROUNDNOISE_H
 

@@ -11,10 +11,10 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_TCPSPOOF_H
-#define __INET_TCPSPOOF_H
+#ifndef __INETVEINS_TCPSPOOF_H
+#define __INETVEINS_TCPSPOOF_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/tcp_common/TCPSegment.h"
 #include "inetveins/networklayer/common/L3AddressResolver.h"
@@ -43,7 +43,7 @@ class INETVEINS_API TCPSpoof : public cSimpleModule
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPSPOOF_H
+#endif // ifndef __INETVEINS_TCPSPOOF_H
 

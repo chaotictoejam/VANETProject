@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_APSKMODULATIONBASE_H
-#define __INET_APSKMODULATIONBASE_H
+#ifndef __INETVEINS_APSKMODULATIONBASE_H
+#define __INETVEINS_APSKMODULATIONBASE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IAPSKModulation.h"
 #include "inetveins/common/ShortBitVector.h"
@@ -52,7 +52,7 @@ class INETVEINS_API APSKModulationBase : public IAPSKModulation
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_APSKMODULATIONBASE_H
+#endif // ifndef __INETVEINS_APSKMODULATIONBASE_H
 

@@ -12,12 +12,12 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_UTILS_H
-#define __INET_UTILS_H
+#ifndef __INETVEINS_UTILS_H
+#define __INETVEINS_UTILS_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/rsvp_te/IntServ.h"
 
@@ -61,7 +61,7 @@ cModule *getPayloadOwner(cPacket *msg);
 
 //void prepend(EroVector& dest, const EroVector& src, bool reverse);
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_UTILS_H
+#endif // ifndef __INETVEINS_UTILS_H
 

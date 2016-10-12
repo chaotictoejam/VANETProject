@@ -23,28 +23,28 @@
 
 #include "inetveins/common/packet/PacketDump.h"
 
-#ifdef WITH_UDP
+#ifdef WITH_INETVEINS_UDP
 #include "inetveins/transportlayer/udp/UDPPacket.h"
-#endif // ifdef WITH_UDP
+#endif // ifdef WITH_INETVEINS_UDP
 
-#ifdef WITH_SCTP
+#ifdef WITH_INETVEINS_SCTP
 #include "inetveins/transportlayer/sctp/SCTPMessage.h"
 #include "inetveins/transportlayer/sctp/SCTPAssociation.h"
-#endif // ifdef WITH_SCTP
+#endif // ifdef WITH_INETVEINS_SCTP
 
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
 #include "inetveins/transportlayer/tcp_common/TCPSegment.h"
-#endif // ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/arp/ipv4/ARPPacket_m.h"
 #include "inetveins/networklayer/ipv4/ICMPMessage.h"
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6Datagram.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 namespace inetveins {
 
@@ -70,9 +70,9 @@ void PacketDump::sctpDump(const char *label, sctp::SCTPMessage *sctpmsg,
     sprintf(buf, "[%.3f%s] ", simTime().dbl(), label);
     out << buf;
 
-#ifndef WITH_SCTP
+#ifndef WITH_INETVEINS_SCTP
     out << "[sctp] " << srcAddr << " > " << destAddr;
-#else // ifndef WITH_SCTP
+#else // ifndef WITH_INETVEINS_SCTP
     uint32 numberOfChunks;
     SCTPChunk *chunk;
     uint8 type;
@@ -343,7 +343,7 @@ void PacketDump::sctpDump(const char *label, sctp::SCTPMessage *sctpmsg,
             out << endl;
         }
     }
-#endif // ifndef WITH_SCTP
+#endif // ifndef WITH_INETVEINS_SCTP
 
     // comment
     if (comment)
@@ -367,7 +367,7 @@ void PacketDump::dumpPacket(bool l2r, cPacket *msg)
 {
     std::ostream& out = *outp;
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     if (dynamic_cast<IPv4Datagram *>(msg)) {
         dumpIPv4(l2r, "", (IPv4Datagram *)msg, "");
     }
@@ -375,29 +375,29 @@ void PacketDump::dumpPacket(bool l2r, cPacket *msg)
         dumpARP(l2r, "", (ARPPacket *)msg, "");
     }
     else
-#endif // ifdef WITH_IPv4
-#ifdef WITH_SCTP
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_SCTP
     if (dynamic_cast<sctp::SCTPMessage *>(msg)) {
         sctpDump("", (sctp::SCTPMessage *)msg, std::string(l2r ? "A" : "B"), std::string(l2r ? "B" : "A"));
     }
     else
-#endif // ifdef WITH_SCTP
-#ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_SCTP
+#ifdef WITH_INETVEINS_TCP_COMMON
     if (dynamic_cast<tcp::TCPSegment *>(msg)) {
         tcpDump(l2r, "", static_cast<tcp::TCPSegment *>(msg), std::string(l2r ? "A" : "B"), std::string(l2r ? "B" : "A"));
     }
     else
-#endif // ifdef WITH_TCP_COMMON
-#ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
+#ifdef WITH_INETVEINS_IPv4
     if (dynamic_cast<ICMPMessage *>(msg)) {
         out << "ICMPMessage " << msg->getName() << (msg->hasBitError() ? " (BitError)" : "") << endl;
     }
     else
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
     {
         // search for encapsulated IPv4[v6]Datagram in it
         while (msg) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
             if (dynamic_cast<IPv4Datagram *>(msg)) {
                 dumpIPv4(l2r, "", (IPv4Datagram *)msg);
                 break;
@@ -406,13 +406,13 @@ void PacketDump::dumpPacket(bool l2r, cPacket *msg)
                 dumpARP(l2r, "", (ARPPacket *)msg, "");
                 break;
             }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
             if (dynamic_cast<IPv6Datagram *>(msg)) {
                 dumpIPv6(l2r, "", (IPv6Datagram *)msg);
                 break;
             }
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
             out << "Packet " << msg->getClassName() << " '" << msg->getName() << "'"
                 << (msg->hasBitError() ? " (BitError)" : "") << ": ";
             msg = msg->getEncapsulatedPacket();
@@ -435,12 +435,12 @@ void PacketDump::udpDump(bool l2r, const char *label, UDPPacket *udppkt,
     sprintf(buf, "[%.3f%s] ", simTime().dbl(), label);
     out << buf;
 
-#ifndef WITH_UDP
+#ifndef WITH_INETVEINS_UDP
     if (l2r)
         out << "[UDP] " << srcAddr << " > " << destAddr << ": ";
     else
         out << "[UDP] " << destAddr << " < " << srcAddr << ": ";
-#else // ifndef WITH_UDP
+#else // ifndef WITH_INETVEINS_UDP
       // seq and time (not part of the tcpdump format)
       // src/dest
     if (l2r) {
@@ -455,14 +455,14 @@ void PacketDump::udpDump(bool l2r, const char *label, UDPPacket *udppkt,
     //out << endl;
     out << "UDP: Payload length=" << udppkt->getByteLength() - 8 << endl;
 
-#ifdef WITH_SCTP
+#ifdef WITH_INETVEINS_SCTP
     if (udppkt->getSourcePort() == 9899 || udppkt->getDestinationPort() == 9899) {
         if (dynamic_cast<sctp::SCTPMessage *>(udppkt->getEncapsulatedPacket()))
             sctpDump("", (sctp::SCTPMessage *)(udppkt->getEncapsulatedPacket()),
                     std::string(l2r ? "A" : "B"), std::string(l2r ? "B" : "A"));
     }
-#endif // ifdef WITH_SCTP
-#endif // ifndef WITH_UDP
+#endif // ifdef WITH_INETVEINS_SCTP
+#endif // ifndef WITH_INETVEINS_UDP
 
     // comment
     if (comment)
@@ -473,13 +473,13 @@ void PacketDump::udpDump(bool l2r, const char *label, UDPPacket *udppkt,
 
 void PacketDump::dumpARP(bool l2r, const char *label, ARPPacket *dgram, const char *comment)
 {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     std::ostream& out = *outp;
     char buf[30];
     sprintf(buf, "[%.3f%s] ", simTime().dbl(), label);
     out << buf << " src: " << dgram->getSrcIPAddress() << ", " << dgram->getSrcMACAddress()
         << "; dest: " << dgram->getDestIPAddress() << ", " << dgram->getDestMACAddress() << endl;
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 }
 
 void PacketDump::dumpIPv4(bool l2r, const char *label, IPv4Datagram *dgram, const char *comment)
@@ -488,25 +488,25 @@ void PacketDump::dumpIPv4(bool l2r, const char *label, IPv4Datagram *dgram, cons
     char buf[30];
     std::string classes;
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     cPacket *encapmsg = dgram->getEncapsulatedPacket();
 
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
     if (dynamic_cast<tcp::TCPSegment *>(encapmsg)) {
         // if TCP, dump as TCP
         tcpDump(l2r, label, static_cast<tcp::TCPSegment *>(encapmsg), dgram->getSrcAddress().str(),
                 dgram->getDestAddress().str(), comment);
     }
     else
-#endif // ifdef WITH_TCP_COMMON
-#ifdef WITH_UDP
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
+#ifdef WITH_INETVEINS_UDP
     if (dynamic_cast<UDPPacket *>(encapmsg)) {
         udpDump(l2r, label, (UDPPacket *)encapmsg, dgram->getSrcAddress().str(),
                 dgram->getDestAddress().str(), comment);
     }
     else
-#endif // ifdef WITH_UDP
-#ifdef WITH_SCTP
+#endif // ifdef WITH_INETVEINS_UDP
+#ifdef WITH_INETVEINS_SCTP
     if (dynamic_cast<sctp::SCTPMessage *>(dgram->getEncapsulatedPacket())) {
         sctp::SCTPMessage *sctpmsg = check_and_cast<sctp::SCTPMessage *>(dgram->getEncapsulatedPacket());
         if (dgram->hasBitError())
@@ -514,7 +514,7 @@ void PacketDump::dumpIPv4(bool l2r, const char *label, IPv4Datagram *dgram, cons
         sctpDump(label, sctpmsg, dgram->getSrcAddress().str(), dgram->getDestAddress().str(), comment);
     }
     else
-#endif // ifdef WITH_SCTP
+#endif // ifdef WITH_INETVEINS_SCTP
     {
         // some other packet, dump what we can
         // seq and time (not part of the tcpdump format)
@@ -536,7 +536,7 @@ void PacketDump::dumpIPv4(bool l2r, const char *label, IPv4Datagram *dgram, cons
 
         out << endl;
     }
-#else // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
     sprintf(buf, "[%.3f%s] ", SIMTIME_DBL(simTime()), label);
     out << buf << "[IPv4]";
 
@@ -545,7 +545,7 @@ void PacketDump::dumpIPv4(bool l2r, const char *label, IPv4Datagram *dgram, cons
         out << " # " << comment;
 
     out << endl;
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 }
 
 void PacketDump::dumpIPv6(bool l2r, const char *label, IPv6Datagram *dgram, const char *comment)
@@ -555,17 +555,17 @@ void PacketDump::dumpIPv6(bool l2r, const char *label, IPv6Datagram *dgram, cons
     std::ostream& out = *outp;
     char buf[30];
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     cPacket *encapmsg = dgram->getEncapsulatedPacket();
 
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
     if (dynamic_cast<TCPSegment *>(encapmsg)) {
         // if TCP, dump as TCP
         tcpDump(l2r, label, (TCPSegment *)encapmsg, dgram->getSrcAddress().str(),
                 dgram->getDestAddress().str(), comment);
     }
     else
-#endif // ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
     {
         // some other packet, dump what we can
         // seq and time (not part of the tcpdump format)
@@ -581,7 +581,7 @@ void PacketDump::dumpIPv6(bool l2r, const char *label, IPv6Datagram *dgram, cons
 
         out << endl;
     }
-#else // ifdef WITH_IPv6
+#else // ifdef WITH_INETVEINS_IPv6
     sprintf(buf, "[%.3f%s] ", SIMTIME_DBL(simTime()), label);
     out << buf << "[IPv4]";
 
@@ -590,7 +590,7 @@ void PacketDump::dumpIPv6(bool l2r, const char *label, IPv6Datagram *dgram, cons
         out << " # " << comment;
 
     out << endl;
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 }
 
 void PacketDump::tcpDump(bool l2r, const char *label, tcp::TCPSegment *tcpseg,
@@ -605,12 +605,12 @@ void PacketDump::tcpDump(bool l2r, const char *label, tcp::TCPSegment *tcpseg,
     sprintf(buf, "[%.3f%s] ", SIMTIME_DBL(simTime()), label);
     out << buf;
 
-#ifndef WITH_TCP_COMMON
+#ifndef WITH_INETVEINS_TCP_COMMON
     if (l2r)
         out << srcAddr << " > " << destAddr << ": ";
     else
         out << destAddr << " < " << srcAddr << ": ";
-#else // ifndef WITH_TCP_COMMON
+#else // ifndef WITH_INETVEINS_TCP_COMMON
       // src/dest ports
     if (l2r) {
         out << srcAddr << "." << tcpseg->getSrcPort() << " > ";
@@ -682,7 +682,7 @@ void PacketDump::tcpDump(bool l2r, const char *label, tcp::TCPSegment *tcpseg,
             }
         }
     }
-#endif // ifndef WITH_TCP_COMMON
+#endif // ifndef WITH_INETVEINS_TCP_COMMON
 
     // comment
     if (comment)
@@ -691,5 +691,5 @@ void PacketDump::tcpDump(bool l2r, const char *label, tcp::TCPSegment *tcpseg,
     out << endl;
 }
 
-} // namespace inet
+} // namespace inetveins
 

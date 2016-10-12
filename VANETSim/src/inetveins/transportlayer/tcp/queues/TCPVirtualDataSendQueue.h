@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPVIRTUALDATASENDQUEUE_H
-#define __INET_TCPVIRTUALDATASENDQUEUE_H
+#ifndef __INETVEINS_TCPVIRTUALDATASENDQUEUE_H
+#define __INETVEINS_TCPVIRTUALDATASENDQUEUE_H
 
 #include "inetveins/transportlayer/tcp/TCPSendQueue.h"
 
@@ -86,7 +86,7 @@ class INETVEINS_API TCPVirtualDataSendQueue : public TCPSendQueue
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPVIRTUALDATASENDQUEUE_H
+#endif // ifndef __INETVEINS_TCPVIRTUALDATASENDQUEUE_H
 

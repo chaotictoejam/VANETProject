@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTP_H
-#define __INET_SCTP_H
+#ifndef __INETVEINS_SCTP_H
+#define __INETVEINS_SCTP_H
 
 #ifdef _MSC_VER
 #pragma warning(disable : 4786)
@@ -25,7 +25,7 @@
 
 #include <map>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/transportlayer/contract/udp/UDPSocket.h"
@@ -259,7 +259,7 @@ class INETVEINS_API SCTP : public cSimpleModule
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTP_H
+#endif // ifndef __INETVEINS_SCTP_H
 

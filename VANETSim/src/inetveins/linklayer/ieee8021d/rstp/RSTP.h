@@ -17,8 +17,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_RSTP_H
-#define __INET_RSTP_H
+#ifndef __INETVEINS_RSTP_H
+#define __INETVEINS_RSTP_H
 
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/linklayer/ieee8021d/common/Ieee8021dBPDU_m.h"
@@ -179,7 +179,7 @@ class INETVEINS_API RSTP : public STPBase
     virtual void flushOtherPorts(unsigned int portNum);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RSTP_H
+#endif // ifndef __INETVEINS_RSTP_H
 

@@ -74,5 +74,5 @@ uint32_t ethernetCRC(const unsigned char *buf, unsigned int bufsize)
 }
 
 } // namespace serializer
-} // namespace inet
+} // namespace inetveins
 

@@ -156,5 +156,5 @@ void QuadTreeNeighborCache::QuadTreeNeighborCacheVisitor::visit(const cObject *r
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

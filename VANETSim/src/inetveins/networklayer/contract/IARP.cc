@@ -25,5 +25,5 @@ const simsignal_t IARP::initiatedARPResolutionSignal = cComponent::registerSigna
 const simsignal_t IARP::completedARPResolutionSignal = cComponent::registerSignal("completedARPResolution");
 const simsignal_t IARP::failedARPResolutionSignal = cComponent::registerSignal("failedARPResolution");
 
-} // namespace inet
+} // namespace inetveins
 

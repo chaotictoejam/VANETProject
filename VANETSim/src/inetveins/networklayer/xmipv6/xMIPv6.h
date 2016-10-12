@@ -20,13 +20,13 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#ifndef __INET_XMIPV6_H
-#define __INET_XMIPV6_H
+#ifndef __INETVEINS_XMIPV6_H
+#define __INETVEINS_XMIPV6_H
 
 #include <vector>
 #include <map>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/ipv6/IPv6Address.h"
 #include "inetveins/networklayer/xmipv6/BindingUpdateList.h"
@@ -557,7 +557,7 @@ class INETVEINS_API xMIPv6 : public cSimpleModule
     void handleTokenExpiry(cMessage *msg);
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif    //__XMIPV6_H__
 

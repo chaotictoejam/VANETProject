@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_STLUTILS_H
-#define __INET_STLUTILS_H
+#ifndef __INETVEINS_STLUTILS_H
+#define __INETVEINS_STLUTILS_H
 
 // various utility functions to make STL containers more usable
 
@@ -34,7 +34,7 @@ typename std::vector<T>::const_iterator find(const std::vector<T>& v, T& a) { re
 template<typename T>
 inline bool contains(const std::vector<T>& v, T& a) { return find(v, a) != v.end(); }
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_STLUTILS_H
+#endif // ifndef __INETVEINS_STLUTILS_H
 

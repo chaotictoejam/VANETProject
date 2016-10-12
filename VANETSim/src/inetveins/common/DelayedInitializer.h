@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DELAYEDINITIALIZER_H
-#define __INET_DELAYEDINITIALIZER_H
+#ifndef __INETVEINS_DELAYEDINITIALIZER_H
+#define __INETVEINS_DELAYEDINITIALIZER_H
 
 #include <functional>
 
@@ -47,4 +47,4 @@ template <typename T> class INETVEINS_API DelayedInitializer
 
 } /* namespace inetveins */
 
-#endif // ifndef __INET_DELAYEDINITIALIZER_H
+#endif // ifndef __INETVEINS_DELAYEDINITIALIZER_H

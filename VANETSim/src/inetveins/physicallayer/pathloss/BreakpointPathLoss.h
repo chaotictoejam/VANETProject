@@ -1,5 +1,5 @@
-#ifndef __INET_BREAKPOINTPATHLOSS_H
-#define __INET_BREAKPOINTPATHLOSS_H
+#ifndef __INETVEINS_BREAKPOINTPATHLOSS_H
+#define __INETVEINS_BREAKPOINTPATHLOSS_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IPathLoss.h"
 
@@ -32,6 +32,6 @@ class INETVEINS_API BreakpointPathLoss : public cModule, public IPathLoss
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BREAKPOINTPATHLOSS_H
+#endif // ifndef __INETVEINS_BREAKPOINTPATHLOSS_H

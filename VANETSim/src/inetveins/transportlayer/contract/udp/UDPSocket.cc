@@ -17,9 +17,9 @@
 
 #include "inetveins/transportlayer/contract/udp/UDPSocket.h"
 #include "inetveins/transportlayer/contract/udp/UDPControlInfo.h"
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4InterfaceData.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
 namespace inetveins {
 
@@ -340,5 +340,5 @@ std::string UDPSocket::getReceivedPacketInfo(cPacket *pk)
     return os.str();
 }
 
-} // namespace inet
+} // namespace inetveins
 

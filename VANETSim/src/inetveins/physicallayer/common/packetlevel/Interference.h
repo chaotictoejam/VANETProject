@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INTERFERENCE_H
-#define __INET_INTERFERENCE_H
+#ifndef __INETVEINS_INTERFERENCE_H
+#define __INETVEINS_INTERFERENCE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IInterference.h"
 
@@ -41,7 +41,7 @@ class INETVEINS_API Interference : public virtual IInterference
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INTERFERENCE_H
+#endif // ifndef __INETVEINS_INTERFERENCE_H
 

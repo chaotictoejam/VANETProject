@@ -13,12 +13,12 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_MPLSPACKET_H
-#define __INET_MPLSPACKET_H
+#ifndef __INETVEINS_MPLSPACKET_H
+#define __INETVEINS_MPLSPACKET_H
 
 #include <stack>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -78,7 +78,7 @@ class INETVEINS_API MPLSPacket : public cPacket
     inline int getTopLabel() { return labels.back(); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MPLSPACKET_H
+#endif // ifndef __INETVEINS_MPLSPACKET_H
 

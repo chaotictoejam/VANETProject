@@ -67,5 +67,5 @@ void TCPGenericSrvThread::timerExpired(cMessage *timer)
     // no timers in this serverThread
 }
 
-} // namespace inet
+} // namespace inetveins
 

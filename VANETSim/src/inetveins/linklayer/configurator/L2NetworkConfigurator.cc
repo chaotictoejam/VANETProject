@@ -317,5 +317,5 @@ bool L2NetworkConfigurator::Matcher::matches(const char *s)
     return false;
 }
 
-} // namespace inet
+} // namespace inetveins
 

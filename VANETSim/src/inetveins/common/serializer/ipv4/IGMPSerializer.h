@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IGMPSERIALIZER_H
-#define __INET_IGMPSERIALIZER_H
+#ifndef __INETVEINS_IGMPSERIALIZER_H
+#define __INETVEINS_IGMPSERIALIZER_H
 
 #include "inetveins/common/serializer/SerializerBase.h"
 
@@ -40,7 +40,7 @@ class INETVEINS_API IGMPSerializer : public SerializerBase
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IGMPSERIALIZER_H
+#endif // ifndef __INETVEINS_IGMPSERIALIZER_H
 

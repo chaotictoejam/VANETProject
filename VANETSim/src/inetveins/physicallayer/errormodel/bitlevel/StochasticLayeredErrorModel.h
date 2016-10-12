@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_STOCHASTICLAYEREDERRORMODEL_H
-#define __INET_STOCHASTICLAYEREDERRORMODEL_H
+#ifndef __INETVEINS_STOCHASTICLAYEREDERRORMODEL_H
+#define __INETVEINS_STOCHASTICLAYEREDERRORMODEL_H
 
 #include "inetveins/physicallayer/base/bitlevel/LayeredErrorModelBase.h"
 
@@ -47,7 +47,7 @@ class INETVEINS_API StochasticLayeredErrorModel : public LayeredErrorModelBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LAYEREDSTOCHASTICERRORMODEL_H
+#endif // ifndef __INETVEINS_LAYEREDSTOCHASTICERRORMODEL_H
 

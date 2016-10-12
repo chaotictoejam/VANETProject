@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SHAPEBASE_H
-#define __INET_SHAPEBASE_H
+#ifndef __INETVEINS_SHAPEBASE_H
+#define __INETVEINS_SHAPEBASE_H
 
 #include "inetveins/common/geometry/object/LineSegment.h"
 
@@ -45,7 +45,7 @@ class INETVEINS_API ShapeBase
     virtual bool computeIntersection(const LineSegment& lineSegment, Coord& intersection1, Coord& intersection2, Coord& normal1, Coord& normal2) const = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SHAPEBASE_H
+#endif // ifndef __INETVEINS_SHAPEBASE_H
 

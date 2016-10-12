@@ -111,5 +111,5 @@ void HostAutoConfigurator::setupNetworkLayer()
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MACPROTOCOLBASE_H
-#define __INET_MACPROTOCOLBASE_H
+#ifndef __INETVEINS_MACPROTOCOLBASE_H
+#define __INETVEINS_MACPROTOCOLBASE_H
 
 #include "inetveins/common/LayeredProtocolBase.h"
 #include "inetveins/common/lifecycle/NodeOperations.h"
@@ -56,7 +56,7 @@ class INETVEINS_API MACProtocolBase : public LayeredProtocolBase, public cListen
     virtual bool isNodeShutdownStage(int stage) override { return stage == NodeShutdownOperation::STAGE_LINK_LAYER; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MACPROTOCOLBASE_H
+#endif // ifndef __INETVEINS_MACPROTOCOLBASE_H
 

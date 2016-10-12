@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV4_H
-#define __INET_IPV4_H
+#ifndef __INETVEINS_IPV4_H
+#define __INETVEINS_IPV4_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/IARP.h"
 #include "inetveins/networklayer/ipv4/ICMP.h"
@@ -311,7 +311,7 @@ class INETVEINS_API IPv4 : public QueueBase, public INetfilter, public ILifecycl
     virtual void flush();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV4_H
+#endif // ifndef __INETVEINS_IPV4_H
 

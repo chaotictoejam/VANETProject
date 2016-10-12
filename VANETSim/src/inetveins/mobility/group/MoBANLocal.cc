@@ -39,7 +39,7 @@
  *
  **************************************************************************/
 
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/mobility/group/MoBANLocal.h"
 
 namespace inetveins {
@@ -138,5 +138,5 @@ Coord MoBANLocal::getCurrentSpeed()
 }
 
 
-} // namespace inet
+} // namespace inetveins
 

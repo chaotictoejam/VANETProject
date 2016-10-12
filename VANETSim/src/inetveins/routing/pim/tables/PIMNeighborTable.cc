@@ -184,5 +184,5 @@ PIMNeighbor *PIMNeighborTable::getNeighbor(int interfaceId, int index)
     auto it = neighbors.find(interfaceId);
     return it != neighbors.end() ? it->second.at(index) : nullptr;
 }
-}    // namespace inet
+}    // namespace inetveins
 

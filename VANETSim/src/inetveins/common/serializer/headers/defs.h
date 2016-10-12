@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DEFS_H
-#define __INET_DEFS_H
+#ifndef __INETVEINS_DEFS_H
+#define __INETVEINS_DEFS_H
 
 #include <stdint.h>    /* ISO C compliant platforms: Linux, Mac OS/X, recent MSVC versions */
 
@@ -44,5 +44,5 @@
 #error Endian macros (LITTLE_ENDIAN, BIG_ENDIAN, BYTE_ORDER) are not set up correctly -- please fix this header file and report it.
 #endif // if !defined(LITTLE_ENDIAN) || !defined(BIG_ENDIAN) || !defined(BYTE_ORDER) || (BYTE_ORDER != LITTLE_ENDIAN && BYTE_ORDER != BIG_ENDIAN)
 
-#endif // ifndef __INET_DEFS_H
+#endif // ifndef __INETVEINS_DEFS_H
 

@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPGENERICSRVTHREAD_H
-#define __INET_TCPGENERICSRVTHREAD_H
+#ifndef __INETVEINS_TCPGENERICSRVTHREAD_H
+#define __INETVEINS_TCPGENERICSRVTHREAD_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/applications/tcpapp/TCPSrvHostApp.h"
 
@@ -37,7 +37,7 @@ class INETVEINS_API TCPGenericSrvThread : public TCPServerThreadBase
     virtual void timerExpired(cMessage *timer) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPGENERICSRVTHREAD_H
+#endif // ifndef __INETVEINS_TCPGENERICSRVTHREAD_H
 

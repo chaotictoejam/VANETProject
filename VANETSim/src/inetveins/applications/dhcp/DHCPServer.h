@@ -17,13 +17,13 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DHCPSERVER_H
-#define __INET_DHCPSERVER_H
+#ifndef __INETVEINS_DHCPSERVER_H
+#define __INETVEINS_DHCPSERVER_H
 
 #include <vector>
 #include <map>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/applications/dhcp/DHCPMessage_m.h"
 #include "inetveins/applications/dhcp/DHCPLease.h"
@@ -126,7 +126,7 @@ class INETVEINS_API DHCPServer : public cSimpleModule, public cListener, public 
     virtual ~DHCPServer();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DHCPSERVER_H
+#endif // ifndef __INETVEINS_DHCPSERVER_H
 

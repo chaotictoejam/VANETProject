@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211IRMODE_H
-#define __INET_IEEE80211IRMODE_H
+#ifndef __INETVEINS_IEEE80211IRMODE_H
+#define __INETVEINS_IEEE80211IRMODE_H
 
 #include "inetveins/physicallayer/base/packetlevel/PPMModulationBase.h"
 #include "inetveins/physicallayer/ieee80211/mode/Ieee80211ModeBase.h"
@@ -142,7 +142,7 @@ class INETVEINS_API Ieee80211IrCompliantModes
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE80211IRMODE_H
+#endif // ifndef __INETVEINS_IEEE80211IRMODE_H
 

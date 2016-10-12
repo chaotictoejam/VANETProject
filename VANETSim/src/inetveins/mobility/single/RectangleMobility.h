@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_RECTANGLEMOBILITY_H
-#define __INET_RECTANGLEMOBILITY_H
+#ifndef __INETVEINS_RECTANGLEMOBILITY_H
+#define __INETVEINS_RECTANGLEMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/base/MovingMobilityBase.h"
 
@@ -60,7 +60,7 @@ class INETVEINS_API RectangleMobility : public MovingMobilityBase
     RectangleMobility();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RECTANGLEMOBILITY_H
+#endif // ifndef __INETVEINS_RECTANGLEMOBILITY_H
 

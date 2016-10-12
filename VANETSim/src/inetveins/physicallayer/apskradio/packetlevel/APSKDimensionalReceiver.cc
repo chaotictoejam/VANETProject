@@ -40,5 +40,5 @@ std::ostream& APSKDimensionalReceiver::printToStream(std::ostream& stream, int l
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

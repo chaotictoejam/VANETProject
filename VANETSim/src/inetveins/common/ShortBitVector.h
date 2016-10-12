@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SHORTBITVECTOR_H
-#define __INET_SHORTBITVECTOR_H
+#ifndef __INETVEINS_SHORTBITVECTOR_H
+#define __INETVEINS_SHORTBITVECTOR_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -132,7 +132,7 @@ class INETVEINS_API ShortBitVector
     std::string toString() const;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SHORTBITVECTOR_H
+#endif // ifndef __INETVEINS_SHORTBITVECTOR_H
 

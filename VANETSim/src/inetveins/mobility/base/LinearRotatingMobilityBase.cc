@@ -54,5 +54,5 @@ EulerAngles LinearRotatingMobilityBase::slerp(EulerAngles from, EulerAngles to, 
     return from + (to - from) * delta;
 }
 
-} // namespace inet
+} // namespace inetveins
 

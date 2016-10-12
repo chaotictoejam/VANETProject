@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IVISITOR_H
-#define __INET_IVISITOR_H
+#ifndef __INETVEINS_IVISITOR_H
+#define __INETVEINS_IVISITOR_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -32,4 +32,4 @@ class INETVEINS_API IVisitor
 
 } /* namespace inetveins */
 
-#endif /* __INET_IVISITOR_H_ */
+#endif /* __INETVEINS_IVISITOR_H_ */

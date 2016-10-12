@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_FIFOQUEUE_H
-#define __INET_FIFOQUEUE_H
+#ifndef __INETVEINS_FIFOQUEUE_H
+#define __INETVEINS_FIFOQUEUE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/queue/PassiveQueueBase.h"
 #include "inetveins/common/queue/IQueueAccess.h"
 
@@ -58,7 +58,7 @@ class INETVEINS_API FIFOQueue : public PassiveQueueBase, public IQueueAccess
     virtual int getByteLength() const override { return byteLength; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_FIFOQUEUE_H
+#endif // ifndef __INETVEINS_FIFOQUEUE_H
 

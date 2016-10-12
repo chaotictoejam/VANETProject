@@ -1679,5 +1679,5 @@ void SCTPAssociation::removePath()
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MULTIFIELDCLASSIFIER_H
-#define __INET_MULTIFIELDCLASSIFIER_H
+#ifndef __INETVEINS_MULTIFIELDCLASSIFIER_H
+#define __INETVEINS_MULTIFIELDCLASSIFIER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -46,12 +46,12 @@ class INETVEINS_API MultiFieldClassifier : public cSimpleModule
         int destPortMax = -1;
 
         Filter() {}
-    #ifdef WITH_IPv4
+    #ifdef WITH_INETVEINS_IPv4
         bool matches(IPv4Datagram *datagram);
-    #endif // ifdef WITH_IPv4
-    #ifdef WITH_IPv6
+    #endif // ifdef WITH_INETVEINS_IPv4
+    #ifdef WITH_INETVEINS_IPv6
         bool matches(IPv6Datagram *datagram);
-    #endif // ifdef WITH_IPv6
+    #endif // ifdef WITH_INETVEINS_IPv6
     };
 
   protected:
@@ -79,7 +79,7 @@ class INETVEINS_API MultiFieldClassifier : public cSimpleModule
     virtual int classifyPacket(cPacket *packet);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MULTIFIELDCLASSIFIER_H
+#endif // ifndef __INETVEINS_MULTIFIELDCLASSIFIER_H
 

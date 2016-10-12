@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPNEWRENO_H
-#define __INET_TCPNEWRENO_H
+#ifndef __INETVEINS_TCPNEWRENO_H
+#define __INETVEINS_TCPNEWRENO_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/tcp/flavours/TCPTahoeRenoFamily.h"
 
@@ -64,7 +64,7 @@ class INETVEINS_API TCPNewReno : public TCPTahoeRenoFamily
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPNEWRENO_H
+#endif // ifndef __INETVEINS_TCPNEWRENO_H
 

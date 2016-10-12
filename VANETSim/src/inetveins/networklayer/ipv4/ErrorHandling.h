@@ -18,10 +18,10 @@
 
 //  Cleanup and rewrite: Andras Varga, 2004
 
-#ifndef __INET_ERRORHANDLING_H
-#define __INET_ERRORHANDLING_H
+#ifndef __INETVEINS_ERRORHANDLING_H
+#define __INETVEINS_ERRORHANDLING_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -41,7 +41,7 @@ class INETVEINS_API ErrorHandling : public cSimpleModule
     virtual void handleMessage(cMessage *msg) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ERRORHANDLING_H
+#endif // ifndef __INETVEINS_ERRORHANDLING_H
 

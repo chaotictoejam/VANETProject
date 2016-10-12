@@ -15,13 +15,13 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_OSPFAREA_H
-#define __INET_OSPFAREA_H
+#ifndef __INETVEINS_OSPFAREA_H
+#define __INETVEINS_OSPFAREA_H
 
 #include <vector>
 #include <map>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/routing/ospfv2/router/LSA.h"
 #include "inetveins/routing/ospfv2/router/OSPFcommon.h"
 #include "inetveins/routing/ospfv2/interface/OSPFInterface.h"
@@ -155,7 +155,7 @@ inline std::ostream& operator<<(std::ostream& ostr, Area& area)
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_OSPFAREA_H
+#endif // ifndef __INETVEINS_OSPFAREA_H
 

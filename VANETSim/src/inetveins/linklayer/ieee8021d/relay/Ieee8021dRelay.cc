@@ -313,5 +313,5 @@ bool Ieee8021dRelay::handleOperationStage(LifecycleOperation *operation, int sta
     return true;
 }
 
-} // namespace inet
+} // namespace inetveins
 

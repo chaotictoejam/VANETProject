@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ARRIVAL_H
-#define __INET_ARRIVAL_H
+#ifndef __INETVEINS_ARRIVAL_H
+#define __INETVEINS_ARRIVAL_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IArrival.h"
 
@@ -69,7 +69,7 @@ class INETVEINS_API Arrival : public virtual IArrival
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ARRIVAL_H
+#endif // ifndef __INETVEINS_ARRIVAL_H
 

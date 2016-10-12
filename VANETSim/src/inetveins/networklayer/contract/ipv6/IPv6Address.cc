@@ -381,5 +381,5 @@ int IPv6Address::getMulticastScope() const
     return (d[0] >> 16) & 0x0F;
 }
 
-} // namespace inet
+} // namespace inetveins
 

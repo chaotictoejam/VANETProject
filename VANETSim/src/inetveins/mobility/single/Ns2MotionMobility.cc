@@ -22,7 +22,7 @@
 #include <string>
 
 #include "inetveins/mobility/single/Ns2MotionMobility.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 
 #ifndef atoi
 #include <cstdlib>
@@ -203,5 +203,5 @@ void Ns2MotionMobility::move()
     raiseErrorIfOutside();
 }
 
-} // namespace inet
+} // namespace inetveins
 

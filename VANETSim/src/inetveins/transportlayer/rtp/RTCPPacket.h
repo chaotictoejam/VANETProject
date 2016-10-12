@@ -28,8 +28,8 @@
  * over the network.
  */
 
-#ifndef __INET_RTCPPACKET_H
-#define __INET_RTCPPACKET_H
+#ifndef __INETVEINS_RTCPPACKET_H
+#define __INETVEINS_RTCPPACKET_H
 
 #include "inetveins/transportlayer/rtp/RTCPPacket1.h"
 #include "inetveins/transportlayer/rtp/RTCPPacket2.h"
@@ -41,7 +41,7 @@ namespace rtp {
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RTCPPACKET_H
+#endif // ifndef __INETVEINS_RTCPPACKET_H
 

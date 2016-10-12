@@ -17,10 +17,10 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_IFRAGMENTATION_H
-#define __INET_IFRAGMENTATION_H
+#ifndef __INETVEINS_IFRAGMENTATION_H
+#define __INETVEINS_IFRAGMENTATION_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/linklayer/common/MACAddress.h"
 
 namespace inetveins {
@@ -70,6 +70,6 @@ class INETVEINS_API IReassembly
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif

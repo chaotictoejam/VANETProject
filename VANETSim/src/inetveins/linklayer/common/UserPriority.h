@@ -17,10 +17,10 @@
 // Author: Andras Varga, Benjamin Seregi
 //
 
-#ifndef __INET_USERPRIORITY_H
-#define __INET_USERPRIORITY_H
+#ifndef __INETVEINS_USERPRIORITY_H
+#define __INETVEINS_USERPRIORITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -38,7 +38,7 @@ enum UserPriority {
     UP_NC = 7  // Network Control
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

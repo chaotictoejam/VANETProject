@@ -17,8 +17,8 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_FRAMEEXCHANGES_H
-#define __INET_FRAMEEXCHANGES_H
+#ifndef __INETVEINS_FRAMEEXCHANGES_H
+#define __INETVEINS_FRAMEEXCHANGES_H
 
 #include "FrameExchange.h"
 
@@ -113,7 +113,7 @@ class INETVEINS_API SendMulticastDataFrameExchange : public FrameExchange
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

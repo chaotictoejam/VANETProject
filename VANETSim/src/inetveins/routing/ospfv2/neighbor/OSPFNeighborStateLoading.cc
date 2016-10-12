@@ -89,5 +89,5 @@ void NeighborStateLoading::processEvent(Neighbor *neighbor, Neighbor::NeighborEv
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

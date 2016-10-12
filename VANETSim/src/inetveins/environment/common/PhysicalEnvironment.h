@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PHYSICALENVIRONMENT_H
-#define __INET_PHYSICALENVIRONMENT_H
+#ifndef __INETVEINS_PHYSICALENVIRONMENT_H
+#define __INETVEINS_PHYSICALENVIRONMENT_H
 
 #include "inetveins/common/IVisitor.h"
 #include "inetveins/common/geometry/base/ShapeBase.h"
@@ -126,7 +126,7 @@ class INETVEINS_API PhysicalEnvironment : public cModule, public IPhysicalEnviro
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PHYSICALENVIRONMENT_H
+#endif // ifndef __INETVEINS_PHYSICALENVIRONMENT_H
 

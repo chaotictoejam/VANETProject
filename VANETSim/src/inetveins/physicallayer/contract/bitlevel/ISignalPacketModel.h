@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ISIGNALPACKETMODEL_H
-#define __INET_ISIGNALPACKETMODEL_H
+#ifndef __INETVEINS_ISIGNALPACKETMODEL_H
+#define __INETVEINS_ISIGNALPACKETMODEL_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IPrintableObject.h"
 #include "inetveins/physicallayer/contract/bitlevel/IFECCoder.h"
@@ -62,7 +62,7 @@ class INETVEINS_API IReceptionPacketModel : public virtual ISignalPacketModel
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ISIGNALPACKETMODEL_H
+#endif // ifndef __INETVEINS_ISIGNALPACKETMODEL_H
 

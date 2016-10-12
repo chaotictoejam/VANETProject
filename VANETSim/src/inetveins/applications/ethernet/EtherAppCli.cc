@@ -225,5 +225,5 @@ void EtherAppCli::finish()
     timerMsg = nullptr;
 }
 
-} // namespace inet
+} // namespace inetveins
 

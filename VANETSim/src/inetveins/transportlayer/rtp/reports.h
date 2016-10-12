@@ -20,10 +20,10 @@
  * in RTCPSenderReportPacket and RTCPReceiverReportPacket.
  */
 
-#ifndef __INET_REPORTS_H
-#define __INET_REPORTS_H
+#ifndef __INETVEINS_REPORTS_H
+#define __INETVEINS_REPORTS_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/transportlayer/rtp/reports_m.h"
 
 namespace inetveins {
@@ -82,7 +82,7 @@ class INETVEINS_API ReceptionReport : public ReceptionReport_Base
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_REPORTS_H
+#endif // ifndef __INETVEINS_REPORTS_H
 

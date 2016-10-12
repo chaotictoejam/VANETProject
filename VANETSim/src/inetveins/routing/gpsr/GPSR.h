@@ -17,10 +17,10 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_GPSR_H
-#define __INET_GPSR_H
+#ifndef __INETVEINS_GPSR_H
+#define __INETVEINS_GPSR_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/geometry/common/Coord.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/mobility/contract/IMobility.h"
@@ -166,7 +166,7 @@ class INETVEINS_API GPSR : public cSimpleModule, public ILifecycle, public cList
     virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj DETAILS_ARG) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GPSR_H
+#endif // ifndef __INETVEINS_GPSR_H
 

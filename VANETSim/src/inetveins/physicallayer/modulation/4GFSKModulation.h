@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_4GFSKMODULATION_H
-#define __INET_4GFSKMODULATION_H
+#ifndef __INETVEINS_4GFSKMODULATION_H
+#define __INETVEINS_4GFSKMODULATION_H
 
 #include "inetveins/physicallayer/base/packetlevel/GFSKModulationBase.h"
 
@@ -37,7 +37,7 @@ class INETVEINS_API _4GFSKModulation : public GFSKModulationBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_4GFSKMODULATION_H
+#endif // ifndef __INETVEINS_4GFSKMODULATION_H
 

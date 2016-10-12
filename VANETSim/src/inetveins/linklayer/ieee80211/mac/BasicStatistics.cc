@@ -162,5 +162,5 @@ void BasicStatistics::erroneousFrameReceived()
 }
 
 }  // namespace ieee80211
-}  // namespace inet
+}  // namespace inetveins
 

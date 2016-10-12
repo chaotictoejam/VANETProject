@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_GENERICNETWORKPROTOCOLCONTROLINFO_H
-#define __INET_GENERICNETWORKPROTOCOLCONTROLINFO_H
+#ifndef __INETVEINS_GENERICNETWORKPROTOCOLCONTROLINFO_H
+#define __INETVEINS_GENERICNETWORKPROTOCOLCONTROLINFO_H
 
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/networklayer/contract/generic/GenericNetworkProtocolControlInfo_m.h"
@@ -47,7 +47,7 @@ class INETVEINS_API GenericNetworkProtocolControlInfo : public GenericNetworkPro
     virtual void setHopLimit(short hopLimit) override { GenericNetworkProtocolControlInfo_Base::setHopLimit(hopLimit); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GENERICNETWORKPROTOCOLCONTROLINFO_H
+#endif // ifndef __INETVEINS_GENERICNETWORKPROTOCOLCONTROLINFO_H
 

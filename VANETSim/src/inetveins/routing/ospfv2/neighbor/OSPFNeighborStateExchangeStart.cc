@@ -77,5 +77,5 @@ void NeighborStateExchangeStart::processEvent(Neighbor *neighbor, Neighbor::Neig
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

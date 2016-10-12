@@ -54,14 +54,14 @@ enum RIPCommand {
  * {
  * 
  *     RIP_AF_NONE = 0;
- *     RIP_AF_INET = 2;
+ *     RIP_AF_INETVEINS = 2;
  *     // RIP_AF_AUTH = 0xFFFF;
  * }
  * </pre>
  */
 enum RIP_AF {
     RIP_AF_NONE = 0,
-    RIP_AF_INET = 2
+    RIP_AF_INETVEINS = 2
 };
 
 /**

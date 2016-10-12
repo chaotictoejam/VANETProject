@@ -42,7 +42,7 @@ import vanetsim.inetveins.applications.contract.IUDPApp;
 // name. (The L3AddressResolver class is used to resolve the address.)
 // You can use the "Broadcast" string as address for sending broadcast messages.
 //
-// INET also defines several NED functions that can be useful:
+// INETVEINS also defines several NED functions that can be useful:
 //    - moduleListByPath("pattern",...):
 //          Returns a space-separated list of the modulenames.
 //          All modules whole getFullPath() matches one of the pattern parameters will get included.

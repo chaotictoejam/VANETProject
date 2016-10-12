@@ -19,10 +19,10 @@
  * part of:     framework implementation developed by tkn
  **************************************************************************/
 
-#ifndef __INET_MOVINGMOBILITYBASE_H
-#define __INET_MOVINGMOBILITYBASE_H
+#ifndef __INETVEINS_MOVINGMOBILITYBASE_H
+#define __INETVEINS_MOVINGMOBILITYBASE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/mobility/base/MobilityBase.h"
 #include "inetveins/common/figures/TrailFigure.h"
 
@@ -101,7 +101,7 @@ class INETVEINS_API MovingMobilityBase : public MobilityBase
     virtual Coord getCurrentSpeed() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MOVINGMOBILITYBASE_H
+#endif // ifndef __INETVEINS_MOVINGMOBILITYBASE_H
 

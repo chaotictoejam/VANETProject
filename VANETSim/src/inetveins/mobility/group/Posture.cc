@@ -206,5 +206,5 @@ bool Posture::isMobile()
     return maxSpeed > 0;
 }
 
-} // namespace inet
+} // namespace inetveins
 

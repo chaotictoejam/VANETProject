@@ -64,5 +64,5 @@ const ITransmission *Ieee80211ScalarTransmitter::createTransmission(const IRadio
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

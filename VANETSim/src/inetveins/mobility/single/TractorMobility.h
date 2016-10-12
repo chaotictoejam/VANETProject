@@ -17,10 +17,10 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_TRACTORMOBILITY_H
-#define __INET_TRACTORMOBILITY_H
+#ifndef __INETVEINS_TRACTORMOBILITY_H
+#define __INETVEINS_TRACTORMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/mobility/base/LineSegmentsMobilityBase.h"
 
 namespace inetveins {
@@ -57,7 +57,7 @@ class INETVEINS_API TractorMobility : public LineSegmentsMobilityBase
     virtual double getMaxSpeed() const override { return speed; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TRACTORMOBILITY_H
+#endif // ifndef __INETVEINS_TRACTORMOBILITY_H
 

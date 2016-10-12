@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_APSKPHYFRAMESERIALIZER_H
-#define __INET_APSKPHYFRAMESERIALIZER_H
+#ifndef __INETVEINS_APSKPHYFRAMESERIALIZER_H
+#define __INETVEINS_APSKPHYFRAMESERIALIZER_H
 
 #include "inetveins/common/BitVector.h"
 #include "inetveins/physicallayer/apskradio/bitlevel/APSKPhyFrame_m.h"
@@ -38,7 +38,7 @@ class INETVEINS_API APSKPhyFrameSerializer
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_APSKPHYFRAMESERIALIZER_H
+#endif // ifndef __INETVEINS_APSKPHYFRAMESERIALIZER_H
 

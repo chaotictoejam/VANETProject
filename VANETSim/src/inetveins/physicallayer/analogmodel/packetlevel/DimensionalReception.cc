@@ -48,5 +48,5 @@ W DimensionalReception::computeMinPower(simtime_t startTime, simtime_t endTime) 
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

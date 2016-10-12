@@ -51,7 +51,7 @@ module Ieee802154NarrowbandScalarRadio extends FlatRadioBase
         // Receiver sensitivity (ATmega256RFR2, page 565)
         // TODO That is not quite true, because sensitivity
         //      is defined as the input signal power that yields
-        //      a PER < 1% for a PSDU of 20 octets, but INET handles it
+        //      a PER < 1% for a PSDU of 20 octets, but INETVEINS handles it
         //      as minimum reception power.
         receiver.sensitivity = default(-100dBm);
 

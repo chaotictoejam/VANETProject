@@ -156,5 +156,5 @@ SCTPNatEntry::~SCTPNatEntry()
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

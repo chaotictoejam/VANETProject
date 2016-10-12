@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211OFDMINTERLEAVER_H
-#define __INET_IEEE80211OFDMINTERLEAVER_H
+#ifndef __INETVEINS_IEEE80211OFDMINTERLEAVER_H
+#define __INETVEINS_IEEE80211OFDMINTERLEAVER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/BitVector.h"
 #include "inetveins/physicallayer/contract/bitlevel/IInterleaver.h"
 #include "inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMInterleaving.h"
@@ -55,5 +55,5 @@ class INETVEINS_API Ieee80211OFDMInterleaver : public IInterleaver
 } /* namespace physicallayer */
 } /* namespace inetveins */
 
-#endif // ifndef __INET_IEEE80211OFDMINTERLEAVER_H
+#endif // ifndef __INETVEINS_IEEE80211OFDMINTERLEAVER_H
 

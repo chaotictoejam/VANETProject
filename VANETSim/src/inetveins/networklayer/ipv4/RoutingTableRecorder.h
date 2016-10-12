@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ROUTINGTABLERECORDER_H
-#define __INET_ROUTINGTABLERECORDER_H
+#ifndef __INETVEINS_ROUTINGTABLERECORDER_H
+#define __INETVEINS_ROUTINGTABLERECORDER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #if OMNETPP_VERSION >= 0x0500 && defined HAVE_CEVENTLOGLISTENER    /* cEventlogListener is only supported from 5.0 */
 
@@ -108,9 +108,9 @@ class INETVEINS_API RoutingTableRecorder : public cSimpleModule, public cListene
     virtual void recordRouteChange(cModule *host, const IRoute *route, simsignal_t signalID);
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif /*OMNETPP_VERSION*/
 
-#endif // ifndef __INET_ROUTINGTABLERECORDER_H
+#endif // ifndef __INETVEINS_ROUTINGTABLERECORDER_H
 

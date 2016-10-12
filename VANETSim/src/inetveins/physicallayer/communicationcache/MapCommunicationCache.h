@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MAPCOMMUNICATIONCACHE_H
-#define __INET_MAPCOMMUNICATIONCACHE_H
+#ifndef __INETVEINS_MAPCOMMUNICATIONCACHE_H
+#define __INETVEINS_MAPCOMMUNICATIONCACHE_H
 
 #include "inetveins/physicallayer/base/packetlevel/CommunicationCacheBase.h"
 
@@ -70,7 +70,7 @@ class INETVEINS_API MapCommunicationCache : public CommunicationCacheBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MAPCOMMUNICATIONCACHE_H
+#endif // ifndef __INETVEINS_MAPCOMMUNICATIONCACHE_H
 

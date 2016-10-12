@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_GEOMETRICOBJECTBASE_H
-#define __INET_GEOMETRICOBJECTBASE_H
+#ifndef __INETVEINS_GEOMETRICOBJECTBASE_H
+#define __INETVEINS_GEOMETRICOBJECTBASE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -44,7 +44,7 @@ class INETVEINS_API GeometricObjectBase
     virtual bool isUnspecified() const = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GEOMETRICOBJECTBASE_H
+#endif // ifndef __INETVEINS_GEOMETRICOBJECTBASE_H
 

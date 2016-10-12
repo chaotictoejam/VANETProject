@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef __INET_LMACLAYER_H
-#define __INET_LMACLAYER_H
+#ifndef __INETVEINS_LMACLAYER_H
+#define __INETVEINS_LMACLAYER_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IRadio.h"
 #include "inetveins/linklayer/contract/IMACProtocol.h"
@@ -224,7 +224,7 @@ class INETVEINS_API LMacLayer : public MACProtocolBase, public IMACProtocol
     virtual void clearQueue();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LMACLAYER_H
+#endif // ifndef __INETVEINS_LMACLAYER_H
 

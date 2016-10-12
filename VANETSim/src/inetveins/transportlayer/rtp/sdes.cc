@@ -202,5 +202,5 @@ int SDESChunk::getLength() const
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

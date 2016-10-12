@@ -57,5 +57,5 @@ double ParabolicAntenna::computeGain(const EulerAngles direction) const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -129,5 +129,5 @@ const INoise *IsotropicDimensionalBackgroundNoise::computeNoise(const IListening
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

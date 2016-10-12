@@ -1422,5 +1422,5 @@ void Router::removeExternalRoute(IPv4Address networkAddress)
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

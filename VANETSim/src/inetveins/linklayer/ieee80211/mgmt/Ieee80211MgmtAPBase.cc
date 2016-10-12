@@ -19,9 +19,9 @@
 #include "inetveins/linklayer/common/Ieee802Ctrl.h"
 #include <string.h>
 
-#ifdef WITH_ETHERNET
+#ifdef WITH_INETVEINS_ETHERNET
 #include "inetveins/linklayer/ethernet/EtherFrame.h"
-#endif // ifdef WITH_ETHERNET
+#endif // ifdef WITH_INETVEINS_ETHERNET
 
 namespace inetveins {
 
@@ -72,11 +72,11 @@ void Ieee80211MgmtAPBase::sendToUpperLayer(Ieee80211DataFrame *frame)
     cPacket *outFrame = nullptr;
     switch (encapDecap) {
         case ENCAP_DECAP_ETH:
-#ifdef WITH_ETHERNET
+#ifdef WITH_INETVEINS_ETHERNET
             outFrame = convertToEtherFrame(frame);
-#else // ifdef WITH_ETHERNET
-            throw cRuntimeError("INET compiled without ETHERNET feature, but the 'encapDecap' parameter is set to 'eth'!");
-#endif // ifdef WITH_ETHERNET
+#else // ifdef WITH_INETVEINS_ETHERNET
+            throw cRuntimeError("INETVEINS compiled without ETHERNET feature, but the 'encapDecap' parameter is set to 'eth'!");
+#endif // ifdef WITH_INETVEINS_ETHERNET
             break;
 
         case ENCAP_DECAP_TRUE: {
@@ -109,7 +109,7 @@ void Ieee80211MgmtAPBase::sendToUpperLayer(Ieee80211DataFrame *frame)
 
 EtherFrame *Ieee80211MgmtAPBase::convertToEtherFrame(Ieee80211DataFrame *frame_)
 {
-#ifdef WITH_ETHERNET
+#ifdef WITH_INETVEINS_ETHERNET
     Ieee80211DataFrameWithSNAP *frame = check_and_cast<Ieee80211DataFrameWithSNAP *>(frame_);
 
     // create a matching ethernet frame
@@ -129,14 +129,14 @@ EtherFrame *Ieee80211MgmtAPBase::convertToEtherFrame(Ieee80211DataFrame *frame_)
 
     // done
     return ethframe;
-#else // ifdef WITH_ETHERNET
-    throw cRuntimeError("INET compiled without ETHERNET feature!");
-#endif // ifdef WITH_ETHERNET
+#else // ifdef WITH_INETVEINS_ETHERNET
+    throw cRuntimeError("INETVEINS compiled without ETHERNET feature!");
+#endif // ifdef WITH_INETVEINS_ETHERNET
 }
 
 Ieee80211DataFrame *Ieee80211MgmtAPBase::convertFromEtherFrame(EtherFrame *ethframe)
 {
-#ifdef WITH_ETHERNET
+#ifdef WITH_INETVEINS_ETHERNET
     // create new frame
     Ieee80211DataFrameWithSNAP *frame = new Ieee80211DataFrameWithSNAP(ethframe->getName());
     frame->setFromDS(true);
@@ -162,20 +162,20 @@ Ieee80211DataFrame *Ieee80211MgmtAPBase::convertFromEtherFrame(EtherFrame *ethfr
 
     // done
     return frame;
-#else // ifdef WITH_ETHERNET
-    throw cRuntimeError("INET compiled without ETHERNET feature!");
-#endif // ifdef WITH_ETHERNET
+#else // ifdef WITH_INETVEINS_ETHERNET
+    throw cRuntimeError("INETVEINS compiled without ETHERNET feature!");
+#endif // ifdef WITH_INETVEINS_ETHERNET
 }
 
 Ieee80211DataFrame *Ieee80211MgmtAPBase::encapsulate(cPacket *msg)
 {
     switch (encapDecap) {
         case ENCAP_DECAP_ETH:
-#ifdef WITH_ETHERNET
+#ifdef WITH_INETVEINS_ETHERNET
             return convertFromEtherFrame(check_and_cast<EtherFrame *>(msg));
-#else // ifdef WITH_ETHERNET
-            throw cRuntimeError("INET compiled without ETHERNET feature, but the 'encapDecap' parameter is set to 'eth'!");
-#endif // ifdef WITH_ETHERNET
+#else // ifdef WITH_INETVEINS_ETHERNET
+            throw cRuntimeError("INETVEINS compiled without ETHERNET feature, but the 'encapDecap' parameter is set to 'eth'!");
+#endif // ifdef WITH_INETVEINS_ETHERNET
             break;
 
         case ENCAP_DECAP_TRUE: {
@@ -215,5 +215,5 @@ Ieee80211DataFrame *Ieee80211MgmtAPBase::encapsulate(cPacket *msg)
 
 } // namespace ieee80211
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211RECEIVERBASE_H
-#define __INET_IEEE80211RECEIVERBASE_H
+#ifndef __INETVEINS_IEEE80211RECEIVERBASE_H
+#define __INETVEINS_IEEE80211RECEIVERBASE_H
 
 #include "inetveins/physicallayer/base/packetlevel/FlatReceiverBase.h"
 #include "inetveins/physicallayer/ieee80211/mode/Ieee80211ModeSet.h"
@@ -53,7 +53,7 @@ class INETVEINS_API Ieee80211ReceiverBase : public FlatReceiverBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE80211RECEIVERBASE_H
+#endif // ifndef __INETVEINS_IEEE80211RECEIVERBASE_H
 

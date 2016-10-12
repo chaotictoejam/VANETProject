@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_GAUGEFIGURE_H
-#define __INET_GAUGEFIGURE_H
+#ifndef __INETVEINS_GAUGEFIGURE_H
+#define __INETVEINS_GAUGEFIGURE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 // for the moment commented out as omnet cannot instatiate it from a namespace
 //namespace inetveins {
@@ -70,7 +70,7 @@ class INETVEINS_API GaugeFigure : public cGroupFigure {
 
 #endif // omnetpp 5
 
-// } // namespace inet
+// } // namespace inetveins
 
-#endif // ifndef __INET_GAUGEFIGURE_H
+#endif // ifndef __INETVEINS_GAUGEFIGURE_H
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IOBJECTCACHE_H
-#define __INET_IOBJECTCACHE_H
+#ifndef __INETVEINS_IOBJECTCACHE_H
+#define __INETVEINS_IOBJECTCACHE_H
 
 #include "inetveins/common/IVisitor.h"
 #include "inetveins/common/geometry/object/LineSegment.h"
@@ -47,6 +47,6 @@ class INETVEINS_API IObjectCache
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IOBJECTCACHE_H
+#endif // ifndef __INETVEINS_IOBJECTCACHE_H

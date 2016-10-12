@@ -444,5 +444,5 @@ void CommunicationCacheBase::removeCachedFrame(const IRadio *receiver, const ITr
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

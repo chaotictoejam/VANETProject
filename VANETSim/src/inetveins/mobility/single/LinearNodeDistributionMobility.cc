@@ -67,5 +67,5 @@ void LinearNodeDistributionMobility::finish()
     recordScalar("y", lastPosition.y);
 }
 
-} // namespace inet
+} // namespace inetveins
 

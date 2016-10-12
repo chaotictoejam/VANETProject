@@ -15,11 +15,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INTERFACEMATCHER_H
-#define __INET_INTERFACEMATCHER_H
+#ifndef __INETVEINS_INTERFACEMATCHER_H
+#define __INETVEINS_INTERFACEMATCHER_H
 
 #include <omnetpp.h>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 
 namespace inetveins {
@@ -83,7 +83,7 @@ class INETVEINS_API InterfaceMatcher
     void collectNeighbors(cGate *outGate, std::vector<cModule *>& hostNodes, std::vector<cModule *>& deviceNodes, cModule *exludedNode) const;
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif /* INTERFACEMATCHER_H_ */
 

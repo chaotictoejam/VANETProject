@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_APSKLAYEREDTRANSMITTER_H
-#define __INET_APSKLAYEREDTRANSMITTER_H
+#ifndef __INETVEINS_APSKLAYEREDTRANSMITTER_H
+#define __INETVEINS_APSKLAYEREDTRANSMITTER_H
 
 #include "inetveins/physicallayer/apskradio/bitlevel/APSKPhyFrame_m.h"
 #include "inetveins/physicallayer/base/packetlevel/APSKModulationBase.h"
@@ -83,7 +83,7 @@ class INETVEINS_API APSKLayeredTransmitter : public TransmitterBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_APSKLAYEREDTRANSMITTER_H
+#endif // ifndef __INETVEINS_APSKLAYEREDTRANSMITTER_H
 

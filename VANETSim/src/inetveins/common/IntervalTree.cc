@@ -561,5 +561,5 @@ std::deque<const Interval*> IntervalTree::query(simtime_t low, simtime_t high)
     return result_stack;
 }
 
-} // namespace inet
+} // namespace inetveins
 

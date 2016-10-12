@@ -382,5 +382,5 @@ cPacket *SCTPAsconfAckChunk::removeAsconfResponse()
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

@@ -383,5 +383,5 @@ void RoutingTableParser::parseRouting(char *routeFile)
     delete [] str;
 }
 
-} // namespace inet
+} // namespace inetveins
 

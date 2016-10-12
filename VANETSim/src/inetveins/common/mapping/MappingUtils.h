@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MAPPINGUTILS_H
-#define __INET_MAPPINGUTILS_H
+#ifndef __INETVEINS_MAPPINGUTILS_H
+#define __INETVEINS_MAPPINGUTILS_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/mapping/MappingBase.h"
 
 namespace inetveins {
@@ -2938,7 +2938,7 @@ INETVEINS_API Mapping *operator-(const ConstMapping& f1, const ConstMapping& f2)
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MAPPINGUTILS_H
+#endif // ifndef __INETVEINS_MAPPINGUTILS_H
 

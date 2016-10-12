@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211LAYEREDOFDMTRANSMITTER_H
-#define __INET_IEEE80211LAYEREDOFDMTRANSMITTER_H
+#ifndef __INETVEINS_IEEE80211LAYEREDOFDMTRANSMITTER_H
+#define __INETVEINS_IEEE80211LAYEREDOFDMTRANSMITTER_H
 
 #include "inetveins/physicallayer/base/packetlevel/APSKModulationBase.h"
 #include "inetveins/physicallayer/base/packetlevel/TransmitterBase.h"
@@ -102,7 +102,7 @@ class INETVEINS_API Ieee80211LayeredOFDMTransmitter : public TransmitterBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE80211LAYEREDOFDMTRANSMITTER_H
+#endif // ifndef __INETVEINS_IEEE80211LAYEREDOFDMTRANSMITTER_H
 

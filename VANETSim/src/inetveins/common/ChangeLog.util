@@ -139,7 +139,7 @@
 	This is a pattern matcher class for inifile-style patterns.
 
 	It's near copy of an OMNeT++ internal class (in src/common/). Since we'd
-	like to use patterns in INET (and this is generally useful
+	like to use patterns in INETVEINS (and this is generally useful
 	functionality), we'll make part of the public OMNeT++ API in the 4.3
 	version; until then we have this copy in inet/src/util/.
 
@@ -170,14 +170,14 @@
 2012-01-11  Zoltan Bojthe
 
 	NetAnimTrace: remove #ifdef code for supporting OMNeT++ 4.0 and earlier
-	(INET already requires version 4.2)
+	(INETVEINS already requires version 4.2)
 
 2011-12-21  Andras Varga
 
 	DropsGenerator, DuplicatesGenerator: statistics revised (rcvdPkBytes ->
 	rcvdPk, titles changed to lowercase, etc.)
 
-2011-11-18  ------ INET-1.99.2 released ------
+2011-11-18  ------ INETVEINS-1.99.2 released ------
 
 2011-11-15  Andras Varga
 
@@ -302,13 +302,13 @@
 	cosmetics: space usage made somewhat more consistent throughout the code
 
 	Notes:
-	- if you have an INET fork and want to compare the code, use the
+	- if you have an INETVEINS fork and want to compare the code, use the
 	 "Ignore spaces" option of your visual diff tool. Most tools have
 	 this option; Meld and Araxis Merge certainly do.
 
 	- I used omnetpp/_scripts/tidymodel/spaces.pl, plus some manual tweaks
 
-2011-05-30  ------ INET-1.99.1 released ------
+2011-05-30  ------ INETVEINS-1.99.1 released ------
 
 2011-05-27  Levente Meszaros
 
@@ -377,7 +377,7 @@
 2011-03-31  Rudolf Hornig
 
 	Migrated Obstacle, Battery, Annotation and multi-radio support from
-	INETMANET.
+	INETVEINSMANET.
 
 2011-03-18  Zoltan Bojthe
 
@@ -403,7 +403,7 @@
 
 	changes related to Project Features support
 
-2011-03-03  ------ INET-1.99.0 released ------
+2011-03-03  ------ INETVEINS-1.99.0 released ------
 
 2011-03-02  Zoltan Bojthe
 
@@ -546,7 +546,7 @@
 
 	cosmetics (warnings, tab-to-space, reindent, typos, dead code removal)
 
-2009-03-25  ------ INET-20090325 released ------
+2009-03-25  ------ INETVEINS-20090325 released ------
 
 2009-03-19  Michael Tuexen
 
@@ -558,7 +558,7 @@
 
 2008-01-01..2009-03-25  Andras Varga, Rudolf Hornig
 
-	Porting of INET to OMNeT++ 4.0, and some general face lift:
+	Porting of INETVEINS to OMNeT++ 4.0, and some general face lift:
 	* better directory structure (names changed to lowercase; moved sources
 	  under src/; better names, e.g. networkinterfaces -> linklayer)
 	* build system to use a deep makefile
@@ -575,4 +575,4 @@
 	If you are interested in the early history of the code,
 	change to the project root and type
 
-	$ gitk -- src/util INET/src/util Util
+	$ gitk -- src/util INETVEINS/src/util Util

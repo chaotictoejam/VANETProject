@@ -15,13 +15,13 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MODULEPATHADDRESS_H
-#define __INET_MODULEPATHADDRESS_H
+#ifndef __INETVEINS_MODULEPATHADDRESS_H
+#define __INETVEINS_MODULEPATHADDRESS_H
 
 #include <string>
 #include <iostream>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -69,7 +69,7 @@ class INETVEINS_API ModulePathAddress
     std::string str() const;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MODULEPATHADDRESS_H
+#endif // ifndef __INETVEINS_MODULEPATHADDRESS_H
 

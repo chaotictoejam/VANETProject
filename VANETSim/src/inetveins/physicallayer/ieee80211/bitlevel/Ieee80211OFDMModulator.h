@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211OFDMMODULATOR_H
-#define __INET_IEEE80211OFDMMODULATOR_H
+#ifndef __INETVEINS_IEEE80211OFDMMODULATOR_H
+#define __INETVEINS_IEEE80211OFDMMODULATOR_H
 
 #include "inetveins/physicallayer/contract/bitlevel/IModulator.h"
 #include "inetveins/physicallayer/common/bitlevel/SignalBitModel.h"
@@ -54,7 +54,7 @@ class INETVEINS_API Ieee80211OFDMModulator : public IModulator
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifnded __INET_IEEE80211OFDMMODULATOR_H
+#endif // ifnded __INETVEINS_IEEE80211OFDMMODULATOR_H
 

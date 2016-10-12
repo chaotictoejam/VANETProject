@@ -15,10 +15,10 @@
 *                                                                         *
 ***************************************************************************/
 
-#ifndef __INET_RTPAVPROFILEPAYLOAD32SENDER_H
-#define __INET_RTPAVPROFILEPAYLOAD32SENDER_H
+#ifndef __INETVEINS_RTPAVPROFILEPAYLOAD32SENDER_H
+#define __INETVEINS_RTPAVPROFILEPAYLOAD32SENDER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/rtp/RTPPayloadSender.h"
 
@@ -78,7 +78,7 @@ class INETVEINS_API RTPAVProfilePayload32Sender : public RTPPayloadSender
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif    // __INET_RTPAVPROFILEPAYLOAD32SENDER_H
+#endif    // __INETVEINS_RTPAVPROFILEPAYLOAD32SENDER_H
 

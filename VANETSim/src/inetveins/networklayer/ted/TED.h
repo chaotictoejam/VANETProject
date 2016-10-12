@@ -12,10 +12,10 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_TED_H
-#define __INET_TED_H
+#ifndef __INETVEINS_TED_H
+#define __INETVEINS_TED_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/ted/TED_m.h"
 #include "inetveins/networklayer/rsvp_te/IntServ.h"
@@ -117,7 +117,7 @@ class INETVEINS_API TED : public cSimpleModule, public ILifecycle
 
 std::ostream& operator<<(std::ostream& os, const TELinkStateInfo& info);
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TED_H
+#endif // ifndef __INETVEINS_TED_H
 

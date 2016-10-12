@@ -17,10 +17,10 @@
 // Authors: Veronika Rybova, Vladimir Vesely (ivesely@fit.vutbr.cz),
 //          Tamas Borbely (tomi@omnetpp.org)
 
-#ifndef __INET_PIMDM_H
-#define __INET_PIMDM_H
+#ifndef __INETVEINS_PIMDM_H
+#define __INETVEINS_PIMDM_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/routing/pim/PIMPacket_m.h"
 #include "inetveins/common/NotifierConsts.h"
@@ -248,7 +248,7 @@ class INETVEINS_API PIMDM : public PIMBase, protected cListener
     virtual void stopPIMRouting();
 };
 
-}    // namespace inet
+}    // namespace inetveins
 
-#endif // ifndef __INET_PIMDM_H
+#endif // ifndef __INETVEINS_PIMDM_H
 

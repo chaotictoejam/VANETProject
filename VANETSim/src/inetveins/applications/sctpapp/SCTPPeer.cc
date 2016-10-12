@@ -749,5 +749,5 @@ void SCTPPeer::finish()
     EV_INFO << getFullPath() << "Over all " << notificationsReceived << " notifications received\n ";
 }
 
-} // namespace inet
+} // namespace inetveins
 

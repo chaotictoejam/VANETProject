@@ -74,5 +74,5 @@ double DSSSOQPSK16Modulation::calculateSER(double snir, Hz bandwidth, bps bitrat
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

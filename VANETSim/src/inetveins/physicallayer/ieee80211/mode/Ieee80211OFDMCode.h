@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211OFDMCODE_H
-#define __INET_IEEE80211OFDMCODE_H
+#ifndef __INETVEINS_IEEE80211OFDMCODE_H
+#define __INETVEINS_IEEE80211OFDMCODE_H
 
 #include "inetveins/physicallayer/common/bitlevel/AdditiveScrambling.h"
 #include "inetveins/physicallayer/ieee80211/bitlevel/Ieee80211OFDMInterleaving.h"
@@ -75,4 +75,4 @@ class INETVEINS_API Ieee80211OFDMCompliantCodes
 } /* namespace physicallayer */
 } /* namespace inetveins */
 
-#endif /* __INET_IEEE80211OFDMCODE_H */
+#endif /* __INETVEINS_IEEE80211OFDMCODE_H */

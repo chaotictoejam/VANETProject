@@ -31,16 +31,16 @@
 #include "inetveins/networklayer/common/InterfaceTable.h"
 #include "inetveins/networklayer/common/IPProtocolId_m.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4InterfaceData.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6InterfaceData.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 #include "inetveins/transportlayer/contract/udp/UDPControlInfo_m.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 namespace inetveins {
 
@@ -500,12 +500,12 @@ void SCTPAssociation::sendInit()
     state->asconfSn = 1000;
 
     initTsn = initChunk->getInitTSN();
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     initChunk->setIpv4Supported(true);
 #else
     initChunk->setIpv4Supported(false);
 #endif
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     initChunk->setIpv6Supported(true);
 #else
     initChunk->setIpv6Supported(false);
@@ -513,13 +513,13 @@ void SCTPAssociation::sendInit()
     EV_INFO << "add local address\n";
     if (localAddressList.front().isUnspecified()) {
         for (int32 i = 0; i < ift->getNumInterfaces(); ++i) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
             if (ift->getInterface(i)->ipv4Data() != nullptr) {
                 adv.push_back(ift->getInterface(i)->ipv4Data()->getIPAddress());
             }
             else
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
             if (ift->getInterface(i)->ipv6Data() != nullptr) {
                 for (int32 j = 0; j < ift->getInterface(i)->ipv6Data()->getNumAddresses(); j++) {
                     EV_DETAIL << "add address " << ift->getInterface(i)->ipv6Data()->getAddress(j) << "\n";
@@ -527,7 +527,7 @@ void SCTPAssociation::sendInit()
                 }
             }
             else
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
             ;
         }
     }
@@ -768,12 +768,12 @@ void SCTPAssociation::sendInitAck(SCTPInitChunk *initChunk)
     initAckChunk->setNoOutStreams((unsigned int)min(outboundStreams, initChunk->getNoInStreams()));
     initAckChunk->setNoInStreams((unsigned int)min(inboundStreams, initChunk->getNoOutStreams()));
     initTsn = initAckChunk->getInitTSN();
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     initAckChunk->setIpv4Supported(true);
 #else
     initAckChunk->setIpv4Supported(false);
 #endif
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     initAckChunk->setIpv6Supported(true);
 #else
     initAckChunk->setIpv6Supported(false);
@@ -2824,5 +2824,5 @@ void SCTPAssociation::putInTransmissionQ(const uint32 tsn, SCTPDataVariables *ch
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

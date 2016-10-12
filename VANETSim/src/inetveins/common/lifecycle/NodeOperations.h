@@ -17,8 +17,8 @@
 // Author: Levente Meszaros <levy@omnetpp.org>, Andras Varga (andras@omnetpp.org)
 //
 
-#ifndef __INET_NODEOPERATIONS_H
-#define __INET_NODEOPERATIONS_H
+#ifndef __INETVEINS_NODEOPERATIONS_H
+#define __INETVEINS_NODEOPERATIONS_H
 
 #include "inetveins/common/lifecycle/LifecycleOperation.h"
 
@@ -133,7 +133,7 @@ class INETVEINS_API NodeCrashOperation : public NodeOperation
     virtual Kind getKind() const override { return DOWN; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NODEOPERATIONS_H
+#endif // ifndef __INETVEINS_NODEOPERATIONS_H
 

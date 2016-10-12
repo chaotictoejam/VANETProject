@@ -16,8 +16,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
-#ifndef __INET_GENERICNETWORKPROTOCOL_H
-#define __INET_GENERICNETWORKPROTOCOL_H
+#ifndef __INETVEINS_GENERICNETWORKPROTOCOL_H
+#define __INETVEINS_GENERICNETWORKPROTOCOL_H
 
 #include <list>
 #include <map>
@@ -177,7 +177,7 @@ class INETVEINS_API GenericNetworkProtocol : public QueueBase, public INetfilter
     virtual void endService(cPacket *packet) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GENERICNETWORKPROTOCOL_H
+#endif // ifndef __INETVEINS_GENERICNETWORKPROTOCOL_H
 

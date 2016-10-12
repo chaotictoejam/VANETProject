@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_OSPFINTERFACESTATEWAITING_H
-#define __INET_OSPFINTERFACESTATEWAITING_H
+#ifndef __INETVEINS_OSPFINTERFACESTATEWAITING_H
+#define __INETVEINS_OSPFINTERFACESTATEWAITING_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/routing/ospfv2/interface/OSPFInterfaceState.h"
 
 namespace inetveins {
@@ -34,7 +34,7 @@ class INETVEINS_API InterfaceStateWaiting : public InterfaceState
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_OSPFINTERFACESTATEWAITING_H
+#endif // ifndef __INETVEINS_OSPFINTERFACESTATEWAITING_H
 

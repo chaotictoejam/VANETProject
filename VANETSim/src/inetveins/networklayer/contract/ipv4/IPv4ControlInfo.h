@@ -15,8 +15,8 @@
 // License along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV4CONTROLINFO_H
-#define __INET_IPV4CONTROLINFO_H
+#ifndef __INETVEINS_IPV4CONTROLINFO_H
+#define __INETVEINS_IPV4CONTROLINFO_H
 
 #include "inetveins/networklayer/contract/INetworkProtocolControlInfo.h"
 #include "inetveins/networklayer/contract/ipv4/IPv4ControlInfo_m.h"
@@ -82,7 +82,7 @@ class INETVEINS_API IPv4ControlInfo : public IPv4ControlInfo_Base, public INetwo
     virtual void setHopLimit(short hopLimit) override { setTimeToLive(hopLimit); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV4CONTROLINFO_H
+#endif // ifndef __INETVEINS_IPV4CONTROLINFO_H
 

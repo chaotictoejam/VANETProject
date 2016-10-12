@@ -23,13 +23,13 @@
 // Cleanup and rewrite: Andras Varga, 2004
 //
 
-#ifndef __INET_IPV4ADDRESS_H
-#define __INET_IPV4ADDRESS_H
+#ifndef __INETVEINS_IPV4ADDRESS_H
+#define __INETVEINS_IPV4ADDRESS_H
 
 #include <iostream>
 #include <string>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -352,7 +352,7 @@ inline void doUnpacking(cCommBuffer *buf, IPv4Address& addr)
     addr.set(d);
 }
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV4ADDRESS_H
+#endif // ifndef __INETVEINS_IPV4ADDRESS_H
 

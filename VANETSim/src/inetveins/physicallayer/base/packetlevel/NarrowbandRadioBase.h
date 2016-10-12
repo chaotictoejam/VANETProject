@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_NARROWBANDRADIOBASE_H
-#define __INET_NARROWBANDRADIOBASE_H
+#ifndef __INETVEINS_NARROWBANDRADIOBASE_H
+#define __INETVEINS_NARROWBANDRADIOBASE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IModulation.h"
 #include "inetveins/physicallayer/common/packetlevel/Radio.h"
@@ -40,7 +40,7 @@ class INETVEINS_API NarrowbandRadioBase : public Radio
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NARROWBANDRADIOBASE_H
+#endif // ifndef __INETVEINS_NARROWBANDRADIOBASE_H
 

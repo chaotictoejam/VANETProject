@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INETUTILS_H
-#define __INET_INETUTILS_H
+#ifndef __INETVEINS_INETVEINSUTILS_H
+#define __INETVEINS_INETVEINSUTILS_H
 
 #include <string>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -92,7 +92,7 @@ T *dupPacketAndControlInfo(T *packet) {
 
 } // namespace utils
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_OPP_UTILS_H
+#endif // ifndef __INETVEINS_OPP_UTILS_H
 

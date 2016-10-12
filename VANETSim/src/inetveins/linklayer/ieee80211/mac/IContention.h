@@ -17,10 +17,10 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_ICONTENTION_H
-#define __INET_ICONTENTION_H
+#ifndef __INETVEINS_ICONTENTION_H
+#define __INETVEINS_ICONTENTION_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 namespace ieee80211 {
@@ -55,7 +55,7 @@ class INETVEINS_API IContention
 void collectContentionModules(cModule *firstContentionModule, IContention **& contention);
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

@@ -20,10 +20,10 @@
  */
 
 
-#ifndef __INET_STATICCONCENTRICMOBILITY_H
-#define __INET_STATICCONCENTRICMOBILITY_H
+#ifndef __INETVEINS_STATICCONCENTRICMOBILITY_H
+#define __INETVEINS_STATICCONCENTRICMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/static/StationaryMobility.h"
 

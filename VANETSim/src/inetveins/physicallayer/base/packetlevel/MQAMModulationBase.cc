@@ -46,5 +46,5 @@ double MQAMModulationBase::calculateBER(double snir, Hz bandwidth, bps bitrate) 
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

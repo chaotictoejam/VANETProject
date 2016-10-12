@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_NOISEBASE_H
-#define __INET_NOISEBASE_H
+#ifndef __INETVEINS_NOISEBASE_H
+#define __INETVEINS_NOISEBASE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/INoise.h"
 
@@ -40,7 +40,7 @@ class INETVEINS_API NoiseBase : public INoise
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NOISEBASE_H
+#endif // ifndef __INETVEINS_NOISEBASE_H
 

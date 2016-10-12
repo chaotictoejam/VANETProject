@@ -41,5 +41,5 @@ std::ostream& FlatTransmissionBase::printToStream(std::ostream& stream, int leve
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

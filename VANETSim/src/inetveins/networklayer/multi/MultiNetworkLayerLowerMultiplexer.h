@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MULTINETWORKLAYERLOWERMULTIPLEXER_H
-#define __INET_MULTINETWORKLAYERLOWERMULTIPLEXER_H
+#ifndef __INETVEINS_MULTINETVEINSWORKLAYERLOWERMULTIPLEXER_H
+#define __INETVEINS_MULTINETVEINSWORKLAYERLOWERMULTIPLEXER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -35,7 +35,7 @@ class INETVEINS_API MultiNetworkLayerLowerMultiplexer : public cSimpleModule
     int getProtocolIndex(cMessage *message);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MULTINETWORKLAYERLOWERMULTIPLEXER_H
+#endif // ifndef __INETVEINS_MULTINETVEINSWORKLAYERLOWERMULTIPLEXER_H
 

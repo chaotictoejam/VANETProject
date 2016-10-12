@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IDEALTRANSMISSION_H
-#define __INET_IDEALTRANSMISSION_H
+#ifndef __INETVEINS_IDEALTRANSMISSION_H
+#define __INETVEINS_IDEALTRANSMISSION_H
 
 #include "inetveins/physicallayer/base/packetlevel/TransmissionBase.h"
 
@@ -47,7 +47,7 @@ class INETVEINS_API IdealTransmission : public TransmissionBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IDEALTRANSMISSION_H
+#endif // ifndef __INETVEINS_IDEALTRANSMISSION_H
 

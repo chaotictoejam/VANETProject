@@ -28,5 +28,5 @@ GFSKModulationBase::GFSKModulationBase(unsigned int constellationSize) :
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

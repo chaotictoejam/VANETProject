@@ -15,10 +15,10 @@
 *                                                                         *
 ***************************************************************************/
 
-#ifndef __INET_RTPPROFILE_H
-#define __INET_RTPPROFILE_H
+#ifndef __INETVEINS_RTPPROFILE_H
+#define __INETVEINS_RTPPROFILE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -217,7 +217,7 @@ class INETVEINS_API RTPProfile : public cSimpleModule
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RTPPROFILE_H
+#endif // ifndef __INETVEINS_RTPPROFILE_H
 

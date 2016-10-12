@@ -44,5 +44,5 @@ double QBPSKModulation::calculateBER(double snir, Hz bandwidth, bps bitrate) con
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

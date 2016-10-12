@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DIMENSIONALSNIR_H
-#define __INET_DIMENSIONALSNIR_H
+#ifndef __INETVEINS_DIMENSIONALSNIR_H
+#define __INETVEINS_DIMENSIONALSNIR_H
 
 #include "inetveins/physicallayer/base/packetlevel/SNIRBase.h"
 #include "inetveins/physicallayer/analogmodel/packetlevel/DimensionalReception.h"
@@ -44,7 +44,7 @@ class INETVEINS_API DimensionalSNIR : public SNIRBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DIMENSIONALSNIR_H
+#endif // ifndef __INETVEINS_DIMENSIONALSNIR_H
 

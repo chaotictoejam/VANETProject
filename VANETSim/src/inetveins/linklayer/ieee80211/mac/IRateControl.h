@@ -15,10 +15,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_IRATECONTROL_H
-#define __INET_IRATECONTROL_H
+#ifndef __INETVEINS_IRATECONTROL_H
+#define __INETVEINS_IRATECONTROL_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/physicallayer/ieee80211/mode/Ieee80211ModeSet.h"
 #include "inetveins/physicallayer/ieee80211/packetlevel/Ieee80211ControlInfo_m.h"
 #include "inetveins/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
@@ -44,4 +44,4 @@ class INETVEINS_API IRateControl
 } /* namespace ieee80211 */
 } /* namespace inetveins */
 
-#endif // ifndef __INET_IRATECONTROL_H
+#endif // ifndef __INETVEINS_IRATECONTROL_H

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IENCODER_H
-#define __INET_IENCODER_H
+#ifndef __INETVEINS_IENCODER_H
+#define __INETVEINS_IENCODER_H
 
 #include "inetveins/physicallayer/contract/bitlevel/ISignalPacketModel.h"
 #include "inetveins/physicallayer/contract/bitlevel/ISignalBitModel.h"
@@ -35,7 +35,7 @@ class INETVEINS_API IEncoder : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IENCODER_H
+#endif // ifndef __INETVEINS_IENCODER_H
 

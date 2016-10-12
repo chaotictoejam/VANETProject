@@ -6,8 +6,8 @@
  *
  */
 
-#ifndef __INET_ETHERNETHDR_H
-#define __INET_ETHERNETHDR_H
+#ifndef __INETVEINS_ETHERNETHDR_H
+#define __INETVEINS_ETHERNETHDR_H
 
 namespace inetveins {
 
@@ -381,7 +381,7 @@ extern const uint8_t etherbroadcastaddr[ETHER_ADDR_LEN];
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
 #endif /* !_NET_ETHERNET_H_ */
 

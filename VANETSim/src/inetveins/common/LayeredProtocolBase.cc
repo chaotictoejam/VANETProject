@@ -65,5 +65,5 @@ void LayeredProtocolBase::handleLowerCommand(cMessage *message)
     throw cRuntimeError("Lower command '%s' is not handled.", message->getName());
 }
 
-} // namespace inet
+} // namespace inetveins
 

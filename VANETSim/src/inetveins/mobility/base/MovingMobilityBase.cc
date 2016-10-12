@@ -144,5 +144,5 @@ Coord MovingMobilityBase::getCurrentSpeed()
     return lastSpeed;
 }
 
-} // namespace inet
+} // namespace inetveins
 

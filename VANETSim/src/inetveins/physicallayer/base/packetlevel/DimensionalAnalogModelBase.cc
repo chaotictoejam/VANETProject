@@ -154,5 +154,5 @@ const ISNIR *DimensionalAnalogModelBase::computeSNIR(const IReception *reception
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

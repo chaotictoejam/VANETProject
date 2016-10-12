@@ -93,5 +93,5 @@ void HeatMapFigure::coolDown()
 }
 #endif
 
-} // namespace inet
+} // namespace inetveins
 

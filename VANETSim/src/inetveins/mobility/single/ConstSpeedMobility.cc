@@ -18,7 +18,7 @@
  **************************************************************************/
 
 #include "inetveins/mobility/single/ConstSpeedMobility.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 
 namespace inetveins {
 
@@ -48,5 +48,5 @@ void ConstSpeedMobility::setTargetPosition()
     nextChange = simTime() + distance / speed;
 }
 
-} // namespace inet
+} // namespace inetveins
 

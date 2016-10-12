@@ -13,8 +13,8 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_RSVPPACKET_H
-#define __INET_RSVPPACKET_H
+#ifndef __INETVEINS_RSVPPACKET_H
+#define __INETVEINS_RSVPPACKET_H
 
 #include "inetveins/networklayer/rsvp_te/RSVPPacket_m.h"
 
@@ -49,7 +49,7 @@ class INETVEINS_API RSVPPacket : public RSVPPacket_Base
     }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RSVPPACKET_H
+#endif // ifndef __INETVEINS_RSVPPACKET_H
 

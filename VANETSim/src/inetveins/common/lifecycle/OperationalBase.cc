@@ -104,5 +104,5 @@ void OperationalBase::setOperational(bool isOperational)
     lastChange = simTime();
 }
 
-} // namespace inet
+} // namespace inetveins
 

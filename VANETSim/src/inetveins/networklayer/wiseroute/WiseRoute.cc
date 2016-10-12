@@ -28,7 +28,7 @@
 #include <algorithm>
 
 #include "inetveins/networklayer/wiseroute/WiseRoute.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/networklayer/contract/IL3AddressType.h"
 #include "inetveins/linklayer/common/MACAddress.h"
 #include "inetveins/networklayer/common/L3AddressResolver.h"
@@ -382,5 +382,5 @@ cObject *WiseRoute::setDownControlInfo(cMessage *const pMsg, const MACAddress& p
     return cCtrlInfo;
 }
 
-} // namespace inet
+} // namespace inetveins
 

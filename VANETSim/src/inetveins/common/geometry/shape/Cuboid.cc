@@ -137,5 +137,5 @@ void Cuboid::computeVisibleFaces(std::vector<std::vector<Coord> >& faces, const 
     prism.computeVisibleFaces(faces, rotation, viewRotation);
 }
 
-} // namespace inet
+} // namespace inetveins
 

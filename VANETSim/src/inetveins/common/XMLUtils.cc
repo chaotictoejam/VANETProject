@@ -172,5 +172,5 @@ bool getAttributeBoolValue(const cXMLElement *node, const char *attrName)
 
 } // namespace xmlutils
 
-} // namespace inet
+} // namespace inetveins
 

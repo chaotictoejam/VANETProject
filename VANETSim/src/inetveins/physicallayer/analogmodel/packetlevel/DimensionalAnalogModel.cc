@@ -50,5 +50,5 @@ const IReception *DimensionalAnalogModel::computeReception(const IRadio *receive
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

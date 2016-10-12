@@ -54,5 +54,5 @@ void Sink::finish()
     recordScalar("packetPerSec", packetPerSec);
 }
 
-} // namespace inet
+} // namespace inetveins
 

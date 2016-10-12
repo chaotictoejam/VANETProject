@@ -15,11 +15,11 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_UDPSOCKET_H
-#define __INET_UDPSOCKET_H
+#ifndef __INETVEINS_UDPSOCKET_H
+#define __INETVEINS_UDPSOCKET_H
 
 #include <vector>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/transportlayer/contract/udp/UDPControlInfo.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
@@ -271,7 +271,7 @@ class INETVEINS_API UDPSocket
     //@}
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_UDPSOCKET_H
+#endif // ifndef __INETVEINS_UDPSOCKET_H
 

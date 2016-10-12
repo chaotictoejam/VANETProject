@@ -107,5 +107,5 @@ void GaussMarkovMobility::setTargetPosition()
     EV_DEBUG << " mspeed = " << speedMean << " mangle = " << angleMean << endl;
 }
 
-} // namespace inet
+} // namespace inetveins
 

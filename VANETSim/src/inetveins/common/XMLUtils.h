@@ -1,7 +1,7 @@
-#ifndef __INET_XMLUTILS_H
-#define __INET_XMLUTILS_H
+#ifndef __INETVEINS_XMLUTILS_H
+#define __INETVEINS_XMLUTILS_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
 
@@ -33,7 +33,7 @@ INETVEINS_API bool parseBool(const char *text);
 
 } // namespace xmlutils
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_XMLUTILS_H
+#endif // ifndef __INETVEINS_XMLUTILS_H
 

@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/ipv6/IPv6FragBuf.h"
 #include "inetveins/networklayer/icmpv6/ICMPv6.h"
@@ -166,5 +166,5 @@ void IPv6FragBuf::purgeStaleFragments(simtime_t lastupdate)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

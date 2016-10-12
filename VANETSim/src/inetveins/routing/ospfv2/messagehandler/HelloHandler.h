@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_HELLOHANDLER_H
-#define __INET_HELLOHANDLER_H
+#ifndef __INETVEINS_HELLOHANDLER_H
+#define __INETVEINS_HELLOHANDLER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/routing/ospfv2/messagehandler/IMessageHandler.h"
 
 namespace inetveins {
@@ -35,7 +35,7 @@ class INETVEINS_API HelloHandler : public IMessageHandler
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_HELLOHANDLER_H
+#endif // ifndef __INETVEINS_HELLOHANDLER_H
 

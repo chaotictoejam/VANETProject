@@ -18,13 +18,13 @@
 // Authors: Levente Meszaros (primary author), Andras Varga, Tamas Borbely
 //
 
-#ifndef __INET_NETWORKCONFIGURATORBASE_H
-#define __INET_NETWORKCONFIGURATORBASE_H
+#ifndef __INETVEINS_NETWORKCONFIGURATORBASE_H
+#define __INETVEINS_NETWORKCONFIGURATORBASE_H
 
 #include <algorithm>
 
-#include "inetveins/common/INETDefs.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSDefs.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/common/PatternMatcher.h"
 #include "inetveins/common/Topology.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
@@ -204,7 +204,7 @@ inline std::ostream& operator<<(std::ostream& stream, const NetworkConfiguratorB
     return stream << *link;
 }
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NETWORKCONFIGURATORBASE_H
+#endif // ifndef __INETVEINS_NETWORKCONFIGURATORBASE_H
 

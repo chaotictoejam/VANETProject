@@ -30,7 +30,7 @@
 #include "IRateSelection.h"
 #include "IRateControl.h"
 #include "IStatistics.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 #include "inetveins/common/queue/IPassiveQueue.h"
 #include "inetveins/common/ModuleAccess.h"
 #include "inetveins/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
@@ -363,5 +363,5 @@ void EdcaUpperMac::sendCts(Ieee80211RTSFrame *frame)
 }
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 

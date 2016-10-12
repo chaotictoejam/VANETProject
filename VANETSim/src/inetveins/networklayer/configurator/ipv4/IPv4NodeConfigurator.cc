@@ -124,5 +124,5 @@ void IPv4NodeConfigurator::configureNode()
         networkConfigurator->configureRoutingTable(routingTable);
 }
 
-} // namespace inet
+} // namespace inetveins
 

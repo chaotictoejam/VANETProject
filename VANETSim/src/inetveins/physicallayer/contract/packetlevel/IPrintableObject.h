@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPRINTABLEOBJECT_H
-#define __INET_IPRINTABLEOBJECT_H
+#ifndef __INETVEINS_IPRINTABLEOBJECT_H
+#define __INETVEINS_IPRINTABLEOBJECT_H
 
 #include "inetveins/physicallayer/base/packetlevel/PhysicalLayerDefs.h"
 
@@ -93,6 +93,6 @@ inline std::string printObjectToString(const IPrintableObject *object, int level
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPRINTABLEOBJECT_H
+#endif // ifndef __INETVEINS_IPRINTABLEOBJECT_H

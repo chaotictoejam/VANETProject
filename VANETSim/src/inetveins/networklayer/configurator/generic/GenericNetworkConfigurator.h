@@ -18,8 +18,8 @@
 // Authors: Levente Meszaros (primary author), Andras Varga, Tamas Borbely
 //
 
-#ifndef __INET_GENERICNETWORKCONFIGURATOR_H
-#define __INET_GENERICNETWORKCONFIGURATOR_H
+#ifndef __INETVEINS_GENERICNETWORKCONFIGURATOR_H
+#define __INETVEINS_GENERICNETWORKCONFIGURATOR_H
 
 #include "inetveins/networklayer/configurator/base/NetworkConfiguratorBase.h"
 
@@ -56,7 +56,7 @@ class INETVEINS_API GenericNetworkConfigurator : public NetworkConfiguratorBase
     virtual void dumpRoutes(Topology& topology);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GENERICNETWORKCONFIGURATOR_H
+#endif // ifndef __INETVEINS_GENERICNETWORKCONFIGURATOR_H
 

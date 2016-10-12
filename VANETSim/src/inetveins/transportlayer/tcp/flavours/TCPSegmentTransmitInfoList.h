@@ -17,10 +17,10 @@
 // @author Zoltan Bojthe
 //
 
-#ifndef __INET_TCPSEGMENTTRANSMITINFOLIST_H
-#define __INET_TCPSEGMENTTRANSMITINFOLIST_H
+#ifndef __INETVEINS_TCPSEGMENTTRANSMITINFOLIST_H
+#define __INETVEINS_TCPSEGMENTTRANSMITINFOLIST_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/tcp/flavours/TCPBaseAlg.h"
 
@@ -64,7 +64,7 @@ class INETVEINS_API TCPSegmentTransmitInfoList
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPSEGMENTTRANSMITINFOLIST_H
+#endif // ifndef __INETVEINS_TCPSEGMENTTRANSMITINFOLIST_H
 

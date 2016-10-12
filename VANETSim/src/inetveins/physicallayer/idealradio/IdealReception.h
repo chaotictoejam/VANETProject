@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IDEALRECEPTION_H
-#define __INET_IDEALRECEPTION_H
+#ifndef __INETVEINS_IDEALRECEPTION_H
+#define __INETVEINS_IDEALRECEPTION_H
 
 #include "inetveins/physicallayer/base/packetlevel/ReceptionBase.h"
 
@@ -51,7 +51,7 @@ class INETVEINS_API IdealReception : public ReceptionBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IDEALRECEPTION_H
+#endif // ifndef __INETVEINS_IDEALRECEPTION_H
 

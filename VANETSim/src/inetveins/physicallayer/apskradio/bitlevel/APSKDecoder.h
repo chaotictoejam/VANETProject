@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_APSKDECODER_H
-#define __INET_APSKDECODER_H
+#ifndef __INETVEINS_APSKDECODER_H
+#define __INETVEINS_APSKDECODER_H
 
 #include "inetveins/physicallayer/contract/bitlevel/IDecoder.h"
 #include "inetveins/physicallayer/apskradio/bitlevel/APSKCode.h"
@@ -48,7 +48,7 @@ class INETVEINS_API APSKDecoder : public cSimpleModule, public IDecoder
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_APSKDECODER_H
+#endif // ifndef __INETVEINS_APSKDECODER_H
 

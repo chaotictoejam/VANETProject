@@ -109,5 +109,5 @@ void LinkStateRequestHandler::processPacket(OSPFPacket *packet, Interface *intf,
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

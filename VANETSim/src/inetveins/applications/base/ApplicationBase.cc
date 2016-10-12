@@ -23,5 +23,5 @@ ApplicationBase::ApplicationBase()
 {
 }
 
-} // namespace inet
+} // namespace inetveins
 

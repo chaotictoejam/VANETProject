@@ -185,5 +185,5 @@ void EtherEncap::handleSendPause(cMessage *msg)
     totalPauseSent++;
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -17,8 +17,8 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_FRAMEEXCHANGE_H
-#define __INET_FRAMEEXCHANGE_H
+#ifndef __INETVEINS_FRAMEEXCHANGE_H
+#define __INETVEINS_FRAMEEXCHANGE_H
 
 #include "IFrameExchange.h"
 #include "MacPlugin.h"
@@ -162,7 +162,7 @@ class INETVEINS_API StepBasedFrameExchange : public FrameExchange
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

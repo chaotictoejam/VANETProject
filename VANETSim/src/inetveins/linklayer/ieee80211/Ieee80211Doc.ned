@@ -19,7 +19,7 @@
 //
 // @page ieee80211.html, IEEE 802.11 Model
 //
-// This page provides an overview of the IEEE 802.11 model for the INET Framework.
+// This page provides an overview of the IEEE 802.11 model for the INETVEINS Framework.
 //
 // An IEEE 802.11 interface (NIC) comes in several flavours, differring
 // in their role (ad-hoc station, infrastructure mode station, or

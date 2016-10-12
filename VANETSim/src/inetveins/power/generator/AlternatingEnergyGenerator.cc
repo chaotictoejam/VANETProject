@@ -76,5 +76,5 @@ void AlternatingEnergyGenerator::scheduleIntervalTimer()
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 

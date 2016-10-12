@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ETHERAPPCLI_H
-#define __INET_ETHERAPPCLI_H
+#ifndef __INETVEINS_ETHERAPPCLI_H
+#define __INETVEINS_ETHERAPPCLI_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/linklayer/common/MACAddress.h"
 #include "inetveins/common/lifecycle/NodeStatus.h"
@@ -79,7 +79,7 @@ class INETVEINS_API EtherAppCli : public cSimpleModule, public ILifecycle
     virtual ~EtherAppCli();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ETHERAPPCLI_H
+#endif // ifndef __INETVEINS_ETHERAPPCLI_H
 

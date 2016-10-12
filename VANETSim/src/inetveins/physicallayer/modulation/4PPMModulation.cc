@@ -30,5 +30,5 @@ _4PPMModulation::_4PPMModulation() :
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

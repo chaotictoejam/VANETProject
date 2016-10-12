@@ -17,8 +17,8 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_TX_H
-#define __INET_TX_H
+#ifndef __INETVEINS_TX_H
+#define __INETVEINS_TX_H
 
 #include "ITx.h"
 
@@ -61,7 +61,7 @@ class INETVEINS_API Tx : public cSimpleModule, public ITx
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

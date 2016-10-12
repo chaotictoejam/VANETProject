@@ -60,5 +60,5 @@ ReceptionSymbolModel::ReceptionSymbolModel(int headerSymbolLength, double header
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

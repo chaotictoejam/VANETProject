@@ -366,5 +366,5 @@ bool Contention::isOwning()
 }
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 

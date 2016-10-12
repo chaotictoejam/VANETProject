@@ -14,10 +14,10 @@
 // Author: Andras Varga (andras@omnetpp.org)
 //
 
-#ifndef __INET_LIFECYCLECONTROLLER_H
-#define __INET_LIFECYCLECONTROLLER_H
+#ifndef __INETVEINS_LIFECYCLECONTROLLER_H
+#define __INETVEINS_LIFECYCLECONTROLLER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/common/scenario/IScriptable.h"
 
@@ -102,7 +102,7 @@ class INETVEINS_API LifecycleController : public cSimpleModule, public IScriptab
     virtual bool initiateOperation(LifecycleOperation *operation, IDoneCallback *completionCallback = nullptr);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LIFECYCLECONTROLLER_H
+#endif // ifndef __INETVEINS_LIFECYCLECONTROLLER_H
 

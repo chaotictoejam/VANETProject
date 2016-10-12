@@ -149,5 +149,5 @@ void MACRelayUnit::finish()
     recordScalar("discarded frames", numDiscardedFrames);
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -17,10 +17,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_RTCPPACKET3_H
-#define __INET_RTCPPACKET3_H
+#ifndef __INETVEINS_RTCPPACKET3_H
+#define __INETVEINS_RTCPPACKET3_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/rtp/RTCPPacket3_m.h"
 
@@ -40,7 +40,7 @@ class INETVEINS_API RTCPSenderReportPacket : public RTCPSenderReportPacket_Base
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
 #endif    // _RTCPPACKET3_M_H_
 

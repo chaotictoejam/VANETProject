@@ -25,7 +25,7 @@ namespace ieee80211 {
 // nothing for now
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 
 

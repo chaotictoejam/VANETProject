@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_RADIOFRAME_H
-#define __INET_RADIOFRAME_H
+#ifndef __INETVEINS_RADIOFRAME_H
+#define __INETVEINS_RADIOFRAME_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IRadioFrame.h"
 
@@ -48,7 +48,7 @@ class INETVEINS_API RadioFrame : public cPacket, public IRadioFrame
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RADIOFRAME_H
+#endif // ifndef __INETVEINS_RADIOFRAME_H
 

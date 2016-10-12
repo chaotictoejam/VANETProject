@@ -17,8 +17,8 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_IMACPARAMETERS_H
-#define __INET_IMACPARAMETERS_H
+#ifndef __INETVEINS_IMACPARAMETERS_H
+#define __INETVEINS_IMACPARAMETERS_H
 
 #include "AccessCategory.h"
 #include "inetveins/linklayer/common/MACAddress.h"
@@ -60,7 +60,7 @@ class INETVEINS_API IMacParameters
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

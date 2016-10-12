@@ -104,5 +104,5 @@ cPacket *TCPMsgBasedRcvQueue::extractBytesUpTo(uint32 seq)
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

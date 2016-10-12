@@ -1,5 +1,5 @@
-#ifndef __INET_FINDMODULE_H
-#define __INET_FINDMODULE_H
+#ifndef __INETVEINS_FINDMODULE_H
+#define __INETVEINS_FINDMODULE_H
 
 #include <omnetpp.h>
 
@@ -121,7 +121,7 @@ class AccessModuleWrap
     }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_FINDMODULE_H
+#endif // ifndef __INETVEINS_FINDMODULE_H
 

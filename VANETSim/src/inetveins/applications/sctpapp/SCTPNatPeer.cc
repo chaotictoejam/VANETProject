@@ -917,5 +917,5 @@ void SCTPNatPeer::finish()
     rcvdBytesPerAssoc.clear();
 }
 
-} // namespace inet
+} // namespace inetveins
 

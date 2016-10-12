@@ -5,8 +5,8 @@
  *      Author: Damien Piguet, Dimitris Kotsakos, Jérôme Rousselot
  */
 
-#ifndef __INET_ADAPTIVEPROBABILISTICBROADCAST_H
-#define __INET_ADAPTIVEPROBABILISTICBROADCAST_H
+#ifndef __INETVEINS_ADAPTIVEPROBABILISTICBROADCAST_H
+#define __INETVEINS_ADAPTIVEPROBABILISTICBROADCAST_H
 
 #include <map>
 
@@ -55,7 +55,7 @@ class INETVEINS_API AdaptiveProbabilisticBroadcast : public ProbabilisticBroadca
     NeighborMap neighMap;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ADAPTIVEPROBABILISTICBROADCAST_H
+#endif // ifndef __INETVEINS_ADAPTIVEPROBABILISTICBROADCAST_H
 

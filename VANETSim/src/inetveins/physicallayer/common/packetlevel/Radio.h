@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_RADIO_H
-#define __INET_RADIO_H
+#ifndef __INETVEINS_RADIO_H
+#define __INETVEINS_RADIO_H
 
 #include "inetveins/physicallayer/base/packetlevel/PhysicalLayerBase.h"
 #include "inetveins/physicallayer/common/packetlevel/RadioFrame.h"
@@ -256,7 +256,7 @@ class INETVEINS_API Radio : public PhysicalLayerBase, public virtual IRadio
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RADIO_H
+#endif // ifndef __INETVEINS_RADIO_H
 

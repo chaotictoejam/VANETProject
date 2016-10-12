@@ -112,5 +112,5 @@ void printNotificationBanner(simsignal_t signalID, const cObject *obj)
        << (obj ? obj->info() : "") << "\n";
 }
 
-} // namespace inet
+} // namespace inetveins
 

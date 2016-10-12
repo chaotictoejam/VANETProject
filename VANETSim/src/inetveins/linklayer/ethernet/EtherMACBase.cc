@@ -26,7 +26,7 @@
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 #include "inetveins/common/queue/IPassiveQueue.h"
 #include "inetveins/common/lifecycle/NodeOperations.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 namespace inetveins {
 
@@ -714,5 +714,5 @@ int EtherMACBase::InnerQueue::packetCompare(cObject *a, cObject *b)
     return ap - bp;
 }
 
-} // namespace inet
+} // namespace inetveins
 

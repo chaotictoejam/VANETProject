@@ -17,10 +17,10 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_IUPPERMAC_H
-#define __INET_IUPPERMAC_H
+#ifndef __INETVEINS_IUPPERMAC_H
+#define __INETVEINS_IUPPERMAC_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 namespace ieee80211 {
@@ -55,7 +55,7 @@ class INETVEINS_API IUpperMac
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

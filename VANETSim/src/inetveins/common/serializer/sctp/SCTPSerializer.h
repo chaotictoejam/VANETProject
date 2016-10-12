@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTPSERIALIZER_H
-#define __INET_SCTPSERIALIZER_H
+#ifndef __INETVEINS_SCTPSERIALIZER_H
+#define __INETVEINS_SCTPSERIALIZER_H
 
 #include "inetveins/common/serializer/SerializerBase.h"
 #include "inetveins/transportlayer/sctp/SCTPMessage.h"
@@ -65,7 +65,7 @@ class INETVEINS_API SCTPSerializer : public SerializerBase
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPSERIALIZER_H
+#endif // ifndef __INETVEINS_SCTPSERIALIZER_H
 

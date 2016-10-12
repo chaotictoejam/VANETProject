@@ -259,5 +259,5 @@ m MediumLimitCache::getMaxCommunicationRange(const IRadio* radio) const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,14 +15,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_OSPFINTERFACE_H
-#define __INET_OSPFINTERFACE_H
+#ifndef __INETVEINS_OSPFINTERFACE_H
+#define __INETVEINS_OSPFINTERFACE_H
 
 #include <map>
 #include <vector>
 #include <list>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/routing/ospfv2/router/OSPFcommon.h"
 #include "inetveins/routing/ospfv2/neighbor/OSPFNeighbor.h"
@@ -177,7 +177,7 @@ class INETVEINS_API Interface
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_OSPFINTERFACE_H
+#endif // ifndef __INETVEINS_OSPFINTERFACE_H
 

@@ -15,10 +15,10 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __INET_GENERICARP_H
-#define __INET_GENERICARP_H
+#ifndef __INETVEINS_GENERICARP_H
+#define __INETVEINS_GENERICARP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/linklayer/common/MACAddress.h"
@@ -59,7 +59,7 @@ class INETVEINS_API GenericARP : public cSimpleModule, public IARP
     void sendPacketToNIC(cMessage *msg, InterfaceEntry *ie, const MACAddress& macAddress, int etherType);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GENERICARP_H
+#endif // ifndef __INETVEINS_GENERICARP_H
 

@@ -380,4 +380,4 @@ const Ieee80211OFDMMode Ieee80211OFDMCompliantModes::ofdmMode54Mbps("ofdmMode54M
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins

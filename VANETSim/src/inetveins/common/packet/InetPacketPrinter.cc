@@ -15,33 +15,33 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/networklayer/contract/INetworkDatagram.h"
 #include "inetveins/applications/pingapp/PingPayload_m.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/ICMPMessage.h"
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
-#else // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
 namespace inetveins {
 class ICMPMessage;
 class IPv4Datagram;
-} // namespace inet
-#endif // ifdef WITH_IPv4
+} // namespace inetveins
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
 #include "inetveins/transportlayer/tcp_common/TCPSegment.h"
-#else // ifdef WITH_TCP_COMMON
+#else // ifdef WITH_INETVEINS_TCP_COMMON
 namespace inetveins { namespace tcp { class TCPSegment; } }
-#endif // ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
 
-#ifdef WITH_UDP
+#ifdef WITH_INETVEINS_UDP
 #include "inetveins/transportlayer/udp/UDPPacket.h"
-#else // ifdef WITH_UDP
+#else // ifdef WITH_INETVEINS_UDP
 namespace inetveins { class UDPPacket; }
-#endif // ifdef WITH_UDP
+#endif // ifdef WITH_INETVEINS_UDP
 
 namespace inetveins {
 
@@ -78,40 +78,40 @@ void InetPacketPrinter::printMessage(std::ostream& os, cMessage *msg) const
         if (dgram) {
             srcAddr = dgram->getSourceAddress();
             destAddr = dgram->getDestinationAddress();
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
             if (dynamic_cast<IPv4Datagram *>(pk)) {
                 IPv4Datagram *ipv4dgram = static_cast<IPv4Datagram *>(pk);
                 if (ipv4dgram->getMoreFragments() || ipv4dgram->getFragmentOffset() > 0)
                     os << (ipv4dgram->getMoreFragments() ? "" : "last ")
                        << "fragment with offset=" << ipv4dgram->getFragmentOffset() << " of ";
             }
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
         }
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
         else if (dynamic_cast<tcp::TCPSegment *>(pk)) {
             printTCPPacket(os, srcAddr, destAddr, static_cast<tcp::TCPSegment *>(pk));
             return;
         }
-#endif // ifdef WITH_TCP_COMMON
-#ifdef WITH_UDP
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
+#ifdef WITH_INETVEINS_UDP
         else if (dynamic_cast<UDPPacket *>(pk)) {
             printUDPPacket(os, srcAddr, destAddr, static_cast<UDPPacket *>(pk));
             return;
         }
-#endif // ifdef WITH_UDP
-#ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_UDP
+#ifdef WITH_INETVEINS_IPv4
         else if (dynamic_cast<ICMPMessage *>(pk)) {
             printICMPPacket(os, srcAddr, destAddr, static_cast<ICMPMessage *>(pk));
             return;
         }
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
     }
     os << "(" << msg->getClassName() << ")" << " id=" << msg->getId() << " kind=" << msg->getKind();
 }
 
 void InetPacketPrinter::printTCPPacket(std::ostream& os, L3Address srcAddr, L3Address destAddr, tcp::TCPSegment *tcpSeg) const
 {
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
     os << " TCP: " << srcAddr << '.' << tcpSeg->getSrcPort() << " > " << destAddr << '.' << tcpSeg->getDestPort() << ": ";
     // flags
     bool flags = false;
@@ -159,24 +159,24 @@ void InetPacketPrinter::printTCPPacket(std::ostream& os, L3Address srcAddr, L3Ad
     // urgent
     if (tcpSeg->getUrgBit())
         os << "urg " << tcpSeg->getUrgentPointer() << " ";
-#else // ifdef WITH_TCP_COMMON
+#else // ifdef WITH_INETVEINS_TCP_COMMON
     os << " TCP: " << srcAddr << ".? > " << destAddr << ".?";
-#endif // ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
 }
 
 void InetPacketPrinter::printUDPPacket(std::ostream& os, L3Address srcAddr, L3Address destAddr, UDPPacket *udpPacket) const
 {
-#ifdef WITH_UDP
+#ifdef WITH_INETVEINS_UDP
     os << " UDP: " << srcAddr << '.' << udpPacket->getSourcePort() << " > " << destAddr << '.' << udpPacket->getDestinationPort()
        << ": (" << udpPacket->getByteLength() << ")";
-#else // ifdef WITH_UDP
+#else // ifdef WITH_INETVEINS_UDP
     os << " UDP: " << srcAddr << ".? > " << destAddr << ".?";
-#endif // ifdef WITH_UDP
+#endif // ifdef WITH_INETVEINS_UDP
 }
 
 void InetPacketPrinter::printICMPPacket(std::ostream& os, L3Address srcAddr, L3Address destAddr, ICMPMessage *packet) const
 {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     switch (packet->getType()) {
         case ICMP_ECHO_REQUEST: {
             PingPayload *payload = check_and_cast<PingPayload *>(packet->getEncapsulatedPacket());
@@ -202,12 +202,12 @@ void InetPacketPrinter::printICMPPacket(std::ostream& os, L3Address srcAddr, L3A
             os << "ICMP " << srcAddr << " to " << destAddr << " type=" << packet->getType() << " code=" << packet->getCode();
             break;
     }
-#else // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
     os << " ICMP: " << srcAddr << " > " << destAddr;
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 }
 
 #endif    // Register_MessagePrinter
 
-} // namespace inet
+} // namespace inetveins
 

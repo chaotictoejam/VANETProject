@@ -16,12 +16,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPVXTRAFSINK_H
-#define __INET_IPVXTRAFSINK_H
+#ifndef __INETVEINS_IPVXTRAFSINK_H
+#define __INETVEINS_IPVXTRAFSINK_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
 
@@ -47,7 +47,7 @@ class INETVEINS_API IPvXTrafSink : public cSimpleModule, public ILifecycle
     virtual bool handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPVXTRAFSINK_H
+#endif // ifndef __INETVEINS_IPVXTRAFSINK_H
 

@@ -15,8 +15,8 @@
 *              in the top level directory
 ***************************************************************************/
 
-#ifndef __INET_NAKAGAMIFADING_H
-#define __INET_NAKAGAMIFADING_H
+#ifndef __INETVEINS_NAKAGAMIFADING_H
+#define __INETVEINS_NAKAGAMIFADING_H
 
 #include "inetveins/physicallayer/pathloss/FreeSpacePathLoss.h"
 
@@ -43,7 +43,7 @@ class INETVEINS_API NakagamiFading : public FreeSpacePathLoss
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_NAKAGAMIFADING_H
+#endif // ifndef __INETVEINS_NAKAGAMIFADING_H
 

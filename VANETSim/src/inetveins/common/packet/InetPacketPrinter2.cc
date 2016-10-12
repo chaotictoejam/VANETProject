@@ -15,21 +15,21 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/common/L3Address.h"
 
-#ifdef WITH_ETHERNET
+#ifdef WITH_INETVEINS_ETHERNET
 #include "inetveins/linklayer/ethernet/EtherFrame.h"
-#else // ifdef WITH_ETHERNET
+#else // ifdef WITH_INETVEINS_ETHERNET
 namespace inetveins { class EtherFrame; }
-#endif // ifdef WITH_ETHERNET
+#endif // ifdef WITH_INETVEINS_ETHERNET
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/arp/ipv4/ARPPacket_m.h"
 #include "inetveins/networklayer/ipv4/ICMPMessage.h"
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
-#else // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
 
 namespace inetveins {
 
@@ -37,43 +37,43 @@ class ARPPacket;
 class ICMPMessage;
 class IPv4Datagram;
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
 #include "inetveins/transportlayer/tcp_common/TCPSegment.h"
-#else // ifdef WITH_TCP_COMMON
+#else // ifdef WITH_INETVEINS_TCP_COMMON
 namespace inetveins { namespace tcp { class TCPSegment; } }
-#endif // ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
 
-#ifdef WITH_UDP
+#ifdef WITH_INETVEINS_UDP
 #include "inetveins/transportlayer/udp/UDPPacket.h"
-#else // ifdef WITH_UDP
+#else // ifdef WITH_INETVEINS_UDP
 namespace inetveins { class UDPPacket; }
-#endif // ifdef WITH_UDP
+#endif // ifdef WITH_INETVEINS_UDP
 
-#ifdef WITH_IEEE80211
+#ifdef WITH_INETVEINS_IEEE80211
 #include "inetveins/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
-#else // ifdef WITH_IEEE80211
+#else // ifdef WITH_INETVEINS_IEEE80211
 namespace inetveins { namespace ieee80211 { class Ieee80211Frame; } }
-#endif // ifdef WITH_IEEE80211
+#endif // ifdef WITH_INETVEINS_IEEE80211
 
 #include "inetveins/networklayer/contract/INetworkDatagram.h"
 #include "inetveins/applications/pingapp/PingPayload_m.h"
 
-#ifdef WITH_RIP
+#ifdef WITH_INETVEINS_RIP
 #include "inetveins/routing/rip/RIPPacket_m.h"
-#else // ifdef WITH_RIP
+#else // ifdef WITH_INETVEINS_RIP
 class RIPPacket;
-#endif // ifdef WITH_RIP
+#endif // ifdef WITH_INETVEINS_RIP
 
-#ifdef WITH_RADIO
+#ifdef WITH_INETVEINS_RADIO
 #include "inetveins/physicallayer/common/packetlevel/RadioFrame.h"
 #include "inetveins/physicallayer/analogmodel/packetlevel/ScalarTransmission.h"
-#else // ifdef WITH_RADIO
+#else // ifdef WITH_INETVEINS_RADIO
 namespace inetveins { namespace physicallayer { class RadioFrame; } }
-#endif // ifdef WITH_RADIO
+#endif // ifdef WITH_INETVEINS_RADIO
 
 //TODO Do not move next line to top of file - opp_makemake can not detect dependencies inside of '#if' with omnetpp-specific defines
 #if OMNETPP_VERSION >= 0x0405
@@ -130,7 +130,7 @@ void InetPacketPrinter2::printMessage(std::ostream& os, cMessage *msg) const
         if (dgram) {
             srcAddr = dgram->getSourceAddress();
             destAddr = dgram->getDestinationAddress();
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
             if (dynamic_cast<IPv4Datagram *>(pk)) {
                 IPv4Datagram *ipv4dgram = static_cast<IPv4Datagram *>(pk);
                 out << "IPv4: " << srcAddr << " > " << destAddr;
@@ -140,51 +140,51 @@ void InetPacketPrinter2::printMessage(std::ostream& os, cMessage *msg) const
                 }
             }
             else
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
             out << pk->getClassName() << ": " << srcAddr << " > " << destAddr;
         }
-#ifdef WITH_ETHERNET
+#ifdef WITH_INETVEINS_ETHERNET
         else if (dynamic_cast<EtherFrame *>(pk)) {
             EtherFrame *eth = static_cast<EtherFrame *>(pk);
             out << "ETH: " << eth->getSrc() << " > " << eth->getDest() << " (" << eth->getByteLength() << " bytes)";
         }
-#endif // ifdef WITH_ETHERNET
-#ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_ETHERNET
+#ifdef WITH_INETVEINS_TCP_COMMON
         else if (dynamic_cast<tcp::TCPSegment *>(pk)) {
             out << formatTCPPacket(static_cast<tcp::TCPSegment *>(pk));
         }
-#endif // ifdef WITH_TCP_COMMON
-#ifdef WITH_UDP
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
+#ifdef WITH_INETVEINS_UDP
         else if (dynamic_cast<UDPPacket *>(pk)) {
             out << formatUDPPacket(static_cast<UDPPacket *>(pk));
         }
-#endif // ifdef WITH_UDP
-#ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_UDP
+#ifdef WITH_INETVEINS_IPv4
         else if (dynamic_cast<ICMPMessage *>(pk)) {
             out << formatICMPPacket(static_cast<ICMPMessage *>(pk));
         }
         else if (dynamic_cast<ARPPacket *>(pk)) {
             out << formatARPPacket(static_cast<ARPPacket *>(pk));
         }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IEEE80211
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IEEE80211
         else if (dynamic_cast<ieee80211::Ieee80211Frame *>(pk)) {
             out << formatIeee80211Frame(static_cast<ieee80211::Ieee80211Frame *>(pk));
         }
-#endif // ifdef WITH_IEEE80211
+#endif // ifdef WITH_INETVEINS_IEEE80211
         else if (dynamic_cast<PingPayload *>(pk)) {
             out << formatPingPayload(static_cast<PingPayload *>(pk));
         }
-#ifdef WITH_RIP
+#ifdef WITH_INETVEINS_RIP
         else if (dynamic_cast<RIPPacket *>(pk)) {
             out << formatRIPPacket(static_cast<RIPPacket *>(pk));
         }
-#endif // ifdef WITH_RIP
-#ifdef WITH_RADIO
+#endif // ifdef WITH_INETVEINS_RIP
+#ifdef WITH_INETVEINS_RADIO
         else if (dynamic_cast<RadioFrame *>(pk)) {
             out << formatRadioFrame(static_cast<RadioFrame *>(pk));
         }
-#endif // ifdef WITH_RADIO
+#endif // ifdef WITH_INETVEINS_RADIO
         else
             out << pk->getClassName() << ":" << pk->getByteLength() << " bytes";
         if (outs.length())
@@ -197,7 +197,7 @@ void InetPacketPrinter2::printMessage(std::ostream& os, cMessage *msg) const
 std::string InetPacketPrinter2::formatARPPacket(ARPPacket *packet) const
 {
     std::ostringstream os;
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     switch (packet->getOpcode()) {
         case ARP_REQUEST:
             os << "ARP req: " << packet->getDestIPAddress()
@@ -229,7 +229,7 @@ std::string InetPacketPrinter2::formatARPPacket(ARPPacket *packet) const
                << "(" << packet->getSrcMACAddress() << ")";
             break;
     }
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
     return os.str();
 }
 
@@ -238,7 +238,7 @@ std::string InetPacketPrinter2::formatIeee80211Frame(ieee80211::Ieee80211Frame *
     using namespace ieee80211;
 
     std::ostringstream os;
-#ifdef WITH_IEEE80211
+#ifdef WITH_INETVEINS_IEEE80211
     os << "WLAN ";
     switch (packet->getType()) {
         case ST_ASSOCIATIONREQUEST:
@@ -336,14 +336,14 @@ std::string InetPacketPrinter2::formatIeee80211Frame(ieee80211::Ieee80211Frame *
             os << "??? (" << packet->getClassName() << ")";
             break;
     }
-#endif // ifdef WITH_IEEE80211
+#endif // ifdef WITH_INETVEINS_IEEE80211
     return os.str();
 }
 
 std::string InetPacketPrinter2::formatTCPPacket(tcp::TCPSegment *tcpSeg) const
 {
     std::ostringstream os;
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
     os << "TCP: " << srcAddr << '.' << tcpSeg->getSrcPort() << " > " << destAddr << '.' << tcpSeg->getDestPort() << ":";
     // flags
     bool flags = false;
@@ -391,17 +391,17 @@ std::string InetPacketPrinter2::formatTCPPacket(tcp::TCPSegment *tcpSeg) const
     // urgent
     if (tcpSeg->getUrgBit())
         os << " urg " << tcpSeg->getUrgentPointer();
-#endif // ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
     return os.str();
 }
 
 std::string InetPacketPrinter2::formatUDPPacket(UDPPacket *udpPacket) const
 {
     std::ostringstream os;
-#ifdef WITH_UDP
+#ifdef WITH_INETVEINS_UDP
     os << "UDP: " << srcAddr << '.' << udpPacket->getSourcePort() << " > " << destAddr << '.' << udpPacket->getDestinationPort()
        << ": (" << udpPacket->getByteLength() << ")";
-#endif // ifdef WITH_UDP
+#endif // ifdef WITH_INETVEINS_UDP
     return os.str();
 }
 
@@ -409,7 +409,7 @@ std::string InetPacketPrinter2::formatPingPayload(PingPayload *packet) const
 {
     std::ostringstream os;
     os << "PING ";
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     ICMPMessage *owner = dynamic_cast<ICMPMessage *>(packet->getOwner());
     if (owner) {
         switch (owner->getType()) {
@@ -425,7 +425,7 @@ std::string InetPacketPrinter2::formatPingPayload(PingPayload *packet) const
                 break;
         }
     }
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
     os << srcAddr << " to " << destAddr
        << " (" << packet->getByteLength() << " bytes) id=" << packet->getId()
        << " seq=" << packet->getSeqNo();
@@ -436,7 +436,7 @@ std::string InetPacketPrinter2::formatPingPayload(PingPayload *packet) const
 std::string InetPacketPrinter2::formatICMPPacket(ICMPMessage *packet) const
 {
     std::ostringstream os;
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     switch (packet->getType()) {
         case ICMP_ECHO_REQUEST:
             os << "ICMP echo request " << srcAddr << " to " << destAddr;
@@ -457,14 +457,14 @@ std::string InetPacketPrinter2::formatICMPPacket(ICMPMessage *packet) const
             os << "ICMP " << srcAddr << " to " << destAddr << " type=" << packet->getType() << " code=" << packet->getCode();
             break;
     }
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
     return os.str();
 }
 
 std::string InetPacketPrinter2::formatRIPPacket(RIPPacket *packet) const
 {
     std::ostringstream os;
-#ifdef WITH_RIP
+#ifdef WITH_INETVEINS_RIP
     os << "RIP: ";
     switch (packet->getCommand()) {
         case RIP_REQUEST:
@@ -496,23 +496,23 @@ std::string InetPacketPrinter2::formatRIPPacket(RIPPacket *packet) const
         else
             os << " m=" << entry.metric;
     }
-#endif // ifdef WITH_RIP
+#endif // ifdef WITH_INETVEINS_RIP
     return os.str();
 }
 
 std::string InetPacketPrinter2::formatRadioFrame(RadioFrame *packet) const
 {
     std::ostringstream os;
-#ifdef WITH_RADIO
+#ifdef WITH_INETVEINS_RADIO
     // Note: Do NOT try to print transmission's properties here! getTransmission() will likely
     // return an invalid pointer here, because the transmission is no longer kept in the Medium.
     // const ITransmission *transmission = packet->getTransmission();
     os << "duration=" << SIMTIME_DBL(packet->getDuration()) * 1000 << "ms";
-#endif // ifdef WITH_RADIO
+#endif // ifdef WITH_INETVEINS_RADIO
     return os.str();
 }
 
-} // namespace inet
+} // namespace inetveins
 
 #endif    // Register_MessagePrinter
 

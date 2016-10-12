@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_OPERATIONALBASE_H
-#define __INET_OPERATIONALBASE_H
+#ifndef __INETVEINS_OPERATIONALBASE_H
+#define __INETVEINS_OPERATIONALBASE_H
 
 #include "inetveins/common/lifecycle/ILifecycle.h"
 
@@ -51,7 +51,7 @@ class INETVEINS_API OperationalBase : public cSimpleModule, public ILifecycle
     OperationalBase();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_OPERATIONALBASE_H
+#endif // ifndef __INETVEINS_OPERATIONALBASE_H
 

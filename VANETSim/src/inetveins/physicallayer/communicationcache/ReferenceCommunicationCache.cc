@@ -98,5 +98,5 @@ std::vector<const ITransmission *> *ReferenceCommunicationCache::computeInterfer
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

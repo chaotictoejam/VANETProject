@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IRECEPTIONRESULT_H
-#define __INET_IRECEPTIONRESULT_H
+#ifndef __INETVEINS_IRECEPTIONRESULT_H
+#define __INETVEINS_IRECEPTIONRESULT_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IReception.h"
 #include "inetveins/physicallayer/contract/packetlevel/IReceptionDecision.h"
@@ -67,7 +67,7 @@ class INETVEINS_API IReceptionResult : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IRECEPTIONRESULT_H
+#endif // ifndef __INETVEINS_IRECEPTIONRESULT_H
 

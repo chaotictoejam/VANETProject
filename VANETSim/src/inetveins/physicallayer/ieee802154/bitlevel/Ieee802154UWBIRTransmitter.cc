@@ -208,5 +208,5 @@ const ITransmission *Ieee802154UWBIRTransmitter::createTransmission(const IRadio
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

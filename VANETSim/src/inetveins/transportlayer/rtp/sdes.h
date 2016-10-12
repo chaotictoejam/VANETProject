@@ -15,10 +15,10 @@
 *                                                                         *
 ***************************************************************************/
 
-#ifndef __INET_SDES_H
-#define __INET_SDES_H
+#ifndef __INETVEINS_SDES_H
+#define __INETVEINS_SDES_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -205,7 +205,7 @@ class INETVEINS_API SDESChunk : public cArray
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SDES_H
+#endif // ifndef __INETVEINS_SDES_H
 

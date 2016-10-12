@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BONNMOTIONMOBILITY_H
-#define __INET_BONNMOTIONMOBILITY_H
+#ifndef __INETVEINS_BONNMOTIONMOBILITY_H
+#define __INETVEINS_BONNMOTIONMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/base/LineSegmentsMobilityBase.h"
 #include "inetveins/mobility/single/BonnMotionFileCache.h"
@@ -65,7 +65,7 @@ class INETVEINS_API BonnMotionMobility : public LineSegmentsMobilityBase
     virtual double getMaxSpeed() const override { return maxSpeed; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BONNMOTIONMOBILITY_H
+#endif // ifndef __INETVEINS_BONNMOTIONMOBILITY_H
 

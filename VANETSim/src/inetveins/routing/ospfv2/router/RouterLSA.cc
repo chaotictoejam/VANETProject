@@ -92,5 +92,5 @@ bool RouterLSA::differsFrom(const OSPFRouterLSA *routerLSA) const
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

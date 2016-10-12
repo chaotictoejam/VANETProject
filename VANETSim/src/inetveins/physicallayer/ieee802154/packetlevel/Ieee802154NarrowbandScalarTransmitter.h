@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE802154NARROWBANDSCALARTRANSMITTER_H
-#define __INET_IEEE802154NARROWBANDSCALARTRANSMITTER_H
+#ifndef __INETVEINS_IEEE802154NARROWBANDSCALARTRANSMITTER_H
+#define __INETVEINS_IEEE802154NARROWBANDSCALARTRANSMITTER_H
 
 #include "inetveins/physicallayer/base/packetlevel/FlatTransmitterBase.h"
 
@@ -36,7 +36,7 @@ class INETVEINS_API Ieee802154NarrowbandScalarTransmitter : public FlatTransmitt
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE802154NARROWBANDSCALARTRANSMITTER_H
+#endif // ifndef __INETVEINS_IEEE802154NARROWBANDSCALARTRANSMITTER_H
 

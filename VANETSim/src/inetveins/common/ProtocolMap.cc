@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/ProtocolMap.h"
 
@@ -90,5 +90,5 @@ void ProtocolMapping::addProtocolMapping(int protocol, int gateIndex)
         throw cRuntimeError("The protocol %d should not register to gate index=%d because it already registered to gate index=%d.", protocol, gateIndex, registered);
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -158,5 +158,5 @@ void EthernetApplication::finish()
 {
 }
 
-} // namespace inet
+} // namespace inetveins
 

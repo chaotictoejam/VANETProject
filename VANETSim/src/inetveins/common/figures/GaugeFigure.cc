@@ -250,4 +250,4 @@ void GaugeFigure::lifecycleEvent(SimulationLifecycleEventType eventType, cObject
 
 #endif // omnetpp 5
 
-// } // namespace inet
+// } // namespace inetveins

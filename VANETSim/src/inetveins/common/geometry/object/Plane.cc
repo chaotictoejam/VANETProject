@@ -51,5 +51,5 @@ Coord Plane::computeIntersection(const LineSegment& lineSegment)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,10 +15,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_ISTATISTICS_H
-#define __INET_ISTATISTICS_H
+#ifndef __INETVEINS_ISTATISTICS_H
+#define __INETVEINS_ISTATISTICS_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 namespace ieee80211 {
@@ -54,6 +54,6 @@ class INETVEINS_API IStatistics
 };
 
 }  // namespace ieee80211
-}  // namespace inet
+}  // namespace inetveins
 
 #endif

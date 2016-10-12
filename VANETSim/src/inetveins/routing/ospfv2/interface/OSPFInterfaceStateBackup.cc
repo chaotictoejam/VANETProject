@@ -60,5 +60,5 @@ void InterfaceStateBackup::processEvent(Interface *intf, Interface::InterfaceEve
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

@@ -129,5 +129,5 @@ void PassiveQueueBase::notifyListeners()
         (elem)->packetEnqueued(this);
 }
 
-} // namespace inet
+} // namespace inetveins
 

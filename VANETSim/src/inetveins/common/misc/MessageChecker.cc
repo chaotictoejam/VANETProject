@@ -244,5 +244,5 @@ void MessageChecker::finish()
         throw cRuntimeError("Several message(s) have to be checked");
 }
 
-} // namespace inet
+} // namespace inetveins
 

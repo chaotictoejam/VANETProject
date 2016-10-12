@@ -15,8 +15,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_RATECONTROLBASE_H
-#define __INET_RATECONTROLBASE_H
+#ifndef __INETVEINS_RATECONTROLBASE_H
+#define __INETVEINS_RATECONTROLBASE_H
 
 #include "IRateControl.h"
 
@@ -39,4 +39,4 @@ class INETVEINS_API RateControlBase : public IRateControl
 } /* namespace ieee80211 */
 } /* namespace inetveins */
 
-#endif /* __INET_RATECONTROLBASE_H */
+#endif /* __INETVEINS_RATECONTROLBASE_H */

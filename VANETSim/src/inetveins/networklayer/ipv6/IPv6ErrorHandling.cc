@@ -20,7 +20,7 @@
 //  Cleanup and rewrite: Andras Varga, 2004
 //  Implementation of IPv6 version: Wei Yang, Ng, 2005
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/ipv6/IPv6ErrorHandling.h"
 #include "inetveins/networklayer/ipv6/IPv6Datagram.h"
@@ -166,5 +166,5 @@ void IPv6ErrorHandling::displayType4Msg(int code)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

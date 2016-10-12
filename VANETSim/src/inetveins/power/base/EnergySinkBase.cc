@@ -72,5 +72,5 @@ void EnergySinkBase::setPowerGeneration(int energyGeneratorId, W generatedPower)
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IRECEPTION_H
-#define __INET_IRECEPTION_H
+#ifndef __INETVEINS_IRECEPTION_H
+#define __INETVEINS_IRECEPTION_H
 
 #include "inetveins/physicallayer/contract/bitlevel/ISignalAnalogModel.h"
 #include "inetveins/physicallayer/contract/packetlevel/IRadioSignal.h"
@@ -126,7 +126,7 @@ class INETVEINS_API IReception : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IRECEPTION_H
+#endif // ifndef __INETVEINS_IRECEPTION_H
 

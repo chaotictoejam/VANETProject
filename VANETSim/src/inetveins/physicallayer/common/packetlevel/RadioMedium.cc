@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 #include "inetveins/common/ModuleAccess.h"
 #include "inetveins/common/NotifierConsts.h"
 #include "inetveins/linklayer/contract/IMACFrame.h"
@@ -718,5 +718,5 @@ void RadioMedium::receiveSignal(cComponent *source, simsignal_t signal, long val
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

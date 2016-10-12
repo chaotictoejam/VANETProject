@@ -121,5 +121,5 @@ const ITransmissionSymbolModel *Ieee80211OFDMModulator::modulate(const ITransmis
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

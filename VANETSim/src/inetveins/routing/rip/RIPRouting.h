@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_RIPROUTING_H
-#define __INET_RIPROUTING_H
+#ifndef __INETVEINS_RIPROUTING_H
+#define __INETVEINS_RIPROUTING_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/IRoute.h"
 #include "inetveins/networklayer/contract/IRoutingTable.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
@@ -221,5 +221,5 @@ class INETVEINS_API RIPRouting : public cSimpleModule, protected cListener, publ
 
 } // namespace inetveins
 
-#endif // ifndef __INET_RIPROUTING_H
+#endif // ifndef __INETVEINS_RIPROUTING_H
 

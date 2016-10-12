@@ -18,8 +18,8 @@
  * Author: Gary Pei <guangyu.pei@boeing.com>
  */
 
-#ifndef __INET_DSSS_ERROR_RATE_MODEL_H
-#define __INET_DSSS_ERROR_RATE_MODEL_H
+#ifndef __INETVEINS_DSSS_ERROR_RATE_MODEL_H
+#define __INETVEINS_DSSS_ERROR_RATE_MODEL_H
 //#include <stdint.h>
 
 #ifdef ENABLE_GSL
@@ -90,7 +90,7 @@ class INETVEINS_API DsssErrorRateModel
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
 #endif /* DSSS_ERROR_RATE_MODEL_H */
 

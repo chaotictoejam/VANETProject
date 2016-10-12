@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_OSPFTIMER_H
-#define __INET_OSPFTIMER_H
+#ifndef __INETVEINS_OSPFTIMER_H
+#define __INETVEINS_OSPFTIMER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -38,7 +38,7 @@ enum OSPFTimerType {
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_OSPFTIMER_H
+#endif // ifndef __INETVEINS_OSPFTIMER_H
 

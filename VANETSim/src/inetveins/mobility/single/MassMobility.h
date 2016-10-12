@@ -17,10 +17,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MASSMOBILITY_H
-#define __INET_MASSMOBILITY_H
+#ifndef __INETVEINS_MASSMOBILITY_H
+#define __INETVEINS_MASSMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/base/LineSegmentsMobilityBase.h"
 
@@ -64,7 +64,7 @@ class INETVEINS_API MassMobility : public LineSegmentsMobilityBase
     virtual double getMaxSpeed() const override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MASSMOBILITY_H
+#endif // ifndef __INETVEINS_MASSMOBILITY_H
 

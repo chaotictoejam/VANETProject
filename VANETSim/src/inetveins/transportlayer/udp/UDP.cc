@@ -29,19 +29,19 @@
 #include "inetveins/networklayer/contract/IL3AddressType.h"
 #include "inetveins/common/ModuleAccess.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/ICMPMessage.h"
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
 #include "inetveins/networklayer/ipv4/IPv4InterfaceData.h"
 #include "inetveins/networklayer/ipv4/ICMP.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/icmpv6/ICMPv6Message_m.h"
 #include "inetveins/networklayer/ipv6/IPv6Datagram.h"
 #include "inetveins/networklayer/ipv6/IPv6InterfaceData.h"
 #include "inetveins/networklayer/icmpv6/ICMPv6.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 #include "inetveins/common/lifecycle/NodeOperations.h"
 #include "inetveins/common/lifecycle/NodeStatus.h"
@@ -417,7 +417,7 @@ void UDP::processICMPError(cPacket *pk)
     L3Address localAddr, remoteAddr;
     ushort localPort, remotePort;
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     if (dynamic_cast<ICMPMessage *>(pk)) {
         ICMPMessage *icmpMsg = (ICMPMessage *)pk;
         type = icmpMsg->getType();
@@ -432,8 +432,8 @@ void UDP::processICMPError(cPacket *pk)
         delete icmpMsg;
     }
     else
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
     if (dynamic_cast<ICMPv6Message *>(pk)) {
         ICMPv6Message *icmpMsg = (ICMPv6Message *)pk;
         type = icmpMsg->getType();
@@ -448,7 +448,7 @@ void UDP::processICMPError(cPacket *pk)
         delete icmpMsg;
     }
     else
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
     {
         throw cRuntimeError("Unrecognized packet (%s)%s: not an ICMP error message", pk->getClassName(), pk->getName());
     }
@@ -476,26 +476,26 @@ void UDP::processUndeliverablePacket(UDPPacket *udpPacket, cObject *ctrl)
 
     // send back ICMP PORT_UNREACHABLE
     if (dynamic_cast<IPv4ControlInfo *>(ctrl) != nullptr) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         IPv4ControlInfo *ctrl4 = (IPv4ControlInfo *)ctrl;
         if (!icmp)
             icmp = getModuleFromPar<ICMP>(par("icmpModule"), this);
         icmp->sendErrorMessage(udpPacket, ctrl4, ICMP_DESTINATION_UNREACHABLE, ICMP_DU_PORT_UNREACHABLE);
-#else // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
         delete udpPacket;
         delete ctrl;
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
     }
     else if (dynamic_cast<IPv6ControlInfo *>(ctrl) != nullptr) {
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
         IPv6ControlInfo *ctrl6 = (IPv6ControlInfo *)ctrl;
         if (!icmpv6)
             icmpv6 = getModuleFromPar<ICMPv6>(par("icmpv6Module"), this);
         icmpv6->sendErrorMessage(udpPacket, ctrl6, ICMPv6_DESTINATION_UNREACHABLE, PORT_UNREACHABLE);
-#else // ifdef WITH_IPv6
+#else // ifdef WITH_INETVEINS_IPv6
         delete udpPacket;
         delete ctrl;
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
     }
     else if (dynamic_cast<GenericNetworkProtocolControlInfo *>(ctrl) != nullptr) {
         delete udpPacket;
@@ -912,14 +912,14 @@ void UDP::addMulticastAddressToInterface(InterfaceEntry *ie, const L3Address& mu
     ASSERT(multicastAddr.isMulticast());
 
     if (multicastAddr.getType() == L3Address::IPv4) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         ie->ipv4Data()->joinMulticastGroup(multicastAddr.toIPv4());
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
     }
     else if (multicastAddr.getType() == L3Address::IPv6) {
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
         ie->ipv6Data()->assignAddress(multicastAddr.toIPv6(), false, SimTime::getMaxTime(), SimTime::getMaxTime());
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
     }
     else
         ie->joinMulticastGroup(multicastAddr);
@@ -1208,5 +1208,5 @@ void UDP::SockDesc::deleteMulticastMembership(MulticastMembership *membership)
     delete membership;
 }
 
-} // namespace inet
+} // namespace inetveins
 

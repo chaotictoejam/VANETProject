@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211SCALARTRANSMITTER_H
-#define __INET_IEEE80211SCALARTRANSMITTER_H
+#ifndef __INETVEINS_IEEE80211SCALARTRANSMITTER_H
+#define __INETVEINS_IEEE80211SCALARTRANSMITTER_H
 
 #include "inetveins/physicallayer/ieee80211/packetlevel/Ieee80211TransmitterBase.h"
 
@@ -36,7 +36,7 @@ class INETVEINS_API Ieee80211ScalarTransmitter : public Ieee80211TransmitterBase
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IEEE80211SCALARTRANSMITTER_H
+#endif // ifndef __INETVEINS_IEEE80211SCALARTRANSMITTER_H
 

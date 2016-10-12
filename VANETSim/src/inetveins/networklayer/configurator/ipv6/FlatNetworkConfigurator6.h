@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_FLATNETWORKCONFIGURATOR6_H
-#define __INET_FLATNETWORKCONFIGURATOR6_H
+#ifndef __INETVEINS_FLATNETWORKCONFIGURATOR6_H
+#define __INETVEINS_FLATNETWORKCONFIGURATOR6_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -45,7 +45,7 @@ class INETVEINS_API FlatNetworkConfigurator6 : public cSimpleModule
     virtual bool isIPNode(cTopology::Node *node);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_FLATNETWORKCONFIGURATOR6_H
+#endif // ifndef __INETVEINS_FLATNETWORKCONFIGURATOR6_H
 

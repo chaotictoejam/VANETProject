@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPAPPBASE_H
-#define __INET_TCPAPPBASE_H
+#ifndef __INETVEINS_TCPAPPBASE_H
+#define __INETVEINS_TCPAPPBASE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/transportlayer/contract/tcp/TCPSocket.h"
 
 namespace inetveins {
@@ -69,7 +69,7 @@ class INETVEINS_API TCPAppBase : public cSimpleModule, public TCPSocket::Callbac
     virtual void socketStatusArrived(int connId, void *yourPtr, TCPStatusInfo *status) override { delete status; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPAPPBASE_H
+#endif // ifndef __INETVEINS_TCPAPPBASE_H
 

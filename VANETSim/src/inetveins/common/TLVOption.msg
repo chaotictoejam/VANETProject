@@ -19,7 +19,7 @@
 
 
 cplusplus {{
-#include "INETDefs.h"
+#include "INETVEINSDefs.h"
 }}
 
 namespace inetveins;

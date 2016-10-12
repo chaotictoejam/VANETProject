@@ -14,7 +14,7 @@
 #endif
 
 // cplusplus {{
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #define ETHERAPP_CLI_SAP  0xf0
 #define ETHERAPP_SRV_SAP  0xf1

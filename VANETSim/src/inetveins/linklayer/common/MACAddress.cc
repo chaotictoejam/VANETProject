@@ -171,5 +171,5 @@ MACAddress MACAddress::makeMulticastAddress(IPv4Address addr)
     return macAddr;
 }
 
-} // namespace inet
+} // namespace inetveins
 

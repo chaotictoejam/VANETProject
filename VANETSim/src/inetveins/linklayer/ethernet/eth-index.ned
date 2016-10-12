@@ -26,7 +26,7 @@
 // a switch model (~EtherSwitch) with various relay units (~IMACRelayUnit,
 // ~MACRelayUnit and ~Ieee8021dRelay); some traffic generators
 // (~EtherTrafGen, ~EtherAppCli/~EtherAppSrv); and example host models
-// (~EtherHost, ~EtherHost2). In INET hosts, an Ethernet interface is
+// (~EtherHost, ~EtherHost2). In INETVEINS hosts, an Ethernet interface is
 // represented by ~EthernetInterface.
 //
 // A few useful topics:

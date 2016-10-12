@@ -267,5 +267,5 @@ void TCPSegment::dropHeaderOptions()
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

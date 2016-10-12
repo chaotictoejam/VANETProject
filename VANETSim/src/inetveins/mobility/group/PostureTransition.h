@@ -40,13 +40,13 @@
  *
  **************************************************************************/
 
-#ifndef __INET_POSTURETRANSITION_H
-#define __INET_POSTURETRANSITION_H
+#ifndef __INETVEINS_POSTURETRANSITION_H
+#define __INETVEINS_POSTURETRANSITION_H
 
 #include <iostream>
 #include <sstream>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/geometry/common/Coord.h"
 
 namespace inetveins {
@@ -209,7 +209,7 @@ class INETVEINS_API PostureTransition
     double **getMatrix(simtime_t, Coord);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_POSTURETRANSITION_H
+#endif // ifndef __INETVEINS_POSTURETRANSITION_H
 

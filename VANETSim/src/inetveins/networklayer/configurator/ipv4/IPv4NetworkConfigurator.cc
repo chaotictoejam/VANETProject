@@ -1722,5 +1722,5 @@ bool IPv4NetworkConfigurator::getInterfaceIPv4Address(L3Address& ret, InterfaceE
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

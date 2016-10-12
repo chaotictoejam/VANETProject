@@ -15,7 +15,7 @@
 *                                                                         *
 ***************************************************************************/
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/rtp/RTPProfile.h"
 
@@ -42,5 +42,5 @@ class INETVEINS_API RTPAVProfile : public RTPProfile
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

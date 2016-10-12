@@ -14,10 +14,10 @@
 *                                                                         *
 ***************************************************************************/
 
-#ifndef __INET_RTCP_H
-#define __INET_RTCP_H
+#ifndef __INETVEINS_RTCP_H
+#define __INETVEINS_RTCP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
@@ -244,7 +244,7 @@ class INETVEINS_API RTCP : public cSimpleModule, public ILifecycle
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RTCP_H
+#endif // ifndef __INETVEINS_RTCP_H
 

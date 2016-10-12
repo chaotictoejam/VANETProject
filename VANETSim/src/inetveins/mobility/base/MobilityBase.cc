@@ -20,7 +20,7 @@
  * part of:     framework implementation developed by tkn
  **************************************************************************/
 
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/environment/contract/IPhysicalEnvironment.h"
 #include "inetveins/mobility/base/MobilityBase.h"
 
@@ -276,5 +276,5 @@ void MobilityBase::handleIfOutside(BorderPolicy policy, Coord& targetPosition, C
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

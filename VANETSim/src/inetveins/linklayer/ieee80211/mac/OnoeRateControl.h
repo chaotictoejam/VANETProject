@@ -15,8 +15,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_ONOERATECONTROL_H
-#define __INET_ONOERATECONTROL_H
+#ifndef __INETVEINS_ONOERATECONTROL_H
+#define __INETVEINS_ONOERATECONTROL_H
 
 #include "RateControlBase.h"
 
@@ -59,4 +59,4 @@ class INETVEINS_API OnoeRateControl : public RateControlBase, public cSimpleModu
 } /* namespace ieee80211 */
 } /* namespace inetveins */
 
-#endif // infndef __INET_ONOERATECONTROL_H
+#endif // infndef __INETVEINS_ONOERATECONTROL_H

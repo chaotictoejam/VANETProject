@@ -13,12 +13,12 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_MPLS_H
-#define __INET_MPLS_H
+#ifndef __INETVEINS_MPLS_H
+#define __INETVEINS_MPLS_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/mpls/MPLSPacket.h"
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
@@ -63,7 +63,7 @@ class INETVEINS_API MPLS : public cSimpleModule
     virtual void doStackOps(MPLSPacket *mplsPacket, const LabelOpVector& outLabel);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MPLS_H
+#endif // ifndef __INETVEINS_MPLS_H
 

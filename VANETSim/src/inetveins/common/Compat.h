@@ -15,13 +15,13 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_COMPAT_H
-#define __INET_COMPAT_H
+#ifndef __INETVEINS_COMPAT_H
+#define __INETVEINS_COMPAT_H
 
 #include <iostream>
 #include <omnetpp.h>
 
-namespace omnetpp { }  // so "using namespace omnetpp" in INETDefs.h doesn't cause error for OMNeT++ 4.x
+namespace omnetpp { }  // so "using namespace omnetpp" in INETVEINSDefs.h doesn't cause error for OMNeT++ 4.x
 
 namespace inetveins {
 
@@ -64,7 +64,7 @@ namespace inetveins {
 #endif    // OMNETPP_VERSION < 0x500
 
 // Around OMNeT++ 5.0 beta 2, the "ev" and "simulation" macros were eliminated, and replaced
-// by the functions/methods getEnvir() and getSimulation(), the INET codebase updated.
+// by the functions/methods getEnvir() and getSimulation(), the INETVEINS codebase updated.
 // The following lines let the code compile with earlier OMNeT++ versions as well.
 #ifdef ev
 inline cEnvir *getEnvir() {return cSimulation::getActiveEnvir();}
@@ -132,7 +132,7 @@ inline double fmax(double a, double b)
 
 #endif    // _MSC_VER
 
-} // namespace inet
+} // namespace inetveins
 
 #if OMNETPP_VERSION < 0x0500
 
@@ -190,5 +190,5 @@ NAMESPACE_END
 
 #endif    // OMNETPP_VERSION < 0x0500
 
-#endif // ifndef __INET_COMPAT_H
+#endif // ifndef __INETVEINS_COMPAT_H
 

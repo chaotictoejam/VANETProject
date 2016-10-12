@@ -12,12 +12,12 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_RSVP_H
-#define __INET_RSVP_H
+#ifndef __INETVEINS_RSVP_H
+#define __INETVEINS_RSVP_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/scenario/IScriptable.h"
 #include "inetveins/networklayer/rsvp_te/IntServ.h"
@@ -307,7 +307,7 @@ std::ostream& operator<<(std::ostream& os, const SessionObj_t& a);
 std::ostream& operator<<(std::ostream& os, const SenderTemplateObj_t& a);
 std::ostream& operator<<(std::ostream& os, const FlowSpecObj_t& a);
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RSVP_H
+#endif // ifndef __INETVEINS_RSVP_H
 

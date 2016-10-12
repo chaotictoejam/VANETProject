@@ -17,10 +17,10 @@
 // Authors: Veronika Rybova, Vladimir Vesely (ivesely@fit.vutbr.cz),
 //          Tamas Borbely (tomi@omnetpp.org)
 
-#ifndef __INET_PIMINTERFACETABLE_H
-#define __INET_PIMINTERFACETABLE_H
+#ifndef __INETVEINS_PIMINTERFACETABLE_H
+#define __INETVEINS_PIMINTERFACETABLE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 
@@ -93,7 +93,7 @@ class INETVEINS_API PIMInterfaceTable : public cSimpleModule, protected cListene
     virtual void removeInterface(InterfaceEntry *ie);
 };
 
-}    // namespace inet
+}    // namespace inetveins
 
-#endif // ifndef __INET_PIMINTERFACETABLE_H
+#endif // ifndef __INETVEINS_PIMINTERFACETABLE_H
 

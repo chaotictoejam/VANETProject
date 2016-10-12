@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IMACPROTOCOL_H
-#define __INET_IMACPROTOCOL_H
+#ifndef __INETVEINS_IMACPROTOCOL_H
+#define __INETVEINS_IMACPROTOCOL_H
 
 #include "inetveins/linklayer/contract/IMACProtocolControlInfo.h"
 
@@ -30,7 +30,7 @@ class INETVEINS_API IMACProtocol
 //    virtual ILinkLayerControlInfo *createControlInfo() = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IMACPROTOCOL_H
+#endif // ifndef __INETVEINS_IMACPROTOCOL_H
 

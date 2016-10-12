@@ -20,10 +20,10 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#ifndef __INET_BINDINGCACHE_H
-#define __INET_BINDINGCACHE_H
+#ifndef __INETVEINS_BINDINGCACHE_H
+#define __INETVEINS_BINDINGCACHE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/ipv6/IPv6Address.h"
 
@@ -151,7 +151,7 @@ class INETVEINS_API BindingCache : public cSimpleModule
     virtual int generateKey(int homeToken, int careOfToken, const IPv6Address& CoA);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BINDINGCACHE_H
+#endif // ifndef __INETVEINS_BINDINGCACHE_H
 

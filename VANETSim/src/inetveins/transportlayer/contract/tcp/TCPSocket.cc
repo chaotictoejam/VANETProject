@@ -369,5 +369,5 @@ void TCPSocket::readDataTransferModePar(cComponent& component)
     dataTransferMode = x;
 }
 
-} // namespace inet
+} // namespace inetveins
 

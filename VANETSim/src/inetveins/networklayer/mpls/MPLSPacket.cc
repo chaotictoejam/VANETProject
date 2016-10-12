@@ -13,7 +13,7 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/mpls/MPLSPacket.h"
 
@@ -48,5 +48,5 @@ std::string MPLSPacket::info() const
     return out.str();
 }
 
-} // namespace inet
+} // namespace inetveins
 

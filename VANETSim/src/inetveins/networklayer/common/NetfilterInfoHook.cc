@@ -15,7 +15,7 @@
 #include <vector>
 #include <string>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/ModuleAccess.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"
@@ -128,5 +128,5 @@ void NetfilterInfoHook::finish()
     netfilter->unregisterHook(0, this);
 }
 
-} // namespace inet
+} // namespace inetveins
 

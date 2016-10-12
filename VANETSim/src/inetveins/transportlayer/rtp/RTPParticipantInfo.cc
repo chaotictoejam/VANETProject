@@ -154,5 +154,5 @@ std::string RTPParticipantInfo::ssrcToName(uint32 ssrc)
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

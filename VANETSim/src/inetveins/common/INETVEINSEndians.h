@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INETENDIANS_H
-#define __INET_INETENDIANS_H
+#ifndef __INETVEINS_INETVEINSENDIANS_H
+#define __INETVEINS_INETVEINSENDIANS_H
 
 //
 // Get endianness macros defined
@@ -70,5 +70,5 @@
 
 #endif // if BYTE_ORDER == LITTLE_ENDIAN
 
-#endif // ifndef __INET_INETENDIANS_H
+#endif // ifndef __INETVEINS_INETVEINSENDIANS_H
 

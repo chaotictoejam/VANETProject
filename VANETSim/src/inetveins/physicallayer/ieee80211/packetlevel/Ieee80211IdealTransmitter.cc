@@ -73,5 +73,5 @@ const ITransmission *Ieee80211IdealTransmitter::createTransmission(const IRadio 
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

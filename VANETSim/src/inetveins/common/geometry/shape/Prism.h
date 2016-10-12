@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PRISM_H
-#define __INET_PRISM_H
+#ifndef __INETVEINS_PRISM_H
+#define __INETVEINS_PRISM_H
 
 #include "inetveins/common/geometry/base/ShapeBase.h"
 #include "inetveins/common/geometry/object/Polygon.h"
@@ -63,7 +63,7 @@ class INETVEINS_API Prism : public ShapeBase
     void computeVisibleFaces(std::vector<std::vector<Coord> >& faces, const Rotation& rotation, const Rotation& viewRotation) const;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_PRISM_H
+#endif // ifndef __INETVEINS_PRISM_H
 

@@ -73,5 +73,5 @@ int AlgorithmicDropperBase::getByteLength() const
     return len;
 }
 
-} // namespace inet
+} // namespace inetveins
 

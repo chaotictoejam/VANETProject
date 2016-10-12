@@ -15,12 +15,12 @@
 // License along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INTERFACETABLE_H
-#define __INET_INTERFACETABLE_H
+#ifndef __INETVEINS_INTERFACETABLE_H
+#define __INETVEINS_INTERFACETABLE_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"
@@ -237,7 +237,7 @@ class INETVEINS_API InterfaceTable : public cSimpleModule, public IInterfaceTabl
     virtual MulticastGroupList collectMulticastGroups() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INTERFACETABLE_H
+#endif // ifndef __INETVEINS_INTERFACETABLE_H
 

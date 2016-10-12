@@ -32,10 +32,10 @@
 
 #include "inetveins/common/serializer/TCPIPchecksum.h"
 
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
 #include "inetveins/transportlayer/tcp_common/TCPSegment.h"
 #include "inetveins/common/serializer/tcp/TCPSerializer.h"
-#endif // ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
 
 #if defined(_MSC_VER)
 #undef s_addr    /* MSVC #definition interferes with us */
@@ -193,5 +193,5 @@ cPacket* IPv6Serializer::deserialize(const Buffer &b, Context& c)
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 

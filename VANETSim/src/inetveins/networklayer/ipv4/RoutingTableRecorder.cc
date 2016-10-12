@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #if OMNETPP_VERSION >= 0x0500 && defined HAVE_CEVENTLOGLISTENER    /* cEventlogListener is only supported from 5.0 */
 
@@ -344,7 +344,7 @@ void RoutingTableRecorder::recordRouteChange(cModule *host, const IRoute *route,
 //    fflush(routingLogFile);
 //}
 
-} // namespace inet
+} // namespace inetveins
 
 #endif /*OMNETPP_VERSION*/
 

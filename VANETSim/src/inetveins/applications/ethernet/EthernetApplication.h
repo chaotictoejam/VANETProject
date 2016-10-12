@@ -10,10 +10,10 @@
  *
  *
  ******************************************************/
-#ifndef __INET_ETHERNETAPPLICATION_H
-#define __INET_ETHERNETAPPLICATION_H
+#ifndef __INETVEINS_ETHERNETAPPLICATION_H
+#define __INETVEINS_ETHERNETAPPLICATION_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/linklayer/common/MACAddress.h"
 
 namespace inetveins {
@@ -69,7 +69,7 @@ class INETVEINS_API EthernetApplication : public cSimpleModule
     virtual void receivePacket(cMessage *msg);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ETHERNETAPPLICATION_H
+#endif // ifndef __INETVEINS_ETHERNETAPPLICATION_H
 

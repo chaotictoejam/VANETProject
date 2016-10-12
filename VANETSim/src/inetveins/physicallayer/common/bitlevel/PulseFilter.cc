@@ -34,5 +34,5 @@ const IReceptionSymbolModel *PulseFilter::filter(const IReceptionSampleModel *sa
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

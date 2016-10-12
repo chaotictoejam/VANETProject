@@ -284,5 +284,5 @@ void SCTPAssociation::resetSsns()
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

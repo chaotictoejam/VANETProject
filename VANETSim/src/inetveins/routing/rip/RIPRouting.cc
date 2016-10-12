@@ -623,7 +623,7 @@ void RIPRouting::processRequest(RIPPacket *packet)
                 }
                 break;
 
-            case RIP_AF_INET:
+            case RIP_AF_INETVEINS:
                 ripRoute = findRoute(entry.address, entry.prefixLength);
                 entry.metric = ripRoute ? ripRoute->getMetric() : RIP_INFINITE_METRIC;
                 // entry.nextHop, entry.routeTag?
@@ -683,7 +683,7 @@ void RIPRouting::sendRoutes(const L3Address& address, int port, const RIPInterfa
 
         // fill next entry
         RIPEntry& entry = packet->getEntry(k++);
-        entry.addressFamilyId = RIP_AF_INET;
+        entry.addressFamilyId = RIP_AF_INETVEINS;
         entry.address = ripRoute->getDestination();
         entry.prefixLength = ripRoute->getPrefixLength();
         entry.nextHop = addressType->getUnspecifiedAddress();    //route->getNextHop() if local ?

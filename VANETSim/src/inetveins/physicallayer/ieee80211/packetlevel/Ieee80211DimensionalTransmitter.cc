@@ -74,5 +74,5 @@ const ITransmission *Ieee80211DimensionalTransmitter::createTransmission(const I
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

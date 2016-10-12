@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV4ADDRESSTYPE_H
-#define __INET_IPV4ADDRESSTYPE_H
+#ifndef __INETVEINS_IPV4ADDRESSTYPE_H
+#define __INETVEINS_IPV4ADDRESSTYPE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/IL3AddressType.h"
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
 #include "inetveins/networklayer/contract/ipv4/IPv4ControlInfo.h"
@@ -45,7 +45,7 @@ class INETVEINS_API IPv4AddressType : public IL3AddressType
     virtual L3Address getLinkLocalAddress(const InterfaceEntry *ie) const override { return IPv4Address::UNSPECIFIED_ADDRESS; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV4ADDRESSTYPE_H
+#endif // ifndef __INETVEINS_IPV4ADDRESSTYPE_H
 

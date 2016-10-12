@@ -12,14 +12,14 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_INTSERV_H
-#define __INET_INTSERV_H
+#ifndef __INETVEINS_INTSERV_H
+#define __INETVEINS_INTSERV_H
 
 #include "inetveins/networklayer/rsvp_te/IntServ_m.h"
 
 namespace inetveins {
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INTSERV_H
+#endif // ifndef __INETVEINS_INTSERV_H
 

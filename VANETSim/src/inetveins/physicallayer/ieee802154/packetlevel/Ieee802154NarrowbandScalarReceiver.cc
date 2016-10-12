@@ -45,5 +45,5 @@ std::ostream& Ieee802154NarrowbandScalarReceiver::printToStream(std::ostream& st
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

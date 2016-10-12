@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_PINGAPP_H
-#define __INET_PINGAPP_H
+#ifndef __INETVEINS_PINGAPP_H
+#define __INETVEINS_PINGAPP_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
@@ -103,6 +103,6 @@ class INETVEINS_API PingApp : public cSimpleModule, public ILifecycle
     virtual ~PingApp();
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif

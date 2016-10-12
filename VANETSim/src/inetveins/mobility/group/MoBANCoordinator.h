@@ -39,14 +39,14 @@
  *
  **************************************************************************/
 
-#ifndef __INET_MOBANCOORDINATOR_H
-#define __INET_MOBANCOORDINATOR_H
+#ifndef __INETVEINS_MOBANCOORDINATOR_H
+#define __INETVEINS_MOBANCOORDINATOR_H
 
 #include <sstream>
 #include <vector>
 #include <iostream>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/base/LineSegmentsMobilityBase.h"
 #include "inetveins/mobility/group/Posture.h"
@@ -216,7 +216,7 @@ class INETVEINS_API MoBANCoordinator : public LineSegmentsMobilityBase
     virtual double getMaxSpeed() const override { return maxSpeed; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MOBANCOORDINATOR_H
+#endif // ifndef __INETVEINS_MOBANCOORDINATOR_H
 

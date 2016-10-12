@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ICMPV6_H
-#define __INET_ICMPV6_H
+#ifndef __INETVEINS_ICMPV6_H
+#define __INETVEINS_ICMPV6_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/icmpv6/ICMPv6Message_m.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
@@ -116,7 +116,7 @@ class INETVEINS_API ICMPv6 : public cSimpleModule, public ILifecycle
     PingMap pingMap;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ICMPV6_H
+#endif // ifndef __INETVEINS_ICMPV6_H
 

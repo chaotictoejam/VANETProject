@@ -15,12 +15,12 @@
 // License along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INTERFACEENTRY_H
-#define __INET_INTERFACEENTRY_H
+#ifndef __INETVEINS_INTERFACEENTRY_H
+#define __INETVEINS_INTERFACEENTRY_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/linklayer/common/MACAddress.h"
@@ -248,7 +248,7 @@ class INETVEINS_API InterfaceEntry : public cNamedObject
     //@}
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INTERFACEENTRY_H
+#endif // ifndef __INETVEINS_INTERFACEENTRY_H
 

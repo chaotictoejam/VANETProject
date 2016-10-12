@@ -225,4 +225,4 @@ void Prism::computeVisibleFaces(std::vector<std::vector<Coord> >& faces, const R
     }
 }
 
-} // namespace inet
+} // namespace inetveins

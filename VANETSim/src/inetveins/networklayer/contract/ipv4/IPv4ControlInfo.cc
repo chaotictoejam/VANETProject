@@ -17,9 +17,9 @@
 
 #include "inetveins/networklayer/contract/ipv4/IPv4ControlInfo.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
 namespace inetveins {
 
@@ -40,12 +40,12 @@ IPv4ControlInfo& IPv4ControlInfo::operator=(const IPv4ControlInfo& other)
 
 void IPv4ControlInfo::clean()
 {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     dropAndDelete(dgram);
-#else // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
     if (dgram)
-        throw cRuntimeError("INET was compiled without IPv4 support");
-#endif // ifdef WITH_IPv4
+        throw cRuntimeError("INETVEINS was compiled without IPv4 support");
+#endif // ifdef WITH_INETVEINS_IPv4
 }
 
 void IPv4ControlInfo::copy(const IPv4ControlInfo& other)
@@ -53,30 +53,30 @@ void IPv4ControlInfo::copy(const IPv4ControlInfo& other)
     dgram = other.dgram;
 
     if (dgram) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         dgram = dgram->dup();
         take(dgram);
-#else // ifdef WITH_IPv4
-        throw cRuntimeError(this, "INET was compiled without IPv4 support");
-#endif // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
+        throw cRuntimeError(this, "INETVEINS was compiled without IPv4 support");
+#endif // ifdef WITH_INETVEINS_IPv4
     }
 }
 
 void IPv4ControlInfo::setOrigDatagram(IPv4Datagram *d)
 {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     if (dgram)
         throw cRuntimeError(this, "IPv4ControlInfo::setOrigDatagram(): a datagram is already attached");
     dgram = d;
     take(dgram);
-#else // ifdef WITH_IPv4
-    throw cRuntimeError(this, "INET was compiled without IPv4 support");
-#endif // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
+    throw cRuntimeError(this, "INETVEINS was compiled without IPv4 support");
+#endif // ifdef WITH_INETVEINS_IPv4
 }
 
 IPv4Datagram *IPv4ControlInfo::removeOrigDatagram()
 {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     if (!dgram)
         throw cRuntimeError(this, "IPv4ControlInfo::removeOrigDatagram(): no datagram attached "
                                   "(already removed, or maybe this IPv4ControlInfo does not come "
@@ -86,10 +86,10 @@ IPv4Datagram *IPv4ControlInfo::removeOrigDatagram()
     drop(dgram);
     dgram = nullptr;
     return ret;
-#else // ifdef WITH_IPv4
-    throw cRuntimeError(this, "INET was compiled without IPv4 support");
-#endif // ifdef WITH_IPv4
+#else // ifdef WITH_INETVEINS_IPv4
+    throw cRuntimeError(this, "INETVEINS was compiled without IPv4 support");
+#endif // ifdef WITH_INETVEINS_IPv4
 }
 
-} // namespace inet
+} // namespace inetveins
 

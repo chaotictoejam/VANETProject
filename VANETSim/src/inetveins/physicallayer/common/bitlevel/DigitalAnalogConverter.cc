@@ -36,5 +36,5 @@ const ITransmissionAnalogModel *ScalarDigitalAnalogConverter::convertDigitalToAn
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

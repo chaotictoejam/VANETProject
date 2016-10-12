@@ -60,5 +60,5 @@ void InterfaceStateDesignatedRouter::processEvent(Interface *intf, Interface::In
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 

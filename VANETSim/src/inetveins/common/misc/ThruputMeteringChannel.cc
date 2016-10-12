@@ -167,5 +167,5 @@ void ThruputMeteringChannel::updateDisplay()
     getSourceGate()->getDisplayString().setTagArg("t", 0, buf);
 }
 
-} // namespace inet
+} // namespace inetveins
 

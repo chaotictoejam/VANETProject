@@ -296,5 +296,5 @@ void EtherLLC::stop()
     isUp = false;
 }
 
-} // namespace inet
+} // namespace inetveins
 

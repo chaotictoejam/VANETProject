@@ -217,5 +217,5 @@ const char *IPv6NeighbourCache::stateName(ReachabilityState state)
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

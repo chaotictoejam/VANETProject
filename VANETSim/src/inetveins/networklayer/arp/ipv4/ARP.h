@@ -16,12 +16,12 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __INET_ARP_H
-#define __INET_ARP_H
+#ifndef __INETVEINS_ARP_H
+#define __INETVEINS_ARP_H
 
 #include <map>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/IARP.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
@@ -124,7 +124,7 @@ class INETVEINS_API ARP : public cSimpleModule, public IARP, public ILifecycle
     virtual void updateDisplayString();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ARP_H
+#endif // ifndef __INETVEINS_ARP_H
 

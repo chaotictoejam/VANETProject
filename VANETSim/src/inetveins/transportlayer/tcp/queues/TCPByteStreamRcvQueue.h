@@ -16,13 +16,13 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TCPBYTESTREAMRCVQUEUE_H
-#define __INET_TCPBYTESTREAMRCVQUEUE_H
+#ifndef __INETVEINS_TCPBYTESTREAMRCVQUEUE_H
+#define __INETVEINS_TCPBYTESTREAMRCVQUEUE_H
 
 #include <map>
 #include <string>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/tcp_common/TCPSegment.h"
 #include "inetveins/transportlayer/tcp/queues/TCPVirtualDataRcvQueue.h"
@@ -91,7 +91,7 @@ class INETVEINS_API TCPByteStreamRcvQueue : public TCPVirtualDataRcvQueue
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TCPBYTESTREAMRCVQUEUE_H
+#endif // ifndef __INETVEINS_TCPBYTESTREAMRCVQUEUE_H
 

@@ -16,7 +16,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/tcp/queues/TCPByteStreamRcvQueue.h"
 
@@ -127,5 +127,5 @@ TCPVirtualDataRcvQueue::Region *TCPByteStreamRcvQueue::createRegionFromSegment(T
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

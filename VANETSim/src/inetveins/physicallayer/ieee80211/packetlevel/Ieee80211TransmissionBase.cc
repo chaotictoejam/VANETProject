@@ -37,5 +37,5 @@ std::ostream& Ieee80211TransmissionBase::printToStream(std::ostream& stream, int
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

@@ -17,12 +17,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ETHERMACBASE_H
-#define __INET_ETHERMACBASE_H
+#ifndef __INETVEINS_ETHERMACBASE_H
+#define __INETVEINS_ETHERMACBASE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/common/queue/IPassiveQueue.h"
 #include "inetveins/linklayer/base/MACBase.h"
 #include "inetveins/linklayer/common/MACAddress.h"
@@ -246,7 +246,7 @@ class INETVEINS_API EtherMACBase : public MACBase
     virtual void refreshConnection();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ETHERMACBASE_H
+#endif // ifndef __INETVEINS_ETHERMACBASE_H
 

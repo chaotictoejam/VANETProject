@@ -28,5 +28,5 @@ FlatReceptionBase::FlatReceptionBase(const IRadio *receiver, const ITransmission
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

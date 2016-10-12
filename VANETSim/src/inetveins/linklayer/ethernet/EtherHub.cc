@@ -186,5 +186,5 @@ void EtherHub::finish()
         recordScalar("messages/sec", numMessages / t);
 }
 
-} // namespace inet
+} // namespace inetveins
 

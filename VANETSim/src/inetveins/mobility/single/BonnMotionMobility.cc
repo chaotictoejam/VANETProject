@@ -17,7 +17,7 @@
 
 #include "inetveins/mobility/single/BonnMotionMobility.h"
 #include "inetveins/mobility/single/BonnMotionFileCache.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 
 namespace inetveins {
 
@@ -108,5 +108,5 @@ void BonnMotionMobility::move()
     raiseErrorIfOutside();
 }
 
-} // namespace inet
+} // namespace inetveins
 

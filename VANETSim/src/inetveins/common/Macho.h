@@ -1,5 +1,5 @@
-#ifndef __INET_MACHO_H
-#define __INET_MACHO_H
+#ifndef __INETVEINS_MACHO_H
+#define __INETVEINS_MACHO_H
 
 // Macho - C++ Machine Objects
 //
@@ -2170,7 +2170,7 @@ Snapshot<TOP>::Snapshot(Machine<TOP>& machine)
 
 } // namespace Macho
 
-} // namespace inet
+} // namespace inetveins
 
 #endif    // __MACHO_HPP__
 

@@ -93,5 +93,5 @@ void SCTPAlg::dataSent(uint32)
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

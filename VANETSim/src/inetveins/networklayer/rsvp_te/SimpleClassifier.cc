@@ -217,5 +217,5 @@ std::ostream& operator<<(std::ostream& os, const SimpleClassifier::FECEntry& fec
     return os;
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV4ROUTE_H
-#define __INET_IPV4ROUTE_H
+#ifndef __INETVEINS_IPV4ROUTE_H
+#define __INETVEINS_IPV4ROUTE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
 #include "inetveins/networklayer/contract/IRoute.h"
@@ -258,7 +258,7 @@ class INETVEINS_API IPv4MulticastRoute : public cObject, public IMulticastRoute
     virtual L3Address getMulticastGroupAsGeneric() const override { return getMulticastGroup(); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif    // __INET_IPv4ROUTE_H
+#endif    // __INETVEINS_IPv4ROUTE_H
 

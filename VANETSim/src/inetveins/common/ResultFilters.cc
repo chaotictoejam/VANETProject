@@ -102,5 +102,5 @@ void MessageSourceAddrFilter::receiveSignal(cResultFilter *prev, simtime_t_cref 
 
 } // namespace utils
 
-} // namespace inet
+} // namespace inetveins
 

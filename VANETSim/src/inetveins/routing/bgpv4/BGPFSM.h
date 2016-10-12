@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BGPFSM_H
-#define __INET_BGPFSM_H
+#ifndef __INETVEINS_BGPFSM_H
+#define __INETVEINS_BGPFSM_H
 
 #include <iostream>
 #include "inetveins/common/Macho.h"
@@ -223,7 +223,7 @@ SUBSTATE(Established, TopState) {
 
 } // namespace bgp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BGPFSM_H
+#endif // ifndef __INETVEINS_BGPFSM_H
 

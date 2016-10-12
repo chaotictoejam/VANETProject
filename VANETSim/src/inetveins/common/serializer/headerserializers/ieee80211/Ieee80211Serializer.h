@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IEEE80211SERIALIZER_H
-#define __INET_IEEE80211SERIALIZER_H
+#ifndef __INETVEINS_IEEE80211SERIALIZER_H
+#define __INETVEINS_IEEE80211SERIALIZER_H
 
 #include "inetveins/common/serializer/headers/defs.h"
 #include "inetveins/common/serializer/SerializerBase.h"
@@ -44,6 +44,6 @@ class INETVEINS_API Ieee80211Serializer : public SerializerBase
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif /* __INET_IEEE80211SERIALIZER_H */
+#endif /* __INETVEINS_IEEE80211SERIALIZER_H */

@@ -26,5 +26,5 @@ bool ModuleIdAddress::tryParse(const char *addr)
     return *endp == 0;
 }
 
-} // namespace inet
+} // namespace inetveins
 

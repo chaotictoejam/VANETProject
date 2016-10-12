@@ -17,10 +17,10 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_IRATESELECTION_H
-#define __INET_IRATESELECTION_H
+#ifndef __INETVEINS_IRATESELECTION_H
+#define __INETVEINS_IRATESELECTION_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/physicallayer/ieee80211/mode/IIeee80211Mode.h"
 
 using namespace inetveins::physicallayer;
@@ -50,6 +50,6 @@ class INETVEINS_API IRateSelection
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif

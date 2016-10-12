@@ -164,5 +164,5 @@ void RTPInnerPacket::setDataInPkt(RTPPacket *packet, IPv4Address address, int po
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 

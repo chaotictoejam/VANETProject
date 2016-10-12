@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -62,5 +62,5 @@ void InetPacketBytesPrinter::printMessage(std::ostream& os, cMessage *msg) const
 
 #endif    // Register_MessagePrinter
 
-} // namespace inet
+} // namespace inetveins
 

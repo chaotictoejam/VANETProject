@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BGPCOMMON_H
-#define __INET_BGPCOMMON_H
+#ifndef __INETVEINS_BGPCOMMON_H
+#define __INETVEINS_BGPCOMMON_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/routing/bgpv4/BGPCommon_m.h"
 #include "inetveins/networklayer/common/InterfaceEntry.h"
@@ -67,7 +67,7 @@ struct SessionInfo
 
 } // namespace bgp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BGPCOMMON_H
+#endif // ifndef __INETVEINS_BGPCOMMON_H
 

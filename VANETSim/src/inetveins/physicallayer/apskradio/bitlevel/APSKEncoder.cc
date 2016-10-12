@@ -98,5 +98,5 @@ const ITransmissionBitModel *APSKEncoder::encode(const ITransmissionPacketModel 
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

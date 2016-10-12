@@ -25,5 +25,5 @@ simsignal_t IEnergySink::powerGenerationChangedSignal = cComponent::registerSign
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 

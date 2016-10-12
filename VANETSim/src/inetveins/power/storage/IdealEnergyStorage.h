@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IDEALENERGYSTORAGE_H
-#define __INET_IDEALENERGYSTORAGE_H
+#ifndef __INETVEINS_IDEALENERGYSTORAGE_H
+#define __INETVEINS_IDEALENERGYSTORAGE_H
 
 #include "inetveins/power/base/EnergyStorageBase.h"
 
@@ -52,7 +52,7 @@ class INETVEINS_API IdealEnergyStorage : public EnergyStorageBase
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IDEALENERGYSTORAGE_H
+#endif // ifndef __INETVEINS_IDEALENERGYSTORAGE_H
 

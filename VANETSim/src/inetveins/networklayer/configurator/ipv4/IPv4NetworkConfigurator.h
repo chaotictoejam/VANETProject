@@ -18,8 +18,8 @@
 // Authors: Levente Meszaros (primary author), Andras Varga, Tamas Borbely
 //
 
-#ifndef __INET_IPV4NETWORKCONFIGURATOR_H
-#define __INET_IPV4NETWORKCONFIGURATOR_H
+#ifndef __INETVEINS_IPV4NETWORKCONFIGURATOR_H
+#define __INETVEINS_IPV4NETWORKCONFIGURATOR_H
 
 #include <algorithm>
 #include "inetveins/common/Topology.h"
@@ -256,7 +256,7 @@ class INETVEINS_API IPv4NetworkConfigurator : public NetworkConfiguratorBase
     bool getInterfaceIPv4Address(L3Address& ret, InterfaceEntry *interfaceEntry, bool netmask) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV4NETWORKCONFIGURATOR_H
+#endif // ifndef __INETVEINS_IPV4NETWORKCONFIGURATOR_H
 

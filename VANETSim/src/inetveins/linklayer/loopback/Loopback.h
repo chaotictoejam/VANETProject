@@ -17,10 +17,10 @@
 // Author: Zoltan Bojthe
 //
 
-#ifndef __INET_LOOPBACK_H
-#define __INET_LOOPBACK_H
+#ifndef __INETVEINS_LOOPBACK_H
+#define __INETVEINS_LOOPBACK_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/linklayer/base/MACBase.h"
 #include "inetveins/linklayer/common/TxNotifDetails.h"
@@ -60,7 +60,7 @@ class INETVEINS_API Loopback : public MACBase
     virtual void updateDisplayString();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LOOPBACK_H
+#endif // ifndef __INETVEINS_LOOPBACK_H
 

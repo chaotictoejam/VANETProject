@@ -28,5 +28,5 @@ DPSKModulationBase::DPSKModulationBase(unsigned int constellationSize) :
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

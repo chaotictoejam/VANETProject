@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_GENERICNETWORKPROTOCOLINTERFACEDATA_H
-#define __INET_GENERICNETWORKPROTOCOLINTERFACEDATA_H
+#ifndef __INETVEINS_GENERICNETWORKPROTOCOLINTERFACEDATA_H
+#define __INETVEINS_GENERICNETWORKPROTOCOLINTERFACEDATA_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/common/InterfaceEntry.h"
 #include "inetveins/networklayer/common/L3Address.h"
@@ -70,7 +70,7 @@ class INETVEINS_API GenericNetworkProtocolInterfaceData : public InterfaceProtoc
     virtual void joinMulticastGroup(L3Address address) {}
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GENERICNETWORKPROTOCOLINTERFACEDATA_H
+#endif // ifndef __INETVEINS_GENERICNETWORKPROTOCOLINTERFACEDATA_H
 

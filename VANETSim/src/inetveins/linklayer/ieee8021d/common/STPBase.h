@@ -15,8 +15,8 @@
 // Author: Zsolt Prontvai
 //
 
-#ifndef __INET_STPBASE_H
-#define __INET_STPBASE_H
+#ifndef __INETVEINS_STPBASE_H
+#define __INETVEINS_STPBASE_H
 
 #include "inetveins/common/lifecycle/ILifecycle.h"
 #include "inetveins/linklayer/common/MACAddress.h"
@@ -96,7 +96,7 @@ class INETVEINS_API STPBase : public cSimpleModule, public ILifecycle, public cL
     virtual InterfaceEntry *chooseInterface();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_STPBASE_H
+#endif // ifndef __INETVEINS_STPBASE_H
 

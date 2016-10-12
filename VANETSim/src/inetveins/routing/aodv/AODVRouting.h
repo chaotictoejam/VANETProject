@@ -16,10 +16,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef __INET_AODVROUTING_H
-#define __INET_AODVROUTING_H
+#ifndef __INETVEINS_AODVROUTING_H
+#define __INETVEINS_AODVROUTING_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/networklayer/contract/IL3AddressType.h"
 #include "inetveins/networklayer/contract/IRoutingTable.h"
@@ -208,7 +208,7 @@ class INETVEINS_API AODVRouting : public cSimpleModule, public ILifecycle, publi
     virtual ~AODVRouting();
 };
 
-} // namespace inet
+} // namespace inetveins
 
 #endif    // ifndef AODVROUTING_H_
 

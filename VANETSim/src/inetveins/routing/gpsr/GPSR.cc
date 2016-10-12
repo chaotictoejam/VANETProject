@@ -20,21 +20,21 @@
 #include "inetveins/routing/gpsr/GPSR.h"
 #include "inetveins/networklayer/common/IPProtocolId_m.h"
 #include "inetveins/networklayer/common/IPSocket.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 #include "inetveins/common/lifecycle/NodeOperations.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/common/ModuleAccess.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
 #endif
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6ExtensionHeaders.h"
 #include "inetveins/networklayer/ipv6/IPv6InterfaceData.h"
 #endif
 
-#ifdef WITH_GENERIC
+#ifdef WITH_INETVEINS_GENERIC
 #include "inetveins/networklayer/generic/GenericDatagram.h"
 #endif
 
@@ -367,7 +367,7 @@ L3Address GPSR::getSelfAddress() const
 {
     //TODO choose self address based on a new 'interfaces' parameter
     L3Address ret = routingTable->getRouterIdAsGeneric();
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     if (ret.getType() == L3Address::IPv6) {
         for (int i = 0; i < interfaceTable->getNumInterfaces(); i++) {
             InterfaceEntry *ie = interfaceTable->getInterface(i);
@@ -593,7 +593,7 @@ void GPSR::setGpsrOptionOnNetworkDatagram(INetworkDatagram *datagram)
 {
     cPacket *networkPacket = check_and_cast<cPacket *>(datagram);
     GPSROption *gpsrOption = createGpsrOption(datagram->getDestinationAddress(), networkPacket->getEncapsulatedPacket());
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     if (dynamic_cast<IPv4Datagram *>(networkPacket)) {
         gpsrOption->setType(IPOPTION_TLV_GPSR);
         IPv4Datagram *dgram = static_cast<IPv4Datagram *>(networkPacket);
@@ -607,7 +607,7 @@ void GPSR::setGpsrOptionOnNetworkDatagram(INetworkDatagram *datagram)
     }
     else
 #endif
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     if (dynamic_cast<IPv6Datagram *>(networkPacket)) {
         gpsrOption->setType(IPv6TLVOPTION_TLV_GPSR);
         IPv6Datagram *dgram = static_cast<IPv6Datagram *>(networkPacket);
@@ -625,7 +625,7 @@ void GPSR::setGpsrOptionOnNetworkDatagram(INetworkDatagram *datagram)
     }
     else
 #endif
-#ifdef WITH_GENERIC
+#ifdef WITH_INETVEINS_GENERIC
     if (dynamic_cast<GenericDatagram *>(networkPacket)) {
         gpsrOption->setType(GENERIC_TLVOPTION_TLV_GPSR);
         GenericDatagram *dgram = static_cast<GenericDatagram *>(networkPacket);
@@ -645,14 +645,14 @@ GPSROption *GPSR::findGpsrOptionInNetworkDatagram(INetworkDatagram *datagram)
     cPacket *networkPacket = check_and_cast<cPacket *>(datagram);
     GPSROption *gpsrOption = nullptr;
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
     if (dynamic_cast<IPv4Datagram *>(networkPacket)) {
         IPv4Datagram *dgram = static_cast<IPv4Datagram *>(networkPacket);
         gpsrOption = check_and_cast_nullable<GPSROption *>(dgram->findOptionByType(IPOPTION_TLV_GPSR));
     }
     else
 #endif
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
     if (dynamic_cast<IPv6Datagram *>(networkPacket)) {
         IPv6Datagram *dgram = static_cast<IPv6Datagram *>(networkPacket);
         IPv6HopByHopOptionsHeader *hdr = check_and_cast_nullable<IPv6HopByHopOptionsHeader *>(dgram->findExtensionHeaderByType(IP_PROT_IPv6EXT_HOP));
@@ -664,7 +664,7 @@ GPSROption *GPSR::findGpsrOptionInNetworkDatagram(INetworkDatagram *datagram)
     }
     else
 #endif
-#ifdef WITH_GENERIC
+#ifdef WITH_INETVEINS_GENERIC
     if (dynamic_cast<GenericDatagram *>(networkPacket)) {
         GenericDatagram *dgram = static_cast<GenericDatagram *>(networkPacket);
         int i = (dgram->getTlvOptions().findByType(GENERIC_TLVOPTION_TLV_GPSR));
@@ -756,5 +756,5 @@ void GPSR::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj 
     }
 }
 
-} // namespace inet
+} // namespace inetveins
 

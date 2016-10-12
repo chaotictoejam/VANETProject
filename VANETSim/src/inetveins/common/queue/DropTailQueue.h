@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_DROPTAILQUEUE_H
-#define __INET_DROPTAILQUEUE_H
+#ifndef __INETVEINS_DROPTAILQUEUE_H
+#define __INETVEINS_DROPTAILQUEUE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/common/queue/PassiveQueueBase.h"
 
@@ -64,7 +64,7 @@ class INETVEINS_API DropTailQueue : public PassiveQueueBase
     virtual bool isEmpty() override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_DROPTAILQUEUE_H
+#endif // ifndef __INETVEINS_DROPTAILQUEUE_H
 

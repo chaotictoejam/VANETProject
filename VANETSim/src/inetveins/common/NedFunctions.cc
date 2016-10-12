@@ -16,7 +16,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 // compatibility for pre-4.2b3 omnetpp
 #ifndef Define_NED_Math_Function
@@ -162,5 +162,5 @@ Define_NED_Function2(nedf_firstAvailableOrEmpty,
 
 } // namespace utils
 
-} // namespace inet
+} // namespace inetveins
 

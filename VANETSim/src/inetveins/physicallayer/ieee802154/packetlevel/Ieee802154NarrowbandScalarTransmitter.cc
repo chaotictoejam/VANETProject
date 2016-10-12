@@ -57,5 +57,5 @@ const ITransmission *Ieee802154NarrowbandScalarTransmitter::createTransmission(c
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

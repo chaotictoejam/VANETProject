@@ -65,5 +65,5 @@ void SCTPSendStream::deleteQueue()
 
 } // namespace sctp
 
-} // namespace inet
+} // namespace inetveins
 

@@ -73,5 +73,5 @@ void GridObjectCache::visitObjects(const IVisitor *visitor, const LineSegment& l
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 

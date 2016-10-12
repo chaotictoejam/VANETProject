@@ -43,5 +43,5 @@ std::ostream& AntennaBase::printToStream(std::ostream& stream, int level) const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

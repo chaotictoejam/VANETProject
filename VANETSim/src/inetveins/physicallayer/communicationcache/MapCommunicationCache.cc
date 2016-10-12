@@ -106,5 +106,5 @@ void MapCommunicationCache::removeNonInterferingTransmissions()
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

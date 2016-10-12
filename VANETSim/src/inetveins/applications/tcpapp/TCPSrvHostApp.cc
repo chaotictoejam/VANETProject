@@ -20,7 +20,7 @@
 #include "inetveins/networklayer/common/L3AddressResolver.h"
 #include "inetveins/common/ModuleAccess.h"
 #include "inetveins/common/lifecycle/NodeStatus.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 namespace inetveins {
 
@@ -102,5 +102,5 @@ void TCPSrvHostApp::removeThread(TCPServerThreadBase *thread)
     updateDisplay();
 }
 
-} // namespace inet
+} // namespace inetveins
 

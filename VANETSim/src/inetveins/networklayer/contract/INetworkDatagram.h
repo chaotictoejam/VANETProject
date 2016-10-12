@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_INETWORKDATAGRAM_H
-#define __INET_INETWORKDATAGRAM_H
+#ifndef __INETVEINS_INETVEINSWORKDATAGRAM_H
+#define __INETVEINS_INETVEINSWORKDATAGRAM_H
 
 #include "inetveins/networklayer/common/L3Address.h"
 
@@ -35,7 +35,7 @@ class INETVEINS_API INetworkDatagram
     virtual void setTransportProtocol(int protocol) = 0;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INETWORKDATAGRAM_H
+#endif // ifndef __INETVEINS_INETVEINSWORKDATAGRAM_H
 

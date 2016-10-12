@@ -16,25 +16,25 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/common/L3Address.h"
 #include "inetveins/networklayer/common/L3AddressResolver.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6Datagram.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
-#ifdef WITH_UDP
+#ifdef WITH_INETVEINS_UDP
 #include "inetveins/transportlayer/udp/UDPPacket.h"
-#endif // ifdef WITH_UDP
+#endif // ifdef WITH_INETVEINS_UDP
 
-#ifdef WITH_TCP_COMMON
+#ifdef WITH_INETVEINS_TCP_COMMON
 #include "inetveins/transportlayer/tcp_common/TCPSegment.h"
-#endif // ifdef WITH_TCP_COMMON
+#endif // ifdef WITH_INETVEINS_TCP_COMMON
 
 #include "inetveins/networklayer/diffserv/BehaviorAggregateClassifier.h"
 #include "inetveins/networklayer/diffserv/DiffservUtil.h"
@@ -97,19 +97,19 @@ int BehaviorAggregateClassifier::classifyPacket(cPacket *packet)
 int BehaviorAggregateClassifier::getDscpFromPacket(cPacket *packet)
 {
     for ( ; packet; packet = packet->getEncapsulatedPacket()) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         IPv4Datagram *ipv4Datagram = dynamic_cast<IPv4Datagram *>(packet);
         if (ipv4Datagram)
             return ipv4Datagram->getDiffServCodePoint();
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
         IPv6Datagram *ipv6Datagram = dynamic_cast<IPv6Datagram *>(packet);
         if (ipv6Datagram)
             return ipv6Datagram->getDiffServCodePoint();
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
     }
     return -1;
 }
 
-} // namespace inet
+} // namespace inetveins
 

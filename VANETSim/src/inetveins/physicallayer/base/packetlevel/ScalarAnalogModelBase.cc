@@ -125,5 +125,5 @@ const ISNIR *ScalarAnalogModelBase::computeSNIR(const IReception *reception, con
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

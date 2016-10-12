@@ -16,10 +16,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTPSERVER_H
-#define __INET_SCTPSERVER_H
+#ifndef __INETVEINS_SCTPSERVER_H
+#define __INETVEINS_SCTPSERVER_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/transportlayer/sctp/SCTPAssociation.h"
 #include "inetveins/transportlayer/contract/sctp/SCTPSocket.h"
 #include "inetveins/common/lifecycle/ILifecycle.h"
@@ -104,7 +104,7 @@ class INETVEINS_API SCTPServer : public cSimpleModule, public ILifecycle
     SCTPServer();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPSERVER_H
+#endif // ifndef __INETVEINS_SCTPSERVER_H
 

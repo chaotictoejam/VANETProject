@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_MATERIAL_H
-#define __INET_MATERIAL_H
+#ifndef __INETVEINS_MATERIAL_H
+#define __INETVEINS_MATERIAL_H
 
 #include "inetveins/environment/contract/IMaterial.h"
 
@@ -48,7 +48,7 @@ class INETVEINS_API Material : public cNamedObject, public IMaterial
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MATERIAL_H
+#endif // ifndef __INETVEINS_MATERIAL_H
 

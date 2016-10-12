@@ -26,7 +26,7 @@
 #include "inetveins/linklayer/common/Ieee802Ctrl.h"
 #include "inetveins/networklayer/contract/IInterfaceTable.h"
 #include "inetveins/common/queue/IPassiveQueue.h"
-#include "inetveins/common/INETUtils.h"
+#include "inetveins/common/INETVEINSUtils.h"
 
 namespace inetveins {
 
@@ -295,5 +295,5 @@ cPacket *IdealMac::decapsulate(IdealMacFrame *frame)
     return packet;
 }
 
-} // namespace inet
+} // namespace inetveins
 

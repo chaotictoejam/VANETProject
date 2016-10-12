@@ -43,5 +43,5 @@ std::ostream& LayeredReception::printToStream(std::ostream& stream, int level) c
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

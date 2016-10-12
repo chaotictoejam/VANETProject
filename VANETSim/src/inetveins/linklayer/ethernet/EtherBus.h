@@ -15,12 +15,12 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __INET_ETHERBUS_H
-#define __INET_ETHERBUS_H
+#ifndef __INETVEINS_ETHERBUS_H
+#define __INETVEINS_ETHERBUS_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -72,7 +72,7 @@ class INETVEINS_API EtherBus : public cSimpleModule, cListener
     virtual void checkConnections(bool errorWhenAsymmetric);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ETHERBUS_H
+#endif // ifndef __INETVEINS_ETHERBUS_H
 

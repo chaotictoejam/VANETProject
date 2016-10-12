@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ADDITIVESCRAMBLERMODULE_H
-#define __INET_ADDITIVESCRAMBLERMODULE_H
+#ifndef __INETVEINS_ADDITIVESCRAMBLERMODULE_H
+#define __INETVEINS_ADDITIVESCRAMBLERMODULE_H
 
 #include "inetveins/physicallayer/common/bitlevel/AdditiveScrambler.h"
 #include "inetveins/physicallayer/common/bitlevel/AdditiveScrambling.h"
@@ -46,5 +46,5 @@ class INETVEINS_API AdditiveScramblerModule : public cSimpleModule, public IScra
 } /* namespace physicallayer */
 } /* namespace inetveins */
 
-#endif // ifndef __INET_ADDITIVESCRAMBLERMODULE_H
+#endif // ifndef __INETVEINS_ADDITIVESCRAMBLERMODULE_H
 

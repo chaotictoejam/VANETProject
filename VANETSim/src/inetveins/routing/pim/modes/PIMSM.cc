@@ -2173,5 +2173,5 @@ void PIMSM::DownstreamInterface::startPrunePendingTimer(double joinPruneOverride
     prunePendingTimer->setContextPointer(this);
     pimsm()->scheduleAt(simTime() + joinPruneOverrideInterval, prunePendingTimer);
 }
-}    // namespace inet
+}    // namespace inetveins
 

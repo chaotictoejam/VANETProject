@@ -17,10 +17,10 @@
 // Author: Andras Varga, Benjamin Seregi
 //
 
-#ifndef __INET_ACCESSCATEGORY_H
-#define __INET_ACCESSCATEGORY_H
+#ifndef __INETVEINS_ACCESSCATEGORY_H
+#define __INETVEINS_ACCESSCATEGORY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 namespace ieee80211 {
@@ -39,7 +39,7 @@ enum AccessCategory
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif
 

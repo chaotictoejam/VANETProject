@@ -108,5 +108,5 @@ double InterpolatingAntenna::computeGain(EulerAngles direction) const
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

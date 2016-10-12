@@ -18,13 +18,13 @@
 
 #include "inetveins/networklayer/diffserv/DSCPMarker.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/IPv4Datagram.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/ipv6/IPv6Datagram.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 #include "inetveins/networklayer/diffserv/DSCP_m.h"
 
@@ -83,23 +83,23 @@ bool DSCPMarker::markPacket(cPacket *packet, int dscp)
     EV_DETAIL << "Marking packet with dscp=" << dscpToString(dscp) << "\n";
 
     for ( ; packet; packet = packet->getEncapsulatedPacket()) {
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
         IPv4Datagram *ipv4Datagram = dynamic_cast<IPv4Datagram *>(packet);
         if (ipv4Datagram) {
             ipv4Datagram->setDiffServCodePoint(dscp);
             return true;
         }
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
         IPv6Datagram *ipv6Datagram = dynamic_cast<IPv6Datagram *>(packet);
         if (ipv6Datagram) {
             ipv6Datagram->setDiffServCodePoint(dscp);
             return true;
         }
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
     }
 
     return false;
 }
 
-} // namespace inet
+} // namespace inetveins

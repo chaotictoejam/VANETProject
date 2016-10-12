@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_UDP_H
-#define __INET_UDP_H
+#ifndef __INETVEINS_UDP_H
+#define __INETVEINS_UDP_H
 
 #include <map>
 #include <list>
@@ -187,7 +187,7 @@ class INETVEINS_API UDP : public cSimpleModule, public ILifecycle
     virtual void handleMessage(cMessage *msg) override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_UDP_H
+#endif // ifndef __INETVEINS_UDP_H
 

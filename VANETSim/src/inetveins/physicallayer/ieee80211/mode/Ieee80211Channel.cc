@@ -39,5 +39,5 @@ std::ostream& Ieee80211Channel::printToStream(std::ostream& stream, int level) c
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

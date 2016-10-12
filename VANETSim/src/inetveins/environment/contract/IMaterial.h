@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IMATERIAL_H
-#define __INET_IMATERIAL_H
+#ifndef __INETVEINS_IMATERIAL_H
+#define __INETVEINS_IMATERIAL_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/Units.h"
 
 namespace inetveins {
@@ -41,7 +41,7 @@ class INETVEINS_API IMaterial
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IMATERIAL_H
+#endif // ifndef __INETVEINS_IMATERIAL_H
 

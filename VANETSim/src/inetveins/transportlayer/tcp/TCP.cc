@@ -28,13 +28,13 @@
 #include "inetveins/transportlayer/tcp_common/TCPSegment.h"
 #include "inetveins/transportlayer/contract/tcp/TCPCommand_m.h"
 
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
 #include "inetveins/networklayer/ipv4/ICMPMessage_m.h"
-#endif // ifdef WITH_IPv4
+#endif // ifdef WITH_INETVEINS_IPv4
 
-#ifdef WITH_IPv6
+#ifdef WITH_INETVEINS_IPv6
 #include "inetveins/networklayer/icmpv6/ICMPv6Message_m.h"
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
 
 #include "inetveins/transportlayer/tcp/queues/TCPByteStreamRcvQueue.h"
 #include "inetveins/transportlayer/tcp/queues/TCPByteStreamSendQueue.h"
@@ -129,12 +129,12 @@ void TCP::handleMessage(cMessage *msg)
     }
     else if (msg->arrivedOn("ipIn")) {
         if (false
-#ifdef WITH_IPv4
+#ifdef WITH_INETVEINS_IPv4
             || dynamic_cast<ICMPMessage *>(msg)
-#endif // ifdef WITH_IPv4
-#ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv4
+#ifdef WITH_INETVEINS_IPv6
             || dynamic_cast<ICMPv6Message *>(msg)
-#endif // ifdef WITH_IPv6
+#endif // ifdef WITH_INETVEINS_IPv6
             )
         {
             EV_DETAIL << "ICMP error received -- discarding\n";    // FIXME can ICMP packets really make it up to TCP???
@@ -577,4 +577,4 @@ void TCP::reset()
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins

@@ -106,4 +106,4 @@ double UWBIRStochasticPathLoss::computePathLoss(mps propagationSpeed, Hz frequen
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins

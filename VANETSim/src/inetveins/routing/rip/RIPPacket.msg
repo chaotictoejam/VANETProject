@@ -42,7 +42,7 @@ enum RIPCommand {
 //
 enum RIP_AF {
     RIP_AF_NONE = 0;
-    RIP_AF_INET = 2;
+    RIP_AF_INETVEINS = 2;
     // RIP_AF_AUTH = 0xFFFF;
 }
 
@@ -53,7 +53,7 @@ enum RIP_AF {
 //
 struct RIPEntry
 {
-    unsigned short addressFamilyId @enum(RIP_AF); // usually AF_INET (2), but NONE (0) for whole table requests
+    unsigned short addressFamilyId @enum(RIP_AF); // usually AF_INETVEINS (2), but NONE (0) for whole table requests
     unsigned short routeTag;        // 0 for RIPv1
     L3Address address;                // destination address
     int prefixLength;               // prefix length of the destination

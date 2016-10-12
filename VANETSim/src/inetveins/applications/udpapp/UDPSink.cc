@@ -162,5 +162,5 @@ void UDPSink::handleNodeCrash()
         cancelEvent(selfMsg);
 }
 
-} // namespace inet
+} // namespace inetveins
 

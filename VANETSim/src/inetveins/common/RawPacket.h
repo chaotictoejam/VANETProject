@@ -12,8 +12,8 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_RAWPACKET_H
-#define __INET_RAWPACKET_H
+#ifndef __INETVEINS_RAWPACKET_H
+#define __INETVEINS_RAWPACKET_H
 
 #include "inetveins/common/RawPacket_m.h"
 
@@ -75,7 +75,7 @@ class INETVEINS_API RawPacket : public RawPacket_Base
     virtual void removePrefix(unsigned int length);
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RAWPACKET_H
+#endif // ifndef __INETVEINS_RAWPACKET_H
 

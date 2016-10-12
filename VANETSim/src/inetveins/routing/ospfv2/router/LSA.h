@@ -15,13 +15,13 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_LSA_H
-#define __INET_LSA_H
+#ifndef __INETVEINS_LSA_H
+#define __INETVEINS_LSA_H
 
 #include <math.h>
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/routing/ospfv2/router/OSPFcommon.h"
 #include "inetveins/routing/ospfv2/OSPFPacket_m.h"
 
@@ -203,7 +203,7 @@ std::ostream& operator<<(std::ostream& ostr, const OSPFASExternalLSA& lsa);
 
 } // namespace ospf
 
-} // namespace inet
+} // namespace inetveins
 
 #endif    // __LSA_HPP__
 

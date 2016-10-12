@@ -16,12 +16,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_UDPBASICAPP_H
-#define __INET_UDPBASICAPP_H
+#ifndef __INETVEINS_UDPBASICAPP_H
+#define __INETVEINS_UDPBASICAPP_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/applications/base/ApplicationBase.h"
 #include "inetveins/transportlayer/contract/udp/UDPSocket.h"
@@ -79,7 +79,7 @@ class INETVEINS_API UDPBasicApp : public ApplicationBase
     ~UDPBasicApp();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_UDPBASICAPP_H
+#endif // ifndef __INETVEINS_UDPBASICAPP_H
 

@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IPV6_H
-#define __INET_IPV6_H
+#ifndef __INETVEINS_IPV6_H
+#define __INETVEINS_IPV6_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/INetfilter.h"
 #include "inetveins/networklayer/contract/INetworkProtocol.h"
 #include "inetveins/common/queue/QueueBase.h"
@@ -80,7 +80,7 @@ class INETVEINS_API IPv6 : public QueueBase, public ILifecycle, public INetfilte
     int numUnroutable = 0;
     int numForwarded = 0;
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     // 28.9.07 - CB
     // datagrams that are supposed to be sent with a tentative IPv6 address
     // are rescheduled for later resubmission.
@@ -100,7 +100,7 @@ class INETVEINS_API IPv6 : public QueueBase, public ILifecycle, public INetfilte
         bool getFromHL() { return fromHL; }
         IPv6Datagram *removeDatagram() { IPv6Datagram *ret = datagram; datagram = nullptr; return ret; }
     };
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 
     // netfilter hook variables
     typedef std::multimap<int, IHook *> HookList;
@@ -234,7 +234,7 @@ class INETVEINS_API IPv6 : public QueueBase, public ILifecycle, public INetfilte
     bool determineOutputInterface(const IPv6Address& destAddress, IPv6Address& nextHop, int& interfaceId,
             IPv6Datagram *datagram, bool fromHL);
 
-#ifdef WITH_xMIPv6
+#ifdef WITH_INETVEINS_xMIPv6
     /**
      * Process the extension headers of the datagram.
      * Returns true if all have been processed successfully and false if errors occured
@@ -242,10 +242,10 @@ class INETVEINS_API IPv6 : public QueueBase, public ILifecycle, public INetfilte
      * module for further processing.
      */
     bool processExtensionHeaders(IPv6Datagram *datagram);
-#endif /* WITH_xMIPv6 */
+#endif /* WITH_INETVEINS_xMIPv6 */
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV6_H
+#endif // ifndef __INETVEINS_IPV6_H
 

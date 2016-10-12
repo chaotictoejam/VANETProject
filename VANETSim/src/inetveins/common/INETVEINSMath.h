@@ -1,5 +1,5 @@
 /* -*- mode:c++ -*- ********************************************************
- * file:        INETMath.h
+ * file:        INETVEINSMath.h
  *
  * author:      Christian Frank
  *
@@ -17,8 +17,8 @@
  * part of:     framework implementation developed by tkn
  **************************************************************************/
 
-#ifndef __INET_INETMATH_H
-#define __INET_INETMATH_H
+#ifndef __INETVEINS_INETVEINSMATH_H
+#define __INETVEINS_INETVEINSMATH_H
 
 //
 // Support functions for mathematical operations
@@ -27,7 +27,7 @@
 
 #include <cmath>
 #include <limits>
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -38,7 +38,7 @@ namespace inetveins {
  */
 namespace math {
 
-//file: INETMath.h , namespace math a class helyett
+//file: INETVEINSMath.h , namespace math a class helyett
 /* Windows math.h doesn't define the the following variables: */
 #ifndef M_E
 #define M_E           2.7182818284590452354
@@ -212,7 +212,7 @@ inline double n_choose_k(int n, int k) {
 
 } // namespace math
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INETMATH_H
+#endif // ifndef __INETVEINS_INETVEINSMATH_H
 

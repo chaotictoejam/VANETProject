@@ -30,5 +30,5 @@ _4GFSKModulation::_4GFSKModulation() :
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

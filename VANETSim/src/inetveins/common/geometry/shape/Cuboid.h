@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_CUBOID_H
-#define __INET_CUBOID_H
+#ifndef __INETVEINS_CUBOID_H
+#define __INETVEINS_CUBOID_H
 
 #include "inetveins/common/geometry/base/ShapeBase.h"
 #include "inetveins/common/geometry/common/Rotation.h"
@@ -45,7 +45,7 @@ class INETVEINS_API Cuboid : public ShapeBase
     virtual void computeVisibleFaces(std::vector<std::vector<Coord> >& faces, const Rotation& rotation, const Rotation& viewRotation) const;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_CUBOID_H
+#endif // ifndef __INETVEINS_CUBOID_H
 

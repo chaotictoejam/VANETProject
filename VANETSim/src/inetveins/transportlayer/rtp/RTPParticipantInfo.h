@@ -15,12 +15,12 @@
 *                                                                         *
 ***************************************************************************/
 
-#ifndef __INET_RTPPARTICIPANTINFO_H
-#define __INET_RTPPARTICIPANTINFO_H
+#ifndef __INETVEINS_RTPPARTICIPANTINFO_H
+#define __INETVEINS_RTPPARTICIPANTINFO_H
 
 #include "inetveins/transportlayer/rtp/RTPParticipantInfo_m.h"
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
 #include "inetveins/transportlayer/rtp/sdes.h"
 
@@ -197,7 +197,7 @@ class INETVEINS_API RTPParticipantInfo : public RTPParticipantInfo_Base
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_RTPPARTICIPANTINFO_H
+#endif // ifndef __INETVEINS_RTPPARTICIPANTINFO_H
 

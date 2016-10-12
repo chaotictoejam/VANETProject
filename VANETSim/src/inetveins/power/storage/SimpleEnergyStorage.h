@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SIMPLEENERGYSTORAGE_H
-#define __INET_SIMPLEENERGYSTORAGE_H
+#ifndef __INETVEINS_SIMPLEENERGYSTORAGE_H
+#define __INETVEINS_SIMPLEENERGYSTORAGE_H
 
 #include "inetveins/power/base/EnergyStorageBase.h"
 #include "inetveins/common/lifecycle/LifecycleController.h"
@@ -131,7 +131,7 @@ class INETVEINS_API SimpleEnergyStorage : public EnergyStorageBase
 
 } // namespace power
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SIMPLEENERGYSTORAGE_H
+#endif // ifndef __INETVEINS_SIMPLEENERGYSTORAGE_H
 

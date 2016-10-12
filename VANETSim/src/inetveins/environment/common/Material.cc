@@ -15,7 +15,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 #include "inetveins/environment/common/Material.h"
 
 namespace inetveins {
@@ -47,5 +47,5 @@ mps Material::getPropagationSpeed() const
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 

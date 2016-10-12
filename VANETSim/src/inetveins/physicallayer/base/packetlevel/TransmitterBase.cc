@@ -23,5 +23,5 @@ namespace physicallayer {
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

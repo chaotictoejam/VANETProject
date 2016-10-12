@@ -17,10 +17,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_RTCPPACKET1_H
-#define __INET_RTCPPACKET1_H
+#ifndef __INETVEINS_RTCPPACKET1_H
+#define __INETVEINS_RTCPPACKET1_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/transportlayer/rtp/RTCPPacket1_m.h"
 
@@ -58,7 +58,7 @@ class INETVEINS_API RTCPCompoundPacket : public RTCPCompoundPacket_Base
 
 } // namespace rtp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif    // __INET_RTCPPACKET1_H_
+#endif    // __INETVEINS_RTCPPACKET1_H_
 

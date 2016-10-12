@@ -16,7 +16,7 @@
 //
 
 #include "inetveins/mobility/single/ANSimMobility.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSMath.h"
 
 namespace inetveins {
 
@@ -170,5 +170,5 @@ void ANSimMobility::move()
     raiseErrorIfOutside();
 }
 
-} // namespace inet
+} // namespace inetveins
 

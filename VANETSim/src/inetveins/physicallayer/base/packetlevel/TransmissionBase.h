@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_TRANSMISSIONBASE_H
-#define __INET_TRANSMISSIONBASE_H
+#ifndef __INETVEINS_TRANSMISSIONBASE_H
+#define __INETVEINS_TRANSMISSIONBASE_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IRadio.h"
 #include "inetveins/physicallayer/contract/packetlevel/ITransmission.h"
@@ -82,7 +82,7 @@ class INETVEINS_API TransmissionBase : public virtual ITransmission, public virt
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_TRANSMISSIONBASE_H
+#endif // ifndef __INETVEINS_TRANSMISSIONBASE_H
 

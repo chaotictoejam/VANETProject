@@ -64,5 +64,5 @@ const ITransmission *APSKDimensionalTransmitter::createTransmission(const IRadio
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

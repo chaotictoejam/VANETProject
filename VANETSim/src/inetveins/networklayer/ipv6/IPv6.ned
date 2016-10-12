@@ -20,7 +20,7 @@ package vanetsim.inetveins.networklayer.ipv6;
 //
 // Implements the IPv6 protocol.
 //
-// An overview of the IPv6 implementation in the INET Framework is
+// An overview of the IPv6 implementation in the INETVEINS Framework is
 // provided <a href="ipv6overview.html">here</a>.
 //
 // The IPv6 protocol header is represented by the ~IPv6Datagram message class.

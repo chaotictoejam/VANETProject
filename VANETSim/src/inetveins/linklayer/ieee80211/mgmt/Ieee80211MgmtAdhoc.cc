@@ -142,5 +142,5 @@ void Ieee80211MgmtAdhoc::handleProbeResponseFrame(Ieee80211ProbeResponseFrame *f
 
 } // namespace ieee80211
 
-} // namespace inet
+} // namespace inetveins
 

@@ -719,5 +719,5 @@ bool DHCPClient::handleOperationStage(LifecycleOperation *operation, int stage, 
     return true;
 }
 
-} // namespace inet
+} // namespace inetveins
 

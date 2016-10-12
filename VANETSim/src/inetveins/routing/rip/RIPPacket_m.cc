@@ -65,7 +65,7 @@ EXECUTE_ON_STARTUP(
     cEnum *e = cEnum::find("inetveins::RIP_AF");
     if (!e) enums.getInstance()->add(e = new cEnum("inetveins::RIP_AF"));
     e->insert(RIP_AF_NONE, "RIP_AF_NONE");
-    e->insert(RIP_AF_INET, "RIP_AF_INET");
+    e->insert(RIP_AF_INETVEINS, "RIP_AF_INETVEINS");
 );
 
 RIPEntry::RIPEntry()

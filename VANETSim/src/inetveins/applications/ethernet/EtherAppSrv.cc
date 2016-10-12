@@ -157,5 +157,5 @@ void EtherAppSrv::finish()
 {
 }
 
-} // namespace inet
+} // namespace inetveins
 

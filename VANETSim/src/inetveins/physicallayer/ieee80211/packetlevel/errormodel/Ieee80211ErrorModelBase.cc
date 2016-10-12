@@ -64,5 +64,5 @@ double Ieee80211ErrorModelBase::computeSymbolErrorRate(const ISNIR *snir, IRadio
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

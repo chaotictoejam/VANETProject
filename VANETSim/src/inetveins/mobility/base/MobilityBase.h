@@ -19,10 +19,10 @@
  * part of:     framework implementation developed by tkn
  **************************************************************************/
 
-#ifndef __INET_MOBILITYBASE_H
-#define __INET_MOBILITYBASE_H
+#ifndef __INETVEINS_MOBILITYBASE_H
+#define __INETVEINS_MOBILITYBASE_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/common/ModuleAccess.h"
 #include "inetveins/common/geometry/common/Coord.h"
 #include "inetveins/common/geometry/common/EulerAngles.h"
@@ -165,7 +165,7 @@ class INETVEINS_API MobilityBase : public cSimpleModule, public IMobility
     virtual Coord getConstraintAreaMin() const override { return constraintAreaMin; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MOBILITYBASE_H
+#endif // ifndef __INETVEINS_MOBILITYBASE_H
 

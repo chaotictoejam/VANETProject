@@ -25,12 +25,12 @@
 //  Cleanup and rewrite: Andras Varga, 2004
 //
 
-#ifndef __INET_IPV4ROUTINGTABLE_H
-#define __INET_IPV4ROUTINGTABLE_H
+#ifndef __INETVEINS_IPV4ROUTINGTABLE_H
+#define __INETVEINS_IPV4ROUTINGTABLE_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
 #include "inetveins/networklayer/ipv4/IIPv4RoutingTable.h"
@@ -396,7 +396,7 @@ class INETVEINS_API IPv4RoutingTable : public cSimpleModule, public IIPv4Routing
     virtual bool deleteMulticastRoute(IMulticastRoute *entry) override { return deleteMulticastRoute(check_and_cast<IPv4MulticastRoute *>(entry)); }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IPV4ROUTINGTABLE_H
+#endif // ifndef __INETVEINS_IPV4ROUTINGTABLE_H
 

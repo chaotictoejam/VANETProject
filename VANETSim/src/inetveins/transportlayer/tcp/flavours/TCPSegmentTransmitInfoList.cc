@@ -94,5 +94,5 @@ void TCPSegmentTransmitInfoList::clearTo(uint32_t endseq)
 
 } // namespace tcp
 
-} // namespace inet
+} // namespace inetveins
 

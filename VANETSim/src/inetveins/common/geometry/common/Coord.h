@@ -17,11 +17,11 @@
  * part of:     framework implementation developed by tkn
  **************************************************************************/
 
-#ifndef __INET_COORD_H
-#define __INET_COORD_H
+#ifndef __INETVEINS_COORD_H
+#define __INETVEINS_COORD_H
 
-#include "inetveins/common/INETDefs.h"
-#include "inetveins/common/INETMath.h"
+#include "inetveins/common/INETVEINSDefs.h"
+#include "inetveins/common/INETVEINSMath.h"
 
 namespace inetveins {
 
@@ -297,7 +297,7 @@ inline std::string Coord::info() const
     return os.str();
 }
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_COORD_H
+#endif // ifndef __INETVEINS_COORD_H
 

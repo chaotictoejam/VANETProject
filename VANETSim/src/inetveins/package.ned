@@ -1,4 +1,4 @@
 package vanetsim.inetveins;
 
-@namespace(inet);
+@namespace(inetveins);
 

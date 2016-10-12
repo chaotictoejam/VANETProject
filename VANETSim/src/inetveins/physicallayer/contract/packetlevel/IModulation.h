@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_IMODULATION_H
-#define __INET_IMODULATION_H
+#ifndef __INETVEINS_IMODULATION_H
+#define __INETVEINS_IMODULATION_H
 
 #include "inetveins/physicallayer/contract/packetlevel/IPrintableObject.h"
 
@@ -47,7 +47,7 @@ class INETVEINS_API IModulation : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IMODULATION_H
+#endif // ifndef __INETVEINS_IMODULATION_H
 

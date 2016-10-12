@@ -130,4 +130,4 @@ void OptimizedCollisionController::reschedule()
 }
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins

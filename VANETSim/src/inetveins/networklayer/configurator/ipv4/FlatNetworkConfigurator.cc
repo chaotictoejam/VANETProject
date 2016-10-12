@@ -220,5 +220,5 @@ void FlatNetworkConfigurator::setDisplayString(cTopology& topo, NodeInfoVector& 
     getDisplayString().setTagArg("t", 0, buf);
 }
 
-} // namespace inet
+} // namespace inetveins
 

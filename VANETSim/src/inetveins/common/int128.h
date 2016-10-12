@@ -18,8 +18,8 @@
  * distribution.
  */
 
-#ifndef __INET_INT128_H
-#define __INET_INT128_H
+#ifndef __INETVEINS_INT128_H
+#define __INETVEINS_INT128_H
 
 /*
    Name: int128.h
@@ -30,7 +30,7 @@
    Modifications: Alfonso Ariza Quintana, Zoltan Bojthe et al.
  */
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 namespace inetveins {
 
@@ -271,7 +271,7 @@ inline bool operator!=(const Int128& a, const Int128& b)
 
 //typedef Int128 __int128;
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_INT128_H
+#endif // ifndef __INETVEINS_INT128_H
 

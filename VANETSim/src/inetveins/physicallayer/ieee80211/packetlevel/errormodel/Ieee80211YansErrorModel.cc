@@ -230,5 +230,5 @@ double Ieee80211YansErrorModel::getDataSuccessRate(const IIeee80211Mode* mode, u
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

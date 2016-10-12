@@ -15,8 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_BGPROUTINGTABLEENTRY_H
-#define __INET_BGPROUTINGTABLEENTRY_H
+#ifndef __INETVEINS_BGPROUTINGTABLEENTRY_H
+#define __INETVEINS_BGPROUTINGTABLEENTRY_H
 
 #include "inetveins/networklayer/ipv4/IPv4RoutingTable.h"
 #include "inetveins/routing/bgpv4/BGPCommon.h"
@@ -102,7 +102,7 @@ inline std::ostream& operator<<(std::ostream& out, RoutingTableEntry& entry)
 
 } // namespace bgp
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_BGPROUTINGTABLEENTRY_H
+#endif // ifndef __INETVEINS_BGPROUTINGTABLEENTRY_H
 

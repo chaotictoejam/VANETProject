@@ -14,7 +14,7 @@
 
 #include <algorithm>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/ted/TED.h"
 
@@ -509,5 +509,5 @@ bool TED::handleOperationStage(LifecycleOperation *operation, int stage, IDoneCa
     return true;
 }
 
-} // namespace inet
+} // namespace inetveins
 

@@ -73,5 +73,5 @@ bool MACProtocolBase::isLowerMessage(cMessage *message)
     return message->getArrivalGateId() == lowerLayerInGateId;
 }
 
-} // namespace inet
+} // namespace inetveins
 

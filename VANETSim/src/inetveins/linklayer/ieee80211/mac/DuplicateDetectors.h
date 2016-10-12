@@ -17,8 +17,8 @@
 // Author: Andras Varga
 //
 
-#ifndef __INET_DUPLICATEDETECTORS_H
-#define __INET_DUPLICATEDETECTORS_H
+#ifndef __INETVEINS_DUPLICATEDETECTORS_H
+#define __INETVEINS_DUPLICATEDETECTORS_H
 
 #include <map>
 #include "IDuplicateDetector.h"
@@ -95,6 +95,6 @@ class INETVEINS_API QoSDuplicateDetector : public IDuplicateDetector
 };
 
 } // namespace ieee80211
-} // namespace inet
+} // namespace inetveins
 
 #endif

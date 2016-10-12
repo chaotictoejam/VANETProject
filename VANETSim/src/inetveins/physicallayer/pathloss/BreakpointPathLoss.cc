@@ -73,4 +73,4 @@ m BreakpointPathLoss::computeRange(mps propagationSpeed, Hz frequency, double lo
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins

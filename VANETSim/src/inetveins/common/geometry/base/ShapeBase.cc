@@ -19,5 +19,5 @@
 
 namespace inetveins {
 
-} // namespace inet
+} // namespace inetveins
 

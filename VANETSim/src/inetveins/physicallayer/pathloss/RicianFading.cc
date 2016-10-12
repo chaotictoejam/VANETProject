@@ -59,5 +59,5 @@ double RicianFading::computePathLoss(mps propagationSpeed, Hz frequency, m dista
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

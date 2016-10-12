@@ -38,5 +38,5 @@ PhysicalObject::PhysicalObject(const char *name, int id, const Coord& position, 
 
 } // namespace physicalenvironment
 
-} // namespace inet
+} // namespace inetveins
 

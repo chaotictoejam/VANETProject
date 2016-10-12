@@ -22,5 +22,5 @@ namespace inetveins {
 
 Register_Abstract_Class(INetworkDatagram);
 
-} // namespace inet
+} // namespace inetveins
 

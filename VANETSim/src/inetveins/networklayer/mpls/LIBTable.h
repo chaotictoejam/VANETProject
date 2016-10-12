@@ -13,13 +13,13 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#ifndef __INET_LIBTABLE_H
-#define __INET_LIBTABLE_H
+#ifndef __INETVEINS_LIBTABLE_H
+#define __INETVEINS_LIBTABLE_H
 
 #include <vector>
 #include <string>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/mpls/ConstType.h"
 #include "inetveins/networklayer/contract/ipv4/IPv4Address.h"
@@ -92,7 +92,7 @@ class INETVEINS_API LIBTable : public cSimpleModule
 std::ostream& operator<<(std::ostream& os, const LIBTable::LIBEntry& lib);
 std::ostream& operator<<(std::ostream& os, const LabelOpVector& label);
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LIBTABLE_H
+#endif // ifndef __INETVEINS_LIBTABLE_H
 

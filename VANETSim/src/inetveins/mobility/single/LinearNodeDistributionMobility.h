@@ -16,10 +16,10 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-#ifndef __INET_LINEARNODEDISTRIBUTIONMOBILITY_H
-#define __INET_LINEARNODEDISTRIBUTIONMOBILITY_H
+#ifndef __INETVEINS_LINEARNODEDISTRIBUTIONMOBILITY_H
+#define __INETVEINS_LINEARNODEDISTRIBUTIONMOBILITY_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/static/StationaryMobility.h"
 
@@ -57,7 +57,7 @@ class INETVEINS_API LinearNodeDistributionMobility : public StationaryMobility
     LinearNodeDistributionMobility();
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_LINEARNODEDISTRIBUTIONMOBILITY_H
+#endif // ifndef __INETVEINS_LINEARNODEDISTRIBUTIONMOBILITY_H
 

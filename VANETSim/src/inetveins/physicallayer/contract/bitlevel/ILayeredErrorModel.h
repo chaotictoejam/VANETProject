@@ -15,10 +15,10 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_ILAYEREDERRORMODEL_H
-#define __INET_ILAYEREDERRORMODEL_H
+#ifndef __INETVEINS_ILAYEREDERRORMODEL_H
+#define __INETVEINS_ILAYEREDERRORMODEL_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 #include "inetveins/physicallayer/common/bitlevel/LayeredTransmission.h"
 #include "inetveins/physicallayer/contract/packetlevel/ISNIR.h"
 
@@ -64,7 +64,7 @@ class INETVEINS_API ILayeredErrorModel : public IPrintableObject
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_ILAYEREDERRORMODEL_H
+#endif // ifndef __INETVEINS_ILAYEREDERRORMODEL_H
 

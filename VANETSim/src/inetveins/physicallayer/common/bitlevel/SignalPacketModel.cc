@@ -55,5 +55,5 @@ ReceptionPacketModel::ReceptionPacketModel(const cPacket *packet, const BitVecto
 
 } // namespace physicallayer
 
-} // namespace inet
+} // namespace inetveins
 

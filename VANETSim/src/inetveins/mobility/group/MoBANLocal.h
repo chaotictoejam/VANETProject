@@ -39,10 +39,10 @@
  *
  **************************************************************************/
 
-#ifndef __INET_MOBANLOCAL_H
-#define __INET_MOBANLOCAL_H
+#ifndef __INETVEINS_MOBANLOCAL_H
+#define __INETVEINS_MOBANLOCAL_H
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/mobility/base/LineSegmentsMobilityBase.h"
 #include "inetveins/mobility/group/MoBANCoordinator.h"
@@ -104,7 +104,7 @@ class INETVEINS_API MoBANLocal : public LineSegmentsMobilityBase
     virtual double getMaxSpeed() const override { return maxSpeed; }
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_MOBANLOCAL_H
+#endif // ifndef __INETVEINS_MOBANLOCAL_H
 

@@ -15,12 +15,12 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_GENERICROUTINGTABLE_H
-#define __INET_GENERICROUTINGTABLE_H
+#ifndef __INETVEINS_GENERICROUTINGTABLE_H
+#define __INETVEINS_GENERICROUTINGTABLE_H
 
 #include <vector>
 
-#include "inetveins/common/INETDefs.h"
+#include "inetveins/common/INETVEINSDefs.h"
 
 #include "inetveins/networklayer/generic/GenericRoute.h"
 #include "inetveins/networklayer/contract/IRoutingTable.h"
@@ -234,7 +234,7 @@ class INETVEINS_API GenericRoutingTable : public cSimpleModule, public IRoutingT
     virtual void printRoutingTable() const override;
 };
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_GENERICROUTINGTABLE_H
+#endif // ifndef __INETVEINS_GENERICROUTINGTABLE_H
 

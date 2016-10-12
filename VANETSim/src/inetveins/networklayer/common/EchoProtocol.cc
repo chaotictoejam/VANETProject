@@ -109,5 +109,5 @@ void EchoProtocol::sendEchoRequest(PingPayload *msg)
     send(request, "sendOut");
 }
 
-} // namespace inet
+} // namespace inetveins
 

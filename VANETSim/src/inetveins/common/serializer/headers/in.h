@@ -34,8 +34,8 @@
  * $FreeBSD: src/sys/netinet/in.h,v 1.48.2.11 2003/09/09 19:09:22 bms Exp $
  */
 
-#ifndef __INET_IN_H
-#define __INET_IN_H
+#ifndef __INETVEINS_IN_H
+#define __INETVEINS_IN_H
 
 namespace inetveins {
 
@@ -67,7 +67,7 @@ struct in_addr
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_IN_H
+#endif // ifndef __INETVEINS_IN_H
 

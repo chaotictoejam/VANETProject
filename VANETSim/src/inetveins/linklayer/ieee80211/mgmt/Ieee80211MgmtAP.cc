@@ -20,9 +20,9 @@
 #include "inetveins/linklayer/ieee80211/mac/Ieee80211Frame_m.h"
 #include "inetveins/linklayer/common/Ieee802Ctrl.h"
 
-#ifdef WITH_ETHERNET
+#ifdef WITH_INETVEINS_ETHERNET
 #include "inetveins/linklayer/ethernet/EtherFrame.h"
-#endif // ifdef WITH_ETHERNET
+#endif // ifdef WITH_INETVEINS_ETHERNET
 
 #include "inetveins/physicallayer/ieee80211/packetlevel/Ieee80211Radio.h"
 #include "inetveins/common/ModuleAccess.h"
@@ -429,5 +429,5 @@ void Ieee80211MgmtAP::stop()
 
 } // namespace ieee80211
 
-} // namespace inet
+} // namespace inetveins
 

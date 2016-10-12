@@ -16,8 +16,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef __INET_SCTPHDR_H
-#define __INET_SCTPHDR_H
+#ifndef __INETVEINS_SCTPHDR_H
+#define __INETVEINS_SCTPHDR_H
 
 namespace inetveins {
 
@@ -499,7 +499,7 @@ struct data_vector
 
 } // namespace serializer
 
-} // namespace inet
+} // namespace inetveins
 
-#endif // ifndef __INET_SCTPHDR_H
+#endif // ifndef __INETVEINS_SCTPHDR_H
 
