@@ -24,6 +24,10 @@ import vanetsim.inetveins.transportlayer.contract.ITCP;
 import vanetsim.inetveins.transportlayer.contract.IUDP;
 import vanetsim.inetveins.applications.contract.ITunApp;
 
+import vanetsim.veins.base.modules.BaseMobility;
+import vanetsim.veins.base.modules.IBaseApplLayer;
+import vanetsim.veins.modules.nic.INic80211p;
+
 import vanetsim.inetveins.routing.aodv.AODVRouting;
 
 module AODVCar
@@ -123,11 +127,11 @@ module AODVCar
 
 
         //Start Veins Submodules
-        appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
+        appl: <applType> like IBaseApplLayer {
             parameters:
                 @display("p=60,50");
         }
-        nic[numRadios]: <nicType> like vanetsim.veins.modules.nic.INic80211p {
+        nic[numRadios]: <nicType> like INic80211p {
             parameters:
                 @display("p=224,51");
         }
