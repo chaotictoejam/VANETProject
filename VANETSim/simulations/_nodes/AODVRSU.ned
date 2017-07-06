@@ -54,7 +54,7 @@ module AODVRSU
         string routingProtocol;
         string applType; //type of the application layer
         string nicType = default("Nic80211p"); // type of network interface card
-        string veinsmobilityType; //type of the mobility module
+        //string veinsmobilityType; //type of the mobility module
 
         int numTcpApps = default(0);  // no of TCP apps. Specify the app types in INI file with tcpApp[0..1].typename="TCPEchoApp" syntax
         int numUdpApps = default(0);  // no of UDP apps. Specify the app types in INI file with udpApp[0..1].typename="UDPVideoStreamCli" syntax
