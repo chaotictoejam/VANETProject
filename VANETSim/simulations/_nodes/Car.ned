@@ -1,85 +1,42 @@
 package vanetsim.simulations._nodes;
 
-import vanetsim.inet.applications.traci.TraCIDemo;
-import vanetsim.inet.base.NotificationBoard;
-import vanetsim.inet.linklayer.ieee80211.Ieee80211Nic;
-import vanetsim.inet.mobility.contract.IMobility;
-import vanetsim.inet.networklayer.IManetRouting;
-import vanetsim.inet.networklayer.autorouting.ipv4.HostAutoConfigurator;
-import vanetsim.inet.networklayer.common.InterfaceTable;
-import vanetsim.inet.networklayer.ipv4.RoutingTable;
-import vanetsim.inet.nodes.inet.NetworkLayer;
-import vanetsim.inet.transport.udp.UDP;
-import vanetsim.inet.applications.udpapp.UDPBasicBurst;
-
+import vanetsim.simulations._nodes.vehicle.IVehicleNetworkNode;
 
 module Car
 {
     parameters:
-        @node();
-        string mobilityType = default("TraCIMobility");
-        networkLayer.configurator.networkConfiguratorModule = "";
-        string routingProtocol @enum("AODVUU","DYMOUM","DYMO","DSRUU","OLSR","OLSR_ETX","DSDV_2","Batman","GPSR") = default("");  // used mobile routing protocol
+        string routingProtocol;
+        string applType; //type of the application layer
+        string nicType = default("Nic80211p"); // type of network interface card
+        string veinsmobilityType; //type of the mobility module
     gates:
-        input radioIn @directIn;
+        input veinsradioIn @directIn; // gate for sendDirect
     submodules:
-        notificationBoard: NotificationBoard {
+
+        //Start Veins Submodules
+        appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
             parameters:
-                @display("p=140,462");
+                @display("p=60,50");
         }
-        ac_wlan: HostAutoConfigurator {
-            @display("p=296,402");
-        }
-        interfaceTable: InterfaceTable {
+        nic: <nicType> like vanetsim.veins.modules.nic.INic80211p {
             parameters:
-                @display("p=140,326");
+                @display("p=224,51");
         }
-        routingTable: RoutingTable {
+        veinsmobility: <veinsmobilityType> like vanetsim.veins.base.modules.IMobility {
             parameters:
-                IPForward = true;
-                routerId = "";
-                routingFile = "";
-                @display("p=60,326");
+                @display("p=130,172;i=block/cogwheel");
         }
-        udp: UDP {
+        //End Veins Submodules
+
+        routing: <routingProtocol> like IVehicleNetworkNode {
             parameters:
-                @display("p=384,146");
-        }
-        networkLayer: NetworkLayer {
-            parameters:
-                proxyARP = false;
-                @display("p=304,327;q=queue");
-            gates:
-                ifIn[1];
-                ifOut[1];
-        }
-        udpApp: UDPBasicBurst {
-            parameters:
-                @display("p=384,46");
-        }
-        mobility: <mobilityType> like IMobility {
-            parameters:
-                @display("p=60,459");
-        }
-        wlan: Ieee80211Nic {
-            parameters:
-                @display("p=304,461;q=queue");
-        }
-        manetrouting: <routingProtocol> like IManetRouting if routingProtocol != "" {
-            @display("p=522,307");
+                @display("i=device/pocketpc_s;r=,,#707070");
         }
     connections allowunconnected:
-        udp.appOut++ --> udpApp.udpIn;
-        udp.appIn++ <-- udpApp.udpOut;
+        nic.upperLayerOut --> appl.lowerLayerIn;
+        nic.upperLayerIn <-- appl.lowerLayerOut;
+        nic.upperControlOut --> appl.lowerControlIn;
+        nic.upperControlIn <-- appl.lowerControlOut;
 
-        udp.ipOut --> networkLayer.transportIn++;
-        udp.ipIn <-- networkLayer.transportOut++;
-
-        wlan.upperLayerOut --> networkLayer.ifIn[0];
-        wlan.upperLayerIn <-- networkLayer.ifOut[0];
-
-        radioIn --> wlan.radioIn;
-
-        networkLayer.transportOut++ --> manetrouting.from_ip if routingProtocol != "";
-        networkLayer.transportIn++ <-- manetrouting.to_ip if routingProtocol != "";
+        veinsradioIn --> nic.radioIn;
 }
