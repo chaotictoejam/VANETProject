@@ -9,4 +9,4 @@ This project includes inet, no references needed.
 
 Be sure to edit your path for all launchd.xml in VANETSim/simulations/_maps/[simulationtype]
 
-If you are using this for your research please be sure to site this repository.
+If you are using this for your research please be sure to cite this repository.
