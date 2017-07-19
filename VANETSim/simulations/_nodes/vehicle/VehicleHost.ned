@@ -16,14 +16,14 @@
 package vanetsim.simulations._nodes.vehicle;
 
 
-import vanetsim.inetveins.applications.contract.IPingApp;
-import vanetsim.inetveins.applications.contract.ISCTPApp;
-import vanetsim.inetveins.applications.contract.ITCPApp;
-import vanetsim.inetveins.applications.contract.IUDPApp;
-import vanetsim.inetveins.transportlayer.contract.ISCTP;
-import vanetsim.inetveins.transportlayer.contract.ITCP;
-import vanetsim.inetveins.transportlayer.contract.IUDP;
-import vanetsim.inetveins.applications.contract.ITunApp;
+import inet.applications.contract.IPingApp;
+import inet.applications.contract.ISCTPApp;
+import inet.applications.contract.ITCPApp;
+import inet.applications.contract.IUDPApp;
+import inet.transportlayer.contract.ISCTP;
+import inet.transportlayer.contract.ITCP;
+import inet.transportlayer.contract.IUDP;
+import inet.applications.contract.ITunApp;
 
 //
 // IPv4 host with SCTP, TCP, UDP layers and applications.

@@ -15,20 +15,20 @@
 
 package vanetsim.simulations._nodes.vehicle;
 
-import vanetsim.inetveins.common.lifecycle.NodeStatus;
-import vanetsim.inetveins.common.packet.PcapRecorder;
-import vanetsim.inetveins.linklayer.contract.IExternalNic;
-import vanetsim.inetveins.linklayer.contract.ITunNic;
-import vanetsim.inetveins.linklayer.contract.IWiredNic;
-import vanetsim.inetveins.linklayer.contract.IWirelessNic;
-import vanetsim.inetveins.linklayer.loopback.LoopbackInterface;
-import vanetsim.inetveins.mobility.contract.IMobility;
-import vanetsim.inetveins.networklayer.contract.IRoutingTable;
-import vanetsim.inetveins.networklayer.common.InterfaceTable;
-import vanetsim.inetveins.networklayer.contract.INetworkLayer;
-import vanetsim.inetveins.power.contract.IEnergyStorage;
-import vanetsim.inetveins.power.contract.IEnergyGenerator;
-import vanetsim.inetveins.node.inet.INetworkNode;
+import inet.common.lifecycle.NodeStatus;
+import inet.common.packet.PcapRecorder;
+import inet.linklayer.contract.IExternalNic;
+import inet.linklayer.contract.ITunNic;
+import inet.linklayer.contract.IWiredNic;
+import inet.linklayer.contract.IWirelessNic;
+import inet.linklayer.loopback.LoopbackInterface;
+import inet.mobility.contract.IMobility;
+import inet.networklayer.contract.IRoutingTable;
+import inet.networklayer.common.InterfaceTable;
+import inet.networklayer.contract.INetworkLayer;
+import inet.power.contract.IEnergyStorage;
+import inet.power.contract.IEnergyGenerator;
+import inet.node.inet.INetworkNode;
 
 //
 // Contains the common lower layers (linklayer and networklayer) of VehicleHost
@@ -121,11 +121,11 @@ network VehicleBase like IVehicleNetworkNode
         
 
         //Start Veins Submodules
-        appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
+        appl: <applType> like org.car2x.veins.base.modules.IBaseApplLayer {
             parameters:
                 @display("p=60,50");
         }
-        nic[numRadios]: <nicType> like vanetsim.veins.modules.nic.INic80211p {
+        nic[numRadios]: <nicType> like org.car2x.veins.modules.nic.INic80211p {
             parameters:
                 @display("p=224,51");
         }
@@ -133,7 +133,7 @@ network VehicleBase like IVehicleNetworkNode
             //parameters:
                 //@display("p=216,406,row,60;q=queue");
         //}
-        veinsmobility: <veinsmobilityType> like vanetsim.veins.base.modules.IMobility {
+        veinsmobility: <veinsmobilityType> like org.car2x.veins.base.modules.IMobility {
             parameters:
                 @display("p=130,172;i=block/cogwheel");
         }

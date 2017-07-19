@@ -229,3 +229,12 @@ VANETSim/src/VANETSim.exe
 *.dat
 *.tkenvlog
 *.tkenvrc
+*.dll
+VANETSim/simulations/vanet/geoadv*
+VANETSim/src/vanetsim/routing/geoadv*
+VANETSim/simulations/manet/gpsrwr*
+VANETSim/src/vanetsim/node/gpsrwr*
+VANETSim/src/vanetsim/routing/gpsrwr*
+VANETSim/src/vanetsim/node/geoadv*
+VANETSim/simulations/vanet/gpsr*
+VANETSim/src/vanetsim/routing/gpsr*

@@ -15,8 +15,8 @@
 
 package vanetsim.simulations.veins;
 
-import vanetsim.veins.nodes.RSU;
-import vanetsim.veins.nodes.Scenario;
+import org.car2x.veins.nodes.RSU;
+import org.car2x.veins.nodes.Scenario;
 
 network RSUExampleScenario extends Scenario
 {

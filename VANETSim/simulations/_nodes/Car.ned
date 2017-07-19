@@ -14,15 +14,15 @@ module Car
     submodules:
 
         //Start Veins Submodules
-        appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
+        appl: <applType> like org.car2x.veins.base.modules.IBaseApplLayer {
             parameters:
                 @display("p=60,50");
         }
-        nic: <nicType> like vanetsim.veins.modules.nic.INic80211p {
+        nic: <nicType> like org.car2x.veins.modules.nic.INic80211p {
             parameters:
                 @display("p=224,51");
         }
-        veinsmobility: <veinsmobilityType> like vanetsim.veins.base.modules.IMobility {
+        veinsmobility: <veinsmobilityType> like org.car2x.veins.base.modules.IMobility {
             parameters:
                 @display("p=130,172;i=block/cogwheel");
         }

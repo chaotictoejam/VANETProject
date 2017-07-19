@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!-- debug config -->
 <launch>
-	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\sanfrancisco\sanfrancisco.net.xml" />
-	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\sanfrancisco\sanfrancisco.rou.xml" />
-	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\sanfrancisco\sanfrancisco.poly.xml" />
-	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\sanfrancisco\sanfrancisco.sumo.cfg" type="config" />
+	<copy file="F:\Dev\VANETProject\VANETSim\simulations\_maps\sanfrancisco\sanfrancisco.net.xml" />
+	<copy file="F:\Dev\VANETProject\VANETSim\simulations\_maps\sanfrancisco\sanfrancisco.rou.xml" />
+	<copy file="F:\Dev\VANETProject\VANETSim\simulations\_maps\sanfrancisco\sanfrancisco.poly.xml" />
+	<copy file="F:\Dev\VANETProject\VANETSim\simulations\_maps\sanfrancisco\sanfrancisco.sumo.cfg" type="config" />
 </launch>

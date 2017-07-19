@@ -15,7 +15,7 @@
 
 package vanetsim.simulations._nodes.vehicle;
 
-import vanetsim.inetveins.routing.aodv.AODVRouting;
+import inet.routing.aodv.AODVRouting;
 
 //
 // It models a ~VehicleHost extended with ~AODVRouting submodule.

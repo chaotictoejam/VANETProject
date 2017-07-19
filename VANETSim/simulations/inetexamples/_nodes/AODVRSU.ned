@@ -1,32 +1,32 @@
 package vanetsim.simulations.inetexamples._nodes;
 
-import vanetsim.inetveins.common.lifecycle.NodeStatus;
-import vanetsim.inetveins.common.packet.PcapRecorder;
-import vanetsim.inetveins.linklayer.contract.IExternalNic;
-import vanetsim.inetveins.linklayer.contract.ITunNic;
-import vanetsim.inetveins.linklayer.contract.IWiredNic;
-import vanetsim.inetveins.linklayer.contract.IWirelessNic;
-import vanetsim.inetveins.linklayer.loopback.LoopbackInterface;
-import vanetsim.inetveins.mobility.contract.IMobility;
-import vanetsim.inetveins.networklayer.contract.IRoutingTable;
-import vanetsim.inetveins.networklayer.common.InterfaceTable;
-import vanetsim.inetveins.networklayer.contract.INetworkLayer;
-import vanetsim.inetveins.power.contract.IEnergyStorage;
-import vanetsim.inetveins.power.contract.IEnergyGenerator;
-import vanetsim.inetveins.node.inet.INetworkNode;
+import inet.common.lifecycle.NodeStatus;
+import inet.common.packet.PcapRecorder;
+import inet.linklayer.contract.IExternalNic;
+import inet.linklayer.contract.ITunNic;
+import inet.linklayer.contract.IWiredNic;
+import inet.linklayer.contract.IWirelessNic;
+import inet.linklayer.loopback.LoopbackInterface;
+import inet.mobility.contract.IMobility;
+import inet.networklayer.contract.IRoutingTable;
+import inet.networklayer.common.InterfaceTable;
+import inet.networklayer.contract.INetworkLayer;
+import inet.power.contract.IEnergyStorage;
+import inet.power.contract.IEnergyGenerator;
+import inet.node.inet.INetworkNode;
 
-import vanetsim.inetveins.applications.contract.IPingApp;
-import vanetsim.inetveins.applications.contract.ISCTPApp;
-import vanetsim.inetveins.applications.contract.ITCPApp;
-import vanetsim.inetveins.applications.contract.IUDPApp;
-import vanetsim.inetveins.transportlayer.contract.ISCTP;
-import vanetsim.inetveins.transportlayer.contract.ITCP;
-import vanetsim.inetveins.transportlayer.contract.IUDP;
-import vanetsim.inetveins.applications.contract.ITunApp;
+import inet.applications.contract.IPingApp;
+import inet.applications.contract.ISCTPApp;
+import inet.applications.contract.ITCPApp;
+import inet.applications.contract.IUDPApp;
+import inet.transportlayer.contract.ISCTP;
+import inet.transportlayer.contract.ITCP;
+import inet.transportlayer.contract.IUDP;
+import inet.applications.contract.ITunApp;
 
-import vanetsim.veins.base.modules.BaseMobility;
+import org.car2x.veins.base.modules.BaseMobility;
 
-import vanetsim.inetveins.routing.aodv.AODVRouting;
+import inet.routing.aodv.AODVRouting;
 
 module AODVRSU
 {
@@ -125,11 +125,11 @@ module AODVRSU
         
 
         //Start Veins Submodules
-        appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
+        appl: <applType> like org.car2x.veins.base.modules.IBaseApplLayer {
             parameters:
                 @display("p=60,50");
         }
-        nic[numRadios]: <nicType> like vanetsim.veins.modules.nic.INic80211p {
+        nic[numRadios]: <nicType> like org.car2x.veins.modules.nic.INic80211p {
             parameters:
                 @display("p=224,51");
         }

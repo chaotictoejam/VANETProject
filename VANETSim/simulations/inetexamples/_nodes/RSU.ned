@@ -1,7 +1,7 @@
 package vanetsim.simulations.inetexamples._nodes;
 
-import vanetsim.inetveins.node.inet.INetworkNode;
-import vanetsim.veins.base.modules.BaseMobility;
+import inet.node.inet.INetworkNode;
+import org.car2x.veins.base.modules.BaseMobility;
 
 module RSU
 {
@@ -14,11 +14,11 @@ module RSU
     submodules:
 
         //Start Veins Submodules
-        appl: <applType> like vanetsim.veins.base.modules.IBaseApplLayer {
+        appl: <applType> like org.car2x.veins.base.modules.IBaseApplLayer {
             parameters:
                 @display("p=60,50");
         }
-        nic: <nicType> like vanetsim.veins.modules.nic.INic80211p {
+        nic: <nicType> like org.car2x.veins.modules.nic.INic80211p {
             parameters:
                 @display("p=60,166");
         }

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!-- debug config -->
 <launch>
-	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\manhattangrid\manhattangrid.net.xml" />
-	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\manhattangrid\manhattangrid.rou.xml" />
-	<copy file="F:\GitHub\VANETProject\VANETSim\simulations\_maps\manhattangrid\manhattangrid.sumo.cfg" type="config" />
+	<copy file="F:\Dev\VANETProject\VANETSim\simulations\_maps\manhattangrid\manhattangrid.net.xml" />
+	<copy file="F:\Dev\VANETProject\VANETSim\simulations\_maps\manhattangrid\manhattangrid.rou.xml" />
+	<copy file="F:\Dev\VANETProject\VANETSim\simulations\_maps\manhattangrid\manhattangrid.sumo.cfg" type="config" />
 </launch>
 
