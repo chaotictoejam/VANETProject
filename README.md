@@ -18,24 +18,22 @@ If you are using this for your research please be sure to cite my work and repos
 
 ```
 @INPROCEEDINGS{7577066, 
-author={J. Skiles and I. Mahgoub}, 
-booktitle={2016 International Wireless Communications and Mobile Computing Conference (IWCMC)}, 
-title={A geographical hybrid solution for Inter-Vehicular Communication in VANET}, 
-year={2016}, 
-pages={250-255}
-doi={10.1109/IWCMC.2016.7577066}, 
-month={Sept},}
+	author={J. Skiles and I. Mahgoub}, 
+	booktitle={2016 International Wireless Communications and Mobile Computing Conference (IWCMC)}, 
+	title={A geographical hybrid solution for Inter-Vehicular Communication in VANET}, 
+	year={2016}, 
+	pages={250-255}
+	doi={10.1109/IWCMC.2016.7577066}, 
+	month={Sept}
+}
 
-@INPROCEEDINGS{Skiles2017, 
+@INPROCEEDINGS{8328473, 
 	author={J. Skiles and I. Mahgoub}, 
 	booktitle={2017 IEEE 15th Intl Conf on Dependable, Autonomic and Secure Computing, 15th Intl Conf on Pervasive Intelligence and Computing, 3rd Intl Conf on Big Data Intelligence and Computing and Cyber Science and Technology Congress(DASC/PiCom/DataCom/CyberSciTech)}, 
 	title={Investigating the Impact of Adaptive Beaconing on GEOADV Performance}, 
-	year={2017}, 
-	volume={}, 
-	number={}, 
+	year={2017},
 	pages={744-751},
 	doi={10.1109/DASC-PICom-DataCom-CyberSciTec.2017.129}, 
-	ISSN={}, 
 	month={Nov}
 }
 ```
