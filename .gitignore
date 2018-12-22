@@ -26,7 +26,7 @@ local.properties
 *.launch
 
 # CDT-specific
-.cproject
+# .cproject
 
 # PDT-specific
 .buildpath
@@ -218,23 +218,14 @@ pip-log.txt
 .mr.developer.cfg
 VANETSim/src/inet/.tmp*
 .tmp*
-VANETSim/src/dissertation/Makefile
-VANETSim/src/inet/dissertation/
-VANETSim/simulations/_nodes/dissertation/
-VANETSim/simulations/dissertation/
-VANETSim/src/dissertation/
-VANETSim/simulations/old/dissertation/
-VANETSim/src/old/dissertation/
 VANETSim/src/VANETSim.exe
 *.dat
 *.tkenvlog
 *.tkenvrc
+*.cmdenv-log
+*_m.cc
+*_m.h
+VANETSim/src/inet/opp_defines.h
 *.dll
-VANETSim/simulations/vanet/geoadv*
-VANETSim/src/vanetsim/routing/geoadv*
-VANETSim/simulations/manet/gpsrwr*
-VANETSim/src/vanetsim/node/gpsrwr*
-VANETSim/src/vanetsim/routing/gpsrwr*
-VANETSim/src/vanetsim/node/geoadv*
-VANETSim/simulations/vanet/gpsr*
-VANETSim/src/vanetsim/routing/gpsr*
+VANETSim/src/inet/common/precompiled.h.gch
+*.qtenvrc

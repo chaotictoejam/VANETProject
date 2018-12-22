@@ -9,7 +9,6 @@ What do you need:
 * https://github.com/chaotictoejam/inet (this repo has modifications for capturing thruput)
 * Latest VEINS
 * SUMO v0.29
-* OMNET++ 5.1.1
 
 Be sure to edit your path for all launchd.xml in VANETSim/simulations/_maps/[simulationtype]
 

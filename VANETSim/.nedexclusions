@@ -1,5 +1,0 @@
-vanetsim.inet.applications.voipstream
-vanetsim.inet.linklayer.ext
-vanetsim.inet.routing.extras
-vanetsim.inet.transportlayer.tcp_lwip
-vanetsim.inet.transportlayer.tcp_nsc
