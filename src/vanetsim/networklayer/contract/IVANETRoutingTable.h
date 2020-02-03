@@ -1,22 +1,5 @@
-//
-// Copyright (C) 2012 Andras Varga
-//
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with this program; if not, see <http://www.gnu.org/licenses/>.
-//
-
-#ifndef __INET_IVANETRoutingTable_H
-#define __INET_IVANETRoutingTable_H
+#ifndef __INET_IVANETROUTINGTABLE_H
+#define __INET_IVANETROUTINGTABLE_H
 
 #include "inet/common/INETDefs.h"
 #include "inet/networklayer/common/L3Address.h"
@@ -38,6 +21,11 @@ class INET_API IVANETRoutingTable
      * Forwarding on/off
      */
     virtual bool isForwardingEnabled() const = 0;    //XXX IP modulba?
+
+    /**
+     * Administrative distance on/off
+     */
+    virtual bool isAdminDistEnabled() const = 0;
 
     /**
      * Multicast forwarding on/off
@@ -101,6 +89,12 @@ class INET_API IVANETRoutingTable
      */
     virtual bool isLocalMulticastAddress(const L3Address& dest) const = 0;
 
+    /**
+     * Returns route for a multicast origin and group.
+     */
+    virtual IMulticastRoute *findBestMatchingMulticastRoute(const L3Address& origin, const L3Address& group) const = 0;
+    //@}
+
     /** @name Route table manipulation */
     //@{
 
@@ -144,10 +138,36 @@ class INET_API IVANETRoutingTable
      */
     virtual int getNumMulticastRoutes() const = 0;
 
+    /**
+     * Returns the kth multicast route.
+     */
+    virtual IMulticastRoute *getMulticastRoute(int k) const = 0;
+
+    /**
+     * Adds a multicast route to the routing table. Routes are allowed to be modified
+     * while in the routing table. (There is a notification mechanism that
+     * allows routing table internals to be updated on a routing entry change.)
+     */
+    virtual void addMulticastRoute(IMulticastRoute *entry) = 0;
+
+    /**
+     * Removes the given route from the routing table, and returns it.
+     * nullptr is returned of the route was not in the routing table.
+     */
+    virtual IMulticastRoute *removeMulticastRoute(IMulticastRoute *entry) = 0;
+
+    /**
+     * Deletes the given multicast route from the routing table.
+     * Returns true if the route was deleted, and false if it was
+     * not in the routing table.
+     */
+    virtual bool deleteMulticastRoute(IMulticastRoute *entry) = 0;
+    //@}
+
     virtual IVANETRoute *createRoute() = 0;
 };
 
 } // namespace inet
 
-#endif // ifndef __INET_IVANETRoutingTable_H
+#endif // ifndef __INET_IVANETROUTINGTABLE_H
 
