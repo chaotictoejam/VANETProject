@@ -17,8 +17,8 @@
 
 package vanetsim.node.aodvwr;
 
-import inet.node.inet.WirelessHost;
-import vanetsim.routing.aodvwr.AODVWRRouting;
+import inet.node.inet.AdhocHost;
+import vanetsim.routing.aodvwr.AODVWR;
 
 
 //
@@ -38,17 +38,17 @@ import vanetsim.routing.aodvwr.AODVWRRouting;
 // The AODV v.2 (known as DYMO) is also implemented: ~DYMO,
 // ~DYMORouter.
 //
-module AODVWRRouter extends WirelessHost
+module AODVWRRouter extends AdhocHost
 {
     parameters:
         @display("i=device/cellphone");
         forwarding = true;
         wlan[*].mgmtType = default("Ieee80211MgmtAdhoc");
     submodules:
-        aodv: AODVWRRouting {
+        aodv: AODVWR {
             @display("p=558,307");
         }
     connections:
-        aodv.ipOut --> networkLayer.transportIn++;
-        aodv.ipIn <-- networkLayer.transportOut++;
+        aodv.socketOut --> at.in++;
+        aodv.socketIn <-- at.out++;
 }
