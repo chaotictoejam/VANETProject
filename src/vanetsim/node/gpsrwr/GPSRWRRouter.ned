@@ -6,11 +6,11 @@ import vanetsim.routing.gpsrwr.GPSRWR;
 module GPSRWRRouter extends AdhocHost
 {
     submodules:
-        gpsr: GPSRWR {
+        gpsrwr: GPSRWR {
             parameters:
                 @display("p=825,226");
         }
     connections:
-        gpsr.ipOut --> tn.in++;
-        gpsr.ipIn <-- tn.out++;
+        gpsrwr.ipOut --> tn.in++;
+        gpsrwr.ipIn <-- tn.out++;
 }
