@@ -17,43 +17,39 @@
 
 package vanetsim.simulations.manet.aodvwr;
 
-import inet.common.lifecycle.LifecycleController;
-import inet.common.scenario.ScenarioManager;
-import inet.networklayer.configurator.ipv4.IPv4NetworkConfigurator;
-import inet.networklayer.ipv4.RoutingTableRecorder;
-import vanetsim.node.aodvwr.AODVWRRouter;
-import inet.physicallayer.idealradio.IdealRadioMedium;
 
+import inet.common.scenario.ScenarioManager;
+import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
+import inet.networklayer.ipv4.RoutingTableRecorder;
+import inet.node.aodv.AODVWRRouter;
+import inet.physicallayer.unitdisk.UnitDiskRadioMedium;
+import vanetsim.node.aodvwr.AODVWRRouter;
 
 network SimpleRREQ
 {
     parameters:
         @display("bgb=525,437");
     submodules:
-        radioMedium: IdealRadioMedium {
+        radioMedium: UnitDiskRadioMedium {
             parameters:
-                @display("p=50,50");
+                @display("p=100,200;is=s");
         }
-        configurator: IPv4NetworkConfigurator {
+        configurator: Ipv4NetworkConfigurator {
             parameters:
                 addDefaultRoutes = false;
                 addStaticRoutes = false;
                 addSubnetRoutes = false;
                 config = xml("<config><interface hosts='*' address='145.236.x.x' netmask='255.255.0.0'/></config>");
-                @display("p=50,100");
+                @display("p=100,100;is=s");
         }
         routingTableRecorder: RoutingTableRecorder {
             parameters:
-                @display("p=50,150");
-        }
-        lifecycleController: LifecycleController {
-            parameters:
-                @display("p=50,200");
+                @display("p=100,300;is=s");
         }
         scenarioManager: ScenarioManager {
             parameters:
                 script = default(xml("<scenario/>"));
-                @display("p=50,250");
+                @display("p=100,400;is=s");
         }
         sender: AODVWRRouter {
             parameters:
@@ -69,36 +65,30 @@ network SimpleRREQ
         }
     connections allowunconnected:
 }
-
 network SimpleRREQ2
 {
     parameters:
-        @display("bgb=961,662");
     submodules:
-        radioMedium: IdealRadioMedium {
+        radioMedium: UnitDiskRadioMedium {
             parameters:
-                @display("p=50,50");
+                @display("p=100,200;is=s");
         }
-        configurator: IPv4NetworkConfigurator {
+        configurator: Ipv4NetworkConfigurator {
             parameters:
                 addDefaultRoutes = false;
                 addStaticRoutes = false;
                 addSubnetRoutes = false;
                 config = xml("<config><interface hosts='*' address='145.236.x.x' netmask='255.255.0.0'/></config>");
-                @display("p=50,100");
+                @display("p=100,100;is=s");
         }
         routingTableRecorder: RoutingTableRecorder {
             parameters:
-                @display("p=50,150");
-        }
-        lifecycleController: LifecycleController {
-            parameters:
-                @display("p=50,200");
+                @display("p=100,300;is=s");
         }
         scenarioManager: ScenarioManager {
             parameters:
                 script = default(xml("<scenario/>"));
-                @display("p=50,250");
+                @display("p=100,400;is=s");
         }
         sender: AODVWRRouter {
             parameters:
@@ -122,32 +112,28 @@ network SimpleRREQ2
 network ShortestPath
 {
     parameters:
-        @display("bgb=961,662");
+        @display("bgb=650,550");
     submodules:
-        radioMedium: IdealRadioMedium {
+        radioMedium: UnitDiskRadioMedium {
             parameters:
-                @display("p=50,50");
+                @display("p=100,200;is=s");
         }
-        configurator: IPv4NetworkConfigurator {
+        configurator: Ipv4NetworkConfigurator {
             parameters:
                 addDefaultRoutes = false;
                 addStaticRoutes = false;
                 addSubnetRoutes = false;
                 config = xml("<config><interface hosts='*' address='145.236.x.x' netmask='255.255.0.0'/></config>");
-                @display("p=50,100");
+                @display("p=100,100;is=s");
         }
         routingTableRecorder: RoutingTableRecorder {
             parameters:
-                @display("p=50,150");
-        }
-        lifecycleController: LifecycleController {
-            parameters:
-                @display("p=50,200");
+                @display("p=100,300;is=s");
         }
         scenarioManager: ScenarioManager {
             parameters:
                 script = default(xml("<scenario/>"));
-                @display("p=50,250");
+                @display("p=100,400;is=s");
         }
         sender: AODVWRRouter {
             parameters:
