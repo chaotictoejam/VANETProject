@@ -1,27 +1,15 @@
 // Author: Joanne Skiles
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with this program.  If not, see http://www.gnu.org/licenses/.
-//
 
 #ifndef __INET_AODVWRROUTEDATA_H
 #define __INET_AODVWRROUTEDATA_H
 
 #include <set>
-#include "inet/networklayer/common/L3Address.h"
+
 #include "inet/common/INETDefs.h"
+#include "inet/networklayer/common/L3Address.h"
 
 namespace inet {
+namespace aodvwr {
 
 class INET_API AODVWRRouteData : public cObject
 {
@@ -34,15 +22,17 @@ class INET_API AODVWRRouteData : public cObject
     unsigned int destSeqNum;
     double twr;
     double expirationTime;
+    simtime_t lifeTime;    // expiration or deletion time of the route
 
   public:
 
-    AODVWRRouteData()
+    AODVWR RouteData()
     {
         active = true;
         repariable = false;
         beingRepaired = false;
         validDestNum = true;
+        lifeTime = SIMTIME_ZERO;
         destSeqNum = 0;
         twr = 0;
         expirationTime = 10000;
@@ -62,15 +52,17 @@ class INET_API AODVWRRouteData : public cObject
     const double& getTWR() const { return twr; }
     void setExpirationTime(double expirationTime) { this->expirationTime = expirationTime; }
     const double&  getExpirationTime() const { return expirationTime; }
+    const simtime_t& getLifeTime() const { return lifeTime; }
+    void setLifeTime(const simtime_t& lifeTime) { this->lifeTime = lifeTime; }
     bool isActive() const { return active; }
     void setIsActive(bool active) { this->active = active; }
     void addPrecursor(const L3Address& precursorAddr) { precursorList.insert(precursorAddr); }
     const std::set<L3Address>& getPrecursorList() const { return precursorList; }
+    virtual std::string str() const;
 };
 
-std::ostream& operator<<(std::ostream& out, const AODVWRRouteData *data);
-
+} // namespace aodvwr
 } // namespace inet
 
-#endif    // ifndef AODVWRROUTEDATA_H_
+#endif // ifndef __INET_AODVWRROUTEDATA_H
 

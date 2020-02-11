@@ -3,7 +3,7 @@
 //
 // Description: This is an small enhancement of AODV using a weight route calculation
 
-#include "vanetsim/routing/aodvwr/AODVWRRouting.h"
+#include "vanetsim/routing/aodvwr/AODVWR.h"
 
 #include "inet/common/IProtocolRegistrationListener.h"
 #include "inet/common/ModuleAccess.h"
@@ -492,7 +492,7 @@ const Ptr<Rrep> AODVWR::createRREP(const Ptr<Rreq>& rreq, IRoute *destRoute, IRo
         // of the RREP.
         rrep->setHopCount(0);
 
-        rrep->setExpirationTime(rreq->getExpirationTime());
+        rrep->setExpirationTime(rreq->getexpirationTime());
         // The destination node copies the value MY_ROUTE_TIMEOUT
         // into the Lifetime field of the RREP.
         rrep->setLifeTime(myRouteTimeout.trunc(SIMTIME_MS));
@@ -530,7 +530,7 @@ const Ptr<Rrep> AODVWR::createRREP(const Ptr<Rreq>& rreq, IRoute *destRoute, IRo
         // The Lifetime field of the RREP is calculated by subtracting the
         // current time from the expiration time in its route table entry.
 
-        rrep->setExpirationTime(rreq->getExpirationTime());
+        rrep->setExpirationTime(rreq->getexpirationTime());
         rrep->setLifeTime((destRouteData->getLifeTime() - simTime()).trunc(SIMTIME_MS));
     }
 
@@ -568,7 +568,7 @@ const Ptr<Rrep> AODVWR::createGratuitousRREP(const Ptr<Rreq>& rreq, IRoute *orig
     grrep->setDestSeqNum(rreq->getOriginatorSeqNum());
     grrep->setOriginatorAddr(rreq->getDestAddr());
     grrep->setTwr(routeData->getTWR());
-    grrep->setExpirationTime(routeData->getExpirationTime());
+    grrep->setExpirationTime(routeData->getexpirationTime());
     grrep->setLifeTime(routeData->getLifeTime());
     return grrep;
 }
@@ -593,12 +593,15 @@ void AODVWR::handleRREP(const Ptr<Rrep>& rrep, const L3Address& sourceAddr)
 
     IRoute *previousHopRoute = routingTable->findBestMatchingRoute(sourceAddr);
 
+    double twr = rrep->getTwr();
+    double expirationTime = rrep->getexpirationTime();
+
     if (!previousHopRoute || previousHopRoute->getSource() != this) {
         // create without valid sequence number
-        previousHopRoute = createRoute(sourceAddr, sourceAddr, 1, false, rrep->getDestSeqNum(), true, simTime() + activeRouteTimeout);
+        previousHopRoute = createRoute(sourceAddr, sourceAddr, 1, false, rrep->getDestSeqNum(), true, twr, expirationTime, simTime() + activeRouteTimeout);
     }
     else
-        updateRoutingTable(previousHopRoute, sourceAddr, 1, false, rrep->getDestSeqNum(), true, simTime() + activeRouteTimeout);
+        updateRoutingTable(previousHopRoute, sourceAddr, 1, false, rrep->getDestSeqNum(), true, twr, expirationTime, simTime() + activeRouteTimeout);
 
     // Next, the node then increments the hop count value in the RREP by one,
     // to account for the new hop through the intermediate node
@@ -621,7 +624,7 @@ void AODVWR::handleRREP(const Ptr<Rrep>& rrep, const L3Address& sourceAddr)
         //     invalid in route table entry.
 
         if (!destRouteData->hasValidDestNum()) {
-            updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, simTime() + lifeTime);
+            updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, twr, expirationTime, simTime() + lifeTime);
 
             // If the route table entry to the destination is created or updated,
             // then the following actions occur:
@@ -646,23 +649,23 @@ void AODVWR::handleRREP(const Ptr<Rrep>& rrep, const L3Address& sourceAddr)
         //      the node's copy of the destination sequence number and the
         //      known value is valid, or
         else if (destSeqNum > destRouteData->getDestSeqNum()) {
-            updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, simTime() + lifeTime);
+            updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, twr, expirationTime, simTime() + lifeTime);
         }
         else {
             // (iii) the sequence numbers are the same, but the route is
             //       marked as inactive, or
             if (destSeqNum == destRouteData->getDestSeqNum() && !destRouteData->isActive()) {
-                updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, simTime() + lifeTime);
+                updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, twr, expirationTime, simTime() + lifeTime);
             }
             // (iv) the sequence numbers are the same, and the New Hop Count is
             //      smaller than the hop count in route table entry.
             else if (destSeqNum == destRouteData->getDestSeqNum() && newHopCount < (unsigned int)destRoute->getMetric()) {
-                updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, simTime() + lifeTime);
+                updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, twr, simTime() + lifeTime);
             }
         }
     }
     else {    // create forward route for the destination: this path will be used by the originator to send data packets
-        destRoute = createRoute(rrep->getDestAddr(), sourceAddr, newHopCount, true, destSeqNum, true, simTime() + lifeTime);
+        destRoute = createRoute(rrep->getDestAddr(), sourceAddr, newHopCount, true, destSeqNum, true, twr, expirationTime, simTime() + lifeTime);
         destRouteData = check_and_cast<AODVWRRouteData *>(destRoute->getProtocolData());
     }
 
@@ -727,13 +730,13 @@ void AODVWR::handleRREP(const Ptr<Rrep>& rrep, const L3Address& sourceAddr)
     else {
         if (hasOngoingRouteDiscovery(rrep->getDestAddr())) {
             EV_INFO << "The Route Reply has arrived for our Route Request to node " << rrep->getDestAddr() << endl;
-            updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, simTime() + lifeTime);
+            updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, twr, expirationTime, simTime() + lifeTime);
             completeRouteDiscovery(rrep->getDestAddr());
         }
     }
 }
 
-void AODVWR::updateRoutingTable(IRoute *route, const L3Address& nextHop, unsigned int hopCount, bool hasValidDestNum, unsigned int destSeqNum, bool isActive, simtime_t lifeTime)
+void AODVWR::updateRoutingTable(IRoute *route, const L3Address& nextHop, unsigned int hopCount, bool hasValidDestNum, unsigned int destSeqNum, bool isActive, double twr, double expirationTime, simtime_t lifeTime)
 {
     EV_DETAIL << "Updating existing route: " << route << endl;
 
@@ -747,6 +750,8 @@ void AODVWR::updateRoutingTable(IRoute *route, const L3Address& nextHop, unsigne
     routingData->setDestSeqNum(destSeqNum);
     routingData->setIsActive(isActive);
     routingData->setHasValidDestNum(hasValidDestNum);
+    routingData->setTWR(twr);
+    routingData->setExpirationTime(expirationTime);
 
     EV_DETAIL << "Route updated: " << route << endl;
 
@@ -818,10 +823,10 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
 
     if (!previousHopRoute || previousHopRoute->getSource() != this) {
         // create without valid sequence number
-        previousHopRoute = createRoute(sourceAddr, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, simTime() + activeRouteTimeout);
+        previousHopRoute = createRoute(sourceAddr, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, rreq->getTwr(), rreq->getexpirationTime(), simTime() + activeRouteTimeout);
     }
     else
-        updateRoutingTable(previousHopRoute, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, simTime() + activeRouteTimeout);
+        updateRoutingTable(previousHopRoute, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, rreq->getTwr(), rreq->getexpirationTime(), simTime() + activeRouteTimeout);
 
     // then checks to determine whether it has received a RREQ with the same
     // Originator IP Address and RREQ ID within at least the last PATH_DISCOVERY_TIME.
@@ -872,14 +877,80 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
     //
     //   MinimalLifetime = (current time + 2*NET_TRAVERSAL_TIME - 2*HopCount*NODE_TRAVERSAL_TIME).
 
+    double expirationTime = std::min(rreq->getexpirationTime(),
+               newexpirationTime);
     unsigned int hopCount = rreq->getHopCount();
     simtime_t minimalLifeTime = simTime() + 2 * netTraversalTime - 2 * hopCount * nodeTraversalTime;
     simtime_t newLifeTime = std::max(simTime(), minimalLifeTime);
+
+    //AODVWR RULES: When a node receives AODVWRRoutingRREQ Message:
+    //(1) Extracts movement details and uses this information with its own to compute TWR & expirationTime
+    //(2) If Expiration Time is less than current, updates expiration time
+    //(3) Find and store link quality between two nodes
+    //(4) Attach new TWR & Expiration time and own movement details to the AODVWRRoutingRREQ message.
+    //    If node doesn't have route to destination flood neighbors with new AODVWRRoutingRREQ message.
+    unsigned int hopCount = rreq->getHopCount();
+
+    //Extracts movement details and uses this information
+    IMobility  *mod = check_and_cast<IMobility *>(host->getSubmodule("mobility"));
+
+    Coord currentPosition = mod->getCurrentPosition();
+    Coord currentSpeed = mod->getCurrentSpeed();
+    Coord currentAcceleration = mod->getCurrentAcceleration();
+    EulerAngles currentDirection = mod->getCurrentAngularPosition(); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
+
+    Coord lastPosition = rreq->getPosition();
+    Coord lastSpeed = rreq->getSpeed();
+    Coord lastAcceleration = rreq->getAcceleration();
+    EulerAngles lastDirection = rreq->getDirection(); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
+    double twr = rreq->getTwr();
+
+    // Compute TWR:
+    //  TWR = SUM(f_s*|S_(i-1)-S_i|+f_a*|A_(i-1)-A_i|+f_d*|D_(i-1)-D_i|+[f_q*(1/LQ])
+    //          S = speed of the vehicles
+    //          f_s = speed weight factor
+    //          A = acceleration of the vehicles
+    //          f_a = acceleration weight factor
+    //          D = direction of the vehicles
+    //          f_d = direction weight factor
+    //          F_q = Link Quality Weight Factor
+    //          LQ = Link Quality between two adjacent vehicles
+
+    double linkquality = 1;
+    double speedTwr = speedWeight*std::abs(lastSpeed.x/lastDirection.alpha - currentSpeed.x/currentSpeed.x);
+    double accelerationTwr = accelerationWeight*std::abs(lastAcceleration.x/lastDirection.alpha - currentAcceleration.x/currentSpeed.x);
+    double directionTwr = directionWeight*std::abs(currentDirection.alpha-lastDirection.alpha);
+    double lqTwr = linkQualityWeight/linkquality;
+
+    twr = twr + speedTwr + accelerationTwr + directionTwr + lqTwr;
+
+    // Compute expirationTime:
+    //   expirationTime = (-(a*b+c*d)+sqrt((a*a+c*c)*R*R-(a*d-b*c)*(a*d-b*c)))/(a*a+c*c)
+    //          a = vi*(cos(vanglei)-vj(cos(vanglej)
+    //          b = xi - xj
+    //          c = vi*(sin(vanglei)-vj(sin(vanglej)
+    //          d = yi - yj
+    //          R is   line of site range
+    //virtual Coord getCurrentSpeed() { Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad())); return v * getSpeed(); }
+    //virtual Coord getCurrentAngularPosition() { Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad())); return v; }
+
+    double a = lastSpeed.x - currentSpeed.x;
+    double b = lastSpeed.x / lastDirection.alpha
+            - currentSpeed.x / currentSpeed.x;
+    double c = -lastSpeed.y + currentSpeed.y;
+    double d = lastSpeed.y / lastDirection.alpha
+            - currentSpeed.y / currentSpeed.x;
+
+    double newexpirationTime = (-(a*b+c*d)+sqrt((a*a + c*c)*losRange*losRange-(a*d-b*c)*(a*d-b*c)))/(a*a+c*c);
+
+    double expirationTime =std::min(rreq->getexpirationTime(), newexpirationTime);
+
     int rreqSeqNum = rreq->getOriginatorSeqNum();
+
     if (!reverseRoute || reverseRoute->getSource() != this) {    // create
         // This reverse route will be needed if the node receives a RREP back to the
         // node that originated the RREQ (identified by the Originator IP Address).
-        reverseRoute = createRoute(rreq->getOriginatorAddr(), sourceAddr, hopCount, true, rreqSeqNum, true, newLifeTime);
+        reverseRoute = createRoute(rreq->getOriginatorAddr(), sourceAddr, hopCount, true, rreqSeqNum, true, twr, expirationTime, newLifeTime);
     }
     else {
         AODVWRRouteData *routeData = check_and_cast<AODVWRRouteData *>(reverseRoute->getProtocolData());
@@ -902,7 +973,7 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
             (rreqSeqNum == routeSeqNum && newHopCount < routeHopCount) ||
             rreq->getUnknownSeqNumFlag())
         {
-            updateRoutingTable(reverseRoute, sourceAddr, hopCount, true, newSeqNum, true, newLifeTime);
+            updateRoutingTable(reverseRoute, sourceAddr, hopCount, true, newSeqNum, true, twr, expirationTime, newLifeTime);
         }
     }
 
@@ -1005,7 +1076,7 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
 
 IRoute *AODVWR::createRoute(const L3Address& destAddr, const L3Address& nextHop,
         unsigned int hopCount, bool hasValidDestNum, unsigned int destSeqNum,
-        bool isActive, simtime_t lifeTime)
+        bool isActive, double twr, double expirationTime, simtime_t lifeTime)
 {
     // create a new route
     IRoute *newRoute = routingTable->createRoute();
@@ -1020,7 +1091,6 @@ IRoute *AODVWR::createRoute(const L3Address& destAddr, const L3Address& nextHop,
         newRoute->setInterface(ifEntry);
     newRoute->setSourceType(IRoute::AODV);
     newRoute->setSource(this);
-
     // A route towards a destination that has a routing table entry
     // that is marked as valid.  Only active routes can be used to
     // forward data packets.
@@ -1030,8 +1100,9 @@ IRoute *AODVWR::createRoute(const L3Address& destAddr, const L3Address& nextHop,
     newProtocolData->setIsActive(isActive);
     newProtocolData->setHasValidDestNum(hasValidDestNum);
     newProtocolData->setDestSeqNum(destSeqNum);
+    newProtocolData->setTWR(twr);
+    newProtocolData->setExpirationTime(expirationTime);
     newProtocolData->setLifeTime(lifeTime);
-    newRoute->setProtocolData(newProtocolData);
 
     EV_DETAIL << "Adding new route " << newRoute << endl;
     routingTable->addRoute(newRoute);
@@ -1447,11 +1518,11 @@ void AODVWR::handleHelloMessage(const Ptr<Rrep>& helloMessage)
     simtime_t newLifeTime = simTime() + allowedHelloLoss * helloInterval;
 
     if (!routeHelloOriginator || routeHelloOriginator->getSource() != this)
-        createRoute(helloOriginatorAddr, helloOriginatorAddr, 1, true, latestDestSeqNum, true, newLifeTime);
+        createRoute(helloOriginatorAddr, helloOriginatorAddr, 1, true, latestDestSeqNum, true, helloMessage->getTwr(), helloMessage->getExpirationTime(), newLifeTime);
     else {
         AODVWRRouteData *routeData = check_and_cast<AODVWRRouteData *>(routeHelloOriginator->getProtocolData());
         simtime_t lifeTime = routeData->getLifeTime();
-        updateRoutingTable(routeHelloOriginator, helloOriginatorAddr, 1, true, latestDestSeqNum, true, std::max(lifeTime, newLifeTime));
+        updateRoutingTable(routeHelloOriginator, helloOriginatorAddr, 1, true, latestDestSeqNum, true, helloMessage->getTwr(), helloMessage->getExpirationTime(), std::max(lifeTime, newLifeTime));
     }
 
     // TODO: This feature has not implemented yet.
