@@ -1,28 +1,16 @@
-//
-// This program is property of its copyright holder. All rights reserved.
-//
-
 package vanetsim.node.gpsrwr;
 
-import inet.node.inet.WirelessHost;
-import vanetsim.routing.gpsrwr.IGPSRWR;
+import inet.node.inet.AdhocHost;
+import vanetsim.routing.gpsrwr.GPSRWR;
 
-
-//
-// TODO
-//
-module GPSRWRRouter extends WirelessHost
+module GPSRWRRouter extends AdhocHost
 {
-    parameters:
-        @display("i=device/cellphone");
-        forwarding = true;
-        wlan[*].mgmtType = default("Ieee80211MgmtAdhoc");
-        string gpsrType = default("GPSRWR");
     submodules:
-        gpsr: <gpsrType> like IGPSRWR {
-            @display("p=527,287");
+        gpsr: GPSRWR {
+            parameters:
+                @display("p=825,226");
         }
     connections:
-        gpsr.ipOut --> networkLayer.transportIn++;
-        gpsr.ipIn <-- networkLayer.transportOut++;
+        gpsr.ipOut --> tn.in++;
+        gpsr.ipIn <-- tn.out++;
 }

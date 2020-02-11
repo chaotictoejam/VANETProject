@@ -1,28 +1,16 @@
-//
-// This program is property of its copyright holder. All rights reserved.
-//
-
 package vanetsim.node.geoadv;
 
-import inet.node.inet.WirelessHost;
-import vanetsim.routing.geoadv.IGEOADV;
+import inet.node.inet.AdhocHost;
+import vanetsim.routing.contract.IVANETRouting;
 
-
-//
-// TODO
-//
-module GEOADVRouter extends WirelessHost
+module GEOADVRouter extends AdhocHost
 {
-    parameters:
-        @display("i=device/cellphone");
-        forwarding = true;
-        wlan[*].mgmtType = default("Ieee80211MgmtAdhoc");
-        string geoadvType = default("GEOADV");
     submodules:
-        gpsr: <geoadvType> like IGEOADV {
-            @display("p=527,287");
+        geoadv: <geoadvType> like IVANETRouting {
+            parameters:
+                @display("p=825,226");
         }
     connections:
-        gpsr.ipOut --> networkLayer.transportIn++;
-        gpsr.ipIn <-- networkLayer.transportOut++;
+        geoadv.ipOut --> tn.in++;
+        geoadv.ipIn <-- tn.out++;
 }
