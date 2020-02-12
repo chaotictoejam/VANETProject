@@ -1,12 +1,17 @@
-package vanetsim.simulations._nodes;
+
+package vanetsim.simulations.vanet.aodv;
+
+import inet.physicallayer.ieee80211.packetlevel.Ieee80211ScalarRadioMedium;
+import inet.visualizer.integrated.IntegratedCanvasVisualizer;
+import veins_inet.VeinsInetManager;
 
 import org.car2x.veins.base.connectionManager.ConnectionManager;
 import org.car2x.veins.base.modules.BaseWorldUtility;
-import org.car2x.veins.modules.mobility.traci.TraCIScenarioManagerLaunchd;
+import org.car2x.veins.modules.mobility.traci.TraCIScenarioManager*;
 import org.car2x.veins.modules.obstacle.ObstacleControl;
 import org.car2x.veins.modules.world.annotations.AnnotationManager;
 
-network Scenario
+network AodvScenario
 {
     parameters:
         double playgroundSizeX @unit(m); // x size of the area the nodes are in (in meters)
@@ -35,6 +40,10 @@ network Scenario
             parameters:
                 @display("p=512,128");
         }
-        
+        node[0]: AODVCar {
+        }
+        rsu[1]: AODVRSU {
+            @display("p=150,140;i=veins/sign/yellowdiamond;is=vs");
+        }
     connections allowunconnected:
 }
