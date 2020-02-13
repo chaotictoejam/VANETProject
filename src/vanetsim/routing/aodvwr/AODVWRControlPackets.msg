@@ -6,6 +6,7 @@ import inet.common.INETDefs;
 import inet.common.packet.chunk.Chunk;
 import inet.common.packet.Packet;
 import inet.networklayer.common.L3Address;
+import inet.common.geometry.Geometry;
 
 namespace inet::aodvwr;
 

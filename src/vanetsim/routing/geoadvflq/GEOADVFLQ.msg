@@ -15,29 +15,34 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
+import inet.common.INETDefs;
+import inet.common.TlvOptions;
+import inet.common.geometry.Geometry;
+import inet.common.packet.chunk.Chunk;
+import inet.networklayer.common.L3Address;
+
+
 cplusplus {{
-#include "inet/common/INETMath.h"
-#include "inet/common/geometry/common/Coord.h"
-#include "inet/common/TLVOption.h"
-#include "inet/networklayer/common/L3Address.h"
 #include "vanetsim/routing/geoadvflq/GEOADVFLQDefs.h"
 }}
 
 namespace inet;
 
-class noncobject L3Address;
+enum GEOADVFLQForwardingMode {
+    GEOADVFLQ_GREEDY_ROUTING = 1;
+    GEOADVFLQ_PERIMETER_ROUTING = 2;
+};
 
-class noncobject Coord;
-
-class noncobject GEOADVFLQForwardingMode;
-
-class noncobject TLVOptionBase;
-
+enum GEOADVFLQPlanarizationMode {
+    GEOADVFLQ_NO_PLANARIZATION = 0;
+    GEOADVFLQ_GG_PLANARIZATION = 1;
+    GEOADVFLQ_RNG_PLANARIZATION = 2;
+};
 //
 // The GEOADVFLQ beacon packet is sent periodically by all GEOADVFLQ routers to notify
 // the neighbors about the router's address and position.
 //
-packet GEOADVFLQBeacon {
+class GEOADVFLQBeacon extends FieldsChunk {
     L3Address address;
     Coord position;
 }
@@ -45,10 +50,7 @@ packet GEOADVFLQBeacon {
 //
 // The GEOADVFLQOption is used to add extra routing information for network datagrams.
 //
-// For more information, see the GEOADVFLQ paper
-// http://www.eecs.harvard.edu/~htk/publication/2000-mobi-karp-kung.pdf
-//
-class GEOADVFLQOption extends TLVOptionBase {
+class GEOADVFLQFLQOption extends TlvOptionBase {
     GEOADVFLQForwardingMode routingMode = (GEOADVFLQForwardingMode)-1;
     Coord destinationPosition;               // D
     Coord twrRoutingStartPosition;     // Lp

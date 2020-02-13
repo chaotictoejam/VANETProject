@@ -27,7 +27,7 @@ namespace aodvwr {
  * in the IP-layer required by this protocol.
  */
 
-class INET_API AODVWRWR : public RoutingProtocolBase, public NetfilterBase::HookBase, public UdpSocket::ICallback, public cListener
+class INET_API AODVWR : public RoutingProtocolBase, public NetfilterBase::HookBase, public UdpSocket::ICallback, public cListener
 {
   protected:
     /*
@@ -198,10 +198,10 @@ class INET_API AODVWRWR : public RoutingProtocolBase, public NetfilterBase::Hook
 
     /* Helper functions */
     L3Address getSelfIPAddress() const;
-    void sendAODVWRPacket(const Ptr<AODVWRWRControlPacket>& packet, const L3Address& destAddr, unsigned int timeToLive, double delay);
+    void sendAODVWRPacket(const Ptr<AODVWRControlPacket>& packet, const L3Address& destAddr, unsigned int timeToLive, double delay);
     void processPacket(Packet *pk);
     void clearState();
-    void checkIpVersionAndPacketTypeCompatibility(AODVWRWRControlPacketType packetType);
+    void checkIpVersionAndPacketTypeCompatibility(AODVWRControlPacketType packetType);
 
     /* UDP callback interface */
     virtual void socketDataArrived(UdpSocket *socket, Packet *packet) override;
@@ -214,8 +214,8 @@ class INET_API AODVWRWR : public RoutingProtocolBase, public NetfilterBase::Hook
     virtual void handleCrashOperation(LifecycleOperation *operation) override;
 
   public:
-    AODVWRWR();
-    virtual ~AODVWRWR();
+    AODVWR();
+    virtual ~AODVWR();
 };
 
 } // namespace aodvwr

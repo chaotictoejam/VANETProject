@@ -15,45 +15,46 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
+import inet.common.INETDefs;
+import inet.common.TlvOptions;
+import inet.common.geometry.Geometry;
+import inet.common.packet.chunk.Chunk;
+import inet.networklayer.common.L3Address;
+
+
 cplusplus {{
-#include "inet/common/INETMath.h"
-#include "inet/common/geometry/common/Coord.h"
-#include "inet/common/TLVOption.h"
-#include "inet/networklayer/common/L3Address.h"
 #include "vanetsim/routing/gpsrflq/GPSRFLQDefs.h"
 }}
 
 namespace inet;
 
-class noncobject L3Address;
+enum GPSRFLQForwardingMode {
+    GPSRFLQ_GREEDY_ROUTING = 1;
+    GPSRFLQ_PERIMETER_ROUTING = 2;
+};
 
-class noncobject Coord;
-
-class noncobject GPSRFLQForwardingMode;
-
-class noncobject TLVOptionBase;
-
+enum GPSRFLQPlanarizationMode {
+    GPSRFLQ_NO_PLANARIZATION = 0;
+    GPSRFLQ_GG_PLANARIZATION = 1;
+    GPSRFLQ_RNG_PLANARIZATION = 2;
+};
 //
 // The GPSRFLQ beacon packet is sent periodically by all GPSRFLQ routers to notify
 // the neighbors about the router's address and position.
 //
-packet GPSRFLQBeacon {
+class GPSRFLQBeacon extends FieldsChunk {
     L3Address address;
     Coord position;
-    double direction;
 }
 
 //
 // The GPSRFLQOption is used to add extra routing information for network datagrams.
 //
-// For more information, see the GPSRFLQ paper
-// http://www.eecs.harvard.edu/~htk/publication/2000-mobi-karp-kung.pdf
-//
-class GPSRFLQOption extends TLVOptionBase {
+class GPSRFLQOption extends TlvOptionBase {
     GPSRFLQForwardingMode routingMode = (GPSRFLQForwardingMode)-1;
     Coord destinationPosition;               // D
-    Coord perimeterRoutingStartPosition;     // Lp
-    Coord perimeterRoutingForwardPosition;   // Lf
+    Coord twrRoutingStartPosition;     // Lp
+    Coord twrRoutingForwardPosition;   // Lf
     L3Address currentFaceFirstSenderAddress;   // e0
     L3Address currentFaceFirstReceiverAddress; // e0
     L3Address senderAddress; // TODO: this field is not strictly needed by GPSRFLQ (should be eliminated)

@@ -15,29 +15,34 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
+import inet.common.INETDefs;
+import inet.common.TlvOptions;
+import inet.common.geometry.Geometry;
+import inet.common.packet.chunk.Chunk;
+import inet.networklayer.common.L3Address;
+
+
 cplusplus {{
-#include "inet/common/INETMath.h"
-#include "inet/common/geometry/common/Coord.h"
-#include "inet/common/TLVOption.h"
-#include "inet/networklayer/common/L3Address.h"
 #include "vanetsim/routing/geoadvp/GEOADVPDefs.h"
 }}
 
 namespace inet;
 
-class noncobject L3Address;
+enum GEOADVPForwardingMode {
+    GEOADVP_GREEDY_ROUTING = 1;
+    GEOADVP_PERIMETER_ROUTING = 2;
+};
 
-class noncobject Coord;
-
-class noncobject GEOADVPForwardingMode;
-
-class noncobject TLVOptionBase;
-
+enum GEOADVPPlanarizationMode {
+    GEOADVP_NO_PLANARIZATION = 0;
+    GEOADVP_GG_PLANARIZATION = 1;
+    GEOADVP_RNG_PLANARIZATION = 2;
+};
 //
 // The GEOADVP beacon packet is sent periodically by all GEOADVP routers to notify
 // the neighbors about the router's address and position.
 //
-packet GEOADVPBeacon {
+class GEOADVPBeacon extends FieldsChunk {
     L3Address address;
     Coord position;
 }
@@ -45,14 +50,11 @@ packet GEOADVPBeacon {
 //
 // The GEOADVPOption is used to add extra routing information for network datagrams.
 //
-// For more information, see the GEOADVP paper
-// http://www.eecs.harvard.edu/~htk/publication/2000-mobi-karp-kung.pdf
-//
-class GEOADVPOption extends TLVOptionBase {
+class GEOADVPOption extends TlvOptionBase {
     GEOADVPForwardingMode routingMode = (GEOADVPForwardingMode)-1;
     Coord destinationPosition;               // D
-    Coord ptwrRoutingStartPosition;     // Lp
-    Coord ptwrRoutingForwardPosition;   // Lf
+    Coord twrRoutingStartPosition;     // Lp
+    Coord twrRoutingForwardPosition;   // Lf
     L3Address currentFaceFirstSenderAddress;   // e0
     L3Address currentFaceFirstReceiverAddress; // e0
     L3Address senderAddress; // TODO: this field is not strictly needed by GEOADVP (should be eliminated)

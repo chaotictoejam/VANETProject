@@ -15,29 +15,34 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 
+import inet.common.INETDefs;
+import inet.common.TlvOptions;
+import inet.common.geometry.Geometry;
+import inet.common.packet.chunk.Chunk;
+import inet.networklayer.common.L3Address;
+
+
 cplusplus {{
-#include "inet/common/INETMath.h"
-#include "inet/common/geometry/common/Coord.h"
-#include "inet/common/TLVOption.h"
-#include "inet/networklayer/common/L3Address.h"
 #include "vanetsim/routing/geoadv/GEOADVDefs.h"
 }}
 
 namespace inet;
 
-class noncobject L3Address;
+enum GEOADVForwardingMode {
+    GEOADV_GREEDY_ROUTING = 1;
+    GEOADV_PERIMETER_ROUTING = 2;
+};
 
-class noncobject Coord;
-
-class noncobject GEOADVForwardingMode;
-
-class noncobject TLVOptionBase;
-
+enum GEOADVPlanarizationMode {
+    GEOADV_NO_PLANARIZATION = 0;
+    GEOADV_GG_PLANARIZATION = 1;
+    GEOADV_RNG_PLANARIZATION = 2;
+};
 //
 // The GEOADV beacon packet is sent periodically by all GEOADV routers to notify
 // the neighbors about the router's address and position.
 //
-packet GEOADVBeacon {
+class GEOADVBeacon extends FieldsChunk {
     L3Address address;
     Coord position;
 }
@@ -45,10 +50,7 @@ packet GEOADVBeacon {
 //
 // The GEOADVOption is used to add extra routing information for network datagrams.
 //
-// For more information, see the GEOADV paper
-// http://www.eecs.harvard.edu/~htk/publication/2000-mobi-karp-kung.pdf
-//
-class GEOADVOption extends TLVOptionBase {
+class GEOADVOption extends TlvOptionBase {
     GEOADVForwardingMode routingMode = (GEOADVForwardingMode)-1;
     Coord destinationPosition;               // D
     Coord twrRoutingStartPosition;     // Lp
