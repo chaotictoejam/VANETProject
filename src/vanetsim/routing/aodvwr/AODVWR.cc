@@ -339,7 +339,7 @@ void AODVWR::sendRREQ(const Ptr<Rreq>& rreq, const L3Address& destAddr, unsigned
     scheduleAt(simTime() + ringTraversalTime, rrepTimerMsg);
 
     EV_INFO << "Sending a Route Request with target " << rreq->getDestAddr() << " and TTL= " << timeToLive << endl;
-    sendAODVPacket(rreq, destAddr, timeToLive, *jitterPar);
+    sendAODVWRPacket(rreq, destAddr, timeToLive, *jitterPar);
     rreqCount++;
 }
 
