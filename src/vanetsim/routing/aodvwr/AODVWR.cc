@@ -19,6 +19,7 @@
 #include "inet/networklayer/ipv4/Ipv4Route.h"
 #include "inet/transportlayer/common/L4PortTag_m.h"
 #include "inet/transportlayer/contract/udp/UdpControlInfo.h"
+#include "inet/mobility/contract/IMobility.h"
 
 namespace inet {
 namespace aodvwr {
@@ -375,7 +376,7 @@ void AODVWR::sendRREP(const Ptr<Rrep>& rrep, const L3Address& destAddr, unsigned
 
         scheduleAt(simTime() + nextHopWait, rrepAckTimer);
     }
-    sendAODVPacket(rrep, nextHop, timeToLive, 0);
+    sendAODVWRPacket(rrep, nextHop, timeToLive, 0);
 }
 
 const Ptr<Rreq> AODVWR::createRREQ(const L3Address& destAddr)
@@ -758,7 +759,7 @@ void AODVWR::updateRoutingTable(IRoute *route, const L3Address& nextHop, unsigne
     scheduleExpungeRoutes();
 }
 
-void AODVWR::sendAODVPacket(const Ptr<AODVWRControlPacket>& aodvPacket, const L3Address& destAddr, unsigned int timeToLive, double delay)
+void AODVWR::sendAODVWRPacket(const Ptr<AODVWRControlPacket>& aodvPacket, const L3Address& destAddr, unsigned int timeToLive, double delay)
 {
     ASSERT(timeToLive != 0);
 
@@ -1222,7 +1223,7 @@ void AODVWR::handleLinkBreakSendRERR(const L3Address& unreachableAddr)
 
     // broadcast
     EV_INFO << "Broadcasting Route Error message with TTL=1" << endl;
-    sendAODVPacket(rerr, addressType->getBroadcastAddress(), 1, *jitterPar);
+    sendAODVWRPacket(rerr, addressType->getBroadcastAddress(), 1, *jitterPar);
 }
 
 const Ptr<Rerr> AODVWR::createRERR(const std::vector<UnreachableNode>& unreachableNodes)
@@ -1301,7 +1302,7 @@ void AODVWR::handleRERR(const Ptr<const Rerr>& rerr, const L3Address& sourceAddr
     if (unreachableNeighbors.size() > 0 && (simTime() > rebootTime + deletePeriod || rebootTime == 0)) {
         EV_INFO << "Sending RERR to inform our neighbors about link breaks." << endl;
         auto newRERR = createRERR(unreachableNeighbors);
-        sendAODVPacket(newRERR, addressType->getBroadcastAddress(), 1, 0);
+        sendAODVWRPacket(newRERR, addressType->getBroadcastAddress(), 1, 0);
         rerrCount++;
     }
 }
@@ -1395,13 +1396,13 @@ void AODVWR::forwardRREP(const Ptr<Rrep>& rrep, const L3Address& destAddr, unsig
     // When a node forwards a message, it SHOULD be jittered by delaying it
     // by a random duration.  This delay SHOULD be generated uniformly in an
     // interval between zero and MAXJITTER.
-    sendAODVPacket(rrep, destAddr, 100, *jitterPar);
+    sendAODVWRPacket(rrep, destAddr, 100, *jitterPar);
 }
 
 void AODVWR::forwardRREQ(const Ptr<Rreq>& rreq, unsigned int timeToLive)
 {
     EV_INFO << "Forwarding the Route Request message with TTL= " << timeToLive << endl;
-    sendAODVPacket(rreq, addressType->getBroadcastAddress(), timeToLive, *jitterPar);
+    sendAODVWRPacket(rreq, addressType->getBroadcastAddress(), timeToLive, *jitterPar);
 }
 
 void AODVWR::completeRouteDiscovery(const L3Address& target)
@@ -1437,7 +1438,7 @@ void AODVWR::sendGRREP(const Ptr<Rrep>& grrep, const L3Address& destAddr, unsign
     IRoute *destRoute = routingTable->findBestMatchingRoute(destAddr);
     const L3Address& nextHop = destRoute->getNextHopAsGeneric();
 
-    sendAODVPacket(grrep, nextHop, timeToLive, 0);
+    sendAODVWRPacket(grrep, nextHop, timeToLive, 0);
 }
 
 const Ptr<Rrep> AODVWR::createHelloMessage()
@@ -1491,7 +1492,7 @@ void AODVWR::sendHelloMessagesIfNeeded()
     if (hasActiveRoute && (lastBroadcastTime == 0 || simTime() - lastBroadcastTime > helloInterval)) {
         EV_INFO << "It is hello time, broadcasting Hello Messages with TTL=1" << endl;
         auto helloMessage = createHelloMessage();
-        sendAODVPacket(helloMessage, addressType->getBroadcastAddress(), 1, 0);
+        sendAODVWRPacket(helloMessage, addressType->getBroadcastAddress(), 1, 0);
     }
 
     scheduleAt(simTime() + helloInterval - *periodicJitter, helloMsgTimer);
@@ -1697,7 +1698,7 @@ void AODVWR::sendRERRWhenNoRouteToForward(const L3Address& unreachableAddr)
 
     rerrCount++;
     EV_INFO << "Broadcasting Route Error message with TTL=1" << endl;
-    sendAODVPacket(rerr, addressType->getBroadcastAddress(), 1, *jitterPar);    // TODO: unicast if there exists a route to the source
+    sendAODVWRPacket(rerr, addressType->getBroadcastAddress(), 1, *jitterPar);    // TODO: unicast if there exists a route to the source
 }
 
 void AODVWR::cancelRouteDiscovery(const L3Address& destAddr)
@@ -1741,7 +1742,7 @@ const Ptr<RrepAck> AODVWR::createRREPACK()
 void AODVWR::sendRREPACK(const Ptr<RrepAck>& rrepACK, const L3Address& destAddr)
 {
     EV_INFO << "Sending Route Reply ACK to " << destAddr << endl;
-    sendAODVPacket(rrepACK, destAddr, 100, 0);
+    sendAODVWRPacket(rrepACK, destAddr, 100, 0);
 }
 
 void AODVWR::handleRREPACK(const Ptr<const RrepAck>& rrepACK, const L3Address& neighborAddr)
