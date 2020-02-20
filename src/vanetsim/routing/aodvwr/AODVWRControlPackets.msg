@@ -52,7 +52,7 @@ class Rreq extends AODVWRControlPacket
     Coord position;
     Coord speed;
     Coord acceleration;
-    EulerAngles direction;
+    Quaternion direction;
     double twr;
     double expirationTime;
 }
@@ -76,7 +76,7 @@ class Rrep extends AODVWRControlPacket
     Coord position;
     Coord speed;
     Coord acceleration;
-    EulerAngles direction;
+    Quaternion direction;
     double twr;
     double expirationTime;
 }

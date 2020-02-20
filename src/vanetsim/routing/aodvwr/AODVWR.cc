@@ -428,7 +428,7 @@ const Ptr<Rreq> AODVWR::createRREQ(const L3Address& destAddr)
     IMobility  *mod = check_and_cast<IMobility *>(host->getSubmodule("mobility"));
 
     rreqPacket->setPosition(mod->getCurrentPosition());
-    rreqPacket->setSpeed(mod->getCurrentSpeed());
+    rreqPacket->setSpeed(mod->getCurrentVelocity());
     rreqPacket->setAcceleration(mod->getCurrentAcceleration());
     rreqPacket->setDirection(mod->getCurrentAngularPosition()); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
 
@@ -661,7 +661,7 @@ void AODVWR::handleRREP(const Ptr<Rrep>& rrep, const L3Address& sourceAddr)
             // (iv) the sequence numbers are the same, and the New Hop Count is
             //      smaller than the hop count in route table entry.
             else if (destSeqNum == destRouteData->getDestSeqNum() && newHopCount < (unsigned int)destRoute->getMetric()) {
-                updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, twr, simTime() + lifeTime);
+                updateRoutingTable(destRoute, sourceAddr, newHopCount, true, destSeqNum, true, twr, expirationTime, simTime() + lifeTime);
             }
         }
     }
@@ -878,8 +878,6 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
     //
     //   MinimalLifetime = (current time + 2*NET_TRAVERSAL_TIME - 2*HopCount*NODE_TRAVERSAL_TIME).
 
-    double expirationTime = std::min(rreq->getExpirationTime(),
-               newexpirationTime);
     unsigned int hopCount = rreq->getHopCount();
     simtime_t minimalLifeTime = simTime() + 2 * netTraversalTime - 2 * hopCount * nodeTraversalTime;
     simtime_t newLifeTime = std::max(simTime(), minimalLifeTime);
@@ -890,20 +888,19 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
     //(3) Find and store link quality between two nodes
     //(4) Attach new TWR & Expiration time and own movement details to the AODVWRRoutingRREQ message.
     //    If node doesn't have route to destination flood neighbors with new AODVWRRoutingRREQ message.
-    unsigned int hopCount = rreq->getHopCount();
 
     //Extracts movement details and uses this information
     IMobility  *mod = check_and_cast<IMobility *>(host->getSubmodule("mobility"));
 
     Coord currentPosition = mod->getCurrentPosition();
-    Coord currentSpeed = mod->getCurrentSpeed();
+    Coord currentSpeed = mod->getCurrentVelocity();
     Coord currentAcceleration = mod->getCurrentAcceleration();
-    EulerAngles currentDirection = mod->getCurrentAngularPosition(); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
+    EulerAngles currentDirection = (mod->getCurrentAngularPosition()).toEulerAngles(); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
 
     Coord lastPosition = rreq->getPosition();
     Coord lastSpeed = rreq->getSpeed();
     Coord lastAcceleration = rreq->getAcceleration();
-    EulerAngles lastDirection = rreq->getDirection(); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
+    EulerAngles lastDirection = (rreq->getDirection()).toEulerAngles(); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
     double twr = rreq->getTwr();
 
     // Compute TWR:
@@ -932,7 +929,7 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
     //          c = vi*(sin(vanglei)-vj(sin(vanglej)
     //          d = yi - yj
     //          R is   line of site range
-    //virtual Coord getCurrentSpeed() { Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad())); return v * getSpeed(); }
+    //virtual Coord getCurrentVelocity() { Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad())); return v * getSpeed(); }
     //virtual Coord getCurrentAngularPosition() { Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad())); return v; }
 
     double a = lastSpeed.x - currentSpeed.x;
@@ -942,9 +939,9 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
     double d = lastSpeed.y / lastDirection.alpha
             - currentSpeed.y / currentSpeed.x;
 
-    double newexpirationTime = (-(a*b+c*d)+sqrt((a*a + c*c)*losRange*losRange-(a*d-b*c)*(a*d-b*c)))/(a*a+c*c);
+    double newExpirationTime = (-(a*b+c*d)+sqrt((a*a + c*c)*losRange*losRange-(a*d-b*c)*(a*d-b*c)))/(a*a+c*c);
 
-    double expirationTime =std::min(rreq->getExpirationTime(), newexpirationTime);
+    double expirationTime = std::min(rreq->getExpirationTime(), newExpirationTime);
 
     int rreqSeqNum = rreq->getOriginatorSeqNum();
 
