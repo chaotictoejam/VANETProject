@@ -493,7 +493,7 @@ const Ptr<Rrep> AODVWR::createRREP(const Ptr<Rreq>& rreq, IRoute *destRoute, IRo
         // of the RREP.
         rrep->setHopCount(0);
 
-        rrep->setExpirationTime(rreq->getexpirationTime());
+        rrep->setExpirationTime(rreq->getExpirationTime());
         // The destination node copies the value MY_ROUTE_TIMEOUT
         // into the Lifetime field of the RREP.
         rrep->setLifeTime(myRouteTimeout.trunc(SIMTIME_MS));
@@ -531,7 +531,7 @@ const Ptr<Rrep> AODVWR::createRREP(const Ptr<Rreq>& rreq, IRoute *destRoute, IRo
         // The Lifetime field of the RREP is calculated by subtracting the
         // current time from the expiration time in its route table entry.
 
-        rrep->setExpirationTime(rreq->getexpirationTime());
+        rrep->setExpirationTime(rreq->getExpirationTime());
         rrep->setLifeTime((destRouteData->getLifeTime() - simTime()).trunc(SIMTIME_MS));
     }
 
@@ -569,7 +569,7 @@ const Ptr<Rrep> AODVWR::createGratuitousRREP(const Ptr<Rreq>& rreq, IRoute *orig
     grrep->setDestSeqNum(rreq->getOriginatorSeqNum());
     grrep->setOriginatorAddr(rreq->getDestAddr());
     grrep->setTwr(routeData->getTWR());
-    grrep->setExpirationTime(routeData->getexpirationTime());
+    grrep->setExpirationTime(routeData->getExpirationTime());
     grrep->setLifeTime(routeData->getLifeTime());
     return grrep;
 }
@@ -595,7 +595,7 @@ void AODVWR::handleRREP(const Ptr<Rrep>& rrep, const L3Address& sourceAddr)
     IRoute *previousHopRoute = routingTable->findBestMatchingRoute(sourceAddr);
 
     double twr = rrep->getTwr();
-    double expirationTime = rrep->getexpirationTime();
+    double expirationTime = rrep->getExpirationTime();
 
     if (!previousHopRoute || previousHopRoute->getSource() != this) {
         // create without valid sequence number
@@ -824,10 +824,10 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
 
     if (!previousHopRoute || previousHopRoute->getSource() != this) {
         // create without valid sequence number
-        previousHopRoute = createRoute(sourceAddr, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, rreq->getTwr(), rreq->getexpirationTime(), simTime() + activeRouteTimeout);
+        previousHopRoute = createRoute(sourceAddr, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, rreq->getTwr(), rreq->getExpirationTime(), simTime() + activeRouteTimeout);
     }
     else
-        updateRoutingTable(previousHopRoute, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, rreq->getTwr(), rreq->getexpirationTime(), simTime() + activeRouteTimeout);
+        updateRoutingTable(previousHopRoute, sourceAddr, 1, false, rreq->getOriginatorSeqNum(), true, rreq->getTwr(), rreq->getExpirationTime(), simTime() + activeRouteTimeout);
 
     // then checks to determine whether it has received a RREQ with the same
     // Originator IP Address and RREQ ID within at least the last PATH_DISCOVERY_TIME.
@@ -878,7 +878,7 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
     //
     //   MinimalLifetime = (current time + 2*NET_TRAVERSAL_TIME - 2*HopCount*NODE_TRAVERSAL_TIME).
 
-    double expirationTime = std::min(rreq->getexpirationTime(),
+    double expirationTime = std::min(rreq->getExpirationTime(),
                newexpirationTime);
     unsigned int hopCount = rreq->getHopCount();
     simtime_t minimalLifeTime = simTime() + 2 * netTraversalTime - 2 * hopCount * nodeTraversalTime;
@@ -944,7 +944,7 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
 
     double newexpirationTime = (-(a*b+c*d)+sqrt((a*a + c*c)*losRange*losRange-(a*d-b*c)*(a*d-b*c)))/(a*a+c*c);
 
-    double expirationTime =std::min(rreq->getexpirationTime(), newexpirationTime);
+    double expirationTime =std::min(rreq->getExpirationTime(), newexpirationTime);
 
     int rreqSeqNum = rreq->getOriginatorSeqNum();
 
