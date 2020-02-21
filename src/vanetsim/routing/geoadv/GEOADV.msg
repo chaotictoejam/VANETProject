@@ -30,7 +30,7 @@ namespace inet;
 
 enum GEOADVForwardingMode {
     GEOADV_GREEDY_ROUTING = 1;
-    GEOADV_PERIMETER_ROUTING = 2;
+    GEOADV_TWR_ROUTING = 2;
 };
 
 enum GEOADVPlanarizationMode {

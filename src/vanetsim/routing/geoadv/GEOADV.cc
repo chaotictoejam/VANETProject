@@ -1,39 +1,32 @@
 // Author: Joanne Skiles
-//
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-//
 
-#include "vanetsim/routing/geoadv/GEOADV.h"
-#include "inet/networklayer/common/IPProtocolId_m.h"
-#include "inet/networklayer/common/IPSocket.h"
+#include <algorithm>
+
 #include "inet/common/INETUtils.h"
-#include "inet/common/lifecycle/NodeOperations.h"
-#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "inet/common/IProtocolRegistrationListener.h"
 #include "inet/common/ModuleAccess.h"
+#include "inet/common/ProtocolTag_m.h"
+#include "inet/common/lifecycle/ModuleOperations.h"
+#include "inet/linklayer/common/InterfaceTag_m.h"
+#include "inet/networklayer/common/HopLimitTag_m.h"
+#include "inet/networklayer/common/IpProtocolId_m.h"
+#include "inet/networklayer/common/L3AddressTag_m.h"
+#include "inet/networklayer/common/L3Tools.h"
+#include "inet/networklayer/common/NextHopAddressTag_m.h"
+#include "inet/networklayer/contract/IInterfaceTable.h"
+#include "vanetsim/routing/geoadv/geoadv.h"
 
 #ifdef WITH_IPv4
-#include "inet/networklayer/ipv4/IPv4Datagram.h"
+#include "inet/networklayer/ipv4/Ipv4Header_m.h"
 #endif
 
 #ifdef WITH_IPv6
-#include "inet/networklayer/ipv6/IPv6ExtensionHeaders.h"
-#include "inet/networklayer/ipv6/IPv6InterfaceData.h"
+#include "inet/networklayer/ipv6/Ipv6ExtensionHeaders_m.h"
+#include "inet/networklayer/ipv6/Ipv6InterfaceData.h"
 #endif
 
-#ifdef WITH_GENERIC
-#include "inet/networklayer/generic/GenericDatagram.h"
+#ifdef WITH_NEXTHOP
+#include "inet/networklayer/nexthop/NextHopForwardingHeader_m.h"
 #endif
 
 namespace inet {
@@ -44,9 +37,6 @@ static inline double determinant(double a1, double a2, double b1, double b2)
 {
     return a1 * b2 - a2 * b1;
 }
-
-// KLUDGE: implement position registry protocol
-GEOADV_PositionTable GEOADV::globalGEOADV_PositionTable;
 
 GEOADV::GEOADV()
 {
@@ -64,18 +54,29 @@ GEOADV::~GEOADV()
 
 void GEOADV::initialize(int stage)
 {
-    cSimpleModule::initialize(stage);
+    if (stage == INITSTAGE_ROUTING_PROTOCOLS)
+        addressType = getSelfAddress().getAddressType();
+
+    RoutingProtocolBase::initialize(stage);
 
     if (stage == INITSTAGE_LOCAL) {
         // GEOADV parameters
-        planarizationMode = (GEOADVPlanarizationMode)(int)par("planarizationMode");
+        const char *planarizationModeString = par("planarizationMode");
+        if (!strcmp(planarizationModeString, ""))
+            planarizationMode = GEOADV_NO_PLANARIZATION;
+        else if (!strcmp(planarizationModeString, "GG"))
+            planarizationMode = GEOADV_GG_PLANARIZATION;
+        else if (!strcmp(planarizationModeString, "RNG"))
+            planarizationMode = GEOADV_RNG_PLANARIZATION;
+        else
+            throw cRuntimeError("Unknown planarization mode");
         interfaces = par("interfaces");
         beaconInterval = par("beaconInterval");
         maxJitter = par("maxJitter");
         neighborValidityInterval = par("neighborValidityInterval");
+        displayBubbles = par("displayBubbles");
         // context
         host = getContainingNode(this);
-        nodeStatus = dynamic_cast<NodeStatus *>(host->getSubmodule("status"));
         interfaceTable = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
         outputInterface = par("outputInterface");
         mobility = check_and_cast<IMobility *>(host->getSubmodule("mobility"));
@@ -84,7 +85,6 @@ void GEOADV::initialize(int stage)
         // internal
         beaconTimer = new cMessage("BeaconTimer");
         purgeNeighborsTimer = new cMessage("PurgeNeighborsTimer");
-
         // packet size
         positionByteLength = par("positionByteLength");
 
@@ -93,25 +93,19 @@ void GEOADV::initialize(int stage)
         accelerationWeight = par("accelerationWeight");
         directionWeight = par("directionWeight");
         linkQualityWeight = par("linkQualityWeight");
+
+        globalPositionTable.clear();
     }
     else if (stage == INITSTAGE_ROUTING_PROTOCOLS) {
-        IPSocket socket(gate("ipOut"));
-        socket.registerProtocol(IP_PROT_MANET);
-
-        globalGEOADV_PositionTable.clear();
-        host->subscribe(NF_LINK_BREAK, this);
-        addressType = getSelfAddress().getAddressType();
+        registerService(Protocol::manet, nullptr, gate("ipIn"));
+        registerProtocol(Protocol::manet, gate("ipOut"), nullptr);
+        host->subscribe(linkBrokenSignal, this);
         networkProtocol->registerHook(0, this);
-        if (isNodeUp()) {
-            configureInterfaces();
-            scheduleBeaconTimer();
-            schedulePurgeNeighborsTimer();
-        }
-        WATCH(neighborGEOADV_PositionTable);
+        WATCH(neighborPositionTable);
     }
 }
 
-void GEOADV::handleMessage(cMessage *message)
+void GEOADV::handleMessageWhenUp(cMessage *message)
 {
     if (message->isSelfMessage())
         processSelfMessage(message);
@@ -135,8 +129,8 @@ void GEOADV::processSelfMessage(cMessage *message)
 
 void GEOADV::processMessage(cMessage *message)
 {
-    if (dynamic_cast<UDPPacket *>(message))
-        processUDPPacket(static_cast<UDPPacket *>(message));
+    if (auto pk = dynamic_cast<Packet *>(message))
+        processUdpPacket(pk);
     else
         throw cRuntimeError("Unknown message");
 }
@@ -148,17 +142,16 @@ void GEOADV::processMessage(cMessage *message)
 void GEOADV::scheduleBeaconTimer()
 {
     EV_DEBUG << "Scheduling beacon timer" << endl;
-    scheduleAt(simTime() + beaconInterval, beaconTimer);
+    scheduleAt(simTime() + beaconInterval + uniform(-1, 1) * maxJitter, beaconTimer);
 }
 
 void GEOADV::processBeaconTimer()
 {
     EV_DEBUG << "Processing beacon timer" << endl;
-    L3Address selfAddress = getSelfAddress();
+    const L3Address selfAddress = getSelfAddress();
     if (!selfAddress.isUnspecified()) {
-        sendBeacon(createBeacon(), uniform(0, maxJitter).dbl());
-        // KLUDGE: implement position registry protocol
-        globalGEOADV_PositionTable.setPosition(selfAddress, mobility->getCurrentPosition());
+        sendBeacon(createBeacon());
+        storeSelfPositionInGlobalRegistry();
     }
     scheduleBeaconTimer();
     schedulePurgeNeighborsTimer();
@@ -199,79 +192,75 @@ void GEOADV::processPurgeNeighborsTimer()
 // handling UDP packets
 //
 
-void GEOADV::sendUDPPacket(UDPPacket *packet, double delay)
+void GEOADV::sendUdpPacket(Packet *packet)
 {
-    if (delay == 0)
-        send(packet, "ipOut");
-    else
-        sendDelayed(packet, delay, "ipOut");
+    send(packet, "ipOut");
 }
 
-void GEOADV::processUDPPacket(UDPPacket *packet)
+void GEOADV::processUdpPacket(Packet *packet)
 {
-    cPacket *encapsulatedPacket = packet->decapsulate();
-    if (dynamic_cast<GEOADVBeacon *>(encapsulatedPacket))
-        processBeacon(static_cast<GEOADVBeacon *>(encapsulatedPacket));
-    else
-        throw cRuntimeError("Unknown UDP packet");
-    delete packet;
+    packet->popAtFront<UdpHeader>();
+    processBeacon(packet);
+    schedulePurgeNeighborsTimer();
 }
 
 //
 // handling beacons
 //
 
-GEOADVBeacon *GEOADV::createBeacon()
+const Ptr<GEOADVBeacon> GEOADV::createBeacon()
 {
-    GEOADVBeacon *beacon = new GEOADVBeacon("GEOADVBeacon");
+    const auto& beacon = makeShared<GEOADVBeacon>();
     beacon->setAddress(getSelfAddress());
     beacon->setPosition(mobility->getCurrentPosition());
-    beacon->setByteLength(getSelfAddress().getAddressType()->getAddressByteLength() + positionByteLength);
+    beacon->setChunkLength(B(getSelfAddress().getAddressType()->getAddressByteLength() + positionByteLength));
     return beacon;
 }
 
-void GEOADV::sendBeacon(GEOADVBeacon *beacon, double delay)
+void GEOADV::sendBeacon(const Ptr<GEOADVBeacon>& beacon)
 {
     EV_INFO << "Sending beacon: address = " << beacon->getAddress() << ", position = " << beacon->getPosition() << endl;
-    INetworkProtocolControlInfo *networkProtocolControlInfo = addressType->createNetworkProtocolControlInfo();
-    networkProtocolControlInfo->setTransportProtocol(IP_PROT_MANET);
-    networkProtocolControlInfo->setHopLimit(255);
-    networkProtocolControlInfo->setDestinationAddress(addressType->getLinkLocalManetRoutersMulticastAddress());
-    networkProtocolControlInfo->setSourceAddress(getSelfAddress());
-    UDPPacket *udpPacket = new UDPPacket(beacon->getName());
-    udpPacket->encapsulate(beacon);
-    udpPacket->setSourcePort(GEOADV_UDP_PORT);
-    udpPacket->setDestinationPort(GEOADV_UDP_PORT);
-    udpPacket->setControlInfo(dynamic_cast<cObject *>(networkProtocolControlInfo));
-    sendUDPPacket(udpPacket, delay);
+    Packet *udpPacket = new Packet("GPSRBeacon");
+    udpPacket->insertAtBack(beacon);
+    auto udpHeader = makeShared<UdpHeader>();
+    udpHeader->setSourcePort(GEOADV_UDP_PORT);
+    udpHeader->setDestinationPort(GEOADV_UDP_PORT);
+    udpHeader->setCrcMode(CRC_DISABLED);
+    udpPacket->insertAtFront(udpHeader);
+    auto addresses = udpPacket->addTag<L3AddressReq>();
+    addresses->setSrcAddress(getSelfAddress());
+    addresses->setDestAddress(addressType->getLinkLocalManetRoutersMulticastAddress());
+    udpPacket->addTag<HopLimitReq>()->setHopLimit(255);
+    udpPacket->addTag<PacketProtocolTag>()->setProtocol(&Protocol::manet);
+    udpPacket->addTag<DispatchProtocolReq>()->setProtocol(addressType->getNetworkProtocol());
+    sendUdpPacket(udpPacket);
 }
 
-void GEOADV::processBeacon(GEOADVBeacon *beacon)
+void GEOADV::processBeacon(Packet *packet)
 {
+    const auto& beacon = packet->peekAtFront<GEOADVBeacon>();
     EV_INFO << "Processing beacon: address = " << beacon->getAddress() << ", position = " << beacon->getPosition() << endl;
-    neighborGEOADV_PositionTable.setPosition(beacon->getAddress(), beacon->getPosition());
-    delete beacon;
+    neighborPositionTable.setPosition(beacon->getAddress(), beacon->getPosition());
+    delete packet;
 }
-
 //
 // handling packets
 //
 
-GEOADVOption *GEOADV::createGeoadvOption(L3Address destination, cPacket *content)
+GEOADVOption *GEOADV::createGEOADVOption(L3Address destination)
 {
-    GEOADVOption *gpsrOption = new GEOADVOption();
-    gpsrOption->setRoutingMode(GEOADV_GREEDY_ROUTING);
-    // KLUDGE: implement position registry protocol
-    gpsrOption->setDestinationPosition(getDestinationPosition(destination));
-    gpsrOption->setLength(computeOptionLength(gpsrOption));
-    return gpsrOption;
+    GEOADVOption *geoadvOption = new GEOADVOption();
+    geoadvOption->setRoutingMode(GEOADV_GREEDY_ROUTING);
+    geoadvOption->setDestinationPosition(lookupPositionInGlobalRegistry(destination));
+    geoadvOption->setLength(computeOptionLength(geoadvOption));
+    return geoadvOption;
 }
 
 int GEOADV::computeOptionLength(GEOADVOption *option)
 {
     // routingMode
     int routingModeBytes = 1;
-    // destinationPosition, twrRoutingStartPosition, twrRoutingForwardPosition
+    // destinationPosition, twrRoutingStartPosition, perimeterRoutingForwardPosition
     int positionsBytes = 3 * positionByteLength;
     // currentFaceFirstSenderAddress, currentFaceFirstReceiverAddress, senderAddress
     int addressesBytes = 3 * getSelfAddress().getAddressType()->getAddressByteLength();
@@ -285,18 +274,13 @@ int GEOADV::computeOptionLength(GEOADVOption *option)
 // configuration
 //
 
-bool GEOADV::isNodeUp() const
-{
-    return !nodeStatus || nodeStatus->getState() == NodeStatus::UP;
-}
-
 void GEOADV::configureInterfaces()
 {
     // join multicast groups
     cPatternMatcher interfaceMatcher(interfaces, false, true, false);
     for (int i = 0; i < interfaceTable->getNumInterfaces(); i++) {
         InterfaceEntry *interfaceEntry = interfaceTable->getInterface(i);
-        if (interfaceEntry->isMulticast() && interfaceMatcher.matches(interfaceEntry->getName()))
+        if (interfaceEntry->isMulticast() && interfaceMatcher.matches(interfaceEntry->getInterfaceName()))
             interfaceEntry->joinMulticastGroup(addressType->getLinkLocalManetRoutersMulticastAddress());
     }
 }
@@ -305,56 +289,74 @@ void GEOADV::configureInterfaces()
 // position
 //
 
-Coord GEOADV::intersectSections(Coord& begin1, Coord& end1, Coord& begin2, Coord& end2)
-{
-    double x1 = begin1.x;
-    double y1 = begin1.y;
-    double x2 = end1.x;
-    double y2 = end1.y;
-    double x3 = begin2.x;
-    double y3 = begin2.y;
-    double x4 = end2.x;
-    double y4 = end2.y;
-    double a = determinant(x1, y1, x2, y2);
-    double b = determinant(x3, y3, x4, y4);
-    double c = determinant(x1 - x2, y1 - y2, x3 - x4, y3 - y4);
-    double x = determinant(a, x1 - x2, b, x3 - x4) / c;
-    double y = determinant(a, y1 - y2, b, y3 - y4) / c;
-    if (x1 < x && x < x2 && x3 < x && x < x4 && y1 < y && y < y2 && y3 < y && y < y4)
-        return Coord(x, y, 0);
-    else
-        return Coord(NaN, NaN, NaN);
-}
+// KLUDGE: implement position registry protocol
+GEOADVPositionTable GEOADV::globalPositionTable;
 
-Coord GEOADV::getDestinationPosition(const L3Address& address) const
+Coord GEOADV::lookupPositionInGlobalRegistry(const L3Address& address) const
 {
     // KLUDGE: implement position registry protocol
-    return globalGEOADV_PositionTable.getPosition(address);
+    return globalPositionTable.getPosition(address);
+}
+
+void GEOADV::storePositionInGlobalRegistry(const L3Address& address, const Coord& position) const
+{
+    // KLUDGE: implement position registry protocol
+    globalPositionTable.setPosition(address, position);
+}
+
+void GEOADV::storeSelfPositionInGlobalRegistry() const
+{
+    auto selfAddress = getSelfAddress();
+    if (!selfAddress.isUnspecified())
+        storePositionInGlobalRegistry(selfAddress, mobility->getCurrentPosition());
+}
+
+Coord GEOADV::computeIntersectionInsideLineSegments(Coord& begin1, Coord& end1, Coord& begin2, Coord& end2) const
+{
+    // NOTE: we must explicitly avoid computing the intersection points inside due to double instability
+    if (begin1 == begin2 || begin1 == end2 || end1 == begin2 || end1 == end2)
+        return Coord::NIL;
+    else {
+        double x1 = begin1.x;
+        double y1 = begin1.y;
+        double x2 = end1.x;
+        double y2 = end1.y;
+        double x3 = begin2.x;
+        double y3 = begin2.y;
+        double x4 = end2.x;
+        double y4 = end2.y;
+        double a = determinant(x1, y1, x2, y2);
+        double b = determinant(x3, y3, x4, y4);
+        double c = determinant(x1 - x2, y1 - y2, x3 - x4, y3 - y4);
+        double x = determinant(a, x1 - x2, b, x3 - x4) / c;
+        double y = determinant(a, y1 - y2, b, y3 - y4) / c;
+        if ((x <= x1 && x <= x2) || (x >= x1 && x >= x2) || (x <= x3 && x <= x4) || (x >= x3 && x >= x4) ||
+            (y <= y1 && y <= y2) || (y >= y1 && y >= y2) || (y <= y3 && y <= y4) || (y >= y3 && y >= y4))
+            return Coord::NIL;
+        else
+            return Coord(x, y, 0);
+    }
 }
 
 Coord GEOADV::getNeighborPosition(const L3Address& address) const
 {
-    return neighborGEOADV_PositionTable.getPosition(address);
+    return neighborPositionTable.getPosition(address);
 }
 
 //
 // angle
 //
 
-double GEOADV::getVectorAngle(Coord vector)
+double GEOADV::getVectorAngle(Coord vector) const
 {
+    ASSERT(vector != Coord::ZERO);
     double angle = atan2(-vector.y, vector.x);
     if (angle < 0)
         angle += 2 * M_PI;
     return angle;
 }
 
-double GEOADV::getDestinationAngle(const L3Address& address)
-{
-    return getVectorAngle(getDestinationPosition(address) - mobility->getCurrentPosition());
-}
-
-double GEOADV::getNeighborAngle(const L3Address& address)
+double GEOADV::getNeighborAngle(const L3Address& address) const
 {
     return getVectorAngle(getNeighborPosition(address) - mobility->getCurrentPosition());
 }
@@ -376,9 +378,11 @@ L3Address GEOADV::getSelfAddress() const
     if (ret.getType() == L3Address::IPv6) {
         for (int i = 0; i < interfaceTable->getNumInterfaces(); i++) {
             InterfaceEntry *ie = interfaceTable->getInterface(i);
-            if ((!ie->isLoopback()) && ie->ipv6Data() != nullptr) {
-                ret = interfaceTable->getInterface(i)->ipv6Data()->getPreferredAddress();
-                break;
+            if ((!ie->isLoopback())) {
+                if (auto ipv6Data = ie->findProtocolData<Ipv6InterfaceData>()) {
+                    ret = ipv6Data->getPreferredAddress();
+                    break;
+                }
             }
         }
     }
@@ -386,10 +390,10 @@ L3Address GEOADV::getSelfAddress() const
     return ret;
 }
 
-L3Address GEOADV::getSenderNeighborAddress(INetworkDatagram *datagram) const
+L3Address GEOADV::getSenderNeighborAddress(const Ptr<const NetworkHeaderBase>& networkHeader) const
 {
-    const GEOADVOption *gpsrOption = getGeoadvOptionFromNetworkDatagram(datagram);
-    return gpsrOption->getSenderAddress();
+    const GEOADVOption *geoadvOption = getGEOADVOptionFromNetworkDatagram(networkHeader);
+    return geoadvOption->getSenderAddress();
 }
 
 //
@@ -398,7 +402,7 @@ L3Address GEOADV::getSenderNeighborAddress(INetworkDatagram *datagram) const
 
 simtime_t GEOADV::getNextNeighborExpiration()
 {
-    simtime_t oldestPosition = neighborGEOADV_PositionTable.getOldestPosition();
+    simtime_t oldestPosition = neighborPositionTable.getOldestPosition();
     if (oldestPosition == SimTime::getMaxTime())
         return oldestPosition;
     else
@@ -407,26 +411,26 @@ simtime_t GEOADV::getNextNeighborExpiration()
 
 void GEOADV::purgeNeighbors()
 {
-    neighborGEOADV_PositionTable.removeOldPositions(simTime() - neighborValidityInterval);
+    neighborPositionTable.removeOldPositions(simTime() - neighborValidityInterval);
 }
 
-std::vector<L3Address> GEOADV::getPlanarNeighbors()
+std::vector<L3Address> GEOADV::getPlanarNeighbors() const
 {
     std::vector<L3Address> planarNeighbors;
-    std::vector<L3Address> neighborAddresses = neighborGEOADV_PositionTable.getAddresses();
+    std::vector<L3Address> neighborAddresses = neighborPositionTable.getAddresses();
     Coord selfPosition = mobility->getCurrentPosition();
     for (auto it = neighborAddresses.begin(); it != neighborAddresses.end(); it++) {
-        const L3Address& neighborAddress = *it;
-        Coord neighborPosition = neighborGEOADV_PositionTable.getPosition(neighborAddress);
-        if (planarizationMode == GEOADV_RNG_PLANARIZATION) {
+        auto neighborAddress = *it;
+        Coord neighborPosition = neighborPositionTable.getPosition(neighborAddress);
+        if (planarizationMode == GEOADV_NO_PLANARIZATION)
+            return neighborAddresses;
+        else if (planarizationMode == GEOADV_RNG_PLANARIZATION) {
             double neighborDistance = (neighborPosition - selfPosition).length();
-            for (auto & neighborAddresse : neighborAddresses) {
-                const L3Address& witnessAddress = neighborAddresse;
-                Coord witnessPosition = neighborGEOADV_PositionTable.getPosition(witnessAddress);
+            for (auto & witnessAddress : neighborAddresses) {
+                Coord witnessPosition = neighborPositionTable.getPosition(witnessAddress);
                 double witnessDistance = (witnessPosition - selfPosition).length();
-                ;
                 double neighborWitnessDistance = (witnessPosition - neighborPosition).length();
-                if (*it == neighborAddresse)
+                if (neighborAddress == witnessAddress)
                     continue;
                 else if (neighborDistance > std::max(witnessDistance, neighborWitnessDistance))
                     goto eliminate;
@@ -435,12 +439,10 @@ std::vector<L3Address> GEOADV::getPlanarNeighbors()
         else if (planarizationMode == GEOADV_GG_PLANARIZATION) {
             Coord middlePosition = (selfPosition + neighborPosition) / 2;
             double neighborDistance = (neighborPosition - middlePosition).length();
-            for (auto & neighborAddresse : neighborAddresses) {
-                const L3Address& witnessAddress = neighborAddresse;
-                Coord witnessPosition = neighborGEOADV_PositionTable.getPosition(witnessAddress);
+            for (auto & witnessAddress : neighborAddresses) {
+                Coord witnessPosition = neighborPositionTable.getPosition(witnessAddress);
                 double witnessDistance = (witnessPosition - middlePosition).length();
-                ;
-                if (*it == neighborAddresse)
+                if (neighborAddress == witnessAddress)
                     continue;
                 else if (witnessDistance < neighborDistance)
                     goto eliminate;
@@ -454,52 +456,47 @@ std::vector<L3Address> GEOADV::getPlanarNeighbors()
     return planarNeighbors;
 }
 
-L3Address GEOADV::getNextPlanarNeighborCounterClockwise(const L3Address& startNeighborAddress, double startNeighborAngle)
+std::vector<L3Address> GEOADV::getPlanarNeighborsCounterClockwise(double startAngle) const
 {
-    EV_DEBUG << "Finding next planar neighbor (counter clockwise): startAddress = " << startNeighborAddress << ", startAngle = " << startNeighborAngle << endl;
-    L3Address bestNeighborAddress = startNeighborAddress;
-    double bestNeighborAngleDifference = 2 * M_PI;
     std::vector<L3Address> neighborAddresses = getPlanarNeighbors();
-    for (auto & neighborAddress : neighborAddresses) {
-        double neighborAngle = getNeighborAngle(neighborAddress);
-        double neighborAngleDifference = neighborAngle - startNeighborAngle;
-        if (neighborAngleDifference < 0)
-            neighborAngleDifference += 2 * M_PI;
-        EV_DEBUG << "Trying next planar neighbor (counter clockwise): address = " << neighborAddress << ", angle = " << neighborAngle << endl;
-        if (neighborAngleDifference != 0 && neighborAngleDifference < bestNeighborAngleDifference) {
-            bestNeighborAngleDifference = neighborAngleDifference;
-            bestNeighborAddress = neighborAddress;
-        }
-    }
-    return bestNeighborAddress;
+    std::sort(neighborAddresses.begin(), neighborAddresses.end(), [&](const L3Address& address1, const L3Address& address2) {
+        // NOTE: make sure the neighbor at startAngle goes to the end
+        auto angle1 = getNeighborAngle(address1) - startAngle;
+        auto angle2 = getNeighborAngle(address2) - startAngle;
+        if (angle1 <= 0)
+            angle1 += 2 * M_PI;
+        if (angle2 <= 0)
+            angle2 += 2 * M_PI;
+        return angle1 < angle2;
+    });
+    return neighborAddresses;
 }
 
 //
 // next hop
 //
 
-L3Address GEOADV::findNextHop(INetworkDatagram *datagram, const L3Address& destination)
+L3Address GEOADV::findNextHop(const L3Address& destination, GEOADVOption *geoadvOption)
 {
-    GEOADVOption *gpsrOption = getGeoadvOptionFromNetworkDatagram(datagram);
-    switch (gpsrOption->getRoutingMode()) {
-        case GEOADV_GREEDY_ROUTING: return findGreedyRoutingNextHop(datagram, destination);
-        case GEOADV_TWR_ROUTING: return findTWRRoutingNextHop(datagram, destination);
+    switch (geoadvOption->getRoutingMode()) {
+        case GEOADV_GREEDY_ROUTING: return findGreedyRoutingNextHop(destination, geoadvOption);
+        //case GEOADV_PERIMETER_ROUTING: return findTwrRoutingNextHop(destination, geoadvOption);
+        case GEOADV_TWR_ROUTING: return findTWRRoutingNextHop(destination, geoadvOption);
         default: throw cRuntimeError("Unknown routing mode");
     }
 }
 
-L3Address GEOADV::findGreedyRoutingNextHop(INetworkDatagram *datagram, const L3Address& destination)
+L3Address GEOADV::findGreedyRoutingNextHop(const L3Address& destination, GEOADVOption *geoadvOption)
 {
     EV_DEBUG << "Finding next hop using greedy routing: destination = " << destination << endl;
-    GEOADVOption *gpsrOption = getGeoadvOptionFromNetworkDatagram(datagram);
     L3Address selfAddress = getSelfAddress();
     Coord selfPosition = mobility->getCurrentPosition();
-    Coord destinationPosition = gpsrOption->getDestinationPosition();
+    Coord destinationPosition = geoadvOption->getDestinationPosition();
     double bestDistance = (destinationPosition - selfPosition).length();
     L3Address bestNeighbor;
-    std::vector<L3Address> neighborAddresses = neighborGEOADV_PositionTable.getAddresses();
+    std::vector<L3Address> neighborAddresses = neighborPositionTable.getAddresses();
     for (auto& neighborAddress: neighborAddresses) {
-        Coord neighborPosition = neighborGEOADV_PositionTable.getPosition(neighborAddress);
+        Coord neighborPosition = neighborPositionTable.getPosition(neighborAddress);
         double neighborDistance = (destinationPosition - neighborPosition).length();
         if (neighborDistance < bestDistance) {
             bestDistance = neighborDistance;
@@ -508,63 +505,74 @@ L3Address GEOADV::findGreedyRoutingNextHop(INetworkDatagram *datagram, const L3A
     }
     if (bestNeighbor.isUnspecified()) {
         EV_DEBUG << "Switching to twr routing: destination = " << destination << endl;
-        gpsrOption->setRoutingMode(GEOADV_TWR_ROUTING);
-        gpsrOption->setTwrRoutingStartPosition(selfPosition);
-        gpsrOption->setCurrentFaceFirstSenderAddress(selfAddress);
-        gpsrOption->setCurrentFaceFirstReceiverAddress(L3Address());
-        return findTWRRoutingNextHop(datagram, destination);
+        if (displayBubbles && hasGUI())
+            getContainingNode(host)->bubble("Switching to twr routing");
+        geoadvOption->setRoutingMode(GEOADV_TWR_ROUTING);
+        geoadvOption->setTwrRoutingStartPosition(selfPosition);
+        geoadvOption->setTwrRoutingForwardPosition(selfPosition);
+        geoadvOption->setCurrentFaceFirstSenderAddress(selfAddress);
+        geoadvOption->setCurrentFaceFirstReceiverAddress(L3Address());
+        return findTWRRoutingNextHop(destination, geoadvOption);
     }
     else
         return bestNeighbor;
 }
 
-L3Address GEOADV::findTWRRoutingNextHop(INetworkDatagram *datagram, const L3Address& destination)
+L3Address GEOADV::findTWRRoutingNextHop(const L3Address& destination, GEOADVOption *geoadvOption)
 {
     EV_DEBUG << "Finding next hop using twr routing: destination = " << destination << endl;
-    GEOADVOption *gpsrOption = getGeoadvOptionFromNetworkDatagram(datagram);
     L3Address selfAddress = getSelfAddress();
     Coord selfPosition = mobility->getCurrentPosition();
-    Coord twrRoutingStartPosition = gpsrOption->getTwrRoutingStartPosition();
-    Coord destinationPosition = gpsrOption->getDestinationPosition();
+    Coord twrRoutingStartPosition = geoadvOption->getTwrRoutingStartPosition();
+    Coord destinationPosition = geoadvOption->getDestinationPosition();
     double selfDistance = (destinationPosition - selfPosition).length();
     double twrRoutingStartDistance = (destinationPosition - twrRoutingStartPosition).length();
     if (selfDistance < twrRoutingStartDistance) {
         EV_DEBUG << "Switching to greedy routing: destination = " << destination << endl;
-        gpsrOption->setRoutingMode(GEOADV_GREEDY_ROUTING);
-        gpsrOption->setTwrRoutingStartPosition(Coord());
-        gpsrOption->setTwrRoutingForwardPosition(Coord());
-        return findGreedyRoutingNextHop(datagram, destination);
+        if (displayBubbles && hasGUI())
+            getContainingNode(host)->bubble("Switching to greedy routing");
+        geoadvOption->setRoutingMode(GEOADV_GREEDY_ROUTING);
+        geoadvOption->setTwrRoutingStartPosition(Coord());
+        geoadvOption->setTwrRoutingForwardPosition(Coord());
+        geoadvOption->setCurrentFaceFirstSenderAddress(L3Address());
+        geoadvOption->setCurrentFaceFirstReceiverAddress(L3Address());
+        return findGreedyRoutingNextHop(destination, geoadvOption);
     }
     else {
-        L3Address& firstSenderAddress = gpsrOption->getCurrentFaceFirstSenderAddress();
-        L3Address& firstReceiverAddress = gpsrOption->getCurrentFaceFirstReceiverAddress();
-        L3Address nextNeighborAddress = getSenderNeighborAddress(datagram);
-        bool hasIntersection;
-        do {
-            if (nextNeighborAddress.isUnspecified())
-                nextNeighborAddress = getNextPlanarNeighborCounterClockwise(nextNeighborAddress, getDestinationAngle(destination));
-            else
-                nextNeighborAddress = getNextPlanarNeighborCounterClockwise(nextNeighborAddress, getNeighborAngle(nextNeighborAddress));
-            if (nextNeighborAddress.isUnspecified())
+        const L3Address& firstSenderAddress = geoadvOption->getCurrentFaceFirstSenderAddress();
+        const L3Address& firstReceiverAddress = geoadvOption->getCurrentFaceFirstReceiverAddress();
+        auto senderNeighborAddress = geoadvOption->getSenderAddress();
+        auto neighborAngle = senderNeighborAddress.isUnspecified() ? getVectorAngle(destinationPosition - mobility->getCurrentPosition()) : getNeighborAngle(senderNeighborAddress);
+        L3Address selectedNeighborAddress;
+        std::vector<L3Address> neighborAddresses = getPlanarNeighborsCounterClockwise(neighborAngle);
+        for (auto& neighborAddress : neighborAddresses) {
+            Coord neighborPosition = getNeighborPosition(neighborAddress);
+            Coord intersection = computeIntersectionInsideLineSegments(twrRoutingStartPosition, destinationPosition, selfPosition, neighborPosition);
+            if (std::isnan(intersection.x)) {
+                selectedNeighborAddress = neighborAddress;
                 break;
-            EV_DEBUG << "Intersecting towards next hop: nextNeighbor = " << nextNeighborAddress << ", firstSender = " << firstSenderAddress << ", firstReceiver = " << firstReceiverAddress << ", destination = " << destination << endl;
-            Coord nextNeighborPosition = getNeighborPosition(nextNeighborAddress);
-            Coord intersection = intersectSections(twrRoutingStartPosition, destinationPosition, selfPosition, nextNeighborPosition);
-            hasIntersection = !std::isnan(intersection.x);
-            if (hasIntersection) {
-                EV_DEBUG << "Edge to next hop intersects: intersection = " << intersection << ", nextNeighbor = " << nextNeighborAddress << ", firstSender = " << firstSenderAddress << ", firstReceiver = " << firstReceiverAddress << ", destination = " << destination << endl;
-                gpsrOption->setCurrentFaceFirstSenderAddress(selfAddress);
-                gpsrOption->setCurrentFaceFirstReceiverAddress(L3Address());
             }
-        } while (hasIntersection);
-        if (firstSenderAddress == selfAddress && firstReceiverAddress == nextNeighborAddress) {
-            EV_DEBUG << "End of twr reached: firstSender = " << firstSenderAddress << ", firstReceiver = " << firstReceiverAddress << ", destination = " << destination << endl;
+            else {
+                EV_DEBUG << "Edge to next hop intersects: intersection = " << intersection << ", nextNeighbor = " << selectedNeighborAddress << ", firstSender = " << firstSenderAddress << ", firstReceiver = " << firstReceiverAddress << ", destination = " << destination << endl;
+                geoadvOption->setCurrentFaceFirstSenderAddress(selfAddress);
+                geoadvOption->setCurrentFaceFirstReceiverAddress(L3Address());
+                geoadvOption->setTwrRoutingForwardPosition(intersection);
+            }
+        }
+        if (selectedNeighborAddress.isUnspecified()) {
+            EV_DEBUG << "No suitable planar graph neighbor found in perimeter routing: firstSender = " << firstSenderAddress << ", firstReceiver = " << firstReceiverAddress << ", destination = " << destination << endl;
+            return L3Address();
+        }
+        else if (firstSenderAddress == selfAddress && firstReceiverAddress == selectedNeighborAddress) {
+            EV_DEBUG << "End of perimeter reached: firstSender = " << firstSenderAddress << ", firstReceiver = " << firstReceiverAddress << ", destination = " << destination << endl;
+            if (displayBubbles && hasGUI())
+                getContainingNode(host)->bubble("End of perimeter reached");
             return L3Address();
         }
         else {
-            if (gpsrOption->getCurrentFaceFirstReceiverAddress().isUnspecified())
-                gpsrOption->setCurrentFaceFirstReceiverAddress(nextNeighborAddress);
-            return nextNeighborAddress;
+            if (geoadvOption->getCurrentFaceFirstReceiverAddress().isUnspecified())
+                geoadvOption->setCurrentFaceFirstReceiverAddress(selectedNeighborAddress);
+            return selectedNeighborAddress;
         }
     }
 }
@@ -573,71 +581,75 @@ L3Address GEOADV::findTWRRoutingNextHop(INetworkDatagram *datagram, const L3Addr
 // routing
 //
 
-INetfilter::IHook::Result GEOADV::routeDatagram(INetworkDatagram *datagram, const InterfaceEntry *& outputInterfaceEntry, L3Address& nextHop)
+INetfilter::IHook::Result GEOADV::routeDatagram(Packet *datagram, GEOADVOption *geoadvOption)
 {
-    const L3Address& source = datagram->getSourceAddress();
-    const L3Address& destination = datagram->getDestinationAddress();
+    const auto& networkHeader = getNetworkProtocolHeader(datagram);
+    const L3Address& source = networkHeader->getSourceAddress();
+    const L3Address& destination = networkHeader->getDestinationAddress();
     EV_INFO << "Finding next hop: source = " << source << ", destination = " << destination << endl;
-    nextHop = findNextHop(datagram, destination);
+    auto nextHop = findNextHop(destination, geoadvOption);
+    datagram->addTagIfAbsent<NextHopAddressReq>()->setNextHopAddress(nextHop);
     if (nextHop.isUnspecified()) {
-        EV_WARN << "No next hop found, AODV beacon request start: source = " << source << ", destination = " << destination << endl;
-        //AODV Start
+        EV_WARN << "No next hop found, dropping packet: source = " << source << ", destination = " << destination << endl;
+        if (displayBubbles && hasGUI())
+            getContainingNode(host)->bubble("No next hop found, dropping packet");
         return DROP;
     }
     else {
         EV_INFO << "Next hop found: source = " << source << ", destination = " << destination << ", nextHop: " << nextHop << endl;
-        GEOADVOption *gpsrOption = getGeoadvOptionFromNetworkDatagram(datagram);
-        gpsrOption->setSenderAddress(getSelfAddress());
-        outputInterfaceEntry = interfaceTable->getInterfaceByName(outputInterface);
-        ASSERT(outputInterfaceEntry);
+        geoadvOption->setSenderAddress(getSelfAddress());
+        auto interfaceEntry = CHK(interfaceTable->findInterfaceByName(outputInterface));
+        datagram->addTagIfAbsent<InterfaceReq>()->setInterfaceId(interfaceEntry->getInterfaceId());
         return ACCEPT;
     }
 }
 
-void GEOADV::setGeoadvOptionOnNetworkDatagram(INetworkDatagram *datagram)
+void GEOADV::setGEOADVOptionOnNetworkDatagram(Packet *packet, const Ptr<const NetworkHeaderBase>& networkHeader, GEOADVOption *geoadvOption)
 {
-    cPacket *networkPacket = check_and_cast<cPacket *>(datagram);
-    GEOADVOption *gpsrOption = createGeoadvOption(datagram->getDestinationAddress(), networkPacket->getEncapsulatedPacket());
+    packet->trimFront();
 #ifdef WITH_IPv4
-    if (dynamic_cast<IPv4Datagram *>(networkPacket)) {
-        gpsrOption->setType(IPOPTION_TLV_GPSR);
-        IPv4Datagram *dgram = static_cast<IPv4Datagram *>(networkPacket);
-        int oldHlen = dgram->calculateHeaderByteLength();
-        ASSERT(dgram->getHeaderLength() == oldHlen);
-        dgram->addOption(gpsrOption);
-        int newHlen = dgram->calculateHeaderByteLength();
-        dgram->setHeaderLength(newHlen);
-        dgram->addByteLength(newHlen - oldHlen);
-        dgram->setTotalLengthField(dgram->getTotalLengthField() + newHlen - oldHlen);
+    if (dynamicPtrCast<const Ipv4Header>(networkHeader)) {
+        auto ipv4Header = removeNetworkProtocolHeader<Ipv4Header>(packet);
+        geoadvOption->setType(IPOPTION_TLV_GPSR);
+        B oldHlen = ipv4Header->calculateHeaderByteLength();
+        ASSERT(ipv4Header->getHeaderLength() == oldHlen);
+        ipv4Header->addOption(geoadvOption);
+        B newHlen = ipv4Header->calculateHeaderByteLength();
+        ipv4Header->setHeaderLength(newHlen);
+        ipv4Header->addChunkLength(newHlen - oldHlen);
+        ipv4Header->setTotalLengthField(ipv4Header->getTotalLengthField() + newHlen - oldHlen);
+        insertNetworkProtocolHeader(packet, Protocol::ipv4, ipv4Header);
     }
     else
 #endif
 #ifdef WITH_IPv6
-    if (dynamic_cast<IPv6Datagram *>(networkPacket)) {
-        gpsrOption->setType(IPv6TLVOPTION_TLV_GPSR);
-        IPv6Datagram *dgram = static_cast<IPv6Datagram *>(networkPacket);
-        int oldHlen = dgram->calculateHeaderByteLength();
-        IPv6HopByHopOptionsHeader *hdr = check_and_cast_nullable<IPv6HopByHopOptionsHeader *>(dgram->findExtensionHeaderByType(IP_PROT_IPv6EXT_HOP));
+    if (dynamicPtrCast<const Ipv6Header>(networkHeader)) {
+        auto ipv6Header = removeNetworkProtocolHeader<Ipv6Header>(packet);
+        geoadvOption->setType(IPv6TLVOPTION_TLV_GPSR);
+        B oldHlen = ipv6Header->calculateHeaderByteLength();
+        Ipv6HopByHopOptionsHeader *hdr = check_and_cast_nullable<Ipv6HopByHopOptionsHeader *>(ipv6Header->findExtensionHeaderByTypeForUpdate(IP_PROT_IPv6EXT_HOP));
         if (hdr == nullptr) {
-            hdr = new IPv6HopByHopOptionsHeader();
-            hdr->setByteLength(8);
-            dgram->addExtensionHeader(hdr);
+            hdr = new Ipv6HopByHopOptionsHeader();
+            hdr->setByteLength(B(8));
+            ipv6Header->addExtensionHeader(hdr);
         }
-        hdr->getTlvOptions().add(gpsrOption);
-        hdr->setByteLength(utils::roundUp(2 + hdr->getTlvOptions().getLength(), 8));
-        int newHlen = dgram->calculateHeaderByteLength();
-        dgram->addByteLength(newHlen - oldHlen);
+        hdr->getTlvOptionsForUpdate().insertTlvOption(geoadvOption);
+        hdr->setByteLength(B(utils::roundUp(2 + B(hdr->getTlvOptions().getLength()).get(), 8)));
+        B newHlen = ipv6Header->calculateHeaderByteLength();
+        ipv6Header->addChunkLength(newHlen - oldHlen);
+        insertNetworkProtocolHeader(packet, Protocol::ipv6, ipv6Header);
     }
     else
 #endif
-#ifdef WITH_GENERIC
-    if (dynamic_cast<GenericDatagram *>(networkPacket)) {
-        gpsrOption->setType(GENERIC_TLVOPTION_TLV_GPSR);
-        GenericDatagram *dgram = static_cast<GenericDatagram *>(networkPacket);
-        int oldHlen = dgram->getTlvOptions().getLength();
-        dgram->getTlvOptions().add(gpsrOption);
-        int newHlen = dgram->getTlvOptions().getLength();
-        dgram->addByteLength(newHlen - oldHlen);
+#ifdef WITH_NEXTHOP
+    if (dynamicPtrCast<const NextHopForwardingHeader>(networkHeader)) {
+        auto nextHopHeader = removeNetworkProtocolHeader<NextHopForwardingHeader>(packet);
+        geoadvOption->setType(NEXTHOP_TLVOPTION_TLV_GPSR);
+        int oldHlen = nextHopHeader->getTlvOptions().getLength();
+        nextHopHeader->getTlvOptionsForUpdate().insertTlvOption(geoadvOption);
+        int newHlen = nextHopHeader->getTlvOptions().getLength();
+        nextHopHeader->addChunkLength(B(newHlen - oldHlen));
+        insertNetworkProtocolHeader(packet, Protocol::nextHopForwarding, nextHopHeader);
     }
     else
 #endif
@@ -645,75 +657,119 @@ void GEOADV::setGeoadvOptionOnNetworkDatagram(INetworkDatagram *datagram)
     }
 }
 
-GEOADVOption *GEOADV::findGeoadvOptionInNetworkDatagram(INetworkDatagram *datagram)
+const GEOADVOption *GEOADV::findGEOADVOptionInNetworkDatagram(const Ptr<const NetworkHeaderBase>& networkHeader) const
 {
-    cPacket *networkPacket = check_and_cast<cPacket *>(datagram);
-    GEOADVOption *gpsrOption = nullptr;
+    const GEOADVOption *geoadvOption = nullptr;
 
 #ifdef WITH_IPv4
-    if (dynamic_cast<IPv4Datagram *>(networkPacket)) {
-        IPv4Datagram *dgram = static_cast<IPv4Datagram *>(networkPacket);
-        gpsrOption = check_and_cast_nullable<GEOADVOption *>(dgram->findOptionByType(IPOPTION_TLV_GPSR));
+    if (auto ipv4Header = dynamicPtrCast<const Ipv4Header>(networkHeader)) {
+        geoadvOption = check_and_cast_nullable<const GEOADVOption *>(ipv4Header->findOptionByType(IPOPTION_TLV_GPSR));
     }
     else
 #endif
 #ifdef WITH_IPv6
-    if (dynamic_cast<IPv6Datagram *>(networkPacket)) {
-        IPv6Datagram *dgram = static_cast<IPv6Datagram *>(networkPacket);
-        IPv6HopByHopOptionsHeader *hdr = check_and_cast_nullable<IPv6HopByHopOptionsHeader *>(dgram->findExtensionHeaderByType(IP_PROT_IPv6EXT_HOP));
+    if (auto ipv6Header = dynamicPtrCast<const Ipv6Header>(networkHeader)) {
+        const Ipv6HopByHopOptionsHeader *hdr = check_and_cast_nullable<const Ipv6HopByHopOptionsHeader *>(ipv6Header->findExtensionHeaderByType(IP_PROT_IPv6EXT_HOP));
         if (hdr != nullptr) {
             int i = (hdr->getTlvOptions().findByType(IPv6TLVOPTION_TLV_GPSR));
             if (i >= 0)
-                gpsrOption = check_and_cast_nullable<GEOADVOption *>(&(hdr->getTlvOptions().at(i)));
+                geoadvOption = check_and_cast<const GEOADVOption *>(hdr->getTlvOptions().getTlvOption(i));
         }
     }
     else
 #endif
-#ifdef WITH_GENERIC
-    if (dynamic_cast<GenericDatagram *>(networkPacket)) {
-        GenericDatagram *dgram = static_cast<GenericDatagram *>(networkPacket);
-        int i = (dgram->getTlvOptions().findByType(GENERIC_TLVOPTION_TLV_GPSR));
+#ifdef WITH_NEXTHOP
+    if (auto nextHopHeader = dynamicPtrCast<const NextHopForwardingHeader>(networkHeader)) {
+        int i = (nextHopHeader->getTlvOptions().findByType(NEXTHOP_TLVOPTION_TLV_GPSR));
         if (i >= 0)
-            gpsrOption = check_and_cast_nullable<GEOADVOption *>(&(dgram->getTlvOptions().at(i)));
+            geoadvOption = check_and_cast<const GEOADVOption *>(nextHopHeader->getTlvOptions().getTlvOption(i));
     }
     else
 #endif
     {
     }
-    return gpsrOption;
+    return geoadvOption;
 }
 
-GEOADVOption *GEOADV::getGeoadvOptionFromNetworkDatagram(INetworkDatagram *datagram)
+GEOADVOption *GEOADV::findGEOADVOptionInNetworkDatagramForUpdate(const Ptr<NetworkHeaderBase>& networkHeader)
 {
-    GEOADVOption *gpsrOption = findGeoadvOptionInNetworkDatagram(datagram);
-    if (gpsrOption == nullptr)
+    GEOADVOption *geoadvOption = nullptr;
+
+#ifdef WITH_IPv4
+    if (auto ipv4Header = dynamicPtrCast<Ipv4Header>(networkHeader)) {
+        geoadvOption = check_and_cast_nullable<GEOADVOption *>(ipv4Header->findMutableOptionByType(IPOPTION_TLV_GPSR));
+    }
+    else
+#endif
+#ifdef WITH_IPv6
+    if (auto ipv6Header = dynamicPtrCast<Ipv6Header>(networkHeader)) {
+        Ipv6HopByHopOptionsHeader *hdr = check_and_cast_nullable<Ipv6HopByHopOptionsHeader *>(ipv6Header->findExtensionHeaderByTypeForUpdate(IP_PROT_IPv6EXT_HOP));
+        if (hdr != nullptr) {
+            int i = (hdr->getTlvOptions().findByType(IPv6TLVOPTION_TLV_GPSR));
+            if (i >= 0)
+                geoadvOption = check_and_cast<GEOADVOption *>(hdr->getTlvOptionsForUpdate().getTlvOptionForUpdate(i));
+        }
+    }
+    else
+#endif
+#ifdef WITH_NEXTHOP
+    if (auto nextHopHeader = dynamicPtrCast<NextHopForwardingHeader>(networkHeader)) {
+        int i = (nextHopHeader->getTlvOptions().findByType(NEXTHOP_TLVOPTION_TLV_GPSR));
+        if (i >= 0)
+            geoadvOption = check_and_cast<GEOADVOption *>(nextHopHeader->getTlvOptionsForUpdate().getTlvOptionForUpdate(i));
+    }
+    else
+#endif
+    {
+    }
+    return geoadvOption;
+}
+
+const GEOADVOption *GEOADV::getGEOADVOptionFromNetworkDatagram(const Ptr<const NetworkHeaderBase>& networkHeader) const
+{
+    const GEOADVOption *geoadvOption = findGEOADVOptionInNetworkDatagram(networkHeader);
+    if (geoadvOption == nullptr)
         throw cRuntimeError("GEOADV option not found in datagram!");
-    return gpsrOption;
+    return geoadvOption;
+}
+
+GEOADVOption *GEOADV::getGEOADVOptionFromNetworkDatagramForUpdate(const Ptr<NetworkHeaderBase>& networkHeader)
+{
+    GEOADVOption *geoadvOption = findGEOADVOptionInNetworkDatagramForUpdate(networkHeader);
+    if (geoadvOption == nullptr)
+        throw cRuntimeError("GEOADV option not found in datagram!");
+    return geoadvOption;
 }
 
 //
 // netfilter
 //
 
-INetfilter::IHook::Result GEOADV::datagramPreRoutingHook(INetworkDatagram *datagram, const InterfaceEntry *inputInterfaceEntry, const InterfaceEntry *& outputInterfaceEntry, L3Address& nextHop)
+INetfilter::IHook::Result GEOADV::datagramPreRoutingHook(Packet *datagram)
 {
     Enter_Method("datagramPreRoutingHook");
-    const L3Address& destination = datagram->getDestinationAddress();
-    if (destination.isMulticast() || destination.isBroadcast() || routingTable->isLocalAddress(destination))
-        return ACCEPT;
-    else
-        return routeDatagram(datagram, outputInterfaceEntry, nextHop);
-}
-
-INetfilter::IHook::Result GEOADV::datagramLocalOutHook(INetworkDatagram *datagram, const InterfaceEntry *& outputInterfaceEntry, L3Address& nextHop)
-{
-    Enter_Method("datagramLocalOutHook");
-    const L3Address& destination = datagram->getDestinationAddress();
+    const auto& networkHeader = getNetworkProtocolHeader(datagram);
+    const L3Address& destination = networkHeader->getDestinationAddress();
     if (destination.isMulticast() || destination.isBroadcast() || routingTable->isLocalAddress(destination))
         return ACCEPT;
     else {
-        setGeoadvOptionOnNetworkDatagram(datagram);
-        return routeDatagram(datagram, outputInterfaceEntry, nextHop);
+        // KLUDGE: this allows overwriting the GPSR option inside
+        auto geoadvOption = const_cast<GEOADVOption *>(getGEOADVOptionFromNetworkDatagram(networkHeader));
+        return routeDatagram(datagram, geoadvOption);
+    }
+}
+
+INetfilter::IHook::Result GEOADV::datagramLocalOutHook(Packet *packet)
+{
+    Enter_Method("datagramLocalOutHook");
+    const auto& networkHeader = getNetworkProtocolHeader(packet);
+    const L3Address& destination = networkHeader->getDestinationAddress();
+    if (destination.isMulticast() || destination.isBroadcast() || routingTable->isLocalAddress(destination))
+        return ACCEPT;
+    else {
+        GEOADVOption *geoadvOption = createGEOADVOption(networkHeader->getDestinationAddress());
+        setGEOADVOptionOnNetworkDatagram(packet, networkHeader, geoadvOption);
+        return routeDatagram(packet, geoadvOption);
     }
 }
 
@@ -721,31 +777,26 @@ INetfilter::IHook::Result GEOADV::datagramLocalOutHook(INetworkDatagram *datagra
 // lifecycle
 //
 
-bool GEOADV::handleOperationStage(LifecycleOperation *operation, int stage, IDoneCallback *doneCallback)
+void GEOADV::handleStartOperation(LifecycleOperation *operation)
 {
-    Enter_Method_Silent();
-    if (dynamic_cast<NodeStartOperation *>(operation)) {
-        if ((NodeStartOperation::Stage)stage == NodeStartOperation::STAGE_APPLICATION_LAYER)
-            configureInterfaces();
-    }
-    else if (dynamic_cast<NodeShutdownOperation *>(operation)) {
-        if ((NodeShutdownOperation::Stage)stage == NodeShutdownOperation::STAGE_APPLICATION_LAYER) {
-            // TODO: send a beacon to remove ourself from peers neighbor position table
-            neighborGEOADV_PositionTable.clear();
-            cancelEvent(beaconTimer);
-            cancelEvent(purgeNeighborsTimer);
-        }
-    }
-    else if (dynamic_cast<NodeCrashOperation *>(operation)) {
-        if ((NodeCrashOperation::Stage)stage == NodeCrashOperation::STAGE_CRASH) {
-            neighborGEOADV_PositionTable.clear();
-            cancelEvent(beaconTimer);
-            cancelEvent(purgeNeighborsTimer);
-        }
-    }
-    else
-        throw cRuntimeError("Unsupported lifecycle operation '%s'", operation->getClassName());
-    return true;
+    configureInterfaces();
+    storeSelfPositionInGlobalRegistry();
+    scheduleBeaconTimer();
+}
+
+void GEOADV::handleStopOperation(LifecycleOperation *operation)
+{
+    // TODO: send a beacon to remove ourself from peers neighbor position table
+    neighborPositionTable.clear();
+    cancelEvent(beaconTimer);
+    cancelEvent(purgeNeighborsTimer);
+}
+
+void GEOADV::handleCrashOperation(LifecycleOperation *operation)
+{
+    neighborPositionTable.clear();
+    cancelEvent(beaconTimer);
+    cancelEvent(purgeNeighborsTimer);
 }
 
 //
@@ -755,9 +806,9 @@ bool GEOADV::handleOperationStage(LifecycleOperation *operation, int stage, IDon
 void GEOADV::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj, cObject *details)
 {
     Enter_Method("receiveChangeNotification");
-    if (signalID == NF_LINK_BREAK) {
+    if (signalID == linkBrokenSignal) {
         EV_WARN << "Received link break" << endl;
-        // TODO: shall we remove the neighbor?
+        // TODO: remove the neighbor
     }
 }
 

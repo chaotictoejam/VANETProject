@@ -18,19 +18,11 @@
 #ifndef __INET_GEOADVDEFS_H
 #define __INET_GEOADVDEFS_H
 
+#include "inet/common/INETDefs.h"
+
 #define GEOADV_UDP_PORT    269
 
 namespace inet {
-
-enum GEOADVForwardingMode {
-    GEOADV_GREEDY_ROUTING,
-    GEOADV_TWR_ROUTING
-};
-
-enum GEOADVPlanarizationMode {
-    GEOADV_GG_PLANARIZATION,
-    GEOADV_RNG_PLANARIZATION
-};
 
 } // namespace inet
 

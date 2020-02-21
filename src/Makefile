@@ -35,7 +35,7 @@ OBJS = \
     $O/vanetsim/routing/aodvwr/AODVWR.o \
     $O/vanetsim/routing/aodvwr/AODVWRRouteData.o \
     $O/vanetsim/routing/geoadv/GEOADV.o \
-    $O/vanetsim/routing/geoadv/GEOADV_PositionTable.o \
+    $O/vanetsim/routing/geoadv/GEOADVPositionTable.o \
     $O/vanetsim/routing/geoadvflq/GEOADVFLQ.o \
     $O/vanetsim/routing/geoadvflq/GEOADVFLQPositionTable.o \
     $O/vanetsim/routing/geoadvp/GEOADVP.o \
