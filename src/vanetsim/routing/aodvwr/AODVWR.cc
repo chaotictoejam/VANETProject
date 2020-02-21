@@ -895,12 +895,12 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
     Coord currentPosition = mod->getCurrentPosition();
     Coord currentSpeed = mod->getCurrentVelocity();
     Coord currentAcceleration = mod->getCurrentAcceleration();
-    EulerAngles currentDirection = (mod->getCurrentAngularPosition()).toEulerAngles(); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
+    Quaternion currentDirection = (mod->getCurrentAngularPosition()); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
 
     Coord lastPosition = rreq->getPosition();
     Coord lastSpeed = rreq->getSpeed();
     Coord lastAcceleration = rreq->getAcceleration();
-    EulerAngles lastDirection = (rreq->getDirection()).toEulerAngles(); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
+    Quaternion lastDirection = (rreq->getDirection()); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
     double twr = rreq->getTwr();
 
     // Compute TWR:
@@ -915,9 +915,15 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
     //          LQ = Link Quality between two adjacent vehicles
 
     double linkquality = 1;
-    double speedTwr = speedWeight*std::abs(lastSpeed.x/lastDirection.alpha - currentSpeed.x/currentSpeed.x);
-    double accelerationTwr = accelerationWeight*std::abs(lastAcceleration.x/lastDirection.alpha - currentAcceleration.x/currentSpeed.x);
-    double directionTwr = directionWeight*std::abs(currentDirection.alpha-lastDirection.alpha);
+    double speedTwr = speedWeight*std::abs(lastSpeed.x - currentSpeed.x);
+    double accelerationTwr = accelerationWeight*std::abs(lastAcceleration.x - currentAcceleration.x);
+    Coord currentAxis;
+    double currentAngle;
+    Coord lastAxis;
+    double lastAngle;
+    currentDirection.getRotationAxisAndAngle(currentAxis, currentAngle);
+    lastDirection.getRotationAxisAndAngle(lastAxis, lastAngle);
+    double directionTwr = directionWeight*std::abs(currentAngle-lastAngle);
     double lqTwr = linkQualityWeight/linkquality;
 
     twr = twr + speedTwr + accelerationTwr + directionTwr + lqTwr;
@@ -932,12 +938,10 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
     //virtual Coord getCurrentVelocity() { Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad())); return v * getSpeed(); }
     //virtual Coord getCurrentAngularPosition() { Coord v = Coord(cos(getAngleRad()), -sin(getAngleRad())); return v; }
 
-    double a = lastSpeed.x - currentSpeed.x;
-    double b = lastSpeed.x / lastDirection.alpha
-            - currentSpeed.x / currentSpeed.x;
-    double c = -lastSpeed.y + currentSpeed.y;
-    double d = lastSpeed.y / lastDirection.alpha
-            - currentSpeed.y / currentSpeed.x;
+    double a = lastSpeed.x*cos(getVectorAngle(lastSpeed)) - currentSpeed.x*cos(getVectorAngle(currentSpeed));
+    double b = (currentDirection.getV()).x - (lastDirection.getV()).x;
+    double c = lastSpeed.x*sin(getVectorAngle(lastSpeed)) - currentSpeed.x*sin(getVectorAngle(currentSpeed));
+    double d = (currentDirection.getV()).y - (lastDirection.getV()).y;
 
     double newExpirationTime = (-(a*b+c*d)+sqrt((a*a + c*c)*losRange*losRange-(a*d-b*c)*(a*d-b*c)))/(a*a+c*c);
 
@@ -1792,6 +1796,14 @@ void AODVWR::handleBlackListTimer()
 
     if (nextTime != SimTime::getMaxTime())
         scheduleAt(nextTime, blacklistTimer);
+}
+
+double AODVWR::getVectorAngle(Coord vector)
+{
+    double angle = atan2(-vector.y, vector.x);
+    if (angle < 0)
+        angle += 2 * M_PI;
+    return angle;
 }
 
 AODVWR::~AODVWR()

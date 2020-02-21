@@ -26,7 +26,7 @@ class INET_API AODVWRRouteData : public cObject
 
   public:
 
-    AODVWR RouteData()
+    AODVWRRouteData()
     {
         active = true;
         repariable = false;

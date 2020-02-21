@@ -18,6 +18,8 @@
 
 namespace inet {
 
+namespace aodvwr{
+
 std::ostream& operator<<(std::ostream& out, const AODVWRRouteData *data)
 {
     out << " isActive = " << data->isActive()
@@ -37,6 +39,8 @@ std::ostream& operator<<(std::ostream& out, const AODVWRRouteData *data)
     }
     return out;
 };
+
+} // namespace aodvwr
 
 } // namespace inet
 

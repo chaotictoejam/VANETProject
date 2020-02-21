@@ -133,6 +133,8 @@ class INET_API AODVWR : public RoutingProtocolBase, public NetfilterBase::HookBa
     // internal
     std::multimap<L3Address, Packet *> targetAddressToDelayedPackets;    // queue for the datagrams we have no route for
 
+    // angle
+    static double getVectorAngle(Coord vector);
   protected:
     void handleMessageWhenUp(cMessage *msg) override;
     void initialize(int stage) override;
