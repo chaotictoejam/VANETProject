@@ -30,7 +30,7 @@ namespace inet;
 
 enum GEOADVFLQForwardingMode {
     GEOADVFLQ_GREEDY_ROUTING = 1;
-    GEOADVFLQ_PERIMETER_ROUTING = 2;
+    GEOADVFLQ_TWR_ROUTING = 2;
 };
 
 enum GEOADVFLQPlanarizationMode {
@@ -45,12 +45,13 @@ enum GEOADVFLQPlanarizationMode {
 class GEOADVFLQBeacon extends FieldsChunk {
     L3Address address;
     Coord position;
+    Coord velocity;
 }
 
 //
 // The GEOADVFLQOption is used to add extra routing information for network datagrams.
 //
-class GEOADVFLQFLQOption extends TlvOptionBase {
+class GEOADVFLQOption extends TlvOptionBase {
     GEOADVFLQForwardingMode routingMode = (GEOADVFLQForwardingMode)-1;
     Coord destinationPosition;               // D
     Coord twrRoutingStartPosition;     // Lp

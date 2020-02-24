@@ -1,7 +1,7 @@
 // Author: Joanne Skiles
 
-#ifndef __INET_POSITIONTABLE_H
-#define __INET_POSITIONTABLE_H
+#ifndef __INET_GEOADVPOSITIONTABLE_H
+#define __INET_GEOADVPOSITIONTABLE_H
 
 #include <map>
 #include <vector>
@@ -43,5 +43,5 @@ class INET_API GEOADVPositionTable
 
 } // namespace inet
 
-#endif // ifndef __INET_POSITIONTABLE_H
+#endif // ifndef __INET_GEOADVPOSITIONTABLE_H
 
