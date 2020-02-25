@@ -30,7 +30,7 @@ namespace inet;
 
 enum GEOADVPForwardingMode {
     GEOADVP_GREEDY_ROUTING = 1;
-    GEOADVP_PERIMETER_ROUTING = 2;
+    GEOADVP_PTWR_ROUTING = 2;
 };
 
 enum GEOADVPPlanarizationMode {
@@ -53,8 +53,8 @@ class GEOADVPBeacon extends FieldsChunk {
 class GEOADVPOption extends TlvOptionBase {
     GEOADVPForwardingMode routingMode = (GEOADVPForwardingMode)-1;
     Coord destinationPosition;               // D
-    Coord twrRoutingStartPosition;     // Lp
-    Coord twrRoutingForwardPosition;   // Lf
+    Coord ptwrRoutingStartPosition;     // Lp
+    Coord ptwrRoutingForwardPosition;   // Lf
     L3Address currentFaceFirstSenderAddress;   // e0
     L3Address currentFaceFirstReceiverAddress; // e0
     L3Address senderAddress; // TODO: this field is not strictly needed by GEOADVP (should be eliminated)

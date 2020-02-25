@@ -651,7 +651,7 @@ int GEOADVFLQ::getFLQNeighborCount(){
         if (planarizationMode == GEOADVFLQ_RNG_PLANARIZATION) {
             for (auto & neighborAddresse : neighborAddresses) {
                 const L3Address& witnessAddress = neighborAddresse;
-                Coord witnessPosition = neighborPositionTable.getPosition(witnessAddress);
+                //Coord witnessPosition = neighborPositionTable.getPosition(witnessAddress);
                 if (*it == neighborAddresse){
                     if((std::abs(selfAngle-neighborDirection)* 180 / 3.14159265) < 45) {//less than 45 degrees
                         count++;
@@ -660,10 +660,10 @@ int GEOADVFLQ::getFLQNeighborCount(){
             }
         }
         else if (planarizationMode == GEOADVFLQ_GG_PLANARIZATION) {
-            Coord middlePosition = (selfPosition + neighborPosition) / 2;
+            //Coord middlePosition = (selfPosition + neighborPosition) / 2;
             for (auto & neighborAddresse : neighborAddresses) {
                 const L3Address& witnessAddress = neighborAddresse;
-                Coord witnessPosition = neighborPositionTable.getPosition(witnessAddress);
+                //Coord witnessPosition = neighborPositionTable.getPosition(witnessAddress);
                 if (*it == neighborAddresse){
                     if((std::abs(selfAngle-neighborDirection)* 180 / 3.14159265) < 45) {//less than 45 degrees
                         count++;
