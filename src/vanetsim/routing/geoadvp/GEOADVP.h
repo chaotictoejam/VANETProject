@@ -92,8 +92,8 @@ class INET_API GEOADVP : public RoutingProtocolBase, public cListener, public Ne
 
     // handling packets
     GEOADVPOption *createGEOADVPOption(L3Address destination);
-    int computeOptionLength(GEOADVPOption *gpsrpOption);
-    void setGEOADVPOptionOnNetworkDatagram(Packet *packet, const Ptr<const NetworkHeaderBase>& networkHeader, GEOADVPOption *gpsrpOption);
+    int computeOptionLength(GEOADVPOption *geoadvpOption);
+    void setGEOADVPOptionOnNetworkDatagram(Packet *packet, const Ptr<const NetworkHeaderBase>& networkHeader, GEOADVPOption *geoadvpOption);
 
     // returns nullptr if not found
     GEOADVPOption *findGEOADVPOptionInNetworkDatagramForUpdate(const Ptr<NetworkHeaderBase>& networkHeader);
@@ -129,12 +129,12 @@ class INET_API GEOADVP : public RoutingProtocolBase, public cListener, public Ne
     std::vector<L3Address> getPlanarNeighborsCounterClockwise(double startAngle) const;
 
     // next hop
-    L3Address findNextHop(const L3Address& destination, GEOADVPOption *gpsrpOption);
-    L3Address findGreedyRoutingNextHop(const L3Address& destination, GEOADVPOption *gpsrpOption);
-    L3Address findPTWRRoutingNextHop(const L3Address& destination, GEOADVPOption *gpsrpOption);
+    L3Address findNextHop(const L3Address& destination, GEOADVPOption *geoadvpOption);
+    L3Address findGreedyRoutingNextHop(const L3Address& destination, GEOADVPOption *geoadvpOption);
+    L3Address findPTWRRoutingNextHop(const L3Address& destination, GEOADVPOption *geoadvpOption);
 
     // routing
-    Result routeDatagram(Packet *datagram, GEOADVPOption *gpsrpOption);
+    Result routeDatagram(Packet *datagram, GEOADVPOption *geoadvpOption);
 
     // netfilter
     virtual Result datagramPreRoutingHook(Packet *datagram) override;

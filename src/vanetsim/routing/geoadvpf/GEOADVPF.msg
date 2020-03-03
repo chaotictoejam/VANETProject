@@ -23,14 +23,14 @@ import inet.networklayer.common.L3Address;
 
 
 cplusplus {{
-#include "vanetsim/routing/geoadvp/GEOADVPFDefs.h"
+#include "vanetsim/routing/geoadvpf/GEOADVPFDefs.h"
 }}
 
 namespace inet;
 
 enum GEOADVPFForwardingMode {
     GEOADVPF_GREEDY_ROUTING = 1;
-    GEOADVPF_PERIMETER_ROUTING = 2;
+    GEOADVPF_PTWR_ROUTING = 2;
 };
 
 enum GEOADVPFPlanarizationMode {

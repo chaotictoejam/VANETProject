@@ -22,16 +22,6 @@
 
 namespace inet {
 
-enum GEOADVPFForwardingMode {
-    GEOADVPF_GREEDY_ROUTING,
-    GEOADVPF_PTWR_ROUTING
-};
-
-enum GEOADVPFPlanarizationMode {
-    GEOADVPF_GG_PLANARIZATION,
-    GEOADVPF_RNG_PLANARIZATION
-};
-
 } // namespace inet
 
 #endif // ifndef __INET_GEOADVPFDEFS_H
