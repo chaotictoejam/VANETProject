@@ -53,8 +53,8 @@ class GPSRFLQBeacon extends FieldsChunk {
 class GPSRFLQOption extends TlvOptionBase {
     GPSRFLQForwardingMode routingMode = (GPSRFLQForwardingMode)-1;
     Coord destinationPosition;               // D
-    Coord twrRoutingStartPosition;     // Lp
-    Coord twrRoutingForwardPosition;   // Lf
+    Coord perimeterRoutingStartPosition;     // Lp
+    Coord perimeterRoutingForwardPosition;   // Lf
     L3Address currentFaceFirstSenderAddress;   // e0
     L3Address currentFaceFirstReceiverAddress; // e0
     L3Address senderAddress; // TODO: this field is not strictly needed by GPSRFLQ (should be eliminated)

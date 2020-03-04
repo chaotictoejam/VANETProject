@@ -53,8 +53,8 @@ class GEOADVPFBeacon extends FieldsChunk {
 class GEOADVPFOption extends TlvOptionBase {
     GEOADVPFForwardingMode routingMode = (GEOADVPFForwardingMode)-1;
     Coord destinationPosition;               // D
-    Coord twrRoutingStartPosition;     // Lp
-    Coord twrRoutingForwardPosition;   // Lf
+    Coord ptwrRoutingStartPosition;     // Lp
+    Coord ptwrRoutingForwardPosition;   // Lf
     L3Address currentFaceFirstSenderAddress;   // e0
     L3Address currentFaceFirstReceiverAddress; // e0
     L3Address senderAddress; // TODO: this field is not strictly needed by GEOADVPF (should be eliminated)
