@@ -33,7 +33,6 @@ O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 OBJS = \
     $O/vanetsim/networklayer/contract/IVANETRoute.o \
     $O/vanetsim/routing/aodvwr/AODVWR.o \
-    $O/vanetsim/routing/aodvwr/AODVWRControlPacketsSerializer.o \
     $O/vanetsim/routing/aodvwr/AODVWRRouteData.o \
     $O/vanetsim/routing/geoadv/GEOADV.o \
     $O/vanetsim/routing/geoadv/GEOADVPositionTable.o \
