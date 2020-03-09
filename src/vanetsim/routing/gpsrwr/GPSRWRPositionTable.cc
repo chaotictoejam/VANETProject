@@ -1,19 +1,4 @@
 // Author: Joanne Skiles
-//
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-//
 
 #include "vanetsim/routing/gpsrwr/GPSRWRPositionTable.h"
 
@@ -63,38 +48,38 @@ void GPSRWRPositionTable::removeOldPositions(simtime_t timestamp)
             it++;
 }
 
-bool GPSRWRPositionTable::hasSpeed(const L3Address& address) const
+bool GPSRWRPositionTable::hasVelocity(const L3Address& address) const
 {
-    AddressToSpeedMap::const_iterator it = addressToSpeedMap.find(address);
-    return it != addressToSpeedMap.end();
+    AddressToVelocityMap::const_iterator it = addressToVelocityMap.find(address);
+    return it != addressToVelocityMap.end();
 }
 
-Coord GPSRWRPositionTable::getSpeed(const L3Address& address) const
+Coord GPSRWRPositionTable::getVelocity(const L3Address& address) const
 {
-    AddressToSpeedMap::const_iterator it = addressToSpeedMap.find(address);
-    if (it == addressToSpeedMap.end())
+    AddressToVelocityMap::const_iterator it = addressToVelocityMap.find(address);
+    if (it == addressToVelocityMap.end())
         return Coord(NaN, NaN, NaN);
     else
         return it->second.second;
 }
 
-void GPSRWRPositionTable::setSpeed(const L3Address& address, const Coord& coord)
+void GPSRWRPositionTable::setVelocity(const L3Address& address, const Coord& coord)
 {
     ASSERT(!address.isUnspecified());
-    addressToSpeedMap[address] = AddressToSpeedMapValue(simTime(), coord);
+    addressToVelocityMap[address] = AddressToVelocityMapValue(simTime(), coord);
 }
 
-void GPSRWRPositionTable::removeSpeed(const L3Address& address)
+void GPSRWRPositionTable::removeVelocity(const L3Address& address)
 {
-    auto it = addressToSpeedMap.find(address);
-    addressToSpeedMap.erase(it);
+    auto it = addressToVelocityMap.find(address);
+    addressToVelocityMap.erase(it);
 }
 
-void GPSRWRPositionTable::removeOldSpeeds(simtime_t timestamp)
+void GPSRWRPositionTable::removeOldVelocitys(simtime_t timestamp)
 {
-    for (auto it = addressToSpeedMap.begin(); it != addressToSpeedMap.end(); )
+    for (auto it = addressToVelocityMap.begin(); it != addressToVelocityMap.end(); )
         if (it->second.first <= timestamp)
-            addressToSpeedMap.erase(it++);
+            addressToVelocityMap.erase(it++);
         else
             it++;
 
@@ -143,19 +128,19 @@ bool GPSRWRPositionTable::hasDirection(const L3Address& address) const
     return it != addressToDirectionMap.end();
 }
 
-EulerAngles GPSRWRPositionTable::getDirection(const L3Address& address) const
+Quaternion GPSRWRPositionTable::getDirection(const L3Address& address) const
 {
     AddressToDirectionMap::const_iterator it = addressToDirectionMap.find(address);
     if (it == addressToDirectionMap.end())
-        return EulerAngles(NaN, NaN, NaN);
+        return Quaternion::NIL;
     else
         return it->second.second;
 }
 
-void GPSRWRPositionTable::setDirection(const L3Address& address, const EulerAngles& eulerAngles)
+void GPSRWRPositionTable::setDirection(const L3Address& address, const Quaternion& quaternion)
 {
     ASSERT(!address.isUnspecified());
-    addressToDirectionMap[address] = AddressToDirectionMapValue(simTime(), eulerAngles);
+    addressToDirectionMap[address] = AddressToDirectionMapValue(simTime(), quaternion);
 }
 
 void GPSRWRPositionTable::removeDirection(const L3Address& address)
@@ -177,7 +162,7 @@ void GPSRWRPositionTable::removeOldDirections(simtime_t timestamp)
 void GPSRWRPositionTable::clear()
 {
     addressToPositionMap.clear();
-    addressToSpeedMap.clear();
+    addressToVelocityMap.clear();
     addressToAccelerationMap.clear();
     addressToDirectionMap.clear();
 }

@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -O out -KINET_PROJ=../../inet -KVEINS_PROJ=../../veins-veins-5.0 -DINET_IMPORT -DVEINS_IMPORT -I. -I$$\(INET_PROJ\)/src -I$$\(VEINS_PROJ\)/src -I. -L$$\(INET_PROJ\)/src -L$$\(VEINS_PROJ\)/src -lINET$$\(D\) -lveins$$\(D\)
+#  opp_makemake -f --deep -O out -KINET_PROJ=F:/Dev/inet -KVEINS_PROJ=F:/Dev/veins-5.0/veins-veins-5.0 -DINET_IMPORT -DVEINS_IMPORT -I. -I$$\(INET_PROJ\)/src -I$$\(VEINS_PROJ\)/src -I. -L$$\(INET_PROJ\)/src -L$$\(VEINS_PROJ\)/src -lINET$$\(D\) -lveins$$\(D\)
 #
 
 # Name of target to be created (-o option)
@@ -33,6 +33,7 @@ O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 OBJS = \
     $O/vanetsim/networklayer/contract/IVANETRoute.o \
     $O/vanetsim/routing/aodvwr/AODVWR.o \
+    $O/vanetsim/routing/aodvwr/AODVWRControlPacketsSerializer.o \
     $O/vanetsim/routing/aodvwr/AODVWRRouteData.o \
     $O/vanetsim/routing/geoadv/GEOADV.o \
     $O/vanetsim/routing/geoadv/GEOADVPositionTable.o \
@@ -68,8 +69,8 @@ MSGFILES = \
 SMFILES =
 
 # Other makefile variables (-K)
-INET_PROJ=../../inet
-VEINS_PROJ=../../veins-veins-5.0
+INET_PROJ=F:/Dev/inet
+VEINS_PROJ=F:/Dev/veins-5.0/veins-veins-5.0
 
 #------------------------------------------------------------------------------
 

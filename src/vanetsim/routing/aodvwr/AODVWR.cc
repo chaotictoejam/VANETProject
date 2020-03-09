@@ -1,7 +1,6 @@
-//
 // Author: Joanne Skiles
 //
-// Description: This is an small enhancement of AODV using a weight route calculation
+// Description: This is an small enhancement of AODV using a weighted route calculation
 
 #include "vanetsim/routing/aodvwr/AODVWR.h"
 

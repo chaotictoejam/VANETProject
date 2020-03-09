@@ -45,6 +45,9 @@ enum GPSRWRPlanarizationMode {
 class GPSRWRBeacon extends FieldsChunk {
     L3Address address;
     Coord position;
+    Coord velocity;
+    Coord acceleration;
+    Quaternion direction;
 }
 
 //
@@ -53,8 +56,8 @@ class GPSRWRBeacon extends FieldsChunk {
 class GPSRWROption extends TlvOptionBase {
     GPSRWRForwardingMode routingMode = (GPSRWRForwardingMode)-1;
     Coord destinationPosition;               // D
-    Coord twrRoutingStartPosition;     // Lp
-    Coord twrRoutingForwardPosition;   // Lf
+    Coord perimeterRoutingStartPosition;     // Lp
+    Coord perimeterRoutingForwardPosition;   // Lf
     L3Address currentFaceFirstSenderAddress;   // e0
     L3Address currentFaceFirstReceiverAddress; // e0
     L3Address senderAddress; // TODO: this field is not strictly needed by GPSRWR (should be eliminated)
