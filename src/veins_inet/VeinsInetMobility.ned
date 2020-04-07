@@ -25,7 +25,7 @@
 // Based on inet::MovingMobilityBase of INET Framework v4.0.0
 //
 
-package org.car2x.veins.subprojects.veins_inet;
+package veins_inet;
 
 import inet.mobility.base.MobilityBase;
 
