@@ -26,7 +26,7 @@ simple GPSRWR like IVANETRouting
         int positionByteLength @unit(B) = default(2 * 4B);
         
 		double losRange = default(10); // line of site range.
-        double speedWeight = default(10); // speed weight factor
+        double velocityWeight = default(10); // speed weight factor
         double accelerationWeight = default(10); // acceleration weight factor
         double directionWeight = default(10); // direction weight factor
         double linkQualityWeight = default(10); // link quality weight factor

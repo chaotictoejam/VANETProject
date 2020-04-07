@@ -48,7 +48,7 @@ class INET_API GPSRWR : public RoutingProtocolBase, public cListener, public Net
     GPSRWRPositionTable neighborPositionTable;
 
     double losRange; // line of site range.
-    double VelocityWeight; // Velocity weight factor
+    double velocityWeight; // Velocity weight factor
     double accelerationWeight; // acceleration weight factor
     double directionWeight; // direction weight factor
     double linkQualityWeight; // link quality weight factor

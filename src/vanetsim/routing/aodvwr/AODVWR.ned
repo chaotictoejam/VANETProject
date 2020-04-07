@@ -21,15 +21,15 @@ import inet.applications.contract.IApp;
 //
 // Ad hoc On-Demand Distance Vector Routing Protocol module.
 //
-// The Ad hoc On-Demand Distance Vector (AODVWRWR) routing protocol is
+// The Ad hoc On-Demand Distance Vector (AODVWR) routing protocol is
 // intended for use by mobile nodes in an ad hoc network. It offers
 // quick adaptation to dynamic link conditions, low processing and
 // memory overhead, low network utilization, and determines unicast
 // routes to destinations within the ad hoc network.
 //
-// This routing protocol communicates over UDP and used in ~AODVWRWRRouter
-// nodes as a routing submodule. ~AODVWRWRRouter is just a ~WirelessHost
-// extended with ~AODVWRWRRouting submodule.
+// This routing protocol communicates over UDP and used in ~AODVWRRouter
+// nodes as a routing submodule. ~AODVWRRouter is just a ~WirelessHost
+// extended with ~AODVWRRouting submodule.
 //
 // This implementation is based on RFC 3561. For more information, you may
 // refer to the following link: https://tools.ietf.org/html/rfc3561.html.
@@ -37,7 +37,7 @@ import inet.applications.contract.IApp;
 simple AODVWR like IApp
 {
     parameters:
-        @class("aodvwr::AODVWRWR");
+        @class("aodvwr::AODVWR");
         @display("i=block/network2");
         string routingTableModule = default("^.ipv4.routingTable");
         string interfaceTableModule = default("^.interfaceTable");

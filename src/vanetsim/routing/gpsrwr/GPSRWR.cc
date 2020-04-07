@@ -91,7 +91,7 @@ void GPSRWR::initialize(int stage)
         positionByteLength = par("positionByteLength");
 
         losRange = par("losRange");
-        VelocityWeight = par("VelocityWeight");
+        velocityWeight = par("velocityWeight");
         accelerationWeight = par("accelerationWeight");
         directionWeight = par("directionWeight");
         linkQualityWeight = par("linkQualityWeight");
