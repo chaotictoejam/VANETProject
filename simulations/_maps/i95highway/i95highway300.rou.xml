@@ -6,7 +6,7 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/duarouterConfiguration.xsd">
 
     <input>
-        <net-file value="F:\Dev\vanetproject\VANETSim\simulations\_maps\i95highway\i95highway.net.xml"/>
+        <net-file value="F:\Dev\GitHub\VANETProject\simulations\_maps\i95highway\i95highway.net.xml"/>
         <trip-files value="trips.trips.xml"/>
     </input>
 
