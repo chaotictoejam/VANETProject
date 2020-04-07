@@ -20,15 +20,17 @@ namespace inet {
 
 namespace aodvwr{
 
-std::ostream& operator<<(std::ostream& out, const AODVWRRouteData *data)
+std::string AODVWRRouteData::str() const
 {
-    out << " isActive = " << data->isActive()
-        << ", hasValidDestNum = " << data->hasValidDestNum()
-        << ", destNum = " << data->getDestSeqNum()
-        << ", twr = " << data->getTWR()
-        << ", ExpirationTime = " << data->getExpirationTime();
+    std::ostringstream out;
+    out << "isActive = " << isActive()
+        << ", hasValidDestNum = " << hasValidDestNum()
+        << ", destNum = " << getDestSeqNum()
+        << ", lifetime = " << getLifeTime()
+        << ", twr = " << getTWR()
+        << ", ExpirationTime = " << getExpirationTime();
 
-    const std::set<L3Address>& preList = data->getPrecursorList();
+    const std::set<L3Address>& preList = getPrecursorList();
 
     if (!preList.empty()) {
         out << ", precursor list: ";
@@ -37,7 +39,7 @@ std::ostream& operator<<(std::ostream& out, const AODVWRRouteData *data)
         for (++iter; iter != preList.end(); ++iter)
             out << "; " << *iter;
     }
-    return out;
+    return out.str();
 };
 
 } // namespace aodvwr

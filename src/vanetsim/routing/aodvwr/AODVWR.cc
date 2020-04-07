@@ -891,12 +891,12 @@ void AODVWR::handleRREQ(const Ptr<Rreq>& rreq, const L3Address& sourceAddr, unsi
     //Extracts movement details and uses this information
     IMobility  *mod = check_and_cast<IMobility *>(host->getSubmodule("mobility"));
 
-    Coord currentPosition = mod->getCurrentPosition();
+    //Coord currentPosition = mod->getCurrentPosition();
     Coord currentSpeed = mod->getCurrentVelocity();
     Coord currentAcceleration = mod->getCurrentAcceleration();
     Quaternion currentDirection = (mod->getCurrentAngularPosition()); //In Rad, 0 being east, with -M_PI <= angle < M_PI.
 
-    Coord lastPosition = rreq->getPosition();
+    //Coord lastPosition = rreq->getPosition();
     Coord lastSpeed = rreq->getSpeed();
     Coord lastAcceleration = rreq->getAcceleration();
     Quaternion lastDirection = (rreq->getDirection()); //In Rad, 0 being east, with -M_PI <= angle < M_PI.

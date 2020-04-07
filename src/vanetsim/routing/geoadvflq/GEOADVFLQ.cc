@@ -641,16 +641,16 @@ int GEOADVFLQ::getFLQNeighborCount(){
     int count = 0;
 
     std::vector<L3Address> neighborAddresses = neighborPositionTable.getAddresses();
-    Coord selfPosition = mobility->getCurrentPosition();
+    //Coord selfPosition = mobility->getCurrentPosition();
     Coord selfSpeed = mobility->getCurrentVelocity();
     double selfAngle = atan(selfSpeed.y/selfSpeed.x);
     for (auto it = neighborAddresses.begin(); it != neighborAddresses.end(); it++) {
         const L3Address& neighborAddress = *it;
-        Coord neighborPosition = neighborPositionTable.getPosition(neighborAddress);
+        //Coord neighborPosition = neighborPositionTable.getPosition(neighborAddress);
         double neighborDirection = neighborPositionTable.getDirection(neighborAddress);
         if (planarizationMode == GEOADVFLQ_RNG_PLANARIZATION) {
             for (auto & neighborAddresse : neighborAddresses) {
-                const L3Address& witnessAddress = neighborAddresse;
+                //const L3Address& witnessAddress = neighborAddresse;
                 //Coord witnessPosition = neighborPositionTable.getPosition(witnessAddress);
                 if (*it == neighborAddresse){
                     if((std::abs(selfAngle-neighborDirection)* 180 / 3.14159265) < 45) {//less than 45 degrees
@@ -662,7 +662,7 @@ int GEOADVFLQ::getFLQNeighborCount(){
         else if (planarizationMode == GEOADVFLQ_GG_PLANARIZATION) {
             //Coord middlePosition = (selfPosition + neighborPosition) / 2;
             for (auto & neighborAddresse : neighborAddresses) {
-                const L3Address& witnessAddress = neighborAddresse;
+                //const L3Address& witnessAddress = neighborAddresse;
                 //Coord witnessPosition = neighborPositionTable.getPosition(witnessAddress);
                 if (*it == neighborAddresse){
                     if((std::abs(selfAngle-neighborDirection)* 180 / 3.14159265) < 45) {//less than 45 degrees

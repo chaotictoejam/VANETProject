@@ -1,19 +1,13 @@
 #
-# OMNeT++/OMNEST Makefile for VANETSim
+# OMNeT++/OMNEST Makefile for $(LIB_PREFIX)VANETSim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -O out -KINET_PROJ=F:/Dev/inet -KVEINS_PROJ=F:/Dev/veins-5.0/veins-veins-5.0 -DINET_IMPORT -DVEINS_IMPORT -I. -I$$\(INET_PROJ\)/src -I$$\(VEINS_PROJ\)/src -I. -L$$\(INET_PROJ\)/src -L$$\(VEINS_PROJ\)/src -lINET$$\(D\) -lveins$$\(D\)
+#  opp_makemake --make-so -f --deep -O out -KINET_PROJ=F:/Dev/inet -KVEINS_PROJ=F:/Dev/veins-5.0/veins-veins-5.0 -DINET_IMPORT -DVEINS_IMPORT -I. -I$$\(INET_PROJ\)/src -I$$\(VEINS_PROJ\)/src -I. -L$$\(INET_PROJ\)/src -L$$\(VEINS_PROJ\)/src -lINET$$\(D\) -lveins$$\(D\)
 #
 
 # Name of target to be created (-o option)
-TARGET = VANETSim$(D)$(EXE_SUFFIX)
+TARGET = $(LIB_PREFIX)VANETSim$(D)$(SHARED_LIB_SUFFIX)
 TARGET_DIR = .
-
-# User interface (uncomment one) (-u option)
-USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(QTENV_LIBS) $(CMDENV_LIBS)
-#USERIF_LIBS = $(CMDENV_LIBS)
-#USERIF_LIBS = $(TKENV_LIBS)
-#USERIF_LIBS = $(QTENV_LIBS)
 
 # C++ include paths (with -I)
 INCLUDE_PATH = -I. -I$(INET_PROJ)/src -I$(VEINS_PROJ)/src -I.
@@ -46,6 +40,8 @@ OBJS = \
     $O/vanetsim/routing/gpsrflq/GPSRFLQPositionTable.o \
     $O/vanetsim/routing/gpsrwr/GPSRWR.o \
     $O/vanetsim/routing/gpsrwr/GPSRWRPositionTable.o \
+    $O/vanetsim/tools/L3Tools.o \
+    $O/vanetsim/tools/ProtocolTools.o \
     $O/vanetsim/routing/aodvwr/AODVWRControlPackets_m.o \
     $O/vanetsim/routing/geoadv/GEOADV_m.o \
     $O/vanetsim/routing/geoadvflq/GEOADVFLQ_m.o \
@@ -92,7 +88,7 @@ endif
 include $(CONFIGFILE)
 
 # Simulation kernel and user interface libraries
-OMNETPP_LIBS = $(OPPMAIN_LIB) $(USERIF_LIBS) $(KERNEL_LIBS) $(SYS_LIBS)
+OMNETPP_LIBS = -loppenvir$D $(KERNEL_LIBS) $(SYS_LIBS)
 ifneq ($(TOOLCHAIN_NAME),clangc2)
 LIBS += -Wl,-rpath,$(abspath $(INET_PROJ)/src) -Wl,-rpath,$(abspath $(VEINS_PROJ)/src)
 endif
@@ -140,8 +136,9 @@ endif
 
 $O/$(TARGET): $(OBJS)  $(wildcard $(EXTRA_OBJS)) Makefile $(CONFIGFILE)
 	@$(MKPATH) $O
-	@echo Creating executable: $@
-	$(Q)$(CXX) $(LDFLAGS) -o $O/$(TARGET) $(OBJS) $(EXTRA_OBJS) $(AS_NEEDED_OFF) $(WHOLE_ARCHIVE_ON) $(LIBS) $(WHOLE_ARCHIVE_OFF) $(OMNETPP_LIBS)
+	@echo Creating shared library: $@
+	$(Q)$(SHLIB_LD) -o $O/$(TARGET) $(OBJS) $(EXTRA_OBJS) $(AS_NEEDED_OFF) $(WHOLE_ARCHIVE_ON) $(LIBS) $(WHOLE_ARCHIVE_OFF) $(OMNETPP_LIBS) $(LDFLAGS)
+	$(Q)$(SHLIB_POSTPROCESS) $O/$(TARGET)
 
 .PHONY: all clean cleanall depend msgheaders smheaders
 
