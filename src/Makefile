@@ -42,13 +42,18 @@ OBJS = \
     $O/vanetsim/routing/gpsrwr/GPSRWRPositionTable.o \
     $O/vanetsim/tools/L3Tools.o \
     $O/vanetsim/tools/ProtocolTools.o \
+    $O/veins_inet/VeinsInetApplicationBase.o \
+    $O/veins_inet/VeinsInetManager.o \
+    $O/veins_inet/VeinsInetMobility.o \
+    $O/veins_inet/VeinsInetSampleApplication.o \
     $O/vanetsim/routing/aodvwr/AODVWRControlPackets_m.o \
     $O/vanetsim/routing/geoadv/GEOADV_m.o \
     $O/vanetsim/routing/geoadvflq/GEOADVFLQ_m.o \
     $O/vanetsim/routing/geoadvp/GEOADVP_m.o \
     $O/vanetsim/routing/geoadvpf/GEOADVPF_m.o \
     $O/vanetsim/routing/gpsrflq/GPSRFLQ_m.o \
-    $O/vanetsim/routing/gpsrwr/GPSRWR_m.o
+    $O/vanetsim/routing/gpsrwr/GPSRWR_m.o \
+    $O/veins_inet/VeinsInetSampleMessage_m.o
 
 # Message files
 MSGFILES = \
@@ -58,7 +63,8 @@ MSGFILES = \
     vanetsim/routing/geoadvp/GEOADVP.msg \
     vanetsim/routing/geoadvpf/GEOADVPF.msg \
     vanetsim/routing/gpsrflq/GPSRFLQ.msg \
-    vanetsim/routing/gpsrwr/GPSRWR.msg
+    vanetsim/routing/gpsrwr/GPSRWR.msg \
+    veins_inet/VeinsInetSampleMessage.msg
 
 # SM files
 SMFILES =
