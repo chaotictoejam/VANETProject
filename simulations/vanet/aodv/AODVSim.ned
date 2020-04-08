@@ -1,14 +1,15 @@
 
 package vanetsim.simulations.vanet.aodv;
 
-import inet.physicallayer.ieee80211.packetlevel.Ieee80211ScalarRadioMedium;
 import inet.visualizer.integrated.IntegratedCanvasVisualizer;
+import inet.physicallayer.contract.packetlevel.IRadioMedium;
 
 import org.car2x.veins.base.connectionManager.ConnectionManager;
 import org.car2x.veins.base.modules.BaseWorldUtility;
 import org.car2x.veins.modules.mobility.traci.TraCIScenarioManager*;
 import org.car2x.veins.modules.obstacle.ObstacleControl;
 import org.car2x.veins.modules.world.annotations.AnnotationManager;
+import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 
 network AODVSim
 {
@@ -17,7 +18,12 @@ network AODVSim
         double playgroundSizeY @unit(m); // y size of the area the nodes are in (in meters)
         double playgroundSizeZ @unit(m); // z size of the area the nodes are in (in meters)
         @display("bgb=$playgroundSizeX,$playgroundSizeY");
+    	string radioMediumType;
     submodules:
+        radioMedium: <radioMediumType> like IRadioMedium {
+            parameters:
+                @display("p=50,50");
+        }
         obstacles: ObstacleControl {
             @display("p=240,50");
         }
@@ -39,10 +45,11 @@ network AODVSim
             parameters:
                 @display("p=512,128");
         }
-        node[0]: AODVCar {
+        configurator: Ipv4NetworkConfigurator {
+            parameters:
+                @display("p=100,100;is=s");
         }
-        rsu[1]: AODVRSU {
-            @display("p=150,140;i=veins/sign/yellowdiamond;is=vs");
+        node[0]: AODVCar {
         }
     connections allowunconnected:
 }
