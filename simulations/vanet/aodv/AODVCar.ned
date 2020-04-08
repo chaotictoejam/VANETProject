@@ -1,14 +1,7 @@
 package vanetsim.simulations.vanet.aodv;
 
-import inet.networklayer.configurator.ipv4.HostAutoConfigurator;
-import veins_inet.VeinsInetCar;
 import inet.node.aodv.AodvRouter;
 
-import inet.networklayer.configurator.ipv4.HostAutoConfigurator;
-import inet.node.inet.AdhocHost;
-//
-// Wireless-enabled Host
-//
 module AODVCar
 {
     parameters:
@@ -35,7 +28,7 @@ module AODVCar
         }
         //End Veins Submodules
         
-        aodv: AodvRouter {
+        routing: AodvRouter {
             @display("p=558,307");
         }
     connections allowunconnected:

@@ -1,13 +1,17 @@
 package vanetsim.simulations.vanet.aodv;
 
-import inet.networklayer.configurator.ipv4.HostAutoConfigurator;
-import inet.node.inet.WirelessHost;
-import inet.node.aodv.AodvRouter;
 import org.car2x.veins.base.modules.*;
-import org.car2x.veins.modules.nic.Nic80211p;
+
+import inet.node.aodv.AodvRouter;
 
 module AODVRSU
 {
+    parameters:
+        string applType; //type of the application layer
+        string nicType = default("Nic80211p"); // type of network interface card
+        string veinsmobilityType = default("org.car2x.veins.modules.mobility.traci.TraCIMobility"); //type of the mobility module
+    gates:
+        input veinsradioIn; // gate for sendDirect
     submodules:
         //Start Veins Submodules
         appl: <applType> like org.car2x.veins.base.modules.IBaseApplLayer {
@@ -26,11 +30,14 @@ module AODVRSU
         }
         //End Veins Submodules
         
-        ac_wlan: HostAutoConfigurator {
-            @display("p=171,335");
-        }
-        aodv: AodvRouter {
+        routing: AodvRouter {
             @display("p=558,307");
         }
     connections allowunconnected:
+        nic.upperLayerOut --> appl.lowerLayerIn;
+        nic.upperLayerIn <-- appl.lowerLayerOut;
+        nic.upperControlOut --> appl.lowerControlIn;
+        nic.upperControlIn <-- appl.lowerControlOut;
+
+        veinsradioIn --> nic.radioIn;
 }

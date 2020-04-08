@@ -1,15 +1,16 @@
 
 package vanetsim.simulations.vanet.aodv;
 
-import inet.visualizer.integrated.IntegratedCanvasVisualizer;
-import inet.physicallayer.contract.packetlevel.IRadioMedium;
 
 import org.car2x.veins.base.connectionManager.ConnectionManager;
 import org.car2x.veins.base.modules.BaseWorldUtility;
 import org.car2x.veins.modules.mobility.traci.TraCIScenarioManager*;
 import org.car2x.veins.modules.obstacle.ObstacleControl;
 import org.car2x.veins.modules.world.annotations.AnnotationManager;
+
+import inet.physicallayer.contract.packetlevel.IRadioMedium;
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
+import inet.networklayer.ipv4.RoutingTableRecorder;
 
 network AODVSim
 {
@@ -20,10 +21,7 @@ network AODVSim
         @display("bgb=$playgroundSizeX,$playgroundSizeY");
     	string radioMediumType;
     submodules:
-        radioMedium: <radioMediumType> like IRadioMedium {
-            parameters:
-                @display("p=50,50");
-        }
+        // veins submodule
         obstacles: ObstacleControl {
             @display("p=240,50");
         }
@@ -45,11 +43,27 @@ network AODVSim
             parameters:
                 @display("p=512,128");
         }
+        //end veins submodule
+        
+        // routing set up
+        radioMedium: <radioMediumType> like IRadioMedium {
+            parameters:
+                @display("p=50,50");
+        }
         configurator: Ipv4NetworkConfigurator {
             parameters:
+                config = xml("<config><interface hosts='*' address='145.236.x.x' netmask='255.255.0.0'/></config>");
                 @display("p=100,100;is=s");
         }
-        node[0]: AODVCar {
+        routingTableRecorder: RoutingTableRecorder {
+            parameters:
+                @display("p=100,300;is=s");
+        }
+        // end routing setup
+        
+        rsu[1]: AODVRSU {
+        }
+        vehicle[0]: AODVCar {
         }
     connections allowunconnected:
 }
