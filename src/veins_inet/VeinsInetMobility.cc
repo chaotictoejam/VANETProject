@@ -50,6 +50,8 @@ void VeinsInetMobility::preInitialize(std::string external_id, const inet::Coord
 {
     Enter_Method_Silent();
     this->external_id = external_id;
+    lastSpeed = speed;
+    lastTime = simTime();
     lastPosition = position;
     lastVelocity = inet::Coord(cos(angle), -sin(angle)) * speed;
     lastOrientation = inet::Quaternion(inet::EulerAngles(rad(-angle), rad(0.0), rad(0.0)));
@@ -67,9 +69,17 @@ void VeinsInetMobility::nextPosition(const inet::Coord& position, std::string ro
 {
     Enter_Method_Silent();
 
+    auto currentTime = simTime();
     lastPosition = position;
     lastVelocity = inet::Coord(cos(angle), -sin(angle)) * speed;
     lastOrientation = inet::Quaternion(inet::EulerAngles(rad(-angle), rad(0.0), rad(0.0)));
+
+    double acceleration = (speed-lastSpeed)/(currentTime-lastTime);
+
+    lastSpeed = speed;
+    lastTime = currentTime;
+
+    lastAcceleration = inet::Coord(cos(angle), -sin(angle)) * acceleration;
 
     // Update display string to show node is getting updates
     auto hostMod = getParentModule();
@@ -95,7 +105,7 @@ inet::Coord VeinsInetMobility::getCurrentVelocity()
 
 inet::Coord VeinsInetMobility::getCurrentAcceleration()
 {
-    throw cRuntimeError("Invalid operation");
+    return lastAcceleration;
 }
 
 inet::Quaternion VeinsInetMobility::getCurrentAngularPosition()
@@ -110,7 +120,7 @@ inet::Quaternion VeinsInetMobility::getCurrentAngularVelocity()
 
 inet::Quaternion VeinsInetMobility::getCurrentAngularAcceleration()
 {
-    throw cRuntimeError("Invalid operation");
+    return lastAngularAcceleration;
 }
 
 void VeinsInetMobility::setInitialPosition()

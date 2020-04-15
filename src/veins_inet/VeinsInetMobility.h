@@ -74,12 +74,20 @@ protected:
     /** @brief The last angular velocity that was set by nextPosition(). */
     inet::Quaternion lastAngularVelocity;
 
+    /** @brief The last acceleration that was set by nextPosition(). */
+    inet::Coord lastAcceleration;
+
+    /** @brief The last angular acceleration that was set by nextPosition(). */
+    inet::Quaternion lastAngularAcceleration;
+
     mutable TraCIScenarioManager* manager = nullptr; /**< cached value */
     mutable TraCICommandInterface* commandInterface = nullptr; /**< cached value */
     mutable TraCICommandInterface::Vehicle* vehicleCommandInterface = nullptr; /**< cached value */
 
     std::string external_id; /**< identifier used by TraCI server to refer to this node */
 
+    double lastSpeed;
+    SimTime lastTime;
 protected:
     virtual void setInitialPosition() override;
 
