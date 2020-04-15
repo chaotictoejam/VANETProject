@@ -1104,6 +1104,7 @@ IRoute *AODVWR::createRoute(const L3Address& destAddr, const L3Address& nextHop,
     newProtocolData->setTWR(twr);
     newProtocolData->setExpirationTime(expirationTime);
     newProtocolData->setLifeTime(lifeTime);
+    newRoute->setProtocolData(newProtocolData);
 
     EV_DETAIL << "Adding new route " << newRoute << endl;
     routingTable->addRoute(newRoute);
