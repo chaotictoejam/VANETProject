@@ -1,21 +1,16 @@
 package vanetsim.simulations.vanet.aodvwr;
 
-import inet.networklayer.configurator.ipv4.HostAutoConfigurator;
-import inet.node.inet.WirelessHost;
 
-import vanetsim.routing.aodvwr.AODVWRRouting;
+import inet.node.inet.AdhocHost;
+import vanetsim.routing.aodvwr.AODVWR;
 
-module AODVWRRSU extends WirelessHost
+module AODVWRRSU extends AdhocHost
 {
     submodules:
-        ac_wlan: HostAutoConfigurator {
-            @display("p=171,335");
-        }
-        aodv: AODVWRRouting {
+        routing: AODVWR {
             @display("p=558,307");
         }
-        
     connections allowunconnected:
-        aodv.ipOut --> networkLayer.transportIn++;
-        aodv.ipIn <-- networkLayer.transportOut++;
+        routing.socketOut --> at.in++;
+        routing.socketIn <-- at.out++;
 }

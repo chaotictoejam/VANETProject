@@ -47,7 +47,6 @@ OBJS = \
     $O/veins_inet/VeinsInetMobility.o \
     $O/veins_inet/VeinsInetSampleApplication.o \
     $O/veins_inet/VeinsInetVanetRouting.o \
-    $O/veins_inet/VeinsInetVanetRoutingV2.o \
     $O/vanetsim/routing/aodvwr/AODVWRControlPackets_m.o \
     $O/vanetsim/routing/geoadv/GEOADV_m.o \
     $O/vanetsim/routing/geoadvflq/GEOADVFLQ_m.o \

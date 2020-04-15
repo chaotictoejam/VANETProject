@@ -20,7 +20,6 @@ OBJS = \
     $O/VeinsInetMobility.o \
     $O/VeinsInetSampleApplication.o \
     $O/VeinsInetVanetRouting.o \
-    $O/VeinsInetVanetRoutingV2.o \
     $O/VeinsInetSampleMessage_m.o \
     $O/VeinsInetVanetRoutingMessage_m.o
 
