@@ -46,6 +46,8 @@ OBJS = \
     $O/veins_inet/VeinsInetManager.o \
     $O/veins_inet/VeinsInetMobility.o \
     $O/veins_inet/VeinsInetSampleApplication.o \
+    $O/veins_inet/VeinsInetVanetRouting.o \
+    $O/veins_inet/VeinsInetVanetRoutingV2.o \
     $O/vanetsim/routing/aodvwr/AODVWRControlPackets_m.o \
     $O/vanetsim/routing/geoadv/GEOADV_m.o \
     $O/vanetsim/routing/geoadvflq/GEOADVFLQ_m.o \
@@ -53,7 +55,8 @@ OBJS = \
     $O/vanetsim/routing/geoadvpf/GEOADVPF_m.o \
     $O/vanetsim/routing/gpsrflq/GPSRFLQ_m.o \
     $O/vanetsim/routing/gpsrwr/GPSRWR_m.o \
-    $O/veins_inet/VeinsInetSampleMessage_m.o
+    $O/veins_inet/VeinsInetSampleMessage_m.o \
+    $O/veins_inet/VeinsInetVanetRoutingMessage_m.o
 
 # Message files
 MSGFILES = \
@@ -64,7 +67,8 @@ MSGFILES = \
     vanetsim/routing/geoadvpf/GEOADVPF.msg \
     vanetsim/routing/gpsrflq/GPSRFLQ.msg \
     vanetsim/routing/gpsrwr/GPSRWR.msg \
-    veins_inet/VeinsInetSampleMessage.msg
+    veins_inet/VeinsInetSampleMessage.msg \
+    veins_inet/VeinsInetVanetRoutingMessage.msg
 
 # SM files
 SMFILES =

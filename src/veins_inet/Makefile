@@ -2,27 +2,11 @@
 # OMNeT++/OMNEST Makefile for veins_inet
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -o veins_inet -O out -KINET_PROJ=F:/Dev/inet -KVEINS_PROJ=F:/Dev/veins-5.0/veins-veins-5.0 -DINET_IMPORT -DVEINS_IMPORT -I. -I$$\(INET_PROJ\)/src -I$$\(VEINS_PROJ\)/src -I.. -L$$\(INET_PROJ\)/src -L$$\(VEINS_PROJ\)/src -L../../out/$$\(CONFIGNAME\)/src -lINET$$\(D\) -lveins$$\(D\)
+#  opp_makemake --nolink -f --deep -o veins_inet -O out -KINET_PROJ=F:/Dev/inet -KVEINS_PROJ=F:/Dev/veins-5.0/veins-veins-5.0 -DINET_IMPORT -DVEINS_IMPORT -I. -I$$\(INET_PROJ\)/src -I$$\(VEINS_PROJ\)/src -I.. -L$$\(INET_PROJ\)/src -L$$\(VEINS_PROJ\)/src -L../../out/$$\(CONFIGNAME\)/src -lINET$$\(D\) -lveins$$\(D\)
 #
-
-# Name of target to be created (-o option)
-TARGET = veins_inet$(D)$(EXE_SUFFIX)
-TARGET_DIR = .
-
-# User interface (uncomment one) (-u option)
-USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(QTENV_LIBS) $(CMDENV_LIBS)
-#USERIF_LIBS = $(CMDENV_LIBS)
-#USERIF_LIBS = $(TKENV_LIBS)
-#USERIF_LIBS = $(QTENV_LIBS)
 
 # C++ include paths (with -I)
 INCLUDE_PATH = -I. -I$(INET_PROJ)/src -I$(VEINS_PROJ)/src -I..
-
-# Additional object and library files to link with
-EXTRA_OBJS =
-
-# Additional libraries (-L, -l options)
-LIBS = $(LDFLAG_LIBPATH)$(INET_PROJ)/src $(LDFLAG_LIBPATH)$(VEINS_PROJ)/src $(LDFLAG_LIBPATH)../../out/$(CONFIGNAME)/src  -lINET$(D) -lveins$(D)
 
 # Output directory
 PROJECT_OUTPUT_DIR = ../../out
@@ -30,11 +14,20 @@ PROJECTRELATIVE_PATH = src/veins_inet
 O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc, .msg and .sm files
-OBJS = $O/VeinsInetApplicationBase.o $O/VeinsInetManager.o $O/VeinsInetMobility.o $O/VeinsInetSampleApplication.o $O/VeinsInetSampleMessage_m.o
+OBJS = \
+    $O/VeinsInetApplicationBase.o \
+    $O/VeinsInetManager.o \
+    $O/VeinsInetMobility.o \
+    $O/VeinsInetSampleApplication.o \
+    $O/VeinsInetVanetRouting.o \
+    $O/VeinsInetVanetRoutingV2.o \
+    $O/VeinsInetSampleMessage_m.o \
+    $O/VeinsInetVanetRoutingMessage_m.o
 
 # Message files
 MSGFILES = \
-    VeinsInetSampleMessage.msg
+    VeinsInetSampleMessage.msg \
+    VeinsInetVanetRoutingMessage.msg
 
 # SM files
 SMFILES =
@@ -63,12 +56,6 @@ endif
 
 include $(CONFIGFILE)
 
-# Simulation kernel and user interface libraries
-OMNETPP_LIBS = $(OPPMAIN_LIB) $(USERIF_LIBS) $(KERNEL_LIBS) $(SYS_LIBS)
-ifneq ($(TOOLCHAIN_NAME),clangc2)
-LIBS += -Wl,-rpath,$(abspath $(INET_PROJ)/src) -Wl,-rpath,$(abspath $(VEINS_PROJ)/src) -Wl,-rpath,$(abspath ../../out/$(CONFIGNAME)/src)
-endif
-
 COPTS = $(CFLAGS) $(IMPORT_DEFINES) -DINET_IMPORT -DVEINS_IMPORT $(INCLUDE_PATH) -I$(OMNETPP_INCL_DIR)
 MSGCOPTS = $(INCLUDE_PATH)
 SMCOPTS =
@@ -88,7 +75,6 @@ endif
 #------------------------------------------------------------------------------
 
 # Main target
-all: $(TARGET_DIR)/$(TARGET)
 
 $(TARGET_DIR)/% :: $O/%
 	@mkdir -p $(TARGET_DIR)
@@ -97,10 +83,8 @@ ifeq ($(TOOLCHAIN_NAME),clangc2)
 	$(Q)-$(LN) $(<:%.dll=%.lib) $(@:%.dll=%.lib)
 endif
 
-$O/$(TARGET): $(OBJS)  $(wildcard $(EXTRA_OBJS)) Makefile $(CONFIGFILE)
-	@$(MKPATH) $O
-	@echo Creating executable: $@
-	$(Q)$(CXX) $(LDFLAGS) -o $O/$(TARGET) $(OBJS) $(EXTRA_OBJS) $(AS_NEEDED_OFF) $(WHOLE_ARCHIVE_ON) $(LIBS) $(WHOLE_ARCHIVE_OFF) $(OMNETPP_LIBS)
+all: $(OBJS)  Makefile $(CONFIGFILE)
+	@# Do nothing
 
 .PHONY: all clean cleanall depend msgheaders smheaders
 
@@ -126,8 +110,6 @@ smheaders: $(SMFILES:.sm=_sm.h)
 clean:
 	$(qecho) Cleaning $(TARGET)
 	$(Q)-rm -rf $O
-	$(Q)-rm -f $(TARGET_DIR)/$(TARGET)
-	$(Q)-rm -f $(TARGET_DIR)/$(TARGET:%.dll=%.lib)
 	$(Q)-rm -f $(call opp_rwildcard, . , *_m.cc *_m.h *_sm.cc *_sm.h)
 
 cleanall:
