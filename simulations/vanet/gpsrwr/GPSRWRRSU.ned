@@ -1,20 +1,18 @@
 package vanetsim.simulations.vanet.gpsrwr;
 
-import inet.networklayer.configurator.ipv4.HostAutoConfigurator;
-import inet.node.inet.WirelessHost;
-
+import inet.node.inet.AdhocHost;
 import vanetsim.routing.gpsrwr.GPSRWR;
 
-module GPSRWRRSU extends WirelessHost
+module GPSRWRRSU extends AdhocHost
 {
+    parameters:
+        @display("i=device/cellphone");
+        ipv4.configurator.networkConfiguratorModule = "";
     submodules:
-        ac_wlan: HostAutoConfigurator {
-            @display("p=171,335");
-        }
-        gpsrwr: GPSRWR{
+        routing: GPSRWR {
             @display("p=558,307");
         }
     connections allowunconnected:
-        gpsrwr.ipOut --> networkLayer.transportIn++;
-        gpsrwr.ipIn <-- networkLayer.transportOut++;
+        routing.ipOut --> at.in++;
+        routing.ipIn <-- at.out++;
 }
