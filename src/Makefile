@@ -34,8 +34,6 @@ OBJS = \
     $O/vanetsim/routing/geoadvflq/GEOADVFLQPositionTable.o \
     $O/vanetsim/routing/geoadvp/GEOADVP.o \
     $O/vanetsim/routing/geoadvp/GEOADVPPositionTable.o \
-    $O/vanetsim/routing/geoadvpf/GEOADVPF.o \
-    $O/vanetsim/routing/geoadvpf/GEOADVPFPositionTable.o \
     $O/vanetsim/routing/gpsrflq/GPSRFLQ.o \
     $O/vanetsim/routing/gpsrflq/GPSRFLQPositionTable.o \
     $O/vanetsim/routing/gpsrwr/GPSRWR.o \
@@ -51,7 +49,6 @@ OBJS = \
     $O/vanetsim/routing/geoadv/GEOADV_m.o \
     $O/vanetsim/routing/geoadvflq/GEOADVFLQ_m.o \
     $O/vanetsim/routing/geoadvp/GEOADVP_m.o \
-    $O/vanetsim/routing/geoadvpf/GEOADVPF_m.o \
     $O/vanetsim/routing/gpsrflq/GPSRFLQ_m.o \
     $O/vanetsim/routing/gpsrwr/GPSRWR_m.o \
     $O/veins_inet/VeinsInetSampleMessage_m.o \
@@ -63,7 +60,6 @@ MSGFILES = \
     vanetsim/routing/geoadv/GEOADV.msg \
     vanetsim/routing/geoadvflq/GEOADVFLQ.msg \
     vanetsim/routing/geoadvp/GEOADVP.msg \
-    vanetsim/routing/geoadvpf/GEOADVPF.msg \
     vanetsim/routing/gpsrflq/GPSRFLQ.msg \
     vanetsim/routing/gpsrwr/GPSRWR.msg \
     veins_inet/VeinsInetSampleMessage.msg \
