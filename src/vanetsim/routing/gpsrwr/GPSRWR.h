@@ -24,7 +24,7 @@ class INET_API GPSRWR : public RoutingProtocolBase, public cListener, public Net
     // GPSRWR parameters
     GPSRWRPlanarizationMode planarizationMode = static_cast<GPSRWRPlanarizationMode>(-1);
     const char *interfaces = nullptr;
-    simtime_t beaconInterval;
+    double beaconInterval;
     simtime_t maxJitter;
     simtime_t neighborValidityInterval;
     bool displayBubbles;

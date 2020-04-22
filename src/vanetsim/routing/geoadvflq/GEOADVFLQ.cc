@@ -155,6 +155,7 @@ void GEOADVFLQ::processBeaconTimer()
     if (!selfAddress.isUnspecified()) {
         sendBeacon(createBeacon());
         beaconInterval = getFLQBeaconInterval();
+        maxJitter = .5*beaconInterval;
         storeSelfPositionInGlobalRegistry();
     }
     scheduleBeaconTimer();

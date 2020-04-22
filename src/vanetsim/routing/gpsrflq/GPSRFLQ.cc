@@ -165,6 +165,7 @@ void GPSRFLQ::processBeaconTimer()
     const L3Address selfAddress = getSelfAddress();
     if (!selfAddress.isUnspecified()) {
         beaconInterval = getFLQBeaconInterval();
+        maxJitter = .5*beaconInterval;
         sendBeacon(createBeacon());
         storeSelfPositionInGlobalRegistry();
     }
@@ -172,7 +173,7 @@ void GPSRFLQ::processBeaconTimer()
     schedulePurgeNeighborsTimer();
 }
 
-simtime_t GPSRFLQ::getFLQBeaconInterval(){
+double GPSRFLQ::getFLQBeaconInterval(){
     //Determine Network Link Quality
     double linkQuality = 0;
     if(beaconsSent != 0){

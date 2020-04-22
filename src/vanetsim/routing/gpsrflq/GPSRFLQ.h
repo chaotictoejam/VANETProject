@@ -23,7 +23,7 @@ class INET_API GPSRFLQ : public RoutingProtocolBase, public cListener, public Ne
     // GPSR parameters
     GPSRFLQPlanarizationMode planarizationMode = static_cast<GPSRFLQPlanarizationMode>(-1);
     const char *interfaces = nullptr;
-    simtime_t beaconInterval;
+    double beaconInterval;
     simtime_t maxJitter;
     simtime_t neighborValidityInterval;
     bool isUrban;
@@ -67,7 +67,7 @@ class INET_API GPSRFLQ : public RoutingProtocolBase, public cListener, public Ne
     // handling beacon timers
     void scheduleBeaconTimer();
     void processBeaconTimer();
-    simtime_t getFLQBeaconInterval();
+    double getFLQBeaconInterval();
 
     // handling purge neighbors timers
     void schedulePurgeNeighborsTimer();
