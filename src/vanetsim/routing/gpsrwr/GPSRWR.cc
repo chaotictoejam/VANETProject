@@ -225,7 +225,7 @@ const Ptr<GPSRWRBeacon> GPSRWR::createBeacon()
 void GPSRWR::sendBeacon(const Ptr<GPSRWRBeacon>& beacon)
 {
     EV_INFO << "Sending beacon: address = " << beacon->getAddress() << ", position = " << beacon->getPosition() << endl;
-    Packet *udpPacket = new Packet("GPSRBeacon");
+    Packet *udpPacket = new Packet("GPSRWRBeacon");
     udpPacket->insertAtBack(beacon);
     auto udpHeader = makeShared<UdpHeader>();
     udpHeader->setSourcePort(GPSRWR_UDP_PORT);

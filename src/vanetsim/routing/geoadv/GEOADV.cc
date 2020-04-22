@@ -220,7 +220,7 @@ const Ptr<GEOADVBeacon> GEOADV::createBeacon()
 void GEOADV::sendBeacon(const Ptr<GEOADVBeacon>& beacon)
 {
     EV_INFO << "Sending beacon: address = " << beacon->getAddress() << ", position = " << beacon->getPosition() << endl;
-    Packet *udpPacket = new Packet("GPSRBeacon");
+    Packet *udpPacket = new Packet("GEOADVBeacon");
     udpPacket->insertAtBack(beacon);
     auto udpHeader = makeShared<UdpHeader>();
     udpHeader->setSourcePort(GEOADV_UDP_PORT);

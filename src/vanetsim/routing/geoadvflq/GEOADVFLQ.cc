@@ -388,7 +388,7 @@ const Ptr<GEOADVFLQBeacon> GEOADVFLQ::createBeacon()
 void GEOADVFLQ::sendBeacon(const Ptr<GEOADVFLQBeacon>& beacon)
 {
     EV_INFO << "Sending beacon: address = " << beacon->getAddress() << ", position = " << beacon->getPosition() << endl;
-    Packet *udpPacket = new Packet("GPSRBeacon");
+    Packet *udpPacket = new Packet("GEOADVFLQBeacon");
     udpPacket->insertAtBack(beacon);
     auto udpHeader = makeShared<UdpHeader>();
     udpHeader->setSourcePort(GEOADVFLQ_UDP_PORT);
