@@ -3,9 +3,9 @@
 
 package vanetsim.routing.gpsrwr;
 
-import vanetsim.routing.contract.IVANETRouting;
+import inet.applications.contract.IApp;
 
-simple GPSRWR like IVANETRouting
+simple GPSRWR like IApp
 {
     parameters:
         // properties
@@ -34,7 +34,7 @@ simple GPSRWR like IVANETRouting
         // visualization parameters
         bool displayBubbles = default(false);	// display bubble messages about changes in routing state for packets
     gates:
-        input ipIn;
-        output ipOut;
+        input socketIn;
+        output socketOut;
 }
 

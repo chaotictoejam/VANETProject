@@ -3,9 +3,9 @@
 
 package vanetsim.routing.geoadvp;
 
-import vanetsim.routing.contract.IVANETRouting;
+import inet.applications.contract.IApp;
 
-simple GEOADVP like IVANETRouting
+simple GEOADVP like IApp
 {
     parameters:
         // properties
@@ -34,6 +34,6 @@ simple GEOADVP like IVANETRouting
         // visualization parameters
         bool displayBubbles = default(false);	// display bubble messages about changes in routing state for packets
     gates:
-        input ipIn;
-        output ipOut;
+        input socketIn;
+        output socketOut;
 }

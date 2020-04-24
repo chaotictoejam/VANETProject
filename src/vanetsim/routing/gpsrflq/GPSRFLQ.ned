@@ -6,9 +6,9 @@
 
 package vanetsim.routing.gpsrflq;
 
-import vanetsim.routing.contract.IVANETRouting;
+import inet.applications.contract.IApp;
 
-simple GPSRFLQ like IVANETRouting
+simple GPSRFLQ like IApp
 {
     parameters:
         // properties
@@ -32,7 +32,7 @@ simple GPSRFLQ like IVANETRouting
         // visualization parameters
         bool displayBubbles = default(false);	// display bubble messages about changes in routing state for packets
     gates:
-        input ipIn;
-        output ipOut;
+        input socketIn;
+        output socketOut;
 }
 

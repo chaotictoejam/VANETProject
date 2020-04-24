@@ -99,8 +99,8 @@ void GPSRWR::initialize(int stage)
         globalPositionTable.clear();
     }
     else if (stage == INITSTAGE_ROUTING_PROTOCOLS) {
-        registerService(Protocol::manet, nullptr, gate("ipIn"));
-        registerProtocol(Protocol::manet, gate("ipOut"), nullptr);
+        registerService(Protocol::manet, nullptr, gate("socketIn"));
+        registerProtocol(Protocol::manet, gate("socketOut"), nullptr);
         host->subscribe(linkBrokenSignal, this);
         networkProtocol->registerHook(0, this);
         WATCH(neighborPositionTable);
@@ -196,7 +196,7 @@ void GPSRWR::processPurgeNeighborsTimer()
 
 void GPSRWR::sendUdpPacket(Packet *packet)
 {
-    send(packet, "ipOut");
+    send(packet, "socketOut");
 }
 
 void GPSRWR::processUdpPacket(Packet *packet)

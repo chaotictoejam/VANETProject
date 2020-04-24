@@ -97,8 +97,8 @@ void GEOADV::initialize(int stage)
         globalPositionTable.clear();
     }
     else if (stage == INITSTAGE_ROUTING_PROTOCOLS) {
-        registerService(Protocol::manet, nullptr, gate("ipIn"));
-        registerProtocol(Protocol::manet, gate("ipOut"), nullptr);
+        registerService(Protocol::manet, nullptr, gate("socketIn"));
+        registerProtocol(Protocol::manet, gate("socketOut"), nullptr);
         host->subscribe(linkBrokenSignal, this);
         networkProtocol->registerHook(0, this);
         WATCH(neighborPositionTable);
@@ -194,7 +194,7 @@ void GEOADV::processPurgeNeighborsTimer()
 
 void GEOADV::sendUdpPacket(Packet *packet)
 {
-    send(packet, "ipOut");
+    send(packet, "socketOut");
 }
 
 void GEOADV::processUdpPacket(Packet *packet)

@@ -1,39 +1,7 @@
-// Author: Joanne Skiles
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with this program.  If not, see http://www.gnu.org/licenses/.
-//
-
 package vanetsim.routing.aodvwr;
 
 import inet.applications.contract.IApp;
 
-//
-// Ad hoc On-Demand Distance Vector Routing Protocol module.
-//
-// The Ad hoc On-Demand Distance Vector (AODVWR) routing protocol is
-// intended for use by mobile nodes in an ad hoc network. It offers
-// quick adaptation to dynamic link conditions, low processing and
-// memory overhead, low network utilization, and determines unicast
-// routes to destinations within the ad hoc network.
-//
-// This routing protocol communicates over UDP and used in ~AODVWRRouter
-// nodes as a routing submodule. ~AODVWRRouter is just a ~WirelessHost
-// extended with ~AODVWRRouting submodule.
-//
-// This implementation is based on RFC 3561. For more information, you may
-// refer to the following link: https://tools.ietf.org/html/rfc3561.html.
-//
 simple AODVWR like IApp
 {
     parameters:

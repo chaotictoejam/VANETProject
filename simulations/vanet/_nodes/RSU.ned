@@ -1,15 +1,17 @@
-package vanetsim.simulations.vanet.aodv;
+package vanetsim.simulations.vanet._nodes;
 
 import inet.routing.aodv.Aodv;
 import inet.node.inet.AdhocHost;
+import inet.applications.contract.IApp;
 
-module AODVRSU extends AdhocHost
+module RSU extends AdhocHost
 {
     parameters:
-        @display("i=device/cellphone");
+        @display("i=veins/sign/yellowdiamond");
         ipv4.configurator.networkConfiguratorModule = "";
+    	string router;
     submodules:
-        routing: Aodv {
+        routing: <router> like IApp {
             @display("p=558,307");
         }
     connections allowunconnected:

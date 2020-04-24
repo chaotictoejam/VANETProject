@@ -9,6 +9,8 @@ import org.car2x.veins.modules.world.annotations.AnnotationManager;
 import inet.physicallayer.contract.packetlevel.IRadioMedium;
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 import inet.networklayer.ipv4.RoutingTableRecorder;
+import vanetsim.simulations.vanet._nodes.Car;
+import vanetsim.simulations.vanet._nodes.RSU;
 
 import veins_inet.VeinsInetManager;
 
@@ -36,10 +38,10 @@ network GPSRFLQSim
                 @display("p=100,300;is=s");
         }
         
-        rsu[numberOfRSU]: GPSRFLQRSU {
+        rsu[numberOfRSU]: Car {
         }
         
-        vehicle[0]: GPSRFLQCar {
+        vehicle[0]: RSU {
         }
     connections allowunconnected:
 }

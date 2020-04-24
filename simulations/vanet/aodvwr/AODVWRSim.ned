@@ -10,6 +10,8 @@ import org.car2x.veins.modules.world.annotations.AnnotationManager;
 
 import inet.physicallayer.contract.packetlevel.IRadioMedium;
 import inet.networklayer.ipv4.RoutingTableRecorder;
+import vanetsim.simulations.vanet._nodes.Car;
+import vanetsim.simulations.vanet._nodes.RSU;
 
 import veins_inet.VeinsInetManager;
 
@@ -37,10 +39,10 @@ network AODVWRSim
                 @display("p=100,300;is=s");
         }
         
-        rsu[numberOfRSU]: AODVWRRSU {
+        rsu[numberOfRSU]: RSU {
         }
         
-        vehicle[0]: AODVWRCar {
+        vehicle[0]: Car {
         }
     connections allowunconnected:
 }
