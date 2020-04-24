@@ -192,7 +192,7 @@
     <vehicle id="167" depart="336.00"><route edges="e3 e19 e20 e21 e10"/></vehicle>
     <vehicle id="168" depart="338.00"><route edges="e17 e11 e12"/></vehicle>
     <vehicle id="169" depart="340.00"><route edges="e1 e18 e19 e20 e21 e22 e12"/></vehicle>
-	<vehicle id="169" depart="340.00"><route edges="e18 e4"/></vehicle>
+	<vehicle id="301" depart="340.00"><route edges="e18 e4"/></vehicle>
     <vehicle id="170" depart="343.00"><route edges="e1 e18 e19 e6"/></vehicle>
     <vehicle id="171" depart="346.00"><route edges="e5"/></vehicle>
     <vehicle id="172" depart="349.00"><route edges="e16 e9 e22 e12"/></vehicle>
