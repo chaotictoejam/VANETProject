@@ -1,4 +1,6 @@
-package vanetsim.simulations.vanet.geoadvp;
+
+package vanetsim.simulations.vanet.dymo;
+
 
 import org.car2x.veins.base.connectionManager.ConnectionManager;
 import org.car2x.veins.base.modules.BaseWorldUtility;
@@ -9,12 +11,12 @@ import org.car2x.veins.modules.world.annotations.AnnotationManager;
 import inet.physicallayer.contract.packetlevel.IRadioMedium;
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 import inet.networklayer.ipv4.RoutingTableRecorder;
-import vanetsim.simulations.vanet._nodes.Car;
-import vanetsim.simulations.vanet._nodes.RSU;
+import vanetsim.simulations.vanet._nodes.ManetCar;
+import vanetsim.simulations.vanet._nodes.ManetRSU;
 
 import veins_inet.VeinsInetManager;
 
-network GEOADVPSim
+network DymoSim
 {
     parameters:
         double playgroundSizeX @unit(m); // x size of the area the nodes are in (in meters)
@@ -38,10 +40,10 @@ network GEOADVPSim
                 @display("p=100,300;is=s");
         }
         
-        rsu[numberOfRSU]: Car {
+        rsu[numberOfRSU]: ManetRSU {
         }
         
-        vehicle[0]: RSU {
+        vehicle[0]: ManetCar {
         }
     connections allowunconnected:
 }

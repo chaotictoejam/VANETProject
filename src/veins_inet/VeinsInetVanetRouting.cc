@@ -22,7 +22,7 @@ VeinsInetVanetRouting::VeinsInetVanetRouting()
 
 bool VeinsInetVanetRouting::startApplication()
 {
-    if ((getParentModule()->getIndex() % 5) == 0) {
+    if ((getParentModule()->getIndex() % 2) == 0) {
         auto srcAddress = L3AddressResolver().addressOf(getModuleByPath(getParentModule()->getFullPath().c_str()), 27);
         destAddress = L3AddressResolver().addressOf(getModuleByPath("rsu[0]"),27);
         getParentModule()->getDisplayString().setTagArg("i", 1, "red"); //Coloring vehicles sending packets
